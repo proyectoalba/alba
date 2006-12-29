@@ -83,8 +83,7 @@ class boletinActions extends sfActions
                 }
 
                 $con->commit(); 
-             }
-             
+             }             
              catch (Exception $e){
                  $con->rollback();
                  throw $e;  
@@ -118,9 +117,6 @@ class boletinActions extends sfActions
         return $aAlumno;
 
     }
-
-
-
 
     protected function getActividades($division_id) {
         $optionsActividad = array();
@@ -167,9 +163,6 @@ class boletinActions extends sfActions
             $optionsActividad = $this->getActividades($division_id);
         }
 
-       
-//        if ($this->getRequest()->getMethod() == sfRequest::POST) {
-
             $aAlumno = $this->getAlumnos($division_id);
             $criteria = new Criteria();
             $criteria->add(PeriodoPeer::FK_CICLOLECTIVO_ID, $this->getUser()->getAttribute('fk_ciclolectivo_id'));
@@ -186,7 +179,7 @@ class boletinActions extends sfActions
 
            
             if(count($aAlumno) > 0) {
-// esto puede ser mejorado con solo una query bastante facilmente
+                // esto puede ser mejorado con solo una query bastante facilmente
                 foreach($aAlumno as $alumno) {
                     foreach($aPeriodo as $periodo) {
                         $criteria = new Criteria();
@@ -207,7 +200,6 @@ class boletinActions extends sfActions
                 }
             }
 
-
             $criteria = new Criteria();
             $criteria->add(EscalanotaPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
             $aPosiblesNotas = EscalanotaPeer::doSelect($criteria);
@@ -218,9 +210,6 @@ class boletinActions extends sfActions
                 }
             }
      
-
-  //      }
-
 
         // llenar variables a mostrar en el template
         $this->optionsDivision = $optionsDivision;
@@ -235,7 +224,6 @@ class boletinActions extends sfActions
         $this->aNotaAlumno = $aNotaAlumno;
         $this->sizeNota = $sizeNota;
     }
-
 
 
     protected function getConcepto($establecimiento_id) {
@@ -317,8 +305,6 @@ class boletinActions extends sfActions
                 }
             }
 
-
-
         }
 
         $criteria = new Criteria();
@@ -330,9 +316,6 @@ class boletinActions extends sfActions
                 $sizeNota = $actual;
             }
         }
-
-
-
 
         // llenar variables a mostrar en el template
         $this->optionsDivision = $optionsDivision;
@@ -348,8 +331,6 @@ class boletinActions extends sfActions
         $this->aNotaAlumnoObs = $aNotaAlumnoObs;
         $this->sizeNota = $sizeNota;
     }
-
-
 
 
     public function executeIndex() {
@@ -421,8 +402,6 @@ class boletinActions extends sfActions
                     }
                 }            
 
-
-
                 $criteria = new Criteria();
                 $criteria->add(PeriodoPeer::FK_CICLOLECTIVO_ID, $this->getUser()->getAttribute('fk_ciclolectivo_id'));
                 $aPeriodo = PeriodoPeer::doSelect($criteria);
@@ -451,8 +430,6 @@ class boletinActions extends sfActions
         $this->aAsistencia = $aAsistencia;
     }
 
-
-
     protected function getEscalanota($establecimiento_id) {
         $aDatosTablaEscalaNota = array();
         $criteria = new Criteria();
@@ -463,8 +440,6 @@ class boletinActions extends sfActions
         }
         return $aDatosTablaEscalaNota;
     }
-
-
 
     public function executeGrabarNotasConcepto() {
 
@@ -522,8 +497,7 @@ class boletinActions extends sfActions
                     }
                 }
                 $con->commit(); 
-             }
-             
+             }             
              catch (Exception $e){
                  $con->rollback();
                  throw $e;  
@@ -562,6 +536,5 @@ class boletinActions extends sfActions
 
         return $aAsistencia;
     }
-
 
 }

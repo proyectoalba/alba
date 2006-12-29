@@ -41,7 +41,7 @@
 
 
 
-<? if (count($aAlumno) > 0) { ?>
+<? if (count($aAlumno) > 0 && $concepto_id ){ ?>
 <h1>Alumnos</h1>
 
 Posibles Notas para calificar: 
@@ -77,7 +77,7 @@ Posibles Notas para calificar:
   </tbody>
 </table>
 
-<? } 
+<?// } 
 if($division_id) { ?>
 
  <ul class="sf_admin_actions">
@@ -86,6 +86,8 @@ if($division_id) { ?>
   'class' => 'sf_admin_action_save',
 )) ?></li>
 </ul>
-<? } ?>
+<? }
+ }
+ ?>
 </fieldset>
 </form>
