@@ -284,7 +284,7 @@ class boletinActions extends sfActions
         $criteria = new Criteria();
         $criteria->add(PeriodoPeer::FK_CICLOLECTIVO_ID, $this->getUser()->getAttribute('fk_ciclolectivo_id'));
         $aPeriodo = PeriodoPeer::doSelect($criteria);
-        $optionsPeriodo[] = "";
+        $optionsPeriodo[] = "Todos";
         foreach($aPeriodo as $periodo) {
             $optionsPeriodo[$periodo->getId()] = $periodo->getDescripcion();
         }          
