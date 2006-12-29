@@ -1,0 +1,3 @@
+editPermisoSuccess:
+    stylesheets: [multiple_select]
+    javascripts: [varios/multiple_select]

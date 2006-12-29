@@ -1,0 +1,1 @@
+<? echo $horarioescolar->getEstablecimiento()->getNombre()?>

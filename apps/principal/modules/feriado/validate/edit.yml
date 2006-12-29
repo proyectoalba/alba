@@ -1,0 +1,38 @@
+methods:
+  post:       
+    - "feriado{nombre}"
+    - "feriado{fecha}"    
+    - "feriado{repeticion_anual}"
+    - "feriado{inamovible}"    
+    
+fillin:
+    enabled:       on
+      
+names:
+    feriado{nombre}:
+        required:     Yes
+        required_msg: El campo nombre es obligatorio
+        validators: caracteresMaximos128
+        
+    feriado{fecha}:
+        required:     Yes
+        required_msg: El campo fecha es obligatorio
+        validators: validarFecha
+
+    feriado{repeticion_anual}:
+        required:     No
+
+    feriado{inamovible}:
+        required:     No
+        
+        
+caracteresMaximos128:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La maxima cantidad de caracteres permitida es de 128
+
+validarFecha:
+    class: albaDateValidator
+    param:
+        date_error: El campo debe ser una fecha

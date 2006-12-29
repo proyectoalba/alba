@@ -1,0 +1,10 @@
+<VirtualHost *:80>
+  ServerName SERVERNAME 
+  DocumentRoot "/var/www/alba/web"
+  Alias /sf ##SYMFONY_DATA_WEB_SF##
+  <Directory "/var/www/alba/web">
+    AllowOverride All
+  </Directory>
+  ErrorLog /var/log/httpd/alba-error_log
+  CustomLog /var/log/log/alba-access_log common
+</VirtualHost>

@@ -1,0 +1,43 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Docente
+    theme:            default
+
+    fields:
+        apellido: { name: Apellido, params: size=64 }
+        nombre: { name: Nombre , params: size=64 }
+        fk_tipodocumento_id: { name: Tipo de Documento }
+        tipodocumento: { name: Tipo de Documento }
+        nro_documento:  { name: Nro. de Documento, params: size=16 }
+        direccion: { name: Direcci&oacute;n , params: size=64 }
+        ciudad: { name: Ciudad , params: size=64}
+        codigo_postal: { name: CP }
+        fecha_nacimiento: { name: Fecha de Nacimiento}
+        email: { name: Email , params: size=64}
+        telefono: { name: Tel&eacute;fono, params: size=20}
+        sexo: { name: Sexo }
+        telefono_movil: { name: Tel&eacute;fono m&oacute;vil, params: size=20}
+        fk_provincia_id: { name: Provincia}
+        libreta_sanitaria: { name: ¿Trajo libreta sanitaria?}
+        psicofisico: { name: ¿Trajo Examen psicofisico?}
+        titulo: { name: Titulo Habilitante , params: size=64}
+        activo: { name: Activo}
+
+    edit:
+        title: Editar Docente
+        display:       
+                 "Informacion general":  [apellido, nombre, fecha_nacimiento, _sexo, fk_tipodocumento_id, nro_documento ]
+                 "Donde vive": [direccion, ciudad, fk_provincia_id, codigo_postal]
+                 "Otros": [ email, telefono, telefono_movil, libreta_sanitaria, psicofisico, titulo, activo ]
+                                                         
+                    
+    list:
+        title: Listado de Docentes
+        display: [ =apellido, nombre, tipodocumento, nro_documento, direccion, ciudad, codigo_postal, provincia, email, telefono, activo ]
+        object_actions:
+            _edit:      -
+            _delete:    -
+            actividadesPorDocente:  { name: Actividades por Docente , action: actividadesPorDocente , icon: small/actdocente.png }
+            horariosPorDocente: { name: Horarios tentativos por docente , action: horariosPorDocente , icon: horarios.png }
+            

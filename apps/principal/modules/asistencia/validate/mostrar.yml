@@ -1,0 +1,13 @@
+methods:
+  post:          [fechainicio]
+
+names:
+  fechainicio:
+    required: yes
+    required_msg: Debe ingresar la Fecha
+    validators:   dateLenValidator
+
+dateLenValidator:
+    class:        albaDateValidator
+      
+

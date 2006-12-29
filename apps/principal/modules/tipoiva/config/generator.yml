@@ -1,0 +1,19 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Tipoiva
+    theme:            default
+    fields:
+        nombre:     { name: Nombre , params: size=64}
+        descripcion:  { name: Descripci&oacute;n , params: size=64}
+    edit:
+        title: Editar Tipos de IVA
+        display: [ nombre, descripcion ]
+    
+    list:
+        title: Listado de Tipos de IVA
+        display: [ =nombre, descripcion ]
+        object_actions:
+            _edit:      -
+            _delete:    -
+            

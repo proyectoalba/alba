@@ -1,0 +1,21 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Legajocategoria
+    theme:            default
+    fields:
+          descripcion: {name: Descripci&oacute;n , params: size=64 }
+    list:
+          title: Listado de &iacute;tems de legajo pedag&oacute;gico
+          display: [ descripcion]
+          object_actions:
+              _edit: -
+    edit:
+          title: Editar &iacute;tems de legajo pedag&oacute;gico
+          display: [ descripcion ]
+          actions:
+              _delete: -
+              _save: - 
+              _save_and_add: -
+              _list: -
+                    

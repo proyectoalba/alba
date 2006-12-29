@@ -1,0 +1,30 @@
+methods:
+  post:       
+    - "actividad{nombre}"
+    - "actividad{descripcion}"
+    
+fillin:
+    enabled:       on
+      
+names:
+    actividad{nombre}:
+        required:     Yes
+        required_msg: El campo nombre es obligatorio
+        validators: caracteresMaximosNombre
+
+    actividad{descripcion}:
+        required:     No
+        validators: caracteresMaximosDescripcion
+        
+caracteresMaximosNombre:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La maxima cantidad de caracteres permitida es de 128
+        
+caracteresMaximosDescripcion:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La maxima cantidad de caracteres permitida es de 255
+       

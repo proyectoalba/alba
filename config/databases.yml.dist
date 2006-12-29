@@ -1,0 +1,6 @@
+all:
+  propel:
+    class:          sfPropelDatabase
+    param:
+      dsn:          mysql://USERDB:PASSDB@SERVER/DBNAME
+      datasource: alba

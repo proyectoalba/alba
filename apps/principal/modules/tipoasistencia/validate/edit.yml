@@ -1,0 +1,57 @@
+methods:
+  post:       
+    - "tipoasistencia{nombre}"
+    - "tipoasistencia{descripcion}"    
+    - "tipoasistencia{valor}"
+    - "tipoasistencia{grupo}"    
+    
+fillin:
+    enabled:       on
+      
+names:
+    tipoasistencia{nombre}:
+        required:     Yes
+        required_msg: El campo nombre es obligatorio
+        validators: caracteresMaximos10
+        
+    tipoasistencia{descripcion}:
+        required:     No
+        validators: caracteresMaximos255
+
+    tipoasistencia{valor}:
+        required:     Yes
+        required_msg: El campo valor es obligatorio
+        validators: validarNumero
+
+    tipoasistencia{grupo}:
+        required:     No
+        validators: caracteresMaximos30
+        
+        
+caracteresMaximos30:
+    class:  sfStringValidator
+    param:
+        max: 30
+        max_error: La maxima cantidad de caracteres permitida es de 30
+
+caracteresMaximos10:
+    class:  sfStringValidator
+    param:
+        max: 10
+        max_error: La maxima cantidad de caracteres permitida es de 10
+
+        
+caracteresMaximos255:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La maxima cantidad de caracteres permitida es de 255
+
+
+validarNumero:
+    class: sfNumberValidator
+    param:
+        nan_error: Por favor ingrese un valor n&uacute;merico
+        min: 0
+        min_error: El n&uacute;mero debe ser positivo
+        

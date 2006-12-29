@@ -1,0 +1,15 @@
+
+DATABASE STANDING:
+
+# Los nombres de tablas y campos en minuscula y español
+# Los nombres de las tablas en singular
+# Las tablas llevan un prefijo ej: eu_
+# Las claves ajenas llevan la siguiente nomenclatura:
+	fk_tabla1_tabla2
+# Las tablas relaciones llevan la siguiente nomenclatura:
+	rel_tabla1_tabla2
+	
+CODING STANDING:
+	Nos basamos en el standard utilizado por pear
+	http://www.pear.php.net/manual/es/standards.php
+

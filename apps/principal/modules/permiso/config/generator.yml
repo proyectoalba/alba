@@ -1,0 +1,24 @@
+generator:
+    class:              sfPropelAdminGenerator
+    param:
+        model_class:      Permiso
+        theme:            default
+
+        fields: 
+            nombre: { name: Nombre de Permiso }
+            descripcion: { name: Descripci&oacute;n, type: textarea_tag }
+            fk_modulo_id: { name: modulo}
+            credencial: { name: credencial }
+        
+        edit:
+            title: Editar permisos por módulo
+            display: [ nombre, descripcion, credencial, fk_modulo_id ]
+                                      
+        list:
+            title:  Listado de permisos por módulos
+            display: [ =nombre, credencial, _modulo ]
+            object_actions:
+                _edit:      -
+                _delete:    -    
+            filters: [ nombre, fk_modulo_id ]
+

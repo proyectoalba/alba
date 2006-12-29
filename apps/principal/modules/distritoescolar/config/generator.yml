@@ -1,0 +1,22 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Distritoescolar
+    theme:            default
+    fields:
+        id: { name: identificador }
+        nombre: { name: Nombre, params: size=64}
+        telefono: { name: Tel&eacute;fono , params: size=20}
+        direccion: { name: Direcci&oacute;n , params: size=64 }
+        ciudad: { name: Ciudad, params: size=64  }
+        
+    edit:
+        title: Modificar Distrito Escolar
+        display: [nombre, direccion, ciudad, telefono]
+                                                         
+    list:
+        display: [=nombre, direccion, ciudad, telefono]
+        title: Listado de Distrito Escolares
+        object_actions:
+            _edit:        -
+            _delete:      -

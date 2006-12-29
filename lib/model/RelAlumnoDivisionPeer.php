@@ -1,0 +1,23 @@
+<?php
+
+  // include base peer class
+  require_once 'model/om/BaseRelAlumnoDivisionPeer.php';
+  
+  // include object class
+  include_once 'model/RelAlumnoDivision.php';
+
+
+/**
+ * Skeleton subclass for performing query and update operations on the 'rel_alumno_division' table.
+ *
+ * 
+ *
+ * You should add additional methods to this class to meet the
+ * application requirements.  This class will only be generated as
+ * long as it does not already exist in the output directory.
+ *
+ * @package model
+ */	
+class RelAlumnoDivisionPeer extends BaseRelAlumnoDivisionPeer {
+
+} // RelAlumnoDivisionPeer

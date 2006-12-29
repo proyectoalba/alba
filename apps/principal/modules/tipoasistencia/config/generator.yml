@@ -1,0 +1,27 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Tipoasistencia
+    theme:            default
+    fields:
+        nombre: { name: Nombre, params: size=10 }
+        descripcion: { name: Descripci&oacute;n , params: size=64 }
+        valor: { name: Valor }
+        grupo: { name: Grupo, params: size=30}
+        defecto: { name: Defecto }
+    list: 
+        title: Listado de Tipos de Asistencias
+        display: [ nombre, descripcion, valor, grupo, defecto ]
+        object_actions:
+            _edit: -
+            _delete: -
+        actions:
+            _create: -
+    edit:
+        title: Editar Tipos de Asistencias
+        actions:
+            _delete: -
+            _save: -
+            _save_and_add: -
+            _list: -
+            

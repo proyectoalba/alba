@@ -1,0 +1,1 @@
+<?php echo input_tag('filters[nombre_apellido]', isset($filters['nombre_apellido']) ? $filters['nombre_apellido'] : '') ?>

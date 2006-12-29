@@ -1,0 +1,1 @@
+<? echo link_to($locacion->getProvincia()->getNombreCorto(),'locacion/edit?id='.$locacion->getFkProvinciaId());?>

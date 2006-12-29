@@ -1,0 +1,128 @@
+methods:
+  post:       
+    - "alumno{nombre}"
+    - "alumno{nro_documento}"
+    - "alumno{apellido}"
+    - "alumno{fecha_nacimiento}"
+    - "alumno{ciudad}"    
+    - "alumno{direccion}"    
+    - "alumno{codigo_postal}"        
+    - "alumno{telefono}"       
+    - "alumno{sexo}"        
+    - "alumno{email}"        
+    - "alumno{distancia_escuela}"        
+    - "alumno{hermanos_escuela}" 
+    - "alumno{hijo_maestro_escuela}"               
+    - "alumno{certificado_medico}"        
+    - "alumno{activo}"        
+    
+fillin:
+    enabled:       on
+      
+names:
+    alumno{nombre}:
+        required:     Yes
+        required_msg: El campo nombre es obligatorio
+        validators: caracteresMaximos128
+
+    alumno{apellido}:
+        required:     Yes
+        required_msg: El campo apellido es obligatorio
+        validators: caracteresMaximos128
+
+    alumno{fecha_nacimiento}:
+        required:     Yes
+        required_msg: El campo fecha de nacimiento es obligatorio
+        validators: validaFecha
+
+    alumno{nro_documento}:
+        required:     Yes
+        required_msg: El campo n&uacute;mero de documento es obligatorio
+        validators: validaNroDocumento
+
+    alumno{ciudad}:
+        required:     Yes
+        required_msg: El campo ciudad es obligatorio
+        validators: caracteresMaximos128
+
+    alumno{direccion}:
+        required:     Yes
+        required_msg: El campo direcci&oacute;n es obligatorio
+        validators: caracteresMaximos128
+
+    alumno{codigo_postal}:
+        required:     Yes
+        required_msg: El campo c&oacute;digo postal  es obligatorio
+        validators: caracteresMaximos20
+        
+    alumno{telefono}:
+        required:     No
+        validators: caracteresMaximos20
+
+    alumno{sexo}:
+        required:    No
+        
+    alumno{email}:
+        required:     No
+        validators: validaEmail, caracteresMaximos128
+        
+    alumno{distancia_escuela}:
+        required:     No
+        validators: validarNumero
+
+    alumno{hermanos_escuela}:
+        required:     No
+
+    alumno{hijo_maestro_escuela}:
+        required:     No
+        
+    alumno{certificado_medico}:
+        required:     No
+   
+    alumno{activo}:
+        required:     No
+        
+caracteresMaximos128:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La maxima cantidad de caracteres permitida es de 128
+        
+caracteresMaximos255:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La maxima cantidad de caracteres permitida es de 255
+
+caracteresMaximos20:
+    class:  sfStringValidator
+    param:
+        max: 20
+        max_error: La maxima cantidad de caracteres permitida es de 255
+
+
+validarNumero:
+    class: sfNumberValidator
+    param:
+        nan_error: Por favor ingrese un valor n&uacute;merico       
+        min: 0
+        min_error: El n&uacute;mero debe ser positivo
+
+validaFecha:
+    class:  albaDateValidator
+    params: 
+        date_error: El campo debe ser una fecha
+    
+validaNroDocumento:
+    class:  sfStringValidator
+    params: 
+        max: 16
+        max_error: La cantidad m&acute;xima de caracteres permitida es de 10      
+        min: 6
+        min_error: La cantidad minima de caracteres permitida es de 6
+        
+validaEmail:
+    class: sfEmailValidator
+    param:
+       email_error:   "No ingresaste un email correctamente ( ej: nombre@dominio.com)"
+                    

@@ -1,0 +1,98 @@
+methods: 
+    post: 
+        - "usuario{usuario}"
+        - "usuario{clave}"
+        - "usuario{correo_publico}"
+        - "usuario{email}"
+        - "usuario{activo}"
+        - "usuario{seguridad_pregunta}"
+        - "usuario{seguridad_respuesta}"
+        - "usuario{fk_establecimiento_id}"
+
+fillin:
+    enabled: On         
+
+names: 
+    usuario{usuario}:
+        required:   Yes
+        required_msg: El campo usuario es obligatorio
+        validators: nicknameValidator, caracteresMaximos32, usuarioValidator
+ 
+    usuario{clave}:    
+        required:   Yes
+        required_msg: El campo clave es obligatorio
+        validators: claveValidator, caracteresMaximos48
+        
+    usuario{correo_publico}:
+        required:   No
+        
+    usuario{email}:
+        required:   Yes
+        required_msg:  El campo email es obligatorio
+        validators: emailValidator, caracteresMaximos128
+        
+    usuario{activo}:
+        required:   No
+
+    usuario{seguridad_pregunta}:
+        required:   No
+        validators: caracteresMaximos128
+
+    usuario{seguridad_respuesta}:
+        required:   No
+        validators: caracteresMaximos128
+
+    usuario{fk_establecimiento_id}:
+        required:   Yes
+        required_msg:   Debe ingresar el establecimiento al que pertenece    
+        validators: foreignKeyValidator
+        
+
+
+caracteresMaximos32:
+    class:  sfStringValidator
+    param:
+        max: 32
+        max_error: La maxima cantidad de caracteres permitida es de 32
+                        
+caracteresMaximos48:
+    class:  sfStringValidator
+    param:
+        max: 48
+        max_error: La maxima cantidad de caracteres permitida es de 48
+
+caracteresMaximos128:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La maxima cantidad de caracteres permitida es de 128
+
+nicknameValidator:
+    class: sfStringValidator
+    param: 
+        min:    5
+        min_error:  El nombre de usuario debe contener al menos 5 caracteres
+          
+emailValidator:
+    class: sfEmailValidator
+    param:
+        email_error:   "No ingresaste un email correctamente ( ej: nombre@dominio.com)"
+    
+foreignKeyValidator:
+    class: sfNumberValidator
+    param:
+        min:    1
+        min_error:  No se puede cargar ese establecimiento. Trate nuevamente
+
+claveValidator:
+    class: sfStringValidator
+    param:
+        min:    5
+        min_error:  La clave debe contener al menos 5 caracteres
+        
+usuarioValidator:
+    class:  albaUsuarioValidator
+    param:
+        campo: usuario
+        campo_id: id
+        usuario_error: El usuario ya exite

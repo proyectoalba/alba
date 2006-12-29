@@ -1,0 +1,61 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+      model_class:      Alumno
+      theme:            default
+      fields:
+            nombre: { name: Nombre , params: size=64 }
+            apellido: { name: Apellido , params: size=64}
+            fk_provincia_id: { name: Provincia }
+            fk_establecimiento_id: { name: Establecimiento }
+            fk_cuenta_id: { name: Cuenta }
+            fk_conceptobaja_id: { name: Concepto de Baja }
+            fk_tipodocumento_id: { name: Tipo de Documento }
+            fecha_nacimiento: { name: Fecha Nacimiento}
+            direccion: { name: Direcci&oacute;n , params: size=64}
+            ciudad: { name: Ciudad, params: size=64 }
+            codio_postal: { name: CP, params: size=20}
+            telefono: { name: Tel&eacute;fono, params: size=20 }
+            sexo: { name: Sexo }
+            email: { name: Email , params: size=64 }
+            nro_documento:  { name: Nro. Documento, params: size=16 }
+            distancia_escuela: { name: Distancia a la escuela (cuadras) }
+            hermanos_escuela: { name: ¿Hermanos en la escuela? }
+            hijo_maestro_escuela: { name: ¿Algunos de sus padres es Maestro? }
+            certificado_medico: { name: ¿trajo el certificado medico? }
+            activo: { name: ¿esta activo? }
+            nombre_apellido: { name: Nombre }
+            division: { name: Divisi&oacute;n }
+
+      list:
+            title: Listado de Alumnos
+            display: [ =apellido, nombre, nro_documento, sexo, telefono, email, activo ]
+            filters:  [ _nombre_apellido, _division, nro_documento ]
+            object_actions:
+                _edit: -
+                _delete: -
+                irCuenta:  { name: Ir a Cuenta, action: irCuenta, icon: next.png }
+                Vacunas: { name: Vacunas, action: vacunas, icon: jeringa.gif}
+                asistencia: { name: Asistencia, action: asistencia, icon: small/asistencia.png }
+                legajo: { name: Legajo, action: legajo, icon: small/legajo.png }
+            actions:
+                _create: -
+            max_per_page: 10
+            
+        
+      edit:
+            title: " "
+            fields:
+                fk_cuenta_id:   { params: include_custom=>>Seleccione un Cuenta<<}
+                fk_provincia_id:   { params: include_custom=>>Seleccione una Provincia<<}
+            display:
+                "Informacion general":  [apellido, nombre, _sexo, fk_tipodocumento_id, nro_documento, fecha_nacimiento, email, activo ]
+                "Donde vive": [direccion, ciudad, fk_provincia_id, codigo_postal, telefono]
+                "Prioridades": [ distancia_escuela, hermanos_escuela, hijo_maestro_escuela ]
+                "Otros": [ certificado_medico, fk_cuenta_id ]
+            actions:
+                _delete: -
+                _save: -
+                _list: -
+                _save_and_add: -
+                irCuenta: { name: Ir a Cuenta, action: irCuenta, icon: next.png }

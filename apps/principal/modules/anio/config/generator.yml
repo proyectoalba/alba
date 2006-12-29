@@ -1,0 +1,23 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Anio
+    theme:            default
+    fields:
+        descripcion: { name: Descripci&oacute;n , params: size=40 }
+    
+    edit:
+        title: Editar A&ntilde;os
+        display: [descripcion ]
+        actions:
+            _delete: -
+            _save: -
+            _list: -
+            _save_and_add: -
+                    
+    list:
+        title: Listado de A&ntilde;os
+        display: [ =descripcion ]
+        object_actions:
+            _edit:      -
+            _delete:    -

@@ -1,0 +1,1 @@
+<?=$establecimiento->getNivelTipo()->getNombre()?>

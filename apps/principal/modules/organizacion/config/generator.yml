@@ -1,0 +1,30 @@
+generator:
+    class:              sfPropelAdminGenerator
+    param:
+        model_class:      Organizacion
+        theme:            default
+        fields:
+            nombre: { name: nombre , params: size=64}
+            razon_social: { name: Raz&oacute;n Social , params: size=64}
+            fk_organizacion_id: { name: Organizaci&oacute;n }
+            descripcion: { name: Descripci&oacute;n , params: size=64}
+            cuit: { name: CUIT , params: size=20}
+            direccion: { name: Direcci&oacute;n , params: size=64}
+            ciudad: { name: Ciudad, params: size=64 }
+            codigo_postal: { name: CP, params: size=20 }
+            fk_provincia_id: { name: Provincia }
+            fk_tipoiva_id: { name: Tipo Iva } 
+            telefono: { name: Tel&eacute;fono, params: size=20 }
+        list:
+            title: Listado de Organizaciones
+            display: [ =nombre, descripcion, razon_social, cuit, direccion, ciudad, codigo_postal, _provincia, _pais, _tipo_iva, telefono ]
+            object_actions:
+                _edit:        -
+            actions:    {}
+                
+        edit:
+            title: Editar Organizaci&oacute;n
+            actions:
+                _save: -
+                _list: -
+                

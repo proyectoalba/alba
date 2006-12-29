@@ -1,0 +1,64 @@
+methods:
+  post:       
+    - "cuenta{nombre}"
+    - "cuenta{razon_social}"
+    - "cuenta{cuit}"
+    - "cuenta{direccion}"
+    - "cuenta{ciudad}"    
+    - "cuenta{codigo_postal}"
+    - "cuenta{telefono}"    
+    
+fillin:
+    enabled:       on
+      
+names:
+    cuenta{nombre}:
+        required:     Yes
+        required_msg: El campo nombre es obligatorio
+        validators: caracteresMaximos128
+
+    cuenta{razon_social}:
+        required:     Yes
+        required_msg: El campo raz&oacute;n social  es obligatorio
+        validators: caracteresMaximos128
+
+    cuenta{cuit}:
+        required:     Yes
+        required_msg: El campo CUIT  es obligatorio
+        validators: caracteresMaximos20
+
+    cuenta{direccion}:
+        required:     Yes
+        required_msg: El campo direcci&oacute;n  es obligatorio
+        validators: caracteresMaximos128
+
+
+    cuenta{ciudad}:
+        required:     Yes
+        required_msg: El campo ciudad  es obligatorio
+        validators: caracteresMaximos128
+        
+    cuenta{codigo_postal}:
+        required:     Yes
+        required_msg: El campo c&oacute;digo postal  es obligatorio
+        validators: caracteresMaximos20
+
+    cuenta{telefono}:
+        required:     No
+        validators: caracteresMaximos20
+        
+        
+caracteresMaximos20:
+    class:  sfStringValidator
+    param:
+        max: 20
+        max_error: La maxima cantidad de caracteres permitida es de 20
+
+        
+caracteresMaximos128:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La maxima cantidad de caracteres permitida es de 128
+        
+        

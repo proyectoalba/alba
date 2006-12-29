@@ -1,0 +1,16 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Menu
+    theme:            default
+    
+    fields: 
+        fk_padre_menu_id: { name: Menu Padre }
+        perm: { name: Nombre de Permiso}
+    list:
+        title: Administraci&oacute;n del menu
+        filters: [ fk_padre_menu_id, nombre, perm ]
+        display: [ id, =nombre, link, perm, _fk_padre_menu_id, orden ]
+    edit:
+        title: Modificar menu
+        

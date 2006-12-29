@@ -1,0 +1,24 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+      model_class:      Concepto
+      theme:            default
+
+      fields:
+            descripcion: {name: Descripci&oacute;n , params: size=64 }
+            fk_establecimiento_id: {name: Establecimiento}
+            nombre: {name: Nombre , params: size=64 }
+
+      list:
+            title: Listado de ítems conceptuales a evaluar
+            display: [ Establecimiento, nombre, descripcion ]
+            object_actions:
+                _edit: -
+                _delete: -
+
+            actions:
+               _create: -
+      edit:
+            title: Editar un ítem conceptual
+            fields:
+                fk_establecimiento_id:   { params: include_custom=>>Seleccione un Establecimiento<<}

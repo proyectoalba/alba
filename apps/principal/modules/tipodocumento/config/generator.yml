@@ -1,0 +1,21 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Tipodocumento
+    theme:            default
+    fields:
+        id: { name: identificador }
+        nombre: { name: Nombre , params: size=64 }
+        descripcion: { name: Descripci&oacute;n , params: size=64 }
+        
+    edit:
+        title: Modificar Tipo de Documento
+        display: [nombre, descripcion, orden]
+                                                         
+    list:
+        display: [=nombre, descripcion, orden]
+        title: Listado de Tipo de Documento
+        object_actions:
+            _edit:        -
+            _delete:      -
+

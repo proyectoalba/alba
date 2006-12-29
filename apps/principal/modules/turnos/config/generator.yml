@@ -1,0 +1,19 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Turnos
+    theme:            default 
+    fields:
+        descripcion: {name: Descripci&oacute;n , params: size=64}
+        hora_inicio: {name: Hora Inicio }
+        hora_fin: { name: Hora Fin }
+    edit:
+        title: Turno
+        display: [descripcion, _hora_inicio, _hora_fin ]
+    list:
+        title: Listado de Turnos
+        display: [=descripcion, hora_inicio, hora_fin ]
+        
+        object_actions:
+                         _edit:  -
+                         _delete: -

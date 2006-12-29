@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<xliff version="1.0">
+    <file orginal="global" source-language="en_US" datatype="plaintext">
+        <body>   
+            <trans-unit id="1">
+                <source>create</source>
+                <target>Nuevo</target>
+            </trans-unit>              
+            <trans-unit id="2">
+                <source>Actions</source>
+                <target>Acciones</target>
+            </trans-unit>              
+            <trans-unit id="3">
+                <source>filters</source>
+                <target>filtros</target>
+            </trans-unit>              
+            <trans-unit id="4">
+                <source>filter</source>
+                <target>filtrar</target>
+            </trans-unit>              
+            <trans-unit id="5">
+                <source>reset</source>
+                <target>borrar</target>
+            </trans-unit>              
+            <trans-unit id="6">
+                <source>[0] no result|[1] 1 result|(1,+Inf] %1% results</source>
+                <target>[0] no hay resultaddos|[1] 1 resultado|(1,+Inf] %1% resultados</target>
+            </trans-unit>              
+            <trans-unit id="7">
+                <source>list</source>
+                <target>listado</target>
+            </trans-unit>              
+            <trans-unit id="8">
+                <source>delete</source>
+                <target>borrar</target>
+            </trans-unit>              
+            <trans-unit id="9">
+                <source>save</source>
+                <target>guardar</target>
+            </trans-unit>              
+            <trans-unit id="10">
+                <source>save and add</source>
+                <target>guardar y agregar nuevo</target>
+            </trans-unit>              
+            <trans-unit id="11">
+                <source>Your modifications have been saved</source>
+                <target>Las modificaciones han sido guardadas</target>
+            </trans-unit>      
+            <trans-unit id="12">
+                <source>Are you sure?</source>
+                <target>¿Esta seguro?</target>
+            </trans-unit>      
+            <trans-unit id="13">
+                <source>There are some errors that prevent the form to validate</source>
+                <target>Hay algunos errores, por favor corríjalos</target>
+            </trans-unit>      
+        </body>
+    </file>
+</xliff>

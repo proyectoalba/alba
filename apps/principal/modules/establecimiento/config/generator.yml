@@ -1,0 +1,25 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Establecimiento
+    theme:            default
+    fields:
+        id: { name: identificador }
+        nombre: { name: Nombre , params: size=64}
+        descripcion: { name: Descripci&oacute;n , params: size=64 }
+        fk_organizacion_id: { name: Organizaci&oacute;n }
+        fk_niveltipo_id: { name: Nivel }
+        fk_distritoescolar_id : { name: Distrito Escolar}
+        distritoescolar : { name: Distrito Escolar}
+        
+    edit:
+        title: Modificar Establecimiento
+        display: [nombre, descripcion, fk_organizacion_id, fk_niveltipo_id, fk_distritoescolar_id]
+                                                         
+    list:
+        display: [=nombre, descripcion, _organizacion, _nivel_tipo, _distritoescolar]
+        title: Listado de Establecimientos
+        object_actions:
+            _edit:        -
+            _delete:      -
+            editLocacion: { name: Locacion, action: editLocacion, icon: small/establecimiento.png }

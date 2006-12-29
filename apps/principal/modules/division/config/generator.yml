@@ -1,0 +1,23 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Division
+    theme:            default
+    fields:
+        anio: { name: A&ntilde;o }
+        fk_anio_id: { name: A&ntilde;o }
+        division: { name: Divisi&oacute;n }
+        fk_turnos_id: { name: Turnos }
+        descripcion: { name: Descripci&oacute;n }
+    edit:
+        title: Editar Divisi&oacute;n
+        fields:
+            fk_anio_id:   { params: include_custom=>>Seleccione un Año<<}
+        display: [ fk_anio_id, descripcion, _fk_turnos_id ]
+                    
+    list:
+        title: Listado de Divisiones
+        display: [ anio, descripcion, turnos ]
+        object_actions:
+            _edit:      -
+            _delete:    -

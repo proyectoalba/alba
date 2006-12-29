@@ -1,0 +1,1 @@
+<? echo link_to($permiso->getModulo()->getNombre(),'modulo/edit?id='.$permiso->getFkModuloId());?>

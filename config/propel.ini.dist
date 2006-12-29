@@ -1,0 +1,40 @@
+propel.targetPackage       = model
+propel.project             = alba
+propel.database            = mysql
+propel.database.createUrl  = mysql://USERDB:PASSDB@SERVER/
+propel.database.url        = mysql://USERDB:PASSDB@SERVER/DBNAME
+
+propel.addGenericAccessors = true
+propel.addGenericMutators  = true
+propel.addTimeStamp        = false
+
+propel.schema.validate     = false
+
+; directories
+propel.home                    = .
+propel.output.dir              = ALBA_PATH
+propel.schema.dir              = ${propel.output.dir}/config
+propel.conf.dir                = ${propel.output.dir}/config
+propel.phpconf.dir             = ${propel.output.dir}/config
+propel.sql.dir                 = ${propel.output.dir}/data/sql
+propel.runtime.conf.file       = runtime-conf.xml
+propel.php.dir                 = ${propel.output.dir}/lib
+propel.default.schema.basename = schema
+propel.datadump.mapper.from    = *schema.xml
+propel.datadump.mapper.to      = *data.xml
+
+; builder settings
+propel.builder.peer.class              = symfony.addon.propel.builder.SfPeerBuilder
+propel.builder.object.class            = symfony.addon.propel.builder.SfObjectBuilder
+
+propel.builder.objectstub.class        = propel.engine.builder.om.php5.PHP5ExtensionObjectBuilder
+propel.builder.peerstub.class          = propel.engine.builder.om.php5.PHP5ExtensionPeerBuilder
+propel.builder.objectmultiextend.class = propel.engine.builder.om.php5.PHP5MultiExtendObjectBuilder
+propel.builder.mapbuilder.class        = propel.engine.builder.om.php5.PHP5MapBuilderBuilder
+propel.builder.interface.class         = propel.engine.builder.om.php5.PHP5InterfaceBuilder
+propel.builder.node.class              = propel.engine.builder.om.php5.PHP5NodeBuilder
+propel.builder.nodepeer.class          = propel.engine.builder.om.php5.PHP5NodePeerBuilder
+propel.builder.nodestub.class          = propel.engine.builder.om.php5.PHP5ExtensionNodeBuilder
+propel.builder.nodepeerstub.class      = propel.engine.builder.om.php5.PHP5ExtensionNodePeerBuilder
+
+propel.mysql.tableType = InnoDB
