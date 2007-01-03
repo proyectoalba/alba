@@ -171,7 +171,7 @@ INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (12, '
 INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (13, 'Usuario', 'usuario/', 'usuario', 12, 0);
 INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (14, 'Rol', 'rol/', 'rol', 12, 0);
 INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (15, 'Permiso', 'permiso/', 'permiso', 12, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (16, 'MÃ³dulo', 'modulo/', 'modulo', 12, 0);
+INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (16, 'M&oacute;dulo', 'modulo/', 'modulo', 12, 0);
 INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (18, 'Definir Organizaci&oacute;n', 'organizacion/edit?id=1', 'organizacion', 2, 0);
 INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (19, 'Definir Establecimiento', 'establecimiento', 'establecimiento', 2, 0);
 INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (20, 'Definir Distritos Escolares', 'distritoescolar', 'distrito', 71, 0);
@@ -216,8 +216,8 @@ INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (59, '
 INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (60, 'Constancia Egreso 7mo', '#', '', 9, 0);
 INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (61, '-', '', '', 9, 10);
 INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (62, 'Asistencias', '#', '', 4, 100);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (63, 'MatrÃ­cula Inicial?', '', '', 9, 100);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (64, 'MatrÃ­cula Final?', '', '', 9, 100);
+INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (63, 'Matr&iacute;cula Inicial?', '', '', 9, 100);
+INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (64, 'Matr&iacute;cula Final?', '', '', 9, 100);
 INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (65, 'Ayuda', '#', '', 1, 80);
 INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (67, 'Indice...', 'ayuda/', '', 65, 0);
 INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (68, 'Cr&eacute;ditos', 'creditos/', '', 65, 0);
@@ -228,7 +228,7 @@ INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (73, '
 INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (74, 'Definir tipo de asistencia', 'tipoasistencia', 'tipoasistencia', 62, 20);
 INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (75, 'Definir turnos', 'turnos', 'turnos', 47, 50);
 INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (76, 'Configuraciones previas', '#', '', 8, 200);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (78, 'Asignar alumno a divisiÃ³n', 'relAlumnoDivision/create', 'relAlumnoDivision', 6, 0);
+INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (78, 'Asignar alumno a divisi&oacute;n', 'relAlumnoDivision/create', 'relAlumnoDivision', 6, 0);
 INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (79, 'Listado de Materias por docente', 'relActividadDocente', 'relActividadDocente', 5, 300);
 INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (80, 'Boletines', '#', '', 27, 100);
 INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (81, 'Conepto', 'boletin/listConcepto', 'boletinconcepto', 80, 0);
