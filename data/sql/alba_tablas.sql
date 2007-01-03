@@ -28,7 +28,7 @@ CREATE TABLE `actividad` (
   `descripcion` text,
   PRIMARY KEY  (`id`),
   KEY `establecimiento_FI_1` (`fk_establecimiento_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `adjunto`
@@ -44,7 +44,7 @@ CREATE TABLE `adjunto` (
   `nombre_archivo` varchar(255) NOT NULL,
   `tipo_archivo` varchar(64) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `alumno`
@@ -78,7 +78,7 @@ CREATE TABLE `alumno` (
   KEY `establecimiento_FI_1` (`fk_establecimiento_id`),
   KEY `provincia_FI_1` (`fk_provincia_id`),
   KEY `tipodocumento_Fl_1` (`fk_tipodocumento_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `anio`
@@ -91,7 +91,7 @@ CREATE TABLE `anio` (
   `descripcion` varchar(255) NOT NULL default '',
   PRIMARY KEY  (`id`),
   KEY `establecimiento_FI_1` (`fk_establecimiento_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `asistencia`
@@ -105,7 +105,7 @@ CREATE TABLE `asistencia` (
   `fecha` datetime NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `alumno_FI_1` (`fk_alumno_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `boletin_actividades`
@@ -125,7 +125,7 @@ CREATE TABLE `boletin_actividades` (
   KEY `alumno_FI_1` (`fk_alumno_id`),
   KEY `actividad_FI_1` (`fk_actividad_id`),
   KEY `periodo_FI_1` (`fk_periodo_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `boletin_conceptual`
@@ -145,7 +145,7 @@ CREATE TABLE `boletin_conceptual` (
   KEY `alumno_FI_1` (`fk_alumno_id`),
   KEY `concepto_FI_1` (`fk_concepto_id`),
   KEY `periodo_FI_1` (`fk_periodo_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `calendariovacunacion`
@@ -159,7 +159,7 @@ CREATE TABLE `calendariovacunacion` (
   `periodo` varchar(128) default NULL,
   `observacion` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `cargobaja`
@@ -171,7 +171,7 @@ CREATE TABLE `cargobaja` (
   `nombre` varchar(128) NOT NULL,
   `descripcion` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `ciclolectivo`
@@ -187,7 +187,7 @@ CREATE TABLE `ciclolectivo` (
   `actual` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`id`),
   KEY `establecimiento_FI_1` (`fk_establecimiento_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `concepto`
@@ -201,7 +201,7 @@ CREATE TABLE `concepto` (
   `nombre` varchar(128) NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `establecimiento_FI_1` (`fk_establecimiento_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `conceptobaja`
@@ -213,7 +213,7 @@ CREATE TABLE `conceptobaja` (
   `nombre` varchar(128) NOT NULL,
   `descripcion` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `cuenta`
@@ -234,7 +234,7 @@ CREATE TABLE `cuenta` (
   PRIMARY KEY  (`id`),
   KEY `iva_FI_1` (`fk_tipoiva_id`),
   KEY `provincia_FI_1` (`fk_provincia_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `distritoescolar`
@@ -248,7 +248,7 @@ CREATE TABLE `distritoescolar` (
   `telefono` varchar(20) default NULL,
   `ciudad` varchar(128) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `division`
@@ -262,7 +262,7 @@ CREATE TABLE `division` (
   `fk_turnos_id` int(11) NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `anio_FI_1` (`fk_anio_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `docente`
@@ -290,7 +290,7 @@ CREATE TABLE `docente` (
   `telefono_movil` varchar(20) default NULL,
   PRIMARY KEY  (`id`),
   KEY `tipodocumento_FI_1` (`fk_tipodocumento_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `docente_horario`
@@ -305,7 +305,7 @@ CREATE TABLE `docente_horario` (
   `hora_fin` time NOT NULL,
   `dia` int(11) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `escalanota`
@@ -321,7 +321,7 @@ CREATE TABLE `escalanota` (
   `descripcion` varchar(255) default NULL,
   PRIMARY KEY  (`id`),
   KEY `establecimiento_FI_1` (`fk_establecimiento_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `espacio`
@@ -339,7 +339,7 @@ CREATE TABLE `espacio` (
   `fk_locacion_id` int(11) NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `espacio_FI_1` (`fk_tipoespacio_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `establecimiento`
@@ -356,7 +356,7 @@ CREATE TABLE `establecimiento` (
   PRIMARY KEY  (`id`),
   KEY `nivel_FI_1` (`fk_organizacion_id`),
   KEY `nivel_FI_2` (`fk_niveltipo_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `examen`
@@ -377,7 +377,7 @@ CREATE TABLE `examen` (
   KEY `alumno_FI_1` (`fk_alumno_id`),
   KEY `actividad_FI_1` (`fk_actividad_id`),
   KEY `periodo_FI_1` (`fk_periodo_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `feriado`
@@ -392,7 +392,7 @@ CREATE TABLE `feriado` (
   `inamovible` tinyint(1) NOT NULL default '0',
   `fk_ciclolectivo_id` int(11) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `horarioescolar`
@@ -410,7 +410,7 @@ CREATE TABLE `horarioescolar` (
   `fk_establecimiento_id` int(11) NOT NULL,
   `fk_turnos_id` int(11) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `horarioescolartipo`
@@ -422,7 +422,7 @@ CREATE TABLE `horarioescolartipo` (
   `nombre` varchar(128) NOT NULL,
   `descripcion` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `legajoadjunto`
@@ -434,7 +434,7 @@ CREATE TABLE `legajoadjunto` (
   `fk_adjunto_id` int(11) NOT NULL,
   KEY `adjunto_FI_1` (`fk_adjunto_id`),
   KEY `legajopedagogico_FI_1` (`fk_legajopedagogico_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `legajocategoria`
@@ -445,7 +445,7 @@ CREATE TABLE `legajocategoria` (
   `id` int(11) NOT NULL auto_increment,
   `descripcion` varchar(255) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `legajopedagogico`
@@ -464,7 +464,7 @@ CREATE TABLE `legajopedagogico` (
   PRIMARY KEY  (`id`),
   KEY `legajocategoria_FI_1` (`fk_legajocategoria_id`),
   KEY `alumno_FI_1` (`fk_alumno_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `locacion`
@@ -485,7 +485,7 @@ CREATE TABLE `locacion` (
   `fk_provincia_id` int(11) NOT NULL,
   `fk_tipolocacion_id` int(11) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `menu`
@@ -502,7 +502,7 @@ CREATE TABLE `menu` (
   PRIMARY KEY  (`id`),
   KEY `fi_nombre` (`nombre`),
   KEY `padre_menu_FI_1` (`fk_padre_menu_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `modulo`
@@ -516,7 +516,7 @@ CREATE TABLE `modulo` (
   `descripcion` varchar(255) default NULL,
   `activo` tinyint(1) NOT NULL default '1',
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `niveltipo`
@@ -528,7 +528,7 @@ CREATE TABLE `niveltipo` (
   `nombre` varchar(128) NOT NULL default '',
   `descripcion` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `organizacion`
@@ -550,7 +550,7 @@ CREATE TABLE `organizacion` (
   PRIMARY KEY  (`id`),
   KEY `iva_FI_1` (`fk_tipoiva_id`),
   KEY `provincia_FI_1` (`fk_provincia_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `pais`
@@ -563,7 +563,7 @@ CREATE TABLE `pais` (
   `nombre_corto` varchar(32) NOT NULL default '',
   `orden` int(2) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `periodo`
@@ -578,7 +578,7 @@ CREATE TABLE `periodo` (
   `descripcion` varchar(255) NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `ciclolectivo_FI_1` (`fk_ciclolectivo_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `permiso`
@@ -593,7 +593,7 @@ CREATE TABLE `permiso` (
   `fk_modulo_id` int(11) NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `permiso_FI_1` (`fk_modulo_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `preferencia`
@@ -606,7 +606,7 @@ CREATE TABLE `preferencia` (
   `valor_por_defecto` varchar(128) default NULL,
   `activo` tinyint(1) NOT NULL default '1',
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `provincia`
@@ -620,7 +620,7 @@ CREATE TABLE `provincia` (
   `fk_pais_id` int(11) NOT NULL,
   `orden` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `rel_actividad_docente`
@@ -634,7 +634,7 @@ CREATE TABLE `rel_actividad_docente` (
   PRIMARY KEY  (`id`),
   KEY `docente_FI_1` (`fk_docente_id`),
   KEY `actividad_FI_1` (`fk_actividad_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `rel_alumno_division`
@@ -648,7 +648,7 @@ CREATE TABLE `rel_alumno_division` (
   PRIMARY KEY  (`id`),
   KEY `alumno_FI_1` (`fk_alumno_id`),
   KEY `division_FI_1` (`fk_division_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `rel_anio_actividad`
@@ -663,7 +663,7 @@ CREATE TABLE `rel_anio_actividad` (
   PRIMARY KEY  (`id`),
   KEY `establecimiento_FI_1` (`fk_actividad_id`),
   KEY `anio_FI_1` (`fk_anio_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `rel_calendariovacunacion_alumno`
@@ -680,7 +680,7 @@ CREATE TABLE `rel_calendariovacunacion_alumno` (
   PRIMARY KEY  (`id`),
   KEY `calendariovacunacion_FI_1` (`fk_calendariovacunacion_id`),
   KEY `alumno_FI_1` (`fk_alumno_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `rel_division_actividad_docente`
@@ -703,7 +703,7 @@ CREATE TABLE `rel_division_actividad_docente` (
   KEY `division_FI_1` (`fk_division_id`),
   KEY `actividad_FI_1` (`fk_actividad_id`),
   KEY `repeticion_FI_1` (`fk_repeticion_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `rel_docente_establecimiento`
@@ -713,7 +713,7 @@ DROP TABLE IF EXISTS `rel_docente_establecimiento`;
 CREATE TABLE `rel_docente_establecimiento` (
   `fk_docente_id` int(11) NOT NULL,
   `fk_establecimiento_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `rel_establecimiento_locacion`
@@ -727,7 +727,7 @@ CREATE TABLE `rel_establecimiento_locacion` (
   PRIMARY KEY  (`id`),
   KEY `rel_nivel_locacion_FI_1` (`fk_establecimiento_id`),
   KEY `rel_nivel_locacion_FI_2` (`fk_locacion_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `rel_rol_permiso`
@@ -741,7 +741,7 @@ CREATE TABLE `rel_rol_permiso` (
   PRIMARY KEY  (`id`),
   KEY `rel_rol_permiso_FI_1` (`fk_rol_id`),
   KEY `rel_rol_permiso_FI_2` (`fk_permiso_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `rel_usuario_permiso`
@@ -755,7 +755,7 @@ CREATE TABLE `rel_usuario_permiso` (
   PRIMARY KEY  (`id`),
   KEY `rel_usuario_permiso_FI_1` (`fk_usuario_id`),
   KEY `rel_usuario_permiso_FI_2` (`fk_permiso_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `rel_usuario_preferencia`
@@ -769,7 +769,7 @@ CREATE TABLE `rel_usuario_preferencia` (
   PRIMARY KEY  (`id`),
   KEY `rel_usuario_preferencia_FI_1` (`fk_usuario_id`),
   KEY `rel_usuario_preferencia_FI_2` (`fk_preferencia_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `repeticion`
@@ -781,7 +781,7 @@ CREATE TABLE `repeticion` (
   `descripcion` varchar(255) NOT NULL default '',
   `orden` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `responsable`
@@ -809,7 +809,7 @@ CREATE TABLE `responsable` (
   KEY `cuenta_FI_1` (`fk_cuenta_id`),
   KEY `provincia_FI_1` (`fk_provincia_id`),
   KEY `tipodocumento_Fl_1` (`fk_tipodocumento_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `rol`
@@ -822,7 +822,7 @@ CREATE TABLE `rol` (
   `descripcion` varchar(255) default NULL,
   `activo` tinyint(1) NOT NULL default '1',
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `tipoasistencia`
@@ -837,7 +837,7 @@ CREATE TABLE `tipoasistencia` (
   `defecto` int(11) NOT NULL default '0',
   `valor` decimal(4,2) NOT NULL default '0.99',
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `tipodocente`
@@ -849,7 +849,7 @@ CREATE TABLE `tipodocente` (
   `nombre` varchar(128) NOT NULL,
   `descripcion` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `tipodocumento`
@@ -862,7 +862,7 @@ CREATE TABLE `tipodocumento` (
   `orden` int(11) NOT NULL default '0',
   `nombre` varchar(128) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `tipoespacio`
@@ -874,7 +874,7 @@ CREATE TABLE `tipoespacio` (
   `nombre` varchar(128) NOT NULL,
   `descripcion` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `tipoiva`
@@ -886,7 +886,7 @@ CREATE TABLE `tipoiva` (
   `nombre` varchar(128) NOT NULL,
   `descripcion` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `tipolocacion`
@@ -898,7 +898,7 @@ CREATE TABLE `tipolocacion` (
   `nombre` varchar(128) NOT NULL,
   `descripcion` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `turnos`
@@ -913,7 +913,7 @@ CREATE TABLE `turnos` (
   `descripcion` varchar(255) NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `ciclolectivo_FI_1` (`fk_ciclolectivo_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `usuario`
@@ -935,7 +935,7 @@ CREATE TABLE `usuario` (
   `borrado` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`id`),
   KEY `usuario_FI_1` (`fk_establecimiento_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
