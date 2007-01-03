@@ -118,9 +118,9 @@ Pasos:
 
 Descargue el ''loader'' desde:
 
- [http://www.proyectoalba.com.ar/dist/install/alba_loader.php.txt]
+ [http://www.proyectoalba.com.ar/dist/install/alba_loader.txt]
 
-Renómbrelo quitándole la extensión ''txt'' para que quede '''alba_loader.php'''.
+Renómbreloreemplazando la extensión ''txt'' para que quede '''alba_loader.php'''.
 
 Éste archivo debe subirlo por ftp o sftp a su servidor
 y lanzar la instalación con: 
