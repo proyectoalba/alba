@@ -67,19 +67,19 @@
 -- Volcar la base de datos para la tabla 'distritoescolar'
 -- 
 
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (1, 'NÂº8', 'Aguirre 3345', '4321-2134', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (2, 'NÂº 4', 'Suarez 1131', '4302-2823 / 4301-3558', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (3, 'NÂº 5', 'Avda. M. A. Montes de Oca 439 - 1er Piso', '4307-4676 / 6753 / 4687', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (4, 'NÂº 6', 'Humberto Primo 3187', '4957-1563', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (5, 'NÂº 9', 'GÃ¼emes 4615', '4773-7453', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (6, 'NÂº 11', '', '', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (7, 'NÂº 13', 'Manuel Artigas 5951', '4682-9849/0566', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (8, 'NÂº 14', 'Bolivia 2571', '4581-6248', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (9, 'NÂº 15', 'GalvÃ¡n 3463 ', ' 4541-0212 / 4541-2681 ', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (10, 'NÂº 16', 'JosÃ© Cubas 3789 ', ' 4502-0182/6664/2165', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (11, 'NÂº 19', 'Cnel. Pagola 4181', '4923-1276 / 6228', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (12, 'NÂº 20', 'Fonrouge 346', '4641-1796 / 7247', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (13, 'NÂº 21', 'Cnel. M. Chilavert 6090', '4605-1597 / 5860', 'Buenos Aires');
+INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (1, 'Nº8', 'Aguirre 3345', '4321-2134', 'Buenos Aires');
+INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (2, 'Nº 4', 'Suarez 1131', '4302-2823 / 4301-3558', 'Buenos Aires');
+INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (3, 'Nº 5', 'Avda. M. A. Montes de Oca 439 - 1er Piso', '4307-4676 / 6753 / 4687', 'Buenos Aires');
+INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (4, 'Nº 6', 'Humberto Primo 3187', '4957-1563', 'Buenos Aires');
+INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (5, 'Nº 9', 'Güemes 4615', '4773-7453', 'Buenos Aires');
+INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (6, 'Nº 11', '', '', 'Buenos Aires');
+INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (7, 'Nº 13', 'Manuel Artigas 5951', '4682-9849/0566', 'Buenos Aires');
+INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (8, 'Nº 14', 'Bolivia 2571', '4581-6248', 'Buenos Aires');
+INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (9, 'Nº 15', 'Galván 3463 ', ' 4541-0212 / 4541-2681 ', 'Buenos Aires');
+INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (10, 'Nº 16', 'José Cubas 3789 ', ' 4502-0182/6664/2165', 'Buenos Aires');
+INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (11, 'Nº 19', 'Cnel. Pagola 4181', '4923-1276 / 6228', 'Buenos Aires');
+INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (12, 'Nº 20', 'Fonrouge 346', '4641-1796 / 7247', 'Buenos Aires');
+INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (13, 'Nº 21', 'Cnel. M. Chilavert 6090', '4605-1597 / 5860', 'Buenos Aires');
 
 -- 
 -- Volcar la base de datos para la tabla 'division'
@@ -288,7 +288,7 @@ INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (45, 'Boleti
 -- Volcar la base de datos para la tabla 'niveltipo'
 -- 
 
-INSERT INTO niveltipo (id, nombre, descripcion) VALUES (1, 'JardÃ­n', 'JardÃ­n');
+INSERT INTO niveltipo (id, nombre, descripcion) VALUES (1, 'Jardín', 'Jardín');
 INSERT INTO niveltipo (id, nombre, descripcion) VALUES (2, 'Primaria', 'Primaria');
 INSERT INTO niveltipo (id, nombre, descripcion) VALUES (3, 'Secundaria', 'Secundaria');
 
@@ -296,7 +296,7 @@ INSERT INTO niveltipo (id, nombre, descripcion) VALUES (3, 'Secundaria', 'Secund
 -- Volcar la base de datos para la tabla 'organizacion'
 -- 
 
-INSERT INTO organizacion (id, nombre, descripcion, razon_social, cuit, direccion, ciudad, codigo_postal, fk_provincia_id, fk_tipoiva_id, telefono) VALUES (1, 'OrganizaciÃ³n Tu Nombre', 'OrganizaciÃ³n Tu DescripciÃ³n', 'OrganizaciÃ³n Tu RazÃ³n Social', '', '', '', '', 1, 1, '');
+INSERT INTO organizacion (id, nombre, descripcion, razon_social, cuit, direccion, ciudad, codigo_postal, fk_provincia_id, fk_tipoiva_id, telefono) VALUES (1, 'OrganizaciÃ³n Tu Nombre', 'OrganizaciÃ³n Tu DescripciÃ³n', 'Organización Tu Razón Social', '', '', '', '', 1, 1, '');
 
 -- 
 -- Volcar la base de datos para la tabla 'pais'
@@ -382,10 +382,10 @@ INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (1, 'B
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (2, 'Uruguayana', 'Uruguayana', 4);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (6, 'La Pampa', 'La Pampa', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (7, 'Chaco', 'Chaco', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (8, 'CÃ³rdoba', 'CÃ³rdoba', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (8, 'Córdoba', 'CÃ³rdoba', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (9, 'Misiones', 'Misiones', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (10, 'Mendoza', 'Mendoza', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (11, 'E.RÃ­os', 'Entre RÃ­os', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (11, 'E.Ríos', 'Entre RÃ­os', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (12, 'Jujuy', 'Jujuy', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (13, 'Chubut', 'Chubut', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (14, 'Salta', 'Salta', 1);
