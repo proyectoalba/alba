@@ -296,7 +296,7 @@ INSERT INTO niveltipo (id, nombre, descripcion) VALUES (3, 'Secundaria', 'Secund
 -- Volcar la base de datos para la tabla 'organizacion'
 -- 
 
-INSERT INTO organizacion (id, nombre, descripcion, razon_social, cuit, direccion, ciudad, codigo_postal, fk_provincia_id, fk_tipoiva_id, telefono) VALUES (1, 'OrganizaciÃ³n Tu Nombre', 'OrganizaciÃ³n Tu DescripciÃ³n', 'Organización Tu Razón Social', '', '', '', '', 1, 1, '');
+INSERT INTO organizacion (id, nombre, descripcion, razon_social, cuit, direccion, ciudad, codigo_postal, fk_provincia_id, fk_tipoiva_id, telefono) VALUES (1, 'OrganizaciÃ³n Tu Nombre', 'Organización Tu Descripción', 'Organización Tu Razón Social', '', '', '', '', 1, 1, '');
 
 -- 
 -- Volcar la base de datos para la tabla 'pais'
