@@ -11,7 +11,7 @@ generator:
         orden: { name: Orden, params: size=10 }
     edit:
         title: Editar Provincia
-        display: [ nombre_corto, nombre_largo, fk_pais_id ]
+        display: [ nombre_corto, nombre_largo, fk_pais_id, orden ]
                     
     list:
         title: Listado de Provincias
