@@ -31,8 +31,18 @@
  * @license GPL
  */
 
-class provinciaActions extends autoprovinciaActions
-{
+class provinciaActions extends autoprovinciaActions {
+    protected function addSortCriteria (&$c) {                                                                                                                          
+        if ($sort_column = $this->getUser()->getAttribute('sort', 'nombre_corto', 'sf_admin/provincia/sort')) {                                                                                                                        
+            $sort_column = Propel::getDB($c->getDbName())->quoteIdentifier($sort_column);                                          
+            if ($this->getUser()->getAttribute('type', 'asc', 'sf_admin/provincia/sort') == 'asc') {                                                                                                                      
+                $c->addAscendingOrderByColumn($sort_column);                                                                         
+            }                                                                                                                      
+            else {                                                                                                                      
+                $c->addDescendingOrderByColumn($sort_column);                                                                        
+            }                                                                                                                      
+        }                                                                                                                        
+    }                                                                                                                          
 }
 
 ?>
