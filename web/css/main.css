@@ -41,3 +41,10 @@ li {}
 ul {
     padding-left: 10px;
 }
+
+.sf_admin_action_print
+{
+  background: url(../images/small/print.png) no-repeat 3px 2px;
+    border-right: 4px solid #73B65A !important;
+}
+    
