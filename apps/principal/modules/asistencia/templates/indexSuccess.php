@@ -58,23 +58,24 @@
 ?>
     <h1>Mes: <?php echo  $aMeses[$m]; ?> </h1>
     <fieldset id="sf_fieldset_none" class="">
-
-<? if( count($aAlumnos)>0) {?>
-
-
+<?php if( count($aAlumnos)>0) {?>
     <table  cellspacing="1" class="sf_admin_list">     
     <thead>
-     <tr>
+    <tr>
         <th id="sf_admin_list_th_alumno"> Alumnos / D&iacute;as </th>
         <?php
             //$aIntervalo = diasxintervalo($d,$m,$y,$vista_id);
             for($i=0, $max = count($aIntervalo); $i < $max ;$i++) { ?>
                 <th id="sf_admin_list_th_sf_actions"><?php echo date("d",strtotime($aIntervalo[$i])) ?></th>
             <?}?>
+            <?php foreach ($aTipoasistencias as $idx => $Tipoasistencia){ ?>
+                <th id="sf_admin_list_th_sf_actions"><?php echo $idx ?></th>
+            <?}?>
      </tr>
      </thead>
      <tbody>
      <?php  
+     //print_r($aDatos);
      $totales = array();
      $aFeriadoEfectivo = array();
      foreach($aAlumnos as $idx => $alumno){ ?>
@@ -83,27 +84,32 @@
             <?php echo $alumno?>   
          </td>
             <?php
+                $totalesAlumnos = array();
+                $totalesAlumnos ="";
                 for($i=0, $max = count($aIntervalo); $i < $max ;$i++) { ?>
                  <td>
                     <?php 
-                       $fecha = date("Y-m-d 00:00:00",strtotime($aIntervalo[$i]));
+                        $fecha = date("Y-m-d 00:00:00",strtotime($aIntervalo[$i]));
                         if ( array_key_exists($fecha, $aFeriado))  {
                             echo input_tag("asistencia['$idx']['$fecha']", "", array('size' => '2', 'maxlength' => '2', 'disabled' => true ));
                             $aFeriadoEfectivo[$fecha] = $aFeriado[$fecha];
                         } else {
                             if ( array_key_exists($idx, $aDatos) AND array_key_exists($fecha, $aDatos[$idx])){
-                                //echo $aDatos[$idx][$fecha];
                                 $sizeAsis = count($aDatos[$idx][$fecha]);
                                 echo input_tag("asistencia['$idx']['$fecha']", $aDatos["$idx"]["$fecha"], array('size' => $sizeAsis, 'maxlength' => $sizeAsis));
                                 @$totales[$aDatos["$idx"]["$fecha"]]++;
-
+                                $totalesAlumnos[$aDatos["$idx"]["$fecha"]]++;
                             } else {
                                 echo input_tag("asistencia['$idx']['$fecha']", "", array('size' => "2", 'maxlength' => "2"));    
                             }
                         }
-                    ?>
+                     ?>
                  </td>
-            <?php }?>
+            <?php
+                 }
+                 foreach ($aTipoasistencias as $idx => $Tipoasistencia){  ?>
+                    <td><?php echo isset($totalesAlumnos[$idx])?$totalesAlumnos[$idx]:0; ?></td>
+                 <? }?>
       </tr>   
      <?php  } ?>
      </tbody>
