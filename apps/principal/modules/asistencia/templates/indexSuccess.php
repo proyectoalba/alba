@@ -55,6 +55,8 @@
       echo input_hidden_tag('division_id', $division_id); 
       echo input_hidden_tag('fechainicio', $fechainicio); 
       echo input_hidden_tag('vista_id', $vista_id); 
+      if($alumno_id >= 0)
+             echo input_hidden_tag('alumno_id', $alumno_id);
 ?>
     <h1>Mes: <?php echo  $aMeses[$m]; ?> </h1>
     <fieldset id="sf_fieldset_none" class="">
@@ -75,50 +77,48 @@
      </thead>
      <tbody>
      <?php  
-     //print_r($aDatos);
      $totales = array();
+     $totalesAlumnos = array();
      $aFeriadoEfectivo = array();
      foreach($aAlumnos as $idx => $alumno){ ?>
       <tr class="sf_admin_row_0">
          <td>
             <?php echo $alumno?>   
          </td>
-            <?php
-                $totalesAlumnos = array();
-                $totalesAlumnos ="";
-                for($i=0, $max = count($aIntervalo); $i < $max ;$i++) { ?>
-                 <td>
-                    <?php 
-                        $fecha = date("Y-m-d 00:00:00",strtotime($aIntervalo[$i]));
-                        if ( array_key_exists($fecha, $aFeriado))  {
-                            echo input_tag("asistencia['$idx']['$fecha']", "", array('size' => '2', 'maxlength' => '2', 'disabled' => true ));
-                            $aFeriadoEfectivo[$fecha] = $aFeriado[$fecha];
-                        } else {
-                            if ( array_key_exists($idx, $aDatos) AND array_key_exists($fecha, $aDatos[$idx])){
-                                $sizeAsis = count($aDatos[$idx][$fecha]);
-                                echo input_tag("asistencia['$idx']['$fecha']", $aDatos["$idx"]["$fecha"], array('size' => $sizeAsis, 'maxlength' => $sizeAsis));
-                                @$totales[$aDatos["$idx"]["$fecha"]]++;
-                                $totalesAlumnos[$aDatos["$idx"]["$fecha"]]++;
-                            } else {
-                                echo input_tag("asistencia['$idx']['$fecha']", "", array('size' => "2", 'maxlength' => "2"));    
-                            }
-                        }
-                     ?>
+         <?php
+            $totalesAlumnos ="";
+            for($i=0, $max = count($aIntervalo); $i < $max ;$i++) { ?>
+                <td>
+                <?php 
+                    $fecha = date("Y-m-d 00:00:00",strtotime($aIntervalo[$i]));
+                    if ( array_key_exists($fecha, $aFeriado))  {
+                        echo input_tag("asistencia['$idx']['$fecha']", "", array('size' => '2', 'maxlength' => '2', 'disabled' => true ));
+                        $aFeriadoEfectivo[$fecha] = $aFeriado[$fecha];
+                    } else {
+                        if ( array_key_exists($idx, $aDatos) AND array_key_exists($fecha, $aDatos[$idx])){
+                            $sizeAsis = count($aDatos[$idx][$fecha]);
+                            echo input_tag("asistencia['$idx']['$fecha']", $aDatos["$idx"]["$fecha"], array('size' => $sizeAsis, 'maxlength' => $sizeAsis));
+                            @$totales[$aDatos["$idx"]["$fecha"]]++;
+                            $totalesAlumnos[$aDatos["$idx"]["$fecha"]]++;
+                         } else {
+                            echo input_tag("asistencia['$idx']['$fecha']", "", array('size' => "2", 'maxlength' => "2"));    
+                         }
+                     }
+                 ?>
                  </td>
-            <?php
-                 }
-                 foreach ($aTipoasistencias as $idx => $Tipoasistencia){  ?>
-                    <td><?php echo isset($totalesAlumnos[$idx])?$totalesAlumnos[$idx]:0; ?></td>
-                 <? }?>
+            <?php }
+               foreach ($aTipoasistencias as $idx => $Tipoasistencia){  ?>
+                  <td><?php echo isset($totalesAlumnos[$idx])?$totalesAlumnos[$idx]:0; ?></td>
+               <?php }?>
       </tr>   
      <?php  } ?>
      </tbody>
     </table>
-
      <?php if ( count($aAlumnos) >0 ) {?>      
       <div class="form-row">
         <ul class="sf_admin_actions"><li>   
         <?php echo submit_tag(__('Grabar'), array ('name' => 'Grabar','class' => 'sf_admin_action_save')) ?>
+        </form>
         <?php echo submit_tag(__('Imprimir'), array ('name' => 'Imprimir','class' => 'sf_admin_action_print')) ?>
         </li></ul>
      </div>
@@ -133,13 +133,13 @@
           }
     ?>
             </tr>
-
 <?php
     if(count($aFeriadoEfectivo)>0) {
 ?>
-    </table><br>Feriado<br>
-  <table cellspacing="1">
-<tr>
+    </table>
+        <br>Feriado<br>
+    <table cellspacing="1">
+        <tr>
 <?php
         foreach($aFeriadoEfectivo as $fecha => $nombre) {
             $fecha = date("d-m-Y",strtotime($fecha));
@@ -147,8 +147,7 @@
         }
     }
 ?>
-</tr>
-
+        </tr>
 <? } else { ?>
 <h2>NO HAY ALUMNOS</h2>
 <? } ?>
@@ -158,13 +157,12 @@
           <ul class="sf_admin_actions">
             <li><input style="background: #ffc url(small/alumnos.png) no-repeat 3px 2px" value="Listado Alumnos" type="button" onclick="document.location.href='<?=sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/alumno/list';" /></li>
 <? if($alumno_id >= 0) {?>
-            <?php echo input_hidden_tag('alumno_id', $alumno_id) ?>
             <li><input style="background: #ffc url(small/alumnos.png) no-repeat 3px 2px" value="Ir a Cuenta" type="button" onclick="document.location.href='<?=sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/cuenta/verCompleta/id/<?=$cuenta_id?>';" /></li>
 <? } ?>
         </ul>
       </div>
     </fieldset>
-  </form>
+  
 <div align="center">
 <img src="<?=sfContext::getInstance()->getRequest()->getRelativeUrlRoot()."/".sfConfig::get('sf_upload_dir_name').'/grafico_asistencias.png'?>">  
 </div>
