@@ -119,6 +119,7 @@
       <div class="form-row">
         <ul class="sf_admin_actions"><li>   
         <?php echo submit_tag(__('Grabar'), array ('name' => 'Grabar','class' => 'sf_admin_action_save')) ?>
+        <?php echo submit_tag(__('Imprimir'), array ('name' => 'Imprimir','class' => 'sf_admin_action_print')) ?>
         </li></ul>
      </div>
     <?php }?> 
