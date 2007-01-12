@@ -99,7 +99,17 @@ class alumnoActions extends autoalumnoActions
 
 
   }
-
+    protected function addSortCriteria (&$c) {                                                                                                                          
+        if ($sort_column = $this->getUser()->getAttribute('sort', null, 'sf_admin/alumno/sort')) {                                                                                                                        
+            $sort_column = Propel::getDB($c->getDbName())->quoteIdentifier($sort_column);                                          
+            if ($this->getUser()->getAttribute('type', null, 'sf_admin/alumno/sort') == 'asc') {                                                                                                                      
+                $c->addAscendingOrderByColumn($sort_column);                                                                         
+            }                                                                                                                      
+            else {                                                                                                                      
+                $c->addDescendingOrderByColumn($sort_column);                                                                        
+            }                                                                                                                      
+        }                                                                                                                        
+    }                                                                                                                          
 }
 
 ?>

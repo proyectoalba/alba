@@ -31,6 +31,16 @@
  * @license GPL
  */
 
-class tipodocumentoActions extends autotipodocumentoActions
-{
+class tipodocumentoActions extends autotipodocumentoActions {
+    protected function addSortCriteria (&$c) {
+        if ($sort_column = $this->getUser()->getAttribute('sort', 'nombre', 'sf_admin/tipodocumento/sort')) {
+            $sort_column = Propel::getDB($c->getDbName())->quoteIdentifier($sort_column);
+            if ($this->getUser()->getAttribute('type', 'asc', 'sf_admin/tipodocumento/sort') == 'asc') {
+                $c->addAscendingOrderByColumn($sort_column);
+            }
+            else {
+                $c->addDescendingOrderByColumn($sort_column);
+            }
+        }
+    }
 }

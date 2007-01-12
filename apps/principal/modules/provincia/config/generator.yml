@@ -15,7 +15,7 @@ generator:
                     
     list:
         title: Listado de Provincias
-        display: [ =nombre_corto, nombre_largo, _pais ]
+        display: [ =nombre_corto, nombre_largo, _pais, orden ]
         object_actions:
             _edit:      -
             _delete:    -

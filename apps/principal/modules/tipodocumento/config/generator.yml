@@ -7,11 +7,9 @@ generator:
         id: { name: identificador }
         nombre: { name: Nombre , params: size=64 }
         descripcion: { name: Descripci&oacute;n , params: size=64 }
-        
     edit:
         title: Modificar Tipo de Documento
         display: [nombre, descripcion, orden]
-                                                         
     list:
         display: [=nombre, descripcion, orden]
         title: Listado de Tipo de Documento

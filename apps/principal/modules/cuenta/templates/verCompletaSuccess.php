@@ -135,7 +135,7 @@
     <td><?echo $responsable->getDireccion();?></td>
     <td><?echo $responsable->getCiudad();?></td>
     <td><?echo $responsable->getRelacion();?></td>
-    <td><?echo $responsable->getAutorizacionRetiro();?></td>
+    <td><?echo $responsable->getAutorizacionRetiro() == 1 ? "Si" : "No";?></td>
     <td><?echo $responsable->getTelefono();?></td>
     <td>
       <ul class="sf_admin_td_actions">

@@ -30,11 +30,9 @@
  * @license GPL
  */
 
-class actividadActions extends autoactividadActions
-{
+class actividadActions extends autoactividadActions {
     protected function addFiltersCriteria (&$c) {
         $c->add(ActividadPeer::FK_ESTABLECIMIENTO_ID,$this->getUser()->getAttribute('fk_establecimiento_id'));
-    
     }
     
     protected function SaveActividad ($actividad) {
@@ -42,6 +40,17 @@ class actividadActions extends autoactividadActions
         $actividad->setFkEstablecimientoId($this->getUser()->getAttribute('fk_establecimiento_id'));
         $actividad->save();
     }
+    protected function addSortCriteria (&$c) {                                                                                                                        
+        if ($sort_column = $this->getUser()->getAttribute('sort', 'nombre', 'sf_admin/actividad/sort')) {                                                                                                                        
+            $sort_column = Propel::getDB($c->getDbName())->quoteIdentifier($sort_column);                                          
+            if ($this->getUser()->getAttribute('type', 'asc', 'sf_admin/actividad/sort') == 'asc') {                                                                                                                      
+                $c->addAscendingOrderByColumn($sort_column);                                                                         
+            }                                                                                                                      
+            else {                                                                                                                      
+                $c->addDescendingOrderByColumn($sort_column);                                                                        
+            }                                                                                                                      
+        }                                                                                                                        
+    } 
 }
 
 ?>
