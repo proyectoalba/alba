@@ -99,7 +99,7 @@
                             $sizeAsis = count($aDatos[$idx][$fecha]);
                             echo input_tag("asistencia['$idx']['$fecha']", $aDatos["$idx"]["$fecha"], array('size' => $sizeAsis, 'maxlength' => $sizeAsis));
                             @$totales[$aDatos["$idx"]["$fecha"]]++;
-                            $totalesAlumnos[$aDatos["$idx"]["$fecha"]]++;
+                            @$totalesAlumnos[$aDatos["$idx"]["$fecha"]]++;
                          } else {
                             echo input_tag("asistencia['$idx']['$fecha']", "", array('size' => "2", 'maxlength' => "2"));    
                          }

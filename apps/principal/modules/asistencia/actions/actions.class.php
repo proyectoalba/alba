@@ -154,27 +154,32 @@ class asistenciaActions extends sfActions
 
         if($flag == 1) {
 
-        $aTitulo = array_keys($aTipoasistencias);
-        $aTitulo[] = "No Cargado";
+            $aTitulo = array_keys($aTipoasistencias);
+            $aTitulo[] = "No Cargado";
 
-        include "graph.php";
-        putenv('GDFONTPATH=' . realpath(sfConfig::get('sf_lib_dir')."/font/"));
-        $graph = new graph();
-        $graph->setProp("font","FreeSerifBold.ttf");
-        $graph->setProp("keyfont","FreeSerifBold.ttf");
-        $graph->setProp("showkey",true);
-        $graph->setProp("type","pie");
-        $graph->setProp("showgrid",false);
-        $graph->setProp("key", $aTitulo);
-        $graph->setProp("keywidspc",-50);
-        $graph->setProp("keyinfo",2);
-         foreach($aPorcentajeAsistencia as $porcentaje)  {
-             $graph->addPoint($porcentaje);
-         }
-        $graph->addPoint($dias-$tot);
+            if(array_search("gd", get_loaded_extensions())) { // Si no tiene cargado la GD no muestra el grafico
 
-        $graph->graphX();
-        $graph->showGraph(sfConfig::get('sf_upload_dir_name').'/grafico_asistencias.png');
+                include "graph.php";
+                putenv('GDFONTPATH=' . realpath(sfConfig::get('sf_lib_dir')."/font/"));
+                $graph = new graph();
+                $graph->setProp("font","FreeSerifBold.ttf");
+                $graph->setProp("keyfont","FreeSerifBold.ttf");
+                $graph->setProp("showkey",true);
+                $graph->setProp("type","pie");
+                $graph->setProp("showgrid",false);
+                $graph->setProp("key", $aTitulo);
+                $graph->setProp("keywidspc",-50);
+                $graph->setProp("keyinfo",2);
+                foreach($aPorcentajeAsistencia as $porcentaje)  {
+                    $graph->addPoint($porcentaje);
+                }
+                $graph->addPoint($dias-$tot);
+    
+                $graph->graphX();
+                $graph->showGraph(sfConfig::get('sf_upload_dir_name').'/grafico_asistencias.png');
+            }
+
+
         }
         //print_r($optionsDivision);
         //Asignacion de variables para el template
