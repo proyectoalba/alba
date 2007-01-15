@@ -24,9 +24,9 @@
                     <?php echo select_tag('division_id', options_for_select($optionsDivision, $division_id)); ?>
                 </td>
                 <td>
-                    <?php echo label_for('fecha', __('Fecha Inicio:'), 'class="required" '); ?>
+                    <?php echo label_for('fecha', __('Fecha Inicio:'), 'class="required" '); ?>                   
                 </td>
-                <td>               
+                <td>
                     <?php echo zz_input_date_tag('fechainicio',$fechainicio, array (
                       'rich' => true,'withtime' => true,
                       'calendar_button_img' => '/sf/images/sf_admin/date.png',
@@ -119,7 +119,17 @@
         <ul class="sf_admin_actions"><li>   
         <?php echo submit_tag(__('Grabar'), array ('name' => 'Grabar','class' => 'sf_admin_action_save')) ?>
         </form>
-        <?php echo submit_tag(__('Imprimir'), array ('name' => 'Imprimir','class' => 'sf_admin_action_print')) ?>
+        <?php 
+            echo form_tag('asistencia/mostrar', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true');
+            echo input_hidden_tag('division_id', $division_id); 
+            list($y, $m, $d) = split("[/. -]",$fechainicio);
+            echo input_hidden_tag('fechainicio', "$d/$m/$y"); 
+            echo input_hidden_tag('vistas', $vista_id); 
+            if($alumno_id >= 0)
+                 echo input_hidden_tag('alumno_id', $alumno_id);
+            echo submit_tag(__('Imprimir'), array ('name' => 'Imprimir','class' => 'sf_admin_action_print'));
+         ?>
+        </form>
         </li></ul>
      </div>
     <?php }?> 

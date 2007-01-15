@@ -201,10 +201,12 @@ class asistenciaActions extends sfActions
   * Accion para mostrar los datos cambiados en el form
   */
   public function executeMostrar() {
-    $vista_id  = $this->getRequestParameter('vistas');              
+    $vista_id  = $this->getRequestParameter('vistas');
     $fechainicio = str_replace("/","-",$this->getRequestParameter('fechainicio'));
-    return $this->forward('asistencia','index',"vista_id=$vista_id&fechainicio=$fechainicio");
-     
+    //die($this->getRequestParameter('fechainicio'));
+    //list($y, $m, $d) = split("[/. -]",$this->getRequestParameter('fechainicio'));              
+    //$fechainicio = "$d/$m/$y";
+    return $this->forward('asistencia','index',"vista_id=$vista_id&fechainicio=$fechainicio");   
   }
   
   public function handleErrorMostrar(){
@@ -279,9 +281,6 @@ class asistenciaActions extends sfActions
                  throw $e;
             }
         }
-        
-        
-        
             
         return $this->redirect($destino);    
     }
