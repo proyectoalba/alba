@@ -92,6 +92,8 @@ class ResponsableMapBuilder {
 
 		$tMap->addColumn('RELACION', 'Relacion', 'string', CreoleTypes::VARCHAR, true);
 
+		$tMap->addColumn('OBSERVACION', 'Observacion', 'string', CreoleTypes::VARCHAR, false);
+
 		$tMap->addColumn('AUTORIZACION_RETIRO', 'AutorizacionRetiro', 'boolean', CreoleTypes::BOOLEAN, true);
 
 		$tMap->addForeignKey('FK_CUENTA_ID', 'FkCuentaId', 'int', CreoleTypes::INTEGER, 'cuenta', 'ID', true, null);

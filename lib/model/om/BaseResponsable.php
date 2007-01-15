@@ -127,6 +127,13 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 
 
 	/**
+	 * The value for the observacion field.
+	 * @var string
+	 */
+	protected $observacion = '';
+
+
+	/**
 	 * The value for the autorizacion_retiro field.
 	 * @var boolean
 	 */
@@ -320,6 +327,17 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 	{
 
 		return $this->relacion;
+	}
+
+	/**
+	 * Get the [observacion] column value.
+	 * 
+	 * @return string
+	 */
+	public function getObservacion()
+	{
+
+		return $this->observacion;
 	}
 
 	/**
@@ -577,6 +595,22 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 	} // setRelacion()
 
 	/**
+	 * Set the value of [observacion] column.
+	 * 
+	 * @param string $v new value
+	 * @return void
+	 */
+	public function setObservacion($v)
+	{
+
+		if ($this->observacion !== $v || $v === '') {
+			$this->observacion = $v;
+			$this->modifiedColumns[] = ResponsablePeer::OBSERVACION;
+		}
+
+	} // setObservacion()
+
+	/**
 	 * Set the value of [autorizacion_retiro] column.
 	 * 
 	 * @param boolean $v new value
@@ -657,16 +691,18 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 
 			$this->relacion = $rs->getString($startcol + 13);
 
-			$this->autorizacion_retiro = $rs->getBoolean($startcol + 14);
+			$this->observacion = $rs->getString($startcol + 14);
 
-			$this->fk_cuenta_id = $rs->getInt($startcol + 15);
+			$this->autorizacion_retiro = $rs->getBoolean($startcol + 15);
+
+			$this->fk_cuenta_id = $rs->getInt($startcol + 16);
 
 			$this->resetModified();
 
 			$this->setNew(false);
 
 			// FIXME - using NUM_COLUMNS may be clearer.
-			return $startcol + 16; // 16 = ResponsablePeer::NUM_COLUMNS - ResponsablePeer::NUM_LAZY_LOAD_COLUMNS).
+			return $startcol + 17; // 17 = ResponsablePeer::NUM_COLUMNS - ResponsablePeer::NUM_LAZY_LOAD_COLUMNS).
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Responsable object", $e);
@@ -965,9 +1001,12 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 				return $this->getRelacion();
 				break;
 			case 14:
-				return $this->getAutorizacionRetiro();
+				return $this->getObservacion();
 				break;
 			case 15:
+				return $this->getAutorizacionRetiro();
+				break;
+			case 16:
 				return $this->getFkCuentaId();
 				break;
 			default:
@@ -1004,8 +1043,9 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$keys[11] => $this->getSexo(),
 			$keys[12] => $this->getEmail(),
 			$keys[13] => $this->getRelacion(),
-			$keys[14] => $this->getAutorizacionRetiro(),
-			$keys[15] => $this->getFkCuentaId(),
+			$keys[14] => $this->getObservacion(),
+			$keys[15] => $this->getAutorizacionRetiro(),
+			$keys[16] => $this->getFkCuentaId(),
 		);
 		return $result;
 	}
@@ -1080,9 +1120,12 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 				$this->setRelacion($value);
 				break;
 			case 14:
-				$this->setAutorizacionRetiro($value);
+				$this->setObservacion($value);
 				break;
 			case 15:
+				$this->setAutorizacionRetiro($value);
+				break;
+			case 16:
 				$this->setFkCuentaId($value);
 				break;
 		} // switch()
@@ -1122,8 +1165,9 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[11], $arr)) $this->setSexo($arr[$keys[11]]);
 		if (array_key_exists($keys[12], $arr)) $this->setEmail($arr[$keys[12]]);
 		if (array_key_exists($keys[13], $arr)) $this->setRelacion($arr[$keys[13]]);
-		if (array_key_exists($keys[14], $arr)) $this->setAutorizacionRetiro($arr[$keys[14]]);
-		if (array_key_exists($keys[15], $arr)) $this->setFkCuentaId($arr[$keys[15]]);
+		if (array_key_exists($keys[14], $arr)) $this->setObservacion($arr[$keys[14]]);
+		if (array_key_exists($keys[15], $arr)) $this->setAutorizacionRetiro($arr[$keys[15]]);
+		if (array_key_exists($keys[16], $arr)) $this->setFkCuentaId($arr[$keys[16]]);
 	}
 
 	/**
@@ -1149,6 +1193,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(ResponsablePeer::SEXO)) $criteria->add(ResponsablePeer::SEXO, $this->sexo);
 		if ($this->isColumnModified(ResponsablePeer::EMAIL)) $criteria->add(ResponsablePeer::EMAIL, $this->email);
 		if ($this->isColumnModified(ResponsablePeer::RELACION)) $criteria->add(ResponsablePeer::RELACION, $this->relacion);
+		if ($this->isColumnModified(ResponsablePeer::OBSERVACION)) $criteria->add(ResponsablePeer::OBSERVACION, $this->observacion);
 		if ($this->isColumnModified(ResponsablePeer::AUTORIZACION_RETIRO)) $criteria->add(ResponsablePeer::AUTORIZACION_RETIRO, $this->autorizacion_retiro);
 		if ($this->isColumnModified(ResponsablePeer::FK_CUENTA_ID)) $criteria->add(ResponsablePeer::FK_CUENTA_ID, $this->fk_cuenta_id);
 
@@ -1230,6 +1275,8 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		$copyObj->setEmail($this->email);
 
 		$copyObj->setRelacion($this->relacion);
+
+		$copyObj->setObservacion($this->observacion);
 
 		$copyObj->setAutorizacionRetiro($this->autorizacion_retiro);
 

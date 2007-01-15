@@ -24,7 +24,7 @@ abstract class BaseResponsablePeer {
 	const CLASS_DEFAULT = 'model.Responsable';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 16;
+	const NUM_COLUMNS = 17;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -72,6 +72,9 @@ abstract class BaseResponsablePeer {
 	/** the column name for the RELACION field */
 	const RELACION = 'responsable.RELACION';
 
+	/** the column name for the OBSERVACION field */
+	const OBSERVACION = 'responsable.OBSERVACION';
+
 	/** the column name for the AUTORIZACION_RETIRO field */
 	const AUTORIZACION_RETIRO = 'responsable.AUTORIZACION_RETIRO';
 
@@ -89,10 +92,10 @@ abstract class BaseResponsablePeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Apellido', 'Direccion', 'Ciudad', 'CodigoPostal', 'FkProvinciaId', 'Telefono', 'TelefonoMovil', 'NroDocumento', 'FkTipodocumentoId', 'Sexo', 'Email', 'Relacion', 'AutorizacionRetiro', 'FkCuentaId', ),
-		BasePeer::TYPE_COLNAME => array (ResponsablePeer::ID, ResponsablePeer::NOMBRE, ResponsablePeer::APELLIDO, ResponsablePeer::DIRECCION, ResponsablePeer::CIUDAD, ResponsablePeer::CODIGO_POSTAL, ResponsablePeer::FK_PROVINCIA_ID, ResponsablePeer::TELEFONO, ResponsablePeer::TELEFONO_MOVIL, ResponsablePeer::NRO_DOCUMENTO, ResponsablePeer::FK_TIPODOCUMENTO_ID, ResponsablePeer::SEXO, ResponsablePeer::EMAIL, ResponsablePeer::RELACION, ResponsablePeer::AUTORIZACION_RETIRO, ResponsablePeer::FK_CUENTA_ID, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'apellido', 'direccion', 'ciudad', 'codigo_postal', 'fk_provincia_id', 'telefono', 'telefono_movil', 'nro_documento', 'fk_tipodocumento_id', 'sexo', 'email', 'relacion', 'autorizacion_retiro', 'fk_cuenta_id', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Apellido', 'Direccion', 'Ciudad', 'CodigoPostal', 'FkProvinciaId', 'Telefono', 'TelefonoMovil', 'NroDocumento', 'FkTipodocumentoId', 'Sexo', 'Email', 'Relacion', 'Observacion', 'AutorizacionRetiro', 'FkCuentaId', ),
+		BasePeer::TYPE_COLNAME => array (ResponsablePeer::ID, ResponsablePeer::NOMBRE, ResponsablePeer::APELLIDO, ResponsablePeer::DIRECCION, ResponsablePeer::CIUDAD, ResponsablePeer::CODIGO_POSTAL, ResponsablePeer::FK_PROVINCIA_ID, ResponsablePeer::TELEFONO, ResponsablePeer::TELEFONO_MOVIL, ResponsablePeer::NRO_DOCUMENTO, ResponsablePeer::FK_TIPODOCUMENTO_ID, ResponsablePeer::SEXO, ResponsablePeer::EMAIL, ResponsablePeer::RELACION, ResponsablePeer::OBSERVACION, ResponsablePeer::AUTORIZACION_RETIRO, ResponsablePeer::FK_CUENTA_ID, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'apellido', 'direccion', 'ciudad', 'codigo_postal', 'fk_provincia_id', 'telefono', 'telefono_movil', 'nro_documento', 'fk_tipodocumento_id', 'sexo', 'email', 'relacion', 'observacion', 'autorizacion_retiro', 'fk_cuenta_id', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, )
 	);
 
 	/**
@@ -102,10 +105,10 @@ abstract class BaseResponsablePeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Apellido' => 2, 'Direccion' => 3, 'Ciudad' => 4, 'CodigoPostal' => 5, 'FkProvinciaId' => 6, 'Telefono' => 7, 'TelefonoMovil' => 8, 'NroDocumento' => 9, 'FkTipodocumentoId' => 10, 'Sexo' => 11, 'Email' => 12, 'Relacion' => 13, 'AutorizacionRetiro' => 14, 'FkCuentaId' => 15, ),
-		BasePeer::TYPE_COLNAME => array (ResponsablePeer::ID => 0, ResponsablePeer::NOMBRE => 1, ResponsablePeer::APELLIDO => 2, ResponsablePeer::DIRECCION => 3, ResponsablePeer::CIUDAD => 4, ResponsablePeer::CODIGO_POSTAL => 5, ResponsablePeer::FK_PROVINCIA_ID => 6, ResponsablePeer::TELEFONO => 7, ResponsablePeer::TELEFONO_MOVIL => 8, ResponsablePeer::NRO_DOCUMENTO => 9, ResponsablePeer::FK_TIPODOCUMENTO_ID => 10, ResponsablePeer::SEXO => 11, ResponsablePeer::EMAIL => 12, ResponsablePeer::RELACION => 13, ResponsablePeer::AUTORIZACION_RETIRO => 14, ResponsablePeer::FK_CUENTA_ID => 15, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'apellido' => 2, 'direccion' => 3, 'ciudad' => 4, 'codigo_postal' => 5, 'fk_provincia_id' => 6, 'telefono' => 7, 'telefono_movil' => 8, 'nro_documento' => 9, 'fk_tipodocumento_id' => 10, 'sexo' => 11, 'email' => 12, 'relacion' => 13, 'autorizacion_retiro' => 14, 'fk_cuenta_id' => 15, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Apellido' => 2, 'Direccion' => 3, 'Ciudad' => 4, 'CodigoPostal' => 5, 'FkProvinciaId' => 6, 'Telefono' => 7, 'TelefonoMovil' => 8, 'NroDocumento' => 9, 'FkTipodocumentoId' => 10, 'Sexo' => 11, 'Email' => 12, 'Relacion' => 13, 'Observacion' => 14, 'AutorizacionRetiro' => 15, 'FkCuentaId' => 16, ),
+		BasePeer::TYPE_COLNAME => array (ResponsablePeer::ID => 0, ResponsablePeer::NOMBRE => 1, ResponsablePeer::APELLIDO => 2, ResponsablePeer::DIRECCION => 3, ResponsablePeer::CIUDAD => 4, ResponsablePeer::CODIGO_POSTAL => 5, ResponsablePeer::FK_PROVINCIA_ID => 6, ResponsablePeer::TELEFONO => 7, ResponsablePeer::TELEFONO_MOVIL => 8, ResponsablePeer::NRO_DOCUMENTO => 9, ResponsablePeer::FK_TIPODOCUMENTO_ID => 10, ResponsablePeer::SEXO => 11, ResponsablePeer::EMAIL => 12, ResponsablePeer::RELACION => 13, ResponsablePeer::OBSERVACION => 14, ResponsablePeer::AUTORIZACION_RETIRO => 15, ResponsablePeer::FK_CUENTA_ID => 16, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'apellido' => 2, 'direccion' => 3, 'ciudad' => 4, 'codigo_postal' => 5, 'fk_provincia_id' => 6, 'telefono' => 7, 'telefono_movil' => 8, 'nro_documento' => 9, 'fk_tipodocumento_id' => 10, 'sexo' => 11, 'email' => 12, 'relacion' => 13, 'observacion' => 14, 'autorizacion_retiro' => 15, 'fk_cuenta_id' => 16, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, )
 	);
 
 	/**
@@ -233,6 +236,8 @@ abstract class BaseResponsablePeer {
 		$criteria->addSelectColumn(ResponsablePeer::EMAIL);
 
 		$criteria->addSelectColumn(ResponsablePeer::RELACION);
+
+		$criteria->addSelectColumn(ResponsablePeer::OBSERVACION);
 
 		$criteria->addSelectColumn(ResponsablePeer::AUTORIZACION_RETIRO);
 
