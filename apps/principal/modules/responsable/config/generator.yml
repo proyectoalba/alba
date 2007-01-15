@@ -16,7 +16,7 @@ generator:
             sexo: { name: Sexo }
             email: { name: Email , params: size=64 }
             telefono_movil: { name: Tel. Movil , params: size=20}
-            relacion: { name: Relaci&oacute;n }
+            relacion: { name: Relaci&oacute;n con los alumnos }
             autorizacion_retiro: { name: Aut. Retiro }
             fk_cuenta_id: { name: Cuenta }
       list:
