@@ -4,7 +4,7 @@
     $criteriaT->addJoin(TurnosPeer::FK_CICLOLECTIVO_ID, CiclolectivoPeer::ID);
     $turnos = TurnosPeer::doSelect($criteriaT);
     $optionsTurnos = array();
-    $optionsTurnos[] = ">>Seleccione un Turno<<";   
+    $optionsTurnos[""] = ">>Seleccione un Turno<<";   
     foreach ($turnos as $turno) {
         $optionsTurnos[$turno->getId()] = $turno->getDescripcion();
     }

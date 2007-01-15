@@ -1,6 +1,8 @@
 methods:
   post:       
     - "division{descripcion}"    
+    - "division{fk_anio_id}"
+    - "division{fk_turnos_id}"  
     
 fillin:
     enabled:       on
@@ -10,6 +12,15 @@ names:
         required:     Yes
         required_msg: El campo descripci&oacute;n es obligatorio
         validators: caracteresMaximos255
+
+    division{fk_turnos_id}:
+        required:     Yes
+        required_msg: El campo Turnos es obligatorio
+
+    division{fk_anio_id}:
+        required:     Yes
+        required_msg: El campo A&ntilde;o es obligatorio
+
         
 caracteresMaximos255:
     class:  sfStringValidator

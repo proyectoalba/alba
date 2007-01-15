@@ -23,8 +23,8 @@
  * division Acciones
  *
  * @package    alba
- * @author     José Luis Di Biase <josx@interorganic.com.ar>
- * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     Josï¿½Luis Di Biase <josx@interorganic.com.ar>
+ * @author     Hï¿½tor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
@@ -36,8 +36,8 @@ class divisionActions extends autodivisionActions
 
      protected function addFiltersCriteria(&$c)
      {
-         $c->addJoin(DivisionPeer::FK_TURNOS_ID, TurnosPeer::ID, Criteria::LEFT_JOIN);
-         $c->addJoin(TurnosPeer::FK_CICLOLECTIVO_ID, CiclolectivoPeer::ID, Criteria::LEFT_JOIN);
+         $c->addJoin(DivisionPeer::FK_TURNOS_ID, TurnosPeer::ID);
+         $c->addJoin(TurnosPeer::FK_CICLOLECTIVO_ID, CiclolectivoPeer::ID);
          $c->add(CiclolectivoPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
      }
 
