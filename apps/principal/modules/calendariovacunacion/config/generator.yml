@@ -9,7 +9,7 @@ generator:
             periodo: { name: Per&iacute;odo ,  params: size=64}
             observacion: {name: Observaci&oacute;n , params: size=64 }
       list:
-            title: Listado de Vacunas
+            title: Calendario de vacunaci&oacute;n
             display: [ nombre, descripcion, periodo, observacion ]
             object_actions:
                 _edit: -

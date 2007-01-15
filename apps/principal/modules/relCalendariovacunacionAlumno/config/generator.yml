@@ -8,7 +8,7 @@ generator:
         fk_calendariovacunacion_id: { name: Vacuna }
         observacion: { name: Observaci&oacute;n, params: size=64 }
     list:
-        title: Listar Calendario de Vacunaci&oacute;n
+        title: Vacunas por alumno
         display: [ Alumno, _fk_calendariovacunacion_id, observacion, Comprobante, Fecha ]
         object_actions:
             _edit:
