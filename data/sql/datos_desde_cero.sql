@@ -36,6 +36,30 @@
 -- 
 -- Volcar la base de datos para la tabla 'calendariovacunacion'
 -- 
+INSERT INTO `calendariovacunacion` (`id`, `nombre`, `descripcion`, `periodo`, `observacion`) VALUES 
+(3, 'BCG (1era Dosis)', 'Tuberculosis', 'Recién nacido', ''),
+(4, 'BCG (refuerzo)', 'Tuberculosis', '6 años', NULL),
+(6, 'HA (dosis)', 'Hepatitis A', '12 meses', NULL),
+(7, 'HB (1era Dosis)', 'Hepatitis B', 'Recién nacido', NULL),
+(8, 'HB (2da Dosis)', 'Hepatitis B', '2 meses', NULL),
+(9, 'HB (3ra Dosis)', 'Hepatitis B', '6 meses', NULL),
+(10, 'HB (Iniciar o completar esquema de tres dosis)', 'Hepatitis B', '11 años', NULL),
+(11, 'Cuádruple (1era Dosis)', '(DTP-Hib) difteria, tétanos, pertussis, Haemophilus influenzae b.', '2 meses', ''),
+(12, 'Cuádruple (2da Dosis)', '(DTP-Hib) difteria, tétanos, pertussis, Haemophilus influenzae b.', '4 meses', NULL),
+(13, 'Cuádruple (3ra Dosis)', '(DTP-Hib) difteria, tétanos, pertussis, Haemophilus influenzae b.', '6 meses', NULL),
+(14, 'Cuádruple (4ta Dosis)', '(DTP-Hib) difteria, tétanos, pertussis, Haemophilus influenzae b.', '18 meses', NULL),
+(15, 'Sabin (1era Dosis)', '(OPV) Vacuna Poliomelítica Oral', '2 meses', NULL),
+(16, 'Sabin (2da Dosis)', '(OPV) Vacuna Poliomelítica Oral', '4 meses', NULL),
+(17, 'Sabin (3ra Dosis)', '(OPV) Vacuna Poliomelítica Oral', '6 meses', NULL),
+(18, 'Sabin (4ta Dosis)', '(OPV) Vacuna Poliomelítica Oral', '18 meses', NULL),
+(19, 'Sabin (Refuerzo)', '(OPV) Vacuna Poliomelítica Oral', '6 años', NULL),
+(20, 'Triple bacteriana (Refuerzo)', '(DTP) Difteria, tétanos, pertussis', '6 años', NULL),
+(21, 'Triple Viral (1era Dosis)', '(SRP) Sarampión, rubéola, parotiditis', '12 meses', NULL),
+(22, 'Triple Viral (2da Dosis)', '(SRP) Sarampión, rubéola, parotiditis', '6 años', NULL),
+(23, 'Triple Viral (Refuerzo)', '(SRP) Sarampión, rubéola, parotiditis', '11 años', NULL),
+(24, 'Doble Viral (dosis)', '(SR) Sarampión, Rubéola.', 'Puerperio o post-aborto inmediato.', NULL),
+(25, 'Doble Bacteriana (Refuerzo 1)', '(dT) Difteria, Tétanos.', '16 años', NULL),
+(26, 'Doble Bacteriana (Refuerzos)', '(dT) Difteria, Tétanos.', 'Cada 10 años', NULL);
 
 
 -- 
