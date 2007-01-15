@@ -233,6 +233,7 @@ INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (79, '
 INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (80, 'Boletines', '#', '', 27, 100);
 INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (81, 'Conepto', 'boletin/listConcepto', 'boletinconcepto', 80, 0);
 INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (82, 'Notas', 'boletin/list', 'boletinnotas', 80, 1);
+INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (83, 'Definir tipo de documento', 'tipodocumento', 'tipodocumento', 71, 100);
 
 -- 
 -- Volcar la base de datos para la tabla 'modulo'
@@ -532,6 +533,8 @@ INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (51, 1
 -- 
 -- Volcar la base de datos para la tabla 'tipodocumento'
 -- 
+INSERT INTO `tipodocumento` ( `id` , `descripcion` , `orden` , `nombre` ) VALUES (NULL , 'Documento Nacional de Identidad', '0', 'DNI'), (NULL , 'Libreta de Enrolamiento', '0', 'LE');
+INSERT INTO `tipodocumento` ( `id` , `descripcion` , `orden` , `nombre` ) VALUES (NULL , 'Cedula de Identidad', '0', 'CI'), (NULL , 'Pasaporte', '0', 'Pasaporte');
 
 
 -- 
