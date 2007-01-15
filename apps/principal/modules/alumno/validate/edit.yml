@@ -124,5 +124,5 @@ validaNroDocumento:
 validaEmail:
     class: sfEmailValidator
     param:
-       email_error:   "No ingresaste un email correctamente ( ej: nombre@dominio.com)"
+       email_error:   "No ingresaste un email correctamente ( ej: nombre@dominio.com).<br>Si este alumno no tiene email, por favor deje en blanco el campo."
                     
