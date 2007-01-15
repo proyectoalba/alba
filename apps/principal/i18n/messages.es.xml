@@ -24,7 +24,7 @@
             </trans-unit>              
             <trans-unit id="6">
                 <source>[0] no result|[1] 1 result|(1,+Inf] %1% results</source>
-                <target>[0] no hay resultaddos|[1] 1 resultado|(1,+Inf] %1% resultados</target>
+                <target>[0] no existen resultados|[1] 1 resultado|(1,+Inf] %1% resultados</target>
             </trans-unit>              
             <trans-unit id="7">
                 <source>list</source>
@@ -53,6 +53,10 @@
             <trans-unit id="13">
                 <source>There are some errors that prevent the form to validate</source>
                 <target>Hay algunos errores, por favor corríjalos</target>
+            </trans-unit>      
+            <trans-unit id="14">
+                <source>no result</source>
+                <target>no existen resultados</target>
             </trans-unit>      
         </body>
     </file>
