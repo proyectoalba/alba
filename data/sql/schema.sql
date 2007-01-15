@@ -527,6 +527,7 @@ CREATE TABLE `responsable`
 	`sexo` CHAR(1) default '' NOT NULL,
 	`email` VARCHAR(128) default '',
 	`relacion` VARCHAR(128) default '' NOT NULL,
+	`observacion` VARCHAR(255) default '',
 	`autorizacion_retiro` INTEGER default 0 NOT NULL,
 	`fk_cuenta_id` INTEGER default 0 NOT NULL,
 	PRIMARY KEY (`id`),
