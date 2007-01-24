@@ -395,7 +395,7 @@
         <column name="titulo" type="varchar" size="255" required="false"/>
         <column name="nombre_archivo" type="varchar" size="255" required="true"/>
         <column name="tipo_archivo" type="varchar" size="64" required="true"/>
-        <column name="ruta" type="varchar" required="true"/>
+        <column name="ruta" type="varchar" size="255" required="true" />
         <column name="fecha" type="timestamp" required="true"/>
     </table>
     <table name="asistencia" idMethod="native">

@@ -778,7 +778,7 @@ CREATE TABLE `adjunto`
 	`titulo` VARCHAR(255),
 	`nombre_archivo` VARCHAR(255)  NOT NULL,
 	`tipo_archivo` VARCHAR(64)  NOT NULL,
-	`ruta` VARCHAR  NOT NULL,
+	`ruta` VARCHAR(255)  NOT NULL,
 	`fecha` DATETIME  NOT NULL,
 	PRIMARY KEY (`id`)
 )Type=InnoDB;
