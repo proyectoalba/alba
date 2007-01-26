@@ -6,7 +6,7 @@ generator:
     fields:
           descripcion: {name: Descripci&oacute;n , params: size=64 }
     list:
-          title: Listado de &iacute;tems de legajo pedag&oacute;gico
+          title: Tipos de entrada al legajo pedag&oacute;gico
           display: [ descripcion]
           object_actions:
               _edit: -

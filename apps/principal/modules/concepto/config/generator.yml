@@ -10,7 +10,7 @@ generator:
             nombre: {name: Nombre , params: size=64 }
 
       list:
-            title: Listado de ítems conceptuales a evaluar
+            title: Categor&iacute;as del Bolet&iacute;n de Concepto
             display: [ Establecimiento, nombre, descripcion ]
             object_actions:
                 _edit: -
