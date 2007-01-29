@@ -33,8 +33,8 @@
 class seguridadActions extends sfActions
 {
     public function preExecute() {
-           $this->vista = $this->getRequestParameter('vista');
-    }
+        $this->vista = $this->getRequestParameter('vista');
+    }
    
     public function executeLogin() {
         $this->error_inicio_sesion = false;

@@ -33,9 +33,8 @@
 
 class moduloActions extends automoduloActions
 {
-     public function preExecute() {
-             $this->vista = $this->getRequestParameter('vista');
-     }
+    public function preExecute() {
+        $this->vista = $this->getRequestParameter('vista');
+    }
 }
-
 ?>
