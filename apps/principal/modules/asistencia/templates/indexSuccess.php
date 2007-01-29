@@ -124,10 +124,11 @@
             echo input_hidden_tag('division_id', $division_id); 
             list($y, $m, $d) = split("[/. -]",$fechainicio);
             echo input_hidden_tag('fechainicio', "$d/$m/$y"); 
-            echo input_hidden_tag('vistas', $vista_id); 
+            echo input_hidden_tag('vistas', $vista_id);
+            echo input_hidden_tag('vista', "noMuestraMenu"); 
             if($alumno_id >= 0)
                  echo input_hidden_tag('alumno_id', $alumno_id);
-            echo submit_tag(__('Imprimir'), array ('name' => 'Imprimir','class' => 'sf_admin_action_print'));
+            echo submit_tag(__('Imprimir'), array ('name' => 'Imprimir','class' => 'sf_admin_action_saveprint'));
          ?>
         </form>
         </li></ul>

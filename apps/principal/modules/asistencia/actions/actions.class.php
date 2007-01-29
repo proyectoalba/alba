@@ -38,8 +38,8 @@ class asistenciaActions extends sfActions
     *
     */
     public function executeIndex() {
-        Misc::use_helper('Misc');   
-    
+        Misc::use_helper('Misc');
+        
         //Datos por default 
         $alumno_id = -1;
         $cuenta_id = -1;
@@ -195,6 +195,11 @@ class asistenciaActions extends sfActions
         $this->aFeriado = $aFeriado;
         $this->alumno_id = $alumno_id;
         $this->cuenta_id = $cuenta_id;
+        //Verifico si muestro versión para imprimir   
+        if ($this->getRequestParameter('vista'))
+            $this->vista = $this->getRequestParameter('vista');
+        else
+            $this->vista = "";
   }
   
   /**
@@ -202,10 +207,8 @@ class asistenciaActions extends sfActions
   */
   public function executeMostrar() {
     $vista_id  = $this->getRequestParameter('vistas');
+    $vista  = $this->getRequestParameter('vista');
     $fechainicio = str_replace("/","-",$this->getRequestParameter('fechainicio'));
-    //die($this->getRequestParameter('fechainicio'));
-    //list($y, $m, $d) = split("[/. -]",$this->getRequestParameter('fechainicio'));              
-    //$fechainicio = "$d/$m/$y";
     return $this->forward('asistencia','index',"vista_id=$vista_id&fechainicio=$fechainicio");   
   }
   
