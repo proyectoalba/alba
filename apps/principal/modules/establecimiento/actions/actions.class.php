@@ -23,8 +23,8 @@
  * establecimiento Acciones
  *
  * @package    alba
- * @author     José Luis Di Biase <josx@interorganic.com.ar>
- * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     JosÃ© Luis Di Biase <josx@interorganic.com.ar>
+ * @author     HÃ©ctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
@@ -33,9 +33,9 @@
 
 class establecimientoActions extends autoestablecimientoActions
 {
-     public function preExecute() {
-             $this->vista = $this->getRequestParameter('vista');
-     }
+    public function preExecute() {
+        $this->vista = $this->getRequestParameter('vista');
+    }
 
     function executeEditLocacion() {
 

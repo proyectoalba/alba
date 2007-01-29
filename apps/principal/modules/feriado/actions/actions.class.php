@@ -23,8 +23,8 @@
  * feriado Acciones
  *
  * @package    alba
- * @author     José Luis Di Biase <josx@interorganic.com.ar>
- * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     JosÃ© Luis Di Biase <josx@interorganic.com.ar>
+ * @author     HÃ©ctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
@@ -35,8 +35,8 @@ class feriadoActions extends autoferiadoActions
 {
 
     public function preExecute() {
-         $this->vista = $this->getRequestParameter('vista');
-    }
+        $this->vista = $this->getRequestParameter('vista');
+    }
  
     public function executeLinkMinisterio() {
         return $this->redirect("http://www.mininterior.gov.ar/servicios/feriados.asp");    
