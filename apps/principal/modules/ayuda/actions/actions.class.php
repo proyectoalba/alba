@@ -22,8 +22,8 @@
  * ayuda actions
  *
  * @package    alba
- * @author     José Luis Di Biase <josx@interorganic.com.ar>
- * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     JosÃ© Luis Di Biase <josx@interorganic.com.ar>
+ * @author     HÃ©ctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id: MiscHelper.php 3895 2006-12-18 17:53:19Z josx $
  * @filesource
@@ -32,6 +32,11 @@
 
 class ayudaActions extends sfActions
 {
+    public function preExecute() {
+        $this->vista = $this->getRequestParameter('vista');
+    }
+  
+
     public function executeIndex()  {
     
     }

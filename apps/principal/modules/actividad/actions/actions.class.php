@@ -22,8 +22,8 @@
  * actividades actions
  *
  * @package    alba
- * @author     José Luis Di Biase <josx@interorganic.com.ar>
- * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     Josï¿½Luis Di Biase <josx@interorganic.com.ar>
+ * @author     Hï¿½tor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
@@ -31,6 +31,11 @@
  */
 
 class actividadActions extends autoactividadActions {
+
+    public function preExecute() {
+        $this->vista = $this->getRequestParameter('vista');
+    }
+
     protected function addFiltersCriteria (&$c) {
         $c->add(ActividadPeer::FK_ESTABLECIMIENTO_ID,$this->getUser()->getAttribute('fk_establecimiento_id'));
     }

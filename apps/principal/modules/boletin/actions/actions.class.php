@@ -22,8 +22,8 @@
  * boletin actions
  *
  * @package    alba
- * @author     José Luis Di Biase <josx@interorganic.com.ar>
- * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     JosÃ© Luis Di Biase <josx@interorganic.com.ar>
+ * @author     HÃ©ctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
@@ -32,6 +32,11 @@
 
 class boletinActions extends sfActions
 {
+
+    public function preExecute() {
+        $this->vista = $this->getRequestParameter('vista');
+    }
+  
 
     public function executeGrabarNotas() {
 

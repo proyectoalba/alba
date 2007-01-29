@@ -2,7 +2,7 @@
 if(!isset($vista)){
      $vista="";
 }
-    
+
 if($vista == "noMuestraMenu") { 
 echo $content;
 } else { ?>
@@ -104,8 +104,21 @@ td {
                 if($sf_user->isAuthenticated() == true)  {
                     include("menu.php");
                 }
-          ?></td>
-            <td><?=image_tag("gui/index_2x2.png", array ( 'width' => '17' , 'heigth' => '35' ) )?></td>
+          ?>
+            <div id="menu" align="right">
+                <?  $uri = sfRouting::getInstance()->getCurrentInternalUri();
+                    $vista_var = "vista=noMuestraMenu";
+                    $separador = (strstr($uri,'?'))?'&':'?';
+                    $vista_var = $separador.$vista_var;
+                    echo link_to(image_tag(sfContext::getInstance()->getRequest()->getRelativeUrlRoot().'/images/small/print.png'),$uri.$vista_var,'popup=true');
+                ?>
+            </div>
+</td>
+           
+
+           <td><?=image_tag("gui/index_2x2.png", array ( 'width' => '17' , 'heigth' => '35' ) )?></td>
+
+
         </tr>
         
         

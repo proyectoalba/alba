@@ -23,8 +23,8 @@
  * division Acciones
  *
  * @package    alba
- * @author     Jos�Luis Di Biase <josx@interorganic.com.ar>
- * @author     H�tor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     José Luis Di Biase <josx@interorganic.com.ar>
+ * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
@@ -33,6 +33,9 @@
 
 class divisionActions extends autodivisionActions
 {
+    public function preExecute() {
+        $this->vista = $this->getRequestParameter('vista');
+    }
 
      protected function addFiltersCriteria(&$c)
      {

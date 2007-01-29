@@ -23,8 +23,8 @@
  * docente Acciones
  *
  * @package    alba
- * @author     José Luis Di Biase <josx@interorganic.com.ar>
- * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     JosÃ© Luis Di Biase <josx@interorganic.com.ar>
+ * @author     HÃ©ctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
@@ -33,6 +33,9 @@
 
 class docenteActions extends autodocenteActions
 {
+    public function preExecute() {
+        $this->vista = $this->getRequestParameter('vista');
+    }
 
     function executeActividadesPorDocente() {
         $this->redirect('relActividadDocente/list?filters%5Bfk_docente_id%5D='.$this->getRequestParameter('id').'&filter=filtrar');

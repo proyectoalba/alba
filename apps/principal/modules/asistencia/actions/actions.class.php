@@ -22,8 +22,8 @@
  * asistencia actions.
  *
  * @package    alba
- * @author     José Luis Di Biase <josx@interorganic.com.ar>
- * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     JosÃ© Luis Di Biase <josx@interorganic.com.ar>
+ * @author     HÃ©ctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
@@ -32,6 +32,11 @@
 
 class asistenciaActions extends sfActions
 {
+
+    public function preExecute() {
+        $this->vista = $this->getRequestParameter('vista');
+    }
+
     
     /**
     * Executes index action
@@ -195,7 +200,7 @@ class asistenciaActions extends sfActions
         $this->aFeriado = $aFeriado;
         $this->alumno_id = $alumno_id;
         $this->cuenta_id = $cuenta_id;
-        //Verifico si muestro versión para imprimir   
+        //Verifico si muestro versiï¿½ para imprimir   
         if ($this->getRequestParameter('vista'))
             $this->vista = $this->getRequestParameter('vista');
         else

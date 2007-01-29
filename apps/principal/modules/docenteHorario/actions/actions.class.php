@@ -36,6 +36,7 @@ class DocenteHorarioActions extends sfActions
   public function preExecute ()
   {
     $this->getResponse()->addStylesheet('/sf/css/sf_admin/main', 'first');
+    $this->vista = $this->getRequestParameter('vista');
   }
 
   public function executeIndex ()

@@ -22,8 +22,8 @@
  * calendario actions
  *
  * @package    alba
- * @author     JosÈ Luis Di Biase <josx@interorganic.com.ar>
- * @author     HÈctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     Jos√© Luis Di Biase <josx@interorganic.com.ar>
+ * @author     H√©ctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
@@ -33,10 +33,10 @@
 class calendarioActions extends sfActions
 {
 
-    public function preExecute()  {
-
-    } 
-
+    public function preExecute() {
+        $this->vista = $this->getRequestParameter('vista');
+    }
+  
     private function getHorasMaterias($anio_id)  {
         // traigo todos las materias/actividades para un a√±o determinado
         $criteria = new Criteria();
