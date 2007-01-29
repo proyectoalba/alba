@@ -18,7 +18,7 @@ generator:
 
         
         edit: 
-            title: Modificar Usuario
+            title: ""
             display: 
                 "General": [usuario, _clave, correo_publico, email,  activo, fecha_creado, fecha_actualizado, fk_establecimiento_id]
                 "Si olvida su clave se le realizar&aacute; un pregunta se seguridad" : [seguridad_pregunta]
