@@ -3,14 +3,23 @@ if(!isset($vista)){
      $vista="";
 }
 
-if($vista == "noMuestraMenu") { 
-echo $content;
-} else { ?>
+
+switch($vista) {
+
+    case 'noMuestraMenu': echo $content; break;
+    case 'imprimir':    
+                        echo include_http_metas();
+                        echo include_metas();
+?><link rel="stylesheet" type="text/css" media="screen" href="/~josx/alba/sf/css/sf_web_debug/main.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/~josx/alba/sf/css/sf_admin/main.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/~josx/alba/css/main.css" /><?
+                        echo $content;
+                        break;
+    default:   ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2000/REC-xhtml1-200000126/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-
 
 <?php echo include_http_metas() ?>
 <?php echo include_metas() ?>
@@ -50,9 +59,8 @@ td {
     background-image: url(<?=sfContext::getInstance()->getRequest()->getRelativeUrlRoot()."/images/gui/fder.png"?>);
 }
 </style>
-
-
 </head>
+
 <body>
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr valign="top"> 
@@ -107,7 +115,7 @@ td {
           ?>
             <div id="menu" align="right">
                 <?  $uri = sfRouting::getInstance()->getCurrentInternalUri();
-                    $vista_var = "vista=noMuestraMenu";
+                    $vista_var = "vista=imprimir";
                     $separador = (strstr($uri,'?'))?'&':'?';
                     $vista_var = $separador.$vista_var;
                     echo link_to(image_tag(sfContext::getInstance()->getRequest()->getRelativeUrlRoot().'/images/small/print.png'),$uri.$vista_var,'popup=true');
@@ -147,4 +155,5 @@ td {
 </body>
 <? echo javascript_include_tag('varios/wz_tooltip.js'); ?>
 </html>
+
 <?}?>
