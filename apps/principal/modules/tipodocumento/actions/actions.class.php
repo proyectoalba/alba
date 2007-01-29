@@ -33,7 +33,7 @@
 
 class tipodocumentoActions extends autotipodocumentoActions {
     public function preExecute() {
-             $this->vista = $this->getRequestParameter('vista');
+        $this->vista = $this->getRequestParameter('vista');
     }
     
     protected function addSortCriteria (&$c) {

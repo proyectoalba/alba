@@ -33,7 +33,7 @@
 class turnosActions extends autoturnosActions
 {
     public function preExecute() {
-             $this->vista = $this->getRequestParameter('vista');
+        $this->vista = $this->getRequestParameter('vista');
     }
     
     function addFiltersCriteria(&$c) {
