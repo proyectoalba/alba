@@ -32,6 +32,10 @@
 
 class turnosActions extends autoturnosActions
 {
+    public function preExecute() {
+             $this->vista = $this->getRequestParameter('vista');
+    }
+    
     function addFiltersCriteria(&$c) {
         $c->add(TurnosPeer::FK_CICLOLECTIVO_ID,$this->getUser()->getAttribute('fk_ciclolectivo_id'));
     }

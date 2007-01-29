@@ -33,6 +33,10 @@
 
 class locacionActions extends autolocacionActions
 {
+     public function preExecute() {
+             $this->vista = $this->getRequestParameter('vista');
+    }
+    
     function executeEspaciosPorLocacion(){
         $this->redirect( 'relLocacionEspacio/list?filters%5Bfk_locacion_id%5D='.$this->getRequestParameter('id') .'&filter=filtrar');
     }

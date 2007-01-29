@@ -33,8 +33,12 @@
 
 class horarioescolarActions extends autohorarioescolarActions
 {
-  protected function updateHorarioescolarFromRequest()
-  {
+    
+  public function preExecute() {
+         $this->vista = $this->getRequestParameter('vista');
+  }
+ 
+  protected function updateHorarioescolarFromRequest(){
     $horarioescolar = $this->getRequestParameter('horarioescolar');
 
     $horarioescolar['hora_inicio'] = $this->_add_zeros($horarioescolar['hora_inicio']['hour'],2).":".$this->_add_zeros($horarioescolar['hora_inicio']['minute'],2)." ".$horarioescolar['hora_inicio']['ampm'];

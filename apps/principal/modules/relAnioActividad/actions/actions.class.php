@@ -33,6 +33,9 @@
 
 class relAnioActividadActions extends autorelAnioActividadActions
 {
+     public function preExecute() {
+             $this->vista = $this->getRequestParameter('vista');
+     }
 }
 
 ?>

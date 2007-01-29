@@ -33,6 +33,9 @@
 
 class paisActions extends autopaisActions
 {
+     public function preExecute() {
+             $this->vista = $this->getRequestParameter('vista');
+     }
 }
 
 ?>

@@ -32,6 +32,10 @@
 
 class responsableActions extends autoresponsableActions
 {
+     public function preExecute() {
+             $this->vista = $this->getRequestParameter('vista');
+     }
+         
   function executeIrCuenta(){
     //Obtener el id de cuenta.
     

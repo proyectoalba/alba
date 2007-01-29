@@ -33,4 +33,7 @@
 
 class relAlumnoDivisionActions extends autorelAlumnoDivisionActions
 {
+     public function preExecute() {
+             $this->vista = $this->getRequestParameter('vista');
+     }
 }

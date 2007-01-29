@@ -32,6 +32,10 @@
  */
 
 class tipodocumentoActions extends autotipodocumentoActions {
+    public function preExecute() {
+             $this->vista = $this->getRequestParameter('vista');
+    }
+    
     protected function addSortCriteria (&$c) {
         if ($sort_column = $this->getUser()->getAttribute('sort', 'nombre', 'sf_admin/tipodocumento/sort')) {
             $sort_column = Propel::getDB($c->getDbName())->quoteIdentifier($sort_column);

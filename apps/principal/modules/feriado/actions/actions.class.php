@@ -34,10 +34,12 @@
 class feriadoActions extends autoferiadoActions
 {
 
+    public function preExecute() {
+         $this->vista = $this->getRequestParameter('vista');
+    }
+ 
     public function executeLinkMinisterio() {
-
-        return $this->redirect("http://www.mininterior.gov.ar/servicios/feriados.asp");
-    
+        return $this->redirect("http://www.mininterior.gov.ar/servicios/feriados.asp");    
     }
 
 

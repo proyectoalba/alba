@@ -33,6 +33,10 @@
 
 class relCalendariovacunacionAlumnoActions extends autorelCalendariovacunacionAlumnoActions
 {
+
+     public function preExecute() {
+             $this->vista = $this->getRequestParameter('vista');
+     }
   /**
   * Ir a la cuenta del alumno
   */

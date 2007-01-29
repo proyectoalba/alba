@@ -33,6 +33,9 @@
 
 class preferenciaActions extends autopreferenciaActions
 {
+     public function preExecute() {
+             $this->vista = $this->getRequestParameter('vista');
+     }
 }
 
 ?>

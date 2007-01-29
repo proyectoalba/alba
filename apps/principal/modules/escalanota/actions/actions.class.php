@@ -32,6 +32,9 @@
 
 class escalanotaActions extends autoescalanotaActions
 {
+     public function preExecute() {
+             $this->vista = $this->getRequestParameter('vista');
+     }
 }
 
 ?>

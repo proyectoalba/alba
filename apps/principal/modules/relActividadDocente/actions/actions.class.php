@@ -33,6 +33,9 @@
 
 class relActividadDocenteActions extends autorelActividadDocenteActions
 {
+     public function preExecute() {
+             $this->vista = $this->getRequestParameter('vista');
+     }
 
     function executeListadoDocente() {
         $this->redirect('docente?action=list');

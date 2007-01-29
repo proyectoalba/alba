@@ -33,6 +33,10 @@
 
 class legajopedagogicoActions extends sfActions
 {
+     public function preExecute() {
+             $this->vista = $this->getRequestParameter('vista');
+     }
+     
   /**
    * Executes index action
    *
