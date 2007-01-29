@@ -10,6 +10,7 @@ generator:
           display: [ descripcion]
           object_actions:
               _edit: -
+              _delete: -
     edit:
           title: Editar &iacute;tems de legajo pedag&oacute;gico
           display: [ descripcion ]
