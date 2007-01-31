@@ -4,7 +4,7 @@ generator:
       model_class:      Alumno
       theme:            default
       fields:
-            nombre: { name: Nombre , params: size=64 }
+            nombre: { name: Nombres , params: size=64 }
             apellido: { name: Apellido , params: size=64}
             fk_provincia_id: { name: Provincia }
             fk_establecimiento_id: { name: Establecimiento }
@@ -14,16 +14,16 @@ generator:
             fecha_nacimiento: { name: Fecha Nacimiento}
             direccion: { name: Direcci&oacute;n , params: size=64}
             ciudad: { name: Ciudad, params: size=64 }
-            codio_postal: { name: CP, params: size=20}
+            codigo_postal: { name: CP, params: size=20}
             telefono: { name: Tel&eacute;fono, params: size=20 }
             sexo: { name: Sexo }
             email: { name: Email , params: size=64 }
             nro_documento:  { name: Nro. Documento, params: size=16 }
-            distancia_escuela: { name: Distancia a la escuela (cuadras) }
-            hermanos_escuela: { name: �h�ermanos en la escuela? }
-            hijo_maestro_escuela: { name: ¿Algunos de sus padres es Maestro? }
-            certificado_medico: { name: ¿trajo el certificado &eacute;dico? }
-            activo: { name: ¿esta activo? }
+            distancia_escuela: { name: Distancia de la escuela (cuadras) }
+            hermanos_escuela: { name: ¿Hermanos en la escuela? }
+            hijo_maestro_escuela: { name: ¿Alguno de sus padres es Maestro? }
+            certificado_medico: { name: ¿Trajo el certificado m&eacute;dico? }
+            activo: { name: ¿Est&aacute; activo? }
             nombre_apellido: { name: Nombre }
             division: { name: Divisi&oacute;n }
 
