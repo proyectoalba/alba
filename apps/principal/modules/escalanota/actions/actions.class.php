@@ -22,8 +22,8 @@
  * escalanota Acciones
  *
  * @package    alba
- * @author     JosÃ© Luis Di Biase <josx@interorganic.com.ar>
- * @author     HÃ©ctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     José Luis Di Biase <josx@interorganic.com.ar>
+ * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
@@ -32,7 +32,11 @@
 
 class escalanotaActions extends autoescalanotaActions
 {
-     public function preExecute() {
+    protected function addFiltersCriteria(&$c) {                                                                                                                       
+        $c->add(EscalanotaPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
+    }
+
+    public function preExecute() {
          $this->vista = $this->getRequestParameter('vista');
      }
 }
