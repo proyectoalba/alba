@@ -96,6 +96,9 @@ class establecimientoActions extends autoestablecimientoActions
         $this->referer =  $this->getRequest()->getReferer();
     }
 
+    /**
+    * Cambiamos de establecimiento y pasamos al ciclo actual activo del mismo
+    */
     public function executeActual() {
         $id = $this->getRequestParameter('establecimiento');
         $c = new Criteria();
@@ -105,9 +108,22 @@ class establecimientoActions extends autoestablecimientoActions
             $this->getUser()->setAttribute('fk_establecimiento_id',$id);
             $this->getUser()->setAttribute('establecimiento_nombre',$establecimiento->getNombre());
             //  $this->setFlash('notice', 'Se ha cambiado de establecimiento');
+            $c = new Criteria();
+            $c->add(CiclolectivoPeer::FK_ESTABLECIMIENTO_ID,$id);
+            $c->addDescendingOrderByColumn(CiclolectivoPeer::ACTUAL);
+            $cicloactual = CiclolectivoPeer::doSelectOne($c);
+            if ($cicloactual) {
+                $this->getUser()->setAttribute('fk_ciclolectivo_id',$cicloactual->getId());
+                $this->getUser()->setAttribute('ciclolectivo_descripcion',$cicloactual->getDescripcion());
+                return $this->redirect($this->getRequestParameter('referer', '@homepage'));
+            }
+            else {
+                setFlash('error', 'No se puede asignar un ciclo lectivo actual para este establecimiento');
+            }
+                
         }
+        
   
-        return $this->redirect($this->getRequestParameter('referer', '@homepage'));
     }
     
 
