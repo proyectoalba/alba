@@ -9,10 +9,7 @@ generator:
         division:   { name: Divisi&oacute;n}
     edit:
         title: Asignar alumno a grado y secci&oacute;n
-        fields:
-            fk_alumno_id:   { params: include_custom=>>Seleccione un Alumno<<}
-            fk_division_id:   { params: include_custom=>>Seleccione una División<<}
-        display: [ fk_alumno_id, fk_division_id]
+        display: [ _fk_alumno_id, _fk_division_id]
     list:
         title: Listado de alumnos por grado y secci&oacute;n
         display: [ alumno, division ]

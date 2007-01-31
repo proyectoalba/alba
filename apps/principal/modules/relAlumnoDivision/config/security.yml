@@ -1,4 +1,3 @@
 all:
     is_secure: on
-    credentials: relAlumnoDivision
-    
+    credentials:[ division , alumno ]
