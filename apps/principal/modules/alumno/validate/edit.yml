@@ -15,6 +15,7 @@ methods:
     - "alumno{hijo_maestro_escuela}"               
     - "alumno{certificado_medico}"        
     - "alumno{activo}"        
+    - "alumno{fk_cuenta_id}"
     
 fillin:
     enabled:       on
@@ -81,6 +82,11 @@ names:
    
     alumno{activo}:
         required:     No
+
+    alumno{fk_cuenta_id}:
+        required:     Yes
+        required_msg: El campo Cuenta es obligatorio
+                            
         
 caracteresMaximos128:
     class:  sfStringValidator
