@@ -68,7 +68,7 @@
         <?php
             //$aIntervalo = diasxintervalo($d,$m,$y,$vista_id);
             for($i=0, $max = count($aIntervalo); $i < $max ;$i++) { ?>
-                <th id="sf_admin_list_th_sf_actions"><?php echo date("d",strtotime($aIntervalo[$i])) ?></th>
+                <th id="sf_admin_list_th_sf_actions"><?php echo date("d",strtotime($aIntervalo[$i]))?></th>
             <?}?>
             <?php foreach ($aTipoasistencias as $idx => $Tipoasistencia){ ?>
                 <th id="sf_admin_list_th_sf_actions"><?php echo $idx ?></th>
@@ -91,9 +91,13 @@
                 <td>
                 <?php 
                     $fecha = date("Y-m-d 00:00:00",strtotime($aIntervalo[$i]));
-                    if ( array_key_exists($fecha, $aFeriado))  {
+                    if ( array_key_exists($fecha, $aFeriado) )  {
                         echo input_tag("asistencia['$idx']['$fecha']", "", array('size' => '2', 'maxlength' => '2', 'disabled' => true ));
                         $aFeriadoEfectivo[$fecha] = $aFeriado[$fecha];
+                    }    
+                    elseif (date("w",strtotime($aIntervalo[$i])) == 6 || date("w",strtotime($aIntervalo[$i])) == 0){
+                         echo input_tag("asistencia['$idx']['$fecha']", "", array('size' => "2", 'maxlength' => "2",'disabled' => true ));    
+                         
                     } else {
                         if ( array_key_exists($idx, $aDatos) AND array_key_exists($fecha, $aDatos[$idx])){
                             $sizeAsis = count($aDatos[$idx][$fecha]);
