@@ -20,7 +20,7 @@ generator:
             email: { name: Email , params: size=64 }
             nro_documento:  { name: Nro. Documento, params: size=16 }
             distancia_escuela: { name: Distancia a la escuela (cuadras) }
-            hermanos_escuela: { name: ¿ermanos en la escuela? }
+            hermanos_escuela: { name: �h�ermanos en la escuela? }
             hijo_maestro_escuela: { name: ¿Algunos de sus padres es Maestro? }
             certificado_medico: { name: ¿trajo el certificado &eacute;dico? }
             activo: { name: ¿esta activo? }
