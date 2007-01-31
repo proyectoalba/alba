@@ -153,7 +153,7 @@ foreach($aTurnos as $turno){
     <?php echo input_hidden_tag("periodo[$i][id]", $periodo->getId()); ?>
     <td>
     <ul class="sf_admin_td_actions">
-    <li><?php echo link_to(image_tag('/sf/images/sf_admin/delete_icon.png', array('alt' => __('delete'), 'title' => __('delete'))), 'periodo/delete?idPeriodo='.$periodo->getId().'&id='.$sf_params->get('id')); ?>
+    <li><?php echo link_to(image_tag('/sf/images/sf_admin/delete_icon.png', array('alt' => __('delete'), 'title' => __('delete'))), 'ciclolectivo/deletePeriodo?idPeriodo='.$periodo->getId().'&id='.$sf_params->get('id')); ?>
     </ul>
     </td>
     
