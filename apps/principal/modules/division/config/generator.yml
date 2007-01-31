@@ -11,9 +11,7 @@ generator:
         descripcion: { name: Descripci&oacute;n }
     edit:
         title: Editar Divisi&oacute;n
-        fields:
-            fk_anio_id:   { params: include_custom=>>Seleccione un Año<<}
-        display: [ fk_anio_id, descripcion, _fk_turnos_id ]
+        display: [ _fk_anio_id, descripcion, _fk_turnos_id ]
                     
     list:
         title: Listado de Divisiones

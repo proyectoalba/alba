@@ -1,7 +1,6 @@
 <?php 
     $criteriaT = new Criteria(); 
-    $criteriaT->add(CiclolectivoPeer::FK_ESTABLECIMIENTO_ID, $sf_user->getAttribute('fk_establecimiento_id'));    
-    $criteriaT->addJoin(TurnosPeer::FK_CICLOLECTIVO_ID, CiclolectivoPeer::ID);
+    $criteriaT->add(TurnosPeer::FK_CICLOLECTIVO_ID, $sf_user->getAttribute('fk_ciclolectivo_id'));    
     $turnos = TurnosPeer::doSelect($criteriaT);
     $optionsTurnos = array();
     $optionsTurnos[""] = ">>Seleccione un Turno<<";   
