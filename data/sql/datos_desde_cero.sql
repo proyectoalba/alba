@@ -296,6 +296,7 @@ INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (42, 'Tipodo
 INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (43, 'tipoasistencia', 'tipoasistencia', 'Asistencia', 1);
 INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (44, 'legajopedagogico', 'legajopdagogico', '', 1);
 INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (45, 'Boletin', 'Boletin', '', 1);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (46, 'tipodocumento', 'Tipo Documento', 'Tipo Documento', 1);
 
 -- 
 -- Volcar la base de datos para la tabla 'niveltipo'
