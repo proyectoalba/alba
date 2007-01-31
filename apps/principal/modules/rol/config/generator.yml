@@ -4,7 +4,7 @@ generator:
     model_class:      Rol
     theme:            default
     fields:
-        nombre: {name: Nombre, params: include_blank=true size=40}
+        nombre: {name: Nombre, params: include_blank=true size=18}
         descripcion: {name: Descripci&oacute;n , params: size=60}
         activo: {name: Esta activo, type: checkbox_tag}    
 
