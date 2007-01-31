@@ -91,20 +91,6 @@ INSERT INTO `calendariovacunacion` (`id`, `nombre`, `descripcion`, `periodo`, `o
 -- Volcar la base de datos para la tabla 'distritoescolar'
 -- 
 
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (1, 'Nº8', 'Aguirre 3345', '4321-2134', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (2, 'Nº 4', 'Suarez 1131', '4302-2823 / 4301-3558', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (3, 'Nº 5', 'Avda. M. A. Montes de Oca 439 - 1er Piso', '4307-4676 / 6753 / 4687', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (4, 'Nº 6', 'Humberto Primo 3187', '4957-1563', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (5, 'Nº 9', 'Güemes 4615', '4773-7453', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (6, 'Nº 11', '', '', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (7, 'Nº 13', 'Manuel Artigas 5951', '4682-9849/0566', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (8, 'Nº 14', 'Bolivia 2571', '4581-6248', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (9, 'Nº 15', 'Galván 3463 ', ' 4541-0212 / 4541-2681 ', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (10, 'Nº 16', 'José Cubas 3789 ', ' 4502-0182/6664/2165', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (11, 'Nº 19', 'Cnel. Pagola 4181', '4923-1276 / 6228', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (12, 'Nº 20', 'Fonrouge 346', '4641-1796 / 7247', 'Buenos Aires');
-INSERT INTO distritoescolar (id, nombre, direccion, telefono, ciudad) VALUES (13, 'Nº 21', 'Cnel. M. Chilavert 6090', '4605-1597 / 5860', 'Buenos Aires');
-
 -- 
 -- Volcar la base de datos para la tabla 'division'
 -- 
@@ -180,84 +166,86 @@ VALUES (1, 'Establecimiento Tu nombre', 'Establecimiento Tu descripcion',1,1,1);
 -- Volcar la base de datos para la tabla 'menu'
 -- 
 
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (1, '-- Menu Raiz --', '#', '', 0, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (2, 'General', '#', '', 10, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (3, 'Familia', '#', '', 1, 10);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (4, 'Alumnos', '#', '', 1, 20);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (5, 'Docentes', '#', '', 1, 30);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (6, 'Gesti&oacute;n Escolar', '#', '', 1, 40);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (7, 'Calendarios y Horarios', '#', '', 1, 50);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (8, 'Locaciones y Espacios', '#', '', 1, 60);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (9, 'Informes y Consultas', '#', '', 1, 70);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (10, 'Administraci&oacute;n', '#', '', 1, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (11, 'Preferencias Generales', 'preferencia', 'preferencia', 10, 100);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (12, 'Seguridad', '#', 'usuario', 10, 200);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (13, 'Usuario', 'usuario/', 'usuario', 12, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (14, 'Rol', 'rol/', 'rol', 12, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (15, 'Permiso', 'permiso/', 'permiso', 12, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (16, 'M&oacute;dulo', 'modulo/', 'modulo', 12, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (18, 'Definir Organizaci&oacute;n', 'organizacion/edit?id=1', 'organizacion', 2, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (19, 'Definir Establecimiento', 'establecimiento', 'establecimiento', 2, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (20, 'Definir Distritos Escolares', 'distritoescolar', 'distrito', 71, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (21, 'Definir Provincias', 'provincia', 'provincia', 71, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (22, 'Definir Pa&iacute;ses', 'pais/', 'pais', 71, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (23, 'Definir Categor&iacute;a de IVA', 'tipoiva/', 'tipoiva', 71, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (24, 'Cuentas', 'cuenta/', 'cuenta', 3, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (25, 'Ir a cuenta desde alumno', 'alumno/', 'alumno', 3, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (26, 'Responsables', 'responsable/', 'responsable', 3, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (27, 'Evaluaci&oacute;n', '#', '', 4, 50);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (29, '-', '#', '', 10, 50);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (30, 'Salir', 'seguridad/logout', '', 1, 90);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (31, 'Definir Escala de notas', 'escalanota', '', 27, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (32, 'Definir items a evaluar (conceptos)', 'concepto', '', 27, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (33, 'Legajos de alumnos', '#', '', 4, 20);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (34, 'Items de Legajo Pedag&oacute;gico', 'legajocategoria', 'legajocategoria', 33, 10);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (35, 'Ingresar Alumno', 'alumno/create', 'alumno', 4, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (36, 'Ver legajo completo por alumno', 'legajopedagogico', 'legajopedagogico', 33, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (37, 'Legajos de Docentes', 'docente', '', 5, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (38, 'Configuraciones previas', '#', '', 5, 100);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (39, 'Tipos de docentes', 'tipodocente', 'tipodocente', 38, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (40, 'Motivos de baja', 'cargobaja', 'cargobaja', 38, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (41, 'Ingresar Materias/Actividades', 'actividad', '', 6, 10);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (42, 'Definir Grados/A&ntilde;os', 'anio', '', 6, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (43, 'Actividades por grado/a&ntilde;o', 'relAnioActividad', '', 6, 20);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (44, 'Definir Secciones/Divisiones', 'division', '', 6, 30);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (45, 'Definir feriados del a&ntilde;o', 'feriado', '', 7, 20);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (46, 'Ciclo lectivo (actual)', 'ciclolectivo', '', 7, 10);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (47, 'Horario Escolar', '#', '', 7, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (48, 'Tipos de intevalos de horario escolar', 'horarioescolartipo', '', 47, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (49, 'Calendario de vacunas', 'calendariovacunacion', '', 7, 30);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (50, 'Horario segun...?', '#', '', 7, 100);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (51, '...docentes', 'calendario/busquedaDocente', '', 50, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (52, '...secci&oacute;n/divisi&oacute;n', 'calendario/busquedaDivision', '', 50, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (53, 'Listado de Locaciones', 'locacion', '', 8, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (54, 'Definir tipos de Locaciones', 'tipolocacion', '', 76, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (55, 'Listado de Espacios x Locaci&oacute;n', 'espacios', '', 8, 10);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (56, 'Definir tipos de Espacios', 'tipoespacio', '', 76, 10);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (57, 'Definir horario clases', 'horarioescolar', '', 47, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (58, 'Constancia Alumno Regular', '#', '', 9, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (59, 'Constancia para Salario Familiar', '#', '', 9, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (60, 'Constancia Egreso 7mo', '#', '', 9, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (61, '-', '', '', 9, 10);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (62, 'Asistencias', '#', '', 4, 100);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (63, 'Matr&iacute;cula Inicial?', '', '', 9, 100);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (64, 'Matr&iacute;cula Final?', '', '', 9, 100);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (65, 'Ayuda', '#', '', 1, 80);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (67, 'Indice...', 'ayuda/', '', 65, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (68, 'Cr&eacute;ditos', 'creditos/', '', 65, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (69, 'Generar Horario por secci&oacute;n/divisi&oacute;n', 'calendario', 'calendario', 47, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (71, 'Configuraciones Previas', '#', '', 10, 10);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (72, 'Definir tipo de bajas', 'conceptobaja', 'conceptobaja', 33, 30);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (73, 'Ingresar ausentes por secci&oacute;n/divisi&oacute;n', 'asistencia', 'asistencia', 62, 10);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (74, 'Definir tipo de asistencia', 'tipoasistencia', 'tipoasistencia', 62, 20);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (75, 'Definir turnos', 'turnos', 'turnos', 47, 50);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (76, 'Configuraciones previas', '#', '', 8, 200);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (78, 'Asignar alumno a divisi&oacute;n', 'relAlumnoDivision/create', 'relAlumnoDivision', 6, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (79, 'Listado de Materias por docente', 'relActividadDocente', 'relActividadDocente', 5, 300);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (80, 'Boletines', '#', '', 27, 100);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (81, 'Conepto', 'boletin/listConcepto', 'boletinconcepto', 80, 0);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (82, 'Notas', 'boletin/list', 'boletinnotas', 80, 1);
-INSERT INTO menu (id, nombre, link, perm, fk_padre_menu_id, orden) VALUES (83, 'Definir tipo de documento', 'tipodocumento', 'tipodocumento', 71, 100);
+
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (1, '-- Menu Raiz --', '#', '', 0, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (2, 'General', '#', '', 10, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (3, 'Cuentas', '#', '', 1, 10);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (4, 'Alumnos', '#', '', 1, 20);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (5, 'Docentes', '#', '', 1, 30);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (6, 'Gesti&oacute;n Escolar', '#', '', 1, 40);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (7, 'Calendarios y Horarios', '#', '', 1, 50);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (8, 'Locaciones y Espacios', '#', '', 1, 60);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (9, 'Informes y Consultas', '#', '', 1, 70);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (10, 'Administraci&oacute;n', '#', '', 1, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (11, 'Preferencias Generales', 'preferencia', 'preferencia', 10, 100);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (12, 'Seguridad', '#', 'usuario', 10, 200);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (13, 'Usuario', 'usuario/', 'usuario', 12, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (14, 'Rol', 'rol/', 'rol', 12, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (15, 'Permiso', 'permiso/', 'permiso', 12, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (16, 'M&oacute;dulo', 'modulo/', 'modulo', 12, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (18, 'Definir Organizaci&oacute;n', 'organizacion/edit?id=1', 'organizacion', 2, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (19, 'Definir Establecimiento', 'establecimiento', 'establecimiento', 2, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (20, 'Definir Distritos Escolares', 'distritoescolar', 'distrito', 83, 30);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (21, 'Definir Provincias', 'provincia', 'provincia', 83, 20);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (22, 'Definir Pa&iacute;ses', 'pais/', 'pais', 83, 10);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (23, 'Definir Categor&iacute;a de IVA', 'tipoiva/', 'tipoiva', 83, 40);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (24, 'Administrar', 'cuenta/', 'cuenta', 3, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (26, 'Responsables', 'responsable/', 'responsable', 3, 10);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (27, 'Boletines', '#', '', 4, 50);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (29, '-', '#', '', 10, 50);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (30, 'Salir', 'seguridad/logout', '', 1, 90);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (31, 'Definir Escala de notas', 'escalanota', 'escalanota', 84, 30);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (32, 'Definir Categor&iacute;as del Bolet&iacute;n de Concepto', 'concepto', 'concepto', 84, 50);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (33, 'Buscar Alumno para...', 'legajopedagogico', 'legajopedagogico', 4, 20);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (34, 'Tipos de entrada al legajo pedag&iacute;gico', 'legajocategoria', 'legajocategoria', 84, 40);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (35, 'Ingresar Nuevo', 'alumno/create', 'alumno', 4, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (37, 'Administrar', 'docente', '', 5, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (39, 'Tipos de docentes', 'tipodocente', 'tipodocente', 85, 10);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (40, 'Motivos de baja', 'cargobaja', 'cargobaja', 85, 20);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (41, 'Ingresar Materias/Actividades', 'actividad', '', 6, 40);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (42, 'Definir Grados/A&ntilde;os', 'anio', '', 6, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (43, 'Actividades por Grado/Ao', 'relAnioActividad', '', 6, 50);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (44, 'Definir Secciones/Divisiones', 'division', '', 6, 10);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (45, 'Definir feriados del a&ntilde;o', 'feriado', 'feriado', 86, 40);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (46, 'Ciclo lectivo (actual)', 'ciclolectivo', '', 86, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (47, 'Horario Escolar', '#', '', 7, 50);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (48, 'Tipos de intevalos de horario escolar', 'horarioescolartipo', 'horarioescolartipo', 86, 20);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (49, 'Calendario de vacunas', 'calendariovacunacion', 'calendariovacunacion', 86, 30);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (50, 'Horario segun...?', '#', '', 7, 100);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (51, '...docentes', 'calendario/busquedaDocente', '', 50, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (52, '...secci&oacute;n/divisi&oacute;n', 'calendario/busquedaDivision', '', 50, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (53, 'Listado de Locaciones', 'locacion', '', 8, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (54, 'Definir tipos de Locaciones', 'tipolocacion', 'tipolocacion', 87, 10);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (55, 'Listado de Espacios x Locaci&oacute;n', 'espacios', '', 8, 10);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (56, 'Definir tipos de Espacios', 'tipoespacio', 'tipoespacio', 87, 20);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (57, 'Definir horario clases', 'horarioescolar', '', 47, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (58, 'Constancia Alumno Regular', '#', '', 9, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (60, 'Constancia Egreso 7mo', '#', '', 9, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (61, '-', '', '', 9, 10);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (63, 'Matr&iacute;cula Inicial?', '', '', 9, 100);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (64, 'Matr&iacute;cula Final?', '', '', 9, 100);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (65, 'Ayuda', '#', '', 1, 80);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (67, 'Indice...', 'ayuda/', '', 65, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (68, 'Cr&eacute;ditos', 'creditos/', '', 65, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (69, 'Generar Horario por secci&oacute;n/divisi&oacute;n', 'calendario', 'calendario', 47, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (71, 'Configuraciones Previas', '#', '', 10, 10);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (72, 'Definir tipo de bajas', 'conceptobaja', 'conceptobaja', 84, 10);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (73, 'Asistencia por Secci&oacute;n/Divisi&oacute;n', 'asistencia', 'asistencia', 4, 40);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (74, 'Definir tipo de asistencia', 'tipoasistencia', 'tipoasistencia', 84, 20);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (75, 'Definir turnos', 'turnos', 'turnos', 86, 10);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (78, 'Asignar Alumno a Secci&oacute;n/Divisi&oacute;n', 'relAlumnoDivision/create', 'relAlumnoDivision', 6, 20);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (79, 'Actividad/Materia por Docente', 'relActividadDocente', 'relActividadDocente', 5, 300);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (81, 'Concepto', 'boletin/listConcepto', 'boletinconcepto', 27, 0);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (82, 'Notas', 'boletin/list', 'boletinnotas', 27, 1);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (83, 'Generales', '#', '', 71, 10);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (84, 'Alumnos', '#', '', 71, 20);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (85, 'Docentes', '#', '', 71, 30);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (86, 'Calendarios y Horarios', '#', '', 71, 40);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (87, 'Locaciones y Espacios', '#', '', 71, 50);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (88, 'Listar Todos', 'alumno/list', 'alumno', 4, 2);
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`) VALUES (89, 'Tipo Documento', 'tipodocumento', '', 83, 40);
+
+
 
 -- 
 -- Volcar la base de datos para la tabla 'modulo'
@@ -316,7 +304,10 @@ INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (45, 'Boleti
 INSERT INTO niveltipo (id, nombre, descripcion) VALUES (1, 'Jardín', 'Jardín');
 INSERT INTO niveltipo (id, nombre, descripcion) VALUES (2, 'Primaria', 'Primaria');
 INSERT INTO niveltipo (id, nombre, descripcion) VALUES (3, 'Secundaria', 'Secundaria');
-
+INSERT INTO niveltipo (id, nombre, descripcion) VALUES (4, 'Universitario', 'Universitario');
+INSERT INTO niveltipo (id, nombre, descripcion) VALUES (5, 'Terciario', 'Terciario');
+INSERT INTO niveltipo (id, nombre, descripcion) VALUES (6, 'Institutos', 'Institutos');
+INSERT INTO niveltipo (id, nombre, descripcion) VALUES (7, 'Otros', 'Otros');
 -- 
 -- Volcar la base de datos para la tabla 'organizacion'
 -- 
@@ -393,6 +384,7 @@ INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (55, 'boletin', '', 'boletin', 1);
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (56, 'boletinconcepto', 'boletinconcepto', 'boletinconcepto', 45);
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (57, 'boletinnotas', 'boletinnotas', 'boletinnotas', 45);
+INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (58, 'tipodocumento', 'tipodocumento', 'tipodocumento', 46);
 
 -- 
 -- Volcar la base de datos para la tabla 'preferencia'
@@ -407,10 +399,10 @@ INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (1, 'B
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (2, 'Uruguayana', 'Uruguayana', 4);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (6, 'La Pampa', 'La Pampa', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (7, 'Chaco', 'Chaco', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (8, 'Córdoba', 'CÃ³rdoba', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (8, 'Córdoba', 'Córdoba', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (9, 'Misiones', 'Misiones', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (10, 'Mendoza', 'Mendoza', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (11, 'E.Ríos', 'Entre RÃ­os', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (11, 'E.Ríos', 'Entre Ríos', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (12, 'Jujuy', 'Jujuy', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (13, 'Chubut', 'Chubut', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (14, 'Salta', 'Salta', 1);
@@ -418,7 +410,7 @@ INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (15, '
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (16, 'San Juan', 'San Juan', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (17, 'San Luis', 'San Luis', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (18, 'R.Negro', 'RÃ­o Negro', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (19, 'NeuquÃ©n', 'NeuquÃ©n', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (19, 'Neuquén', 'Neuquén', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (20, 'Formosa', 'Formosa', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (21, 'La Rioja', 'La Rioja', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (22, 'Catamarca', 'Catamarca', 1);
@@ -523,6 +515,7 @@ INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (48, 1
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (49, 1, 36);
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (50, 1, 35);
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (51, 1, 1);
+INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (52, 1, 58);
 
 -- 
 -- Volcar la base de datos para la tabla 'rel_usuario_preferencia'
@@ -557,8 +550,12 @@ INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (51, 1
 -- 
 -- Volcar la base de datos para la tabla 'tipodocumento'
 -- 
-INSERT INTO `tipodocumento` ( `id` , `descripcion` , `orden` , `nombre` ) VALUES (NULL , 'Documento Nacional de Identidad', '0', 'DNI'), (NULL , 'Libreta de Enrolamiento', '0', 'LE');
-INSERT INTO `tipodocumento` ( `id` , `descripcion` , `orden` , `nombre` ) VALUES (NULL , 'Cedula de Identidad', '0', 'CI'), (NULL , 'Pasaporte', '0', 'Pasaporte');
+
+INSERT INTO `tipodocumento` (`id`, `descripcion`, `orden`, `nombre`) VALUES (1, 'Documento Nacional de Identidad', 1, 'DNI');
+INSERT INTO `tipodocumento` (`id`, `descripcion`, `orden`, `nombre`) VALUES (2, 'Libreta Cívica', 2, 'LC');
+INSERT INTO `tipodocumento` (`id`, `descripcion`, `orden`, `nombre`) VALUES (3, 'Libreta de enrolamiento', 3, 'LE');
+INSERT INTO `tipodocumento` (`id`, `descripcion`, `orden`, `nombre`) VALUES (6, 'Cédula de Identidad', 0, 'CI');
+INSERT INTO `tipodocumento` (`id`, `descripcion`, `orden`, `nombre`) VALUES (7, 'Pasaporte', 0, 'Pasaporte');
 
 
 -- 
