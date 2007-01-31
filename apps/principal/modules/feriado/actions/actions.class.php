@@ -94,6 +94,13 @@ class feriadoActions extends autoferiadoActions
 		$c->add(FeriadoPeer::FK_CICLOLECTIVO_ID,$this->getUser()->getAttribute('fk_ciclolectivo_id'));
     }                                                                                                   
 
+
+    function saveFeriado($feriado) {
+        $feriado->setFkCiclolectivoId($this->getUser()->getAttribute('fk_ciclolectivo_id'));
+        $feriado->save();
+    }
+
+
 }
 
 ?>
