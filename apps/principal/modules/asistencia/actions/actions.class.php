@@ -93,8 +93,11 @@ class asistenciaActions extends sfActions
             if ($this->getRequestParameter('alumno_id')) 
                 $this->division_id = 1;
             else{
-                $d = array_keys($optionsDivision);        
-                $this->division_id = $d[0];
+                //comprobar que que el array , sino le asigno
+                if (count($optionsDivision)>0){
+                    $d = array_keys($optionsDivision);        
+                    $this->division_id = $d[0];
+                }    
             }     
         }
 
