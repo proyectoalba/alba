@@ -22,8 +22,8 @@
  * calendario actions
  *
  * @package    alba
- * @author     JosÃ© Luis Di Biase <josx@interorganic.com.ar>
- * @author     HÃ©ctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     José Luis Di Biase <josx@interorganic.com.ar>
+ * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
@@ -233,20 +233,9 @@ return $optionsHorasMaterias;
         Misc::use_helper('Misc');       
         $aSemana = diasDeLaSemana(1);
 
-        $this->aDayNames = array();
-        $this->aDayNames[] = "Lunes";
-        $this->aDayNames[] = "Martes";
-        $this->aDayNames[] = "Miercoles";
-        $this->aDayNames[] = "Jueves";
-        $this->aDayNames[] = "Viernes";
+        $this->aDayNames = array("Lunes","Martes","Miercoles","Jueves","Viernes");
 
-        $this->aDay = array();
-        $this->aDay[] = strtotime("2006-09-11");
-        $this->aDay[] = strtotime("2006-09-12");
-        $this->aDay[] = strtotime("2006-09-13");
-        $this->aDay[] = strtotime("2006-09-14");
-        $this->aDay[] = strtotime("2006-09-15");
-        
+        $this->aDay= array(strtotime("2006-09-11"), strtotime("2006-09-12"), strtotime("2006-09-13"), strtotime("2006-09-14"), strtotime("2006-09-15"));
 
         $this->optionsDivision = array();
 
@@ -298,8 +287,7 @@ return $optionsHorasMaterias;
             $this->getUser()->setAttribute('anio_id', $aAnio[$this->division_id]); 
             $this->getUser()->setAttribute('division_id', $this->division_id);
         } else {
-            $this->aHour[] = strtotime("8:00");
-            $this->aHour[] = strtotime("17:00");
+            $this->aHour = array(strtotime("8:00"), strtotime("17:00"));
             $this->time_interval = 15;
         }
         
