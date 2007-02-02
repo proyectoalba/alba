@@ -1,0 +1,22 @@
+methods:
+  post:       
+    - "rel_alumno_division{fk_alumno_id}"    
+    - "rel_alumno_division{fk_division_id}"
+    
+fillin:
+    enabled:       on
+      
+names:
+    rel_alumno_division{fk_alumno_id}:
+        required:     Yes
+        required_msg: El campo alumno es obligatorio
+        validators: IdValido
+    rel_alumno_division{fk_division_id}:
+        required:     Yes
+        required_msg: El campo divisi&oacute;n es obligatorio
+        validators: IdValido
+IdValido:
+    class:  sfNumberValidator
+    param:
+        nan_error: Seleccione una de las opciones
+
