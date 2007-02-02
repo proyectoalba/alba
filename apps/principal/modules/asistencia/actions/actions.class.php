@@ -48,13 +48,12 @@ class asistenciaActions extends sfActions
         //Datos por default 
         $alumno_id = -1;
         $cuenta_id = -1;
-        $fechainicio = date("d/m/Y");        
+        list($d, $m, $y) = split("[/. -]",date("d/m/Y"));
         $datos = array();
         $idxAlumno= array(); 
         $this->vista_id = 1;         
         $this->division_id =0;
         $aFeriado = array();
-        
         //Asignacion por parametro    
         if ($this->getRequestParameter('alumno_id')) {
             $alumno_id = $this->getRequestParameter('alumno_id');   
@@ -65,15 +64,12 @@ class asistenciaActions extends sfActions
         if ($this->getRequestParameter('vistas'))
             $this->vista_id  = $this->getRequestParameter('vistas');              
 
-        if ($this->getRequestParameter('fechainicio'))
-            $fechainicio = $this->getRequestParameter('fechainicio');
-          
-       // if (!dateValidate($fechainicio))
-       //     $fechainicio = date("d/m/Y");        
-           
-        list($d, $m, $y) = split("[/. -]",$fechainicio);
-        list($y, $m, $d) = split("[/. -]",date ("Y-m-d", mktime (0,0,0,$m,$d,$y)));        
-        $this->fechainicio = "$y-$m-$d";
+        if ($this->getRequestParameter('dia'))
+            $d = $this->getRequestParameter('dia');
+        if ($this->getRequestParameter('mes'))
+            $m = $this->getRequestParameter('mes');
+        if ($this->getRequestParameter('ano'))
+            $y = $this->getRequestParameter('ano');
         
         $aIntervalo = array();               
         $aIntervalo = diasxintervalo($d,$m,$y,$this->vista_id);      
@@ -117,7 +113,7 @@ class asistenciaActions extends sfActions
         $s .= "AND asistencia.FECHA ";
         $s .= "IN (";
         for($i=0, $max = count($aIntervalo); $i < $max ;$i++) { 
-             $s .= "'".$aIntervalo[$i]."'";
+             $s .= "'".$aIntervalo[$i]." 00:00:00'";
              if  ($i < count($aIntervalo)-1 )
                 $s .= ",";
         }
@@ -136,7 +132,6 @@ class asistenciaActions extends sfActions
                 
         $totales = array();  
         $tot = 0;
-
         foreach ($alumnos as $alumno){
             $idxAlumno[$alumno['id']] = $alumno['apellido']." ". $alumno['nombre'];
             if  ($alumno['fecha']) {
@@ -189,15 +184,16 @@ class asistenciaActions extends sfActions
 
 
         }
-        //print_r($optionsDivision);
         //Asignacion de variables para el template
+        $this->d = $d;
+        $this->m = $m;
+        $this->y = $y;
         $this->aTipoasistencias = $aTipoasistencias;
         $this->aAlumnos = $idxAlumno;
         $this->aDatos = $datos;
         $this->optionsDivision = $optionsDivision;    
         $this->aVistas = repeticiones();
         $this->aMeses = Meses();
-        $this->m = $m;
         $this->aIntervalo = $aIntervalo;
         $this->aPorcentajeAsistencia = $aPorcentajeAsistencia;
         $this->aFeriado = $aFeriado;
@@ -216,8 +212,10 @@ class asistenciaActions extends sfActions
   public function executeMostrar() {
     $vista_id  = $this->getRequestParameter('vistas');
     $vista  = $this->getRequestParameter('vista');
-    $fechainicio = str_replace("/","-",$this->getRequestParameter('fechainicio'));
-    return $this->forward('asistencia','index',"vista_id=$vista_id&fechainicio=$fechainicio");   
+    $d = $this->getRequestParameter('dia');
+    $m = $this->getRequestParameter('mes');
+    $y = $this->getRequestParameter('ano');
+    return $this->forward('asistencia','index',"vista_id=$vista_id&dia=$d&mes=$m&ano=$y");   
   }
   
   public function handleErrorMostrar(){
@@ -235,10 +233,10 @@ class asistenciaActions extends sfActions
         // tomando los datos del formulario
         $division_id = $this->getRequestParameter('division_id');
         $vista_id = $this->getRequestParameter('vista_id');
-        $fechainicio = $this->getRequestParameter('fechainicio');
-        list($y, $m, $d) = split("[/. -]",$fechainicio);        
-        $fechainicio = "$d-$m-$y";
-        $destino = "asistencia?division_id=$division_id&fechainicio=$fechainicio&vistas=$vista_id";
+        $d = $this->getRequestParameter('dia');
+        $m = $this->getRequestParameter('mes');
+        $y = $this->getRequestParameter('ano');
+        $destino = "asistencia?division_id=$division_id&dia=$d&mes=$m&ano=$y&vistas=$vista_id";
         if ($this->getRequestParameter('alumno_id')) {
             $alumno_id = $this->getRequestParameter('alumno_id');   
             $destino .= "&alumno_id=$alumno_id";
@@ -249,8 +247,6 @@ class asistenciaActions extends sfActions
         if($cantAsistencia > 0) {
             // tomo los tipos de asistencias
             $aDatosTablaTipoAsistencias = $this->getTiposasistencias();
-            //print_r($aDatosTablaTipoAsistencias);
-            //die();    
             //grabo al disco
             $con = Propel::getConnection();
             try {

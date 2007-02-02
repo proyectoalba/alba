@@ -30,9 +30,6 @@
 * @license GPL
 */
 ?>                   
-<?php use_helper('Date') ?>
-<?php use_helper('ZZDate') ?>
-
 <h1>Asistencias</h1>
     <?php if ($sf_request->hasErrors()): ?>
       <div class="form-errors">
@@ -44,7 +41,7 @@
        </ul>
       </div>
     <?php endif ?>
-    <?php echo form_tag('asistencia/mostrar', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true ') ?>   
+    <?php echo form_tag('asistencia/mostrar', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
     <fieldset id="sf_fieldset_none" class="">
     <div class="form-row">
         <table cellspacing="1">
@@ -56,16 +53,17 @@
                     <?php echo select_tag('division_id', options_for_select($optionsDivision, $division_id)); ?>
                 </td>
                 <td>
-                    <?php echo label_for('fecha', __('Fecha Inicio:'), 'class="required" '); ?>                   
+                    <?php echo label_for('fecha', __('Fecha Inicio:'), 'class="required" '); ?>       
                 </td>
                 <td>
-                    <?php echo zz_input_date_tag('fechainicio',$fechainicio, array (
-                      'rich' => true,'withtime' => true,
-                      'calendar_button_img' => '/sf/images/sf_admin/date.png',
-                      'control_name' => 'fechainicio'));?>
+                    <?php //----- Nuevo -----//
+                          //@TODO Obtener el año de inicio y de fin del cliclo lectivo 
+                          echo select_day_tag('dia', $d, 'include_custom=Elija un dia') ?>
+                    <?php echo select_month_tag('mes', $m, 'include_custom=Elija un mes use_short_month=true') ?>
+                    <?php echo select_year_tag('ano', $y, 'include_custom=Elija un a&ntilde;o year_end=2007 year_start=2007') ?>
                 </td>
                 <td>
-                    <? echo label_for('vista', __('Vista:'), 'class="required" '); ?>
+                    <?php echo label_for('vista', __('Vista:'), 'class="required" '); ?>
                 </td>
                 <td>  
                     <?php echo select_tag('vistas', options_for_select($aVistas,$vista_id)); ?>
@@ -85,7 +83,9 @@
      </form>
 <?php echo form_tag('asistencia/grabar', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true');
       echo input_hidden_tag('division_id', $division_id); 
-      echo input_hidden_tag('fechainicio', $fechainicio); 
+      echo input_hidden_tag('dia', $d); 
+      echo input_hidden_tag('mes', $m); 
+      echo input_hidden_tag('ano', $y);       
       echo input_hidden_tag('vista_id', $vista_id); 
       if($alumno_id >= 0)
              echo input_hidden_tag('alumno_id', $alumno_id);
@@ -98,7 +98,6 @@
     <tr>
         <th id="sf_admin_list_th_alumno"> Alumnos / D&iacute;as </th>
         <?php
-            //$aIntervalo = diasxintervalo($d,$m,$y,$vista_id);
             for($i=0, $max = count($aIntervalo); $i < $max ;$i++) { ?>
                 <th id="sf_admin_list_th_sf_actions"><?php echo date("d",strtotime($aIntervalo[$i]))?></th>
             <?}?>
@@ -158,8 +157,13 @@
         <?php 
             echo form_tag('asistencia/mostrar', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true');
             echo input_hidden_tag('division_id', $division_id); 
-            list($y, $m, $d) = split("[/. -]",$fechainicio);
-            echo input_hidden_tag('fechainicio', "$d/$m/$y"); 
+            //list($y, $m, $d) = split("[/. -]",$fechainicio);
+            //echo input_hidden_tag('fechainicio', "$d/$m/$y"); 
+            //Fecha inicio.
+            echo input_hidden_tag('dia', "$d"); 
+            echo input_hidden_tag('mes', "$m"); 
+            echo input_hidden_tag('ano', "$y"); 
+            
             echo input_hidden_tag('vistas', $vista_id);
             echo input_hidden_tag('vista', "noMuestraMenu"); 
             if($alumno_id >= 0)
@@ -187,7 +191,7 @@
         <br>Feriado<br>
     <table cellspacing="1">
         <tr>
-<?php
+<?php   //print_r($aFeriadoEfectivo);
         foreach($aFeriadoEfectivo as $fecha => $nombre) {
             $fecha = date("d-m-Y",strtotime($fecha));
             echo "<td style='padding-left:20px'><b>$nombre</b>  - $fecha</td>";
