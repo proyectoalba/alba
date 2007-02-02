@@ -10,9 +10,7 @@ switch($vista) {
     case 'imprimir':    
                         echo include_http_metas();
                         echo include_metas();
-?><link rel="stylesheet" type="text/css" media="screen" href="/~josx/alba/sf/css/sf_web_debug/main.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="/~josx/alba/sf/css/sf_admin/main.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="/~josx/alba/css/main.css" /><?
+?><link rel="stylesheet" type="text/css" href="/~josx/alba/css/impresion.css" /><?
                         echo $content;
                         break;
     default:   ?>

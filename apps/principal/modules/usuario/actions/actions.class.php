@@ -23,8 +23,8 @@
  * Usuario Acciones
  *
  * @package    alba
- * @author     José Luis Di Biase <josx@interorganic.com.ar>
- * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     JosÃ© Luis Di Biase <josx@interorganic.com.ar>
+ * @author     HÃ©ctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
@@ -116,11 +116,13 @@ class usuarioActions extends autousuarioActions
         $c->add(RelUsuarioPermisoPeer::FK_USUARIO_ID, $this->getRequestParameter('id'));
         $usuarioPermisos = RelUsuarioPermisoPeer::doSelectJoinPermiso($c);
 
-        $this->optionsUsuarioPermisos = array();
+        $optionsUsuarioPermisos = array();
         foreach($usuarioPermisos as $usuarioPermiso) {
-            $this->optionsUsuarioPermisos[$usuarioPermiso->getFkPermisoId()] = $usuarioPermiso->getPermiso()->getNombre();
+            $optionsUsuarioPermisos[$usuarioPermiso->getFkPermisoId()] = $usuarioPermiso->getPermiso()->getNombre();
         }
+        $this->optionsUsuarioPermisos = $optionsUsuarioPermisos;
         
+
         // estos son todos los permisos existentes
         $todosLosPermisos = array();
         if($this->getRequestParameter('rolId')) {
@@ -150,11 +152,11 @@ class usuarioActions extends autousuarioActions
         $c->add(RolPeer::ACTIVO, 1);
         $roles  = RolPeer::doSelect($c);
      
-        $this->optionsRol = array( '' => 'Todos'); // muy feo
+        $optionsRol = array( '' => 'Todos'); // muy feo
         foreach($roles as $rol) {
-          $this->optionsRol[$rol->getId()] = $rol->getNombre();
+          $optionsRol[$rol->getId()] = $rol->getNombre();
         }
-                                                                                    
+        $this->optionsRol = $optionsRol;
     }
                         
     function executeSavePermiso() {
