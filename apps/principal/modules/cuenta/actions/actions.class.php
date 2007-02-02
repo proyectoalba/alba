@@ -55,6 +55,21 @@ class cuentaActions extends autocuentaActions
         $this->aResponsable  = ResponsablePeer::doSelect($c);
         
   }  
+ protected function addSortCriteria (&$c)                                                
+  {                                                                                       
+    if ($sort_column = $this->getUser()->getAttribute('sort', 'nombre', 'sf_admin/cuenta/sort'))
+    {                                                                                     
+      $sort_column = Propel::getDB($c->getDbName())->quoteIdentifier($sort_column);       
+      if ($this->getUser()->getAttribute('type', 'asc', 'sf_admin/cuenta/sort') == 'asc')
+      {                                                                                   
+        $c->addAscendingOrderByColumn($sort_column);                                      
+      }                                                                                   
+      else                                                                                
+      {                                                                                   
+        $c->addDescendingOrderByColumn($sort_column);                                     
+      }                                                                                   
+    }                                                                                     
+  }
 
 }
 

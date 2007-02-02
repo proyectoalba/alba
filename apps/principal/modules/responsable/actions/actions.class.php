@@ -30,20 +30,27 @@
  * @license GPL
  */
 
-class responsableActions extends autoresponsableActions
-{
+class responsableActions extends autoresponsableActions {
     public function preExecute() {
         $this->vista = $this->getRequestParameter('vista');
     }
          
-  function executeIrCuenta(){
-    //Obtener el id de cuenta.
-    
-    $c = new Criteria(); 
-    $c->add(ResponsablePeer::ID, $this->getRequestParameter('id')); 
-    $Resp = ResponsablePeer::doSelectOne($c);
-    $this->redirect('cuenta/verCompleta?id='.$Resp->getFkCuentaId()); 
-  }
+    function executeIrCuenta(){
+        //Obtener el id de cuenta.
+        $c = new Criteria(); 
+        $c->add(ResponsablePeer::ID, $this->getRequestParameter('id')); 
+        $Resp = ResponsablePeer::doSelectOne($c);
+        $this->redirect('cuenta/verCompleta?id='.$Resp->getFkCuentaId()); 
+    }
+    protected function addSortCriteria (&$c) { 
+        if ($sort_column = $this->getUser()->getAttribute('sort', 'apellido', 'sf_admin/responsable/sort')) {                                                                                                                        
+            $sort_column = Propel::getDB($c->getDbName())->quoteIdentifier($sort_column);                                          
+            if ($this->getUser()->getAttribute('type', 'asc', 'sf_admin/responsable/sort') == 'asc') {                                                                                                                      
+                $c->addAscendingOrderByColumn($sort_column);                                                                         
+            }                                                                                                                      
+            else                                                                            
+                $c->addDescendingOrderByColumn($sort_column);                                                                        
+        }
+    }
 }
-
 ?>
