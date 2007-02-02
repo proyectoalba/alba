@@ -1,6 +1,7 @@
 prod:
   .settings:
     no_script_name:           on
+    i18n:                   on    
 
 dev:
   .settings:
@@ -11,6 +12,7 @@ dev:
     stats:                  off
     no_script_name:         off
     etag:                   off
+    i18n:                   off
     
 test:
   .settings:
@@ -58,7 +60,7 @@ all:
 #
 #    tidy:                   on
 #
-    i18n:                   on
+#    i18n:                   off
 #
 #   timeout (60 * 60 * 3Hs)
     timeout:                10800 
