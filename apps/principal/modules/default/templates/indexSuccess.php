@@ -1,7 +1,11 @@
 <?php if ($sf_user->isAuthenticated()): ?>
 <div align="center">
-<h1>¡Bienvenidos al Sistema de Gesti&oacute;n Educativa ALBA!</h1>
-El Proyecto Alba, es un proyecto de desarrollo de Software para la realización de un “Sistema Informático Abierto de Gestión Unifidcada para Unidades Educacionales”
+<h1>&iexcl;Bienvenidos al Sistema de Gesti&oacute;n Educativa ALBA!</h1>
+<h3>Versi&oacute;n <?php echo link_to(ALBA_VERSION,"http://www.proyectoalba.com.ar/",array('title'=> 'Comprobar Versi&oacute;n...')) ?><h3>
+</div>
+<br/>
+<div align="center">
+El Proyecto Alba, es un proyecto de desarrollo de Software para la realizaci&oacute;n de un &quot;Sistema Inform&aacute;tico Abierto de Gesti&oacute;n Unificada para Unidades Educacionales&quot;
 </div>
 <br>
 <br>
@@ -14,12 +18,12 @@ El Proyecto Alba, es un proyecto de desarrollo de Software para la realización 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </td>
         <td>
-            &Eacute;ste aplicativo es <b><a href="http://es.wikipedia.org/wiki/Software_Libre">Software Libre</a></b>, de acuerdo con tal definición, el software es <b>"libre"</b> si garantiza las siguientes libertades:
+            &Eacute;ste aplicativo es <b><a href="http://es.wikipedia.org/wiki/Software_Libre">Software Libre</a></b>, de acuerdo con tal definici&oacute;n, el software es <b>"libre"</b> si garantiza las siguientes libertades:
             <ul>
-                <li><b>"libertad 0"</b>, ejecutar el programa con cualquier propósito (privado, educativo, público, comercial, etc.)</li>
-                <li><b>"libertad 1"</b>, estudiar y modificar el programa (para lo cual es necesario poder acceder al código fuente)</li>
+                <li><b>"libertad 0"</b>, ejecutar el programa con cualquier prop&oacute;sito (privado, educativo, p&uacute;blico, comercial, etc.)</li>
+                <li><b>"libertad 1"</b>, estudiar y modificar el programa (para lo cual es necesario poder acceder al c&oacute;digo fuente)</li>
                 <li><b>"libertad 2"</b>, copiar el programa de manera que se pueda ayudar al vecino o a cualquiera</li>
-                <li><b>"libertad 3"</b>, mejorar el programa, y hacer públicas las mejoras, de forma que se beneficie toda la comunidad.</li>
+                <li><b>"libertad 3"</b>, mejorar el programa, y hacer p&uacute;blicas las mejoras, de forma que se beneficie toda la comunidad.</li>
             </ul>
         </td>
     </tr>
@@ -51,10 +55,44 @@ El Proyecto Alba, es un proyecto de desarrollo de Software para la realización 
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </td>
         <td>
-            <i>Para más informaci&oacute;n visite el Sitio Web del Proyecto Alba. <b><a href="http://www.proyectoalba.com.ar">P&aacute;gina Web del Proyecto.</a></b></i>
+            <i>Para m&aacute;s informaci&oacute;n visite el Sitio Web del Proyecto Alba. <b><a href="http://www.proyectoalba.com.ar">P&aacute;gina Web del Proyecto.</a></b></i>
         </td>
     </tr>
 
 </table>
+    <?php if (SF_DEBUG):?>
+    <ul>
+        <li>Informaci&oacute;n del Sistema
+            <ul>
+                <li>PHP: <?echo phpversion()?></li>
+            </ul>
+        </li>
+        <li>Permisos:
+            <ul>
+            <? foreach ($sf_user->listCredentials() as $permiso):?>
+            <li><?echo $permiso?></li>
+            <?endforeach;?>
+            </ul>
+        </li>
+        <li>Establecimientos:
+            <ul>
+                <?php $establecimientos = $sf_user->getEstablecimientos()?>
+                <?php foreach ($establecimientos as $establecimiento): ?>
+                    <li><?echo $establecimiento?></li>
+                <?php endforeach; ?>
+            </ul>
+        </li>
+        <li>Organizaci&oacute;n
+            <ul>
+                <?php echo "[" .$sf_user->getAttribute('fk_organizacion_id'). "] " . $sf_user->getAttribute('organizacion_nombre')?>
+            </ul>
+        </li>
+        <li>Tema (interfaz):
+            <ul>
+                <?php echo $sf_user->getTheme()?>
+            </ul>
+        </li>
+    </ul>
+<?php endif;?>
 
 <?php endif; ?>

@@ -226,9 +226,11 @@ class legajopedagogicoActions extends sfActions
             $criteria->add(LegajoadjuntoPeer::FK_LEGAJOPEDAGOGICO_ID, $this->legajopedagogico->getId());
             $criteria->addJoin(LegajoadjuntoPeer::FK_ADJUNTO_ID, AdjuntoPeer::ID);
             $adjuntos = AdjuntoPeer::doSelect($criteria);                        
+            $tmpFile = array();
             foreach($adjuntos as $adjunto) {
-                $this->aFile[] = (object) array ( 'id' => $adjunto->getId() ,'nombre_archivo' => $adjunto->getNombreArchivo(), 'ruta' => $adjunto->getRuta());
+                array_push($tmpFile,(object) array ( 'id' => $adjunto->getId() ,'nombre_archivo' => $adjunto->getNombreArchivo(), 'ruta' => $adjunto->getRuta()));
             }
+            $this->aFile = $tmpFile;
         } 
 
         // add javascripts

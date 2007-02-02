@@ -168,19 +168,8 @@ class horarioescolarActions extends autohorarioescolarActions
         Misc::use_helper('Misc');       
         $aSemana = diasDeLaSemana(1);
 
-        $this->aDayNames = array();
-        $this->aDayNames[] = "Lunes";
-        $this->aDayNames[] = "Martes";
-        $this->aDayNames[] = "Miercoles";
-        $this->aDayNames[] = "Jueves";
-        $this->aDayNames[] = "Viernes";
-
-        $this->aDay = array();
-        $this->aDay[] = strtotime("2006-09-11");
-        $this->aDay[] = strtotime("2006-09-12");
-        $this->aDay[] = strtotime("2006-09-13");
-        $this->aDay[] = strtotime("2006-09-14");
-        $this->aDay[] = strtotime("2006-09-15");
+        $this->aDayNames = array('Lunes','Martes','Miercoles','Jueves','Viernes');
+        $this->aDay = array(strtotime("2006-09-11"), strtotime("2006-09-12"), strtotime("2006-09-13"), strtotime("2006-09-14"), strtotime("2006-09-15"));
 
 
         $turnos_id = $this->getRequestParameter('turnos_id');
@@ -199,10 +188,7 @@ class horarioescolarActions extends autohorarioescolarActions
                      $this->time_interval = 30;
                 }
              
-                $this->aHour[] = strtotime($turno->getHoraInicio());
-                $this->aHour[] = strtotime($turno->getHoraFin());
-
-
+                $this->aHour = array(strtotime($turno->getHoraInicio()), strtotime($turno->getHoraFin()));
 
                 $criteria = new Criteria(); 
                 $criteria->add(HorarioescolarPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
@@ -211,8 +197,7 @@ class horarioescolarActions extends autohorarioescolarActions
 
 
         } else {
-            $this->aHour[] = strtotime("8:00");
-            $this->aHour[] = strtotime("17:00");
+            $this->aHour = array(strtotime("8:00"), strtotime("17:00"));
             $this->time_interval = 30;
         }
         
@@ -251,10 +236,12 @@ class horarioescolarActions extends autohorarioescolarActions
                         break;
                     default: $aDia[] = date("Y-m-d", $this->aDay[($dia_semana-1)]);    
                 } 
+                $tmpEvent= array();
                 for($j=0;$j<count($aDia);$j++) {
-                    $this->aEvent[] = (object) array ( 'id'=> $i ,'name' => $nombre ,'date' => $aDia[$j],'start_time' => $hora_inicio, 'end_time' => $hora_fin, 'desc' => $descripcion, 'color' => $aColorSet[$horarioescolar->getFkHorarioescolartipoId()]);
+                    array_push($tmpEvent,(object) array ( 'id'=> $i ,'name' => $nombre ,'date' => $aDia[$j],'start_time' => $hora_inicio, 'end_time' => $hora_fin, 'desc' => $descripcion, 'color' => $aColorSet[$horarioescolar->getFkHorarioescolartipoId()]));
                     $i++;
                 }
+                $this->aEvent = $tmpEvent;
             }
         }     
 

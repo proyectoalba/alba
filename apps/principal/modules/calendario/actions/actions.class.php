@@ -255,8 +255,7 @@ return $optionsHorasMaterias;
             }
 
 
-            $this->aHour[] = strtotime($turno->getHoraInicio());
-            $this->aHour[] = strtotime($turno->getHoraFin());
+            $this->aHour = array(strtotime($turno->getHoraInicio()), strtotime($turno->getHoraFin()));
 
 
 //             $criteria = new Criteria(); 
