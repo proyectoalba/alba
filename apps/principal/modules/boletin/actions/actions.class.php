@@ -415,10 +415,10 @@ class boletinActions extends sfActions
                     $aAsistencia[$periodo->getId()] = $this->getAsistenciaTotal($alumno_id, $periodo->getFechaInicio(), $periodo->getFechaFin());
                 }       
             } else {
-                $this->setFlash('notice','Error el alumno no esta en ningun división');
+                $this->setFlash('notice','Error: el alumno no esta en ninguna división');
             }
         } else {
-            $this->setFlash('notice','Error no envio el alumno');
+            $this->setFlash('notice','Error: no envio el alumno');
         }
 
 

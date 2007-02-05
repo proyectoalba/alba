@@ -43,147 +43,233 @@ class asistenciaActions extends sfActions
     *
     */
     public function executeIndex() {
+        
+
         Misc::use_helper('Misc');
         
-        //Datos por default 
+        //Iniciando Variables
         $alumno_id = -1;
         $cuenta_id = -1;
-        list($d, $m, $y) = split("[/. -]",date("d/m/Y"));
+        $vista_id = 1;         // default para vista DIARIO
+        $division_id =0;
         $datos = array();
         $idxAlumno= array(); 
-        $this->vista_id = 1;         
-        $this->division_id =0;
         $aFeriado = array();
-        //Asignacion por parametro    
+        $aIntervalo = array();               
+        $optionsDivision = array();
+        $aTemp = array();
+        $aFechaTemp = array();
+        $aTipoasistencias = array();
+        $aPorcentajeAsistencia = array();
+        $flag_error = 0;
+
+
+        // tomando los datos del formulario y completando variable
+
+        $ciclolectivo_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');       
+        $ciclolectivo = CiclolectivoPeer::retrieveByPK($ciclolectivo_id);
+
+        $ciclolectivo_fecha_inicio = strtotime($ciclolectivo->getFechaInicio());
+        $ciclolectivo_fecha_fin = strtotime($ciclolectivo->getFechaFin());
+
+        // asigno la fecha de inicio del ciclo lectivo por defecto
+        $aFechaActual = getdate($ciclolectivo_fecha_inicio);
+        $d = $aFechaActual['mday'];
+        $m = $aFechaActual['mon'];
+        $y = $aFechaActual['year'];
+
+        
+        // tomo el año de la fecha de inicio y de fin del ciclo lectivo
+        $anio_desde = date("Y",$ciclolectivo_fecha_inicio);
+        $anio_hasta = date("Y",$ciclolectivo_fecha_fin);
+        
+
         if ($this->getRequestParameter('alumno_id')) {
             $alumno_id = $this->getRequestParameter('alumno_id');   
             $a = AlumnoPeer::retrieveByPK($alumno_id);
             $cuenta_id = $a->getFkCuentaId();
         }
 
-        if ($this->getRequestParameter('vistas'))
-            $this->vista_id  = $this->getRequestParameter('vistas');              
 
-        if ($this->getRequestParameter('dia'))
+        if ($this->getRequestParameter('vistas')) {
+            $vista_id  = $this->getRequestParameter('vistas');              
+        }
+
+        if ($this->getRequestParameter('dia')) {
             $d = $this->getRequestParameter('dia');
-        if ($this->getRequestParameter('mes'))
+        }
+
+        if ($this->getRequestParameter('mes')) {
             $m = $this->getRequestParameter('mes');
-        if ($this->getRequestParameter('ano'))
+        }
+
+        if ($this->getRequestParameter('ano')) {
             $y = $this->getRequestParameter('ano');
-        
-        $aIntervalo = array();               
-        $aIntervalo = diasxintervalo($d,$m,$y,$this->vista_id);      
+        }
+
+
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
+
         $criteria = new Criteria();
         $criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
-        $divisiones = DivisionPeer::doSelectJoinAnio($criteria);        
-        
-        $optionsDivision = array();
-        foreach ($divisiones as $division)
+        $divisiones = DivisionPeer::doSelectJoinAnio($criteria);        // divisiones a mostrar
+
+        foreach ($divisiones as $division) {
              $optionsDivision[$division->getId()] = $division->getAnio()->getDescripcion()." ".$division->getDescripcion();        
+        }
         asort($optionsDivision);
 
+
+
         if ($this->getRequestParameter('division_id')) {
-            $this->division_id = $this->getRequestParameter('division_id');    
+            $division_id = $this->getRequestParameter('division_id');    
         } else {
-            if ($this->getRequestParameter('alumno_id')) 
-                $this->division_id = 1;
-            else{
-                //comprobar que que el array , sino le asigno
-                if (count($optionsDivision)>0){
-                    $d = array_keys($optionsDivision);        
-                    $this->division_id = $d[0];
-                }    
+            if ($this->getRequestParameter('alumno_id')) {
+                $division_id = 1;
+            } else {
+                if (count($optionsDivision) > 0){
+                    $aTemp = array_keys($optionsDivision);        
+                    $division_id = $aTemp[0];
+                } else {
+                    // Ver si se puede hacer desde el validate
+                    $this->getRequest()->setError('Division', 'No hay Ninguna División cargada');
+                    $flag_error = 1;
+                }
             }     
         }
 
+
+        if(!checkdate($m,$d,$y)) {
+            // Ver si se puede hacer desde el validate
+            $this->getRequest()->setError('Fecha', 'La fecha ingresada es erronea');
+            $flag_error = 1;
+        } 
+
+
+
+        if($flag_error == 0) {
+            // devuelve un intervalo de dias según vista y fecha seleccionada
+            $aIntervalo = diasxintervalo($d, $m, $y, $vista_id);  
+
+            // chequeo si el intervalo de fechas generados esta o no dentro de las fechas validas del ciclo lectivo
+            foreach($aIntervalo as $fecha) {
+                $fecha_intervalo = strtotime($fecha);
+                if($fecha_intervalo >= $ciclolectivo_fecha_inicio AND $fecha_intervalo <= $ciclolectivo_fecha_fin) {
+                    $aFechaTemp[] = $fecha;
+                }
+            }
+            $aIntervalo = $aFechaTemp;
+        }
+
+
+        // obteniendo los feriados actuales
         $criteria = new Criteria();
         $feriados = FeriadoPeer::doSelect($criteria);        
         foreach($feriados as $feriado) {
             $aFeriado[$feriado->getFecha()] = $feriado->getNombre(); 
         }
 
-        //Obtener los alumnos de la division y asistencias en el rango de fecha
-        $con = sfContext::getInstance()->getDatabaseConnection($connection='propel'); 
-        $s = "SELECT alumno.id, alumno.nombre, alumno.apellido,";
-        $s .= "tipoasistencia.descripcion, tipoasistencia.nombre asistencia, asistencia.fecha,";
-        $s .= "fk_tipoasistencia_id ";
-        $s .= "FROM (alumno, rel_alumno_division) ";
-        $s .= "LEFT JOIN asistencia ON ( rel_alumno_division.FK_ALUMNO_ID = asistencia.FK_ALUMNO_ID ";
-        $s .= "AND asistencia.FECHA ";
-        $s .= "IN (";
-        for($i=0, $max = count($aIntervalo); $i < $max ;$i++) { 
-             $s .= "'".$aIntervalo[$i]." 00:00:00'";
-             if  ($i < count($aIntervalo)-1 )
-                $s .= ",";
-        }
-        $s .= ") ) ";
-        $s .= "LEFT JOIN tipoasistencia ON ( asistencia.FK_TIPOASISTENCIA_ID = tipoasistencia.ID ) ";
-        $s .= "WHERE ";
-        if ($alumno_id >= 0)
-            $s .= "alumno.ID =".$alumno_id;
-        else
-            $s .= "rel_alumno_division.FK_DIVISION_ID =". $this->division_id;
-        $s .= " AND rel_alumno_division.FK_ALUMNO_ID = alumno.ID";    
-        $s .= " ORDER BY alumno.nombre,asistencia.FECHA";
-        
-        $stmt = $con->createStatement();
-        $alumnos = $stmt->executeQuery($s, ResultSet::FETCHMODE_ASSOC);
-                
-        $totales = array();  
-        $tot = 0;
-        foreach ($alumnos as $alumno){
-            $idxAlumno[$alumno['id']] = $alumno['apellido']." ". $alumno['nombre'];
-            if  ($alumno['fecha']) {
-                $datos[$alumno['id']][$alumno['fecha']] = $alumno['asistencia'];
-                @$totales[$alumno['asistencia']]++;
-            }
-        }
 
-        $aTipoasistencias = $this->getTiposasistencias();
-        $aPorcentajeAsistencia = array();
-        $flag = 0;
-        $tot = 0;
-
-        $dias = count($aIntervalo)*count($idxAlumno);
-        foreach($aTipoasistencias as $idx => $Tipoasistencia) {
-            $aPorcentajeAsistencia[$idx]=isset($totales[$idx])?$totales[$idx]:0;
-            @$tot += $totales[$idx];
-            if($aPorcentajeAsistencia[$idx] != 0) $flag = 1;
-        }
-        
+        // esto deberia estar hecho muy diferente guardar en un /tmp con archivo aleatorio
         if(file_exists(sfConfig::get('sf_upload_dir_name').'/grafico_asistencias.png'))
             unlink(sfConfig::get('sf_upload_dir_name').'/grafico_asistencias.png');
 
-        if($flag == 1) {
+        if(count($aIntervalo) > 0 ) {
+            //Obtener los alumnos de la division y asistencias en el rango de fecha
+            $con = sfContext::getInstance()->getDatabaseConnection($connection='propel'); 
+            $s = "SELECT alumno.id, alumno.nombre, alumno.apellido,";
+            $s .= "tipoasistencia.descripcion, tipoasistencia.nombre asistencia, asistencia.fecha,";
+            $s .= "fk_tipoasistencia_id ";
+            $s .= "FROM (alumno, rel_alumno_division) ";
+            $s .= "LEFT JOIN asistencia ON ( rel_alumno_division.FK_ALUMNO_ID = asistencia.FK_ALUMNO_ID ";
+            $s .= "AND asistencia.FECHA ";
+            $s .= "IN (";
 
-            $aTitulo = array_keys($aTipoasistencias);
-            $aTitulo[] = "No Cargado";
-
-            if(array_search("gd", get_loaded_extensions())) { // Si no tiene cargado la GD no muestra el grafico
-
-                include "graph.php";
-                putenv('GDFONTPATH=' . realpath(sfConfig::get('sf_lib_dir')."/font/"));
-                $graph = new graph();
-                $graph->setProp("font","FreeSerifBold.ttf");
-                $graph->setProp("keyfont","FreeSerifBold.ttf");
-                $graph->setProp("showkey",true);
-                $graph->setProp("type","pie");
-                $graph->setProp("showgrid",false);
-                $graph->setProp("key", $aTitulo);
-                $graph->setProp("keywidspc",-50);
-                $graph->setProp("keyinfo",2);
-                foreach($aPorcentajeAsistencia as $porcentaje)  {
-                    $graph->addPoint($porcentaje);
+            for($i=0, $max = count($aIntervalo); $i < $max ;$i++) { 
+                $s .= "'".$aIntervalo[$i]." 00:00:00'";
+                if  ($i < count($aIntervalo)-1 ) {
+                    $s .= ",";
                 }
-                $graph->addPoint($dias-$tot);
-    
-                $graph->graphX();
-                $graph->showGraph(sfConfig::get('sf_upload_dir_name').'/grafico_asistencias.png');
             }
 
+            $s .= ") ) ";
+            $s .= "LEFT JOIN tipoasistencia ON ( asistencia.FK_TIPOASISTENCIA_ID = tipoasistencia.ID ) ";
+            $s .= "WHERE ";
 
+            if ($alumno_id >= 0) {
+                $s .= "alumno.ID =".$alumno_id;
+            } else {
+                $s .= "rel_alumno_division.FK_DIVISION_ID =". $division_id;
+            }
+
+            $s .= " AND rel_alumno_division.FK_ALUMNO_ID = alumno.ID";    
+            $s .= " ORDER BY alumno.nombre,asistencia.FECHA";
+        
+            $stmt = $con->createStatement();
+            $alumnos = $stmt->executeQuery($s, ResultSet::FETCHMODE_ASSOC);
+                
+            $totales = array();  
+            $tot = 0;
+            foreach ($alumnos as $alumno){
+                $idxAlumno[$alumno['id']] = $alumno['apellido']." ". $alumno['nombre'];
+                if  ($alumno['fecha']) { 
+                    $datos[$alumno['id']][$alumno['fecha']] = $alumno['asistencia'];
+                    @$totales[$alumno['asistencia']]++;
+                }
+            }
+
+            $aTipoasistencias = $this->getTiposasistencias();
+            $aPorcentajeAsistencia = array();
+            $flag = 0;
+            $tot = 0;
+
+
+            // cantidad de fechas sin fines de semana
+            $cantFechas = 0;
+            foreach($aIntervalo as $fecha) {
+                if( !(date("w",strtotime($fecha)) == 6) AND !(date("w",strtotime($fecha)) == 0) ) {
+                    $cantFechas++;
+                }
+            }
+
+            $dias = $cantFechas*count($idxAlumno);
+            foreach($aTipoasistencias as $idx => $Tipoasistencia) {
+                $aPorcentajeAsistencia[$idx] = isset($totales[$idx])?$totales[$idx]:0;
+                @$tot += $totales[$idx];
+                if($aPorcentajeAsistencia[$idx] != 0) $flag = 1;
+            }
+
+            if($flag == 1) {
+
+                $aTitulo = array_keys($aTipoasistencias);
+                $aTitulo[] = "No Cargado";
+
+                if(array_search("gd", get_loaded_extensions())) { // Si no tiene cargado la GD no muestra el grafico
+
+                    include "graph.php";
+                    putenv('GDFONTPATH=' . realpath(sfConfig::get('sf_lib_dir')."/font/"));
+                    $graph = new graph();
+                    $graph->setProp("font","FreeSerifBold.ttf");
+                    $graph->setProp("keyfont","FreeSerifBold.ttf");
+                    $graph->setProp("showkey",true);
+                    $graph->setProp("type","pie");
+                    $graph->setProp("showgrid",false);
+                    $graph->setProp("key", $aTitulo);
+                    $graph->setProp("keywidspc",-50);
+                    $graph->setProp("keyinfo",2);
+                    foreach($aPorcentajeAsistencia as $porcentaje)  {
+                        $graph->addPoint($porcentaje);
+                    }
+                    $graph->addPoint($dias-$tot);
+    
+                    $graph->graphX();
+                    $graph->showGraph(sfConfig::get('sf_upload_dir_name').'/grafico_asistencias.png');
+                }
+            }
+        } else {
+            // si pasa por aqui es que no hay fechas creadas en el intervalo
         }
+
         //Asignacion de variables para el template
         $this->d = $d;
         $this->m = $m;
@@ -199,33 +285,39 @@ class asistenciaActions extends sfActions
         $this->aFeriado = $aFeriado;
         $this->alumno_id = $alumno_id;
         $this->cuenta_id = $cuenta_id;
-        //Verifico si muestro versi� para imprimir   
-        if ($this->getRequestParameter('vista'))
+        $this->vista_id = $vista_id;
+        $this->division_id = $division_id;
+        $this->anio_desde = $anio_desde;
+        $this->anio_hasta = $anio_hasta;
+
+        //Verifico si muestro versión para imprimir   
+        if ($this->getRequestParameter('vista')) {
             $this->vista = $this->getRequestParameter('vista');
-        else
+        } else {
             $this->vista = "";
+        }
   }
   
   /**
   * Accion para mostrar los datos cambiados en el form
   */
-  public function executeMostrar() {
-    $vista_id  = $this->getRequestParameter('vistas');
-    $vista  = $this->getRequestParameter('vista');
-    $d = $this->getRequestParameter('dia');
-    $m = $this->getRequestParameter('mes');
-    $y = $this->getRequestParameter('ano');
-    return $this->forward('asistencia','index',"vista_id=$vista_id&dia=$d&mes=$m&ano=$y");   
-  }
+    function executeMostrar() {
+        $vista_id  = $this->getRequestParameter('vistas');
+        $vista  = $this->getRequestParameter('vista');
+        $d = $this->getRequestParameter('dia');
+        $m = $this->getRequestParameter('mes');
+        $y = $this->getRequestParameter('ano');
+        return $this->forward('asistencia','index',"vista_id=$vista_id&dia=$d&mes=$m&ano=$y");   
+    }
   
-  public function handleErrorMostrar(){
-    $this->forward('asistencia', 'index');
-  }  
+    public function handleErrorMostrar(){
+        $this->forward('asistencia', 'index');
+    }  
   
   /**
   * Graba las asistencias
   */
-  public function executeGrabar() {
+    public function executeGrabar() {
 
         // inicializando variables
         $aDatosTipoasistencia = array();
@@ -247,6 +339,7 @@ class asistenciaActions extends sfActions
         if($cantAsistencia > 0) {
             // tomo los tipos de asistencias
             $aDatosTablaTipoAsistencias = $this->getTiposasistencias();
+
             //grabo al disco
             $con = Propel::getConnection();
             try {
@@ -255,8 +348,6 @@ class asistenciaActions extends sfActions
 
                 foreach($aAsistencia as $alumno_id => $aPeriodo ) {
                     foreach($aPeriodo as $fecha => $Tipoasistencia) {
-                        $fecha = str_replace("'","",$fecha);
-                        $alumno_id = str_replace("'","",$alumno_id);
                         $cton1 = $criteria->getNewCriterion(AsistenciaPeer::FK_ALUMNO_ID, $alumno_id);
                         $cton2 = $criteria->getNewCriterion(AsistenciaPeer::FECHA, $fecha);
                         $cton1->addAnd($cton2);
@@ -264,15 +355,13 @@ class asistenciaActions extends sfActions
                     }
                 }
                 AsistenciaPeer::doDelete($criteria);
-                    
+
                 foreach($aAsistencia as $alumno_id => $aPeriodo ) {
                     foreach($aPeriodo as $fecha => $Tipoasistencia) {
                         //die($TipoAsistencia);
                         $Asistencia = new Asistencia();
                         if(array_key_exists($Tipoasistencia, $aDatosTablaTipoAsistencias)){
-                            $alumno_id = str_replace("'","",$alumno_id);
                             $Asistencia->setFkAlumnoId($alumno_id);
-                            $fecha = str_replace("'","",$fecha);
                             list($y, $m, $d) = split("[/. -]",$fecha);        
                             $fecha = "$y-$m-$d";
                             $Asistencia->setFecha($fecha);
@@ -288,7 +377,6 @@ class asistenciaActions extends sfActions
                  throw $e;
             }
         }
-            
         return $this->redirect($destino);    
     }
         

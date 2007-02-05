@@ -22,8 +22,8 @@
  * calendario actions
  *
  * @package    alba
- * @author     José Luis Di Biase <josx@interorganic.com.ar>
- * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     JosÃ© Luis Di Biase <josx@interorganic.com.ar>
+ * @author     HÃ©ctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
@@ -188,10 +188,9 @@ return $optionsHorasMaterias;
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
         $this->establecimiento_id = $establecimiento_id;
         
-            
+           
 
-
-/*        $criteria = new Criteria();
+/*      $criteria = new Criteria();
         $criteria->add(CiclolectivoPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
         $ciclolectivos = CiclolectivoPeer::doSelect($criteria);
         $optionsCiclolectivo = array();
