@@ -52,7 +52,7 @@ generator:
                 "Informacion general":  [apellido, nombre, _sexo, fk_tipodocumento_id, nro_documento, fecha_nacimiento, email, activo ]
                 "Donde vive": [direccion, ciudad, fk_provincia_id, codigo_postal, telefono]
                 "Prioridades": [ distancia_escuela, hermanos_escuela, hijo_maestro_escuela ]
-                "Otros": [ certificado_medico, fk_cuenta_id ]
+                "Otros": [ certificado_medico, _fk_cuenta_id ]
             actions:
                 _delete: -
                 _save: -

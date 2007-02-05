@@ -86,7 +86,7 @@ names:
     alumno{fk_cuenta_id}:
         required:     Yes
         required_msg: El campo Cuenta es obligatorio
-                            
+        validators: validarCuenta                            
         
 caracteresMaximos128:
     class:  sfStringValidator
@@ -131,4 +131,8 @@ validaEmail:
     class: sfEmailValidator
     param:
        email_error:   "No ingresaste un email correctamente ( ej: nombre@dominio.com).<br>Si este alumno no tiene email, por favor deje en blanco el campo."
-                    
+
+validarCuenta:
+    class: sfNumberValidator
+    params:
+        nan_error: Por favor seleccionar una cuenta
