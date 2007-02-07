@@ -37,8 +37,27 @@ class locacionActions extends autolocacionActions
          $this->vista = $this->getRequestParameter('vista');
     }
     
-    function executeEspaciosPorLocacion() {
-        $this->redirect( 'relLocacionEspacio/list?filters%5Bfk_locacion_id%5D='.$this->getRequestParameter('id') .'&filter=filtrar');
+
+    // Automaticamente al guardar por primera vez una locacion, además guarda una relación con el establecimeinto actual
+    protected function saveLocacion($locacion) {
+        $id = $locacion->getId();
+        $locacion->save();
+
+        if(!$id) {
+            $relEstablecimientoLocacion = new RelEstablecimientoLocacion();
+            $relEstablecimientoLocacion ->setFkEstablecimientoId($this->getUser()->getAttribute('fk_establecimiento_id'));
+            $relEstablecimientoLocacion ->setFkLocacionId($locacion->getId());
+            $relEstablecimientoLocacion ->save();
+        }
+        
+    }
+
+    protected function deleteLocacion($locacion) {
+        $id = $locacion->getId();
+        $locacion->delete();
+        $criteria = new Criteria();
+        $criteria->add(RelEstablecimientoLocacionPeer::FK_LOCACION_ID, $id);
+        $relEstablecimientoLocacion = RelEstablecimientoLocacionPeer::doDelete($criteria);
     }
 
 }
