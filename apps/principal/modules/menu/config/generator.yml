@@ -10,7 +10,7 @@ generator:
     list:
         title: Administraci&oacute;n del menu
         filters: [ fk_padre_menu_id, nombre, perm ]
-        display: [ id, =nombre, link, perm, _fk_padre_menu_id, orden ]
+        display: [ id, =nombre, link, perm, _fk_padre_menu_id, target, orden ]
     edit:
         title: Modificar menu
         

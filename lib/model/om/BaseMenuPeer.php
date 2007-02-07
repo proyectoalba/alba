@@ -24,7 +24,7 @@ abstract class BaseMenuPeer {
 	const CLASS_DEFAULT = 'model.Menu';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 6;
+	const NUM_COLUMNS = 7;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -41,6 +41,9 @@ abstract class BaseMenuPeer {
 
 	/** the column name for the PERM field */
 	const PERM = 'menu.PERM';
+
+	/** the column name for the TARGET field */
+	const TARGET = 'menu.TARGET';
 
 	/** the column name for the FK_PADRE_MENU_ID field */
 	const FK_PADRE_MENU_ID = 'menu.FK_PADRE_MENU_ID';
@@ -59,10 +62,10 @@ abstract class BaseMenuPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Link', 'Perm', 'FkPadreMenuId', 'Orden', ),
-		BasePeer::TYPE_COLNAME => array (MenuPeer::ID, MenuPeer::NOMBRE, MenuPeer::LINK, MenuPeer::PERM, MenuPeer::FK_PADRE_MENU_ID, MenuPeer::ORDEN, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'link', 'perm', 'fk_padre_menu_id', 'orden', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Link', 'Perm', 'Target', 'FkPadreMenuId', 'Orden', ),
+		BasePeer::TYPE_COLNAME => array (MenuPeer::ID, MenuPeer::NOMBRE, MenuPeer::LINK, MenuPeer::PERM, MenuPeer::TARGET, MenuPeer::FK_PADRE_MENU_ID, MenuPeer::ORDEN, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'link', 'perm', 'target', 'fk_padre_menu_id', 'orden', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, )
 	);
 
 	/**
@@ -72,10 +75,10 @@ abstract class BaseMenuPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Link' => 2, 'Perm' => 3, 'FkPadreMenuId' => 4, 'Orden' => 5, ),
-		BasePeer::TYPE_COLNAME => array (MenuPeer::ID => 0, MenuPeer::NOMBRE => 1, MenuPeer::LINK => 2, MenuPeer::PERM => 3, MenuPeer::FK_PADRE_MENU_ID => 4, MenuPeer::ORDEN => 5, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'link' => 2, 'perm' => 3, 'fk_padre_menu_id' => 4, 'orden' => 5, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Link' => 2, 'Perm' => 3, 'Target' => 4, 'FkPadreMenuId' => 5, 'Orden' => 6, ),
+		BasePeer::TYPE_COLNAME => array (MenuPeer::ID => 0, MenuPeer::NOMBRE => 1, MenuPeer::LINK => 2, MenuPeer::PERM => 3, MenuPeer::TARGET => 4, MenuPeer::FK_PADRE_MENU_ID => 5, MenuPeer::ORDEN => 6, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'link' => 2, 'perm' => 3, 'target' => 4, 'fk_padre_menu_id' => 5, 'orden' => 6, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, )
 	);
 
 	/**
@@ -183,6 +186,8 @@ abstract class BaseMenuPeer {
 		$criteria->addSelectColumn(MenuPeer::LINK);
 
 		$criteria->addSelectColumn(MenuPeer::PERM);
+
+		$criteria->addSelectColumn(MenuPeer::TARGET);
 
 		$criteria->addSelectColumn(MenuPeer::FK_PADRE_MENU_ID);
 

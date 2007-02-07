@@ -696,6 +696,7 @@
         <column name="nombre" type="VARCHAR" size="255" required="true" default=""/>
         <column name="link" type="VARCHAR" size="255" required="true" default=""/>
         <column name="perm" type="VARCHAR" size="255" required="true" default=""/>
+        <column name="target" type="VARCHAR" size="255" required="true" default=""/>
         <column name="fk_padre_menu_id" type="INTEGER" required="false"/>
         <column name="orden" type="INTEGER" required="false"/>
         <index name="nombre_menu">

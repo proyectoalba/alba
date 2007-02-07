@@ -22,8 +22,8 @@
  * menu
  *
  * @package    alba
- * @author     JosÃ© Luis Di Biase <josx@interorganic.com.ar>
- * @author     HÃ©ctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     José Luis Di Biase <josx@interorganic.com.ar>
+ * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
@@ -45,14 +45,18 @@
     			echo "\t<li>";
                 if ($nodo->getNombre() != '-') {
                     echo "<span></span>";
-    	    		echo link_to($nodo->getNombre(),$nodo->getLink()) . "\n";
+                    if ($nodo->getTarget() == '')
+                        echo link_to($nodo->getNombre(),$nodo->getLink()) . "\n";
+                    else
+                        echo link_to($nodo->getNombre(),$nodo->getLink(),array('target'=> $nodo->getTarget())) . "\n";
+                    
     		    	if ($nodo->getLink() =='#')
     				    drawMenu($nodo->getId());
                 }
         		echo "</li>\n";
 	        }
             else
-                debug_message("menu::permiso: " . $nodo->getPerm());
+                debug_message("falta permiso de menu: " . $nodo->getPerm());
 		}
 		echo "</ul>\n";
 	}

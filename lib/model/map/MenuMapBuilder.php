@@ -72,6 +72,8 @@ class MenuMapBuilder {
 
 		$tMap->addColumn('PERM', 'Perm', 'string', CreoleTypes::VARCHAR, true);
 
+		$tMap->addColumn('TARGET', 'Target', 'string', CreoleTypes::VARCHAR, true);
+
 		$tMap->addForeignKey('FK_PADRE_MENU_ID', 'FkPadreMenuId', 'int', CreoleTypes::INTEGER, 'menu', 'ID', false, null);
 
 		$tMap->addColumn('ORDEN', 'Orden', 'int', CreoleTypes::INTEGER, false);

@@ -57,6 +57,13 @@ abstract class BaseMenu extends BaseObject  implements Persistent {
 
 
 	/**
+	 * The value for the target field.
+	 * @var string
+	 */
+	protected $target = '';
+
+
+	/**
 	 * The value for the fk_padre_menu_id field.
 	 * @var int
 	 */
@@ -142,6 +149,17 @@ abstract class BaseMenu extends BaseObject  implements Persistent {
 	{
 
 		return $this->perm;
+	}
+
+	/**
+	 * Get the [target] column value.
+	 * 
+	 * @return string
+	 */
+	public function getTarget()
+	{
+
+		return $this->target;
 	}
 
 	/**
@@ -231,6 +249,22 @@ abstract class BaseMenu extends BaseObject  implements Persistent {
 	} // setPerm()
 
 	/**
+	 * Set the value of [target] column.
+	 * 
+	 * @param string $v new value
+	 * @return void
+	 */
+	public function setTarget($v)
+	{
+
+		if ($this->target !== $v || $v === '') {
+			$this->target = $v;
+			$this->modifiedColumns[] = MenuPeer::TARGET;
+		}
+
+	} // setTarget()
+
+	/**
 	 * Set the value of [fk_padre_menu_id] column.
 	 * 
 	 * @param int $v new value
@@ -291,16 +325,18 @@ abstract class BaseMenu extends BaseObject  implements Persistent {
 
 			$this->perm = $rs->getString($startcol + 3);
 
-			$this->fk_padre_menu_id = $rs->getInt($startcol + 4);
+			$this->target = $rs->getString($startcol + 4);
 
-			$this->orden = $rs->getInt($startcol + 5);
+			$this->fk_padre_menu_id = $rs->getInt($startcol + 5);
+
+			$this->orden = $rs->getInt($startcol + 6);
 
 			$this->resetModified();
 
 			$this->setNew(false);
 
 			// FIXME - using NUM_COLUMNS may be clearer.
-			return $startcol + 6; // 6 = MenuPeer::NUM_COLUMNS - MenuPeer::NUM_LAZY_LOAD_COLUMNS).
+			return $startcol + 7; // 7 = MenuPeer::NUM_COLUMNS - MenuPeer::NUM_LAZY_LOAD_COLUMNS).
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Menu object", $e);
@@ -551,9 +587,12 @@ abstract class BaseMenu extends BaseObject  implements Persistent {
 				return $this->getPerm();
 				break;
 			case 4:
-				return $this->getFkPadreMenuId();
+				return $this->getTarget();
 				break;
 			case 5:
+				return $this->getFkPadreMenuId();
+				break;
+			case 6:
 				return $this->getOrden();
 				break;
 			default:
@@ -580,8 +619,9 @@ abstract class BaseMenu extends BaseObject  implements Persistent {
 			$keys[1] => $this->getNombre(),
 			$keys[2] => $this->getLink(),
 			$keys[3] => $this->getPerm(),
-			$keys[4] => $this->getFkPadreMenuId(),
-			$keys[5] => $this->getOrden(),
+			$keys[4] => $this->getTarget(),
+			$keys[5] => $this->getFkPadreMenuId(),
+			$keys[6] => $this->getOrden(),
 		);
 		return $result;
 	}
@@ -626,9 +666,12 @@ abstract class BaseMenu extends BaseObject  implements Persistent {
 				$this->setPerm($value);
 				break;
 			case 4:
-				$this->setFkPadreMenuId($value);
+				$this->setTarget($value);
 				break;
 			case 5:
+				$this->setFkPadreMenuId($value);
+				break;
+			case 6:
 				$this->setOrden($value);
 				break;
 		} // switch()
@@ -658,8 +701,9 @@ abstract class BaseMenu extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[1], $arr)) $this->setNombre($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setLink($arr[$keys[2]]);
 		if (array_key_exists($keys[3], $arr)) $this->setPerm($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setFkPadreMenuId($arr[$keys[4]]);
-		if (array_key_exists($keys[5], $arr)) $this->setOrden($arr[$keys[5]]);
+		if (array_key_exists($keys[4], $arr)) $this->setTarget($arr[$keys[4]]);
+		if (array_key_exists($keys[5], $arr)) $this->setFkPadreMenuId($arr[$keys[5]]);
+		if (array_key_exists($keys[6], $arr)) $this->setOrden($arr[$keys[6]]);
 	}
 
 	/**
@@ -675,6 +719,7 @@ abstract class BaseMenu extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(MenuPeer::NOMBRE)) $criteria->add(MenuPeer::NOMBRE, $this->nombre);
 		if ($this->isColumnModified(MenuPeer::LINK)) $criteria->add(MenuPeer::LINK, $this->link);
 		if ($this->isColumnModified(MenuPeer::PERM)) $criteria->add(MenuPeer::PERM, $this->perm);
+		if ($this->isColumnModified(MenuPeer::TARGET)) $criteria->add(MenuPeer::TARGET, $this->target);
 		if ($this->isColumnModified(MenuPeer::FK_PADRE_MENU_ID)) $criteria->add(MenuPeer::FK_PADRE_MENU_ID, $this->fk_padre_menu_id);
 		if ($this->isColumnModified(MenuPeer::ORDEN)) $criteria->add(MenuPeer::ORDEN, $this->orden);
 
@@ -736,6 +781,8 @@ abstract class BaseMenu extends BaseObject  implements Persistent {
 		$copyObj->setLink($this->link);
 
 		$copyObj->setPerm($this->perm);
+
+		$copyObj->setTarget($this->target);
 
 		$copyObj->setFkPadreMenuId($this->fk_padre_menu_id);
 
