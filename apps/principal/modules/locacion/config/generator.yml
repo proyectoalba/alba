@@ -27,4 +27,7 @@ generator:
         object_actions:
             _edit:        -
             _delete:      -
+        actions:
+            _create: -
+            verEstablecimiento: { name: Relaci&oacute;n con Establecimientos, action: verEstablecimiento }
         filters: [ nombre  ]

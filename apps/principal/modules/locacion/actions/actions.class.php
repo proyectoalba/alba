@@ -60,6 +60,12 @@ class locacionActions extends autolocacionActions
         $relEstablecimientoLocacion = RelEstablecimientoLocacionPeer::doDelete($criteria);
     }
 
+
+    public function executeVerEstablecimiento() {
+        $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
+        $this->redirect( 'establecimiento?action=editLocacion&id='.$establecimiento_id);
+    }
+
 }
 
 ?>

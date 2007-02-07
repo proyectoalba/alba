@@ -44,9 +44,9 @@ class establecimientoActions extends autoestablecimientoActions
         // estas son las locaciones del establecimiento actual
         $establecimientoLocaciones = RelEstablecimientoLocacionPeer::doSelectJoinLocacion($c);
                      
-        $this->optionsEstablecimientoLocaciones = array();
+        $optionsEstablecimientoLocaciones = array();
         foreach($establecimientoLocaciones as $establecimientoLocacion) {
-            $this->optionsEstablecimientoLocaciones[$establecimientoLocacion->getFkLocacionId()] = $establecimientoLocacion->getLocacion()->getNombre();
+            $optionsEstablecimientoLocaciones[$establecimientoLocacion->getFkLocacionId()] = $establecimientoLocacion->getLocacion()->getNombre();
         }
                                                                
         // estos son todas las locaciones existentes
@@ -57,8 +57,9 @@ class establecimientoActions extends autoestablecimientoActions
         }
         
         // estos son las locaciones existentes menos las del establecimiento
-        $this->optionsLocaciones = array_diff_key($todasLasLocaciones, $this->optionsEstablecimientoLocaciones);
+        $this->optionsLocaciones = array_diff_key($todasLasLocaciones, $optionsEstablecimientoLocaciones);
         $this->establecimiento = EstablecimientoPeer::retrieveByPK($this->getRequestParameter('id'));
+        $this->optionsEstablecimientoLocaciones = $optionsEstablecimientoLocaciones;
     }
 
 
