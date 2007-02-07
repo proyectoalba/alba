@@ -24,6 +24,7 @@ CREATE TABLE `locacion`
 	`fax` VARCHAR(20),
 	`encargado` VARCHAR(128),
 	`encargado_telefono` VARCHAR(20),
+	`principal` INTEGER default 0 NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `locacion_FI_1` (`fk_provincia_id`),
 	CONSTRAINT `locacion_FK_1`
@@ -1348,6 +1349,7 @@ CREATE TABLE `menu`
 	`nombre` VARCHAR(255) default '' NOT NULL,
 	`link` VARCHAR(255) default '' NOT NULL,
 	`perm` VARCHAR(255) default '' NOT NULL,
+	`target` VARCHAR(255) default '' NOT NULL,
 	`fk_padre_menu_id` INTEGER,
 	`orden` INTEGER,
 	PRIMARY KEY (`id`),
