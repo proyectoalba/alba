@@ -39,17 +39,44 @@ class locacionActions extends autolocacionActions
     
 
     // Automaticamente al guardar por primera vez una locacion, además guarda una relación con el establecimeinto actual
-    protected function saveLocacion($locacion) {
-        $id = $locacion->getId();
-        $locacion->save();
+    public function saveLocacion($locacion) {
 
-        if(!$id) {
-            $relEstablecimientoLocacion = new RelEstablecimientoLocacion();
-            $relEstablecimientoLocacion ->setFkEstablecimientoId($this->getUser()->getAttribute('fk_establecimiento_id'));
-            $relEstablecimientoLocacion ->setFkLocacionId($locacion->getId());
-            $relEstablecimientoLocacion ->save();
+        $id = $locacion->getId();
+
+        new sfUser(); // nasty hack to load propel
+        $con = Propel::getConnection();
+        try {
+
+            $con->begin();
+
+            if ($locacion->getPrincipal()) {
+
+                $c1 = new Criteria();
+                $c1->add(RelEstablecimientoLocacionPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
+                $c1->addJoin(LocacionPeer::ID, RelEstablecimientoLocacionPeer::FK_LOCACION_ID);
+                $c2 = new Criteria();
+                $c2->add(LocacionPeer::PRINCIPAL,false);
+
+//                  BasePeer::doUpdate($c1,$c2,$con);
+
+            }
+            
+            $locacion->save();                                                                
+            if(!$id) {
+                $relEstablecimientoLocacion = new RelEstablecimientoLocacion();
+                $relEstablecimientoLocacion ->setFkEstablecimientoId($this->getUser()->getAttribute('fk_establecimiento_id'));
+                $relEstablecimientoLocacion ->setFkLocacionId($locacion->getId());
+                $relEstablecimientoLocacion ->save();
+            }
+
+            $con->commit();
+
         }
-        
+        catch (Exception $e) {
+            $con->rollback();
+            throw $e;
+        }
+
     }
 
     protected function deleteLocacion($locacion) {

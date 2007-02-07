@@ -15,7 +15,8 @@
     <column name="fax" type="VARCHAR" size="20"/>
     <column name="encargado" type="VARCHAR" size="128"/>
     <column name="encargado_telefono" type="VARCHAR" size="20"/>
-    <foreign-key foreignTable="provincia">         
+    <column name="principal" type="BOOLEAN" required="true" default="false"/>
+        <foreign-key foreignTable="provincia">         
         <reference local="fk_provincia_id" foreign="id"/>       
     </foreign-key>
     <foreign-key foreignTable="tipolocacion">         

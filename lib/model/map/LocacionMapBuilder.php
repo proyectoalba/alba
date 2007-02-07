@@ -87,6 +87,8 @@ class LocacionMapBuilder {
 		$tMap->addColumn('ENCARGADO', 'Encargado', 'string', CreoleTypes::VARCHAR, false);
 
 		$tMap->addColumn('ENCARGADO_TELEFONO', 'EncargadoTelefono', 'string', CreoleTypes::VARCHAR, false);
+
+		$tMap->addColumn('PRINCIPAL', 'Principal', 'boolean', CreoleTypes::BOOLEAN, true);
 				
     } // doBuild()
 

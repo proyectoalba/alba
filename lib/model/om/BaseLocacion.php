@@ -111,6 +111,13 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 	 */
 	protected $encargado_telefono;
 
+
+	/**
+	 * The value for the principal field.
+	 * @var boolean
+	 */
+	protected $principal = true;
+
 	/**
 	 * @var Provincia
 	 */
@@ -289,6 +296,17 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 	{
 
 		return $this->encargado_telefono;
+	}
+
+	/**
+	 * Get the [principal] column value.
+	 * 
+	 * @return boolean
+	 */
+	public function getPrincipal()
+	{
+
+		return $this->principal;
 	}
 
 	/**
@@ -492,6 +510,22 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 	} // setEncargadoTelefono()
 
 	/**
+	 * Set the value of [principal] column.
+	 * 
+	 * @param boolean $v new value
+	 * @return void
+	 */
+	public function setPrincipal($v)
+	{
+
+		if ($this->principal !== $v || $v === true) {
+			$this->principal = $v;
+			$this->modifiedColumns[] = LocacionPeer::PRINCIPAL;
+		}
+
+	} // setPrincipal()
+
+	/**
 	 * Hydrates (populates) the object variables with values from the database resultset.
 	 *
 	 * An offset (1-based "start column") is specified so that objects can be hydrated
@@ -532,12 +566,14 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 
 			$this->encargado_telefono = $rs->getString($startcol + 11);
 
+			$this->principal = $rs->getBoolean($startcol + 12);
+
 			$this->resetModified();
 
 			$this->setNew(false);
 
 			// FIXME - using NUM_COLUMNS may be clearer.
-			return $startcol + 12; // 12 = LocacionPeer::NUM_COLUMNS - LocacionPeer::NUM_LAZY_LOAD_COLUMNS).
+			return $startcol + 13; // 13 = LocacionPeer::NUM_COLUMNS - LocacionPeer::NUM_LAZY_LOAD_COLUMNS).
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Locacion object", $e);
@@ -848,6 +884,9 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 			case 11:
 				return $this->getEncargadoTelefono();
 				break;
+			case 12:
+				return $this->getPrincipal();
+				break;
 			default:
 				return null;
 				break;
@@ -880,6 +919,7 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 			$keys[9] => $this->getFax(),
 			$keys[10] => $this->getEncargado(),
 			$keys[11] => $this->getEncargadoTelefono(),
+			$keys[12] => $this->getPrincipal(),
 		);
 		return $result;
 	}
@@ -947,6 +987,9 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 			case 11:
 				$this->setEncargadoTelefono($value);
 				break;
+			case 12:
+				$this->setPrincipal($value);
+				break;
 		} // switch()
 	}
 
@@ -982,6 +1025,7 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[9], $arr)) $this->setFax($arr[$keys[9]]);
 		if (array_key_exists($keys[10], $arr)) $this->setEncargado($arr[$keys[10]]);
 		if (array_key_exists($keys[11], $arr)) $this->setEncargadoTelefono($arr[$keys[11]]);
+		if (array_key_exists($keys[12], $arr)) $this->setPrincipal($arr[$keys[12]]);
 	}
 
 	/**
@@ -1005,6 +1049,7 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(LocacionPeer::FAX)) $criteria->add(LocacionPeer::FAX, $this->fax);
 		if ($this->isColumnModified(LocacionPeer::ENCARGADO)) $criteria->add(LocacionPeer::ENCARGADO, $this->encargado);
 		if ($this->isColumnModified(LocacionPeer::ENCARGADO_TELEFONO)) $criteria->add(LocacionPeer::ENCARGADO_TELEFONO, $this->encargado_telefono);
+		if ($this->isColumnModified(LocacionPeer::PRINCIPAL)) $criteria->add(LocacionPeer::PRINCIPAL, $this->principal);
 
 		return $criteria;
 	}
@@ -1080,6 +1125,8 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 		$copyObj->setEncargado($this->encargado);
 
 		$copyObj->setEncargadoTelefono($this->encargado_telefono);
+
+		$copyObj->setPrincipal($this->principal);
 
 
 		if ($deepCopy) {

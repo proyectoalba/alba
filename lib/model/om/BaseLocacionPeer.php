@@ -24,7 +24,7 @@ abstract class BaseLocacionPeer {
 	const CLASS_DEFAULT = 'model.Locacion';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 12;
+	const NUM_COLUMNS = 13;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -66,6 +66,9 @@ abstract class BaseLocacionPeer {
 	/** the column name for the ENCARGADO_TELEFONO field */
 	const ENCARGADO_TELEFONO = 'locacion.ENCARGADO_TELEFONO';
 
+	/** the column name for the PRINCIPAL field */
+	const PRINCIPAL = 'locacion.PRINCIPAL';
+
 	/** The PHP to DB Name Mapping */
 	private static $phpNameMap = null;
 
@@ -77,10 +80,10 @@ abstract class BaseLocacionPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Descripcion', 'Direccion', 'Ciudad', 'CodigoPostal', 'FkProvinciaId', 'FkTipolocacionId', 'Telefono', 'Fax', 'Encargado', 'EncargadoTelefono', ),
-		BasePeer::TYPE_COLNAME => array (LocacionPeer::ID, LocacionPeer::NOMBRE, LocacionPeer::DESCRIPCION, LocacionPeer::DIRECCION, LocacionPeer::CIUDAD, LocacionPeer::CODIGO_POSTAL, LocacionPeer::FK_PROVINCIA_ID, LocacionPeer::FK_TIPOLOCACION_ID, LocacionPeer::TELEFONO, LocacionPeer::FAX, LocacionPeer::ENCARGADO, LocacionPeer::ENCARGADO_TELEFONO, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'descripcion', 'direccion', 'ciudad', 'codigo_postal', 'fk_provincia_id', 'fk_tipolocacion_id', 'telefono', 'fax', 'encargado', 'encargado_telefono', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Descripcion', 'Direccion', 'Ciudad', 'CodigoPostal', 'FkProvinciaId', 'FkTipolocacionId', 'Telefono', 'Fax', 'Encargado', 'EncargadoTelefono', 'Principal', ),
+		BasePeer::TYPE_COLNAME => array (LocacionPeer::ID, LocacionPeer::NOMBRE, LocacionPeer::DESCRIPCION, LocacionPeer::DIRECCION, LocacionPeer::CIUDAD, LocacionPeer::CODIGO_POSTAL, LocacionPeer::FK_PROVINCIA_ID, LocacionPeer::FK_TIPOLOCACION_ID, LocacionPeer::TELEFONO, LocacionPeer::FAX, LocacionPeer::ENCARGADO, LocacionPeer::ENCARGADO_TELEFONO, LocacionPeer::PRINCIPAL, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'descripcion', 'direccion', 'ciudad', 'codigo_postal', 'fk_provincia_id', 'fk_tipolocacion_id', 'telefono', 'fax', 'encargado', 'encargado_telefono', 'principal', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, )
 	);
 
 	/**
@@ -90,10 +93,10 @@ abstract class BaseLocacionPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Descripcion' => 2, 'Direccion' => 3, 'Ciudad' => 4, 'CodigoPostal' => 5, 'FkProvinciaId' => 6, 'FkTipolocacionId' => 7, 'Telefono' => 8, 'Fax' => 9, 'Encargado' => 10, 'EncargadoTelefono' => 11, ),
-		BasePeer::TYPE_COLNAME => array (LocacionPeer::ID => 0, LocacionPeer::NOMBRE => 1, LocacionPeer::DESCRIPCION => 2, LocacionPeer::DIRECCION => 3, LocacionPeer::CIUDAD => 4, LocacionPeer::CODIGO_POSTAL => 5, LocacionPeer::FK_PROVINCIA_ID => 6, LocacionPeer::FK_TIPOLOCACION_ID => 7, LocacionPeer::TELEFONO => 8, LocacionPeer::FAX => 9, LocacionPeer::ENCARGADO => 10, LocacionPeer::ENCARGADO_TELEFONO => 11, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'descripcion' => 2, 'direccion' => 3, 'ciudad' => 4, 'codigo_postal' => 5, 'fk_provincia_id' => 6, 'fk_tipolocacion_id' => 7, 'telefono' => 8, 'fax' => 9, 'encargado' => 10, 'encargado_telefono' => 11, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Descripcion' => 2, 'Direccion' => 3, 'Ciudad' => 4, 'CodigoPostal' => 5, 'FkProvinciaId' => 6, 'FkTipolocacionId' => 7, 'Telefono' => 8, 'Fax' => 9, 'Encargado' => 10, 'EncargadoTelefono' => 11, 'Principal' => 12, ),
+		BasePeer::TYPE_COLNAME => array (LocacionPeer::ID => 0, LocacionPeer::NOMBRE => 1, LocacionPeer::DESCRIPCION => 2, LocacionPeer::DIRECCION => 3, LocacionPeer::CIUDAD => 4, LocacionPeer::CODIGO_POSTAL => 5, LocacionPeer::FK_PROVINCIA_ID => 6, LocacionPeer::FK_TIPOLOCACION_ID => 7, LocacionPeer::TELEFONO => 8, LocacionPeer::FAX => 9, LocacionPeer::ENCARGADO => 10, LocacionPeer::ENCARGADO_TELEFONO => 11, LocacionPeer::PRINCIPAL => 12, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'descripcion' => 2, 'direccion' => 3, 'ciudad' => 4, 'codigo_postal' => 5, 'fk_provincia_id' => 6, 'fk_tipolocacion_id' => 7, 'telefono' => 8, 'fax' => 9, 'encargado' => 10, 'encargado_telefono' => 11, 'principal' => 12, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, )
 	);
 
 	/**
@@ -217,6 +220,8 @@ abstract class BaseLocacionPeer {
 		$criteria->addSelectColumn(LocacionPeer::ENCARGADO);
 
 		$criteria->addSelectColumn(LocacionPeer::ENCARGADO_TELEFONO);
+
+		$criteria->addSelectColumn(LocacionPeer::PRINCIPAL);
 
 	}
 
