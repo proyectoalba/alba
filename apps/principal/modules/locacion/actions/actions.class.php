@@ -51,14 +51,17 @@ class locacionActions extends autolocacionActions
 
             if ($locacion->getPrincipal()) {
 
-                $c1 = new Criteria();
-                $c1->add(RelEstablecimientoLocacionPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
-                $c1->addJoin(LocacionPeer::ID, RelEstablecimientoLocacionPeer::FK_LOCACION_ID);
-                $c2 = new Criteria();
-                $c2->add(LocacionPeer::PRINCIPAL,false);
+//                 $c1 = new Criteria();
+//                 $c1->add(RelEstablecimientoLocacionPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
+//                 $c1->addJoin(LocacionPeer::ID, RelEstablecimientoLocacionPeer::FK_LOCACION_ID);
+//                 $c2 = new Criteria();
+//                 $c2->add(LocacionPeer::PRINCIPAL,false);
+//                 BasePeer::doUpdate($c1,$c2,$con);
 
-//                  BasePeer::doUpdate($c1,$c2,$con);
-
+                // Aparentemente propel no soporta aun joins dentro del update
+                $s = "UPDATE rel_establecimiento_locacion,locacion SET locacion.principal = 0 WHERE locacion.id = rel_establecimiento_locacion.fk_locacion_id AND rel_establecimiento_locacion.fk_establecimiento_id = ".$this->getUser()->getAttribute('fk_establecimiento_id');
+                $stmt = $con->createStatement();
+                $alumnos = $stmt->executeQuery($s);
             }
             
             $locacion->save();                                                                
