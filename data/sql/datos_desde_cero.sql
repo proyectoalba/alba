@@ -454,6 +454,12 @@ INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (53, 1
 -- 
 
 
+INSERT INTO `repeticion` (`descripcion`, `orden`) VALUES ('Semanal', 1);
+INSERT INTO `repeticion` (`descripcion`, `orden`) VALUES ('Semanal Intercalado', 2);
+INSERT INTO `repeticion` (`descripcion`, `orden`) VALUES ('Quincenal', 3);
+INSERT INTO `repeticion` (`descripcion`, `orden`) VALUES ('Mensual', 4);
+
+
 -- 
 -- Volcar la base de datos para la tabla 'responsable'
 -- 

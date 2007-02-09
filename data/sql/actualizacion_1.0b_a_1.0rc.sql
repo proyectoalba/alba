@@ -4,8 +4,8 @@ ALTER TABLE `responsable` ADD `observacion` VARCHAR( 255 ) NULL AFTER `relacion`
 
 ALTER TABLE `adjunto` CHANGE `ruta` `ruta` VARCHAR(255) NOT NULL;
 
-INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (58, 'tipodocumento', 'tipodocumento', 'tipodocumento', 46);
-INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (59, 'informes', 'informes', 'informes', 47);
+INSERT INTO permiso (nombre, descripcion, credencial, fk_modulo_id) VALUES ('tipodocumento', 'tipodocumento', 'tipodocumento', 46);
+INSERT INTO permiso (nombre, descripcion, credencial, fk_modulo_id) VALUES ('informes', 'informes', 'informes', 47);
 
 ALTER TABLE menu ADD `target` VARCHAR(255) NOT NULL DEFAULT '';
 
