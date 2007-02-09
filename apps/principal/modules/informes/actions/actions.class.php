@@ -68,6 +68,7 @@ class InformesActions extends sfActions
         // asignando variables para ser usadas en el template
         $this->optionsDivision = $optionsDivision;
         $this->division_id = $division_id;
+        $this->vista = "imprimir";
     }
     
     public function executeAlumnosPorDivisionListado() {
@@ -156,6 +157,7 @@ class InformesActions extends sfActions
         $this->division_id = $division_id;
         $this->txt = $txt;
         $this->aAlumno = $aAlumno;
+        $this->vista = "imprimir";
 
 
     }
