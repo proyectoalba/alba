@@ -60,6 +60,7 @@ class locacionActions extends autolocacionActions
 
                 // Aparentemente propel no soporta aun joins dentro del update
                 $s = "UPDATE rel_establecimiento_locacion,locacion SET locacion.principal = 0 WHERE locacion.id = rel_establecimiento_locacion.fk_locacion_id AND rel_establecimiento_locacion.fk_establecimiento_id = ".$this->getUser()->getAttribute('fk_establecimiento_id');
+
                 $stmt = $con->createStatement();
                 $alumnos = $stmt->executeQuery($s);
             }

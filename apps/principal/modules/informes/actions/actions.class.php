@@ -188,8 +188,5 @@ class InformesActions extends sfActions
         $this->vista = "imprimir";
     }
 
-
-
-
 }
 ?>
