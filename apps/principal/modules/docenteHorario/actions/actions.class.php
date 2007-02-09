@@ -49,9 +49,10 @@ class DocenteHorarioActions extends sfActions
     if($this->getRequestParameter('idDocente')) {
 
         $aRepeticion  = RepeticionPeer::doSelect(new Criteria());
-        $this->aRepeticion = array();
+
+        $aMuestraRepeticion = array();
         foreach($aRepeticion  as $repeticion) {
-            $this->aRepeticion[$repeticion->getId()] = $repeticion->getDescripcion();
+            $aMuestraRepeticion[$repeticion->getId()] = $repeticion->getDescripcion();
         }
     
         $c = new Criteria();
@@ -61,10 +62,13 @@ class DocenteHorarioActions extends sfActions
 
         $c = new Criteria();
         $aDocente  = DocentePeer::doSelect($c);
-        $this->optionsDocente = array();
+        $optionsDocente = array();
         foreach($aDocente as $docente) {
-            $this->optionsDocente[$docente->getId()] = $docente->getApellido().' '.$docente->getNombre();
+            $optionsDocente[$docente->getId()] = $docente->getApellido().' '.$docente->getNombre();
         }
+
+        $this->aRepeticion = $aMuestraRepeticion;
+        $this->optionsDocente = $optionsDocente;
     } 
 
   }
