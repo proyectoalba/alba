@@ -1,4 +1,4 @@
-<h1>Alumnos de  la Divis&oacute;n <?php echo $division->getAnio()->getDescripcion()." ".$division->getDescripcion()?> </h1>
+<h1>Alumnos de la Divisi&oacute;n <?php echo $division->getAnio()->getDescripcion()." ".$division->getDescripcion()?> </h1>
 
 <? if(count($aAlumno)>0) { ?>
 
