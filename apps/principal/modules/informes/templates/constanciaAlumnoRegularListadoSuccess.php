@@ -1,30 +1,3 @@
-<style>
-
-.titulo
-{
-  color: #000;
-  font-family: "Trebuchet MS", Arial, Verdana, sans-serif;
-  font-size: 20px;
-  font-weight: bold
-}
-
-.subtitulo
-{
-  color: #000;
-  font-family: "Trebuchet MS", Arial, Verdana, sans-serif;
-  font-size: 18px;
-  font-weight: bold
-}
-
-.texto
-{
-  color: #000;
-  font-family: "Trebuchet MS", Arial, Verdana, sans-serif;
-  font-size: 17px;
-}
-
-</style>
-
 
 <div style="text-align: center;">
 <table border="0" cellpadding="0" cellspacing="0" width="100%">

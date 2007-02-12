@@ -934,4 +934,53 @@ abstract class BaseConceptobaja extends BaseObject  implements Persistent {
 		return $this->collAlumnos;
 	}
 
+
+	/**
+	 * If this collection has already been initialized with
+	 * an identical criteria, it returns the collection.
+	 * Otherwise if this Conceptobaja is new, it will return
+	 * an empty collection; or if this Conceptobaja has previously
+	 * been saved, it will retrieve related Alumnos from storage.
+	 *
+	 * This method is protected by default in order to keep the public
+	 * api reasonable.  You can provide public methods for those you
+	 * actually need in Conceptobaja.
+	 */
+	public function getAlumnosJoinPais($criteria = null, $con = null)
+	{
+		// include the Peer class
+		include_once 'model/om/BaseAlumnoPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collAlumnos === null) {
+			if ($this->isNew()) {
+				$this->collAlumnos = array();
+			} else {
+
+				$criteria->add(AlumnoPeer::FK_CONCEPTOBAJA_ID, $this->getId());
+
+				$this->collAlumnos = AlumnoPeer::doSelectJoinPais($criteria, $con);
+			}
+		} else {
+			// the following code is to determine if a new query is
+			// called for.  If the criteria is the same as the last
+			// one, just return the collection.
+
+			$criteria->add(AlumnoPeer::FK_CONCEPTOBAJA_ID, $this->getId());
+
+			if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
+				$this->collAlumnos = AlumnoPeer::doSelectJoinPais($criteria, $con);
+			}
+		}
+		$this->lastAlumnoCriteria = $criteria;
+
+		return $this->collAlumnos;
+	}
+
 } // BaseConceptobaja

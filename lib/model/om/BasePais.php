@@ -68,6 +68,18 @@ abstract class BasePais extends BaseObject  implements Persistent {
 	protected $lastProvinciaCriteria = null;
 
 	/**
+	 * Collection to store aggregation of collAlumnos.
+	 * @var array
+	 */
+	protected $collAlumnos;
+
+	/**
+	 * The criteria used to select the current contents of collAlumnos.
+	 * @var Criteria
+	 */
+	protected $lastAlumnoCriteria = null;
+
+	/**
 	 * Flag to prevent endless save loop, if this object is referenced
 	 * by another object which falls in this transaction.
 	 * @var boolean
@@ -330,6 +342,14 @@ abstract class BasePais extends BaseObject  implements Persistent {
 				}
 			}
 
+			if ($this->collAlumnos !== null) {
+				foreach($this->collAlumnos as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
 			$this->alreadyInSave = false;
 		}
 		return $affectedRows;
@@ -402,6 +422,14 @@ abstract class BasePais extends BaseObject  implements Persistent {
 
 				if ($this->collProvincias !== null) {
 					foreach($this->collProvincias as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
+
+				if ($this->collAlumnos !== null) {
+					foreach($this->collAlumnos as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -631,6 +659,10 @@ abstract class BasePais extends BaseObject  implements Persistent {
 				$copyObj->addProvincia($relObj->copy($deepCopy));
 			}
 
+			foreach($this->getAlumnos() as $relObj) {
+				$copyObj->addAlumno($relObj->copy($deepCopy));
+			}
+
 		} // if ($deepCopy)
 
 
@@ -783,6 +815,358 @@ abstract class BasePais extends BaseObject  implements Persistent {
 	{
 		$this->collProvincias[] = $l;
 		$l->setPais($this);
+	}
+
+	/**
+	 * Temporary storage of collAlumnos to save a possible db hit in
+	 * the event objects are add to the collection, but the
+	 * complete collection is never requested.
+	 * @return void
+	 */
+	public function initAlumnos()
+	{
+		if ($this->collAlumnos === null) {
+			$this->collAlumnos = array();
+		}
+	}
+
+	/**
+	 * If this collection has already been initialized with
+	 * an identical criteria, it returns the collection.
+	 * Otherwise if this Pais has previously
+	 * been saved, it will retrieve related Alumnos from storage.
+	 * If this Pais is new, it will return
+	 * an empty collection or the current collection, the criteria
+	 * is ignored on a new object.
+	 *
+	 * @param Connection $con
+	 * @param Criteria $criteria
+	 * @throws PropelException
+	 */
+	public function getAlumnos($criteria = null, $con = null)
+	{
+		// include the Peer class
+		include_once 'model/om/BaseAlumnoPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collAlumnos === null) {
+			if ($this->isNew()) {
+			   $this->collAlumnos = array();
+			} else {
+
+				$criteria->add(AlumnoPeer::FK_PAIS_ID, $this->getId());
+
+				AlumnoPeer::addSelectColumns($criteria);
+				$this->collAlumnos = AlumnoPeer::doSelect($criteria, $con);
+			}
+		} else {
+			// criteria has no effect for a new object
+			if (!$this->isNew()) {
+				// the following code is to determine if a new query is
+				// called for.  If the criteria is the same as the last
+				// one, just return the collection.
+
+
+				$criteria->add(AlumnoPeer::FK_PAIS_ID, $this->getId());
+
+				AlumnoPeer::addSelectColumns($criteria);
+				if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
+					$this->collAlumnos = AlumnoPeer::doSelect($criteria, $con);
+				}
+			}
+		}
+		$this->lastAlumnoCriteria = $criteria;
+		return $this->collAlumnos;
+	}
+
+	/**
+	 * Returns the number of related Alumnos.
+	 *
+	 * @param Criteria $criteria
+	 * @param boolean $distinct
+	 * @param Connection $con
+	 * @throws PropelException
+	 */
+	public function countAlumnos($criteria = null, $distinct = false, $con = null)
+	{
+		// include the Peer class
+		include_once 'model/om/BaseAlumnoPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		$criteria->add(AlumnoPeer::FK_PAIS_ID, $this->getId());
+
+		return AlumnoPeer::doCount($criteria, $distinct, $con);
+	}
+
+	/**
+	 * Method called to associate a Alumno object to this object
+	 * through the Alumno foreign key attribute
+	 *
+	 * @param Alumno $l Alumno
+	 * @return void
+	 * @throws PropelException
+	 */
+	public function addAlumno(Alumno $l)
+	{
+		$this->collAlumnos[] = $l;
+		$l->setPais($this);
+	}
+
+
+	/**
+	 * If this collection has already been initialized with
+	 * an identical criteria, it returns the collection.
+	 * Otherwise if this Pais is new, it will return
+	 * an empty collection; or if this Pais has previously
+	 * been saved, it will retrieve related Alumnos from storage.
+	 *
+	 * This method is protected by default in order to keep the public
+	 * api reasonable.  You can provide public methods for those you
+	 * actually need in Pais.
+	 */
+	public function getAlumnosJoinTipodocumento($criteria = null, $con = null)
+	{
+		// include the Peer class
+		include_once 'model/om/BaseAlumnoPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collAlumnos === null) {
+			if ($this->isNew()) {
+				$this->collAlumnos = array();
+			} else {
+
+				$criteria->add(AlumnoPeer::FK_PAIS_ID, $this->getId());
+
+				$this->collAlumnos = AlumnoPeer::doSelectJoinTipodocumento($criteria, $con);
+			}
+		} else {
+			// the following code is to determine if a new query is
+			// called for.  If the criteria is the same as the last
+			// one, just return the collection.
+
+			$criteria->add(AlumnoPeer::FK_PAIS_ID, $this->getId());
+
+			if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
+				$this->collAlumnos = AlumnoPeer::doSelectJoinTipodocumento($criteria, $con);
+			}
+		}
+		$this->lastAlumnoCriteria = $criteria;
+
+		return $this->collAlumnos;
+	}
+
+
+	/**
+	 * If this collection has already been initialized with
+	 * an identical criteria, it returns the collection.
+	 * Otherwise if this Pais is new, it will return
+	 * an empty collection; or if this Pais has previously
+	 * been saved, it will retrieve related Alumnos from storage.
+	 *
+	 * This method is protected by default in order to keep the public
+	 * api reasonable.  You can provide public methods for those you
+	 * actually need in Pais.
+	 */
+	public function getAlumnosJoinCuenta($criteria = null, $con = null)
+	{
+		// include the Peer class
+		include_once 'model/om/BaseAlumnoPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collAlumnos === null) {
+			if ($this->isNew()) {
+				$this->collAlumnos = array();
+			} else {
+
+				$criteria->add(AlumnoPeer::FK_PAIS_ID, $this->getId());
+
+				$this->collAlumnos = AlumnoPeer::doSelectJoinCuenta($criteria, $con);
+			}
+		} else {
+			// the following code is to determine if a new query is
+			// called for.  If the criteria is the same as the last
+			// one, just return the collection.
+
+			$criteria->add(AlumnoPeer::FK_PAIS_ID, $this->getId());
+
+			if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
+				$this->collAlumnos = AlumnoPeer::doSelectJoinCuenta($criteria, $con);
+			}
+		}
+		$this->lastAlumnoCriteria = $criteria;
+
+		return $this->collAlumnos;
+	}
+
+
+	/**
+	 * If this collection has already been initialized with
+	 * an identical criteria, it returns the collection.
+	 * Otherwise if this Pais is new, it will return
+	 * an empty collection; or if this Pais has previously
+	 * been saved, it will retrieve related Alumnos from storage.
+	 *
+	 * This method is protected by default in order to keep the public
+	 * api reasonable.  You can provide public methods for those you
+	 * actually need in Pais.
+	 */
+	public function getAlumnosJoinEstablecimiento($criteria = null, $con = null)
+	{
+		// include the Peer class
+		include_once 'model/om/BaseAlumnoPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collAlumnos === null) {
+			if ($this->isNew()) {
+				$this->collAlumnos = array();
+			} else {
+
+				$criteria->add(AlumnoPeer::FK_PAIS_ID, $this->getId());
+
+				$this->collAlumnos = AlumnoPeer::doSelectJoinEstablecimiento($criteria, $con);
+			}
+		} else {
+			// the following code is to determine if a new query is
+			// called for.  If the criteria is the same as the last
+			// one, just return the collection.
+
+			$criteria->add(AlumnoPeer::FK_PAIS_ID, $this->getId());
+
+			if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
+				$this->collAlumnos = AlumnoPeer::doSelectJoinEstablecimiento($criteria, $con);
+			}
+		}
+		$this->lastAlumnoCriteria = $criteria;
+
+		return $this->collAlumnos;
+	}
+
+
+	/**
+	 * If this collection has already been initialized with
+	 * an identical criteria, it returns the collection.
+	 * Otherwise if this Pais is new, it will return
+	 * an empty collection; or if this Pais has previously
+	 * been saved, it will retrieve related Alumnos from storage.
+	 *
+	 * This method is protected by default in order to keep the public
+	 * api reasonable.  You can provide public methods for those you
+	 * actually need in Pais.
+	 */
+	public function getAlumnosJoinProvincia($criteria = null, $con = null)
+	{
+		// include the Peer class
+		include_once 'model/om/BaseAlumnoPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collAlumnos === null) {
+			if ($this->isNew()) {
+				$this->collAlumnos = array();
+			} else {
+
+				$criteria->add(AlumnoPeer::FK_PAIS_ID, $this->getId());
+
+				$this->collAlumnos = AlumnoPeer::doSelectJoinProvincia($criteria, $con);
+			}
+		} else {
+			// the following code is to determine if a new query is
+			// called for.  If the criteria is the same as the last
+			// one, just return the collection.
+
+			$criteria->add(AlumnoPeer::FK_PAIS_ID, $this->getId());
+
+			if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
+				$this->collAlumnos = AlumnoPeer::doSelectJoinProvincia($criteria, $con);
+			}
+		}
+		$this->lastAlumnoCriteria = $criteria;
+
+		return $this->collAlumnos;
+	}
+
+
+	/**
+	 * If this collection has already been initialized with
+	 * an identical criteria, it returns the collection.
+	 * Otherwise if this Pais is new, it will return
+	 * an empty collection; or if this Pais has previously
+	 * been saved, it will retrieve related Alumnos from storage.
+	 *
+	 * This method is protected by default in order to keep the public
+	 * api reasonable.  You can provide public methods for those you
+	 * actually need in Pais.
+	 */
+	public function getAlumnosJoinConceptobaja($criteria = null, $con = null)
+	{
+		// include the Peer class
+		include_once 'model/om/BaseAlumnoPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collAlumnos === null) {
+			if ($this->isNew()) {
+				$this->collAlumnos = array();
+			} else {
+
+				$criteria->add(AlumnoPeer::FK_PAIS_ID, $this->getId());
+
+				$this->collAlumnos = AlumnoPeer::doSelectJoinConceptobaja($criteria, $con);
+			}
+		} else {
+			// the following code is to determine if a new query is
+			// called for.  If the criteria is the same as the last
+			// one, just return the collection.
+
+			$criteria->add(AlumnoPeer::FK_PAIS_ID, $this->getId());
+
+			if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
+				$this->collAlumnos = AlumnoPeer::doSelectJoinConceptobaja($criteria, $con);
+			}
+		}
+		$this->lastAlumnoCriteria = $criteria;
+
+		return $this->collAlumnos;
 	}
 
 } // BasePais

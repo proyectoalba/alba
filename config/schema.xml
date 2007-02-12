@@ -234,6 +234,7 @@
     <column name="codigo_postal" type="VARCHAR" size="20" required="true" default=""/>
     <column name="fk_provincia_id" type="INTEGER" required="true" default="0"/>
     <column name="telefono" type="VARCHAR" size="20" required="false" default=""/>
+    <column name="lugar_nacimiento" type="VARCHAR" size="128" required="false" default=""/>
     <column name="fk_tipodocumento_id" type="integer" size="11" required="true" default="0"/>
     <column name="nro_documento" type="varchar" size="16" required="true" default=""/>
     <column name="sexo" type="CHAR" size="1" required="true" default=""/>
@@ -246,6 +247,7 @@
     <column name="certificado_medico" type="boolean" required="true" default="0"/>
     <column name="activo" type="boolean" required="true" default="true"/>
     <column name="fk_conceptobaja_id" type="INTEGER" required="true" default="0"/>
+    <column name="fk_pais_id" type="INTEGER" required="true" default="0"/>
     <foreign-key foreignTable="tipodocumento">         
         <reference local="fk_tipodocumento_id" foreign="id"/>       
     </foreign-key>
@@ -260,6 +262,9 @@
     </foreign-key>
     <foreign-key foreignTable="conceptobaja">         
       <reference local="fk_conceptobaja_id" foreign="id"/>       
+    </foreign-key>
+    <foreign-key foreignTable="pais">         
+      <reference local="fk_pais_id" foreign="id"/>       
     </foreign-key>
   </table>  
   <table name="responsable" idMethod="native">

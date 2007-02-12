@@ -92,6 +92,13 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 
 
 	/**
+	 * The value for the lugar_nacimiento field.
+	 * @var string
+	 */
+	protected $lugar_nacimiento = '';
+
+
+	/**
 	 * The value for the fk_tipodocumento_id field.
 	 * @var int
 	 */
@@ -174,6 +181,13 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	 */
 	protected $fk_conceptobaja_id = 0;
 
+
+	/**
+	 * The value for the fk_pais_id field.
+	 * @var int
+	 */
+	protected $fk_pais_id = 0;
+
 	/**
 	 * @var Tipodocumento
 	 */
@@ -198,6 +212,11 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	 * @var Conceptobaja
 	 */
 	protected $aConceptobaja;
+
+	/**
+	 * @var Pais
+	 */
+	protected $aPais;
 
 	/**
 	 * Collection to store aggregation of collRelCalendariovacunacionAlumnos.
@@ -417,6 +436,17 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	}
 
 	/**
+	 * Get the [lugar_nacimiento] column value.
+	 * 
+	 * @return string
+	 */
+	public function getLugarNacimiento()
+	{
+
+		return $this->lugar_nacimiento;
+	}
+
+	/**
 	 * Get the [fk_tipodocumento_id] column value.
 	 * 
 	 * @return int
@@ -546,6 +576,17 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	{
 
 		return $this->fk_conceptobaja_id;
+	}
+
+	/**
+	 * Get the [fk_pais_id] column value.
+	 * 
+	 * @return int
+	 */
+	public function getFkPaisId()
+	{
+
+		return $this->fk_pais_id;
 	}
 
 	/**
@@ -703,6 +744,22 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		}
 
 	} // setTelefono()
+
+	/**
+	 * Set the value of [lugar_nacimiento] column.
+	 * 
+	 * @param string $v new value
+	 * @return void
+	 */
+	public function setLugarNacimiento($v)
+	{
+
+		if ($this->lugar_nacimiento !== $v || $v === '') {
+			$this->lugar_nacimiento = $v;
+			$this->modifiedColumns[] = AlumnoPeer::LUGAR_NACIMIENTO;
+		}
+
+	} // setLugarNacimiento()
 
 	/**
 	 * Set the value of [fk_tipodocumento_id] column.
@@ -913,6 +970,26 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	} // setFkConceptobajaId()
 
 	/**
+	 * Set the value of [fk_pais_id] column.
+	 * 
+	 * @param int $v new value
+	 * @return void
+	 */
+	public function setFkPaisId($v)
+	{
+
+		if ($this->fk_pais_id !== $v || $v === 0) {
+			$this->fk_pais_id = $v;
+			$this->modifiedColumns[] = AlumnoPeer::FK_PAIS_ID;
+		}
+
+		if ($this->aPais !== null && $this->aPais->getId() !== $v) {
+			$this->aPais = null;
+		}
+
+	} // setFkPaisId()
+
+	/**
 	 * Hydrates (populates) the object variables with values from the database resultset.
 	 *
 	 * An offset (1-based "start column") is specified so that objects can be hydrated
@@ -947,36 +1024,40 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 
 			$this->telefono = $rs->getString($startcol + 8);
 
-			$this->fk_tipodocumento_id = $rs->getInt($startcol + 9);
+			$this->lugar_nacimiento = $rs->getString($startcol + 9);
 
-			$this->nro_documento = $rs->getString($startcol + 10);
+			$this->fk_tipodocumento_id = $rs->getInt($startcol + 10);
 
-			$this->sexo = $rs->getString($startcol + 11);
+			$this->nro_documento = $rs->getString($startcol + 11);
 
-			$this->email = $rs->getString($startcol + 12);
+			$this->sexo = $rs->getString($startcol + 12);
 
-			$this->distancia_escuela = $rs->getInt($startcol + 13);
+			$this->email = $rs->getString($startcol + 13);
 
-			$this->hermanos_escuela = $rs->getBoolean($startcol + 14);
+			$this->distancia_escuela = $rs->getInt($startcol + 14);
 
-			$this->hijo_maestro_escuela = $rs->getBoolean($startcol + 15);
+			$this->hermanos_escuela = $rs->getBoolean($startcol + 15);
 
-			$this->fk_establecimiento_id = $rs->getInt($startcol + 16);
+			$this->hijo_maestro_escuela = $rs->getBoolean($startcol + 16);
 
-			$this->fk_cuenta_id = $rs->getInt($startcol + 17);
+			$this->fk_establecimiento_id = $rs->getInt($startcol + 17);
 
-			$this->certificado_medico = $rs->getBoolean($startcol + 18);
+			$this->fk_cuenta_id = $rs->getInt($startcol + 18);
 
-			$this->activo = $rs->getBoolean($startcol + 19);
+			$this->certificado_medico = $rs->getBoolean($startcol + 19);
 
-			$this->fk_conceptobaja_id = $rs->getInt($startcol + 20);
+			$this->activo = $rs->getBoolean($startcol + 20);
+
+			$this->fk_conceptobaja_id = $rs->getInt($startcol + 21);
+
+			$this->fk_pais_id = $rs->getInt($startcol + 22);
 
 			$this->resetModified();
 
 			$this->setNew(false);
 
 			// FIXME - using NUM_COLUMNS may be clearer.
-			return $startcol + 21; // 21 = AlumnoPeer::NUM_COLUMNS - AlumnoPeer::NUM_LAZY_LOAD_COLUMNS).
+			return $startcol + 23; // 23 = AlumnoPeer::NUM_COLUMNS - AlumnoPeer::NUM_LAZY_LOAD_COLUMNS).
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Alumno object", $e);
@@ -1100,6 +1181,13 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 					$affectedRows += $this->aConceptobaja->save($con);
 				}
 				$this->setConceptobaja($this->aConceptobaja);
+			}
+
+			if ($this->aPais !== null) {
+				if ($this->aPais->isModified()) {
+					$affectedRows += $this->aPais->save($con);
+				}
+				$this->setPais($this->aPais);
 			}
 
 
@@ -1276,6 +1364,12 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				}
 			}
 
+			if ($this->aPais !== null) {
+				if (!$this->aPais->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aPais->getValidationFailures());
+				}
+			}
+
 
 			if (($retval = AlumnoPeer::doValidate($this, $columns)) !== true) {
 				$failureMap = array_merge($failureMap, $retval);
@@ -1398,40 +1492,46 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				return $this->getTelefono();
 				break;
 			case 9:
-				return $this->getFkTipodocumentoId();
+				return $this->getLugarNacimiento();
 				break;
 			case 10:
-				return $this->getNroDocumento();
+				return $this->getFkTipodocumentoId();
 				break;
 			case 11:
-				return $this->getSexo();
+				return $this->getNroDocumento();
 				break;
 			case 12:
-				return $this->getEmail();
+				return $this->getSexo();
 				break;
 			case 13:
-				return $this->getDistanciaEscuela();
+				return $this->getEmail();
 				break;
 			case 14:
-				return $this->getHermanosEscuela();
+				return $this->getDistanciaEscuela();
 				break;
 			case 15:
-				return $this->getHijoMaestroEscuela();
+				return $this->getHermanosEscuela();
 				break;
 			case 16:
-				return $this->getFkEstablecimientoId();
+				return $this->getHijoMaestroEscuela();
 				break;
 			case 17:
-				return $this->getFkCuentaId();
+				return $this->getFkEstablecimientoId();
 				break;
 			case 18:
-				return $this->getCertificadoMedico();
+				return $this->getFkCuentaId();
 				break;
 			case 19:
-				return $this->getActivo();
+				return $this->getCertificadoMedico();
 				break;
 			case 20:
+				return $this->getActivo();
+				break;
+			case 21:
 				return $this->getFkConceptobajaId();
+				break;
+			case 22:
+				return $this->getFkPaisId();
 				break;
 			default:
 				return null;
@@ -1462,18 +1562,20 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$keys[6] => $this->getCodigoPostal(),
 			$keys[7] => $this->getFkProvinciaId(),
 			$keys[8] => $this->getTelefono(),
-			$keys[9] => $this->getFkTipodocumentoId(),
-			$keys[10] => $this->getNroDocumento(),
-			$keys[11] => $this->getSexo(),
-			$keys[12] => $this->getEmail(),
-			$keys[13] => $this->getDistanciaEscuela(),
-			$keys[14] => $this->getHermanosEscuela(),
-			$keys[15] => $this->getHijoMaestroEscuela(),
-			$keys[16] => $this->getFkEstablecimientoId(),
-			$keys[17] => $this->getFkCuentaId(),
-			$keys[18] => $this->getCertificadoMedico(),
-			$keys[19] => $this->getActivo(),
-			$keys[20] => $this->getFkConceptobajaId(),
+			$keys[9] => $this->getLugarNacimiento(),
+			$keys[10] => $this->getFkTipodocumentoId(),
+			$keys[11] => $this->getNroDocumento(),
+			$keys[12] => $this->getSexo(),
+			$keys[13] => $this->getEmail(),
+			$keys[14] => $this->getDistanciaEscuela(),
+			$keys[15] => $this->getHermanosEscuela(),
+			$keys[16] => $this->getHijoMaestroEscuela(),
+			$keys[17] => $this->getFkEstablecimientoId(),
+			$keys[18] => $this->getFkCuentaId(),
+			$keys[19] => $this->getCertificadoMedico(),
+			$keys[20] => $this->getActivo(),
+			$keys[21] => $this->getFkConceptobajaId(),
+			$keys[22] => $this->getFkPaisId(),
 		);
 		return $result;
 	}
@@ -1533,40 +1635,46 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->setTelefono($value);
 				break;
 			case 9:
-				$this->setFkTipodocumentoId($value);
+				$this->setLugarNacimiento($value);
 				break;
 			case 10:
-				$this->setNroDocumento($value);
+				$this->setFkTipodocumentoId($value);
 				break;
 			case 11:
-				$this->setSexo($value);
+				$this->setNroDocumento($value);
 				break;
 			case 12:
-				$this->setEmail($value);
+				$this->setSexo($value);
 				break;
 			case 13:
-				$this->setDistanciaEscuela($value);
+				$this->setEmail($value);
 				break;
 			case 14:
-				$this->setHermanosEscuela($value);
+				$this->setDistanciaEscuela($value);
 				break;
 			case 15:
-				$this->setHijoMaestroEscuela($value);
+				$this->setHermanosEscuela($value);
 				break;
 			case 16:
-				$this->setFkEstablecimientoId($value);
+				$this->setHijoMaestroEscuela($value);
 				break;
 			case 17:
-				$this->setFkCuentaId($value);
+				$this->setFkEstablecimientoId($value);
 				break;
 			case 18:
-				$this->setCertificadoMedico($value);
+				$this->setFkCuentaId($value);
 				break;
 			case 19:
-				$this->setActivo($value);
+				$this->setCertificadoMedico($value);
 				break;
 			case 20:
+				$this->setActivo($value);
+				break;
+			case 21:
 				$this->setFkConceptobajaId($value);
+				break;
+			case 22:
+				$this->setFkPaisId($value);
 				break;
 		} // switch()
 	}
@@ -1600,18 +1708,20 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[6], $arr)) $this->setCodigoPostal($arr[$keys[6]]);
 		if (array_key_exists($keys[7], $arr)) $this->setFkProvinciaId($arr[$keys[7]]);
 		if (array_key_exists($keys[8], $arr)) $this->setTelefono($arr[$keys[8]]);
-		if (array_key_exists($keys[9], $arr)) $this->setFkTipodocumentoId($arr[$keys[9]]);
-		if (array_key_exists($keys[10], $arr)) $this->setNroDocumento($arr[$keys[10]]);
-		if (array_key_exists($keys[11], $arr)) $this->setSexo($arr[$keys[11]]);
-		if (array_key_exists($keys[12], $arr)) $this->setEmail($arr[$keys[12]]);
-		if (array_key_exists($keys[13], $arr)) $this->setDistanciaEscuela($arr[$keys[13]]);
-		if (array_key_exists($keys[14], $arr)) $this->setHermanosEscuela($arr[$keys[14]]);
-		if (array_key_exists($keys[15], $arr)) $this->setHijoMaestroEscuela($arr[$keys[15]]);
-		if (array_key_exists($keys[16], $arr)) $this->setFkEstablecimientoId($arr[$keys[16]]);
-		if (array_key_exists($keys[17], $arr)) $this->setFkCuentaId($arr[$keys[17]]);
-		if (array_key_exists($keys[18], $arr)) $this->setCertificadoMedico($arr[$keys[18]]);
-		if (array_key_exists($keys[19], $arr)) $this->setActivo($arr[$keys[19]]);
-		if (array_key_exists($keys[20], $arr)) $this->setFkConceptobajaId($arr[$keys[20]]);
+		if (array_key_exists($keys[9], $arr)) $this->setLugarNacimiento($arr[$keys[9]]);
+		if (array_key_exists($keys[10], $arr)) $this->setFkTipodocumentoId($arr[$keys[10]]);
+		if (array_key_exists($keys[11], $arr)) $this->setNroDocumento($arr[$keys[11]]);
+		if (array_key_exists($keys[12], $arr)) $this->setSexo($arr[$keys[12]]);
+		if (array_key_exists($keys[13], $arr)) $this->setEmail($arr[$keys[13]]);
+		if (array_key_exists($keys[14], $arr)) $this->setDistanciaEscuela($arr[$keys[14]]);
+		if (array_key_exists($keys[15], $arr)) $this->setHermanosEscuela($arr[$keys[15]]);
+		if (array_key_exists($keys[16], $arr)) $this->setHijoMaestroEscuela($arr[$keys[16]]);
+		if (array_key_exists($keys[17], $arr)) $this->setFkEstablecimientoId($arr[$keys[17]]);
+		if (array_key_exists($keys[18], $arr)) $this->setFkCuentaId($arr[$keys[18]]);
+		if (array_key_exists($keys[19], $arr)) $this->setCertificadoMedico($arr[$keys[19]]);
+		if (array_key_exists($keys[20], $arr)) $this->setActivo($arr[$keys[20]]);
+		if (array_key_exists($keys[21], $arr)) $this->setFkConceptobajaId($arr[$keys[21]]);
+		if (array_key_exists($keys[22], $arr)) $this->setFkPaisId($arr[$keys[22]]);
 	}
 
 	/**
@@ -1632,6 +1742,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(AlumnoPeer::CODIGO_POSTAL)) $criteria->add(AlumnoPeer::CODIGO_POSTAL, $this->codigo_postal);
 		if ($this->isColumnModified(AlumnoPeer::FK_PROVINCIA_ID)) $criteria->add(AlumnoPeer::FK_PROVINCIA_ID, $this->fk_provincia_id);
 		if ($this->isColumnModified(AlumnoPeer::TELEFONO)) $criteria->add(AlumnoPeer::TELEFONO, $this->telefono);
+		if ($this->isColumnModified(AlumnoPeer::LUGAR_NACIMIENTO)) $criteria->add(AlumnoPeer::LUGAR_NACIMIENTO, $this->lugar_nacimiento);
 		if ($this->isColumnModified(AlumnoPeer::FK_TIPODOCUMENTO_ID)) $criteria->add(AlumnoPeer::FK_TIPODOCUMENTO_ID, $this->fk_tipodocumento_id);
 		if ($this->isColumnModified(AlumnoPeer::NRO_DOCUMENTO)) $criteria->add(AlumnoPeer::NRO_DOCUMENTO, $this->nro_documento);
 		if ($this->isColumnModified(AlumnoPeer::SEXO)) $criteria->add(AlumnoPeer::SEXO, $this->sexo);
@@ -1644,6 +1755,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(AlumnoPeer::CERTIFICADO_MEDICO)) $criteria->add(AlumnoPeer::CERTIFICADO_MEDICO, $this->certificado_medico);
 		if ($this->isColumnModified(AlumnoPeer::ACTIVO)) $criteria->add(AlumnoPeer::ACTIVO, $this->activo);
 		if ($this->isColumnModified(AlumnoPeer::FK_CONCEPTOBAJA_ID)) $criteria->add(AlumnoPeer::FK_CONCEPTOBAJA_ID, $this->fk_conceptobaja_id);
+		if ($this->isColumnModified(AlumnoPeer::FK_PAIS_ID)) $criteria->add(AlumnoPeer::FK_PAIS_ID, $this->fk_pais_id);
 
 		return $criteria;
 	}
@@ -1714,6 +1826,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 
 		$copyObj->setTelefono($this->telefono);
 
+		$copyObj->setLugarNacimiento($this->lugar_nacimiento);
+
 		$copyObj->setFkTipodocumentoId($this->fk_tipodocumento_id);
 
 		$copyObj->setNroDocumento($this->nro_documento);
@@ -1737,6 +1851,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		$copyObj->setActivo($this->activo);
 
 		$copyObj->setFkConceptobajaId($this->fk_conceptobaja_id);
+
+		$copyObj->setFkPaisId($this->fk_pais_id);
 
 
 		if ($deepCopy) {
@@ -2072,6 +2188,57 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			 */
 		}
 		return $this->aConceptobaja;
+	}
+
+	/**
+	 * Declares an association between this object and a Pais object.
+	 *
+	 * @param Pais $v
+	 * @return void
+	 * @throws PropelException
+	 */
+	public function setPais($v)
+	{
+
+
+		if ($v === null) {
+			$this->setFkPaisId('0');
+		} else {
+			$this->setFkPaisId($v->getId());
+		}
+
+
+		$this->aPais = $v;
+	}
+
+
+	/**
+	 * Get the associated Pais object
+	 *
+	 * @param Connection Optional Connection object.
+	 * @return Pais The associated Pais object.
+	 * @throws PropelException
+	 */
+	public function getPais($con = null)
+	{
+		// include the related Peer class
+		include_once 'model/om/BasePaisPeer.php';
+
+		if ($this->aPais === null && ($this->fk_pais_id !== null)) {
+
+			$this->aPais = PaisPeer::retrieveByPK($this->fk_pais_id, $con);
+
+			/* The following can be used instead of the line above to
+			   guarantee the related object contains a reference
+			   to this object, but this level of coupling
+			   may be undesirable in many circumstances.
+			   As it can lead to a db query with many results that may
+			   never be used.
+			   $obj = PaisPeer::retrieveByPK($this->fk_pais_id, $con);
+			   $obj->addPaiss($this);
+			 */
+		}
+		return $this->aPais;
 	}
 
 	/**

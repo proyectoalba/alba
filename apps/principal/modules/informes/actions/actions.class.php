@@ -190,5 +190,93 @@ class InformesActions extends sfActions
         $this->vista = "imprimir";
     }
 
+
+
+    public function executeCertificadoPrimariaFormulario() {
+        
+        // inicializando variables
+        $optionsDivision = array();
+        $aAlumno  = array();        
+
+        // tomando los datos del formulario
+        $division_id = $this->getRequestParameter('division_id');
+        $txt = $this->getRequestParameter('txt');
+
+        // llenando el combo de division segun establecimiento
+        $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
+        $criteria = new Criteria();
+        $criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
+        $divisiones = DivisionPeer::doSelectJoinAnio($criteria);
+        $optionsDivision[]  = "";
+        foreach($divisiones as $division) {
+            $optionsDivision[$division->getId()] = $division->getAnio()->getDescripcion()." ".$division->getDescripcion();
+        }
+        asort($optionsDivision);
+       
+        if ($this->getRequest()->getMethod() == sfRequest::POST) {
+            // buscando alumnos
+            $criteria = new Criteria();
+            if($division_id) {
+                $criteria->add(DivisionPeer::ID, $division_id);
+            }
+            $criteria->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
+            $criteria->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID);
+            $criteria->addJoin(DivisionPeer::FK_ANIO_ID, AnioPeer::ID);
+        
+            if($txt) {
+                $cton1 = $criteria->getNewCriterion(AlumnoPeer::NOMBRE, "%$txt%", Criteria::LIKE);
+                $cton2 = $criteria->getNewCriterion(AlumnoPeer::APELLIDO, "%$txt%", Criteria::LIKE);
+                $cton1->addOr($cton2);
+                $criteria->add($cton1);
+            }
+
+            $criteria->addAsColumn("alumno_id", AlumnoPeer::ID);
+            $criteria->addAsColumn("alumno_nombre", AlumnoPeer::NOMBRE);
+            $criteria->addAsColumn("alumno_apellido", AlumnoPeer::APELLIDO);
+            $criteria->addAsColumn("division_id", DivisionPeer::ID);
+            $criteria->addAsColumn("division_descripcion", DivisionPeer::DESCRIPCION);
+            $criteria->addAsColumn("anio_descripcion", AnioPeer::DESCRIPCION);
+
+            $alumnos = BasePeer::doSelect($criteria);
+            foreach($alumnos as $alumno) {
+                $aAlumno[] = (object) array( 'alumno_id' => $alumno[0],'alumno_nombre' => $alumno[1], 'alumno_apellido' => $alumno[2], 'division_id' => $alumno[3], 'division_nombre' => $alumno[4], 'anio_descripcion' => $alumno[5] );
+            }
+    
+        }
+
+        // asignando variables para ser usadas en el template
+        $this->optionsDivision = $optionsDivision;
+        $this->division_id = $division_id;
+        $this->txt = $txt;
+        $this->aAlumno = $aAlumno;
+        $this->vista = "imprimir";
+
+
+    }
+
+    // no valida que realmente ha terminado septimo grado
+    public function executeCertificadoPrimariaListado() {
+
+        // tomando los datos del formulario
+        $alumno_id = $this->getRequestParameter('alumno_id');
+        $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
+        $ciclolectivo_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');
+
+        $alumno = AlumnoPeer::retrieveByPK($alumno_id);
+        $establecimiento = EstablecimientoPeer::retrieveByPK($establecimiento_id);
+
+        // asignando variables para ser usadas en el template
+        $this->alumno = $alumno;
+        $this->establecimiento = $establecimiento;
+        $this->vista = "imprimir";
+
+        Misc::use_helper('Misc');
+        $aMeses = meses();
+
+        $this->anio = date("Y");
+        $this->mes = $aMeses[date("n")];
+        $this->dia = date("d");
+    }
+
 }
 ?>

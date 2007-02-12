@@ -24,7 +24,7 @@ abstract class BaseAlumnoPeer {
 	const CLASS_DEFAULT = 'model.Alumno';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 21;
+	const NUM_COLUMNS = 23;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -56,6 +56,9 @@ abstract class BaseAlumnoPeer {
 
 	/** the column name for the TELEFONO field */
 	const TELEFONO = 'alumno.TELEFONO';
+
+	/** the column name for the LUGAR_NACIMIENTO field */
+	const LUGAR_NACIMIENTO = 'alumno.LUGAR_NACIMIENTO';
 
 	/** the column name for the FK_TIPODOCUMENTO_ID field */
 	const FK_TIPODOCUMENTO_ID = 'alumno.FK_TIPODOCUMENTO_ID';
@@ -93,6 +96,9 @@ abstract class BaseAlumnoPeer {
 	/** the column name for the FK_CONCEPTOBAJA_ID field */
 	const FK_CONCEPTOBAJA_ID = 'alumno.FK_CONCEPTOBAJA_ID';
 
+	/** the column name for the FK_PAIS_ID field */
+	const FK_PAIS_ID = 'alumno.FK_PAIS_ID';
+
 	/** The PHP to DB Name Mapping */
 	private static $phpNameMap = null;
 
@@ -104,10 +110,10 @@ abstract class BaseAlumnoPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Apellido', 'FechaNacimiento', 'Direccion', 'Ciudad', 'CodigoPostal', 'FkProvinciaId', 'Telefono', 'FkTipodocumentoId', 'NroDocumento', 'Sexo', 'Email', 'DistanciaEscuela', 'HermanosEscuela', 'HijoMaestroEscuela', 'FkEstablecimientoId', 'FkCuentaId', 'CertificadoMedico', 'Activo', 'FkConceptobajaId', ),
-		BasePeer::TYPE_COLNAME => array (AlumnoPeer::ID, AlumnoPeer::NOMBRE, AlumnoPeer::APELLIDO, AlumnoPeer::FECHA_NACIMIENTO, AlumnoPeer::DIRECCION, AlumnoPeer::CIUDAD, AlumnoPeer::CODIGO_POSTAL, AlumnoPeer::FK_PROVINCIA_ID, AlumnoPeer::TELEFONO, AlumnoPeer::FK_TIPODOCUMENTO_ID, AlumnoPeer::NRO_DOCUMENTO, AlumnoPeer::SEXO, AlumnoPeer::EMAIL, AlumnoPeer::DISTANCIA_ESCUELA, AlumnoPeer::HERMANOS_ESCUELA, AlumnoPeer::HIJO_MAESTRO_ESCUELA, AlumnoPeer::FK_ESTABLECIMIENTO_ID, AlumnoPeer::FK_CUENTA_ID, AlumnoPeer::CERTIFICADO_MEDICO, AlumnoPeer::ACTIVO, AlumnoPeer::FK_CONCEPTOBAJA_ID, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'apellido', 'fecha_nacimiento', 'direccion', 'ciudad', 'codigo_postal', 'fk_provincia_id', 'telefono', 'fk_tipodocumento_id', 'nro_documento', 'sexo', 'email', 'distancia_escuela', 'hermanos_escuela', 'hijo_maestro_escuela', 'fk_establecimiento_id', 'fk_cuenta_id', 'certificado_medico', 'activo', 'fk_conceptobaja_id', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Apellido', 'FechaNacimiento', 'Direccion', 'Ciudad', 'CodigoPostal', 'FkProvinciaId', 'Telefono', 'LugarNacimiento', 'FkTipodocumentoId', 'NroDocumento', 'Sexo', 'Email', 'DistanciaEscuela', 'HermanosEscuela', 'HijoMaestroEscuela', 'FkEstablecimientoId', 'FkCuentaId', 'CertificadoMedico', 'Activo', 'FkConceptobajaId', 'FkPaisId', ),
+		BasePeer::TYPE_COLNAME => array (AlumnoPeer::ID, AlumnoPeer::NOMBRE, AlumnoPeer::APELLIDO, AlumnoPeer::FECHA_NACIMIENTO, AlumnoPeer::DIRECCION, AlumnoPeer::CIUDAD, AlumnoPeer::CODIGO_POSTAL, AlumnoPeer::FK_PROVINCIA_ID, AlumnoPeer::TELEFONO, AlumnoPeer::LUGAR_NACIMIENTO, AlumnoPeer::FK_TIPODOCUMENTO_ID, AlumnoPeer::NRO_DOCUMENTO, AlumnoPeer::SEXO, AlumnoPeer::EMAIL, AlumnoPeer::DISTANCIA_ESCUELA, AlumnoPeer::HERMANOS_ESCUELA, AlumnoPeer::HIJO_MAESTRO_ESCUELA, AlumnoPeer::FK_ESTABLECIMIENTO_ID, AlumnoPeer::FK_CUENTA_ID, AlumnoPeer::CERTIFICADO_MEDICO, AlumnoPeer::ACTIVO, AlumnoPeer::FK_CONCEPTOBAJA_ID, AlumnoPeer::FK_PAIS_ID, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'apellido', 'fecha_nacimiento', 'direccion', 'ciudad', 'codigo_postal', 'fk_provincia_id', 'telefono', 'lugar_nacimiento', 'fk_tipodocumento_id', 'nro_documento', 'sexo', 'email', 'distancia_escuela', 'hermanos_escuela', 'hijo_maestro_escuela', 'fk_establecimiento_id', 'fk_cuenta_id', 'certificado_medico', 'activo', 'fk_conceptobaja_id', 'fk_pais_id', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, )
 	);
 
 	/**
@@ -117,10 +123,10 @@ abstract class BaseAlumnoPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Apellido' => 2, 'FechaNacimiento' => 3, 'Direccion' => 4, 'Ciudad' => 5, 'CodigoPostal' => 6, 'FkProvinciaId' => 7, 'Telefono' => 8, 'FkTipodocumentoId' => 9, 'NroDocumento' => 10, 'Sexo' => 11, 'Email' => 12, 'DistanciaEscuela' => 13, 'HermanosEscuela' => 14, 'HijoMaestroEscuela' => 15, 'FkEstablecimientoId' => 16, 'FkCuentaId' => 17, 'CertificadoMedico' => 18, 'Activo' => 19, 'FkConceptobajaId' => 20, ),
-		BasePeer::TYPE_COLNAME => array (AlumnoPeer::ID => 0, AlumnoPeer::NOMBRE => 1, AlumnoPeer::APELLIDO => 2, AlumnoPeer::FECHA_NACIMIENTO => 3, AlumnoPeer::DIRECCION => 4, AlumnoPeer::CIUDAD => 5, AlumnoPeer::CODIGO_POSTAL => 6, AlumnoPeer::FK_PROVINCIA_ID => 7, AlumnoPeer::TELEFONO => 8, AlumnoPeer::FK_TIPODOCUMENTO_ID => 9, AlumnoPeer::NRO_DOCUMENTO => 10, AlumnoPeer::SEXO => 11, AlumnoPeer::EMAIL => 12, AlumnoPeer::DISTANCIA_ESCUELA => 13, AlumnoPeer::HERMANOS_ESCUELA => 14, AlumnoPeer::HIJO_MAESTRO_ESCUELA => 15, AlumnoPeer::FK_ESTABLECIMIENTO_ID => 16, AlumnoPeer::FK_CUENTA_ID => 17, AlumnoPeer::CERTIFICADO_MEDICO => 18, AlumnoPeer::ACTIVO => 19, AlumnoPeer::FK_CONCEPTOBAJA_ID => 20, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'apellido' => 2, 'fecha_nacimiento' => 3, 'direccion' => 4, 'ciudad' => 5, 'codigo_postal' => 6, 'fk_provincia_id' => 7, 'telefono' => 8, 'fk_tipodocumento_id' => 9, 'nro_documento' => 10, 'sexo' => 11, 'email' => 12, 'distancia_escuela' => 13, 'hermanos_escuela' => 14, 'hijo_maestro_escuela' => 15, 'fk_establecimiento_id' => 16, 'fk_cuenta_id' => 17, 'certificado_medico' => 18, 'activo' => 19, 'fk_conceptobaja_id' => 20, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Apellido' => 2, 'FechaNacimiento' => 3, 'Direccion' => 4, 'Ciudad' => 5, 'CodigoPostal' => 6, 'FkProvinciaId' => 7, 'Telefono' => 8, 'LugarNacimiento' => 9, 'FkTipodocumentoId' => 10, 'NroDocumento' => 11, 'Sexo' => 12, 'Email' => 13, 'DistanciaEscuela' => 14, 'HermanosEscuela' => 15, 'HijoMaestroEscuela' => 16, 'FkEstablecimientoId' => 17, 'FkCuentaId' => 18, 'CertificadoMedico' => 19, 'Activo' => 20, 'FkConceptobajaId' => 21, 'FkPaisId' => 22, ),
+		BasePeer::TYPE_COLNAME => array (AlumnoPeer::ID => 0, AlumnoPeer::NOMBRE => 1, AlumnoPeer::APELLIDO => 2, AlumnoPeer::FECHA_NACIMIENTO => 3, AlumnoPeer::DIRECCION => 4, AlumnoPeer::CIUDAD => 5, AlumnoPeer::CODIGO_POSTAL => 6, AlumnoPeer::FK_PROVINCIA_ID => 7, AlumnoPeer::TELEFONO => 8, AlumnoPeer::LUGAR_NACIMIENTO => 9, AlumnoPeer::FK_TIPODOCUMENTO_ID => 10, AlumnoPeer::NRO_DOCUMENTO => 11, AlumnoPeer::SEXO => 12, AlumnoPeer::EMAIL => 13, AlumnoPeer::DISTANCIA_ESCUELA => 14, AlumnoPeer::HERMANOS_ESCUELA => 15, AlumnoPeer::HIJO_MAESTRO_ESCUELA => 16, AlumnoPeer::FK_ESTABLECIMIENTO_ID => 17, AlumnoPeer::FK_CUENTA_ID => 18, AlumnoPeer::CERTIFICADO_MEDICO => 19, AlumnoPeer::ACTIVO => 20, AlumnoPeer::FK_CONCEPTOBAJA_ID => 21, AlumnoPeer::FK_PAIS_ID => 22, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'apellido' => 2, 'fecha_nacimiento' => 3, 'direccion' => 4, 'ciudad' => 5, 'codigo_postal' => 6, 'fk_provincia_id' => 7, 'telefono' => 8, 'lugar_nacimiento' => 9, 'fk_tipodocumento_id' => 10, 'nro_documento' => 11, 'sexo' => 12, 'email' => 13, 'distancia_escuela' => 14, 'hermanos_escuela' => 15, 'hijo_maestro_escuela' => 16, 'fk_establecimiento_id' => 17, 'fk_cuenta_id' => 18, 'certificado_medico' => 19, 'activo' => 20, 'fk_conceptobaja_id' => 21, 'fk_pais_id' => 22, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, )
 	);
 
 	/**
@@ -239,6 +245,8 @@ abstract class BaseAlumnoPeer {
 
 		$criteria->addSelectColumn(AlumnoPeer::TELEFONO);
 
+		$criteria->addSelectColumn(AlumnoPeer::LUGAR_NACIMIENTO);
+
 		$criteria->addSelectColumn(AlumnoPeer::FK_TIPODOCUMENTO_ID);
 
 		$criteria->addSelectColumn(AlumnoPeer::NRO_DOCUMENTO);
@@ -262,6 +270,8 @@ abstract class BaseAlumnoPeer {
 		$criteria->addSelectColumn(AlumnoPeer::ACTIVO);
 
 		$criteria->addSelectColumn(AlumnoPeer::FK_CONCEPTOBAJA_ID);
+
+		$criteria->addSelectColumn(AlumnoPeer::FK_PAIS_ID);
 
 	}
 
@@ -588,6 +598,45 @@ abstract class BaseAlumnoPeer {
 
 
 	/**
+	 * Returns the number of rows matching criteria, joining the related Pais table
+	 *
+	 * @param Criteria $c
+	 * @param boolean $distinct Whether to select only distinct columns (You can also set DISTINCT modifier in Criteria).
+	 * @param Connection $con
+	 * @return int Number of matching rows.
+	 */
+	public static function doCountJoinPais(Criteria $criteria, $distinct = false, $con = null)
+	{
+		// we're going to modify criteria, so copy it first
+		$criteria = clone $criteria;
+		
+		// clear out anything that might confuse the ORDER BY clause
+		$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(AlumnoPeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(AlumnoPeer::COUNT);
+		}
+		
+		// just in case we're grouping: add those columns to the select statement
+		foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
+		}
+
+		$criteria->addJoin(AlumnoPeer::FK_PAIS_ID, PaisPeer::ID);
+
+		$rs = AlumnoPeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+			// no rows returned; we infer that means 0 matches.
+			return 0;
+		}
+	}
+
+
+	/**
 	 * Selects a collection of Alumno objects pre-filled with their Tipodocumento objects.
 	 *
 	 * @return array Array of Alumno objects.
@@ -878,6 +927,64 @@ abstract class BaseAlumnoPeer {
 
 
 	/**
+	 * Selects a collection of Alumno objects pre-filled with their Pais objects.
+	 *
+	 * @return array Array of Alumno objects.
+	 * @throws PropelException Any exceptions caught during processing will be
+	 *		 rethrown wrapped into a PropelException.
+	 */
+	public static function doSelectJoinPais(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+		// Set the correct dbName if it has not been overridden
+		if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		AlumnoPeer::addSelectColumns($c);
+		$startcol = (AlumnoPeer::NUM_COLUMNS - AlumnoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+		PaisPeer::addSelectColumns($c);
+
+		$c->addJoin(AlumnoPeer::FK_PAIS_ID, PaisPeer::ID);
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = AlumnoPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = PaisPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj2 = new $cls();
+			$obj2->hydrate($rs, $startcol);
+
+			$newObject = true;
+			foreach($results as $temp_obj1) {
+				$temp_obj2 = $temp_obj1->getPais(); //CHECKME
+				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+					// e.g. $author->addBookRelatedByBookId()
+					$temp_obj2->addAlumno($obj1); //CHECKME
+					break;
+				}
+			}
+			if ($newObject) {
+				$obj2->initAlumnos();
+				$obj2->addAlumno($obj1); //CHECKME
+			}
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	/**
 	 * Returns the number of rows matching criteria, joining all related tables
 	 *
 	 * @param Criteria $c
@@ -912,6 +1019,8 @@ abstract class BaseAlumnoPeer {
 		$criteria->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
 		$criteria->addJoin(AlumnoPeer::FK_CONCEPTOBAJA_ID, ConceptobajaPeer::ID);
+
+		$criteria->addJoin(AlumnoPeer::FK_PAIS_ID, PaisPeer::ID);
 
 		$rs = AlumnoPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -957,6 +1066,9 @@ abstract class BaseAlumnoPeer {
 		ConceptobajaPeer::addSelectColumns($c);
 		$startcol7 = $startcol6 + ConceptobajaPeer::NUM_COLUMNS;
 
+		PaisPeer::addSelectColumns($c);
+		$startcol8 = $startcol7 + PaisPeer::NUM_COLUMNS;
+
 		$c->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
@@ -966,6 +1078,8 @@ abstract class BaseAlumnoPeer {
 		$c->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_CONCEPTOBAJA_ID, ConceptobajaPeer::ID);
+
+		$c->addJoin(AlumnoPeer::FK_PAIS_ID, PaisPeer::ID);
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
@@ -1109,6 +1223,32 @@ abstract class BaseAlumnoPeer {
 				$obj6->addAlumno($obj1);
 			}
 
+				
+				// Add objects for joined Pais rows
+	
+			$omClass = PaisPeer::getOMClass();
+
+	
+			$cls = Propel::import($omClass);
+			$obj7 = new $cls();
+			$obj7->hydrate($rs, $startcol7);
+			
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj7 = $temp_obj1->getPais(); // CHECKME
+				if ($temp_obj7->getPrimaryKey() === $obj7->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj7->addAlumno($obj1); // CHECKME
+					break;
+				}
+			}
+			
+			if ($newObject) {
+				$obj7->initAlumnos();
+				$obj7->addAlumno($obj1);
+			}
+
 			$results[] = $obj1;
 		}
 		return $results;
@@ -1149,6 +1289,8 @@ abstract class BaseAlumnoPeer {
 		$criteria->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
 		$criteria->addJoin(AlumnoPeer::FK_CONCEPTOBAJA_ID, ConceptobajaPeer::ID);
+
+		$criteria->addJoin(AlumnoPeer::FK_PAIS_ID, PaisPeer::ID);
 
 		$rs = AlumnoPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -1195,6 +1337,8 @@ abstract class BaseAlumnoPeer {
 
 		$criteria->addJoin(AlumnoPeer::FK_CONCEPTOBAJA_ID, ConceptobajaPeer::ID);
 
+		$criteria->addJoin(AlumnoPeer::FK_PAIS_ID, PaisPeer::ID);
+
 		$rs = AlumnoPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
 			return $rs->getInt(1);
@@ -1239,6 +1383,8 @@ abstract class BaseAlumnoPeer {
 		$criteria->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
 		$criteria->addJoin(AlumnoPeer::FK_CONCEPTOBAJA_ID, ConceptobajaPeer::ID);
+
+		$criteria->addJoin(AlumnoPeer::FK_PAIS_ID, PaisPeer::ID);
 
 		$rs = AlumnoPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -1285,6 +1431,8 @@ abstract class BaseAlumnoPeer {
 
 		$criteria->addJoin(AlumnoPeer::FK_CONCEPTOBAJA_ID, ConceptobajaPeer::ID);
 
+		$criteria->addJoin(AlumnoPeer::FK_PAIS_ID, PaisPeer::ID);
+
 		$rs = AlumnoPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
 			return $rs->getInt(1);
@@ -1330,6 +1478,55 @@ abstract class BaseAlumnoPeer {
 
 		$criteria->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
+		$criteria->addJoin(AlumnoPeer::FK_PAIS_ID, PaisPeer::ID);
+
+		$rs = AlumnoPeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+			// no rows returned; we infer that means 0 matches.
+			return 0;
+		}
+	}
+
+
+	/**
+	 * Returns the number of rows matching criteria, joining the related Pais table
+	 *
+	 * @param Criteria $c
+	 * @param boolean $distinct Whether to select only distinct columns (You can also set DISTINCT modifier in Criteria).
+	 * @param Connection $con
+	 * @return int Number of matching rows.
+	 */
+	public static function doCountJoinAllExceptPais(Criteria $criteria, $distinct = false, $con = null)
+	{
+		// we're going to modify criteria, so copy it first
+		$criteria = clone $criteria;
+		
+		// clear out anything that might confuse the ORDER BY clause
+		$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(AlumnoPeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(AlumnoPeer::COUNT);
+		}
+		
+		// just in case we're grouping: add those columns to the select statement
+		foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
+		}
+
+		$criteria->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
+
+		$criteria->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
+
+		$criteria->addJoin(AlumnoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
+
+		$criteria->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+
+		$criteria->addJoin(AlumnoPeer::FK_CONCEPTOBAJA_ID, ConceptobajaPeer::ID);
+
 		$rs = AlumnoPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
 			return $rs->getInt(1);
@@ -1373,6 +1570,9 @@ abstract class BaseAlumnoPeer {
 		ConceptobajaPeer::addSelectColumns($c);
 		$startcol6 = $startcol5 + ConceptobajaPeer::NUM_COLUMNS;
 
+		PaisPeer::addSelectColumns($c);
+		$startcol7 = $startcol6 + PaisPeer::NUM_COLUMNS;
+
 		$c->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
@@ -1380,6 +1580,8 @@ abstract class BaseAlumnoPeer {
 		$c->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_CONCEPTOBAJA_ID, ConceptobajaPeer::ID);
+
+		$c->addJoin(AlumnoPeer::FK_PAIS_ID, PaisPeer::ID);
 
 
 		$rs = BasePeer::doSelect($c, $con);
@@ -1485,6 +1687,29 @@ abstract class BaseAlumnoPeer {
 				$obj5->addAlumno($obj1);
 			}
 
+			$omClass = PaisPeer::getOMClass();
+
+	
+			$cls = Propel::import($omClass);
+			$obj6  = new $cls();
+			$obj6->hydrate($rs, $startcol6);
+			
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj6 = $temp_obj1->getPais(); //CHECKME
+				if ($temp_obj6->getPrimaryKey() === $obj6->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj6->addAlumno($obj1);
+					break;
+				}
+			}
+			
+			if ($newObject) {
+				$obj6->initAlumnos();
+				$obj6->addAlumno($obj1);
+			}
+
 			$results[] = $obj1;
 		}
 		return $results;
@@ -1524,6 +1749,9 @@ abstract class BaseAlumnoPeer {
 		ConceptobajaPeer::addSelectColumns($c);
 		$startcol6 = $startcol5 + ConceptobajaPeer::NUM_COLUMNS;
 
+		PaisPeer::addSelectColumns($c);
+		$startcol7 = $startcol6 + PaisPeer::NUM_COLUMNS;
+
 		$c->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
@@ -1531,6 +1759,8 @@ abstract class BaseAlumnoPeer {
 		$c->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_CONCEPTOBAJA_ID, ConceptobajaPeer::ID);
+
+		$c->addJoin(AlumnoPeer::FK_PAIS_ID, PaisPeer::ID);
 
 
 		$rs = BasePeer::doSelect($c, $con);
@@ -1636,6 +1866,29 @@ abstract class BaseAlumnoPeer {
 				$obj5->addAlumno($obj1);
 			}
 
+			$omClass = PaisPeer::getOMClass();
+
+	
+			$cls = Propel::import($omClass);
+			$obj6  = new $cls();
+			$obj6->hydrate($rs, $startcol6);
+			
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj6 = $temp_obj1->getPais(); //CHECKME
+				if ($temp_obj6->getPrimaryKey() === $obj6->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj6->addAlumno($obj1);
+					break;
+				}
+			}
+			
+			if ($newObject) {
+				$obj6->initAlumnos();
+				$obj6->addAlumno($obj1);
+			}
+
 			$results[] = $obj1;
 		}
 		return $results;
@@ -1675,6 +1928,9 @@ abstract class BaseAlumnoPeer {
 		ConceptobajaPeer::addSelectColumns($c);
 		$startcol6 = $startcol5 + ConceptobajaPeer::NUM_COLUMNS;
 
+		PaisPeer::addSelectColumns($c);
+		$startcol7 = $startcol6 + PaisPeer::NUM_COLUMNS;
+
 		$c->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
@@ -1682,6 +1938,8 @@ abstract class BaseAlumnoPeer {
 		$c->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_CONCEPTOBAJA_ID, ConceptobajaPeer::ID);
+
+		$c->addJoin(AlumnoPeer::FK_PAIS_ID, PaisPeer::ID);
 
 
 		$rs = BasePeer::doSelect($c, $con);
@@ -1787,6 +2045,29 @@ abstract class BaseAlumnoPeer {
 				$obj5->addAlumno($obj1);
 			}
 
+			$omClass = PaisPeer::getOMClass();
+
+	
+			$cls = Propel::import($omClass);
+			$obj6  = new $cls();
+			$obj6->hydrate($rs, $startcol6);
+			
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj6 = $temp_obj1->getPais(); //CHECKME
+				if ($temp_obj6->getPrimaryKey() === $obj6->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj6->addAlumno($obj1);
+					break;
+				}
+			}
+			
+			if ($newObject) {
+				$obj6->initAlumnos();
+				$obj6->addAlumno($obj1);
+			}
+
 			$results[] = $obj1;
 		}
 		return $results;
@@ -1826,6 +2107,9 @@ abstract class BaseAlumnoPeer {
 		ConceptobajaPeer::addSelectColumns($c);
 		$startcol6 = $startcol5 + ConceptobajaPeer::NUM_COLUMNS;
 
+		PaisPeer::addSelectColumns($c);
+		$startcol7 = $startcol6 + PaisPeer::NUM_COLUMNS;
+
 		$c->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
@@ -1833,6 +2117,8 @@ abstract class BaseAlumnoPeer {
 		$c->addJoin(AlumnoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_CONCEPTOBAJA_ID, ConceptobajaPeer::ID);
+
+		$c->addJoin(AlumnoPeer::FK_PAIS_ID, PaisPeer::ID);
 
 
 		$rs = BasePeer::doSelect($c, $con);
@@ -1938,6 +2224,29 @@ abstract class BaseAlumnoPeer {
 				$obj5->addAlumno($obj1);
 			}
 
+			$omClass = PaisPeer::getOMClass();
+
+	
+			$cls = Propel::import($omClass);
+			$obj6  = new $cls();
+			$obj6->hydrate($rs, $startcol6);
+			
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj6 = $temp_obj1->getPais(); //CHECKME
+				if ($temp_obj6->getPrimaryKey() === $obj6->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj6->addAlumno($obj1);
+					break;
+				}
+			}
+			
+			if ($newObject) {
+				$obj6->initAlumnos();
+				$obj6->addAlumno($obj1);
+			}
+
 			$results[] = $obj1;
 		}
 		return $results;
@@ -1977,6 +2286,9 @@ abstract class BaseAlumnoPeer {
 		ProvinciaPeer::addSelectColumns($c);
 		$startcol6 = $startcol5 + ProvinciaPeer::NUM_COLUMNS;
 
+		PaisPeer::addSelectColumns($c);
+		$startcol7 = $startcol6 + PaisPeer::NUM_COLUMNS;
+
 		$c->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
@@ -1984,6 +2296,8 @@ abstract class BaseAlumnoPeer {
 		$c->addJoin(AlumnoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+
+		$c->addJoin(AlumnoPeer::FK_PAIS_ID, PaisPeer::ID);
 
 
 		$rs = BasePeer::doSelect($c, $con);
@@ -2087,6 +2401,208 @@ abstract class BaseAlumnoPeer {
 			if ($newObject) {
 				$obj5->initAlumnos();
 				$obj5->addAlumno($obj1);
+			}
+
+			$omClass = PaisPeer::getOMClass();
+
+	
+			$cls = Propel::import($omClass);
+			$obj6  = new $cls();
+			$obj6->hydrate($rs, $startcol6);
+			
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj6 = $temp_obj1->getPais(); //CHECKME
+				if ($temp_obj6->getPrimaryKey() === $obj6->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj6->addAlumno($obj1);
+					break;
+				}
+			}
+			
+			if ($newObject) {
+				$obj6->initAlumnos();
+				$obj6->addAlumno($obj1);
+			}
+
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	/**
+	 * Selects a collection of Alumno objects pre-filled with all related objects except Pais.
+	 *
+	 * @return array Array of Alumno objects.
+	 * @throws PropelException Any exceptions caught during processing will be
+	 *		 rethrown wrapped into a PropelException.
+	 */
+	public static function doSelectJoinAllExceptPais(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+		// Set the correct dbName if it has not been overridden
+		// $c->getDbName() will return the same object if not set to another value
+		// so == check is okay and faster
+		if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		AlumnoPeer::addSelectColumns($c);
+		$startcol2 = (AlumnoPeer::NUM_COLUMNS - AlumnoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+
+		TipodocumentoPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + TipodocumentoPeer::NUM_COLUMNS;
+
+		CuentaPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + CuentaPeer::NUM_COLUMNS;
+
+		EstablecimientoPeer::addSelectColumns($c);
+		$startcol5 = $startcol4 + EstablecimientoPeer::NUM_COLUMNS;
+
+		ProvinciaPeer::addSelectColumns($c);
+		$startcol6 = $startcol5 + ProvinciaPeer::NUM_COLUMNS;
+
+		ConceptobajaPeer::addSelectColumns($c);
+		$startcol7 = $startcol6 + ConceptobajaPeer::NUM_COLUMNS;
+
+		$c->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
+
+		$c->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
+
+		$c->addJoin(AlumnoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
+
+		$c->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+
+		$c->addJoin(AlumnoPeer::FK_CONCEPTOBAJA_ID, ConceptobajaPeer::ID);
+
+
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+		
+		while($rs->next()) {
+
+			$omClass = AlumnoPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);		
+
+			$omClass = TipodocumentoPeer::getOMClass();
+
+	
+			$cls = Propel::import($omClass);
+			$obj2  = new $cls();
+			$obj2->hydrate($rs, $startcol2);
+			
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj2 = $temp_obj1->getTipodocumento(); //CHECKME
+				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj2->addAlumno($obj1);
+					break;
+				}
+			}
+			
+			if ($newObject) {
+				$obj2->initAlumnos();
+				$obj2->addAlumno($obj1);
+			}
+
+			$omClass = CuentaPeer::getOMClass();
+
+	
+			$cls = Propel::import($omClass);
+			$obj3  = new $cls();
+			$obj3->hydrate($rs, $startcol3);
+			
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj3 = $temp_obj1->getCuenta(); //CHECKME
+				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj3->addAlumno($obj1);
+					break;
+				}
+			}
+			
+			if ($newObject) {
+				$obj3->initAlumnos();
+				$obj3->addAlumno($obj1);
+			}
+
+			$omClass = EstablecimientoPeer::getOMClass();
+
+	
+			$cls = Propel::import($omClass);
+			$obj4  = new $cls();
+			$obj4->hydrate($rs, $startcol4);
+			
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj4 = $temp_obj1->getEstablecimiento(); //CHECKME
+				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj4->addAlumno($obj1);
+					break;
+				}
+			}
+			
+			if ($newObject) {
+				$obj4->initAlumnos();
+				$obj4->addAlumno($obj1);
+			}
+
+			$omClass = ProvinciaPeer::getOMClass();
+
+	
+			$cls = Propel::import($omClass);
+			$obj5  = new $cls();
+			$obj5->hydrate($rs, $startcol5);
+			
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj5 = $temp_obj1->getProvincia(); //CHECKME
+				if ($temp_obj5->getPrimaryKey() === $obj5->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj5->addAlumno($obj1);
+					break;
+				}
+			}
+			
+			if ($newObject) {
+				$obj5->initAlumnos();
+				$obj5->addAlumno($obj1);
+			}
+
+			$omClass = ConceptobajaPeer::getOMClass();
+
+	
+			$cls = Propel::import($omClass);
+			$obj6  = new $cls();
+			$obj6->hydrate($rs, $startcol6);
+			
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj6 = $temp_obj1->getConceptobaja(); //CHECKME
+				if ($temp_obj6->getPrimaryKey() === $obj6->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj6->addAlumno($obj1);
+					break;
+				}
+			}
+			
+			if ($newObject) {
+				$obj6->initAlumnos();
+				$obj6->addAlumno($obj1);
 			}
 
 			$results[] = $obj1;

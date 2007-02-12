@@ -82,6 +82,8 @@ class AlumnoMapBuilder {
 
 		$tMap->addColumn('TELEFONO', 'Telefono', 'string', CreoleTypes::VARCHAR, false);
 
+		$tMap->addColumn('LUGAR_NACIMIENTO', 'LugarNacimiento', 'string', CreoleTypes::VARCHAR, false);
+
 		$tMap->addForeignKey('FK_TIPODOCUMENTO_ID', 'FkTipodocumentoId', 'int', CreoleTypes::INTEGER, 'tipodocumento', 'ID', true, 11);
 
 		$tMap->addColumn('NRO_DOCUMENTO', 'NroDocumento', 'string', CreoleTypes::VARCHAR, true);
@@ -105,6 +107,8 @@ class AlumnoMapBuilder {
 		$tMap->addColumn('ACTIVO', 'Activo', 'boolean', CreoleTypes::BOOLEAN, true);
 
 		$tMap->addForeignKey('FK_CONCEPTOBAJA_ID', 'FkConceptobajaId', 'int', CreoleTypes::INTEGER, 'conceptobaja', 'ID', true, null);
+
+		$tMap->addForeignKey('FK_PAIS_ID', 'FkPaisId', 'int', CreoleTypes::INTEGER, 'pais', 'ID', true, null);
 				
     } // doBuild()
 
