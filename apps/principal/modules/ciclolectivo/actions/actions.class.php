@@ -45,11 +45,14 @@ class ciclolectivoActions extends autociclolectivoActions
         //$c->add(CiclolectivoPeer::ACTIVO, 1);
         $c->addAscendingOrderByColumn(CiclolectivoPeer::DESCRIPCION);
         $aCiclolectivo  = CiclolectivoPeer::doSelect($c);
-        $this->optionsCiclolectivo = array();
+
+        $optionsCiclolectivo = array();
         foreach($aCiclolectivo  as $ciclolectivo) {
-            $this->optionsCiclolectivo[$ciclolectivo->getId()] = $ciclolectivo->getDescripcion();
+            $optionsCiclolectivo[$ciclolectivo->getId()] = $ciclolectivo->getDescripcion();
         }
         
+        $this->optionsCiclolectivo = $optionsCiclolectivo;
+
         $this->ciclolectivo = CiclolectivoPeer::retrieveByPk($this->getRequestParameter('id'));
         
         $c = new Criteria();
