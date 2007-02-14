@@ -161,7 +161,7 @@
 </table>
 <ul class="sf_admin_actions">
   <li>
-    <?php echo button_to(__('create'), 'responsable/create', array ('class' => 'sf_admin_action_create', )) ?>
+    <?php echo button_to(__('create'), 'responsable/create?fk_cuenta_id=' . $cuenta->getId(), array ('class' => 'sf_admin_action_create', )) ?>
   </li>
 </ul>
 </div>
