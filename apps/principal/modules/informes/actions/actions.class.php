@@ -95,6 +95,40 @@ class InformesActions extends sfActions
     }   
 
 
+
+    private function _getTodosLosAlumnos($establecimiento_id = '', $txt = '') {
+        $aAlumno = array();
+
+        $criteria = new Criteria();
+        if($establecimiento_id) {
+            $criteria->add(AlumnoPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
+        }
+        
+        if($txt) {
+            $cton1 = $criteria->getNewCriterion(AlumnoPeer::NOMBRE, "%$txt%", Criteria::LIKE);
+            $cton2 = $criteria->getNewCriterion(AlumnoPeer::APELLIDO, "%$txt%", Criteria::LIKE);
+            $cton1->addOr($cton2);
+            $criteria->add($cton1);
+        }
+
+        $criteria->addAsColumn("alumno_id", AlumnoPeer::ID);
+        $criteria->addAsColumn("alumno_nombre", AlumnoPeer::NOMBRE);
+        $criteria->addAsColumn("alumno_apellido", AlumnoPeer::APELLIDO);
+
+        $alumnos = BasePeer::doSelect($criteria);
+        foreach($alumnos as $alumno) {
+            $aAlumno[] = (object) array( 'alumno_id' => $alumno[0],'alumno_nombre' => $alumno[1], 'alumno_apellido' => $alumno[2]);
+        }
+
+        return $aAlumno;
+    }   
+
+
+
+
+
+
+
     public function handleErrorAlumnosPorDivisionListado() {
         $this->forward('informes','alumnosPorDivisionFormulario');
     }
@@ -210,26 +244,20 @@ class InformesActions extends sfActions
         $aAlumno  = array();        
 
         // tomando los datos del formulario
-        $division_id = $this->getRequestParameter('division_id');
         $txt = $this->getRequestParameter('txt');
 
         // llenando el combo de division segun establecimiento
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
-        $optionsDivision = $this->_getDivisiones($establecimiento_id);
        
         if ($this->getRequest()->getMethod() == sfRequest::POST) {
             // buscando alumnos
-            $aAlumno = $this->_getAlumnosPorDivision($division_id, $txt);    
+            $aAlumno = $this->_getTodosLosAlumnos($establecimiento_id, $txt);    
         }
 
         // asignando variables para ser usadas en el template
-        $this->optionsDivision = $optionsDivision;
-        $this->division_id = $division_id;
         $this->txt = $txt;
         $this->aAlumno = $aAlumno;
         $this->vista = "imprimir";
-
-
     }
 
     // no valida que realmente ha terminado septimo grado
@@ -238,7 +266,7 @@ class InformesActions extends sfActions
         // tomando los datos del formulario
         $alumno_id = $this->getRequestParameter('alumno_id');
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
-        $ciclolectivo_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');
+//         $ciclolectivo_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');
 
         $alumno = AlumnoPeer::retrieveByPK($alumno_id);
         $establecimiento = EstablecimientoPeer::retrieveByPK($establecimiento_id);

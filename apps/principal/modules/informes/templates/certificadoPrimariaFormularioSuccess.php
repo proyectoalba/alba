@@ -7,11 +7,6 @@
         <?php echo label_for('Buscar', __('Buscar Alumnos:')) ?>
         <?php echo input_tag('txt', $txt) ?>   
     </div>
-
-    <div class="form-row">
-        <?php echo label_for('division', __('Division:')) ?>
-        <?php echo select_tag('division_id', options_for_select($optionsDivision, $division_id)) ?>
-    </div>
 </fieldset>
 
  <ul class="sf_admin_actions">
@@ -43,7 +38,7 @@
     foreach($aAlumno as $alumno){
 ?>
   <tr class="sf_admin_row_0">
-    <td><?echo $alumno->alumno_apellido." ".$alumno->alumno_nombre; ?> ( <?=$alumno->anio_descripcion?> - <?=$alumno->division_nombre?> ) </td>
+    <td><?echo $alumno->alumno_apellido." ".$alumno->alumno_nombre; ?></td>
     <td>
     <ul class="sf_admin_td_actions">
      <li><?php echo link_to(image_tag('/sf/images/sf_admin/edit_icon.png', array('alt' => 'editar', 'title' => 'Editar')) , 'informes?action=certificadoPrimariaListado&alumno_id='.$alumno->alumno_id); ?></li>
