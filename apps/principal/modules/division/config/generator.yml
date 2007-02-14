@@ -19,3 +19,4 @@ generator:
         object_actions:
             _edit:      -
             _delete:    -
+            alumnosPorDivision:  { name: Alumnos por Division, action: alumnosPorDivision, icon: small/alumnos.png }            

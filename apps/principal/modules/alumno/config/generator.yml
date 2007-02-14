@@ -30,7 +30,7 @@ generator:
             lugar_nacimiento: { name: Lugar de Nacimiento}
 
       list:
-            title: Listado de Alumnos
+            title: " "
             display: [ =apellido, nombre, nro_documento, sexo, telefono, email, activo ]
             filters:  [ _nombre_apellido, _division, nro_documento ]
             object_actions:

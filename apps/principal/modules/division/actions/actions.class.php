@@ -23,8 +23,8 @@
  * division Acciones
  *
  * @package    alba
- * @author     José Luis Di Biase <josx@interorganic.com.ar>
- * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     JosÃ© Luis Di Biase <josx@interorganic.com.ar>
+ * @author     HÃ©ctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
@@ -37,12 +37,16 @@ class divisionActions extends autodivisionActions
         $this->vista = $this->getRequestParameter('vista');
     }
 
-     protected function addFiltersCriteria(&$c)
-     {
-         $c->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
-         $c->addJoin(DivisionPeer::FK_ANIO_ID,AnioPeer::ID);
+    protected function addFiltersCriteria(&$c)
+    {
+        $c->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
+        $c->addJoin(DivisionPeer::FK_ANIO_ID,AnioPeer::ID);
          
-     }
+    }
+
+    public function executeAlumnosPorDivision() {
+        $this->redirect('alumno/list?filters%5Bdivision%5D='.$this->getRequestParameter('id').'&filter=filtrar');
+    }
 
 
 }
