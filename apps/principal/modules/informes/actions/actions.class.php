@@ -43,9 +43,61 @@ class InformesActions extends sfActions
  *
  */
 
-     public function handleErrorAlumnosPorDivisionListado() {
+
+    
+    private function _getDivisiones($establecimiento_id)  {
+        $optionsDivision = array();
+        $criteria = new Criteria();
+        $criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
+        $divisiones = DivisionPeer::doSelectJoinAnio($criteria);
+        $optionsDivision['']  = "";
+        foreach($divisiones as $division) {
+            $optionsDivision[$division->getId()] = $division->getAnio()->getDescripcion()." ".$division->getDescripcion();
+        }
+        asort($optionsDivision);
+        return $optionsDivision;
+    
+    }
+
+
+
+    private function _getAlumnosPorDivision($division_id = '', $txt = '') {
+        $aAlumno = array();
+
+        $criteria = new Criteria();
+        if($division_id) {
+            $criteria->add(DivisionPeer::ID, $division_id);
+        }
+        $criteria->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
+        $criteria->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID);
+        $criteria->addJoin(DivisionPeer::FK_ANIO_ID, AnioPeer::ID);
+        
+        if($txt) {
+            $cton1 = $criteria->getNewCriterion(AlumnoPeer::NOMBRE, "%$txt%", Criteria::LIKE);
+            $cton2 = $criteria->getNewCriterion(AlumnoPeer::APELLIDO, "%$txt%", Criteria::LIKE);
+            $cton1->addOr($cton2);
+            $criteria->add($cton1);
+        }
+
+        $criteria->addAsColumn("alumno_id", AlumnoPeer::ID);
+        $criteria->addAsColumn("alumno_nombre", AlumnoPeer::NOMBRE);
+        $criteria->addAsColumn("alumno_apellido", AlumnoPeer::APELLIDO);
+        $criteria->addAsColumn("division_id", DivisionPeer::ID);
+        $criteria->addAsColumn("division_descripcion", DivisionPeer::DESCRIPCION);
+        $criteria->addAsColumn("anio_descripcion", AnioPeer::DESCRIPCION);
+
+        $alumnos = BasePeer::doSelect($criteria);
+        foreach($alumnos as $alumno) {
+            $aAlumno[] = (object) array( 'alumno_id' => $alumno[0],'alumno_nombre' => $alumno[1], 'alumno_apellido' => $alumno[2], 'division_id' => $alumno[3], 'division_nombre' => $alumno[4], 'anio_descripcion' => $alumno[5] );
+        }
+
+        return $aAlumno;
+    }   
+
+
+    public function handleErrorAlumnosPorDivisionListado() {
         $this->forward('informes','alumnosPorDivisionFormulario');
-     }
+    }
 
     public function executeAlumnosPorDivisionFormulario() {
         // inicializando variables
@@ -56,14 +108,7 @@ class InformesActions extends sfActions
 
         // llenando el combo de division segun establecimiento
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
-        $criteria = new Criteria();
-        $criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
-        $divisiones = DivisionPeer::doSelectJoinAnio($criteria);
-        $optionsDivision['']  = "";
-        foreach($divisiones as $division) {
-            $optionsDivision[$division->getId()] = $division->getAnio()->getDescripcion()." ".$division->getDescripcion();
-        }
-        asort($optionsDivision);
+        $optionsDivision = $this->_getDivisiones($establecimiento_id);
         
         // asignando variables para ser usadas en el template
         $this->optionsDivision = $optionsDivision;
@@ -88,7 +133,6 @@ class InformesActions extends sfActions
         $criteria->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
         $criteria->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID);
         $criteria->addAscendingOrderByColumn(AlumnoPeer::APELLIDO);
-
         $alumnos = AlumnoPeer::doSelect($criteria);
 
         // asignando variables para ser usadas en el template        
@@ -112,44 +156,11 @@ class InformesActions extends sfActions
 
         // llenando el combo de division segun establecimiento
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
-        $criteria = new Criteria();
-        $criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
-        $divisiones = DivisionPeer::doSelectJoinAnio($criteria);
-        $optionsDivision[]  = "";
-        foreach($divisiones as $division) {
-            $optionsDivision[$division->getId()] = $division->getAnio()->getDescripcion()." ".$division->getDescripcion();
-        }
-        asort($optionsDivision);
+        $optionsDivision = $this->_getDivisiones($establecimiento_id);
        
         if ($this->getRequest()->getMethod() == sfRequest::POST) {
             // buscando alumnos
-            $criteria = new Criteria();
-            if($division_id) {
-                $criteria->add(DivisionPeer::ID, $division_id);
-            }
-            $criteria->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
-            $criteria->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID);
-            $criteria->addJoin(DivisionPeer::FK_ANIO_ID, AnioPeer::ID);
-        
-            if($txt) {
-                $cton1 = $criteria->getNewCriterion(AlumnoPeer::NOMBRE, "%$txt%", Criteria::LIKE);
-                $cton2 = $criteria->getNewCriterion(AlumnoPeer::APELLIDO, "%$txt%", Criteria::LIKE);
-                $cton1->addOr($cton2);
-                $criteria->add($cton1);
-            }
-
-            $criteria->addAsColumn("alumno_id", AlumnoPeer::ID);
-            $criteria->addAsColumn("alumno_nombre", AlumnoPeer::NOMBRE);
-            $criteria->addAsColumn("alumno_apellido", AlumnoPeer::APELLIDO);
-            $criteria->addAsColumn("division_id", DivisionPeer::ID);
-            $criteria->addAsColumn("division_descripcion", DivisionPeer::DESCRIPCION);
-            $criteria->addAsColumn("anio_descripcion", AnioPeer::DESCRIPCION);
-
-            $alumnos = BasePeer::doSelect($criteria);
-            foreach($alumnos as $alumno) {
-                $aAlumno[] = (object) array( 'alumno_id' => $alumno[0],'alumno_nombre' => $alumno[1], 'alumno_apellido' => $alumno[2], 'division_id' => $alumno[3], 'division_nombre' => $alumno[4], 'anio_descripcion' => $alumno[5] );
-            }
-    
+            $aAlumno = $this->_getAlumnosPorDivision($division_id, $txt);
         }
 
         // asignando variables para ser usadas en el template
@@ -204,44 +215,11 @@ class InformesActions extends sfActions
 
         // llenando el combo de division segun establecimiento
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
-        $criteria = new Criteria();
-        $criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
-        $divisiones = DivisionPeer::doSelectJoinAnio($criteria);
-        $optionsDivision[]  = "";
-        foreach($divisiones as $division) {
-            $optionsDivision[$division->getId()] = $division->getAnio()->getDescripcion()." ".$division->getDescripcion();
-        }
-        asort($optionsDivision);
+        $optionsDivision = $this->_getDivisiones($establecimiento_id);
        
         if ($this->getRequest()->getMethod() == sfRequest::POST) {
             // buscando alumnos
-            $criteria = new Criteria();
-            if($division_id) {
-                $criteria->add(DivisionPeer::ID, $division_id);
-            }
-            $criteria->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
-            $criteria->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID);
-            $criteria->addJoin(DivisionPeer::FK_ANIO_ID, AnioPeer::ID);
-        
-            if($txt) {
-                $cton1 = $criteria->getNewCriterion(AlumnoPeer::NOMBRE, "%$txt%", Criteria::LIKE);
-                $cton2 = $criteria->getNewCriterion(AlumnoPeer::APELLIDO, "%$txt%", Criteria::LIKE);
-                $cton1->addOr($cton2);
-                $criteria->add($cton1);
-            }
-
-            $criteria->addAsColumn("alumno_id", AlumnoPeer::ID);
-            $criteria->addAsColumn("alumno_nombre", AlumnoPeer::NOMBRE);
-            $criteria->addAsColumn("alumno_apellido", AlumnoPeer::APELLIDO);
-            $criteria->addAsColumn("division_id", DivisionPeer::ID);
-            $criteria->addAsColumn("division_descripcion", DivisionPeer::DESCRIPCION);
-            $criteria->addAsColumn("anio_descripcion", AnioPeer::DESCRIPCION);
-
-            $alumnos = BasePeer::doSelect($criteria);
-            foreach($alumnos as $alumno) {
-                $aAlumno[] = (object) array( 'alumno_id' => $alumno[0],'alumno_nombre' => $alumno[1], 'alumno_apellido' => $alumno[2], 'division_id' => $alumno[3], 'division_nombre' => $alumno[4], 'anio_descripcion' => $alumno[5] );
-            }
-    
+            $aAlumno = $this->_getAlumnosPorDivision($division_id, $txt);    
         }
 
         // asignando variables para ser usadas en el template
@@ -277,6 +255,41 @@ class InformesActions extends sfActions
         $this->mes = $aMeses[date("n")];
         $this->dia = date("d");
     }
+
+
+
+    public function executeBoletinFormulario() {
+        // inicializando variables
+        $optionsDivision = array();
+        $aAlumno  = array();        
+
+        // tomando los datos del formulario
+        $division_id = $this->getRequestParameter('division_id');
+        $txt = $this->getRequestParameter('txt');
+
+        // llenando el combo de division segun establecimiento
+        $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
+        $optionsDivision = $this->_getDivisiones($establecimiento_id);
+       
+        if ($this->getRequest()->getMethod() == sfRequest::POST) {
+            // buscando alumnos
+            $aAlumno = $this->_getAlumnosPorDivision($division_id, $txt);    
+        }
+
+        // asignando variables para ser usadas en el template
+        $this->optionsDivision = $optionsDivision;
+        $this->division_id = $division_id;
+        $this->txt = $txt;
+        $this->aAlumno = $aAlumno;
+        $this->vista = "imprimir";
+    }
+   
+
+    public function executeBoletinListado() {
+        $this->vista = 'imprimir';
+        $this->forward('boletin','mostrar');
+    }
+
 
 }
 ?>

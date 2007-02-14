@@ -87,9 +87,10 @@ TURNO <b><?=$division->getTurnos()->getDescripcion()?></b><br>
 
 <br>
 <?php } ?>
+<?php if($vista != 'imprimir') { ?>
 <ul class="sf_admin_actions">
 <li><? echo button_to('Ir a la cuenta','cuenta?action=verCompleta&id='.$alumno->getFkCuentaId(),array('class'=>'sf_admin_action_list'))?></li>
 </ul>
-
+<? } ?>
 </body>
 </html>
