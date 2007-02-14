@@ -23,14 +23,20 @@
 <?php } else { ?>
 
 
-
-BOLETIN DE CALIFICACIONES PERTENECIENTES A <b><?=$alumno->getNombre()." ".$alumno->getApellido()?></b><br>
-GRADO <b><?=$division->getAnio()->getDescripcion()?></b><br>
-SECCION <b><?=$division->getDescripcion()?></b><br>
-TURNO <b><?=$division->getTurnos()->getDescripcion()?></b><br>
+<div style="text-align: center;"><?=image_tag('small/escudo_bsas_chico.jpg')?></div>
+<div style="text-align: center;" class="titulo">
+<span style="font-weight: bold;" class="titulo">GOBIERNO DE LA CIUDAD DE BUENOS AIRES</span><br style="font-weight: bold;">
+<span style="font-weight: bold;" class="titulo">SECRETAR&iacute;A DE EDUCACION</span><br>
 <br>
+<span class="subtitulo">Educaci&oacute;n General B&aacute;sica<br>Documento de evaluaci&oacute;n</span><br>
+</div>
 
-<table style="text-align: left; width: 766px; height: 143px;" border="1" cellpadding="2" cellspacing="2">
+
+
+<br>
+<div align="center">
+<table style="text-align: left; width: 766px; height: 143px; border-collapse: collapse; border: solid;" border="1" cellpadding="2" cellspacing="2">
+<CAPTION><em>BOLETIN DE CALIFICACIONES PERTENECIENTES A: </em>;&nbsp;<b><?=$alumno->getNombre()." ".$alumno->getApellido()?></b>&nbsp;&nbsp;&nbsp;&nbsp;<em>GRADO:</em> &nbsp;<b><?=$division->getAnio()->getDescripcion()?></b>&nbsp;&nbsp;&nbsp;&nbsp;<em>SECCION:</em>&nbsp; <b><?=$division->getDescripcion()?></b>&nbsp;&nbsp;&nbsp;&nbsp;<em>TURNO:</em>&nbsp;<b><?=$division->getTurnos()->getDescripcion()?></b><br></CAPTION>
   <tbody>
     <tr>
       <td colspan="1" rowspan="2"><div class="etiquetas">PERIODO</div></td>
@@ -84,7 +90,7 @@ TURNO <b><?=$division->getTurnos()->getDescripcion()?></b><br>
 <? } ?>
   </tbody>
 </table>
-
+</div>
 <br>
 <?php } ?>
 <?php if($vista != 'imprimir') { ?>
