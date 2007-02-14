@@ -60,4 +60,4 @@ generator:
                 _save: -
                 _list: -
                 _save_and_add: -
-                irCuenta: { name: Ir a Cuenta, action: irCuenta, icon: next.png }
+                

@@ -39,23 +39,6 @@ class alumnoActions extends autoalumnoActions
     }
   
   /**
-  * Ir a la cuenta del alumno
-  */      
-  function executeIrCuenta(){
-    if ($this->getRequestParameter('id') ){
-        $c = new Criteria();
-        $c->add(AlumnoPeer::ID, $this->getRequestParameter('id'));
-        $Alum = AlumnoPeer::doSelectOne($c);
-        if($Alum->getFkCuentaId()) {
-            $this->redirect('cuenta/verCompleta?id='.$Alum->getFkCuentaId());
-        } else {
-             $this->redirect('alumno/list');
-        }
-    } else
-        $this->redirect('alumno/create');
-  }
-  
-  /**
   * Ver las Asistencias del alumno
   */  
   function executeAsistencia() {

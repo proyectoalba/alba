@@ -185,7 +185,7 @@
             echo input_hidden_tag('vista', "noMuestraMenu"); 
             if($alumno_id >= 0)
                  echo input_hidden_tag('alumno_id', $alumno_id);
-            echo submit_tag(__('Imprimir'), array ('name' => 'Imprimir','class' => 'sf_admin_action_saveprint'));
+            echo submit_tag(__('Imprimir'), array ('name' => 'Imprimir','class' => 'sf_admin_action_print'));
          ?>
         </form>
         </li></ul>
@@ -234,9 +234,9 @@
 
       <div class="float-right">
           <ul class="sf_admin_actions">
-            <li><input style="background: #ffc url(small/alumnos.png) no-repeat 3px 2px" value="Listado Alumnos" type="button" onclick="document.location.href='<?=sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/alumno/list';" /></li>
+            <li><?php echo button_to('Listado de alumnos','alumno/list',array('class' => 'sf_admin_action_list'))?></li>
 <? if($alumno_id >= 0) {?>
-            <li><input style="background: #ffc url(small/alumnos.png) no-repeat 3px 2px" value="Ir a Cuenta" type="button" onclick="document.location.href='<?=sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/cuenta/verCompleta/id/<?=$cuenta_id?>';" /></li>
+            <li><?php echo button_to('Ir a Cuenta','cuenta/verCompleta?id=' .$cuenta_id,array('class'=>'sf_admin_action_ir_a'))?></li>
 <? } ?>
         </ul>
       </div>
