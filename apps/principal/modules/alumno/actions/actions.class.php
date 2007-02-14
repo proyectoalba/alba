@@ -114,6 +114,50 @@ class alumnoActions extends autoalumnoActions
             }                                                                                                                      
         }                                                                                                                        
     }                                                                                                                          
-}
+  public function executeEdit ()
+  {
+    $this->alumno = $this->getAlumnoOrCreate();
 
+    $datosCuenta = "";
+
+    if($this->getRequestParameter("fk_cuenta_id")) {
+        $datosCuenta = CuentaPeer::retrieveByPk($this->getRequestParameter("fk_cuenta_id"));
+    }
+
+    if($this->alumno->getFkCuentaId()) {
+        $datosCuenta = CuentaPeer::retrieveByPk($this->alumno->getFkCuentaId());
+    }
+
+    $this->datosCuenta = $datosCuenta;
+
+
+
+    if ($this->getRequest()->getMethod() == sfRequest::POST)
+    {
+      $this->alumno = $this->getAlumnoOrCreate();
+
+      $this->updateAlumnoFromRequest();
+
+      $this->saveAlumno($this->alumno);
+
+      $this->setFlash('notice', 'Your modifications have been saved');
+
+      if ($this->getRequestParameter('save_and_add'))
+      {
+        return $this->redirect('alumno/create');
+      }
+      else
+      {
+        return $this->redirect('alumno/edit?id='.$this->alumno->getId());
+      }
+    }
+    else
+    {
+      // add javascripts
+      $this->getResponse()->addJavascript('/sf/js/prototype/prototype');
+      $this->getResponse()->addJavascript('/sf/js/sf_admin/collapse');
+    }
+  }
+
+}
 ?>
