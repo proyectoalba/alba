@@ -35,13 +35,6 @@ class responsableActions extends autoresponsableActions {
         $this->vista = $this->getRequestParameter('vista');
     }
          
-    function executeIrCuenta(){
-        //Obtener el id de cuenta.
-        $c = new Criteria(); 
-        $c->add(ResponsablePeer::ID, $this->getRequestParameter('id')); 
-        $Resp = ResponsablePeer::doSelectOne($c);
-        $this->redirect('cuenta/verCompleta?id='.$Resp->getFkCuentaId()); 
-    }
     protected function addSortCriteria (&$c) { 
         if ($sort_column = $this->getUser()->getAttribute('sort', 'apellido', 'sf_admin/responsable/sort')) {                                                                                                                        
             $sort_column = Propel::getDB($c->getDbName())->quoteIdentifier($sort_column);                                          
@@ -52,5 +45,98 @@ class responsableActions extends autoresponsableActions {
                 $c->addDescendingOrderByColumn($sort_column);                                                                        
         }
     }
-}
+    public function executeEdit (){                                                       
+        $this->responsable = $this->getResponsableOrCreate();                                                                    
+
+        if ($this->getRequest()->getMethod() == sfRequest::POST) {                                                                                                                        
+            $this->responsable = $this->getResponsableOrCreate(); 
+            $this->updateResponsableFromRequest();
+            $this->saveResponsable($this->responsable);
+            $this->setFlash('notice', 'Your modifications have been saved');
+            if ($this->getRequestParameter('save_and_add')) {                                                                                                                      
+                //el save_and_add debe volver al crate pero pasando la cuenta actual
+                return $this->redirect('responsable/create?fk_cuenta_id=' . $this->responsable->getFkCuentaId());                                                                        
+            }                                                                                                    
+            else {                                                                                                                      
+                return $this->redirect('responsable/edit?id='.$this->responsable->getId());
+            }
+        }                                                                                                                    
+        else {                                                                                                                        
+            // add javascripts                                                                                                     
+            $this->getResponse()->addJavascript('/sf/js/prototype/prototype');                                                     
+            $this->getResponse()->addJavascript('/sf/js/sf_admin/collapse');   
+            if ($this->getRequestParameter('fk_cuenta_id'))
+                $this->responsable->setFkCuentaId($this->getRequestParameter('fk_cuenta_id'));
+        }
+    }
+     protected function updateResponsableFromRequest()
+  {
+    $responsable = $this->getRequestParameter('responsable');
+
+    if (isset($responsable['apellido']))
+    {
+      $this->responsable->setApellido($responsable['apellido']);
+    }
+    if (isset($responsable['nombre']))
+    {
+      $this->responsable->setNombre($responsable['nombre']);
+    }
+    if (isset($responsable['sexo']))
+    {
+      $this->responsable->setSexo($responsable['sexo']);
+    }
+    if (isset($responsable['fk_tipodocumento_id']))
+    {
+      $this->responsable->setFkTipodocumentoId($responsable['fk_tipodocumento_id']);
+    }
+    if (isset($responsable['nro_documento']))
+    {
+      $this->responsable->setNroDocumento($responsable['nro_documento']);
+    }
+    if (isset($responsable['direccion']))
+    {
+      $this->responsable->setDireccion($responsable['direccion']);
+    }
+    if (isset($responsable['ciudad']))
+    {
+      $this->responsable->setCiudad($responsable['ciudad']);
+    }
+    if (isset($responsable['fk_provincia_id']))
+    {
+      $this->responsable->setFkProvinciaId($responsable['fk_provincia_id']);
+    }
+    if (isset($responsable['codigo_postal']))
+    {
+      $this->responsable->setCodigoPostal($responsable['codigo_postal']);
+    }
+    if (isset($responsable['telefono']))
+    {
+      $this->responsable->setTelefono($responsable['telefono']);
+    }
+    if (isset($responsable['telefono_movil']))
+    {
+      $this->responsable->setTelefonoMovil($responsable['telefono_movil']);
+    }
+    if (isset($responsable['email']))
+    {
+      $this->responsable->setEmail($responsable['email']);
+    }
+    if (isset($responsable['relacion']))
+    {
+      $this->responsable->setRelacion($responsable['relacion']);
+    }
+    if (isset($responsable['observacion']))
+    {
+      $this->responsable->setObservacion($responsable['observacion']);
+    }
+    if (isset($responsable['fk_cuenta_id']))
+    {
+      $this->responsable->setFkCuentaId($responsable['fk_cuenta_id']);
+    }
+        
+    $this->responsable->setAutorizacionRetiro(isset($responsable['autorizacion_retiro']) ? $responsable['autorizacion_retiro'] : 0);
+  }
+
+}  
+
 ?>

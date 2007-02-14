@@ -12,6 +12,8 @@ methods:
     - "responsable{telefono_movil}"        
     - "responsable{relacion}"            
     - "responsable{autorizacion_retiro}"            
+    - "responsable{fk_cuenta_id}"            
+    - "responsable{fk_provincia_id}"            
     
 fillin:
     enabled:       on
@@ -65,7 +67,16 @@ names:
     responsable{email}:
         required:     No
         validators: validaEmail, caracteresMaximos128
-        
+
+    responsable{fk_cuenta_id}:
+        required:    Yes
+        required_msg: El identificador de cuenta[fk_cuenta_id] es obligatorio, debe enviarlo para poder crear un responsable
+        validators: validaFkCuentaId
+
+    responsable{fk_provincia_id}:
+        required:    Yes
+        required_msg: El campo provincia es obligatorio
+        validators: validaFkProvinciaId
         
 caracteresMaximos128:
     class:  sfStringValidator
@@ -113,4 +124,17 @@ validaEmail:
     class: sfEmailValidator
     param:
        email_error:   "No ingresaste un email correctamente ( ej: nombre@dominio.com)"
-                    
+
+validaFkCuentaId:
+    class: sfNumberValidator
+    param:
+        nan_error: Por favor ingrese un identificar v&aacute;lido de cuenta       
+        min: 1
+        min_error: El identificador de cuenta es inv&aacute;lido
+
+validaFkProvinciaId:
+    class: sfNumberValidator
+    param:
+        nan_error: Por favor seleccione una provincia       
+        min: 1
+        min_error: Por favor seleccione una provincia 
