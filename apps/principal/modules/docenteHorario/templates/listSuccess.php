@@ -87,7 +87,9 @@ echo form_tag('docenteHorario/grabarDocenteHorario', 'onSubmit="selectItem()"');
             <li>
             <?  echo submit_tag('submit', 'class=default value=Grabar"'); ?>        
             <li>
-            <li><input value="Listado de Docentes" type="button" onclick="document.location.href='<?=sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/docente/list';" /></li>
+            <li>
+             <?php echo button_to('Listado de Docentes','docente/list')?>   
+            </li>
         </ul>
       </div>
 

@@ -81,13 +81,17 @@
           <ul class="sf_admin_actions">
             <li>
             <input type="button" name="create" value="Nuevo" class="sf_admin_action_create" onclick="create()" />
+            </li>
             <li>
-            <li><input style="background: #ffc url(small/alumnos.png) no-repeat 3px 2px" value="Listado Alumnos" type="button" onclick="document.location.href='<?=sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/alumno/list';" /></li>
-            <li><input style="background: #ffc url(small/alumnos.png) no-repeat 3px 2px" value="Ir a Cuenta" type="button" onclick="document.location.href='<?=sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/cuenta/verCompleta/id/<?=$alumno->getFkCuentaId()?>';" /></li>
+                <?php echo button_to('Listado Alumnos','alumno/list')?>
+            </li>
+            <li>
+                <?php echo button_to('Ir a Cuenta','/cuenta/verCompleta?id='.$alumno->getFkCuentaId()) ?>
+            </li>
         </ul>
       </div>
 
-</div
+</div>
 
 
 <? echo javascript_include_tag('varios/wz_tooltip.js'); ?>
