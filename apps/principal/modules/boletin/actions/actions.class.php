@@ -433,6 +433,7 @@ class boletinActions extends sfActions
         $this->notaAlumno = $notaAlumno;
         $this->conceptoAlumno = $conceptoAlumno;
         $this->aAsistencia = $aAsistencia;
+        $this->cantOptionsAsistencia = count($aAsistencia);
     }
 
     protected function getEscalanota($establecimiento_id) {

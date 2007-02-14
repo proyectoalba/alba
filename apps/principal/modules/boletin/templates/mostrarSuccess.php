@@ -42,8 +42,8 @@
       <td colspan="1" rowspan="2"><div class="etiquetas">PERIODO</div></td>
       <td colspan="<?=$cantOptionsActividad?>" rowspan="1"><div class="etiquetas">AREAS FORMATIVAS</div></td>
       <td colspan="<?=$cantOptionsConcepto?>" rowspan="1"><div class="etiquetas">APRECIACION PERSONAL</div></td>
-      <td colspan="2" rowspan="1"><div class="etiquetas">CONTROL DE ASISTENCIAS</div></td>
-      <td colspan="3" rowspan="1"><div class="etiquetas">FIRMAS</div></td>
+      <td colspan="<?=$cantOptionsAsistencia?>" rowspan="1"><div class="etiquetas">CONTROL DE ASISTENCIAS</div></td>
+      <td colspan="2" rowspan="1"><div class="etiquetas">FIRMAS</div></td>
     </tr>
     <tr>
 
