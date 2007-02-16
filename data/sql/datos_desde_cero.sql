@@ -1,3 +1,5 @@
+SET FOREIGN_KEY_CHECKS = 0;
+SET CHARACTER SET utf8;
 ﻿-- 
 -- Volcar la base de datos para la tabla 'niveltipo'
 -- 
@@ -389,4 +391,5 @@ INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (51, 1
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (52, 1, 58);
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (53, 1, 59);
 
+SET FOREIGN_KEY_CHECKS = 1;
 
