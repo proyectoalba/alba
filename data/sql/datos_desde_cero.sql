@@ -1,6 +1,6 @@
-﻿SET FOREIGN_KEY_CHECKS = 0;
+SET FOREIGN_KEY_CHECKS = 0;
 SET CHARACTER SET utf8;
-﻿-- 
+ 
 -- Volcar la base de datos para la tabla 'niveltipo'
 -- 
 
