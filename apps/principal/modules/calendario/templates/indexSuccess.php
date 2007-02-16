@@ -134,9 +134,19 @@ div.wastebin-active {
 <? if(count($optionsDivision)>0) { ?>
  <div class="form-row">
   <?php echo label_for('division_id', __('Division:'), 'class="required" ') ?>
-  <?php echo select_tag('division_id', options_for_select($optionsDivision, $division_id),'onChange=submitForm()') ?>
+  <?php echo select_tag('division_id', options_for_select($optionsDivision, $division_id),'') ?>
  </div>
+
+ <div class="form-row">
+  <?php echo label_for('actividad_id', __('Actividad:'), 'class="required" ') ?>
+  <?php echo select_tag('actividad_id', options_for_select($optionsActividad, $actividad_id),'') ?>
+ </div>
+
 <?}?>
+
+
+
+
 
 </fieldset>
  <ul class="sf_admin_actions">

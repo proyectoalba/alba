@@ -37,10 +37,13 @@ class calendarioActions extends sfActions
         $this->vista = $this->getRequestParameter('vista');
     }
   
-    private function getHorasMaterias($anio_id)  {
+    private function getHorasMaterias($anio_id, $actividad_id = 0)  {
         // traigo todos las materias/actividades para un año determinado
         $criteria = new Criteria();
         $criteria->add(RelAnioActividadPeer::FK_ANIO_ID, $anio_id);
+        if($actividad_id) {
+            $criteria->add(ActividadPeer::ID, $actividad_id);
+        }
         $criteria->addJoin(RelAnioActividadPeer::FK_ACTIVIDAD_ID, ActividadPeer::ID);
         $criteria->addJoin(RelAnioActividadPeer::FK_ACTIVIDAD_ID, RelActividadDocentePeer::FK_ACTIVIDAD_ID, Criteria::LEFT_JOIN);
         $criteria->addJoin(RelActividadDocentePeer::FK_DOCENTE_ID, DocentePeer::ID, Criteria::LEFT_JOIN);
@@ -59,14 +62,14 @@ class calendarioActions extends sfActions
 
 //      $actividades = RelAnioActividadPeer::doSelectRS($criteria);
         $actividades = BasePeer::doSelect($criteria);
-        
+
         $horarios_disponibles = array();
         $optionsHorasMaterias = array();
         foreach($actividades as $actividad) {
             if(!$actividad[1]) $actividad[1] = 0;
             $idx = $actividad[0]."_".$actividad[1];
             $docente = $actividad[3]." ".$actividad[2];
-            @$horarios_disponibles[$idx] .= $this->horariosATexto($actividad[6], $actividad[7], $actividad[8]);
+            $horarios_disponibles[$idx] .= $this->horariosATexto($actividad[6], $actividad[7], $actividad[8]);
             $optionsHorasMaterias[$idx] = (object) array ( 
                                                                     'cantidad' => $actividad[5] , 
                                                                     'nombre' => $actividad[4]." x ".$docente, 
@@ -75,8 +78,7 @@ class calendarioActions extends sfActions
                                                                 );
 
         }
-//print_R($optionsHorasMaterias);        
-return $optionsHorasMaterias;
+        return $optionsHorasMaterias;
     }
 
 
@@ -163,9 +165,10 @@ return $optionsHorasMaterias;
         $this->getUser()->setAttribute('division_id', 0);
         $this->getUser()->setAttribute('event', array());
 
-
-
-
+        $actividad_id = "";
+        $optionsActividad = array();
+        $horasMateriasTodas = array();
+        
 /*
         $criteria = new Criteria();
         //$criteria->add(EstablecimientoPeer::IS_LIVE, 1);
@@ -188,7 +191,13 @@ return $optionsHorasMaterias;
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
         $this->establecimiento_id = $establecimiento_id;
         
-           
+        $optionsActividad[""] = "";        
+        $criteria = new Criteria();
+        $actividades = ActividadPeer::doSelect($criteria);   
+        foreach($actividades as $actividad) {
+            $optionsActividad[$actividad->getId()] = $actividad->getNombre();
+        }
+        $this->optionsActividad = $optionsActividad;
 
 /*      $criteria = new Criteria();
         $criteria->add(CiclolectivoPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
@@ -210,8 +219,6 @@ return $optionsHorasMaterias;
 
         $ciclolectivo_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');
         $this->ciclolectivo_id = $ciclolectivo_id;
-
-
 
 
 /*        $criteriaT = new Criteria(); 
@@ -240,6 +247,7 @@ return $optionsHorasMaterias;
 
         if ($this->getRequest()->getMethod() == sfRequest::POST) {
             $this->division_id = $this->getRequestParameter('division_id');
+            $this->actividad_id = $actividad_id = $this->getRequestParameter('actividad_id');
             
 //             $ciclolectivo_id = $this->getRequestParameter('ciclolectivo_id');
 //             $establecimiento_id = $this->getRequestParameter('establecimiento_id');
@@ -281,7 +289,8 @@ return $optionsHorasMaterias;
                 $this->division_id = $eachDivision[0];  // me quedo con el primer indice del array
             }
 
-            $this->horasMaterias = $this->getHorasMaterias($aAnio[$this->division_id]);
+            $horasMateriasTodas = $this->getHorasMaterias($aAnio[$this->division_id]);
+            $this->horasMaterias = $this->getHorasMaterias($aAnio[$this->division_id], $actividad_id);
             $this->getUser()->setAttribute('anio_id', $aAnio[$this->division_id]); 
             $this->getUser()->setAttribute('division_id', $this->division_id);
         } else {
@@ -340,7 +349,7 @@ return $optionsHorasMaterias;
             }
 
 
-            $this->aEvent = $this->cargarItemCalendario($this->division_id, $aEvent, $this->horasMaterias );
+            $this->aEvent = $this->cargarItemCalendario($this->division_id, $aEvent, $horasMateriasTodas );
             $this->getUser()->setAttribute('event', $aEvent);
 
         }     
@@ -399,7 +408,7 @@ return $optionsHorasMaterias;
                     $docente_id = $item->getFkDocenteId();
                     $var = $name."_".$horarioMaterias_id."_".$docente_id;
 
-                    @$nombre = "<img src='".sfContext::getInstance()->getRequest()->getRelativeUrlRoot()."/sf/images/sf_admin/tick.png' id='".$var."_1'  style='position:relative' class='horarioMaterias-items' ><span class='title'>".$horasMaterias[$horarioMaterias_id."_".$docente_id]->nombre."</span>
+                    $nombre = "<img src='".sfContext::getInstance()->getRequest()->getRelativeUrlRoot()."/sf/images/sf_admin/tick.png' id='".$var."_1'  style='position:relative' class='horarioMaterias-items' ><span class='title'>".$horasMaterias[$horarioMaterias_id."_".$docente_id]->nombre."</span>
 <script type='text/javascript'>
 //<![CDATA[
 new Draggable('".$var."_1', {revert:1})
