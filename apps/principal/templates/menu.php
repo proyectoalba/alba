@@ -22,8 +22,8 @@
  * menu
  *
  * @package    alba
- * @author     José Luis Di Biase <josx@interorganic.com.ar>
- * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     JosÃ© Luis Di Biase <josx@interorganic.com.ar>
+ * @author     HÃ©ctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
@@ -37,6 +37,8 @@
 		echo "<ul>\n";
         $c = new Criteria();
         $c->add(MenuPeer::FK_PADRE_MENU_ID,$id_parent);
+        if ($id_parent == 1)
+            $c->add(MenuPeer::ID,1,Criteria::NOT_EQUAL); // evitan menu raiz
         $c->addAscendingOrderByColumn(MenuPeer::ORDEN);
         $nodos = MenuPeer::doSelect($c);
         
