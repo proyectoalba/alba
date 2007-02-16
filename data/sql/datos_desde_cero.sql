@@ -1,4 +1,83 @@
 -- 
+-- Volcar la base de datos para la tabla 'niveltipo'
+-- 
+
+INSERT INTO niveltipo (id, nombre, descripcion) VALUES (1, 'Jardín', 'Jardín');
+INSERT INTO niveltipo (id, nombre, descripcion) VALUES (2, 'Primaria', 'Primaria');
+INSERT INTO niveltipo (id, nombre, descripcion) VALUES (3, 'Secundaria', 'Secundaria');
+INSERT INTO niveltipo (id, nombre, descripcion) VALUES (4, 'Universitario', 'Universitario');
+INSERT INTO niveltipo (id, nombre, descripcion) VALUES (5, 'Terciario', 'Terciario');
+INSERT INTO niveltipo (id, nombre, descripcion) VALUES (6, 'Institutos', 'Institutos');
+INSERT INTO niveltipo (id, nombre, descripcion) VALUES (7, 'Otros', 'Otros');
+
+-- 
+-- Volcar la base de datos para la tabla 'pais'
+-- 
+
+INSERT INTO pais (id, nombre_largo, nombre_corto, orden) VALUES (1, 'Argentina', 'ARG', 100);
+INSERT INTO pais (id, nombre_largo, nombre_corto, orden) VALUES (3, 'United States of America', 'USA', 200);
+INSERT INTO pais (id, nombre_largo, nombre_corto, orden) VALUES (4, 'Brasil', 'BRA', 300);
+INSERT INTO pais (id, nombre_largo, nombre_corto, orden) VALUES (5, 'España', 'ESP', 400);
+INSERT INTO pais (id, nombre_largo, nombre_corto, orden) VALUES (6, 'Canadá', 'CAN', 500);
+
+-- 
+-- Volcar la base de datos para la tabla 'provincia'
+-- 
+
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (1, 'BsAs', 'Buenos Aires', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (2, 'Uruguayana', 'Uruguayana', 4);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (6, 'La Pampa', 'La Pampa', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (7, 'Chaco', 'Chaco', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (8, 'Córdoba', 'Córdoba', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (9, 'Misiones', 'Misiones', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (10, 'Mendoza', 'Mendoza', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (11, 'E.Ríos', 'Entre Ríos', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (12, 'Jujuy', 'Jujuy', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (13, 'Chubut', 'Chubut', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (14, 'Salta', 'Salta', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (15, 'Santa Cruz', 'Santa Cruz', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (16, 'San Juan', 'San Juan', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (17, 'San Luis', 'San Luis', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (18, 'R.Negro', 'RÃ­o Negro', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (19, 'Neuquén', 'Neuquén', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (20, 'Formosa', 'Formosa', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (21, 'La Rioja', 'La Rioja', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (22, 'Catamarca', 'Catamarca', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (23, 'T.del Fuego', 'Tierra Del Fuego', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (24, 'Santiago del Est', 'Santiago del Estero', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (25, 'Santa Fe', 'Santa Fe', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (26, 'Corrientes', 'Corrientes', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (27, 'Tucumán', 'Tucumán', 1);
+
+-- 
+-- Volcar la base de datos para la tabla 'repeticion'
+-- 
+
+INSERT INTO `repeticion` (`descripcion`, `orden`) VALUES ('Semanal', 1);
+INSERT INTO `repeticion` (`descripcion`, `orden`) VALUES ('Semanal Intercalado', 2);
+INSERT INTO `repeticion` (`descripcion`, `orden`) VALUES ('Quincenal', 3);
+INSERT INTO `repeticion` (`descripcion`, `orden`) VALUES ('Mensual', 4);
+
+-- 
+-- Volcar la base de datos para la tabla 'tipoiva'
+-- 
+
+INSERT INTO tipoiva (id, nombre, descripcion) VALUES (0, 'Exento', 'Exento de IVA');
+INSERT INTO tipoiva (id, nombre, descripcion) VALUES (1, 'Responsable Inscripto', 'responsable inscripto');
+INSERT INTO tipoiva (id, nombre, descripcion) VALUES (2, 'Monotributo', 'monotributo');
+INSERT INTO tipoiva (id, nombre, descripcion) VALUES (3, 'CF', 'Consumidor Final');
+
+-- 
+-- Volcar la base de datos para la tabla 'tipodocumento'
+-- 
+
+INSERT INTO `tipodocumento` (`id`, `descripcion`, `orden`, `nombre`) VALUES (1, 'Documento Nacional de Identidad', 1, 'DNI');
+INSERT INTO `tipodocumento` (`id`, `descripcion`, `orden`, `nombre`) VALUES (2, 'Libreta Cívica', 2, 'LC');
+INSERT INTO `tipodocumento` (`id`, `descripcion`, `orden`, `nombre`) VALUES (3, 'Libreta de enrolamiento', 3, 'LE');
+INSERT INTO `tipodocumento` (`id`, `descripcion`, `orden`, `nombre`) VALUES (6, 'Cédula de Identidad', 0, 'CI');
+INSERT INTO `tipodocumento` (`id`, `descripcion`, `orden`, `nombre`) VALUES (7, 'Pasaporte', 0, 'Pasaporte');
+
+-- 
 -- Volcar la base de datos para la tabla 'actividad'
 -- 
 
@@ -90,6 +169,8 @@ INSERT INTO `calendariovacunacion` (`id`, `nombre`, `descripcion`, `periodo`, `o
 -- 
 -- Volcar la base de datos para la tabla 'distritoescolar'
 -- 
+INSERT INTO `distritoescolar` ( `id` , `nombre` , `direccion` , `telefono` , `ciudad` ) VALUES (NULL , 'Distrito de prueba', '-', '-', '-');
+
 
 -- 
 -- Volcar la base de datos para la tabla 'division'
@@ -115,6 +196,13 @@ INSERT INTO `calendariovacunacion` (`id`, `nombre`, `descripcion`, `periodo`, `o
 -- Volcar la base de datos para la tabla 'espacio'
 -- 
 
+-- 
+-- Volcar la base de datos para la tabla 'organizacion'
+-- 
+
+INSERT INTO organizacion (id, nombre, descripcion, razon_social, cuit, direccion, ciudad, codigo_postal, fk_provincia_id, fk_tipoiva_id, telefono) VALUES (1, 'Organización Tu Nombre', 'Organización Tu Descripción', 'Organización Tu Razón Social', '', '', '', '', 1, 1, '');
+
+
 
 -- 
 -- Volcar la base de datos para la tabla 'establecimiento'
@@ -122,6 +210,15 @@ INSERT INTO `calendariovacunacion` (`id`, `nombre`, `descripcion`, `periodo`, `o
 
 INSERT INTO establecimiento (id, nombre, descripcion, fk_organizacion_id, fk_niveltipo_id, fk_distritoescolar_id) 
 VALUES (1, 'Establecimiento Tu nombre', 'Establecimiento Tu descripcion',1,1,1);
+
+
+-- 
+-- Volcar la base de datos para la tabla 'usuario'
+-- 
+
+INSERT INTO usuario (id, usuario, clave, correo_publico, email, activo, fecha_creado, fecha_actualizado, seguridad_pregunta, seguridad_respuesta, fk_establecimiento_id, borrado) VALUES (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'admin@proyectoalba.com.ar', 1, '2006-12-03 00:00:00', '2006-12-03 00:00:00', 'usuario por defecto', 'adminsitrador', 1, 0);
+
+
 -- 
 -- Volcar la base de datos para la tabla 'examen'
 -- 
@@ -223,38 +320,6 @@ INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (46, 'tipodo
 INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (47, 'informes', 'informes', 'informes', 1);
 
 -- 
--- Volcar la base de datos para la tabla 'niveltipo'
--- 
-
-INSERT INTO niveltipo (id, nombre, descripcion) VALUES (1, 'Jardín', 'Jardín');
-INSERT INTO niveltipo (id, nombre, descripcion) VALUES (2, 'Primaria', 'Primaria');
-INSERT INTO niveltipo (id, nombre, descripcion) VALUES (3, 'Secundaria', 'Secundaria');
-INSERT INTO niveltipo (id, nombre, descripcion) VALUES (4, 'Universitario', 'Universitario');
-INSERT INTO niveltipo (id, nombre, descripcion) VALUES (5, 'Terciario', 'Terciario');
-INSERT INTO niveltipo (id, nombre, descripcion) VALUES (6, 'Institutos', 'Institutos');
-INSERT INTO niveltipo (id, nombre, descripcion) VALUES (7, 'Otros', 'Otros');
--- 
--- Volcar la base de datos para la tabla 'organizacion'
--- 
-
-INSERT INTO organizacion (id, nombre, descripcion, razon_social, cuit, direccion, ciudad, codigo_postal, fk_provincia_id, fk_tipoiva_id, telefono) VALUES (1, 'Organización Tu Nombre', 'Organización Tu Descripción', 'Organización Tu Razón Social', '', '', '', '', 1, 1, '');
-
--- 
--- Volcar la base de datos para la tabla 'pais'
--- 
-
-INSERT INTO pais (id, nombre_largo, nombre_corto, orden) VALUES (1, 'Argentina', 'ARG', 100);
-INSERT INTO pais (id, nombre_largo, nombre_corto, orden) VALUES (3, 'United States of America', 'USA', 200);
-INSERT INTO pais (id, nombre_largo, nombre_corto, orden) VALUES (4, 'Brasil', 'BRA', 300);
-INSERT INTO pais (id, nombre_largo, nombre_corto, orden) VALUES (5, 'España', 'ESP', 400);
-INSERT INTO pais (id, nombre_largo, nombre_corto, orden) VALUES (6, 'Canadá', 'CAN', 500);
-
--- 
--- Volcar la base de datos para la tabla 'periodo'
--- 
-
-
--- 
 -- Volcar la base de datos para la tabla 'permiso'
 -- 
 
@@ -312,39 +377,19 @@ INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (58, 'tipodocumento', 'tipodocumento', 'tipodocumento', 46);
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (59, 'informes', 'informes', 'informes', 47);
 
+
+
+
+
+-- 
+-- Volcar la base de datos para la tabla 'periodo'
+-- 
+
+
 -- 
 -- Volcar la base de datos para la tabla 'preferencia'
 -- 
 
-
--- 
--- Volcar la base de datos para la tabla 'provincia'
--- 
-
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (1, 'BsAs', 'Buenos Aires', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (2, 'Uruguayana', 'Uruguayana', 4);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (6, 'La Pampa', 'La Pampa', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (7, 'Chaco', 'Chaco', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (8, 'Córdoba', 'Córdoba', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (9, 'Misiones', 'Misiones', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (10, 'Mendoza', 'Mendoza', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (11, 'E.Ríos', 'Entre Ríos', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (12, 'Jujuy', 'Jujuy', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (13, 'Chubut', 'Chubut', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (14, 'Salta', 'Salta', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (15, 'Santa Cruz', 'Santa Cruz', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (16, 'San Juan', 'San Juan', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (17, 'San Luis', 'San Luis', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (18, 'R.Negro', 'RÃ­o Negro', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (19, 'Neuquén', 'Neuquén', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (20, 'Formosa', 'Formosa', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (21, 'La Rioja', 'La Rioja', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (22, 'Catamarca', 'Catamarca', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (23, 'T.del Fuego', 'Tierra Del Fuego', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (24, 'Santiago del Est', 'Santiago del Estero', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (25, 'Santa Fe', 'Santa Fe', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (26, 'Corrientes', 'Corrientes', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (27, 'Tucumán', 'Tucumán', 1);
 
 -- 
 -- Volcar la base de datos para la tabla 'rel_actividad_docente'
@@ -449,16 +494,6 @@ INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (53, 1
 -- 
 
 
--- 
--- Volcar la base de datos para la tabla 'repeticion'
--- 
-
-
-INSERT INTO `repeticion` (`descripcion`, `orden`) VALUES ('Semanal', 1);
-INSERT INTO `repeticion` (`descripcion`, `orden`) VALUES ('Semanal Intercalado', 2);
-INSERT INTO `repeticion` (`descripcion`, `orden`) VALUES ('Quincenal', 3);
-INSERT INTO `repeticion` (`descripcion`, `orden`) VALUES ('Mensual', 4);
-
 
 -- 
 -- Volcar la base de datos para la tabla 'responsable'
@@ -480,15 +515,6 @@ INSERT INTO `repeticion` (`descripcion`, `orden`) VALUES ('Mensual', 4);
 -- 
 
 
--- 
--- Volcar la base de datos para la tabla 'tipodocumento'
--- 
-
-INSERT INTO `tipodocumento` (`id`, `descripcion`, `orden`, `nombre`) VALUES (1, 'Documento Nacional de Identidad', 1, 'DNI');
-INSERT INTO `tipodocumento` (`id`, `descripcion`, `orden`, `nombre`) VALUES (2, 'Libreta Cívica', 2, 'LC');
-INSERT INTO `tipodocumento` (`id`, `descripcion`, `orden`, `nombre`) VALUES (3, 'Libreta de enrolamiento', 3, 'LE');
-INSERT INTO `tipodocumento` (`id`, `descripcion`, `orden`, `nombre`) VALUES (6, 'Cédula de Identidad', 0, 'CI');
-INSERT INTO `tipodocumento` (`id`, `descripcion`, `orden`, `nombre`) VALUES (7, 'Pasaporte', 0, 'Pasaporte');
 
 
 -- 
@@ -496,14 +522,6 @@ INSERT INTO `tipodocumento` (`id`, `descripcion`, `orden`, `nombre`) VALUES (7, 
 -- 
 
 
--- 
--- Volcar la base de datos para la tabla 'tipoiva'
--- 
-
-INSERT INTO tipoiva (id, nombre, descripcion) VALUES (0, 'Exento', 'Exento de IVA');
-INSERT INTO tipoiva (id, nombre, descripcion) VALUES (1, 'Responsable Inscripto', 'responsable inscripto');
-INSERT INTO tipoiva (id, nombre, descripcion) VALUES (2, 'Monotributo', 'monotributo');
-INSERT INTO tipoiva (id, nombre, descripcion) VALUES (3, 'CF', 'Consumidor Final');
 
 -- 
 -- Volcar la base de datos para la tabla 'tipolocacion'
@@ -514,9 +532,3 @@ INSERT INTO tipoiva (id, nombre, descripcion) VALUES (3, 'CF', 'Consumidor Final
 -- Volcar la base de datos para la tabla 'turnos'
 -- 
 
-
--- 
--- Volcar la base de datos para la tabla 'usuario'
--- 
-
-INSERT INTO usuario (id, usuario, clave, correo_publico, email, activo, fecha_creado, fecha_actualizado, seguridad_pregunta, seguridad_respuesta, fk_establecimiento_id, borrado) VALUES (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'admin@proyectoalba.com.ar', 1, '2006-12-03 00:00:00', '2006-12-03 00:00:00', 'usuario por defecto', 'adminsitrador', 1, 0);
