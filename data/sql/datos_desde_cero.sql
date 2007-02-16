@@ -219,7 +219,10 @@ INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`,
 (88, 'Listar Todos', 'alumno/list', 'alumno', 4, 2, ''),
 (89, 'Tipo Documento', 'tipodocumento', '', 83, 40, ''),
 (90, 'Alumnos por divsi&oacute;n', 'informes/alumnosPorDivisionFormulario?vista=imprimir', 'informes', 9, 0, '_blank'),
-(91, 'Boletines', 'informes/boletinFormulario', 'informes', 9, 0, '_blank');
+(91, 'Boletines', 'informes/boletinFormulario', 'informes', 9, 0, '_blank')
+(92, 'Certificado de Estudios', 'informes/certificadoEstudiosBusquedaFormulario', 'informes', '9', '0', '_blank'),
+);
+
 
 -- 
 -- Volcar la base de datos para la tabla 'modulo'

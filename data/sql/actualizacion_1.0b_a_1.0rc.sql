@@ -46,7 +46,7 @@ INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`,
 (29, '-', '#', '', 10, 50, ''),
 (30, 'Salir', 'seguridad/logout', '', 1, 90, ''),
 (31, 'Definir Escala de notas', 'escalanota', 'escalanota', 84, 30, ''),
-(32, 'Definir Categor&iacute;­as del BoletÃ&iacute;n de Concepto', 'concepto', 'concepto', 84, 50, ''),
+(32, 'Definir Categor&iacute;as del Boletï¿½iacute;n de Concepto', 'concepto', 'concepto', 84, 50, ''),
 (33, 'Buscar Alumno para...', 'legajopedagogico', 'legajopedagogico', 4, 20, ''),
 (34, 'Tipos de entrada al legajo pedag&oacute;gico', 'legajocategoria', 'legajocategoria', 84, 40, ''),
 (35, 'Ingresar Nuevo', 'alumno/create', 'alumno', 4, 0, ''),
@@ -96,7 +96,9 @@ INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`,
 (88, 'Listar Todos', 'alumno/list', 'alumno', 4, 2, ''),
 (89, 'Tipo Documento', 'tipodocumento', '', 83, 40, ''),
 (90, 'Alumnos por divsi&oacute;n', 'informes/alumnosPorDivisionFormulario?vista=imprimir', 'informes', 9, 0, '_blank'),
-(91, 'Boletines', 'informes/boletinFormulario', 'informes', 9, 0, '_blank');
+(91, 'Boletines', 'informes/boletinFormulario', 'informes', 9, 0, '_blank'),
+(92, 'Certificado de Estudios', 'informes/certificadoEstudiosBusquedaFormulario', 'informes', 9, 0, '_blank');
+
 
 ALTER TABLE locacion ADD `principal` TINYINT(1) NOT NULL DEFAULT '0';
 

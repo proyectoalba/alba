@@ -319,5 +319,75 @@ class InformesActions extends sfActions
     }
 
 
+
+    public function executeCertificadoEstudiosBusquedaFormulario() {
+        // inicializando variables
+        $optionsDivision = array();
+        $aAlumno  = array();        
+
+        // tomando los datos del formulario
+        $txt = $this->getRequestParameter('txt');
+
+        // llenando el combo de division segun establecimiento
+        $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
+       
+        if ($this->getRequest()->getMethod() == sfRequest::POST) {
+            // buscando alumnos
+            $aAlumno = $this->_getTodosLosAlumnos($establecimiento_id, $txt);    
+        }
+
+        // asignando variables para ser usadas en el template
+        $this->txt = $txt;
+        $this->aAlumno = $aAlumno;
+        $this->vista = "imprimir";
+    }
+
+    public function executeCertificadoEstudiosFormulario() {
+        $alumno = "";
+        $y = "";
+        $aAnio = array();
+        
+        $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
+        $alumno_id = $this->getRequestParameter('alumno_id');
+
+        $alumno = AlumnoPeer::retrieveByPK($alumno_id);
+        $y = date("Y");
+
+        $criteria = new Criteria();
+        $criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
+        $anios = AnioPeer::doSelect($criteria);
+        $aAnio[""] = "";
+        foreach($anios as $anio) {
+            $aAnio[$anio->getDescripcion()] = $anio->getDescripcion();
+        }
+
+        $this->aAnio = $aAnio;
+        $this->d = date("d");
+        $this->m = date("m");
+        $this->y = $y;        
+        $this->anio_hasta = $y;
+        $this->alumno = $alumno;
+        $this->vista = "imprimir";
+    }
+
+    public function executeCertificadoEstudiosListado() {
+        $anio = $this->getRequestParameter('anio');
+        $grado = $this->getRequestParameter('grado');
+        $alumno_id = $this->getRequestParameter('alumno_id');
+        $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
+
+        $alumno = AlumnoPeer::retrieveByPK($alumno_id);
+        $establecimiento = EstablecimientoPeer::retrieveByPK($establecimiento_id); 
+
+        $this->establecimiento = $establecimiento;
+        $this->anio = $anio;
+        $this->grado = $grado;
+        $this->alumno = $alumno;
+        $this->vista = "imprimir";
+    }
+
+    public function handleErrorCertificadoEstudiosListado() {
+        $this->forward('informes','certificadoEstudiosFormulario');
+    }
 }
 ?>
