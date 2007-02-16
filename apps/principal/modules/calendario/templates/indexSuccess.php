@@ -118,7 +118,7 @@ div.wastebin-active {
 
  <div class="form-row">
   <?php echo label_for('turnos_id', __('Turnos:'), 'class="required" ') ?>
-  <?php echo select_tag('turnos_id', options_for_select($optionsTurnos)) ?>
+  <?php echo select_tag('turnos_id', options_for_select($optionsTurnos,$turnos_id),'onChange="javascript:submitForm()"') ?>
  </div>
 
 <!--
@@ -134,7 +134,7 @@ div.wastebin-active {
 <? if(count($optionsDivision)>0) { ?>
  <div class="form-row">
   <?php echo label_for('division_id', __('Division:'), 'class="required" ') ?>
-  <?php echo select_tag('division_id', options_for_select($optionsDivision, $division_id),'') ?>
+  <?php echo select_tag('division_id', options_for_select($optionsDivision, $division_id),'onChange="javascript:submitForm()"') ?>
  </div>
 
  <div class="form-row">

@@ -168,6 +168,7 @@ class calendarioActions extends sfActions
         $actividad_id = "";
         $optionsActividad = array();
         $horasMateriasTodas = array();
+        $anio_id = "";
         
 /*
         $criteria = new Criteria();
@@ -191,13 +192,6 @@ class calendarioActions extends sfActions
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
         $this->establecimiento_id = $establecimiento_id;
         
-        $optionsActividad[""] = "";        
-        $criteria = new Criteria();
-        $actividades = ActividadPeer::doSelect($criteria);   
-        foreach($actividades as $actividad) {
-            $optionsActividad[$actividad->getId()] = $actividad->getNombre();
-        }
-        $this->optionsActividad = $optionsActividad;
 
 /*      $criteria = new Criteria();
         $criteria->add(CiclolectivoPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
@@ -273,8 +267,10 @@ class calendarioActions extends sfActions
             $horarioescolares  = $this->getHorarioEscolar($establecimiento_id, $turnos_id);
 
             $criteria = new Criteria();
+            $criteria->add(DivisionPeer::FK_TURNOS_ID, $turnos_id);
             $criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
-            $divisiones = DivisionPeer::doSelectJoinAnio($criteria);
+            $criteria->addJoin(AnioPeer::ID, DivisionPeer::FK_ANIO_ID);
+            $divisiones = DivisionPeer::doSelect($criteria);
             $optionsDivision = array();
             
             foreach($divisiones as $division) {
@@ -293,6 +289,8 @@ class calendarioActions extends sfActions
             $this->horasMaterias = $this->getHorasMaterias($aAnio[$this->division_id], $actividad_id);
             $this->getUser()->setAttribute('anio_id', $aAnio[$this->division_id]); 
             $this->getUser()->setAttribute('division_id', $this->division_id);
+            $this->turnos_id = $turnos_id;
+            $anio_id = $aAnio[$this->division_id];
         } else {
             $this->aHour = array(strtotime("8:00"), strtotime("17:00"));
             $this->time_interval = 15;
@@ -352,7 +350,20 @@ class calendarioActions extends sfActions
             $this->aEvent = $this->cargarItemCalendario($this->division_id, $aEvent, $horasMateriasTodas );
             $this->getUser()->setAttribute('event', $aEvent);
 
-        }     
+        }
+
+        $optionsActividad[""] = "";        
+        $criteria = new Criteria();
+        $criteria->add(ActividadPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
+        $criteria->addJoin(RelAnioActividadPeer::FK_ACTIVIDAD_ID, ActividadPeer::ID);
+        if($anio_id)  {
+            $criteria->add(RelAnioActividadPeer::FK_ANIO_ID, $anio_id);
+        }
+        $actividades = ActividadPeer::doSelect($criteria);   
+        foreach($actividades as $actividad) {
+            $optionsActividad[$actividad->getId()] = $actividad->getNombre();
+        }
+        $this->optionsActividad = $optionsActividad;     
     }
 
 
