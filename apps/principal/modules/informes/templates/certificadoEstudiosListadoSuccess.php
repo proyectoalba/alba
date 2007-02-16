@@ -14,7 +14,7 @@
 
 <div class="texto">
 Certifico que <?=$alumno->getApellido()?>, <?=$alumno->getNombre()?>  quien acredita identidad con <?=$alumno->getTipoDocumento()->getDescripcion()?> <br> N&deg; <?=$alumno->getNroDocumento()?> nacido  <?=($alumno->getLugarNacimiento())?" en ".$alumno->getLugarNacimiento():"";?> el <?=date("d",strtotime($alumno->getFechaNacimiento()))?> de <?=$meses[date("n",strtotime($alumno->getFechaNacimiento()))]?> de  <?=date("Y",strtotime($alumno->getFechaNacimiento()))?> aprob&oacute;  <?=$grado?>, como alumno <br> 
-regular en <?=strtoupper($establecimiento->getNombre())?> en el a&ntilde;o <?=$anio?><br>
+regular en escuela <?=strtoupper($establecimiento->getNombre())?> D.E. <?=$establecimiento->getDistritoescolar()->getNombre()?> en el a&ntilde;o <?=$anio?><br>
 <br>
 Se extiende el presente <span style="font-weight: bold;">CERTIFICADO DE ESTUDIOS</span>, <br>
 en Buenos Aires, a los <?=date("d")?> d&iacute;as del mes de <?=$meses[date("n")]?> del a&ntilde;o  <?=date("Y")?> <br>
