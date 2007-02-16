@@ -22,8 +22,8 @@
  * Responsable Acciones
  *
  * @package    alba
- * @author     José Luis Di Biase <josx@interorganic.com.ar>
- * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     JosÃ© Luis Di Biase <josx@interorganic.com.ar>
+ * @author     HÃ©ctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
@@ -47,6 +47,16 @@ class responsableActions extends autoresponsableActions {
     }
     public function executeEdit (){                                                       
         $this->responsable = $this->getResponsableOrCreate();                                                                    
+
+        $datosCuenta = "";
+        if($this->getRequestParameter("fk_cuenta_id")) {
+            $datosCuenta = CuentaPeer::retrieveByPk($this->getRequestParameter("fk_cuenta_id"));
+        }
+        if($this->responsable->getFkCuentaId()) {
+            $datosCuenta = CuentaPeer::retrieveByPk($this->responsable->getFkCuentaId());
+        }
+        $this->datosCuenta = $datosCuenta;
+
 
         if ($this->getRequest()->getMethod() == sfRequest::POST) {                                                                                                                        
             $this->responsable = $this->getResponsableOrCreate(); 

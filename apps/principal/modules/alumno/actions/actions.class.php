@@ -102,18 +102,13 @@ class alumnoActions extends autoalumnoActions
     $this->alumno = $this->getAlumnoOrCreate();
 
     $datosCuenta = "";
-
     if($this->getRequestParameter("fk_cuenta_id")) {
         $datosCuenta = CuentaPeer::retrieveByPk($this->getRequestParameter("fk_cuenta_id"));
     }
-
     if($this->alumno->getFkCuentaId()) {
         $datosCuenta = CuentaPeer::retrieveByPk($this->alumno->getFkCuentaId());
     }
-
     $this->datosCuenta = $datosCuenta;
-
-
 
     if ($this->getRequest()->getMethod() == sfRequest::POST)
     {

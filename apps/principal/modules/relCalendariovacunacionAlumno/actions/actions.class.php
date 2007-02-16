@@ -23,8 +23,8 @@
  * relCalendariovacunacionAlumno Acciones
  *
  * @package    alba
- * @author     José Luis Di Biase <josx@interorganic.com.ar>
- * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     JosÃ© Luis Di Biase <josx@interorganic.com.ar>
+ * @author     HÃ©ctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
@@ -59,4 +59,47 @@ class relCalendariovacunacionAlumnoActions extends autorelCalendariovacunacionAl
   function executeIrAlumnos(){
     $this->redirect('alumno/list');
   }                
+
+
+  public function executeEdit ()
+  {
+    $this->rel_calendariovacunacion_alumno = $this->getRelCalendariovacunacionAlumnoOrCreate();
+
+    if ($this->getRequest()->getMethod() == sfRequest::POST)
+    {
+      $this->rel_calendariovacunacion_alumno = $this->getRelCalendariovacunacionAlumnoOrCreate();
+
+      $this->updateRelCalendariovacunacionAlumnoFromRequest();
+
+      $this->saveRelCalendariovacunacionAlumno($this->rel_calendariovacunacion_alumno);
+
+      $this->setFlash('notice', 'Your modifications have been saved');
+
+      if ($this->getRequestParameter('save_and_add'))
+      {
+        if($rel_calendariovacunacion_alumno->getFkAlumnoId()) {
+            return $this->redirect('relCalendariovacunacionAlumno/create?fk_alumno_id='.$this->rel_calendariovacunacion_alumno->getFkAlumnoId());
+        } else {
+            return $this->redirect('relCalendariovacunacionAlumno/create');
+        }
+      }
+      else
+      {
+        return $this->redirect('relCalendariovacunacionAlumno/edit?id='.$this->rel_calendariovacunacion_alumno->getId());
+      }
+    }
+    else
+    {
+      // add javascripts
+      $this->getResponse()->addJavascript('/sf/js/prototype/prototype');
+      $this->getResponse()->addJavascript('/sf/js/sf_admin/collapse');
+	  if ($this->getRequestParameter('fk_alumno_id'))
+                $this->rel_calendariovacunacion_alumno->setFkAlumnoId($this->getRequestParameter('fk_alumno_id'));
+
+
+    }
+  }
+
+
+
 }
