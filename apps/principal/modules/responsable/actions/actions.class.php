@@ -146,7 +146,15 @@ class responsableActions extends autoresponsableActions {
         
     $this->responsable->setAutorizacionRetiro(isset($responsable['autorizacion_retiro']) ? $responsable['autorizacion_retiro'] : 0);
   }
-
+  
+    function executeIrCuenta() {
+        //Obtener el id de cuenta.
+  
+        $c = new Criteria();
+        $c->add(ResponsablePeer::ID, $this->getRequestParameter('id'));
+        $Resp = ResponsablePeer::doSelectOne($c);
+        return $this->redirect('cuenta/verCompleta?id='.$Resp->getFkCuentaId());
+    }   
 }  
 
 ?>

@@ -16,7 +16,7 @@ all:
 #    class: myWebRequest
 #
     user:
-        class: myUser
+        class: albaUser
 #
 #  storage:
 #    class: sfSessionStorage

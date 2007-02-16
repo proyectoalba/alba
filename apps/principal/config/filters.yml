@@ -1,0 +1,5 @@
+# filtro par conectar en utf8 al servidor de bases de datos(mysql)
+
+albaUtf8ConnectionFilter:
+    class: albaUtf8ConnectionFilter
+    activate: on  
