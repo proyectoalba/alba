@@ -470,6 +470,7 @@ CREATE TABLE `alumno`
 	`codigo_postal` VARCHAR(20) default '' NOT NULL,
 	`fk_provincia_id` INTEGER default 0 NOT NULL,
 	`telefono` VARCHAR(20) default '',
+	`lugar_nacimiento` VARCHAR(128) default '',
 	`fk_tipodocumento_id` INTEGER(11) default 0 NOT NULL,
 	`nro_documento` VARCHAR(16) default '' NOT NULL,
 	`sexo` CHAR(1) default '' NOT NULL,
@@ -482,6 +483,7 @@ CREATE TABLE `alumno`
 	`certificado_medico` INTEGER default 0 NOT NULL,
 	`activo` INTEGER default 1 NOT NULL,
 	`fk_conceptobaja_id` INTEGER default 0 NOT NULL,
+	`fk_pais_id` INTEGER default 0 NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `alumno_FI_1` (`fk_tipodocumento_id`),
 	CONSTRAINT `alumno_FK_1`
@@ -502,7 +504,11 @@ CREATE TABLE `alumno`
 	INDEX `alumno_FI_5` (`fk_conceptobaja_id`),
 	CONSTRAINT `alumno_FK_5`
 		FOREIGN KEY (`fk_conceptobaja_id`)
-		REFERENCES `conceptobaja` (`id`)
+		REFERENCES `conceptobaja` (`id`),
+	INDEX `alumno_FI_6` (`fk_pais_id`),
+	CONSTRAINT `alumno_FK_6`
+		FOREIGN KEY (`fk_pais_id`)
+		REFERENCES `pais` (`id`)
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
