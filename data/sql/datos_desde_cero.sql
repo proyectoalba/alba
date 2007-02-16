@@ -1,4 +1,4 @@
--- 
+﻿-- 
 -- Volcar la base de datos para la tabla 'niveltipo'
 -- 
 
@@ -24,7 +24,7 @@ INSERT INTO pais (id, nombre_largo, nombre_corto, orden) VALUES (6, 'Canadá', '
 -- Volcar la base de datos para la tabla 'provincia'
 -- 
 
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (1, 'BsAs', 'Buenos Aires', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (1, 'Bs. As.', 'Buenos Aires', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (2, 'Uruguayana', 'Uruguayana', 4);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (6, 'La Pampa', 'La Pampa', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (7, 'Chaco', 'Chaco', 1);
@@ -38,7 +38,7 @@ INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (14, '
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (15, 'Santa Cruz', 'Santa Cruz', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (16, 'San Juan', 'San Juan', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (17, 'San Luis', 'San Luis', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (18, 'R.Negro', 'RÃ­o Negro', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (18, 'R.Negro', 'Río Negro', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (19, 'Neuquén', 'Neuquén', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (20, 'Formosa', 'Formosa', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (21, 'La Rioja', 'La Rioja', 1);
@@ -62,10 +62,10 @@ INSERT INTO `repeticion` (`descripcion`, `orden`) VALUES ('Mensual', 4);
 -- Volcar la base de datos para la tabla 'tipoiva'
 -- 
 
-INSERT INTO tipoiva (id, nombre, descripcion) VALUES (0, 'Exento', 'Exento de IVA');
-INSERT INTO tipoiva (id, nombre, descripcion) VALUES (1, 'Responsable Inscripto', 'responsable inscripto');
-INSERT INTO tipoiva (id, nombre, descripcion) VALUES (2, 'Monotributo', 'monotributo');
-INSERT INTO tipoiva (id, nombre, descripcion) VALUES (3, 'CF', 'Consumidor Final');
+INSERT INTO tipoiva (id, nombre, descripcion) VALUES (1, 'Exento', 'Exento de IVA');
+INSERT INTO tipoiva (id, nombre, descripcion) VALUES (2, 'Responsable Inscripto', 'Responsable inscripto');
+INSERT INTO tipoiva (id, nombre, descripcion) VALUES (3, 'Monotributo', 'Monotributo');
+INSERT INTO tipoiva (id, nombre, descripcion) VALUES (4, 'CF', 'Consumidor Final');
 
 -- 
 -- Volcar la base de datos para la tabla 'tipodocumento'
@@ -108,14 +108,16 @@ INSERT INTO `calendariovacunacion` (`id`, `nombre`, `descripcion`, `periodo`, `o
 -- 
 -- Volcar la base de datos para la tabla 'distritoescolar'
 -- 
-INSERT INTO `distritoescolar` ( `id` , `nombre` , `direccion` , `telefono` , `ciudad` ) VALUES (NULL , 'Distrito de prueba', '-', '-', '-');
+INSERT INTO `distritoescolar` ( `id` , `nombre` , `direccion` , `telefono` , `ciudad` ) 
+VALUES (NULL , 'Distrito de prueba', '-', '-', '-');
 
 
 -- 
 -- Volcar la base de datos para la tabla 'organizacion'
 -- 
 
-INSERT INTO organizacion (id, nombre, descripcion, razon_social, cuit, direccion, ciudad, codigo_postal, fk_provincia_id, fk_tipoiva_id, telefono) VALUES (1, 'Organización Tu Nombre', 'Organización Tu Descripción', 'Organización Tu Razón Social', '', '', '', '', 1, 1, '');
+INSERT INTO organizacion (id, nombre, descripcion, razon_social, cuit, direccion, ciudad, codigo_postal, fk_provincia_id, fk_tipoiva_id, telefono) 
+VALUES (1, 'Organización Tu Nombre', 'Organización Tu Descripción', 'Organización Tu Razón Social', '', '', '', '', 1, 1, '');
 
 
 -- 
@@ -130,14 +132,15 @@ VALUES (1, 'Establecimiento Tu nombre', 'Establecimiento Tu descripcion',1,1,1);
 -- Volcar la base de datos para la tabla 'usuario'
 -- 
 
-INSERT INTO usuario (id, usuario, clave, correo_publico, email, activo, fecha_creado, fecha_actualizado, seguridad_pregunta, seguridad_respuesta, fk_establecimiento_id, borrado) VALUES (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'admin@proyectoalba.com.ar', 1, '2006-12-03 00:00:00', '2006-12-03 00:00:00', 'usuario por defecto', 'adminsitrador', 1, 0);
+INSERT INTO usuario (id, usuario, clave, correo_publico, email, activo, fecha_creado, fecha_actualizado, seguridad_pregunta, seguridad_respuesta, fk_establecimiento_id, borrado) 
+VALUES (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'admin@localhost', 1, '2006-12-03 00:00:00', '2006-12-03 00:00:00', 'usuario por defecto', 'adminsitrador', 1, 0);
 
 -- 
 -- Volcar la base de datos para la tabla 'menu'
 -- 
 
 
-INSERT INTO `menu` VALUES (1,'-- Menu Raiz --','#','',0,0,'');
+INSERT INTO `menu` VALUES (1,'-- Menu Raiz --','#','',1,0,'');
 INSERT INTO `menu` VALUES (2,'General','#','',10,0,'');
 INSERT INTO `menu` VALUES (3,'Cuentas','#','',1,10,'');
 INSERT INTO `menu` VALUES (4,'Alumnos','#','',1,20,'');
@@ -328,60 +331,6 @@ INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (58, 'tipodocumento', 'tipodocumento', 'tipodocumento', 46);
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (59, 'informes', 'informes', 'informes', 47);
 
-
-
-
-
--- 
--- Volcar la base de datos para la tabla 'periodo'
--- 
-
-
--- 
--- Volcar la base de datos para la tabla 'preferencia'
--- 
-
-
--- 
--- Volcar la base de datos para la tabla 'rel_actividad_docente'
--- 
-
-
--- 
--- Volcar la base de datos para la tabla 'rel_alumno_division'
--- 
-
-
--- 
--- Volcar la base de datos para la tabla 'rel_anio_actividad'
--- 
-
-
--- 
--- Volcar la base de datos para la tabla 'rel_calendariovacunacion_alumno'
--- 
-
-
--- 
--- Volcar la base de datos para la tabla 'rel_division_actividad_docente'
--- 
-
-
--- 
--- Volcar la base de datos para la tabla 'rel_docente_establecimiento'
--- 
-
-
--- 
--- Volcar la base de datos para la tabla 'rel_establecimiento_locacion'
--- 
-
-
--- 
--- Volcar la base de datos para la tabla 'rel_rol_permiso'
--- 
-
-
 -- 
 -- Volcar la base de datos para la tabla 'rel_usuario_permiso'
 -- 
@@ -440,46 +389,4 @@ INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (51, 1
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (52, 1, 58);
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (53, 1, 59);
 
--- 
--- Volcar la base de datos para la tabla 'rel_usuario_preferencia'
--- 
-
-
-
--- 
--- Volcar la base de datos para la tabla 'responsable'
--- 
-
-
--- 
--- Volcar la base de datos para la tabla 'rol'
--- 
-
-
--- 
--- Volcar la base de datos para la tabla 'tipoasistencia'
--- 
-
-
--- 
--- Volcar la base de datos para la tabla 'tipodocente'
--- 
-
-
-
-
--- 
--- Volcar la base de datos para la tabla 'tipoespacio'
--- 
-
-
-
--- 
--- Volcar la base de datos para la tabla 'tipolocacion'
--- 
-
-
--- 
--- Volcar la base de datos para la tabla 'turnos'
--- 
 
