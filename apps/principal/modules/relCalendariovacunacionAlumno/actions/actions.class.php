@@ -77,7 +77,7 @@ class relCalendariovacunacionAlumnoActions extends autorelCalendariovacunacionAl
 
       if ($this->getRequestParameter('save_and_add'))
       {
-        if($rel_calendariovacunacion_alumno->getFkAlumnoId()) {
+        if($this->rel_calendariovacunacion_alumno->getFkAlumnoId()) {
             return $this->redirect('relCalendariovacunacionAlumno/create?fk_alumno_id='.$this->rel_calendariovacunacion_alumno->getFkAlumnoId());
         } else {
             return $this->redirect('relCalendariovacunacionAlumno/create');
