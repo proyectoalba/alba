@@ -47,4 +47,15 @@ ul {
   background: url(../images/small/print.png) no-repeat 3px 2px;
     border-right: 4px solid #73B65A !important;
 }
+
+.sf_admin_action_list
+{
+  background: url(../images/small/listado.png) no-repeat 3px 2px;
+    border-right: 4px solid #73B65A !important;
+}
+.sf_admin_action_ir_a
+{
+  background: url(../images/small/ir_a.png) no-repeat 3px 2px;
+    border-right: 4px solid #73B65A !important;
+}
     
