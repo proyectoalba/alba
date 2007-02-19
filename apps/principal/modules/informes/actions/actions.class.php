@@ -126,7 +126,9 @@ class InformesActions extends sfActions
 
 
 
-
+/**
+*   Informe de Alumnos por división
+*/
 
 
     public function handleErrorAlumnosPorDivisionListado() {
@@ -177,6 +179,9 @@ class InformesActions extends sfActions
 
     }    
 
+/**
+*   Informe Constancia de Alumno Regular
+*/
 
     public function executeConstanciaAlumnoRegularFormulario() {
         
@@ -235,7 +240,9 @@ class InformesActions extends sfActions
         $this->vista = "imprimir";
     }
 
-
+/**
+*   Informe de Certificado de Finalización de Primaria
+*/
 
     public function executeCertificadoPrimariaFormulario() {
         
@@ -284,7 +291,9 @@ class InformesActions extends sfActions
         $this->dia = date("d");
     }
 
-
+/**
+*   Informe Boletin
+*/
 
     public function executeBoletinFormulario() {
         // inicializando variables
@@ -319,7 +328,9 @@ class InformesActions extends sfActions
     }
 
 
-
+/**
+*   Informe de Certificado de Estudios
+*/
     public function executeCertificadoEstudiosBusquedaFormulario() {
         // inicializando variables
         $optionsDivision = array();
@@ -389,5 +400,78 @@ class InformesActions extends sfActions
     public function handleErrorCertificadoEstudiosListado() {
         $this->forward('informes','certificadoEstudiosFormulario');
     }
+
+
+
+
+
+
+
+
+
+
+/**
+*   Informe de Solicitud de Legajo
+*/
+    public function executeSolicitudLegajoBusquedaFormulario() {
+          // inicializando variables
+        $optionsDivision = array();
+        $aAlumno  = array();        
+
+        // tomando los datos del formulario
+        $division_id = $this->getRequestParameter('division_id');
+        $txt = $this->getRequestParameter('txt');
+
+        // llenando el combo de division segun establecimiento
+        $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
+        $optionsDivision = $this->_getDivisiones($establecimiento_id);
+       
+        if ($this->getRequest()->getMethod() == sfRequest::POST) {
+            // buscando alumnos
+            $aAlumno = $this->_getAlumnosPorDivision($division_id, $txt);
+        }
+
+        // asignando variables para ser usadas en el template
+        $this->optionsDivision = $optionsDivision;
+        $this->division_id = $division_id;
+        $this->txt = $txt;
+        $this->aAlumno = $aAlumno;
+        $this->vista = "imprimir";
+
+    }
+
+    public function executeSolicitudLegajoFormulario() {
+        $alumno_id = $this->getRequestParameter('alumno_id');
+        $division_id = $this->getRequestParameter('division_id');
+
+        $alumno = AlumnoPeer::retrieveByPK($alumno_id);
+
+        $this->division_id = $division_id;        
+        $this->alumno = $alumno;
+        $this->vista = "imprimir";
+    }
+
+    public function executeSolicitudLegajoListado() {
+        $division_id = $this->getRequestParameter('division_id');
+        $alumno_id = $this->getRequestParameter('alumno_id');
+        $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
+        $escuela = $this->getRequestParameter('escuela');
+
+        $alumno = AlumnoPeer::retrieveByPK($alumno_id);
+        $establecimiento = EstablecimientoPeer::retrieveByPK($establecimiento_id); 
+        $division = DivisionPeer::retrieveByPK($division_id);
+
+        $this->establecimiento = $establecimiento;
+        $this->alumno = $alumno;
+        $this->division = $division;
+        $this->escuela = $escuela;
+        $this->vista = "imprimir";
+    }
+
+    public function handleErrorSolicitudLegajoListado() {
+        $this->forward('informes','solicitudLegajoFormulario');
+    }
+
+
 }
 ?>

@@ -1,0 +1,16 @@
+methods:
+    post: [ alumno_id, division_id, escuela ]
+
+names:
+    division_id:
+        required:     Yes
+        required_msg: La Divisi&oacute;n es obligatoria
+
+    alumno_id:
+        required:     Yes
+        required_msg: El Alumno es obligatorio
+
+    escuela:
+        required:     Yes
+        required_msg: El nombre de la escuela de origen es obligatorio
+
