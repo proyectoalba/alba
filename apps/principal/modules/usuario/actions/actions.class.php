@@ -157,6 +157,8 @@ class usuarioActions extends autousuarioActions
           $optionsRol[$rol->getId()] = $rol->getNombre();
         }
         $this->optionsRol = $optionsRol;
+
+        $this->usuario = UsuarioPeer::retrieveByPk($this->getRequestParameter('id'));
     }
                         
     function executeSavePermiso() {
