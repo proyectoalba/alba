@@ -27,7 +27,6 @@ INSERT INTO pais (id, nombre_largo, nombre_corto, orden) VALUES (6, 'Canadá', '
 -- 
 
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (1, 'Bs. As.', 'Buenos Aires', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (2, 'Uruguayana', 'Uruguayana', 4);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (6, 'La Pampa', 'La Pampa', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (7, 'Chaco', 'Chaco', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (8, 'Córdoba', 'Córdoba', 1);
@@ -46,7 +45,7 @@ INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (20, '
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (21, 'La Rioja', 'La Rioja', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (22, 'Catamarca', 'Catamarca', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (23, 'T.del Fuego', 'Tierra Del Fuego', 1);
-INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (24, 'Santiago del Est', 'Santiago del Estero', 1);
+INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (24, 'S. del Estero', 'Santiago del Estero', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (25, 'Santa Fe', 'Santa Fe', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (26, 'Corrientes', 'Corrientes', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (27, 'Tucumán', 'Tucumán', 1);
