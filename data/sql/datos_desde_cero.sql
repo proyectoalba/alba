@@ -110,7 +110,7 @@ INSERT INTO `calendariovacunacion` (`id`, `nombre`, `descripcion`, `periodo`, `o
 -- Volcar la base de datos para la tabla 'distritoescolar'
 -- 
 INSERT INTO `distritoescolar` ( `id` , `nombre` , `direccion` , `telefono` , `ciudad` ) 
-VALUES (NULL , 'Distrito de prueba', '-', '-', '-');
+VALUES (1 , 'Distrito de prueba', '-', '-', '-');
 
 
 -- 
