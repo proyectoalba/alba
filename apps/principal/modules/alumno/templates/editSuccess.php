@@ -322,7 +322,7 @@ array()) ?></h1>
 <h2><?php echo __('Otros') ?></h2>
 
 <div class="form-row">
-  <?php echo label_for('alumno[certificado_medico]', __('¿Trajo el certificado m&eacute;dico?:'), 'class="required" ') ?>
+  <?php echo label_for('alumno[certificado_medico]', __('Trajo el certificado m&eacute;dico?:'), 'class="required" ') ?>
   <div class="content<?php if ($sf_request->hasError('alumno{certificado_medico}')): ?> form-error<?php endif; ?>">
   <?php if ($sf_request->hasError('alumno{certificado_medico}')): ?>
     <?php echo form_error('alumno{certificado_medico}', array('class' => 'form-error-msg')) ?>
@@ -334,16 +334,22 @@ array()) ?></h1>
     </div>
 </div>
 
-<div class="form-row">
-  <?php echo label_for('alumno[fk_cuenta_id]', __('Cuenta:'), 'class="required" ') ?>
-  <div class="content<?php if ($sf_request->hasError('alumno{fk_cuenta_id}')): ?> form-error<?php endif; ?>">
-  <?php if ($sf_request->hasError('alumno{fk_cuenta_id}')): ?>
-    <?php echo form_error('alumno{fk_cuenta_id}', array('class' => 'form-error-msg')) ?>
-  <?php endif; ?>
 
-  <?php echo include_partial('fk_cuenta_id', array('type' => 'edit', 'alumno' => $alumno)) ?>
+<div class="form-row">
+    <?php echo label_for('alumno[fk_cuenta_id]', __('Cuenta:'), 'class="required" ') ?>
+    <div class="content<?php if ($sf_request->hasError('alumno{fk_cuenta_id}')): ?> form-error<?php endif; ?>">  
+        <div id="cuenta">
+            <?php if($alumno->getFkCuentaId()) { ?>
+                <?php echo include_partial('verCuenta', array('cuenta_nombre' => $alumno->getCuenta()->getNombre(), 'cuenta_id' => $alumno->getCuenta()->getId()) ); ?>
+            <?php } else { ?>
+                <?php echo include_partial('buscarCuenta'); ?>  
+            <? } ?>
+
+        </div>
     </div>
 </div>
+
+
 
 </fieldset>
 

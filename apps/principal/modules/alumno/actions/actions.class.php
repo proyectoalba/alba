@@ -23,8 +23,8 @@
  * alumno actions.
  *
  * @package    alba
- * @author     José Luis Di Biase <josx@interorganic.com.ar>
- * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     Jos? Luis Di Biase <josx@interorganic.com.ar>
+ * @author     H?ctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
@@ -136,6 +136,34 @@ class alumnoActions extends autoalumnoActions
       $this->getResponse()->addJavascript('/sf/js/sf_admin/collapse');
     }
   }
+
+
+    public function executeBuscar() {
+        $aCuentas = array();
+
+        $txt_cuenta = $this->getRequestParameter("txt_cuenta");
+        
+        $criteria = new Criteria();
+        $cton1 = $criteria->getNewCriterion(CuentaPeer::NOMBRE, "%$txt_cuenta%", Criteria::LIKE);
+        $cton2 = $criteria->getNewCriterion(CuentaPeer::RAZON_SOCIAL, "%$txt_cuenta%", Criteria::LIKE);
+        $cton1->addOr($cton2);
+        $criteria->add($cton1);
+        $aCuentas = CuentaPeer::doSelect($criteria);
+
+        $this->txt_cuenta = $txt_cuenta;
+        $this->aCuentas = $aCuentas;
+    }
+
+    public function executeSeleccionarCuenta() {
+
+        $id_cuenta = $this->getRequestParameter("id");
+        $this->cuenta = CuentaPeer::retrieveByPk($id_cuenta);
+    }
+
+
+    public function executeCambiarCuenta() {
+
+    }
 
 }
 ?>
