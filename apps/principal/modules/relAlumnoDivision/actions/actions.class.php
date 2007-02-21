@@ -36,6 +36,31 @@ class relAlumnoDivisionActions extends autorelAlumnoDivisionActions
     public function preExecute() {
         $this->vista = $this->getRequestParameter('vista');
     }
-}
+    protected function addFiltersCriteria (&$c)                                                                                
+    {                                                                                                                          
+        $c->add(AlumnoPeer::FK_ESTABLECIMIENTO_ID,$this->getUser()->getAttribute('fk_establecimiento_id'));                      
+        $c->addJoin(AlumnoPeer::ID,RelAlumnoDivisionPeer::FK_ALUMNO_ID);
+        if (isset($this->filters['fk_alumno_id_is_empty']))                                                                      
+        {                                                                                                                        
+          $criterion = $c->getNewCriterion(RelAlumnoDivisionPeer::FK_ALUMNO_ID, '');                                             
+          $criterion->addOr($c->getNewCriterion(RelAlumnoDivisionPeer::FK_ALUMNO_ID, null, Criteria::ISNULL));                   
+          $c->add($criterion);                                                                                                   
+        }                                                                                                                        
+        else if (isset($this->filters['fk_alumno_id']) && $this->filters['fk_alumno_id'] !== '')                                 
+        {                                                                                                                        
+          $c->add(RelAlumnoDivisionPeer::FK_ALUMNO_ID, $this->filters['fk_alumno_id']);                                          
+        }                                                                                                                        
+        if (isset($this->filters['fk_division_id_is_empty']))                                                                    
+        {                                                                                                                        
+          $criterion = $c->getNewCriterion(RelAlumnoDivisionPeer::FK_DIVISION_ID, '');                                           
+          $criterion->addOr($c->getNewCriterion(RelAlumnoDivisionPeer::FK_DIVISION_ID, null, Criteria::ISNULL));                 
+          $c->add($criterion);                                                                                                   
+        }                                                                                                                        
+        else if (isset($this->filters['fk_division_id']) && $this->filters['fk_division_id'] !== '')                             
+        {                                                                                                                        
+          $c->add(RelAlumnoDivisionPeer::FK_DIVISION_ID, $this->filters['fk_division_id']);                                      
+        }                                                                                                                        
+    }  
 
+}
 ?>
