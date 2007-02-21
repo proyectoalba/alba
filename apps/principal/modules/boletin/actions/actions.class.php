@@ -491,9 +491,9 @@ class boletinActions extends sfActions
                         $boletin->setFkPeriodoId($periodoid);
                         $boletin->setFkConceptoId($concepto_id);
                         if($nota) {
-                            if(array_key_exists($nota[0], $aDatosTablaEscalaNota)) {
-                                $boletin->setFkEscalanotaId($aDatosTablaEscalaNota[$nota[0]]);
-                            }
+                             if(array_key_exists($nota, $aDatosTablaEscalaNota)) {
+                                 $boletin->setFkEscalanotaId($aDatosTablaEscalaNota[$nota]);
+                             }
                         }
                         if($aNotaObs[$alumno_id][$periodoid]) {
                             $boletin->setObservacion($aNotaObs[$alumno_id][$periodoid]);

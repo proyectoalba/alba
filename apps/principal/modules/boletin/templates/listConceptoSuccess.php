@@ -69,7 +69,7 @@ Posibles Notas para calificar:
     <? foreach ($aPeriodo as $periodo) {?>    
     <td>
     <? echo input_tag("nota[".$alumno->getId()."][".$periodo->getId()."]", $aNotaAlumno[$alumno->getId()][$periodo->getId()], array('size' => $sizeNota, 'maxlength' => $sizeNota));?><br>   
-    <? echo input_tag("notaObs[".$alumno->getId()."][".$periodo->getId()."]", $aNotaAlumnoObs[$alumno->getId()][$periodo->getId()], array('size' => 30, 'maxlength' => 25 ));?>
+    <? echo input_tag("notaObs[".$alumno->getId()."][".$periodo->getId()."]", $aNotaAlumnoObs[$alumno->getId()][$periodo->getId()], array('size' => 30, 'maxlength' => 128 ));?>
     </td>
     <? } ?>
   </tr>
