@@ -7,6 +7,7 @@ methods:
     - "cuenta{ciudad}"    
     - "cuenta{codigo_postal}"
     - "cuenta{telefono}"    
+    - "cuenta{fk_provincia_id}"    
     
 fillin:
     enabled:       on
@@ -46,6 +47,11 @@ names:
     cuenta{telefono}:
         required:     No
         validators: caracteresMaximos20
+
+    cuenta{fk_provincia_id}:
+        required:     Yes
+        required_msg: El campo provincia es obligatorio
+        validators: validar_fk_provincia_id
         
         
 caracteresMaximos20:
@@ -61,4 +67,10 @@ caracteresMaximos128:
         max: 128
         max_error: La maxima cantidad de caracteres permitida es de 128
         
+validar_fk_provincia_id:
+    class:  sfNumberValidator
+    param:
+        nan_error: Seleccione una provincia v&aacute;lida
+        min: 1
+        min_error: Seleccione una provincia v&aacute;lida
         

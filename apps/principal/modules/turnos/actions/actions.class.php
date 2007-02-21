@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  *    This file is part of Alba.
  * 
@@ -46,16 +46,12 @@ class turnosActions extends autoturnosActions
     
     }
 
-
     protected function updateTurnosFromRequest()  {
     
         $turnos = $this->getRequestParameter('turnos');
     
         $turnos['hora_inicio'] = $this->_add_zeros($turnos['hora_inicio']['hour'],2).":".$this->_add_zeros($turnos['hora_inicio']['minute'],2)." ".$turnos['hora_inicio']['ampm'];
         $turnos['hora_fin']= $this->_add_zeros($turnos['hora_fin']['hour'],2).":".$this->_add_zeros($turnos['hora_fin']['minute'],2)." ".$turnos['hora_fin']['ampm'];
-
-
-
 
         if (isset($turnos['descripcion']))    {
             $this->turnos->setDescripcion($turnos['descripcion']);
@@ -78,6 +74,37 @@ class turnosActions extends autoturnosActions
         }
         return $string;
     }
+
+ public function executeEdit ()
+  {
+    $this->turnos = $this->getTurnosOrCreate();
+    $this->turnos->setFkCiclolectivoId($this->getUser()->getAttribute('fk_ciclolectivo_id'));
+    if ($this->getRequest()->getMethod() == sfRequest::POST)
+    {
+      $this->turnos = $this->getTurnosOrCreate();
+
+      $this->updateTurnosFromRequest();
+
+      $this->saveTurnos($this->turnos);
+
+      $this->setFlash('notice', 'Your modifications have been saved');
+
+      if ($this->getRequestParameter('save_and_add'))
+      {
+        return $this->redirect('turnos/create');
+      }
+      else
+      {
+        return $this->redirect('turnos/edit?id='.$this->turnos->getId());
+      }
+    }
+    else
+    {
+      // add javascripts
+      $this->getResponse()->addJavascript('/sf/js/prototype/prototype');
+      $this->getResponse()->addJavascript('/sf/js/sf_admin/collapse');
+    }
+  }
 
 
 }

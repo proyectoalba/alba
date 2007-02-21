@@ -25,9 +25,9 @@ generator:
                 
       edit:
             title: " "
-            fields:
-                 fk_provincia_id:   { params: include_custom=>>Seleccione una Provincia<<}
-                 fk_tipoiva_id:   { params: include_custom=>>Seleccione una Categoia de IVA<<}
+            fields: 
+                pais_id: {name: País }
+            display: [ nombre, razon_social, cuit, direccion, ciudad, codigo_postal, _pais_id, _fk_provincia_id,  fk_tipoiva_id, telefono ]
             actions:
                 _delete: -
                 _save: -
