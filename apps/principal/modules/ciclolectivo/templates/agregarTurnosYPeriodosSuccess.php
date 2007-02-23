@@ -119,7 +119,7 @@ foreach($aTurnos as $turno){
   <tr>
     <th colspan="9">
       <div class="float-right">
-<!--      <ul class="sf_admin_actions"><li><?php echo button_to(__('create'), 'ciclolectivo/createTurno', array ('class' => 'sf_admin_action_create',)) ?></li> </ul>
+<!--      <ul class="sf_admin_actions"><li><?php echo button_to(__('create'), 'ciclolectivo/createTurno', array ('class' => 'sf_admin_action_crear')) ?></li> </ul>
 -->
       </div>
     </th>
@@ -148,8 +148,8 @@ foreach($aTurnos as $turno){
 ?>
   <tr class="sf_admin_row_0">
     <td><?echo input_tag("periodo[$i][descripcion]",$periodo->getDescripcion());?></td>
-    <td><?echo input_date_tag("periodo[$i][fecha_inicio]",$periodo->getFechaInicio(), "rich=true");?></td>
-    <td><?echo input_date_tag("preiodo[$i][fecha_fin]",$periodo->getFechaFin(), "rich=true");?></td>
+    <td><?echo input_date_tag("periodo[$i][fecha_inicio]",$periodo->getFechaInicio(), "rich=true calendar_button_img=/sf/images/sf_admin/date.png");?></td>
+    <td><?echo input_date_tag("preiodo[$i][fecha_fin]",$periodo->getFechaFin(), "rich=true calendar_button_img=/sf/images/sf_admin/date.png");?></td>
     <?php echo input_hidden_tag("periodo[$i][id]", $periodo->getId()); ?>
     <td>
     <ul class="sf_admin_td_actions">
@@ -162,8 +162,8 @@ foreach($aTurnos as $turno){
   
   <tr class="sf_admin_row_0">
     <td><?echo input_tag("periodo[$i][descripcion]",'');?></td>
-    <td><?echo input_date_tag("periodo[$i][fecha_inicio]",'',"rich=true");?></td>
-    <td><?echo input_date_tag("periodo[$i][fecha_fin]",'',"rich=true");?></td>
+    <td><?echo input_date_tag("periodo[$i][fecha_inicio]",'',"rich=true calendar_button_img=/sf/images/sf_admin/date.png");?></td>
+    <td><?echo input_date_tag("periodo[$i][fecha_fin]",'',"rich=true calendar_button_img=/sf/images/sf_admin/date.png");?></td>
     <td></td>
   </tr>  
   
@@ -179,9 +179,9 @@ foreach($aTurnos as $turno){
         <div>
           <ul class="sf_admin_actions">
             <li>
-            <?  echo submit_tag('submit', 'class=default value=Grabar"'); ?>        
-            <li>
-            <li><input value="Listado de Ciclo Lectivos" type="button" onclick="document.location.href='<?=sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/ciclolectivo/list';" /></li>
+            <?php  echo submit_tag('submit', 'class=sf_admin_action_save value=Grabar'); ?>        
+            </li>
+            <li><?php echo button_to("Listado de Ciclo Lectivos","ciclolectivo/list",'class=sf_admin_action_list')?></li>
         </ul>
       </div>
    

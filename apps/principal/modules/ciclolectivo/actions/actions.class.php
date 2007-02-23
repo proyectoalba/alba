@@ -217,8 +217,8 @@ class ciclolectivoActions extends autociclolectivoActions
 			$con->commit();
 
 			//cambio el attributo porque se cambio el ciclo actual
-			$this->getUser()->setAttribute('fk_cicloactual_id',$ciclolectivo->getId());
-			$this->getUser()->setAttribute('cicloactual_descripcion',$ciclolectivo->getDescripcion());
+			$this->getUser()->setAttribute('fk_ciclolectivo_id',$ciclolectivo->getId());
+			$this->getUser()->setAttribute('ciclolectivo_descripcion',$ciclolectivo->getDescripcion());
 		
 		}
 		catch (Exception $e){
@@ -263,14 +263,40 @@ class ciclolectivoActions extends autociclolectivoActions
        
         $this->ciclolectivo = CiclolectivoPeer::retrieveByPk($this->getRequestParameter('id'));
         $this->forward404Unless($this->ciclolectivo);
-         
-        $this->deleteCiclolectivo($this->ciclolectivo);
-        if ($this->getUser()->getAttribute('fk_ciclolectivo_id') == $this->getRequestParameter('id')) {
-            $this->getUser()->setAttribute('fk_ciclolectivo_id',0);
-            $this->getUser()->setAttribute('ciclolectivo_descripcion','No seleccionado');
+        try { 
+            $this->deleteCiclolectivo($this->ciclolectivo);
+            if ($this->getUser()->getAttribute('fk_ciclolectivo_id') == $this->getRequestParameter('id')) {
+                $this->getUser()->setAttribute('fk_ciclolectivo_id',0);
+                $this->getUser()->setAttribute('ciclolectivo_descripcion','No seleccionado');
+            }
         }
+        catch (Exeception $e){
+            echo $e->getMessage();
+            die();
+        }
+        
         return $this->redirect('ciclolectivo/list');
     }
+    
+    function validateDelete() {
+        $this->ciclolectivo = CiclolectivoPeer::retrieveByPk($this->getRequestParameter('id'));
+        $this->forward404Unless($this->ciclolectivo);
+        if ($this->ciclolectivo->countTurnoss() >0) {
+            $this->error = "El ciclo lectivo contiene turnos asociados";
+            return false;
+        }
+        if ($this->ciclolectivo->countPeriodos() > 0) {
+            $this->error = "El ciclo lectivo contiene Peridos asociados";
+            return false;
+        }
+        if ($this->ciclolectivo->countFeriados() > 0) {
+            $this->error = "El ciclo lectivo contiene Feriados asociados";
+            return false;
+        }
+            
+        return true;            
+    }
+    
 }
 
 ?>
