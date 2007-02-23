@@ -162,8 +162,77 @@ class alumnoActions extends autoalumnoActions
 
 
     public function executeCambiarCuenta() {
-
     }
+    
+
+    public function handleErrorGrabarCuenta() {
+        $this->cuenta = $this->updateCuentaFromRequest();
+        $this->setTemplate("nuevaCuenta");
+        $this->vista = "noMuestraMenu";
+        return sfView::SUCCESS;
+    }
+
+
+    public function executeGrabarCuenta() {
+        $cuenta = $this->updateCuentaFromRequest();
+        $cuenta->save();
+    }
+
+
+    public function updateCuentaFromRequest() {
+        $cuenta = $this->getRequestParameter('cuenta');
+
+        $cuenta_obj = new Cuenta();
+
+    if (isset($cuenta['nombre']))
+    {
+      $cuenta_obj->setNombre($cuenta['nombre']);
+    }
+    if (isset($cuenta['razon_social']))
+    {
+      $cuenta_obj->setRazonSocial($cuenta['razon_social']);
+    }
+    if (isset($cuenta['cuit']))
+    {
+      $cuenta_obj->setCuit($cuenta['cuit']);
+    }
+    if (isset($cuenta['direccion']))
+    {
+      $cuenta_obj->setDireccion($cuenta['direccion']);
+    }
+    if (isset($cuenta['ciudad']))
+    {
+      $cuenta_obj->setCiudad($cuenta['ciudad']);
+    }
+    if (isset($cuenta['codigo_postal']))
+    {
+      $cuenta_obj->setCodigoPostal($cuenta['codigo_postal']);
+    }
+    if (isset($cuenta['pais_id']))
+    {
+      $cuenta_obj->setPaisId($cuenta['pais_id']);
+    }
+    if (isset($cuenta['fk_provincia_id']))
+    {
+      $cuenta_obj->setFkProvinciaId($cuenta['fk_provincia_id']);
+    }
+    if (isset($cuenta['fk_tipoiva_id']))
+    {
+      $cuenta_obj->setFkTipoivaId($cuenta['fk_tipoiva_id']);
+    }
+    if (isset($cuenta['telefono']))
+    {
+      $cuenta_obj->setTelefono($cuenta['telefono']);
+    }    
+
+        return $cuenta_obj;
+    }
+
+
+    public function executeNuevaCuenta() {
+        $this->cuenta = new Cuenta();
+    }
+    
 
 }
 ?>

@@ -344,9 +344,9 @@ array()) ?></h1>
             <?php } else { ?>
                 <?php echo include_partial('buscarCuenta'); ?>  
             <? } ?>
-
         </div>
     </div>
+    <?php echo link_to_remote('Nueva Cuenta', array('update' => 'nueva_cuenta', 'url' => 'alumno/nuevaCuenta?vista=noMuestraMenu' )); ?>
 </div>
 
 
@@ -372,3 +372,9 @@ array()) ?></h1>
 <div id="sf_admin_footer">
 <?php include_partial('alumno/edit_footer', array('alumno' => $alumno)) ?>
 </div>
+
+
+<div id="nueva_cuenta">
+</div>
+ 
+

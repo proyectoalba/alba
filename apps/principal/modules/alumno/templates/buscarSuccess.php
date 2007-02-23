@@ -22,7 +22,7 @@
                 $numero = ($tr_class)?1:0; 
 ?>
     <tr class="sf_admin_row_<?php echo $numero;?>">
-      <td><?php echo label_for('cuenta', __("Cuenta :".$cuenta->getNombre()), ''); ?></td>
+      <td><?php echo label_for('cuenta', __($cuenta->getNombre()), ''); ?></td>
       <td><?php echo link_to_remote('Seleccionar', array ( 'update' => 'cuenta', 'url' => 'alumno/seleccionarCuenta?vista=noMuestraMenu&id='.$cuenta->getId()));?></td>
     </tr>
 <?php
