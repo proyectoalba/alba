@@ -1,4 +1,4 @@
-<?php
+Ôªø<?php
 /**
  *    This file is part of Alba.
  * 
@@ -22,8 +22,8 @@
  * Seguridad Acciones
  *
  * @package    alba
- * @author     JosÈ Luis Di Biase <josx@interorganic.com.ar>
- * @author     HÈctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     Jos√© Luis Di Biase <josx@interorganic.com.ar>
+ * @author     H√©ctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
@@ -105,8 +105,10 @@ class seguridadActions extends sfActions
                 return sfView::SUCCESS;
             }
         }
-        else
+        else {
+            $this->referer =  $this->getRequest()->getReferer();   
             $this->getRequest()->getParameterHolder()->set('referer', $this->getRequest()->getReferer());
+        }
     }  
     
     /* cierre de session */

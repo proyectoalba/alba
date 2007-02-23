@@ -28,5 +28,3 @@ caracteresMaximos255:
     param:
         max: 255
         max_error: La maxima cantidad de caracteres permitida es de 255
-
-

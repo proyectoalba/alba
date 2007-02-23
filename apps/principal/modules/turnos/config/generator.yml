@@ -13,7 +13,6 @@ generator:
     list:
         title: Listado de Turnos
         display: [=descripcion, hora_inicio, hora_fin ]
-        
         object_actions:
-                         _edit:  -
-                         _delete: -
+            _edit:  -
+            _delete: -

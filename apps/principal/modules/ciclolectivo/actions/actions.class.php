@@ -254,7 +254,23 @@ class ciclolectivoActions extends autociclolectivoActions
         return $this->redirect($this->getRequestParameter('referer', '@homepage'));
    
     }
-    
+
+    /**
+    * Elimino el ciclo lectivo si es el actual 
+    * el usuario debe quedar con ciclolectivo "No seleccionado"
+    */
+    public function executeDelete () {
+       
+        $this->ciclolectivo = CiclolectivoPeer::retrieveByPk($this->getRequestParameter('id'));
+        $this->forward404Unless($this->ciclolectivo);
+         
+        $this->deleteCiclolectivo($this->ciclolectivo);
+        if ($this->getUser()->getAttribute('fk_ciclolectivo_id') == $this->getRequestParameter('id')) {
+            $this->getUser()->setAttribute('fk_ciclolectivo_id',0);
+            $this->getUser()->setAttribute('ciclolectivo_descripcion','No seleccionado');
+        }
+        return $this->redirect('ciclolectivo/list');
+    }
 }
 
 ?>

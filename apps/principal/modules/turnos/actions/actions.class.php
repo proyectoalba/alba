@@ -29,9 +29,7 @@
  * @filesource
  * @license GPL
  */
-
-class turnosActions extends autoturnosActions
-{
+class turnosActions extends autoturnosActions {
     public function preExecute() {
         $this->vista = $this->getRequestParameter('vista');
     }
@@ -43,7 +41,6 @@ class turnosActions extends autoturnosActions
     function saveTurnos($turno) {
         $turno->setFkCiclolectivoId($this->getUser()->getAttribute('fk_ciclolectivo_id'));
         $turno->save();
-    
     }
 
     protected function updateTurnosFromRequest()  {
@@ -62,51 +59,14 @@ class turnosActions extends autoturnosActions
         }
         
         if (isset($turnos['hora_fin'])) {
-        $this->turnos->setHoraFin($turnos['hora_fin']);
+            $this->turnos->setHoraFin($turnos['hora_fin']);
         }
-  }
-
+    }
     function _add_zeros($string, $strlen) {
-        if ($strlen > strlen($string))  {
-            for ($x = strlen($string); $x < $strlen; $x++) {
+        if ($strlen > strlen($string))
+            for ($x = strlen($string); $x < $strlen; $x++)
                 $string = '0' . $string;
-            }
-        }
         return $string;
     }
-
- public function executeEdit ()
-  {
-    $this->turnos = $this->getTurnosOrCreate();
-    $this->turnos->setFkCiclolectivoId($this->getUser()->getAttribute('fk_ciclolectivo_id'));
-    if ($this->getRequest()->getMethod() == sfRequest::POST)
-    {
-      $this->turnos = $this->getTurnosOrCreate();
-
-      $this->updateTurnosFromRequest();
-
-      $this->saveTurnos($this->turnos);
-
-      $this->setFlash('notice', 'Your modifications have been saved');
-
-      if ($this->getRequestParameter('save_and_add'))
-      {
-        return $this->redirect('turnos/create');
-      }
-      else
-      {
-        return $this->redirect('turnos/edit?id='.$this->turnos->getId());
-      }
-    }
-    else
-    {
-      // add javascripts
-      $this->getResponse()->addJavascript('/sf/js/prototype/prototype');
-      $this->getResponse()->addJavascript('/sf/js/sf_admin/collapse');
-    }
-  }
-
-
 }
-
 ?>

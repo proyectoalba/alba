@@ -136,8 +136,11 @@ if(!isset($vista)){
                     ?>
                     </div>
                     <?php if ($sf_user->isAuthenticated() && $sf_user->getAttribute('fk_ciclolectivo_id') == 0):?>
-                    <div class="form-errors">No tiene un ciclo lectivo seleccionado.<br/>
-                    &Eacute;ste valor es requerido para algunos m&oacute;dulos, por favor seleccione uno.
+                    <div class="form-errors">
+                        <ul>
+                            <li>No tiene un ciclo lectivo seleccionado. &Eacute;ste valor es requerido para algunos m&oacute;dulos, por favor seleccione uno.
+                            </li>
+                        </ul>
                     </div>
                     <?php endif;?>
                     <br/>
