@@ -13,7 +13,6 @@ dev:
     no_script_name:         off
     etag:                   off
     i18n:                   off
-    
 test:
   .settings:
     # E_ALL | E_STRICT & ~E_NOTICE = 2047

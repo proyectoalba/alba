@@ -63,9 +63,11 @@ class turnosActions extends autoturnosActions {
         }
     }
     function _add_zeros($string, $strlen) {
-        if ($strlen > strlen($string))
-            for ($x = strlen($string); $x < $strlen; $x++)
+        if ($strlen > strlen($string)) {
+            for ($x = strlen($string); $x < $strlen; $x++) {
                 $string = '0' . $string;
+            }
+        }
         return $string;
     }
 }
