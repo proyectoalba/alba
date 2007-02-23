@@ -23,8 +23,8 @@
  * alumno actions.
  *
  * @package    alba
- * @author     Jos? Luis Di Biase <josx@interorganic.com.ar>
- * @author     H?ctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     José Luis Di Biase <josx@interorganic.com.ar>
+ * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
