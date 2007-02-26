@@ -1,6 +1,8 @@
 methods:
   post:       
     - "rel_anio_actividad{horas}"
+    - "rel_anio_actividad{fk_anio_id}"
+    - "rel_anio_actividad{fk_actividad_id}"
     
 fillin:
     enabled:       on
@@ -10,11 +12,22 @@ names:
         required:   Yes
         required_msg: El campo horas es obligatorio
         validators: validarNumero
+    rel_anio_actividad{fk_anio_id}:
+        required: Yes
+        required_msg: "El campo A&ntilde;o es obligatorio"
+    rel_anio_actividad{fk_actividad_id}:
+        required: Yes
+        required_msg: "El campo Actividad es obligatorio"
 
 validarNumero:
     class: sfNumberValidator
     param:
         nan_error: Por favor ingrese un valor n&uacute;merico       
-        min: 0
-        min_error: El n&uacute;mero debe ser positivo
+        min: 1
+        min_error: El valor de las horas deber ser mayor a 0
+
+IdValido:
+    class:  sfNumberValidator
+    param:
+        nan_error: Seleccione una de las opciones
         
