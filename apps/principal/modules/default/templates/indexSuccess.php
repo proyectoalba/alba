@@ -1,7 +1,7 @@
 <?php if ($sf_user->isAuthenticated()): ?>
 <div align="center">
 <h1>&iexcl;Bienvenidos al Sistema de Gesti&oacute;n Educativa ALBA!</h1>
-<h3>Versi&oacute;n <?php echo link_to(ALBA_VERSION,"http://www.proyectoalba.com.ar/",array('title'=> 'Comprobar Versi&oacute;n...')) ?><h3>
+<h3>Versi&oacute;n <?php echo link_to(sfConfig::get("app_alba_version"),"http://www.proyectoalba.com.ar/",array('title'=> 'Comprobar Versi&oacute;n...')) ?><h3>
 </div>
 <br/>
 <div align="center">
