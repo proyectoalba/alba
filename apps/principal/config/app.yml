@@ -2,3 +2,6 @@
 all:
     theme: on
     
+    alba:
+        version: 1.0rc
+        menutheme: ThemeAlba

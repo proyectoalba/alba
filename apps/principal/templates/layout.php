@@ -14,7 +14,7 @@ if(!isset($vista)){
     <?php echo include_metas() ?>
     <?php echo include_title() ?>
 
-    <link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot() . '/js/jsmenu/themes/'.MENU_THEME.'/theme.css' ?>"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot() . '/js/jsmenu/themes/'.sfConfig::get("app_alba_menutheme").'/theme.css' ?>"/>
     <link rel="shortcut icon" href="/favicon.ico" />
 
     <style type="text/css">
