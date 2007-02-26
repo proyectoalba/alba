@@ -7,7 +7,7 @@ generator:
         fk_anio_id: { name: A&ntilde;o }
         anio: { name: A&ntilde;o }
         fk_actividad_id: { name: Actividad }
-        horas: { name: Horas Necesarias }
+        horas: { name: Horas Semanales }
     edit:
         title: Editar Actividades del A&ntilde;o
         fields:
