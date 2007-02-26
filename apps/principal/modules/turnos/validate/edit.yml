@@ -1,4 +1,4 @@
-﻿methods:
+methods:
   post:       
     - "turnos{hora_inicio}"
     - "turnos{hora_fin}"
