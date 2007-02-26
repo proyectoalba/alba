@@ -134,6 +134,9 @@ class alumnoActions extends autoalumnoActions
       // add javascripts
       $this->getResponse()->addJavascript('/sf/js/prototype/prototype');
       $this->getResponse()->addJavascript('/sf/js/sf_admin/collapse');
+      if ($this->getRequestParameter('fk_cuenta_id'))
+        $this->alumno->setFkCuentaId($this->getRequestParameter('fk_cuenta_id'));
+                               
     }
   }
 

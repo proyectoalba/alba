@@ -346,7 +346,7 @@ array()) ?></h1>
             <? } ?>
         </div>
     </div>
-    <?php echo link_to_remote('Nueva Cuenta', array('update' => 'nueva_cuenta', 'url' => 'alumno/nuevaCuenta?vista=noMuestraMenu' )); ?>
+    <br><?php echo link_to_remote('Nueva Cuenta', array('update' => 'nueva_cuenta', 'url' => 'alumno/nuevaCuenta?vista=noMuestraMenu' )); ?>
 </div>
 
 
