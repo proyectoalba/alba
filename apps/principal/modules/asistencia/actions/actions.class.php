@@ -62,7 +62,8 @@ class asistenciaActions extends sfActions
         $aTipoasistencias = array();
         $aPorcentajeAsistencia = array();
         $flag_error = 0;
-
+        $nombre_completo_archivo = "";
+        $bool_gd = array_search("gd", get_loaded_extensions());
 
         // tomando los datos del formulario y completando variable
 
@@ -244,8 +245,7 @@ class asistenciaActions extends sfActions
                 $aTitulo = array_keys($aTipoasistencias);
                 $aTitulo[] = "No Cargado";
 
-                if(array_search("gd", get_loaded_extensions())) { // Si no tiene cargado la GD no muestra el grafico
-
+                if($bool_gd) { // Si no tiene cargado la GD no muestra el grafico
                     include "graph.php";
                     putenv('GDFONTPATH=' . realpath(sfConfig::get('sf_lib_dir')."/font/"));
                     $graph = new graph();
@@ -263,7 +263,11 @@ class asistenciaActions extends sfActions
                     $graph->addPoint($dias-$tot);
     
                     $graph->graphX();
-                    $graph->showGraph(sfConfig::get('sf_upload_dir_name').'/grafico_asistencias.png');
+                    $nombre_archivo = uniqid();
+                    $nombre_completo_archivo = $nombre_archivo.'.png';
+                    @$graph->showGraph(sfConfig::get('app_alba_tmpdir').DIRECTORY_SEPARATOR.$nombre_completo_archivo);
+                } else {
+
                 }
             }
         } else {
@@ -271,6 +275,10 @@ class asistenciaActions extends sfActions
         }
 
         //Asignacion de variables para el template
+
+        $this->bool_tmp = $this->tienePermisoEscritura(sfConfig::get('app_alba_tmpdir'));
+        $this->bool_gd = $bool_gd;
+        $this->nombre_completo_archivo = $nombre_completo_archivo;
         $this->d = $d;
         $this->m = $m;
         $this->y = $y;
@@ -392,5 +400,12 @@ class asistenciaActions extends sfActions
         }
         return $aDatosTablaTipoAsistencias;
      }
+
+
+    function tienePermisoEscritura($dir) {
+        $octalPermiso = substr(sprintf('%o', @fileperms($dir)), -4);
+        return ($octalPermiso == "0777" OR $octalPermiso == "1777");
+    }
+
 }
 ?>

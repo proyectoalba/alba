@@ -243,7 +243,26 @@
     </fieldset>
 
 
-  
-<div align="center">
-<img src="<?=sfContext::getInstance()->getRequest()->getRelativeUrlRoot()."/".sfConfig::get('sf_upload_dir_name').'/grafico_asistencias.png'?>">  
-</div>
+<?php if($bool_gd) { ?>  
+    <?php if($bool_tmp) { ?>  
+        <?php if($nombre_completo_archivo) { ?>  
+        <div align="center">
+            <img src="<?=sfContext::getInstance()->getRequest()->getRelativeUrlRoot().'/tmp/'.$nombre_completo_archivo?>">  
+        </div>
+        <?php } else { ?>
+        <?php } ?>
+    <?php } else { ?>
+        <div class="form-errors">
+        <ul>
+            <li>No tiene permisos de escritura sobre el directorio tmp. Si quiere ver los gr&aacute;ficos de estad&iacute;sticas necesita necesita aplicarlos.</li>
+        </ul>
+        </div>    
+    <?php } ?>
+
+<?php } else { ?>
+        <div class="form-errors">
+        <ul>
+            <li>No tiene Instalado la biblioteca GD. Si quiere ver los gr&aacute;ficos de estad&iacute;sticas necesita instalarla para ello consulte <a href="http://www.php.net/manual/es/ref.image.php">http://www.php.net/manual/es/ref.image.php</a></li>
+        </ul>
+        </div>
+<?php } ?>
