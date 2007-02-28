@@ -122,7 +122,7 @@ class alumnoActions extends autoalumnoActions
 
       if ($this->getRequestParameter('save_and_add'))
       {
-        return $this->redirect('alumno/create');
+        return $this->redirect('alumno/create?fk_cuenta_id=' . $this->alumno->getFkCuentaId());
       }
       else
       {
