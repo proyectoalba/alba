@@ -16,6 +16,7 @@ methods:
     - "alumno{certificado_medico}"        
     - "alumno{activo}"        
     - "alumno{fk_cuenta_id}"
+    - "alumno{fk_provincia_id}"        
     
 fillin:
     enabled:       on
@@ -87,6 +88,12 @@ names:
         required:     Yes
         required_msg: El campo Cuenta es obligatorio
         validators: validarCuenta                            
+
+    alumno{fk_provincia_id}:
+        required:     Yes
+        required_msg: El campo Provincia es obligatorio
+                  
+
         
 caracteresMaximos128:
     class:  sfStringValidator
