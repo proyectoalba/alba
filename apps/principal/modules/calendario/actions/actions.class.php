@@ -65,18 +65,25 @@ class calendarioActions extends sfActions
 
         $horarios_disponibles = array();
         $optionsHorasMaterias = array();
+
         foreach($actividades as $actividad) {
             if(!$actividad[1]) $actividad[1] = 0;
             $idx = $actividad[0]."_".$actividad[1];
             $docente = $actividad[3]." ".$actividad[2];
-            $horarios_disponibles[$idx] .= $this->horariosATexto($actividad[6], $actividad[7], $actividad[8]);
+
+            $actividad_horario_disponible = $this->horariosATexto($actividad[6], $actividad[7], $actividad[8]);
+            if(array_key_exists($idx, $horarios_disponibles)) {
+                $horarios_disponibles[$idx] .= $actividad_horario_disponible;
+            } else {
+                $horarios_disponibles[$idx] = $actividad_horario_disponible;
+            }
+
             $optionsHorasMaterias[$idx] = (object) array ( 
                                                                     'cantidad' => $actividad[5] , 
                                                                     'nombre' => $actividad[4]." x ".$docente, 
                                                                     'docente' => $docente,
                                                                     'horarios_disponibles' => $horarios_disponibles[$idx]
                                                                 );
-
         }
         return $optionsHorasMaterias;
     }
@@ -281,10 +288,11 @@ class calendarioActions extends sfActions
             asort($optionsDivision);
             $this->optionsDivision = $optionsDivision;
 
-            if(!$this->division_id) {
+            if(!$this->division_id OR !array_key_exists($this->division_id, $aAnio) ) {
                 $eachDivision = each($optionsDivision); 
                 $this->division_id = $eachDivision[0];  // me quedo con el primer indice del array
             }
+
 
             $horasMateriasTodas = $this->getHorasMaterias($aAnio[$this->division_id]);
             $this->horasMaterias = $this->getHorasMaterias($aAnio[$this->division_id], $actividad_id);
@@ -305,7 +313,6 @@ class calendarioActions extends sfActions
             $criteria = new Criteria();
             $criteria->add(RelDivisionActividadDocentePeer::FK_DIVISION_ID, $this->division_id);
             $items = RelDivisionActividadDocentePeer::doSelect($criteria);
-
 
             $aColor = array ("silver", "gray");
             $aColorSet = array();
@@ -347,7 +354,6 @@ class calendarioActions extends sfActions
                 }
             }
 
-
             $this->aEvent = $this->cargarItemCalendario($this->division_id, $aEvent, $horasMateriasTodas );
             $this->getUser()->setAttribute('event', $aEvent);
 
@@ -365,7 +371,6 @@ class calendarioActions extends sfActions
             $optionsActividad[$actividad->getId()] = $actividad->getNombre();
         }
         $this->optionsActividad = $optionsActividad;     
-
         $this->turnos_id = $turnos_id;
     }
 
