@@ -107,6 +107,6 @@ ALTER TABLE locacion ADD `principal` TINYINT(1) NOT NULL DEFAULT '0';
 ALTER TABLE `alumno` ADD `lugar_nacimiento` VARCHAR( 128 ) NOT NULL AFTER `id` ,
 ADD `fk_pais_id` INT NOT NULL AFTER `lugar_nacimiento` ;
 
-ALTER TABLE `alumno` CHANGE `fk_cuenta_id` `fk_cuenta_id` INT NULL;
+ALTER TABLE `alumno` CHANGE `fk_conceptobaja_id` `fk_conceptobaja_id` INT NULL;
 
 SET FOREIGN_KEY_CHECKS = 1;
