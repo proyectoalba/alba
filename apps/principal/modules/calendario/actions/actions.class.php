@@ -164,7 +164,8 @@ class calendarioActions extends sfActions
         $this->getUser()->setAttribute('anio_id', 0);
         $this->getUser()->setAttribute('division_id', 0);
         $this->getUser()->setAttribute('event', array());
-
+    
+        $turnos_id = "";
         $actividad_id = "";
         $optionsActividad = array();
         $horasMateriasTodas = array();
@@ -289,7 +290,7 @@ class calendarioActions extends sfActions
             $this->horasMaterias = $this->getHorasMaterias($aAnio[$this->division_id], $actividad_id);
             $this->getUser()->setAttribute('anio_id', $aAnio[$this->division_id]); 
             $this->getUser()->setAttribute('division_id', $this->division_id);
-            $this->turnos_id = $turnos_id;
+//             $this->turnos_id = $turnos_id;
             $anio_id = $aAnio[$this->division_id];
         } else {
             $this->aHour = array(strtotime("8:00"), strtotime("17:00"));
@@ -364,6 +365,8 @@ class calendarioActions extends sfActions
             $optionsActividad[$actividad->getId()] = $actividad->getNombre();
         }
         $this->optionsActividad = $optionsActividad;     
+
+        $this->turnos_id = $turnos_id;
     }
 
 
