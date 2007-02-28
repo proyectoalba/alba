@@ -15,7 +15,8 @@ names:
     tipoespacio{descripcion}:
         required:     No
         validators: caracteresMaximos255
-        
+
+       
         
 caracteresMaximos128:
     class:  sfStringValidator

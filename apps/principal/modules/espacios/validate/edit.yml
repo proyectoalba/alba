@@ -5,6 +5,9 @@ methods:
     - "espacio{capacidad}"
     - "espacio{descripcion}"
     - "espacio{estado}"    
+    - "espacio{fk_locacion_id}"    
+    - "espacio{fk_tipoespacio_id}"    
+
     
 fillin:
     enabled:       on
@@ -31,6 +34,14 @@ names:
     espacio{estado}:
         required:     No
         validators: caracteresMaximos255
+
+    espacio{fk_locacion_id}:
+        required:     Yes
+        required_msg: El campo Locaci&oacute;n es obligatorio
+
+    espacio{fk_tipoespacio_id}:
+        required:     Yes
+        required_msg: El campo tipo de espacio es obligatorio
         
         
 caracteresMaximos128:
