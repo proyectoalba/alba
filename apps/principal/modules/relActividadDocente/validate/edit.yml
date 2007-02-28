@@ -1,0 +1,27 @@
+methods:
+  post:       
+    - "rel_actividad_docente{fk_docente_id}"
+    - "rel_actividad_docente{fk_actividad_id}"
+    
+fillin:
+    enabled:       on
+      
+names:
+    rel_actividad_docente{fk_docente_id}:
+        required: Yes
+        required_msg: "El campo Docente es obligatorio"
+        validators: validarNumero
+
+    rel_actividad_docente{fk_actividad_id}:
+        required: Yes
+        required_msg: "El campo Actividad es obligatorio"
+        validators: validarNumero
+
+validarNumero:
+    class: sfNumberValidator
+    param:
+        nan_error: Por favor ingrese un valor n&uacute;merico
+        min: 1
+        min_error: El valor de las horas deber ser mayor a 0
+
+        
