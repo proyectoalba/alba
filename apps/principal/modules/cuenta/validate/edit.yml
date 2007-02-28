@@ -24,9 +24,9 @@ names:
         validators: caracteresMaximos128
 
     cuenta{cuit}:
-        required:     Yes
-        required_msg: El campo CUIT  es obligatorio
-        validators: caracteresMaximos20
+        required:     No
+        required_msg: El campo CUIT es obligatorio
+        validators: validaCuit
 
     cuenta{direccion}:
         required:     Yes
@@ -73,4 +73,10 @@ validar_fk_provincia_id:
         nan_error: Seleccione una provincia v&aacute;lida
         min: 1
         min_error: Seleccione una provincia v&aacute;lida
+
+validaCuit:
+    class:  albaCUITValidator
+    param:
+        cuit_error: El CUIT ingresado es invalido
+
         
