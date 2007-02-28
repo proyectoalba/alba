@@ -482,7 +482,7 @@ CREATE TABLE `alumno`
 	`fk_cuenta_id` INTEGER default 0 NOT NULL,
 	`certificado_medico` INTEGER default 0 NOT NULL,
 	`activo` INTEGER default 1 NOT NULL,
-	`fk_conceptobaja_id` INTEGER default 0 NOT NULL,
+	`fk_conceptobaja_id` INTEGER,
 	`fk_pais_id` INTEGER default 0 NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `alumno_FI_1` (`fk_tipodocumento_id`),

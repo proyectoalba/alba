@@ -246,7 +246,7 @@
     <column name="fk_cuenta_id" type="INTEGER" required="true" default="0"/>
     <column name="certificado_medico" type="boolean" required="true" default="0"/>
     <column name="activo" type="boolean" required="true" default="true"/>
-    <column name="fk_conceptobaja_id" type="INTEGER" required="true" default="0"/>
+    <column name="fk_conceptobaja_id" type="INTEGER" required="false"/>
     <column name="fk_pais_id" type="INTEGER" required="true" default="0"/>
     <foreign-key foreignTable="tipodocumento">         
         <reference local="fk_tipodocumento_id" foreign="id"/>       

@@ -106,7 +106,7 @@ class AlumnoMapBuilder {
 
 		$tMap->addColumn('ACTIVO', 'Activo', 'boolean', CreoleTypes::BOOLEAN, true);
 
-		$tMap->addForeignKey('FK_CONCEPTOBAJA_ID', 'FkConceptobajaId', 'int', CreoleTypes::INTEGER, 'conceptobaja', 'ID', true, null);
+		$tMap->addForeignKey('FK_CONCEPTOBAJA_ID', 'FkConceptobajaId', 'int', CreoleTypes::INTEGER, 'conceptobaja', 'ID', false, null);
 
 		$tMap->addForeignKey('FK_PAIS_ID', 'FkPaisId', 'int', CreoleTypes::INTEGER, 'pais', 'ID', true, null);
 				

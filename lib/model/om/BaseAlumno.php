@@ -179,7 +179,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	 * The value for the fk_conceptobaja_id field.
 	 * @var int
 	 */
-	protected $fk_conceptobaja_id = 0;
+	protected $fk_conceptobaja_id;
 
 
 	/**
@@ -958,7 +958,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	public function setFkConceptobajaId($v)
 	{
 
-		if ($this->fk_conceptobaja_id !== $v || $v === 0) {
+		if ($this->fk_conceptobaja_id !== $v) {
 			$this->fk_conceptobaja_id = $v;
 			$this->modifiedColumns[] = AlumnoPeer::FK_CONCEPTOBAJA_ID;
 		}
@@ -2151,7 +2151,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 
 
 		if ($v === null) {
-			$this->setFkConceptobajaId('0');
+			$this->setFkConceptobajaId(NULL);
 		} else {
 			$this->setFkConceptobajaId($v->getId());
 		}
