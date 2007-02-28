@@ -1,3 +1,8 @@
+<div class="content<?php if ($sf_request->hasError('horarioescolar{fk_turnos_id}')): ?> form-error<?php endif; ?>">
+<?php if ($sf_request->hasError('horarioescolar{fk_turnos_id}')): ?>
+    <?php echo form_error('horarioescolar{fk_turnos_id}', array('class' => 'form-error-msg')) ?>
+<?php endif; ?>
+</div>
 <?
     $aTurnos = array();
     $c = new Criteria();

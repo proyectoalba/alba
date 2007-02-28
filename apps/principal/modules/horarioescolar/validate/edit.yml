@@ -2,9 +2,11 @@ methods:
   post:       
     - "horarioescolar{hora_inicio}"
     - "horarioescolar{hora_fin}"
-    - "horarioescolar{dia}"    
-    - "horarioescolar{nombre}"        
-    - "horarioescolar{descripcion}"        
+    - "horarioescolar{dia}"
+    - "horarioescolar{nombre}"   
+    - "horarioescolar{descripcion}"
+    - "horarioescolar{fk_turnos_id}"
+    - "horarioescolar{fk_horarioescolartipo_id}"
     
 fillin:
     enabled:       on
@@ -13,10 +15,12 @@ names:
     horarioescolar{hora_inicio}:
         required:     Yes
         required_msg: El campo hora inicio es obligatorio
+        validators: horaInicio
 
     horarioescolar{hora_fin}:
         required:     Yes
         required_msg: El campo hora fin  es obligatorio
+        validators: horaFin
 
     horarioescolar{dia}:
         required:     Yes
@@ -31,6 +35,14 @@ names:
         required:     Yes
         required_msg: El campo nombre  es obligatorio
         validators: caracteresMaximos128
+
+    horarioescolar{fk_turnos_id}:
+        required:     Yes
+        required_msg: El campo turnos es obligatorio
+
+    horarioescolar{fk_horarioescolartipo_id}:
+        required:     Yes
+        required_msg: El campo tipo de horario escolar es obligatorio
 
         
 caracteresMaximos255:
@@ -53,4 +65,18 @@ validarNumero:
        min: 0
        min_error: El n&uacute;mero debe ser positivo
                                 
-                                
+horaInicio:
+    class:           albaHorasValidator
+    param:
+      hora_error:    El campo debe ser una hora
+      compare:       horarioescolar[hora_fin]
+      operator:      <
+      compare_error: La hora de inicio debe ser anterior a la hora de fin
+                    
+horaFin:
+    class:           albaHorasValidator
+    param:
+        hora_error:    EL campo debe ser una hora
+        compare:       horarioescolar[hora_inicio]
+        operator:      >
+        compare_error: La hora de fin debe ser posterior a la hora de inicio
