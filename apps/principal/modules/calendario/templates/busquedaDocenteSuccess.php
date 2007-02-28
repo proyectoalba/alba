@@ -1,6 +1,6 @@
+<div id="sf_admin_container">
 <h1>Horarios seg&uacute;n Docentes</h1>
 <?php echo form_tag('calendario/busquedaDocente', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
-
 <fieldset id="sf_fieldset_none" class="">
     <div class="form-row">
         <?php echo label_for('Buscar', __('Buscar Docentes:')) ?>
@@ -47,7 +47,7 @@
   <? } ?>
   </tbody>
 </table>
-
+</div>
 <? } else {
     if ($txt) { ?>
         Su busqueda por -<?=$txt?>- no ha encontrado docentes

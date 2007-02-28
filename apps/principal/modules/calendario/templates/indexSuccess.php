@@ -59,12 +59,6 @@ div.wastebin-active {
 }
 
 </style>
-
-
-
-
-
-
 <script>
      function linkTo(flag) {
         var obje = document.getElementById('establecimiento_id');
@@ -90,118 +84,105 @@ div.wastebin-active {
 <?php use_helper('Object', 'Validation', 'ObjectAdmin', 'I18N', 'Date') ?>
 
 
-<div >
+<div>
 
 <table width="100%">
-<tr valign="top">
-<td width="30%">
-<h1><?php echo __('Generar horario por división',array()) ?></h1>
-<?php echo form_tag('calendario/index', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
+    <tr valign="top">
+        <td width="30%">
+            <div id="sf_admin_container">
+                <h1><?php echo __('Generar horario por división',array()) ?></h1>
+                <?php echo form_tag('calendario/index', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
 
-<?php //echo object_input_hidden_tag($calendario, 'getId') ?>
+                <?php //echo object_input_hidden_tag($calendario, 'getId') ?>
 
-<fieldset id="sf_fieldset_none" class="">
+                    <fieldset id="sf_fieldset_none" class="">
 
-<!--
- <div class="form-row">
-  <?php // echo label_for('establecimiento_id', __('Establecimiento:'), 'class="required" ') ?>
-  <?php // echo select_tag('establecimiento_id', options_for_select($optionsEstablecimiento,$establecimiento_id), 'onChange=linkTo(1)') ?>
- </div>
+                        <!--
+                         <div class="form-row">
+                          <?php // echo label_for('establecimiento_id', __('Establecimiento:'), 'class="required" ') ?>
+                          <?php // echo select_tag('establecimiento_id', options_for_select($optionsEstablecimiento,$establecimiento_id), 'onChange=linkTo(1)') ?>
+                         </div>
 
- <div class="form-row">
-  <?php // echo label_for('ciclolectivo_id', __('Ciclo Lectivo:'), 'class="required" ') ?>
-  <?php // echo select_tag('ciclolectivo_id', options_for_select($optionsCiclolectivo,$ciclolectivo_id), 'onChange=linkTo(0)') ?>
- </div>
--->
-<input type="hidden" name="establecimiento_id" value="<?=$establecimiento_id?>">
-<input type="hidden" name="ciclolectivo_id" value="<?=$ciclolectivo_id?>">
+                         <div class="form-row">
+                          <?php // echo label_for('ciclolectivo_id', __('Ciclo Lectivo:'), 'class="required" ') ?>
+                          <?php // echo select_tag('ciclolectivo_id', options_for_select($optionsCiclolectivo,$ciclolectivo_id), 'onChange=linkTo(0)') ?>
+                         </div>
+                        -->
+                        <input type="hidden" name="establecimiento_id" value="<?=$establecimiento_id?>">
+                        <input type="hidden" name="ciclolectivo_id" value="<?=$ciclolectivo_id?>">
 
- <div class="form-row">
-  <?php echo label_for('turnos_id', __('Turnos:'), 'class="required" ') ?>
-  <?php echo select_tag('turnos_id', options_for_select($optionsTurnos,$turnos_id),'onChange="javascript:submitForm()"') ?>
- </div>
+                         <div class="form-row">
+                          <?php echo label_for('turnos_id', __('Turnos:'), 'class="required" ') ?>
+                          <?php echo select_tag('turnos_id', options_for_select($optionsTurnos,$turnos_id),'onChange="javascript:submitForm()"') ?>
+                         </div>
 
-<!--
-<div class="form-row">
-  <?php echo label_for('time_interval', __('Intervalo de tiempo:'), 'class="required" ') ?>
-  <?php echo select_tag('time_interval', options_for_select(array('15' => '15','30' => '30','45' => '45','60' => '60'),$time_interval)) ?>
-    Minutos
-</div>
--->
-<input type="hidden" name="time_interval" value="15">
+                        <!--
+                        <div class="form-row">
+                          <?php echo label_for('time_interval', __('Intervalo de tiempo:'), 'class="required" ') ?>
+                          <?php echo select_tag('time_interval', options_for_select(array('15' => '15','30' => '30','45' => '45','60' => '60'),$time_interval)) ?>
+                            Minutos
+                        </div>
+                        -->
+                        <input type="hidden" name="time_interval" value="15">
+                        <? if(count($optionsDivision)>0) { ?>
+                         <div class="form-row">
+                          <?php echo label_for('division_id', __('Division:'), 'class="required" ') ?>
+                          <?php echo select_tag('division_id', options_for_select($optionsDivision, $division_id),'onChange="javascript:submitForm()"') ?>
+                         </div>
 
+                         <div class="form-row">
+                          <?php echo label_for('actividad_id', __('Actividad:'), 'class="required" ') ?>
+                          <?php echo select_tag('actividad_id', options_for_select($optionsActividad, $actividad_id),'') ?>
+                         </div>
 
-<? if(count($optionsDivision)>0) { ?>
- <div class="form-row">
-  <?php echo label_for('division_id', __('Division:'), 'class="required" ') ?>
-  <?php echo select_tag('division_id', options_for_select($optionsDivision, $division_id),'onChange="javascript:submitForm()"') ?>
- </div>
+                        <?}?>
+                    </fieldset>
+                    <ul class="sf_admin_actions">
+                      <li><?php echo submit_tag(__('Mostrar'), array (
+                      'name' => 'Mostrar',
+                      'class' => 'sf_admin_action_save',
+                    )) ?></li>
+                    </ul>
+                </form>
+            </div>
+            <div id="wastebin" style="float:right">
+                <br><br><?php echo image_tag('trash.png', 'id=wastebin') ?>
+            </div>
+            <div style="height:20px">
+              <p id="indicator" style="display:none">
+                <?php echo image_tag('indicator.gif') ?> Procesando...
+              </p>
+            </div>
 
- <div class="form-row">
-  <?php echo label_for('actividad_id', __('Actividad:'), 'class="required" ') ?>
-  <?php echo select_tag('actividad_id', options_for_select($optionsActividad, $actividad_id),'') ?>
- </div>
-
-<?}?>
-
-
-
-
-
-</fieldset>
- <ul class="sf_admin_actions">
-  <li><?php echo submit_tag(__('Mostrar'), array (
-  'name' => 'Mostrar',
-  'class' => 'sf_admin_action_save',
-)) ?></li>
-</ul>
-
-</form>
-
-<div id="wastebin" style="float:right">
-<br>
-<br>
-  <?= image_tag('trash.png', 'id=wastebin') ?>
-</div>
-
-
-<div style="height:20px">
-  <p id="indicator" style="display:none">
-    <?php echo image_tag('indicator.gif') ?> Procesando...
-  </p>
-</div>
-
-<h1>Asignaturas</h1>
-<?php use_helper('Javascript') ?>
-<div id="horarios_list">
-<?php 
-if(count($horasMaterias)>0) {
-    foreach($horasMaterias as $idx => $oMateria) { ?>
-<?
-    echo image_tag('horasMaterias'.$idx, array(
-    'id'    => 'horarioMaterias_'.$idx,
-    'alt'   => $oMateria->nombre,
-    'class' => 'horarioMaterias-items',
-//     'onMouseOver' => "this.T_SHADOWWIDTH=5;this.T_STICKY=1;this.T_OFFSETX=-20;return escape('".htmlentities(str_replace("\n","<br />",$oMateria->horarios_disponibles), ENT_QUOTES)."');"
-    ));
-    echo "<br>(".$oMateria->cantidad. " Horas)";
-?>   
-<?= draggable_element('horarioMaterias_'.$idx, array('revert' => true)) ?>
-<br><br>
-<?php }
-    }
-?>
-</div>
-</td>
-<td>
-<?php
-use_helper("CalendarWeek");
-echo loadCalendar($aDay, $aHour, $aEvent, $aDayNames, $time_interval, false, 110, 20);
-?>
-</td>
-</tr>
-<tr>
-</tr>
+            <h1>Asignaturas</h1>
+            <?php use_helper('Javascript') ?>
+            <div id="horarios_list">
+                <?php 
+                if(count($horasMaterias)>0) {
+                    foreach($horasMaterias as $idx => $oMateria) { ?>
+                <?
+                    echo image_tag('horasMaterias'.$idx, array(
+                    'id'    => 'horarioMaterias_'.$idx,
+                    'alt'   => $oMateria->nombre,
+                    'class' => 'horarioMaterias-items',
+                //     'onMouseOver' => "this.T_SHADOWWIDTH=5;this.T_STICKY=1;this.T_OFFSETX=-20;return escape('".htmlentities(str_replace("\n","<br />",$oMateria->horarios_disponibles), ENT_QUOTES)."');"
+                    ));
+                    echo "<br>(".$oMateria->cantidad. " Horas)";
+                ?>   
+                <?= draggable_element('horarioMaterias_'.$idx, array('revert' => true)) ?>
+                <br><br>
+                <?php }
+                    }
+                ?>
+            </div>
+        </td>
+        <td>
+            <?php
+            use_helper("CalendarWeek");
+            echo loadCalendar($aDay, $aHour, $aEvent, $aDayNames, $time_interval, false, 110, 20);
+            ?>
+        </td>
+    </tr>
 </table>
 
 <script type="text/javascript">

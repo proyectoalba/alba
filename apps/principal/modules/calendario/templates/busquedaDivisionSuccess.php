@@ -1,4 +1,4 @@
-
+<div id ="sf_admin_container">
 <? if (count($aDivision) > 0) { ?>
 <h1>Horario según Divisiones</h1>
 <table cellspacing="0" class="sf_admin_list">
@@ -27,3 +27,4 @@
 </table>
 
 <? } ?>
+</div>
