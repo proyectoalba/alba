@@ -1,6 +1,7 @@
 SET CHARACTER SET utf8;
 SET FOREIGN_KEY_CHECKS = 0;
 
+update tipoiva set id=4 where id=3;update tipoiva set id=3 where id=2;update tipoiva set id=2 where id=1;update tipoiva set id=1 where id=0;
 ALTER TABLE `tipoiva` CHANGE `id` `id` INT( 11 ) NOT NULL AUTO_INCREMENT ;
 
 ALTER TABLE `responsable` ADD `observacion` VARCHAR( 255 ) NULL AFTER `relacion` ;
