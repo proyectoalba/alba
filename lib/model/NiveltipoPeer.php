@@ -1,10 +1,10 @@
 <?php
 
   // include base peer class
-  require_once 'model/om/BaseNiveltipoPeer.php';
+  require_once 'lib/model/om/BaseNiveltipoPeer.php';
   
   // include object class
-  include_once 'model/Niveltipo.php';
+  include_once 'lib/model/Niveltipo.php';
 
 
 /**

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseTurnos.php';
+require_once 'lib/model/om/BaseTurnos.php';
 
 
 /**

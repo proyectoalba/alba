@@ -188,7 +188,7 @@ class ciclolectivoActions extends autociclolectivoActions
         return $string;
     }
 
-    protected function addFiltersCriteria(&$c)
+    protected function addFiltersCriteria($c)
      {
          
          $c->add(CiclolectivoPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
@@ -296,7 +296,10 @@ class ciclolectivoActions extends autociclolectivoActions
             
         return true;            
     }
-    
+
+    public function executeSinciclolectivo() {
+        $this->modulo = $this->getRequestParameter('m');
+    }    
 }
 
 ?>

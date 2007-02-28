@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseModulo.php';
+require_once 'lib/model/om/BaseModulo.php';
 
 
 /**

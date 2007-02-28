@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseRelLocacionEspacio.php';
+require_once 'lib/model/om/BaseRelLocacionEspacio.php';
 
 
 /**

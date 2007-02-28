@@ -68,7 +68,7 @@ class docenteActions extends autodocenteActions
         $relDocenteEstablecimientos = RelDocenteEstablecimientoPeer::doDelete($criteria);
     }
 
-     protected function addFiltersCriteria(&$c)
+     protected function addFiltersCriteria($c)
      {
          $c->addJoin(DocentePeer::ID,RelDocenteEstablecimientoPeer::FK_DOCENTE_ID, Criteria::LEFT_JOIN);
          $c->add(RelDocenteEstablecimientoPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));

@@ -1,10 +1,10 @@
 <?php
 
   // include base peer class
-  require_once 'model/om/BaseMenuPeer.php';
+  require_once 'lib/model/om/BaseMenuPeer.php';
   
   // include object class
-  include_once 'model/Menu.php';
+  include_once 'lib/model/Menu.php';
 
 
 /**

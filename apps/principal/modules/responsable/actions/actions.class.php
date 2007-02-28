@@ -35,7 +35,7 @@ class responsableActions extends autoresponsableActions {
         $this->vista = $this->getRequestParameter('vista');
     }
          
-    protected function addSortCriteria (&$c) { 
+    protected function addSortCriteria ($c) { 
         if ($sort_column = $this->getUser()->getAttribute('sort', 'apellido', 'sf_admin/responsable/sort')) {                                                                                                                        
             $sort_column = Propel::getDB($c->getDbName())->quoteIdentifier($sort_column);                                          
             if ($this->getUser()->getAttribute('type', 'asc', 'sf_admin/responsable/sort') == 'asc') {                                                                                                                      
@@ -73,8 +73,8 @@ class responsableActions extends autoresponsableActions {
         }                                                                                                                    
         else {                                                                                                                        
             // add javascripts                                                                                                     
-            $this->getResponse()->addJavascript('/sf/js/prototype/prototype');                                                     
-            $this->getResponse()->addJavascript('/sf/js/sf_admin/collapse');   
+            $this->getResponse()->addJavascript(sfConfig::get('sf_prototype_web_dir').'/js/prototype');                                                     
+            $this->getResponse()->addJavascript(sfConfig::get('sf_admin_web_dir').'/js/collapse');   
             if ($this->getRequestParameter('fk_cuenta_id'))
                 $this->responsable->setFkCuentaId($this->getRequestParameter('fk_cuenta_id'));
         }

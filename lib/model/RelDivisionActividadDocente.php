@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseRelDivisionActividadDocente.php';
+require_once 'lib/model/om/BaseRelDivisionActividadDocente.php';
 
 
 /**

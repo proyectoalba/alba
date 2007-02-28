@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseAnio.php';
+require_once 'lib/model/om/BaseAnio.php';
 
 
 /**

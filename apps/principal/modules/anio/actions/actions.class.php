@@ -22,8 +22,8 @@
  *  anio actions.
  *
  * @package    alba
- * @author     Jos�Luis Di Biase <josx@interorganic.com.ar>
- * @author     H�tor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     José Luis Di Biase <josx@interorganic.com.ar>
+ * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
@@ -37,7 +37,7 @@ class anioActions extends autoanioActions
         $this->vista = $this->getRequestParameter('vista');
     }
 
-    protected function addFiltersCriteria (&$c) {
+    protected function addFiltersCriteria ($c) {
         $c->add(AnioPeer::FK_ESTABLECIMIENTO_ID,$this->getUser()->getAttribute('fk_establecimiento_id'));
     
     }

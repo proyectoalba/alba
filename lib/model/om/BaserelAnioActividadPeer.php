@@ -3,7 +3,7 @@
 require_once 'propel/util/BasePeer.php';
 // The object class -- needed for instanceof checks in this class.
 // actual class may be a subclass -- as returned by relAnioActividadPeer::getOMClass()
-include_once 'model/relAnioActividad.php';
+include_once 'lib/model/relAnioActividad.php';
 
 /**
  * Base static class for performing query and update operations on the 'rel_anio_actividad' table.
@@ -76,7 +76,7 @@ abstract class BaserelAnioActividadPeer {
 	 */
 	public static function getMapBuilder()
 	{
-		include_once 'model/map/relAnioActividadMapBuilder.php';
+		include_once 'lib/model/map/relAnioActividadMapBuilder.php';
 		return BasePeer::getMapBuilder('model.map.relAnioActividadMapBuilder');
 	}
 	/**
@@ -1086,6 +1086,6 @@ if (Propel::isInit()) {
 } else {
 	// even if Propel is not yet initialized, the map builder class can be registered
 	// now and then it will be loaded when Propel initializes.
-	require_once 'model/map/relAnioActividadMapBuilder.php';
+	require_once 'lib/model/map/relAnioActividadMapBuilder.php';
 	Propel::registerMapBuilder('model.map.relAnioActividadMapBuilder');
 }

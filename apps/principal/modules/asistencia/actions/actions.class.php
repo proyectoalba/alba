@@ -65,8 +65,10 @@ class asistenciaActions extends sfActions
         $nombre_completo_archivo = "";
         $bool_gd = array_search("gd", get_loaded_extensions());
 
+        if ($this->getUser()->getAttribute('fk_ciclolectivo_id') == 0)
+            return $this->redirect('ciclolectivo/sinciclolectivo?m=' . $this->getRequestParameter('module'));
         // tomando los datos del formulario y completando variable
-
+        
         $ciclolectivo_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');       
         $ciclolectivo = CiclolectivoPeer::retrieveByPK($ciclolectivo_id);
 

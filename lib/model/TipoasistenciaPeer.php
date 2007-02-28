@@ -1,10 +1,10 @@
 <?php
 
   // include base peer class
-  require_once 'model/om/BaseTipoasistenciaPeer.php';
+  require_once 'lib/model/om/BaseTipoasistenciaPeer.php';
   
   // include object class
-  include_once 'model/Tipoasistencia.php';
+  include_once 'lib/model/Tipoasistencia.php';
 
 
 /**

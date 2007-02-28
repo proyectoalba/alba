@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseOrganizacion.php';
+require_once 'lib/model/om/BaseOrganizacion.php';
 
 
 /**

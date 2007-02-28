@@ -81,7 +81,7 @@ class horarioescolarActions extends autohorarioescolarActions
   }
 
 
-    function addFiltersCriteria(&$c) {
+    function addFiltersCriteria($c) {
         $c->add(horarioescolarPeer::FK_ESTABLECIMIENTO_ID,$this->getUser()->getAttribute('fk_establecimiento_id'));
     }
 

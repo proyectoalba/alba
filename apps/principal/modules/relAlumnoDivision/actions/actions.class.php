@@ -36,7 +36,7 @@ class relAlumnoDivisionActions extends autorelAlumnoDivisionActions
     public function preExecute() {
         $this->vista = $this->getRequestParameter('vista');
     }
-    protected function addFiltersCriteria (&$c)                                                                                
+    protected function addFiltersCriteria ($c)                                                                                
     {                                                                                                                          
         $c->add(AlumnoPeer::FK_ESTABLECIMIENTO_ID,$this->getUser()->getAttribute('fk_establecimiento_id'));                      
         $c->addJoin(AlumnoPeer::ID,RelAlumnoDivisionPeer::FK_ALUMNO_ID);

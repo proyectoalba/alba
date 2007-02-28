@@ -3,7 +3,7 @@
 require_once 'propel/util/BasePeer.php';
 // The object class -- needed for instanceof checks in this class.
 // actual class may be a subclass -- as returned by RelLocacionEspacioPeer::getOMClass()
-include_once 'model/RelLocacionEspacio.php';
+include_once 'lib/model/RelLocacionEspacio.php';
 
 /**
  * Base static class for performing query and update operations on the 'rel_locacion_espacio' table.
@@ -76,7 +76,7 @@ abstract class BaseRelLocacionEspacioPeer {
 	 */
 	public static function getMapBuilder()
 	{
-		include_once 'model/map/RelLocacionEspacioMapBuilder.php';
+		include_once 'lib/model/map/RelLocacionEspacioMapBuilder.php';
 		return BasePeer::getMapBuilder('model.map.RelLocacionEspacioMapBuilder');
 	}
 	/**
@@ -1126,6 +1126,6 @@ if (Propel::isInit()) {
 } else {
 	// even if Propel is not yet initialized, the map builder class can be registered
 	// now and then it will be loaded when Propel initializes.
-	require_once 'model/map/RelLocacionEspacioMapBuilder.php';
+	require_once 'lib/model/map/RelLocacionEspacioMapBuilder.php';
 	Propel::registerMapBuilder('model.map.RelLocacionEspacioMapBuilder');
 }

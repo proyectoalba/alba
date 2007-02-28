@@ -1,10 +1,10 @@
 <?php
 
   // include base peer class
-  require_once 'model/om/BaseTipoivaPeer.php';
+  require_once 'lib/model/om/BaseTipoivaPeer.php';
   
   // include object class
-  include_once 'model/Tipoiva.php';
+  include_once 'lib/model/Tipoiva.php';
 
 
 /**

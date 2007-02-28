@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseLocacion.php';
+require_once 'lib/model/om/BaseLocacion.php';
 
 
 /**

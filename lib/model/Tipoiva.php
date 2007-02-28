@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseTipoiva.php';
+require_once 'lib/model/om/BaseTipoiva.php';
 
 
 /**

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseLegajopedagogico.php';
+require_once 'lib/model/om/BaseLegajopedagogico.php';
 
 
 /**

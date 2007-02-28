@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BasePais.php';
+require_once 'lib/model/om/BasePais.php';
 
 
 /**

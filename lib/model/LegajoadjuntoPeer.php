@@ -1,10 +1,10 @@
 <?php
 
   // include base peer class
-  require_once 'model/om/BaseLegajoadjuntoPeer.php';
+  require_once 'lib/model/om/BaseLegajoadjuntoPeer.php';
   
   // include object class
-  include_once 'model/Legajoadjunto.php';
+  include_once 'lib/model/Legajoadjunto.php';
 
 
 /**

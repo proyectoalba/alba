@@ -91,8 +91,8 @@ class relCalendariovacunacionAlumnoActions extends autorelCalendariovacunacionAl
     else
     {
       // add javascripts
-      $this->getResponse()->addJavascript('/sf/js/prototype/prototype');
-      $this->getResponse()->addJavascript('/sf/js/sf_admin/collapse');
+      $this->getResponse()->addJavascript(sfConfig::get('sf_prototype_web_dir').'/js/prototype');
+      $this->getResponse()->addJavascript(sfConfig::get('sf_admin_web_dir').'/js/collapse');
 	  if ($this->getRequestParameter('fk_alumno_id'))
                 $this->rel_calendariovacunacion_alumno->setFkAlumnoId($this->getRequestParameter('fk_alumno_id'));
 

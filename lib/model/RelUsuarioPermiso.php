@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseRelUsuarioPermiso.php';
+require_once 'lib/model/om/BaseRelUsuarioPermiso.php';
 
 
 /**

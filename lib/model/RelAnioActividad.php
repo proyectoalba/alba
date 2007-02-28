@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseRelAnioActividad.php';
+require_once 'lib/model/om/BaseRelAnioActividad.php';
 
 
 /**

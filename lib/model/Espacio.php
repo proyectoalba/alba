@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseEspacio.php';
+require_once 'lib/model/om/BaseEspacio.php';
 
 
 /**

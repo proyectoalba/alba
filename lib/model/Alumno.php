@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseAlumno.php';
+require_once 'lib/model/om/BaseAlumno.php';
 
 
 /**

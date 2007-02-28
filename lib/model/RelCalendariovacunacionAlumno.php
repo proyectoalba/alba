@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseRelCalendariovacunacionAlumno.php';
+require_once 'lib/model/om/BaseRelCalendariovacunacionAlumno.php';
 
 
 /**

@@ -1,8 +1,6 @@
 <div id="content">
-<?php  
-    foreach($aCuenta as $cuenta){
-?>
 <h1>Composici&oacute;n de la Cuenta: <?php echo $cuenta->getNombre()?></h1>
+<div id="sf_admin_container">
 <div id="sf_admin_content">
 <table align="center" class="sf_admin_list">
     <tr>
@@ -31,7 +29,6 @@
     </tr>
 </table>    
 </div>
-<?php }?>
 <br>
 <div id="sf_admin_content">
 <h1>Alumnos</h1>
@@ -164,4 +161,5 @@
     <?php echo button_to(__('create'), 'responsable/create?fk_cuenta_id=' . $cuenta->getId(), array ('class' => 'sf_admin_action_create', )) ?>
   </li>
 </ul>
+</div>
 </div>

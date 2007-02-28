@@ -15,7 +15,7 @@
 </script>
 
 
-<?php use_helpers('Object', 'Validation', 'ObjectAdmin', 'I18N', 'Date') ?>
+<?php use_helper('Object', 'Validation', 'ObjectAdmin', 'I18N', 'Date') ?>
 
 <h1><?php echo __('Ver Horario Escolar', 
 array()) ?></h1>

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseTipodocumento.php';
+require_once 'lib/model/om/BaseTipodocumento.php';
 
 
 /**

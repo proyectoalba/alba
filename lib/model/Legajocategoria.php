@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseLegajocategoria.php';
+require_once 'lib/model/om/BaseLegajocategoria.php';
 
 
 /**

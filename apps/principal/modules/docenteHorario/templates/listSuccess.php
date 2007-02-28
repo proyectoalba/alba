@@ -1,3 +1,5 @@
+<?php use_helper('DateForm') ?>
+
     
     <script>     
      function linkTo() {
@@ -47,7 +49,7 @@ echo form_tag('docenteHorario/grabarDocenteHorario', 'onSubmit="selectItem()"');
     <?php echo input_hidden_tag("horario[$i][id]", $horario->getId()); ?>
     <td>
     <ul class="sf_admin_td_actions">
-    <li><?php echo link_to(image_tag('/sf/images/sf_admin/delete_icon.png', array('alt' => __('delete'), 'title' => __('delete'))), 'docenteHorario/deleteHorario?id='.$horario->getId()); ?>
+    <li><?php echo link_to(image_tag(sfConfig::get('sf_admin_web_dir').'/images/delete_icon.png', array('alt' => __('delete'), 'title' => __('delete'))), 'docenteHorario/deleteHorario?id='.$horario->getId()); ?>
     </ul>
     </td>
   </tr>

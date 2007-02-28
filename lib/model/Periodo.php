@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BasePeriodo.php';
+require_once 'lib/model/om/BasePeriodo.php';
 
 
 /**

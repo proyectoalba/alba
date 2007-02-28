@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseRelUsuarioPreferencia.php';
+require_once 'lib/model/om/BaseRelUsuarioPreferencia.php';
 
 
 /**

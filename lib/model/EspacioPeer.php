@@ -1,10 +1,10 @@
 <?php
 
   // include base peer class
-  require_once 'model/om/BaseEspacioPeer.php';
+  require_once 'lib/model/om/BaseEspacioPeer.php';
   
   // include object class
-  include_once 'model/Espacio.php';
+  include_once 'lib/model/Espacio.php';
 
 
 /**

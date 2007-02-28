@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseLegajoadjunto.php';
+require_once 'lib/model/om/BaseLegajoadjunto.php';
 
 
 /**

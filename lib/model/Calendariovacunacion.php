@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseCalendariovacunacion.php';
+require_once 'lib/model/om/BaseCalendariovacunacion.php';
 
 
 /**

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseAsistencia.php';
+require_once 'lib/model/om/BaseAsistencia.php';
 
 
 /**

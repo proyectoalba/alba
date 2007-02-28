@@ -1,22 +1,27 @@
 methods:
-  post:       
-    - "turnos{hora_inicio}"
-    - "turnos{hora_fin}"
-    - "turnos{descripcion}"    
+    post:       
+        - "turnos{hora_inicio}"
+        - "turnos{hora_fin}"
+        - "turnos{descripcion}"    
     
 fillin:
     enabled:       on
+
 names:
+
     turnos{hora_inicio}:
         required:     Yes
         required_msg: El campo hora inicio es obligatorio
+
     turnos{hora_fin}:
         required:     Yes
         required_msg: El campo hora fin  es obligatorio
+        
     turnos{descripcion}:
         required:     Yes
         required_msg: El campo descripci&oacute;n es obligatorio
         validators: caracteresMaximos255
+
 caracteresMaximos255:
     class:  sfStringValidator
     param:

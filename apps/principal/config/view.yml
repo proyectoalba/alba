@@ -9,7 +9,7 @@ default:
     keywords:     alba, proyecto, software libre, educacion
     language:     es
 
-  stylesheets:    [ /sf/css/sf_admin/main, main] 
+  stylesheets:    [ %SF_ADMIN_WEB_DIR%/css/main, main] 
 
   javascripts:    [jsmenu/JSCookMenu]   
 

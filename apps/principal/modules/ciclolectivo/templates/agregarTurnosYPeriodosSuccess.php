@@ -1,3 +1,5 @@
+<?php use_helper('DateForm') ?>
+
     
     <script>     
      function linkTo() {
@@ -54,10 +56,10 @@
     </div>   
     </td>
     <td> <?php echo input_date_tag('ciclolectivo[fecha_inicio]', $ciclolectivo->getFechaInicio() , array('rich'=>true,
-                                                                                                     'calendar_button_img'=>'/sf/images/sf_admin/date.png',
+                                                                                                     'calendar_button_img'=>sfConfig::get('sf_admin_web_dir').'/images/date.png',
                                                                                                      'control_name'=>'ciclolectivo[fecha_inicio]')) ?>
                                                                                                      </td>
-<? //echo image_tag('/sf/images/sf_admin/date.png', array("id" => "trigger_ciclolectivo[fecha_inicio]", "style" => "cursor: pointer", "align" => "absmiddle", "alt" => "date")); 
+<? //echo image_tag(sfConfig::get('sf_admin_web_dir').'/images/date.png', array("id" => "trigger_ciclolectivo[fecha_inicio]", "style" => "cursor: pointer", "align" => "absmiddle", "alt" => "date")); 
  ?>
     <td> <?php echo input_date_tag('ciclolectivo[fecha_fin]', $ciclolectivo->getFechaFin() , 'rich=true calendar_button_img=/sf/images/sf_admin/date.png control_name=ciclolectivo[fecha_fin]'); ?></td>
     <td><?echo $ciclolectivo->getEstablecimiento()->getNombre();?></td>
@@ -100,7 +102,7 @@ foreach($aTurnos as $turno){
     <?php echo input_hidden_tag("turnos[$i][id]", $turno->getId()); ?>
     <td>
     <ul class="sf_admin_td_actions">
-    <li><?php echo link_to(image_tag('/sf/images/sf_admin/delete_icon.png', array('alt' => __('delete'), 'title' => __('delete'))), 'ciclolectivo/deleteTurno?idTurno='.$turno->getId().'&id='.$sf_params->get('id')); ?>
+    <li><?php echo link_to(image_tag(sfConfig::get('sf_admin_web_dir').'/images/delete_icon.png', array('alt' => __('delete'), 'title' => __('delete'))), 'ciclolectivo/deleteTurno?idTurno='.$turno->getId().'&id='.$sf_params->get('id')); ?>
     </ul>
     </td>
   </tr>
@@ -153,7 +155,7 @@ foreach($aTurnos as $turno){
     <?php echo input_hidden_tag("periodo[$i][id]", $periodo->getId()); ?>
     <td>
     <ul class="sf_admin_td_actions">
-    <li><?php echo link_to(image_tag('/sf/images/sf_admin/delete_icon.png', array('alt' => __('delete'), 'title' => __('delete'))), 'ciclolectivo/deletePeriodo?idPeriodo='.$periodo->getId().'&id='.$sf_params->get('id')); ?>
+    <li><?php echo link_to(image_tag(sfConfig::get('sf_admin_web_dir').'/images/delete_icon.png', array('alt' => __('delete'), 'title' => __('delete'))), 'ciclolectivo/deletePeriodo?idPeriodo='.$periodo->getId().'&id='.$sf_params->get('id')); ?>
     </ul>
     </td>
     

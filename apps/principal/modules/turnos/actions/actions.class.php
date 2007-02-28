@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  *    This file is part of Alba.
  * 
@@ -34,7 +34,7 @@ class turnosActions extends autoturnosActions {
         $this->vista = $this->getRequestParameter('vista');
     }
     
-    function addFiltersCriteria(&$c) {
+    function addFiltersCriteria($c) {
         $c->add(TurnosPeer::FK_CICLOLECTIVO_ID,$this->getUser()->getAttribute('fk_ciclolectivo_id'));
     }
     

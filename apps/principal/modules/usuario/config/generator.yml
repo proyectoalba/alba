@@ -26,8 +26,8 @@ generator:
             fields: 
                 fecha_creado: {type: plain}
                 fecha_actualizado: {type: plain }
-                seguridad_pregunta: {help: }
-                seguridad_respuesta: {help: }
+                seguridad_pregunta: {help: ""}
+                seguridad_respuesta: {help: ""}
                 
         list: 
             title: Listado de Usuarios

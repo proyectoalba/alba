@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseBoletinActividades.php';
+require_once 'lib/model/om/BaseBoletinActividades.php';
 
 
 /**

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseRepeticion.php';
+require_once 'lib/model/om/BaseRepeticion.php';
 
 
 /**

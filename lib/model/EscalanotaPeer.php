@@ -1,10 +1,10 @@
 <?php
 
   // include base peer class
-  require_once 'model/om/BaseEscalanotaPeer.php';
+  require_once 'lib/model/om/BaseEscalanotaPeer.php';
   
   // include object class
-  include_once 'model/Escalanota.php';
+  include_once 'lib/model/Escalanota.php';
 
 
 /**

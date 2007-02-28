@@ -65,7 +65,7 @@ class alumnoActions extends autoalumnoActions
     $alumno->save();
   }
   
-  protected function addFiltersCriteria(&$c) {
+  protected function addFiltersCriteria($c) {
     $c->add(AlumnoPeer::FK_ESTABLECIMIENTO_ID,$this->getUser()->getAttribute('fk_establecimiento_id'));
 
     if(isset($this->filters['nombre_apellido']) && $this->filters['nombre_apellido'] != '') {
@@ -86,7 +86,7 @@ class alumnoActions extends autoalumnoActions
 
 
   }
-    protected function addSortCriteria (&$c) {                                                                                                                          
+    protected function addSortCriteria ($c) {                                                                                                                          
         if ($sort_column = $this->getUser()->getAttribute('sort', 'apellido', 'sf_admin/alumno/sort')) {                                                                                                                        
             $sort_column = Propel::getDB($c->getDbName())->quoteIdentifier($sort_column);                                          
             if ($this->getUser()->getAttribute('type', 'asc', 'sf_admin/alumno/sort') == 'asc') {                                                                                                                      
@@ -132,8 +132,8 @@ class alumnoActions extends autoalumnoActions
     else
     {
       // add javascripts
-      $this->getResponse()->addJavascript('/sf/js/prototype/prototype');
-      $this->getResponse()->addJavascript('/sf/js/sf_admin/collapse');
+      $this->getResponse()->addJavascript(sfConfig::get('sf_prototype_web_dir').'/js/prototype');
+      $this->getResponse()->addJavascript(sfConfig::get('sf_admin_web_dir').'/js/collapse');
       if ($this->getRequestParameter('fk_cuenta_id'))
         $this->alumno->setFkCuentaId($this->getRequestParameter('fk_cuenta_id'));
                                

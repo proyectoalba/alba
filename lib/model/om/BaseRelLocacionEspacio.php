@@ -7,7 +7,7 @@ require_once 'propel/om/Persistent.php';
 
 include_once 'propel/util/Criteria.php';
 
-include_once 'model/RelLocacionEspacioPeer.php';
+include_once 'lib/model/RelLocacionEspacioPeer.php';
 
 /**
  * Base class that represents a row from the 'rel_locacion_espacio' table.
@@ -679,7 +679,7 @@ abstract class BaseRelLocacionEspacio extends BaseObject  implements Persistent 
 	public function getLocacion($con = null)
 	{
 		// include the related Peer class
-		include_once 'model/om/BaseLocacionPeer.php';
+		include_once 'lib/model/om/BaseLocacionPeer.php';
 
 		if ($this->aLocacion === null && ($this->fk_locacion_id !== null)) {
 
@@ -730,7 +730,7 @@ abstract class BaseRelLocacionEspacio extends BaseObject  implements Persistent 
 	public function getEspacio($con = null)
 	{
 		// include the related Peer class
-		include_once 'model/om/BaseEspacioPeer.php';
+		include_once 'lib/model/om/BaseEspacioPeer.php';
 
 		if ($this->aEspacio === null && ($this->fk_espacio_id !== null)) {
 

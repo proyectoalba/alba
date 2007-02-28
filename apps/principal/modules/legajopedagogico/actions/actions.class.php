@@ -234,8 +234,8 @@ class legajopedagogicoActions extends sfActions
         } 
 
         // add javascripts
-        $this->getResponse()->addJavascript('/sf/js/prototype/prototype');
-        $this->getResponse()->addJavascript('/sf/js/sf_admin/collapse');
+        $this->getResponse()->addJavascript(sfConfig::get('sf_prototype_web_dir').'/js/prototype');
+        $this->getResponse()->addJavascript(sfConfig::get('sf_admin_web_dir').'/js/collapse');
 
        
     }

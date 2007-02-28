@@ -44,8 +44,8 @@ class cuentaActions extends autocuentaActions
   public function executeVerCompleta(){
         $c = new Criteria();
         $c->add(CuentaPeer::ID, $this->getRequestParameter('id'));
-        $this->aCuenta  = CuentaPeer::doSelect($c);
-
+        $this->cuenta  = CuentaPeer::doSelectOne($c);
+        $this->forward404Unless($this->cuenta);
         $c = new Criteria();
         $c->add(AlumnoPeer::FK_CUENTA_ID, $this->getRequestParameter('id'));
         $this->aAlumno  = AlumnoPeer::doSelect($c);
@@ -55,7 +55,7 @@ class cuentaActions extends autocuentaActions
         $this->aResponsable  = ResponsablePeer::doSelect($c);
         
   }  
- protected function addSortCriteria (&$c)                                                
+ protected function addSortCriteria ($c)                                                
   {                                                                                       
     if ($sort_column = $this->getUser()->getAttribute('sort', 'nombre', 'sf_admin/cuenta/sort'))
     {                                                                                     

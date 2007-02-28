@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseNiveltipo.php';
+require_once 'lib/model/om/BaseNiveltipo.php';
 
 
 /**

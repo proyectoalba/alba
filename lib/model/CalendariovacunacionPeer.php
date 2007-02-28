@@ -1,10 +1,10 @@
 <?php
 
   // include base peer class
-  require_once 'model/om/BaseCalendariovacunacionPeer.php';
+  require_once 'lib/model/om/BaseCalendariovacunacionPeer.php';
   
   // include object class
-  include_once 'model/Calendariovacunacion.php';
+  include_once 'lib/model/Calendariovacunacion.php';
 
 
 /**

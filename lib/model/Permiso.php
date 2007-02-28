@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BasePermiso.php';
+require_once 'lib/model/om/BasePermiso.php';
 
 /**
  * Skeleton subclass for representing a row from the 'permiso' table.

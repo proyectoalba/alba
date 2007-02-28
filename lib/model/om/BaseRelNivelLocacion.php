@@ -7,7 +7,7 @@ require_once 'propel/om/Persistent.php';
 
 include_once 'propel/util/Criteria.php';
 
-include_once 'model/RelNivelLocacionPeer.php';
+include_once 'lib/model/RelNivelLocacionPeer.php';
 
 /**
  * Base class that represents a row from the 'rel_nivel_locacion' table.

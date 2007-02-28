@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseTipoespacio.php';
+require_once 'lib/model/om/BaseTipoespacio.php';
 
 
 /**

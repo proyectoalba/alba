@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseTipoasistencia.php';
+require_once 'lib/model/om/BaseTipoasistencia.php';
 
 
 /**

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseTipodocente.php';
+require_once 'lib/model/om/BaseTipodocente.php';
 
 
 /**

@@ -1,10 +1,10 @@
 <?php
 
   // include base peer class
-  require_once 'model/om/BaseCargobajaPeer.php';
+  require_once 'lib/model/om/BaseCargobajaPeer.php';
   
   // include object class
-  include_once 'model/Cargobaja.php';
+  include_once 'lib/model/Cargobaja.php';
 
 
 /**

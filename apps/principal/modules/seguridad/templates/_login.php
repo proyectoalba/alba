@@ -9,7 +9,7 @@
             <td class="etiqueta">
                 Usuario:
             </td>
-            <td class="karu">
+            <td>
                 <div class="error">  
                 <?php echo form_error('login') ?>
                 </div>
@@ -23,7 +23,7 @@
             <td class="etiqueta"> 
                 Clave:
             </td>
-            <td class="karu">
+            <td>
                 <div class="error">  
                 <?php echo form_error('password') ?>
                 </div>

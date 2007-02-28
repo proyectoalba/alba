@@ -1,10 +1,10 @@
 <?php
 
   // include base peer class
-  require_once 'model/om/BaseTurnosPeer.php';
+  require_once 'lib/model/om/BaseTurnosPeer.php';
   
   // include object class
-  include_once 'model/Turnos.php';
+  include_once 'lib/model/Turnos.php';
 
 
 /**

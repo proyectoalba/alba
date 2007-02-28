@@ -23,8 +23,8 @@
  * TipoDocumento Acciones
  *
  * @package    alba
- * @author     José Luis Di Biase <josx@interorganic.com.ar>
- * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     JosÃ© Luis Di Biase <josx@interorganic.com.ar>
+ * @author     HÃ©ctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id: albaUsuarioValidator.class.php 3894 2006-12-18 17:47:12Z josx $
  * @filesource
@@ -36,7 +36,7 @@ class tipodocumentoActions extends autotipodocumentoActions {
         $this->vista = $this->getRequestParameter('vista');
     }
     
-    protected function addSortCriteria (&$c) {
+    protected function addSortCriteria ($c) {
         if ($sort_column = $this->getUser()->getAttribute('sort', 'nombre', 'sf_admin/tipodocumento/sort')) {
             $sort_column = Propel::getDB($c->getDbName())->quoteIdentifier($sort_column);
             if ($this->getUser()->getAttribute('type', 'asc', 'sf_admin/tipodocumento/sort') == 'asc') {

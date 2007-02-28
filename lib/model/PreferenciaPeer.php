@@ -1,10 +1,10 @@
 <?php
 
   // include base peer class
-  require_once 'model/om/BasePreferenciaPeer.php';
+  require_once 'lib/model/om/BasePreferenciaPeer.php';
   
   // include object class
-  include_once 'model/Preferencia.php';
+  include_once 'lib/model/Preferencia.php';
 
 
 /**

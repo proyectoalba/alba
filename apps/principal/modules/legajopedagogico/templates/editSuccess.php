@@ -1,4 +1,4 @@
-<?php use_helpers('Object', 'Validation', 'ObjectAdmin', 'I18N', 'Date') ?>
+<?php use_helper('Object', 'Validation', 'ObjectAdmin', 'I18N', 'Date') ?>
 
 <h1><?php echo __('Editar Entrada en Legajo Pedagógico para '.$alumno->getApellido().' '.$alumno->getNombre(), array()) ?></h1>
 
@@ -41,7 +41,7 @@
   <?php echo object_input_date_tag($legajopedagogico, 'getFecha', array (
   'rich' => true,
   'withtime' => true,
-  'calendar_button_img' => '/sf/images/sf_admin/date.png',
+  'calendar_button_img' => sfConfig::get('sf_admin_web_dir').'/images/date.png',
   'control_name' => 'legajopedagogico[fecha]',
 )) ?>
   </div> 

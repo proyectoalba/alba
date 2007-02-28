@@ -1,10 +1,10 @@
 <?php
 
   // include base peer class
-  require_once 'model/om/BaseLegajopedagogicoPeer.php';
+  require_once 'lib/model/om/BaseLegajopedagogicoPeer.php';
   
   // include object class
-  include_once 'model/Legajopedagogico.php';
+  include_once 'lib/model/Legajopedagogico.php';
 
 
 /**

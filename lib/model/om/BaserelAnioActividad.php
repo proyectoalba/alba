@@ -7,7 +7,7 @@ require_once 'propel/om/Persistent.php';
 
 include_once 'propel/util/Criteria.php';
 
-include_once 'model/relAnioActividadPeer.php';
+include_once 'lib/model/relAnioActividadPeer.php';
 
 /**
  * Base class that represents a row from the 'rel_anio_actividad' table.
@@ -680,7 +680,7 @@ abstract class BaserelAnioActividad extends BaseObject  implements Persistent {
 	public function getActividad($con = null)
 	{
 		// include the related Peer class
-		include_once 'model/om/BaseActividadPeer.php';
+		include_once 'lib/model/om/BaseActividadPeer.php';
 
 		if ($this->aActividad === null && ($this->fk_actividad_id !== null)) {
 
@@ -731,7 +731,7 @@ abstract class BaserelAnioActividad extends BaseObject  implements Persistent {
 	public function getAnio($con = null)
 	{
 		// include the related Peer class
-		include_once 'model/om/BaseAnioPeer.php';
+		include_once 'lib/model/om/BaseAnioPeer.php';
 
 		if ($this->aAnio === null && ($this->fk_anio_id !== null)) {
 

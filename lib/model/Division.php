@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseDivision.php';
+require_once 'lib/model/om/BaseDivision.php';
 
 
 /**

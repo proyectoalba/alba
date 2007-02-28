@@ -1,372 +1,200 @@
 <?php
 
-require_once 'propel/om/BaseObject.php';
 
-require_once 'propel/om/Persistent.php';
-
-
-include_once 'propel/util/Criteria.php';
-
-include_once 'model/AlumnoPeer.php';
-
-/**
- * Base class that represents a row from the 'alumno' table.
- *
- * 
- *
- * @package model.om
- */
 abstract class BaseAlumno extends BaseObject  implements Persistent {
 
 
-	/**
-	 * The Peer class.
-	 * Instance provides a convenient way of calling static methods on a class
-	 * that calling code may not be able to identify.
-	 * @var AlumnoPeer
-	 */
+	
 	protected static $peer;
 
 
-	/**
-	 * The value for the id field.
-	 * @var int
-	 */
+	
 	protected $id;
 
 
-	/**
-	 * The value for the nombre field.
-	 * @var string
-	 */
+	
 	protected $nombre = '';
 
 
-	/**
-	 * The value for the apellido field.
-	 * @var string
-	 */
+	
 	protected $apellido = '';
 
 
-	/**
-	 * The value for the fecha_nacimiento field.
-	 * @var int
-	 */
+	
 	protected $fecha_nacimiento;
 
 
-	/**
-	 * The value for the direccion field.
-	 * @var string
-	 */
+	
 	protected $direccion = '';
 
 
-	/**
-	 * The value for the ciudad field.
-	 * @var string
-	 */
+	
 	protected $ciudad = '';
 
 
-	/**
-	 * The value for the codigo_postal field.
-	 * @var string
-	 */
+	
 	protected $codigo_postal = '';
 
 
-	/**
-	 * The value for the fk_provincia_id field.
-	 * @var int
-	 */
+	
 	protected $fk_provincia_id = 0;
 
 
-	/**
-	 * The value for the telefono field.
-	 * @var string
-	 */
+	
 	protected $telefono = '';
 
 
-	/**
-	 * The value for the lugar_nacimiento field.
-	 * @var string
-	 */
+	
 	protected $lugar_nacimiento = '';
 
 
-	/**
-	 * The value for the fk_tipodocumento_id field.
-	 * @var int
-	 */
+	
 	protected $fk_tipodocumento_id = 0;
 
 
-	/**
-	 * The value for the nro_documento field.
-	 * @var string
-	 */
+	
 	protected $nro_documento = '';
 
 
-	/**
-	 * The value for the sexo field.
-	 * @var string
-	 */
+	
 	protected $sexo = '';
 
 
-	/**
-	 * The value for the email field.
-	 * @var string
-	 */
+	
 	protected $email = '';
 
 
-	/**
-	 * The value for the distancia_escuela field.
-	 * @var int
-	 */
+	
 	protected $distancia_escuela = 0;
 
 
-	/**
-	 * The value for the hermanos_escuela field.
-	 * @var boolean
-	 */
+	
 	protected $hermanos_escuela = false;
 
 
-	/**
-	 * The value for the hijo_maestro_escuela field.
-	 * @var boolean
-	 */
+	
 	protected $hijo_maestro_escuela = false;
 
 
-	/**
-	 * The value for the fk_establecimiento_id field.
-	 * @var int
-	 */
+	
 	protected $fk_establecimiento_id = 0;
 
 
-	/**
-	 * The value for the fk_cuenta_id field.
-	 * @var int
-	 */
+	
 	protected $fk_cuenta_id = 0;
 
 
-	/**
-	 * The value for the certificado_medico field.
-	 * @var boolean
-	 */
+	
 	protected $certificado_medico = false;
 
 
-	/**
-	 * The value for the activo field.
-	 * @var boolean
-	 */
+	
 	protected $activo = true;
 
 
-	/**
-	 * The value for the fk_conceptobaja_id field.
-	 * @var int
-	 */
+	
 	protected $fk_conceptobaja_id;
 
 
-	/**
-	 * The value for the fk_pais_id field.
-	 * @var int
-	 */
+	
 	protected $fk_pais_id = 0;
 
-	/**
-	 * @var Tipodocumento
-	 */
+	
 	protected $aTipodocumento;
 
-	/**
-	 * @var Cuenta
-	 */
+	
 	protected $aCuenta;
 
-	/**
-	 * @var Establecimiento
-	 */
+	
 	protected $aEstablecimiento;
 
-	/**
-	 * @var Provincia
-	 */
+	
 	protected $aProvincia;
 
-	/**
-	 * @var Conceptobaja
-	 */
+	
 	protected $aConceptobaja;
 
-	/**
-	 * @var Pais
-	 */
+	
 	protected $aPais;
 
-	/**
-	 * Collection to store aggregation of collRelCalendariovacunacionAlumnos.
-	 * @var array
-	 */
+	
 	protected $collRelCalendariovacunacionAlumnos;
 
-	/**
-	 * The criteria used to select the current contents of collRelCalendariovacunacionAlumnos.
-	 * @var Criteria
-	 */
+	
 	protected $lastRelCalendariovacunacionAlumnoCriteria = null;
 
-	/**
-	 * Collection to store aggregation of collLegajopedagogicos.
-	 * @var array
-	 */
+	
 	protected $collLegajopedagogicos;
 
-	/**
-	 * The criteria used to select the current contents of collLegajopedagogicos.
-	 * @var Criteria
-	 */
+	
 	protected $lastLegajopedagogicoCriteria = null;
 
-	/**
-	 * Collection to store aggregation of collAsistencias.
-	 * @var array
-	 */
+	
 	protected $collAsistencias;
 
-	/**
-	 * The criteria used to select the current contents of collAsistencias.
-	 * @var Criteria
-	 */
+	
 	protected $lastAsistenciaCriteria = null;
 
-	/**
-	 * Collection to store aggregation of collBoletinConceptuals.
-	 * @var array
-	 */
+	
 	protected $collBoletinConceptuals;
 
-	/**
-	 * The criteria used to select the current contents of collBoletinConceptuals.
-	 * @var Criteria
-	 */
+	
 	protected $lastBoletinConceptualCriteria = null;
 
-	/**
-	 * Collection to store aggregation of collBoletinActividadess.
-	 * @var array
-	 */
+	
 	protected $collBoletinActividadess;
 
-	/**
-	 * The criteria used to select the current contents of collBoletinActividadess.
-	 * @var Criteria
-	 */
+	
 	protected $lastBoletinActividadesCriteria = null;
 
-	/**
-	 * Collection to store aggregation of collExamens.
-	 * @var array
-	 */
+	
 	protected $collExamens;
 
-	/**
-	 * The criteria used to select the current contents of collExamens.
-	 * @var Criteria
-	 */
+	
 	protected $lastExamenCriteria = null;
 
-	/**
-	 * Collection to store aggregation of collRelAlumnoDivisions.
-	 * @var array
-	 */
+	
 	protected $collRelAlumnoDivisions;
 
-	/**
-	 * The criteria used to select the current contents of collRelAlumnoDivisions.
-	 * @var Criteria
-	 */
+	
 	protected $lastRelAlumnoDivisionCriteria = null;
 
-	/**
-	 * Flag to prevent endless save loop, if this object is referenced
-	 * by another object which falls in this transaction.
-	 * @var boolean
-	 */
+	
 	protected $alreadyInSave = false;
 
-	/**
-	 * Flag to prevent endless validation loop, if this object is referenced
-	 * by another object which falls in this transaction.
-	 * @var boolean
-	 */
+	
 	protected $alreadyInValidation = false;
 
-	/**
-	 * Get the [id] column value.
-	 * 
-	 * @return int
-	 */
+	
 	public function getId()
 	{
 
 		return $this->id;
 	}
 
-	/**
-	 * Get the [nombre] column value.
-	 * 
-	 * @return string
-	 */
+	
 	public function getNombre()
 	{
 
 		return $this->nombre;
 	}
 
-	/**
-	 * Get the [apellido] column value.
-	 * 
-	 * @return string
-	 */
+	
 	public function getApellido()
 	{
 
 		return $this->apellido;
 	}
 
-	/**
-	 * Get the [optionally formatted] [fecha_nacimiento] column value.
-	 * 
-	 * @param string $format The date/time format string (either date()-style or strftime()-style).
-	 *							If format is NULL, then the integer unix timestamp will be returned.
-	 * @return mixed Formatted date/time value as string or integer unix timestamp (if format is NULL).
-	 * @throws PropelException - if unable to convert the date/time to timestamp.
-	 */
+	
 	public function getFechaNacimiento($format = 'Y-m-d H:i:s')
 	{
 
 		if ($this->fecha_nacimiento === null || $this->fecha_nacimiento === '') {
 			return null;
 		} elseif (!is_int($this->fecha_nacimiento)) {
-			// a non-timestamp value was set externally, so we convert it
-			$ts = strtotime($this->fecha_nacimiento);
-			if ($ts === -1 || $ts === false) { // in PHP 5.1 return value changes to FALSE
-				throw new PropelException("Unable to parse value of [fecha_nacimiento] as date/time value: " . var_export($this->fecha_nacimiento, true));
+						$ts = strtotime($this->fecha_nacimiento);
+			if ($ts === -1 || $ts === false) { 				throw new PropelException("Unable to parse value of [fecha_nacimiento] as date/time value: " . var_export($this->fecha_nacimiento, true));
 			}
 		} else {
 			$ts = $this->fecha_nacimiento;
@@ -380,221 +208,140 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		}
 	}
 
-	/**
-	 * Get the [direccion] column value.
-	 * 
-	 * @return string
-	 */
+	
 	public function getDireccion()
 	{
 
 		return $this->direccion;
 	}
 
-	/**
-	 * Get the [ciudad] column value.
-	 * 
-	 * @return string
-	 */
+	
 	public function getCiudad()
 	{
 
 		return $this->ciudad;
 	}
 
-	/**
-	 * Get the [codigo_postal] column value.
-	 * 
-	 * @return string
-	 */
+	
 	public function getCodigoPostal()
 	{
 
 		return $this->codigo_postal;
 	}
 
-	/**
-	 * Get the [fk_provincia_id] column value.
-	 * 
-	 * @return int
-	 */
+	
 	public function getFkProvinciaId()
 	{
 
 		return $this->fk_provincia_id;
 	}
 
-	/**
-	 * Get the [telefono] column value.
-	 * 
-	 * @return string
-	 */
+	
 	public function getTelefono()
 	{
 
 		return $this->telefono;
 	}
 
-	/**
-	 * Get the [lugar_nacimiento] column value.
-	 * 
-	 * @return string
-	 */
+	
 	public function getLugarNacimiento()
 	{
 
 		return $this->lugar_nacimiento;
 	}
 
-	/**
-	 * Get the [fk_tipodocumento_id] column value.
-	 * 
-	 * @return int
-	 */
+	
 	public function getFkTipodocumentoId()
 	{
 
 		return $this->fk_tipodocumento_id;
 	}
 
-	/**
-	 * Get the [nro_documento] column value.
-	 * 
-	 * @return string
-	 */
+	
 	public function getNroDocumento()
 	{
 
 		return $this->nro_documento;
 	}
 
-	/**
-	 * Get the [sexo] column value.
-	 * 
-	 * @return string
-	 */
+	
 	public function getSexo()
 	{
 
 		return $this->sexo;
 	}
 
-	/**
-	 * Get the [email] column value.
-	 * 
-	 * @return string
-	 */
+	
 	public function getEmail()
 	{
 
 		return $this->email;
 	}
 
-	/**
-	 * Get the [distancia_escuela] column value.
-	 * 
-	 * @return int
-	 */
+	
 	public function getDistanciaEscuela()
 	{
 
 		return $this->distancia_escuela;
 	}
 
-	/**
-	 * Get the [hermanos_escuela] column value.
-	 * 
-	 * @return boolean
-	 */
+	
 	public function getHermanosEscuela()
 	{
 
 		return $this->hermanos_escuela;
 	}
 
-	/**
-	 * Get the [hijo_maestro_escuela] column value.
-	 * 
-	 * @return boolean
-	 */
+	
 	public function getHijoMaestroEscuela()
 	{
 
 		return $this->hijo_maestro_escuela;
 	}
 
-	/**
-	 * Get the [fk_establecimiento_id] column value.
-	 * 
-	 * @return int
-	 */
+	
 	public function getFkEstablecimientoId()
 	{
 
 		return $this->fk_establecimiento_id;
 	}
 
-	/**
-	 * Get the [fk_cuenta_id] column value.
-	 * 
-	 * @return int
-	 */
+	
 	public function getFkCuentaId()
 	{
 
 		return $this->fk_cuenta_id;
 	}
 
-	/**
-	 * Get the [certificado_medico] column value.
-	 * 
-	 * @return boolean
-	 */
+	
 	public function getCertificadoMedico()
 	{
 
 		return $this->certificado_medico;
 	}
 
-	/**
-	 * Get the [activo] column value.
-	 * 
-	 * @return boolean
-	 */
+	
 	public function getActivo()
 	{
 
 		return $this->activo;
 	}
 
-	/**
-	 * Get the [fk_conceptobaja_id] column value.
-	 * 
-	 * @return int
-	 */
+	
 	public function getFkConceptobajaId()
 	{
 
 		return $this->fk_conceptobaja_id;
 	}
 
-	/**
-	 * Get the [fk_pais_id] column value.
-	 * 
-	 * @return int
-	 */
+	
 	public function getFkPaisId()
 	{
 
 		return $this->fk_pais_id;
 	}
 
-	/**
-	 * Set the value of [id] column.
-	 * 
-	 * @param int $v new value
-	 * @return void
-	 */
+	
 	public function setId($v)
 	{
 
@@ -603,14 +350,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->modifiedColumns[] = AlumnoPeer::ID;
 		}
 
-	} // setId()
-
-	/**
-	 * Set the value of [nombre] column.
-	 * 
-	 * @param string $v new value
-	 * @return void
-	 */
+	} 
+	
 	public function setNombre($v)
 	{
 
@@ -619,14 +360,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->modifiedColumns[] = AlumnoPeer::NOMBRE;
 		}
 
-	} // setNombre()
-
-	/**
-	 * Set the value of [apellido] column.
-	 * 
-	 * @param string $v new value
-	 * @return void
-	 */
+	} 
+	
 	public function setApellido($v)
 	{
 
@@ -635,21 +370,14 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->modifiedColumns[] = AlumnoPeer::APELLIDO;
 		}
 
-	} // setApellido()
-
-	/**
-	 * Set the value of [fecha_nacimiento] column.
-	 * 
-	 * @param int $v new value
-	 * @return void
-	 */
+	} 
+	
 	public function setFechaNacimiento($v)
 	{
 
 		if ($v !== null && !is_int($v)) {
 			$ts = strtotime($v);
-			if ($ts === -1 || $ts === false) { // in PHP 5.1 return value changes to FALSE
-				throw new PropelException("Unable to parse date/time value for [fecha_nacimiento] from input: " . var_export($v, true));
+			if ($ts === -1 || $ts === false) { 				throw new PropelException("Unable to parse date/time value for [fecha_nacimiento] from input: " . var_export($v, true));
 			}
 		} else {
 			$ts = $v;
@@ -659,14 +387,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->modifiedColumns[] = AlumnoPeer::FECHA_NACIMIENTO;
 		}
 
-	} // setFechaNacimiento()
-
-	/**
-	 * Set the value of [direccion] column.
-	 * 
-	 * @param string $v new value
-	 * @return void
-	 */
+	} 
+	
 	public function setDireccion($v)
 	{
 
@@ -675,14 +397,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->modifiedColumns[] = AlumnoPeer::DIRECCION;
 		}
 
-	} // setDireccion()
-
-	/**
-	 * Set the value of [ciudad] column.
-	 * 
-	 * @param string $v new value
-	 * @return void
-	 */
+	} 
+	
 	public function setCiudad($v)
 	{
 
@@ -691,14 +407,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->modifiedColumns[] = AlumnoPeer::CIUDAD;
 		}
 
-	} // setCiudad()
-
-	/**
-	 * Set the value of [codigo_postal] column.
-	 * 
-	 * @param string $v new value
-	 * @return void
-	 */
+	} 
+	
 	public function setCodigoPostal($v)
 	{
 
@@ -707,14 +417,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->modifiedColumns[] = AlumnoPeer::CODIGO_POSTAL;
 		}
 
-	} // setCodigoPostal()
-
-	/**
-	 * Set the value of [fk_provincia_id] column.
-	 * 
-	 * @param int $v new value
-	 * @return void
-	 */
+	} 
+	
 	public function setFkProvinciaId($v)
 	{
 
@@ -727,14 +431,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->aProvincia = null;
 		}
 
-	} // setFkProvinciaId()
-
-	/**
-	 * Set the value of [telefono] column.
-	 * 
-	 * @param string $v new value
-	 * @return void
-	 */
+	} 
+	
 	public function setTelefono($v)
 	{
 
@@ -743,14 +441,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->modifiedColumns[] = AlumnoPeer::TELEFONO;
 		}
 
-	} // setTelefono()
-
-	/**
-	 * Set the value of [lugar_nacimiento] column.
-	 * 
-	 * @param string $v new value
-	 * @return void
-	 */
+	} 
+	
 	public function setLugarNacimiento($v)
 	{
 
@@ -759,14 +451,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->modifiedColumns[] = AlumnoPeer::LUGAR_NACIMIENTO;
 		}
 
-	} // setLugarNacimiento()
-
-	/**
-	 * Set the value of [fk_tipodocumento_id] column.
-	 * 
-	 * @param int $v new value
-	 * @return void
-	 */
+	} 
+	
 	public function setFkTipodocumentoId($v)
 	{
 
@@ -779,14 +465,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->aTipodocumento = null;
 		}
 
-	} // setFkTipodocumentoId()
-
-	/**
-	 * Set the value of [nro_documento] column.
-	 * 
-	 * @param string $v new value
-	 * @return void
-	 */
+	} 
+	
 	public function setNroDocumento($v)
 	{
 
@@ -795,14 +475,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->modifiedColumns[] = AlumnoPeer::NRO_DOCUMENTO;
 		}
 
-	} // setNroDocumento()
-
-	/**
-	 * Set the value of [sexo] column.
-	 * 
-	 * @param string $v new value
-	 * @return void
-	 */
+	} 
+	
 	public function setSexo($v)
 	{
 
@@ -811,14 +485,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->modifiedColumns[] = AlumnoPeer::SEXO;
 		}
 
-	} // setSexo()
-
-	/**
-	 * Set the value of [email] column.
-	 * 
-	 * @param string $v new value
-	 * @return void
-	 */
+	} 
+	
 	public function setEmail($v)
 	{
 
@@ -827,14 +495,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->modifiedColumns[] = AlumnoPeer::EMAIL;
 		}
 
-	} // setEmail()
-
-	/**
-	 * Set the value of [distancia_escuela] column.
-	 * 
-	 * @param int $v new value
-	 * @return void
-	 */
+	} 
+	
 	public function setDistanciaEscuela($v)
 	{
 
@@ -843,14 +505,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->modifiedColumns[] = AlumnoPeer::DISTANCIA_ESCUELA;
 		}
 
-	} // setDistanciaEscuela()
-
-	/**
-	 * Set the value of [hermanos_escuela] column.
-	 * 
-	 * @param boolean $v new value
-	 * @return void
-	 */
+	} 
+	
 	public function setHermanosEscuela($v)
 	{
 
@@ -859,14 +515,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->modifiedColumns[] = AlumnoPeer::HERMANOS_ESCUELA;
 		}
 
-	} // setHermanosEscuela()
-
-	/**
-	 * Set the value of [hijo_maestro_escuela] column.
-	 * 
-	 * @param boolean $v new value
-	 * @return void
-	 */
+	} 
+	
 	public function setHijoMaestroEscuela($v)
 	{
 
@@ -875,14 +525,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->modifiedColumns[] = AlumnoPeer::HIJO_MAESTRO_ESCUELA;
 		}
 
-	} // setHijoMaestroEscuela()
-
-	/**
-	 * Set the value of [fk_establecimiento_id] column.
-	 * 
-	 * @param int $v new value
-	 * @return void
-	 */
+	} 
+	
 	public function setFkEstablecimientoId($v)
 	{
 
@@ -895,14 +539,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->aEstablecimiento = null;
 		}
 
-	} // setFkEstablecimientoId()
-
-	/**
-	 * Set the value of [fk_cuenta_id] column.
-	 * 
-	 * @param int $v new value
-	 * @return void
-	 */
+	} 
+	
 	public function setFkCuentaId($v)
 	{
 
@@ -915,14 +553,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->aCuenta = null;
 		}
 
-	} // setFkCuentaId()
-
-	/**
-	 * Set the value of [certificado_medico] column.
-	 * 
-	 * @param boolean $v new value
-	 * @return void
-	 */
+	} 
+	
 	public function setCertificadoMedico($v)
 	{
 
@@ -931,14 +563,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->modifiedColumns[] = AlumnoPeer::CERTIFICADO_MEDICO;
 		}
 
-	} // setCertificadoMedico()
-
-	/**
-	 * Set the value of [activo] column.
-	 * 
-	 * @param boolean $v new value
-	 * @return void
-	 */
+	} 
+	
 	public function setActivo($v)
 	{
 
@@ -947,14 +573,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->modifiedColumns[] = AlumnoPeer::ACTIVO;
 		}
 
-	} // setActivo()
-
-	/**
-	 * Set the value of [fk_conceptobaja_id] column.
-	 * 
-	 * @param int $v new value
-	 * @return void
-	 */
+	} 
+	
 	public function setFkConceptobajaId($v)
 	{
 
@@ -967,14 +587,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->aConceptobaja = null;
 		}
 
-	} // setFkConceptobajaId()
-
-	/**
-	 * Set the value of [fk_pais_id] column.
-	 * 
-	 * @param int $v new value
-	 * @return void
-	 */
+	} 
+	
 	public function setFkPaisId($v)
 	{
 
@@ -987,21 +601,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->aPais = null;
 		}
 
-	} // setFkPaisId()
-
-	/**
-	 * Hydrates (populates) the object variables with values from the database resultset.
-	 *
-	 * An offset (1-based "start column") is specified so that objects can be hydrated
-	 * with a subset of the columns in the resultset rows.  This is needed, for example,
-	 * for results of JOIN queries where the resultset row includes columns from two or
-	 * more tables.
-	 *
-	 * @param ResultSet $rs The ResultSet class with cursor advanced to desired record pos.
-	 * @param int $startcol 1-based offset column which indicates which restultset column to start with.
-	 * @return int next starting column
-	 * @throws PropelException  - Any caught Exception will be rewrapped as a PropelException.
-	 */
+	} 
+	
 	public function hydrate(ResultSet $rs, $startcol = 1)
 	{
 		try {
@@ -1056,23 +657,13 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 
 			$this->setNew(false);
 
-			// FIXME - using NUM_COLUMNS may be clearer.
-			return $startcol + 23; // 23 = AlumnoPeer::NUM_COLUMNS - AlumnoPeer::NUM_LAZY_LOAD_COLUMNS).
-
+						return $startcol + 23; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Alumno object", $e);
 		}
 	}
 
-	/**
-	 * Removes this object from datastore and sets delete attribute.
-	 *
-	 * @param Connection $con
-	 * @return void
-	 * @throws PropelException
-	 * @see BaseObject::setDeleted()
-	 * @see BaseObject::isDeleted()
-	 */
+	
 	public function delete($con = null)
 	{
 		if ($this->isDeleted()) {
@@ -1094,16 +685,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		}
 	}
 
-	/**
-	 * Stores the object in the database.  If the object is new,
-	 * it inserts it; otherwise an update is performed.  This method
-	 * wraps the doSave() worker method in a transaction.
-	 *
-	 * @param Connection $con
-	 * @return int The number of rows affected by this insert/update and any referring fk objects' save() operations.
-	 * @throws PropelException
-	 * @see doSave()
-	 */
+	
 	public function save($con = null)
 	{
 		if ($this->isDeleted()) {
@@ -1125,29 +707,14 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		}
 	}
 
-	/**
-	 * Stores the object in the database.
-	 *
-	 * If the object is new, it inserts it; otherwise an update is performed.
-	 * All related objects are also updated in this method.
-	 *
-	 * @param Connection $con
-	 * @return int The number of rows affected by this insert/update and any referring fk objects' save() operations.
-	 * @throws PropelException
-	 * @see save()
-	 */
+	
 	protected function doSave($con)
 	{
-		$affectedRows = 0; // initialize var to track total num of affected rows
-		if (!$this->alreadyInSave) {
+		$affectedRows = 0; 		if (!$this->alreadyInSave) {
 			$this->alreadyInSave = true;
 
 
-			// We call the save method on the following object(s) if they
-			// were passed to this object by their coresponding set
-			// method.  This object relates to these object(s) by a
-			// foreign key reference.
-
+												
 			if ($this->aTipodocumento !== null) {
 				if ($this->aTipodocumento->isModified()) {
 					$affectedRows += $this->aTipodocumento->save($con);
@@ -1191,22 +758,16 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			}
 
 
-			// If this object has been modified, then save it to the database.
-			if ($this->isModified()) {
+						if ($this->isModified()) {
 				if ($this->isNew()) {
 					$pk = AlumnoPeer::doInsert($this, $con);
-					$affectedRows += 1; // we are assuming that there is only 1 row per doInsert() which
-										 // should always be true here (even though technically
-										 // BasePeer::doInsert() can insert multiple rows).
-
-					$this->setId($pk);  //[IMV] update autoincrement primary key
-
+					$affectedRows += 1; 										 										 
+					$this->setId($pk);  
 					$this->setNew(false);
 				} else {
 					$affectedRows += AlumnoPeer::doUpdate($this, $con);
 				}
-				$this->resetModified(); // [HL] After being saved an object is no longer 'modified'
-			}
+				$this->resetModified(); 			}
 
 			if ($this->collRelCalendariovacunacionAlumnos !== null) {
 				foreach($this->collRelCalendariovacunacionAlumnos as $referrerFK) {
@@ -1267,37 +828,17 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->alreadyInSave = false;
 		}
 		return $affectedRows;
-	} // doSave()
-
-	/**
-	 * Array of ValidationFailed objects.
-	 * @var array ValidationFailed[]
-	 */
+	} 
+	
 	protected $validationFailures = array();
 
-	/**
-	 * Gets any ValidationFailed objects that resulted from last call to validate().
-	 *
-	 *
-	 * @return array ValidationFailed[]
-	 * @see validate()
-	 */
+	
 	public function getValidationFailures()
 	{
 		return $this->validationFailures;
 	}
 
-	/**
-	 * Validates the objects modified field values and all objects related to this table.
-	 *
-	 * If $columns is either a column name or an array of column names
-	 * only those columns are validated.
-	 *
-	 * @param mixed $columns Column name or an array of column names.
-	 * @return boolean Whether all columns pass validation.
-	 * @see doValidate()
-	 * @see getValidationFailures()
-	 */
+	
 	public function validate($columns = null)
 	{
 		$res = $this->doValidate($columns);
@@ -1310,16 +851,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		}
 	}
 
-	/**
-	 * This function performs the validation work for complex object models.
-	 *
-	 * In addition to checking the current object, all related objects will
-	 * also be validated.  If all pass then <code>true</code> is returned; otherwise
-	 * an aggreagated array of ValidationFailed objects will be returned.
-	 *
-	 * @param array $columns Array of column names to validate.
-	 * @return mixed <code>true</code> if all validations pass; array of <code>ValidationFailed</code> objets otherwise.
-	 */
+	
 	protected function doValidate($columns = null)
 	{
 		if (!$this->alreadyInValidation) {
@@ -1329,11 +861,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$failureMap = array();
 
 
-			// We call the validate method on the following object(s) if they
-			// were passed to this object by their coresponding set
-			// method.  This object relates to these object(s) by a
-			// foreign key reference.
-
+												
 			if ($this->aTipodocumento !== null) {
 				if (!$this->aTipodocumento->validate($columns)) {
 					$failureMap = array_merge($failureMap, $this->aTipodocumento->getValidationFailures());
@@ -1439,28 +967,14 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return (!empty($failureMap) ? $failureMap : true);
 	}
 
-	/**
-	 * Retrieves a field from the object by name passed in as a string.
-	 *
-	 * @param string $name name
-	 * @param string $type The type of fieldname the $name is of:
-	 *                     one of the class type constants TYPE_PHPNAME,
-	 *                     TYPE_COLNAME, TYPE_FIELDNAME, TYPE_NUM
-	 * @return mixed Value of field.
-	 */
+	
 	public function getByName($name, $type = BasePeer::TYPE_PHPNAME)
 	{
 		$pos = AlumnoPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
 		return $this->getByPosition($pos);
 	}
 
-	/**
-	 * Retrieves a field from the object by Position as specified in the xml schema.
-	 * Zero-based.
-	 *
-	 * @param int $pos position in xml schema
-	 * @return mixed Value of field at $pos
-	 */
+	
 	public function getByPosition($pos)
 	{
 		switch($pos) {
@@ -1536,19 +1050,9 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			default:
 				return null;
 				break;
-		} // switch()
-	}
+		} 	}
 
-	/**
-	 * Exports the object as an array.
-	 *
-	 * You can specify the key type of the array by passing one of the class
-	 * type constants.
-	 *
-	 * @param string $keyType One of the class type constants TYPE_PHPNAME,
-	 *                        TYPE_COLNAME, TYPE_FIELDNAME, TYPE_NUM
-	 * @return an associative array containing the field names (as keys) and field values
-	 */
+	
 	public function toArray($keyType = BasePeer::TYPE_PHPNAME)
 	{
 		$keys = AlumnoPeer::getFieldNames($keyType);
@@ -1580,30 +1084,14 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return $result;
 	}
 
-	/**
-	 * Sets a field from the object by name passed in as a string.
-	 *
-	 * @param string $name peer name
-	 * @param mixed $value field value
-	 * @param string $type The type of fieldname the $name is of:
-	 *                     one of the class type constants TYPE_PHPNAME,
-	 *                     TYPE_COLNAME, TYPE_FIELDNAME, TYPE_NUM
-	 * @return void
-	 */
+	
 	public function setByName($name, $value, $type = BasePeer::TYPE_PHPNAME)
 	{
 		$pos = AlumnoPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
 		return $this->setByPosition($pos, $value);
 	}
 
-	/**
-	 * Sets a field from the object by Position as specified in the xml schema.
-	 * Zero-based.
-	 *
-	 * @param int $pos position in xml schema
-	 * @param mixed $value field value
-	 * @return void
-	 */
+	
 	public function setByPosition($pos, $value)
 	{
 		switch($pos) {
@@ -1676,25 +1164,9 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			case 22:
 				$this->setFkPaisId($value);
 				break;
-		} // switch()
-	}
+		} 	}
 
-	/**
-	 * Populates the object using an array.
-	 *
-	 * This is particularly useful when populating an object from one of the
-	 * request arrays (e.g. $_POST).  This method goes through the column
-	 * names, checking to see whether a matching key exists in populated
-	 * array. If so the setByName() method is called for that column.
-	 *
-	 * You can specify the key type of the array by additionally passing one
-	 * of the class type constants TYPE_PHPNAME, TYPE_COLNAME, TYPE_FIELDNAME,
-	 * TYPE_NUM. The default key type is the column's phpname (e.g. 'authorId')
-	 *
-	 * @param array  $arr     An array to populate the object from.
-	 * @param string $keyType The type of keys the array uses.
-	 * @return void
-	 */
+	
 	public function fromArray($arr, $keyType = BasePeer::TYPE_PHPNAME)
 	{
 		$keys = AlumnoPeer::getFieldNames($keyType);
@@ -1724,11 +1196,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[22], $arr)) $this->setFkPaisId($arr[$keys[22]]);
 	}
 
-	/**
-	 * Build a Criteria object containing the values of all modified columns in this object.
-	 *
-	 * @return Criteria The Criteria object containing all modified values.
-	 */
+	
 	public function buildCriteria()
 	{
 		$criteria = new Criteria(AlumnoPeer::DATABASE_NAME);
@@ -1760,14 +1228,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return $criteria;
 	}
 
-	/**
-	 * Builds a Criteria object containing the primary key for this object.
-	 *
-	 * Unlike buildCriteria() this method includes the primary key values regardless
-	 * of whether or not they have been modified.
-	 *
-	 * @return Criteria The Criteria object containing value(s) for primary key(s).
-	 */
+	
 	public function buildPkeyCriteria()
 	{
 		$criteria = new Criteria(AlumnoPeer::DATABASE_NAME);
@@ -1777,36 +1238,19 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return $criteria;
 	}
 
-	/**
-	 * Returns the primary key for this object (row).
-	 * @return int
-	 */
+	
 	public function getPrimaryKey()
 	{
 		return $this->getId();
 	}
 
-	/**
-	 * Generic method to set the primary key (id column).
-	 *
-	 * @param int $key Primary key.
-	 * @return void
-	 */
+	
 	public function setPrimaryKey($key)
 	{
 		$this->setId($key);
 	}
 
-	/**
-	 * Sets contents of passed object to values from current object.
-	 *
-	 * If desired, this method can also make copies of all associated (fkey referrers)
-	 * objects.
-	 *
-	 * @param object $copyObj An object of Alumno (or compatible) type.
-	 * @param boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
-	 * @throws PropelException
-	 */
+	
 	public function copyInto($copyObj, $deepCopy = false)
 	{
 
@@ -1856,9 +1300,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 
 
 		if ($deepCopy) {
-			// important: temporarily setNew(false) because this affects the behavior of
-			// the getter/setter methods for fkey referrer objects.
-			$copyObj->setNew(false);
+									$copyObj->setNew(false);
 
 			foreach($this->getRelCalendariovacunacionAlumnos() as $relObj) {
 				$copyObj->addRelCalendariovacunacionAlumno($relObj->copy($deepCopy));
@@ -1888,45 +1330,23 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$copyObj->addRelAlumnoDivision($relObj->copy($deepCopy));
 			}
 
-		} // if ($deepCopy)
-
+		} 
 
 		$copyObj->setNew(true);
 
-		$copyObj->setId(NULL); // this is a pkey column, so set to default value
-
+		$copyObj->setId(NULL); 
 	}
 
-	/**
-	 * Makes a copy of this object that will be inserted as a new row in table when saved.
-	 * It creates a new object filling in the simple attributes, but skipping any primary
-	 * keys that are defined for the table.
-	 *
-	 * If desired, this method can also make copies of all associated (fkey referrers)
-	 * objects.
-	 *
-	 * @param boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
-	 * @return Alumno Clone of current object.
-	 * @throws PropelException
-	 */
+	
 	public function copy($deepCopy = false)
 	{
-		// we use get_class(), because this might be a subclass
-		$clazz = get_class($this);
+				$clazz = get_class($this);
 		$copyObj = new $clazz();
 		$this->copyInto($copyObj, $deepCopy);
 		return $copyObj;
 	}
 
-	/**
-	 * Returns a peer instance associated with this om.
-	 *
-	 * Since Peer classes are not to have any instance attributes, this method returns the
-	 * same instance for all member of this class. The method could therefore
-	 * be static, but this would prevent one from overriding the behavior.
-	 *
-	 * @return AlumnoPeer
-	 */
+	
 	public function getPeer()
 	{
 		if (self::$peer === null) {
@@ -1935,13 +1355,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return self::$peer;
 	}
 
-	/**
-	 * Declares an association between this object and a Tipodocumento object.
-	 *
-	 * @param Tipodocumento $v
-	 * @return void
-	 * @throws PropelException
-	 */
+	
 	public function setTipodocumento($v)
 	{
 
@@ -1957,42 +1371,21 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	}
 
 
-	/**
-	 * Get the associated Tipodocumento object
-	 *
-	 * @param Connection Optional Connection object.
-	 * @return Tipodocumento The associated Tipodocumento object.
-	 * @throws PropelException
-	 */
+	
 	public function getTipodocumento($con = null)
 	{
-		// include the related Peer class
-		include_once 'model/om/BaseTipodocumentoPeer.php';
+				include_once 'lib/model/om/BaseTipodocumentoPeer.php';
 
 		if ($this->aTipodocumento === null && ($this->fk_tipodocumento_id !== null)) {
 
 			$this->aTipodocumento = TipodocumentoPeer::retrieveByPK($this->fk_tipodocumento_id, $con);
 
-			/* The following can be used instead of the line above to
-			   guarantee the related object contains a reference
-			   to this object, but this level of coupling
-			   may be undesirable in many circumstances.
-			   As it can lead to a db query with many results that may
-			   never be used.
-			   $obj = TipodocumentoPeer::retrieveByPK($this->fk_tipodocumento_id, $con);
-			   $obj->addTipodocumentos($this);
-			 */
+			
 		}
 		return $this->aTipodocumento;
 	}
 
-	/**
-	 * Declares an association between this object and a Cuenta object.
-	 *
-	 * @param Cuenta $v
-	 * @return void
-	 * @throws PropelException
-	 */
+	
 	public function setCuenta($v)
 	{
 
@@ -2008,42 +1401,21 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	}
 
 
-	/**
-	 * Get the associated Cuenta object
-	 *
-	 * @param Connection Optional Connection object.
-	 * @return Cuenta The associated Cuenta object.
-	 * @throws PropelException
-	 */
+	
 	public function getCuenta($con = null)
 	{
-		// include the related Peer class
-		include_once 'model/om/BaseCuentaPeer.php';
+				include_once 'lib/model/om/BaseCuentaPeer.php';
 
 		if ($this->aCuenta === null && ($this->fk_cuenta_id !== null)) {
 
 			$this->aCuenta = CuentaPeer::retrieveByPK($this->fk_cuenta_id, $con);
 
-			/* The following can be used instead of the line above to
-			   guarantee the related object contains a reference
-			   to this object, but this level of coupling
-			   may be undesirable in many circumstances.
-			   As it can lead to a db query with many results that may
-			   never be used.
-			   $obj = CuentaPeer::retrieveByPK($this->fk_cuenta_id, $con);
-			   $obj->addCuentas($this);
-			 */
+			
 		}
 		return $this->aCuenta;
 	}
 
-	/**
-	 * Declares an association between this object and a Establecimiento object.
-	 *
-	 * @param Establecimiento $v
-	 * @return void
-	 * @throws PropelException
-	 */
+	
 	public function setEstablecimiento($v)
 	{
 
@@ -2059,42 +1431,21 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	}
 
 
-	/**
-	 * Get the associated Establecimiento object
-	 *
-	 * @param Connection Optional Connection object.
-	 * @return Establecimiento The associated Establecimiento object.
-	 * @throws PropelException
-	 */
+	
 	public function getEstablecimiento($con = null)
 	{
-		// include the related Peer class
-		include_once 'model/om/BaseEstablecimientoPeer.php';
+				include_once 'lib/model/om/BaseEstablecimientoPeer.php';
 
 		if ($this->aEstablecimiento === null && ($this->fk_establecimiento_id !== null)) {
 
 			$this->aEstablecimiento = EstablecimientoPeer::retrieveByPK($this->fk_establecimiento_id, $con);
 
-			/* The following can be used instead of the line above to
-			   guarantee the related object contains a reference
-			   to this object, but this level of coupling
-			   may be undesirable in many circumstances.
-			   As it can lead to a db query with many results that may
-			   never be used.
-			   $obj = EstablecimientoPeer::retrieveByPK($this->fk_establecimiento_id, $con);
-			   $obj->addEstablecimientos($this);
-			 */
+			
 		}
 		return $this->aEstablecimiento;
 	}
 
-	/**
-	 * Declares an association between this object and a Provincia object.
-	 *
-	 * @param Provincia $v
-	 * @return void
-	 * @throws PropelException
-	 */
+	
 	public function setProvincia($v)
 	{
 
@@ -2110,42 +1461,21 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	}
 
 
-	/**
-	 * Get the associated Provincia object
-	 *
-	 * @param Connection Optional Connection object.
-	 * @return Provincia The associated Provincia object.
-	 * @throws PropelException
-	 */
+	
 	public function getProvincia($con = null)
 	{
-		// include the related Peer class
-		include_once 'model/om/BaseProvinciaPeer.php';
+				include_once 'lib/model/om/BaseProvinciaPeer.php';
 
 		if ($this->aProvincia === null && ($this->fk_provincia_id !== null)) {
 
 			$this->aProvincia = ProvinciaPeer::retrieveByPK($this->fk_provincia_id, $con);
 
-			/* The following can be used instead of the line above to
-			   guarantee the related object contains a reference
-			   to this object, but this level of coupling
-			   may be undesirable in many circumstances.
-			   As it can lead to a db query with many results that may
-			   never be used.
-			   $obj = ProvinciaPeer::retrieveByPK($this->fk_provincia_id, $con);
-			   $obj->addProvincias($this);
-			 */
+			
 		}
 		return $this->aProvincia;
 	}
 
-	/**
-	 * Declares an association between this object and a Conceptobaja object.
-	 *
-	 * @param Conceptobaja $v
-	 * @return void
-	 * @throws PropelException
-	 */
+	
 	public function setConceptobaja($v)
 	{
 
@@ -2161,42 +1491,21 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	}
 
 
-	/**
-	 * Get the associated Conceptobaja object
-	 *
-	 * @param Connection Optional Connection object.
-	 * @return Conceptobaja The associated Conceptobaja object.
-	 * @throws PropelException
-	 */
+	
 	public function getConceptobaja($con = null)
 	{
-		// include the related Peer class
-		include_once 'model/om/BaseConceptobajaPeer.php';
+				include_once 'lib/model/om/BaseConceptobajaPeer.php';
 
 		if ($this->aConceptobaja === null && ($this->fk_conceptobaja_id !== null)) {
 
 			$this->aConceptobaja = ConceptobajaPeer::retrieveByPK($this->fk_conceptobaja_id, $con);
 
-			/* The following can be used instead of the line above to
-			   guarantee the related object contains a reference
-			   to this object, but this level of coupling
-			   may be undesirable in many circumstances.
-			   As it can lead to a db query with many results that may
-			   never be used.
-			   $obj = ConceptobajaPeer::retrieveByPK($this->fk_conceptobaja_id, $con);
-			   $obj->addConceptobajas($this);
-			 */
+			
 		}
 		return $this->aConceptobaja;
 	}
 
-	/**
-	 * Declares an association between this object and a Pais object.
-	 *
-	 * @param Pais $v
-	 * @return void
-	 * @throws PropelException
-	 */
+	
 	public function setPais($v)
 	{
 
@@ -2212,41 +1521,21 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	}
 
 
-	/**
-	 * Get the associated Pais object
-	 *
-	 * @param Connection Optional Connection object.
-	 * @return Pais The associated Pais object.
-	 * @throws PropelException
-	 */
+	
 	public function getPais($con = null)
 	{
-		// include the related Peer class
-		include_once 'model/om/BasePaisPeer.php';
+				include_once 'lib/model/om/BasePaisPeer.php';
 
 		if ($this->aPais === null && ($this->fk_pais_id !== null)) {
 
 			$this->aPais = PaisPeer::retrieveByPK($this->fk_pais_id, $con);
 
-			/* The following can be used instead of the line above to
-			   guarantee the related object contains a reference
-			   to this object, but this level of coupling
-			   may be undesirable in many circumstances.
-			   As it can lead to a db query with many results that may
-			   never be used.
-			   $obj = PaisPeer::retrieveByPK($this->fk_pais_id, $con);
-			   $obj->addPaiss($this);
-			 */
+			
 		}
 		return $this->aPais;
 	}
 
-	/**
-	 * Temporary storage of collRelCalendariovacunacionAlumnos to save a possible db hit in
-	 * the event objects are add to the collection, but the
-	 * complete collection is never requested.
-	 * @return void
-	 */
+	
 	public function initRelCalendariovacunacionAlumnos()
 	{
 		if ($this->collRelCalendariovacunacionAlumnos === null) {
@@ -2254,23 +1543,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		}
 	}
 
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Alumno has previously
-	 * been saved, it will retrieve related RelCalendariovacunacionAlumnos from storage.
-	 * If this Alumno is new, it will return
-	 * an empty collection or the current collection, the criteria
-	 * is ignored on a new object.
-	 *
-	 * @param Connection $con
-	 * @param Criteria $criteria
-	 * @throws PropelException
-	 */
+	
 	public function getRelCalendariovacunacionAlumnos($criteria = null, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseRelCalendariovacunacionAlumnoPeer.php';
+				include_once 'lib/model/om/BaseRelCalendariovacunacionAlumnoPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -2290,12 +1566,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->collRelCalendariovacunacionAlumnos = RelCalendariovacunacionAlumnoPeer::doSelect($criteria, $con);
 			}
 		} else {
-			// criteria has no effect for a new object
-			if (!$this->isNew()) {
-				// the following code is to determine if a new query is
-				// called for.  If the criteria is the same as the last
-				// one, just return the collection.
-
+						if (!$this->isNew()) {
+												
 
 				$criteria->add(RelCalendariovacunacionAlumnoPeer::FK_ALUMNO_ID, $this->getId());
 
@@ -2309,18 +1581,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return $this->collRelCalendariovacunacionAlumnos;
 	}
 
-	/**
-	 * Returns the number of related RelCalendariovacunacionAlumnos.
-	 *
-	 * @param Criteria $criteria
-	 * @param boolean $distinct
-	 * @param Connection $con
-	 * @throws PropelException
-	 */
+	
 	public function countRelCalendariovacunacionAlumnos($criteria = null, $distinct = false, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseRelCalendariovacunacionAlumnoPeer.php';
+				include_once 'lib/model/om/BaseRelCalendariovacunacionAlumnoPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -2334,14 +1598,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return RelCalendariovacunacionAlumnoPeer::doCount($criteria, $distinct, $con);
 	}
 
-	/**
-	 * Method called to associate a RelCalendariovacunacionAlumno object to this object
-	 * through the RelCalendariovacunacionAlumno foreign key attribute
-	 *
-	 * @param RelCalendariovacunacionAlumno $l RelCalendariovacunacionAlumno
-	 * @return void
-	 * @throws PropelException
-	 */
+	
 	public function addRelCalendariovacunacionAlumno(RelCalendariovacunacionAlumno $l)
 	{
 		$this->collRelCalendariovacunacionAlumnos[] = $l;
@@ -2349,21 +1606,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	}
 
 
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Alumno is new, it will return
-	 * an empty collection; or if this Alumno has previously
-	 * been saved, it will retrieve related RelCalendariovacunacionAlumnos from storage.
-	 *
-	 * This method is protected by default in order to keep the public
-	 * api reasonable.  You can provide public methods for those you
-	 * actually need in Alumno.
-	 */
+	
 	public function getRelCalendariovacunacionAlumnosJoinCalendariovacunacion($criteria = null, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseRelCalendariovacunacionAlumnoPeer.php';
+				include_once 'lib/model/om/BaseRelCalendariovacunacionAlumnoPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -2382,10 +1628,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->collRelCalendariovacunacionAlumnos = RelCalendariovacunacionAlumnoPeer::doSelectJoinCalendariovacunacion($criteria, $con);
 			}
 		} else {
-			// the following code is to determine if a new query is
-			// called for.  If the criteria is the same as the last
-			// one, just return the collection.
-
+									
 			$criteria->add(RelCalendariovacunacionAlumnoPeer::FK_ALUMNO_ID, $this->getId());
 
 			if (!isset($this->lastRelCalendariovacunacionAlumnoCriteria) || !$this->lastRelCalendariovacunacionAlumnoCriteria->equals($criteria)) {
@@ -2397,12 +1640,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return $this->collRelCalendariovacunacionAlumnos;
 	}
 
-	/**
-	 * Temporary storage of collLegajopedagogicos to save a possible db hit in
-	 * the event objects are add to the collection, but the
-	 * complete collection is never requested.
-	 * @return void
-	 */
+	
 	public function initLegajopedagogicos()
 	{
 		if ($this->collLegajopedagogicos === null) {
@@ -2410,23 +1648,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		}
 	}
 
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Alumno has previously
-	 * been saved, it will retrieve related Legajopedagogicos from storage.
-	 * If this Alumno is new, it will return
-	 * an empty collection or the current collection, the criteria
-	 * is ignored on a new object.
-	 *
-	 * @param Connection $con
-	 * @param Criteria $criteria
-	 * @throws PropelException
-	 */
+	
 	public function getLegajopedagogicos($criteria = null, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseLegajopedagogicoPeer.php';
+				include_once 'lib/model/om/BaseLegajopedagogicoPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -2446,12 +1671,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->collLegajopedagogicos = LegajopedagogicoPeer::doSelect($criteria, $con);
 			}
 		} else {
-			// criteria has no effect for a new object
-			if (!$this->isNew()) {
-				// the following code is to determine if a new query is
-				// called for.  If the criteria is the same as the last
-				// one, just return the collection.
-
+						if (!$this->isNew()) {
+												
 
 				$criteria->add(LegajopedagogicoPeer::FK_ALUMNO_ID, $this->getId());
 
@@ -2465,18 +1686,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return $this->collLegajopedagogicos;
 	}
 
-	/**
-	 * Returns the number of related Legajopedagogicos.
-	 *
-	 * @param Criteria $criteria
-	 * @param boolean $distinct
-	 * @param Connection $con
-	 * @throws PropelException
-	 */
+	
 	public function countLegajopedagogicos($criteria = null, $distinct = false, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseLegajopedagogicoPeer.php';
+				include_once 'lib/model/om/BaseLegajopedagogicoPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -2490,14 +1703,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return LegajopedagogicoPeer::doCount($criteria, $distinct, $con);
 	}
 
-	/**
-	 * Method called to associate a Legajopedagogico object to this object
-	 * through the Legajopedagogico foreign key attribute
-	 *
-	 * @param Legajopedagogico $l Legajopedagogico
-	 * @return void
-	 * @throws PropelException
-	 */
+	
 	public function addLegajopedagogico(Legajopedagogico $l)
 	{
 		$this->collLegajopedagogicos[] = $l;
@@ -2505,21 +1711,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	}
 
 
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Alumno is new, it will return
-	 * an empty collection; or if this Alumno has previously
-	 * been saved, it will retrieve related Legajopedagogicos from storage.
-	 *
-	 * This method is protected by default in order to keep the public
-	 * api reasonable.  You can provide public methods for those you
-	 * actually need in Alumno.
-	 */
+	
 	public function getLegajopedagogicosJoinLegajocategoria($criteria = null, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseLegajopedagogicoPeer.php';
+				include_once 'lib/model/om/BaseLegajopedagogicoPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -2538,10 +1733,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->collLegajopedagogicos = LegajopedagogicoPeer::doSelectJoinLegajocategoria($criteria, $con);
 			}
 		} else {
-			// the following code is to determine if a new query is
-			// called for.  If the criteria is the same as the last
-			// one, just return the collection.
-
+									
 			$criteria->add(LegajopedagogicoPeer::FK_ALUMNO_ID, $this->getId());
 
 			if (!isset($this->lastLegajopedagogicoCriteria) || !$this->lastLegajopedagogicoCriteria->equals($criteria)) {
@@ -2554,21 +1746,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	}
 
 
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Alumno is new, it will return
-	 * an empty collection; or if this Alumno has previously
-	 * been saved, it will retrieve related Legajopedagogicos from storage.
-	 *
-	 * This method is protected by default in order to keep the public
-	 * api reasonable.  You can provide public methods for those you
-	 * actually need in Alumno.
-	 */
+	
 	public function getLegajopedagogicosJoinUsuario($criteria = null, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseLegajopedagogicoPeer.php';
+				include_once 'lib/model/om/BaseLegajopedagogicoPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -2587,10 +1768,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->collLegajopedagogicos = LegajopedagogicoPeer::doSelectJoinUsuario($criteria, $con);
 			}
 		} else {
-			// the following code is to determine if a new query is
-			// called for.  If the criteria is the same as the last
-			// one, just return the collection.
-
+									
 			$criteria->add(LegajopedagogicoPeer::FK_ALUMNO_ID, $this->getId());
 
 			if (!isset($this->lastLegajopedagogicoCriteria) || !$this->lastLegajopedagogicoCriteria->equals($criteria)) {
@@ -2602,12 +1780,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return $this->collLegajopedagogicos;
 	}
 
-	/**
-	 * Temporary storage of collAsistencias to save a possible db hit in
-	 * the event objects are add to the collection, but the
-	 * complete collection is never requested.
-	 * @return void
-	 */
+	
 	public function initAsistencias()
 	{
 		if ($this->collAsistencias === null) {
@@ -2615,23 +1788,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		}
 	}
 
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Alumno has previously
-	 * been saved, it will retrieve related Asistencias from storage.
-	 * If this Alumno is new, it will return
-	 * an empty collection or the current collection, the criteria
-	 * is ignored on a new object.
-	 *
-	 * @param Connection $con
-	 * @param Criteria $criteria
-	 * @throws PropelException
-	 */
+	
 	public function getAsistencias($criteria = null, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseAsistenciaPeer.php';
+				include_once 'lib/model/om/BaseAsistenciaPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -2651,12 +1811,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->collAsistencias = AsistenciaPeer::doSelect($criteria, $con);
 			}
 		} else {
-			// criteria has no effect for a new object
-			if (!$this->isNew()) {
-				// the following code is to determine if a new query is
-				// called for.  If the criteria is the same as the last
-				// one, just return the collection.
-
+						if (!$this->isNew()) {
+												
 
 				$criteria->add(AsistenciaPeer::FK_ALUMNO_ID, $this->getId());
 
@@ -2670,18 +1826,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return $this->collAsistencias;
 	}
 
-	/**
-	 * Returns the number of related Asistencias.
-	 *
-	 * @param Criteria $criteria
-	 * @param boolean $distinct
-	 * @param Connection $con
-	 * @throws PropelException
-	 */
+	
 	public function countAsistencias($criteria = null, $distinct = false, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseAsistenciaPeer.php';
+				include_once 'lib/model/om/BaseAsistenciaPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -2695,14 +1843,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return AsistenciaPeer::doCount($criteria, $distinct, $con);
 	}
 
-	/**
-	 * Method called to associate a Asistencia object to this object
-	 * through the Asistencia foreign key attribute
-	 *
-	 * @param Asistencia $l Asistencia
-	 * @return void
-	 * @throws PropelException
-	 */
+	
 	public function addAsistencia(Asistencia $l)
 	{
 		$this->collAsistencias[] = $l;
@@ -2710,21 +1851,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	}
 
 
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Alumno is new, it will return
-	 * an empty collection; or if this Alumno has previously
-	 * been saved, it will retrieve related Asistencias from storage.
-	 *
-	 * This method is protected by default in order to keep the public
-	 * api reasonable.  You can provide public methods for those you
-	 * actually need in Alumno.
-	 */
+	
 	public function getAsistenciasJoinTipoasistencia($criteria = null, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseAsistenciaPeer.php';
+				include_once 'lib/model/om/BaseAsistenciaPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -2743,10 +1873,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->collAsistencias = AsistenciaPeer::doSelectJoinTipoasistencia($criteria, $con);
 			}
 		} else {
-			// the following code is to determine if a new query is
-			// called for.  If the criteria is the same as the last
-			// one, just return the collection.
-
+									
 			$criteria->add(AsistenciaPeer::FK_ALUMNO_ID, $this->getId());
 
 			if (!isset($this->lastAsistenciaCriteria) || !$this->lastAsistenciaCriteria->equals($criteria)) {
@@ -2758,12 +1885,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return $this->collAsistencias;
 	}
 
-	/**
-	 * Temporary storage of collBoletinConceptuals to save a possible db hit in
-	 * the event objects are add to the collection, but the
-	 * complete collection is never requested.
-	 * @return void
-	 */
+	
 	public function initBoletinConceptuals()
 	{
 		if ($this->collBoletinConceptuals === null) {
@@ -2771,23 +1893,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		}
 	}
 
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Alumno has previously
-	 * been saved, it will retrieve related BoletinConceptuals from storage.
-	 * If this Alumno is new, it will return
-	 * an empty collection or the current collection, the criteria
-	 * is ignored on a new object.
-	 *
-	 * @param Connection $con
-	 * @param Criteria $criteria
-	 * @throws PropelException
-	 */
+	
 	public function getBoletinConceptuals($criteria = null, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseBoletinConceptualPeer.php';
+				include_once 'lib/model/om/BaseBoletinConceptualPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -2807,12 +1916,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->collBoletinConceptuals = BoletinConceptualPeer::doSelect($criteria, $con);
 			}
 		} else {
-			// criteria has no effect for a new object
-			if (!$this->isNew()) {
-				// the following code is to determine if a new query is
-				// called for.  If the criteria is the same as the last
-				// one, just return the collection.
-
+						if (!$this->isNew()) {
+												
 
 				$criteria->add(BoletinConceptualPeer::FK_ALUMNO_ID, $this->getId());
 
@@ -2826,18 +1931,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return $this->collBoletinConceptuals;
 	}
 
-	/**
-	 * Returns the number of related BoletinConceptuals.
-	 *
-	 * @param Criteria $criteria
-	 * @param boolean $distinct
-	 * @param Connection $con
-	 * @throws PropelException
-	 */
+	
 	public function countBoletinConceptuals($criteria = null, $distinct = false, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseBoletinConceptualPeer.php';
+				include_once 'lib/model/om/BaseBoletinConceptualPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -2851,14 +1948,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return BoletinConceptualPeer::doCount($criteria, $distinct, $con);
 	}
 
-	/**
-	 * Method called to associate a BoletinConceptual object to this object
-	 * through the BoletinConceptual foreign key attribute
-	 *
-	 * @param BoletinConceptual $l BoletinConceptual
-	 * @return void
-	 * @throws PropelException
-	 */
+	
 	public function addBoletinConceptual(BoletinConceptual $l)
 	{
 		$this->collBoletinConceptuals[] = $l;
@@ -2866,21 +1956,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	}
 
 
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Alumno is new, it will return
-	 * an empty collection; or if this Alumno has previously
-	 * been saved, it will retrieve related BoletinConceptuals from storage.
-	 *
-	 * This method is protected by default in order to keep the public
-	 * api reasonable.  You can provide public methods for those you
-	 * actually need in Alumno.
-	 */
+	
 	public function getBoletinConceptualsJoinEscalanota($criteria = null, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseBoletinConceptualPeer.php';
+				include_once 'lib/model/om/BaseBoletinConceptualPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -2899,10 +1978,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->collBoletinConceptuals = BoletinConceptualPeer::doSelectJoinEscalanota($criteria, $con);
 			}
 		} else {
-			// the following code is to determine if a new query is
-			// called for.  If the criteria is the same as the last
-			// one, just return the collection.
-
+									
 			$criteria->add(BoletinConceptualPeer::FK_ALUMNO_ID, $this->getId());
 
 			if (!isset($this->lastBoletinConceptualCriteria) || !$this->lastBoletinConceptualCriteria->equals($criteria)) {
@@ -2915,21 +1991,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	}
 
 
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Alumno is new, it will return
-	 * an empty collection; or if this Alumno has previously
-	 * been saved, it will retrieve related BoletinConceptuals from storage.
-	 *
-	 * This method is protected by default in order to keep the public
-	 * api reasonable.  You can provide public methods for those you
-	 * actually need in Alumno.
-	 */
+	
 	public function getBoletinConceptualsJoinConcepto($criteria = null, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseBoletinConceptualPeer.php';
+				include_once 'lib/model/om/BaseBoletinConceptualPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -2948,10 +2013,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->collBoletinConceptuals = BoletinConceptualPeer::doSelectJoinConcepto($criteria, $con);
 			}
 		} else {
-			// the following code is to determine if a new query is
-			// called for.  If the criteria is the same as the last
-			// one, just return the collection.
-
+									
 			$criteria->add(BoletinConceptualPeer::FK_ALUMNO_ID, $this->getId());
 
 			if (!isset($this->lastBoletinConceptualCriteria) || !$this->lastBoletinConceptualCriteria->equals($criteria)) {
@@ -2964,21 +2026,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	}
 
 
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Alumno is new, it will return
-	 * an empty collection; or if this Alumno has previously
-	 * been saved, it will retrieve related BoletinConceptuals from storage.
-	 *
-	 * This method is protected by default in order to keep the public
-	 * api reasonable.  You can provide public methods for those you
-	 * actually need in Alumno.
-	 */
+	
 	public function getBoletinConceptualsJoinPeriodo($criteria = null, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseBoletinConceptualPeer.php';
+				include_once 'lib/model/om/BaseBoletinConceptualPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -2997,10 +2048,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->collBoletinConceptuals = BoletinConceptualPeer::doSelectJoinPeriodo($criteria, $con);
 			}
 		} else {
-			// the following code is to determine if a new query is
-			// called for.  If the criteria is the same as the last
-			// one, just return the collection.
-
+									
 			$criteria->add(BoletinConceptualPeer::FK_ALUMNO_ID, $this->getId());
 
 			if (!isset($this->lastBoletinConceptualCriteria) || !$this->lastBoletinConceptualCriteria->equals($criteria)) {
@@ -3012,12 +2060,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return $this->collBoletinConceptuals;
 	}
 
-	/**
-	 * Temporary storage of collBoletinActividadess to save a possible db hit in
-	 * the event objects are add to the collection, but the
-	 * complete collection is never requested.
-	 * @return void
-	 */
+	
 	public function initBoletinActividadess()
 	{
 		if ($this->collBoletinActividadess === null) {
@@ -3025,23 +2068,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		}
 	}
 
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Alumno has previously
-	 * been saved, it will retrieve related BoletinActividadess from storage.
-	 * If this Alumno is new, it will return
-	 * an empty collection or the current collection, the criteria
-	 * is ignored on a new object.
-	 *
-	 * @param Connection $con
-	 * @param Criteria $criteria
-	 * @throws PropelException
-	 */
+	
 	public function getBoletinActividadess($criteria = null, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseBoletinActividadesPeer.php';
+				include_once 'lib/model/om/BaseBoletinActividadesPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -3061,12 +2091,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->collBoletinActividadess = BoletinActividadesPeer::doSelect($criteria, $con);
 			}
 		} else {
-			// criteria has no effect for a new object
-			if (!$this->isNew()) {
-				// the following code is to determine if a new query is
-				// called for.  If the criteria is the same as the last
-				// one, just return the collection.
-
+						if (!$this->isNew()) {
+												
 
 				$criteria->add(BoletinActividadesPeer::FK_ALUMNO_ID, $this->getId());
 
@@ -3080,18 +2106,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return $this->collBoletinActividadess;
 	}
 
-	/**
-	 * Returns the number of related BoletinActividadess.
-	 *
-	 * @param Criteria $criteria
-	 * @param boolean $distinct
-	 * @param Connection $con
-	 * @throws PropelException
-	 */
+	
 	public function countBoletinActividadess($criteria = null, $distinct = false, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseBoletinActividadesPeer.php';
+				include_once 'lib/model/om/BaseBoletinActividadesPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -3105,14 +2123,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return BoletinActividadesPeer::doCount($criteria, $distinct, $con);
 	}
 
-	/**
-	 * Method called to associate a BoletinActividades object to this object
-	 * through the BoletinActividades foreign key attribute
-	 *
-	 * @param BoletinActividades $l BoletinActividades
-	 * @return void
-	 * @throws PropelException
-	 */
+	
 	public function addBoletinActividades(BoletinActividades $l)
 	{
 		$this->collBoletinActividadess[] = $l;
@@ -3120,21 +2131,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	}
 
 
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Alumno is new, it will return
-	 * an empty collection; or if this Alumno has previously
-	 * been saved, it will retrieve related BoletinActividadess from storage.
-	 *
-	 * This method is protected by default in order to keep the public
-	 * api reasonable.  You can provide public methods for those you
-	 * actually need in Alumno.
-	 */
+	
 	public function getBoletinActividadessJoinEscalanota($criteria = null, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseBoletinActividadesPeer.php';
+				include_once 'lib/model/om/BaseBoletinActividadesPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -3153,10 +2153,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->collBoletinActividadess = BoletinActividadesPeer::doSelectJoinEscalanota($criteria, $con);
 			}
 		} else {
-			// the following code is to determine if a new query is
-			// called for.  If the criteria is the same as the last
-			// one, just return the collection.
-
+									
 			$criteria->add(BoletinActividadesPeer::FK_ALUMNO_ID, $this->getId());
 
 			if (!isset($this->lastBoletinActividadesCriteria) || !$this->lastBoletinActividadesCriteria->equals($criteria)) {
@@ -3169,21 +2166,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	}
 
 
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Alumno is new, it will return
-	 * an empty collection; or if this Alumno has previously
-	 * been saved, it will retrieve related BoletinActividadess from storage.
-	 *
-	 * This method is protected by default in order to keep the public
-	 * api reasonable.  You can provide public methods for those you
-	 * actually need in Alumno.
-	 */
+	
 	public function getBoletinActividadessJoinActividad($criteria = null, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseBoletinActividadesPeer.php';
+				include_once 'lib/model/om/BaseBoletinActividadesPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -3202,10 +2188,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->collBoletinActividadess = BoletinActividadesPeer::doSelectJoinActividad($criteria, $con);
 			}
 		} else {
-			// the following code is to determine if a new query is
-			// called for.  If the criteria is the same as the last
-			// one, just return the collection.
-
+									
 			$criteria->add(BoletinActividadesPeer::FK_ALUMNO_ID, $this->getId());
 
 			if (!isset($this->lastBoletinActividadesCriteria) || !$this->lastBoletinActividadesCriteria->equals($criteria)) {
@@ -3218,21 +2201,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	}
 
 
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Alumno is new, it will return
-	 * an empty collection; or if this Alumno has previously
-	 * been saved, it will retrieve related BoletinActividadess from storage.
-	 *
-	 * This method is protected by default in order to keep the public
-	 * api reasonable.  You can provide public methods for those you
-	 * actually need in Alumno.
-	 */
+	
 	public function getBoletinActividadessJoinPeriodo($criteria = null, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseBoletinActividadesPeer.php';
+				include_once 'lib/model/om/BaseBoletinActividadesPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -3251,10 +2223,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->collBoletinActividadess = BoletinActividadesPeer::doSelectJoinPeriodo($criteria, $con);
 			}
 		} else {
-			// the following code is to determine if a new query is
-			// called for.  If the criteria is the same as the last
-			// one, just return the collection.
-
+									
 			$criteria->add(BoletinActividadesPeer::FK_ALUMNO_ID, $this->getId());
 
 			if (!isset($this->lastBoletinActividadesCriteria) || !$this->lastBoletinActividadesCriteria->equals($criteria)) {
@@ -3266,12 +2235,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return $this->collBoletinActividadess;
 	}
 
-	/**
-	 * Temporary storage of collExamens to save a possible db hit in
-	 * the event objects are add to the collection, but the
-	 * complete collection is never requested.
-	 * @return void
-	 */
+	
 	public function initExamens()
 	{
 		if ($this->collExamens === null) {
@@ -3279,23 +2243,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		}
 	}
 
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Alumno has previously
-	 * been saved, it will retrieve related Examens from storage.
-	 * If this Alumno is new, it will return
-	 * an empty collection or the current collection, the criteria
-	 * is ignored on a new object.
-	 *
-	 * @param Connection $con
-	 * @param Criteria $criteria
-	 * @throws PropelException
-	 */
+	
 	public function getExamens($criteria = null, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseExamenPeer.php';
+				include_once 'lib/model/om/BaseExamenPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -3315,12 +2266,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->collExamens = ExamenPeer::doSelect($criteria, $con);
 			}
 		} else {
-			// criteria has no effect for a new object
-			if (!$this->isNew()) {
-				// the following code is to determine if a new query is
-				// called for.  If the criteria is the same as the last
-				// one, just return the collection.
-
+						if (!$this->isNew()) {
+												
 
 				$criteria->add(ExamenPeer::FK_ALUMNO_ID, $this->getId());
 
@@ -3334,18 +2281,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return $this->collExamens;
 	}
 
-	/**
-	 * Returns the number of related Examens.
-	 *
-	 * @param Criteria $criteria
-	 * @param boolean $distinct
-	 * @param Connection $con
-	 * @throws PropelException
-	 */
+	
 	public function countExamens($criteria = null, $distinct = false, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseExamenPeer.php';
+				include_once 'lib/model/om/BaseExamenPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -3359,14 +2298,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return ExamenPeer::doCount($criteria, $distinct, $con);
 	}
 
-	/**
-	 * Method called to associate a Examen object to this object
-	 * through the Examen foreign key attribute
-	 *
-	 * @param Examen $l Examen
-	 * @return void
-	 * @throws PropelException
-	 */
+	
 	public function addExamen(Examen $l)
 	{
 		$this->collExamens[] = $l;
@@ -3374,21 +2306,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	}
 
 
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Alumno is new, it will return
-	 * an empty collection; or if this Alumno has previously
-	 * been saved, it will retrieve related Examens from storage.
-	 *
-	 * This method is protected by default in order to keep the public
-	 * api reasonable.  You can provide public methods for those you
-	 * actually need in Alumno.
-	 */
+	
 	public function getExamensJoinEscalanota($criteria = null, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseExamenPeer.php';
+				include_once 'lib/model/om/BaseExamenPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -3407,10 +2328,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->collExamens = ExamenPeer::doSelectJoinEscalanota($criteria, $con);
 			}
 		} else {
-			// the following code is to determine if a new query is
-			// called for.  If the criteria is the same as the last
-			// one, just return the collection.
-
+									
 			$criteria->add(ExamenPeer::FK_ALUMNO_ID, $this->getId());
 
 			if (!isset($this->lastExamenCriteria) || !$this->lastExamenCriteria->equals($criteria)) {
@@ -3423,21 +2341,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	}
 
 
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Alumno is new, it will return
-	 * an empty collection; or if this Alumno has previously
-	 * been saved, it will retrieve related Examens from storage.
-	 *
-	 * This method is protected by default in order to keep the public
-	 * api reasonable.  You can provide public methods for those you
-	 * actually need in Alumno.
-	 */
+	
 	public function getExamensJoinActividad($criteria = null, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseExamenPeer.php';
+				include_once 'lib/model/om/BaseExamenPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -3456,10 +2363,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->collExamens = ExamenPeer::doSelectJoinActividad($criteria, $con);
 			}
 		} else {
-			// the following code is to determine if a new query is
-			// called for.  If the criteria is the same as the last
-			// one, just return the collection.
-
+									
 			$criteria->add(ExamenPeer::FK_ALUMNO_ID, $this->getId());
 
 			if (!isset($this->lastExamenCriteria) || !$this->lastExamenCriteria->equals($criteria)) {
@@ -3472,21 +2376,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	}
 
 
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Alumno is new, it will return
-	 * an empty collection; or if this Alumno has previously
-	 * been saved, it will retrieve related Examens from storage.
-	 *
-	 * This method is protected by default in order to keep the public
-	 * api reasonable.  You can provide public methods for those you
-	 * actually need in Alumno.
-	 */
+	
 	public function getExamensJoinPeriodo($criteria = null, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseExamenPeer.php';
+				include_once 'lib/model/om/BaseExamenPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -3505,10 +2398,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->collExamens = ExamenPeer::doSelectJoinPeriodo($criteria, $con);
 			}
 		} else {
-			// the following code is to determine if a new query is
-			// called for.  If the criteria is the same as the last
-			// one, just return the collection.
-
+									
 			$criteria->add(ExamenPeer::FK_ALUMNO_ID, $this->getId());
 
 			if (!isset($this->lastExamenCriteria) || !$this->lastExamenCriteria->equals($criteria)) {
@@ -3520,12 +2410,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return $this->collExamens;
 	}
 
-	/**
-	 * Temporary storage of collRelAlumnoDivisions to save a possible db hit in
-	 * the event objects are add to the collection, but the
-	 * complete collection is never requested.
-	 * @return void
-	 */
+	
 	public function initRelAlumnoDivisions()
 	{
 		if ($this->collRelAlumnoDivisions === null) {
@@ -3533,23 +2418,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		}
 	}
 
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Alumno has previously
-	 * been saved, it will retrieve related RelAlumnoDivisions from storage.
-	 * If this Alumno is new, it will return
-	 * an empty collection or the current collection, the criteria
-	 * is ignored on a new object.
-	 *
-	 * @param Connection $con
-	 * @param Criteria $criteria
-	 * @throws PropelException
-	 */
+	
 	public function getRelAlumnoDivisions($criteria = null, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseRelAlumnoDivisionPeer.php';
+				include_once 'lib/model/om/BaseRelAlumnoDivisionPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -3569,12 +2441,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->collRelAlumnoDivisions = RelAlumnoDivisionPeer::doSelect($criteria, $con);
 			}
 		} else {
-			// criteria has no effect for a new object
-			if (!$this->isNew()) {
-				// the following code is to determine if a new query is
-				// called for.  If the criteria is the same as the last
-				// one, just return the collection.
-
+						if (!$this->isNew()) {
+												
 
 				$criteria->add(RelAlumnoDivisionPeer::FK_ALUMNO_ID, $this->getId());
 
@@ -3588,18 +2456,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return $this->collRelAlumnoDivisions;
 	}
 
-	/**
-	 * Returns the number of related RelAlumnoDivisions.
-	 *
-	 * @param Criteria $criteria
-	 * @param boolean $distinct
-	 * @param Connection $con
-	 * @throws PropelException
-	 */
+	
 	public function countRelAlumnoDivisions($criteria = null, $distinct = false, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseRelAlumnoDivisionPeer.php';
+				include_once 'lib/model/om/BaseRelAlumnoDivisionPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -3613,14 +2473,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return RelAlumnoDivisionPeer::doCount($criteria, $distinct, $con);
 	}
 
-	/**
-	 * Method called to associate a RelAlumnoDivision object to this object
-	 * through the RelAlumnoDivision foreign key attribute
-	 *
-	 * @param RelAlumnoDivision $l RelAlumnoDivision
-	 * @return void
-	 * @throws PropelException
-	 */
+	
 	public function addRelAlumnoDivision(RelAlumnoDivision $l)
 	{
 		$this->collRelAlumnoDivisions[] = $l;
@@ -3628,21 +2481,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	}
 
 
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Alumno is new, it will return
-	 * an empty collection; or if this Alumno has previously
-	 * been saved, it will retrieve related RelAlumnoDivisions from storage.
-	 *
-	 * This method is protected by default in order to keep the public
-	 * api reasonable.  You can provide public methods for those you
-	 * actually need in Alumno.
-	 */
+	
 	public function getRelAlumnoDivisionsJoinDivision($criteria = null, $con = null)
 	{
-		// include the Peer class
-		include_once 'model/om/BaseRelAlumnoDivisionPeer.php';
+				include_once 'lib/model/om/BaseRelAlumnoDivisionPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -3661,10 +2503,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->collRelAlumnoDivisions = RelAlumnoDivisionPeer::doSelectJoinDivision($criteria, $con);
 			}
 		} else {
-			// the following code is to determine if a new query is
-			// called for.  If the criteria is the same as the last
-			// one, just return the collection.
-
+									
 			$criteria->add(RelAlumnoDivisionPeer::FK_ALUMNO_ID, $this->getId());
 
 			if (!isset($this->lastRelAlumnoDivisionCriteria) || !$this->lastRelAlumnoDivisionCriteria->equals($criteria)) {
@@ -3676,4 +2515,4 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return $this->collRelAlumnoDivisions;
 	}
 
-} // BaseAlumno
+} 

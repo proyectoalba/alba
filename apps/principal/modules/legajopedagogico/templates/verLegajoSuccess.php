@@ -1,4 +1,4 @@
-<?php use_helpers('I18N', 'Date') ?>
+<?php use_helper('I18N', 'Date') ?>
 <script>
      function filterCat() {
         var objc = document.getElementById('legajo_categoria_id');
@@ -59,9 +59,9 @@
 
     <td>
     <ul class="sf_admin_td_actions">
-    <li><?php echo link_to(image_tag('/sf/images/sf_admin/edit_icon.png', array('alt' => __('verLegajo'), 'title' => __('verLegajo'))), 'legajopedagogico?action=edit&aid='.$alumno->getId().'&id='.$entradaLegajo->getId().'&cid='.$entradaLegajo->getFkLegajocategoriaId()); ?>
+    <li><?php echo link_to(image_tag(sfConfig::get('sf_admin_web_dir').'/images/edit_icon.png', array('alt' => __('verLegajo'), 'title' => __('verLegajo'))), 'legajopedagogico?action=edit&aid='.$alumno->getId().'&id='.$entradaLegajo->getId().'&cid='.$entradaLegajo->getFkLegajocategoriaId()); ?>
 
-    <li><?php echo link_to(image_tag('/sf/images/sf_admin/delete_icon.png', array('alt' => __('borrar'), 'title' => __('borrar'))), 'legajopedagogico?action=delete&aid='.$alumno->getId().'&id='.$entradaLegajo->getId().'&cid='.$entradaLegajo->getFkLegajocategoriaId()); ?>
+    <li><?php echo link_to(image_tag(sfConfig::get('sf_admin_web_dir').'/images/delete_icon.png', array('alt' => __('borrar'), 'title' => __('borrar'))), 'legajopedagogico?action=delete&aid='.$alumno->getId().'&id='.$entradaLegajo->getId().'&cid='.$entradaLegajo->getFkLegajocategoriaId()); ?>
 
     </ul>
     </td>

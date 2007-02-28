@@ -1,10 +1,10 @@
 <?php
 
   // include base peer class
-  require_once 'model/om/BaseTipodocentePeer.php';
+  require_once 'lib/model/om/BaseTipodocentePeer.php';
   
   // include object class
-  include_once 'model/Tipodocente.php';
+  include_once 'lib/model/Tipodocente.php';
 
 
 /**

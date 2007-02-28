@@ -85,12 +85,12 @@ class feriadoActions extends autoferiadoActions
     else                                                                                            
     {                                                                                               
       // add javascripts                                                                            
-      $this->getResponse()->addJavascript('/sf/js/prototype/prototype');                            
-      $this->getResponse()->addJavascript('/sf/js/sf_admin/collapse');                              
+      $this->getResponse()->addJavascript(sfConfig::get('sf_prototype_web_dir').'/js/prototype');                            
+      $this->getResponse()->addJavascript(sfConfig::get('sf_admin_web_dir').'/js/collapse');                              
     }                                                                                               
   }                                                                                                 
            
-	protected function addFiltersCriteria(&$c) {                                                                                    
+	protected function addFiltersCriteria($c) {                                                                                    
 		$c->add(FeriadoPeer::FK_CICLOLECTIVO_ID,$this->getUser()->getAttribute('fk_ciclolectivo_id'));
     }                                                                                                   
 

@@ -1,10 +1,10 @@
 <?php
 
   // include base peer class
-  require_once 'model/om/BaseFeriadoPeer.php';
+  require_once 'lib/model/om/BaseFeriadoPeer.php';
   
   // include object class
-  include_once 'model/Feriado.php';
+  include_once 'lib/model/Feriado.php';
 
 
 /**

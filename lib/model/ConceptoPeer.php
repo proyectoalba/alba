@@ -1,10 +1,10 @@
 <?php
 
   // include base peer class
-  require_once 'model/om/BaseConceptoPeer.php';
+  require_once 'lib/model/om/BaseConceptoPeer.php';
   
   // include object class
-  include_once 'model/Concepto.php';
+  include_once 'lib/model/Concepto.php';
 
 
 /**

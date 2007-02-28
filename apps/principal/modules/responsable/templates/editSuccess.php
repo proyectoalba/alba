@@ -20,7 +20,7 @@ document.getElementsByName("responsable[telefono]")[0].value = datosCuenta[4]
 <?
     }
 ?>
-<?php use_helpers('Object', 'Validation', 'ObjectAdmin', 'I18N', 'Date') ?>
+<?php use_helper('Object', 'Validation', 'ObjectAdmin', 'I18N', 'Date') ?>
 
 <h1><?php 
     echo __('Editar Responsable',array());

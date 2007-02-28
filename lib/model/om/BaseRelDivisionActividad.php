@@ -7,7 +7,7 @@ require_once 'propel/om/Persistent.php';
 
 include_once 'propel/util/Criteria.php';
 
-include_once 'model/RelDivisionActividadPeer.php';
+include_once 'lib/model/RelDivisionActividadPeer.php';
 
 /**
  * Base class that represents a row from the 'rel_division_actividad' table.
@@ -1048,7 +1048,7 @@ abstract class BaseRelDivisionActividad extends BaseObject  implements Persisten
 	public function getDivision($con = null)
 	{
 		// include the related Peer class
-		include_once 'model/om/BaseDivisionPeer.php';
+		include_once 'lib/model/om/BaseDivisionPeer.php';
 
 		if ($this->aDivision === null && ($this->fk_division_id !== null)) {
 
@@ -1099,7 +1099,7 @@ abstract class BaseRelDivisionActividad extends BaseObject  implements Persisten
 	public function getActividad($con = null)
 	{
 		// include the related Peer class
-		include_once 'model/om/BaseActividadPeer.php';
+		include_once 'lib/model/om/BaseActividadPeer.php';
 
 		if ($this->aActividad === null && ($this->fk_actividad_id !== null)) {
 
@@ -1150,7 +1150,7 @@ abstract class BaseRelDivisionActividad extends BaseObject  implements Persisten
 	public function getRepeticion($con = null)
 	{
 		// include the related Peer class
-		include_once 'model/om/BaseRepeticionPeer.php';
+		include_once 'lib/model/om/BaseRepeticionPeer.php';
 
 		if ($this->aRepeticion === null && ($this->fk_repeticion_id !== null)) {
 

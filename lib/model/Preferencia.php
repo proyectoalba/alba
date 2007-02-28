@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BasePreferencia.php';
+require_once 'lib/model/om/BasePreferencia.php';
 
 
 /**

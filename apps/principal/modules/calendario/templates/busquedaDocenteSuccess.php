@@ -40,7 +40,7 @@
     <td><?echo $docente->getApellido()." ".$docente->getNombre(); ?></td>
     <td>
     <ul class="sf_admin_td_actions">
-    <li><?php echo link_to(image_tag('/sf/images/sf_admin/edit_icon.png', array('alt' => __('verHorario'), 'title' => __('verHorario'))), 'calendario?action=horarioSegunDocente&id='.$docente->getId()); ?></li>
+    <li><?php echo link_to(image_tag(sfConfig::get('sf_admin_web_dir').'/images/edit_icon.png', array('alt' => __('verHorario'), 'title' => __('verHorario'))), 'calendario?action=horarioSegunDocente&id='.$docente->getId()); ?></li>
     </ul>
     </td>
   </tr>

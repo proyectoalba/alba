@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseCargobaja.php';
+require_once 'lib/model/om/BaseCargobaja.php';
 
 
 /**

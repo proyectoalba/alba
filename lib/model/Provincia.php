@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseProvincia.php';
+require_once 'lib/model/om/BaseProvincia.php';
 
 
 /**

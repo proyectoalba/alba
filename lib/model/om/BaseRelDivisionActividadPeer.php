@@ -3,7 +3,7 @@
 require_once 'propel/util/BasePeer.php';
 // The object class -- needed for instanceof checks in this class.
 // actual class may be a subclass -- as returned by RelDivisionActividadPeer::getOMClass()
-include_once 'model/RelDivisionActividad.php';
+include_once 'lib/model/RelDivisionActividad.php';
 
 /**
  * Base static class for performing query and update operations on the 'rel_division_actividad' table.
@@ -91,7 +91,7 @@ abstract class BaseRelDivisionActividadPeer {
 	 */
 	public static function getMapBuilder()
 	{
-		include_once 'model/map/RelDivisionActividadMapBuilder.php';
+		include_once 'lib/model/map/RelDivisionActividadMapBuilder.php';
 		return BasePeer::getMapBuilder('model.map.RelDivisionActividadMapBuilder');
 	}
 	/**
@@ -1477,6 +1477,6 @@ if (Propel::isInit()) {
 } else {
 	// even if Propel is not yet initialized, the map builder class can be registered
 	// now and then it will be loaded when Propel initializes.
-	require_once 'model/map/RelDivisionActividadMapBuilder.php';
+	require_once 'lib/model/map/RelDivisionActividadMapBuilder.php';
 	Propel::registerMapBuilder('model.map.RelDivisionActividadMapBuilder');
 }

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseRol.php';
+require_once 'lib/model/om/BaseRol.php';
 
 
 /**

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseDistritoescolar.php';
+require_once 'lib/model/om/BaseDistritoescolar.php';
 
 
 /**

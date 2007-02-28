@@ -1,10 +1,10 @@
 <?php
 
   // include base peer class
-  require_once 'model/om/BaseCiclolectivoPeer.php';
+  require_once 'lib/model/om/BaseCiclolectivoPeer.php';
   
   // include object class
-  include_once 'model/Ciclolectivo.php';
+  include_once 'lib/model/Ciclolectivo.php';
 
 
 /**

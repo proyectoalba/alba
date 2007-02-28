@@ -1,63 +1,47 @@
 <?php
 
-require_once 'propel/util/BasePeer.php';
-// The object class -- needed for instanceof checks in this class.
-// actual class may be a subclass -- as returned by EstablecimientoPeer::getOMClass()
-include_once 'model/Establecimiento.php';
 
-/**
- * Base static class for performing query and update operations on the 'establecimiento' table.
- *
- * 
- *
- * @package model.om
- */
 abstract class BaseEstablecimientoPeer {
 
-	/** the default database name for this class */
+	
 	const DATABASE_NAME = 'alba';
 
-	/** the table name for this class */
+	
 	const TABLE_NAME = 'establecimiento';
 
-	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'model.Establecimiento';
+	
+	const CLASS_DEFAULT = 'lib.model.Establecimiento';
 
-	/** The total number of columns. */
+	
 	const NUM_COLUMNS = 6;
 
-	/** The number of lazy-loaded columns. */
+	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 
-	/** the column name for the ID field */
+	
 	const ID = 'establecimiento.ID';
 
-	/** the column name for the NOMBRE field */
+	
 	const NOMBRE = 'establecimiento.NOMBRE';
 
-	/** the column name for the DESCRIPCION field */
+	
 	const DESCRIPCION = 'establecimiento.DESCRIPCION';
 
-	/** the column name for the FK_DISTRITOESCOLAR_ID field */
+	
 	const FK_DISTRITOESCOLAR_ID = 'establecimiento.FK_DISTRITOESCOLAR_ID';
 
-	/** the column name for the FK_ORGANIZACION_ID field */
+	
 	const FK_ORGANIZACION_ID = 'establecimiento.FK_ORGANIZACION_ID';
 
-	/** the column name for the FK_NIVELTIPO_ID field */
+	
 	const FK_NIVELTIPO_ID = 'establecimiento.FK_NIVELTIPO_ID';
 
-	/** The PHP to DB Name Mapping */
+	
 	private static $phpNameMap = null;
 
 
-	/**
-	 * holds an array of fieldnames
-	 *
-	 * first dimension keys are the type constants
-	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
-	 */
+	
 	private static $fieldNames = array (
 		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Descripcion', 'FkDistritoescolarId', 'FkOrganizacionId', 'FkNiveltipoId', ),
 		BasePeer::TYPE_COLNAME => array (EstablecimientoPeer::ID, EstablecimientoPeer::NOMBRE, EstablecimientoPeer::DESCRIPCION, EstablecimientoPeer::FK_DISTRITOESCOLAR_ID, EstablecimientoPeer::FK_ORGANIZACION_ID, EstablecimientoPeer::FK_NIVELTIPO_ID, ),
@@ -65,12 +49,7 @@ abstract class BaseEstablecimientoPeer {
 		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
 	);
 
-	/**
-	 * holds an array of keys for quick access to the fieldnames array
-	 *
-	 * first dimension keys are the type constants
-	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
-	 */
+	
 	private static $fieldKeys = array (
 		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Descripcion' => 2, 'FkDistritoescolarId' => 3, 'FkOrganizacionId' => 4, 'FkNiveltipoId' => 5, ),
 		BasePeer::TYPE_COLNAME => array (EstablecimientoPeer::ID => 0, EstablecimientoPeer::NOMBRE => 1, EstablecimientoPeer::DESCRIPCION => 2, EstablecimientoPeer::FK_DISTRITOESCOLAR_ID => 3, EstablecimientoPeer::FK_ORGANIZACION_ID => 4, EstablecimientoPeer::FK_NIVELTIPO_ID => 5, ),
@@ -78,24 +57,13 @@ abstract class BaseEstablecimientoPeer {
 		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
 	);
 
-	/**
-	 * @return MapBuilder the map builder for this peer
-	 * @throws PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 */
+	
 	public static function getMapBuilder()
 	{
-		include_once 'model/map/EstablecimientoMapBuilder.php';
-		return BasePeer::getMapBuilder('model.map.EstablecimientoMapBuilder');
+		include_once 'lib/model/map/EstablecimientoMapBuilder.php';
+		return BasePeer::getMapBuilder('lib.model.map.EstablecimientoMapBuilder');
 	}
-	/**
-	 * Gets a map (hash) of PHP names to DB column names.
-	 *
-	 * @return array The PHP to DB name map for this peer
-	 * @throws PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 * @deprecated Use the getFieldNames() and translateFieldName() methods instead of this.
-	 */
+	
 	public static function getPhpNameMap()
 	{
 		if (self::$phpNameMap === null) {
@@ -109,15 +77,7 @@ abstract class BaseEstablecimientoPeer {
 		}
 		return self::$phpNameMap;
 	}
-	/**
-	 * Translates a fieldname to another type
-	 *
-	 * @param string $name field name
-	 * @param string $fromType One of the class type constants TYPE_PHPNAME,
-	 *                         TYPE_COLNAME, TYPE_FIELDNAME, TYPE_NUM
-	 * @param string $toType   One of the class type constants
-	 * @return string translated name of the field.
-	 */
+	
 	static public function translateFieldName($name, $fromType, $toType)
 	{
 		$toNames = self::getFieldNames($toType);
@@ -128,14 +88,7 @@ abstract class BaseEstablecimientoPeer {
 		return $toNames[$key];
 	}
 
-	/**
-	 * Returns an array of of field names.
-	 *
-	 * @param  string $type The type of fieldnames to return:
-	 *                      One of the class type constants TYPE_PHPNAME,
-	 *                      TYPE_COLNAME, TYPE_FIELDNAME, TYPE_NUM
-	 * @return array A list of field names
-	 */
+	
 
 	static public function getFieldNames($type = BasePeer::TYPE_PHPNAME)
 	{
@@ -145,34 +98,13 @@ abstract class BaseEstablecimientoPeer {
 		return self::$fieldNames[$type];
 	}
 
-	/**
-	 * Convenience method which changes table.column to alias.column.
-	 *
-	 * Using this method you can maintain SQL abstraction while using column aliases.
-	 * <code>
-	 *		$c->addAlias("alias1", TablePeer::TABLE_NAME);
-	 *		$c->addJoin(TablePeer::alias("alias1", TablePeer::PRIMARY_KEY_COLUMN), TablePeer::PRIMARY_KEY_COLUMN);
-	 * </code>
-	 * @param string $alias The alias for the current table.
-	 * @param string $column The column name for current table. (i.e. EstablecimientoPeer::COLUMN_NAME).
-	 * @return string
-	 */
+	
 	public static function alias($alias, $column)
 	{
 		return str_replace(EstablecimientoPeer::TABLE_NAME.'.', $alias.'.', $column);
 	}
 
-	/**
-	 * Add all the columns needed to create a new object.
-	 *
-	 * Note: any columns that were marked with lazyLoad="true" in the
-	 * XML schema will not be added to the select list and only loaded
-	 * on demand.
-	 *
-	 * @param criteria object containing the columns to add.
-	 * @throws PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 */
+	
 	public static function addSelectColumns(Criteria $criteria)
 	{
 
@@ -193,29 +125,19 @@ abstract class BaseEstablecimientoPeer {
 	const COUNT = 'COUNT(establecimiento.ID)';
 	const COUNT_DISTINCT = 'COUNT(DISTINCT establecimiento.ID)';
 
-	/**
-	 * Returns the number of rows matching criteria.
-	 *
-	 * @param Criteria $criteria
-	 * @param boolean $distinct Whether to select only distinct columns (You can also set DISTINCT modifier in Criteria).
-	 * @param Connection $con
-	 * @return int Number of matching rows.
-	 */
+	
 	public static function doCount(Criteria $criteria, $distinct = false, $con = null)
 	{
-		// we're going to modify criteria, so copy it first
-		$criteria = clone $criteria;
+				$criteria = clone $criteria;
 
-		// clear out anything that might confuse the ORDER BY clause
-		$criteria->clearSelectColumns()->clearOrderByColumns();
+				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(EstablecimientoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(EstablecimientoPeer::COUNT);
 		}
 
-		// just in case we're grouping: add those columns to the select statement
-		foreach($criteria->getGroupByColumns() as $column)
+				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
 		}
@@ -224,19 +146,10 @@ abstract class BaseEstablecimientoPeer {
 		if ($rs->next()) {
 			return $rs->getInt(1);
 		} else {
-			// no rows returned; we infer that means 0 matches.
-			return 0;
+						return 0;
 		}
 	}
-	/**
-	 * Method to select one object from the DB.
-	 *
-	 * @param Criteria $criteria object used to create the SELECT statement.
-	 * @param Connection $con
-	 * @return Establecimiento
-	 * @throws PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 */
+	
 	public static function doSelectOne(Criteria $criteria, $con = null)
 	{
 		$critcopy = clone $criteria;
@@ -247,33 +160,12 @@ abstract class BaseEstablecimientoPeer {
 		}
 		return null;
 	}
-	/**
-	 * Method to do selects.
-	 *
-	 * @param Criteria $criteria The Criteria object used to build the SELECT statement.
-	 * @param Connection $con
-	 * @return array Array of selected Objects
-	 * @throws PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 */
+	
 	public static function doSelect(Criteria $criteria, $con = null)
 	{
 		return EstablecimientoPeer::populateObjects(EstablecimientoPeer::doSelectRS($criteria, $con));
 	}
-	/**
-	 * Prepares the Criteria object and uses the parent doSelect()
-	 * method to get a ResultSet.
-	 *
-	 * Use this method directly if you want to just get the resultset
-	 * (instead of an array of objects).
-	 *
-	 * @param Criteria $criteria The Criteria object used to build the SELECT statement.
-	 * @param Connection $con the connection to use
-	 * @throws PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 * @return ResultSet The resultset object with numerically-indexed fields.
-	 * @see BasePeer::doSelect()
-	 */
+	
 	public static function doSelectRS(Criteria $criteria, $con = null)
 	{
 		if ($con === null) {
@@ -285,29 +177,18 @@ abstract class BaseEstablecimientoPeer {
 			EstablecimientoPeer::addSelectColumns($criteria);
 		}
 
-		// Set the correct dbName
-		$criteria->setDbName(self::DATABASE_NAME);
+				$criteria->setDbName(self::DATABASE_NAME);
 
-		// BasePeer returns a Creole ResultSet, set to return
-		// rows indexed numerically.
-		return BasePeer::doSelect($criteria, $con);
+						return BasePeer::doSelect($criteria, $con);
 	}
-	/**
-	 * The returned array will contain objects of the default type or
-	 * objects that inherit from the default.
-	 *
-	 * @throws PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 */
+	
 	public static function populateObjects(ResultSet $rs)
 	{
 		$results = array();
 	
-		// set the class once to avoid overhead in the loop
-		$cls = EstablecimientoPeer::getOMClass();
+				$cls = EstablecimientoPeer::getOMClass();
 		$cls = Propel::import($cls);
-		// populate the object(s)
-		while($rs->next()) {
+				while($rs->next()) {
 		
 			$obj = new $cls();
 			$obj->hydrate($rs);
@@ -317,29 +198,19 @@ abstract class BaseEstablecimientoPeer {
 		return $results;
 	}
 
-	/**
-	 * Returns the number of rows matching criteria, joining the related Niveltipo table
-	 *
-	 * @param Criteria $c
-	 * @param boolean $distinct Whether to select only distinct columns (You can also set DISTINCT modifier in Criteria).
-	 * @param Connection $con
-	 * @return int Number of matching rows.
-	 */
+	
 	public static function doCountJoinNiveltipo(Criteria $criteria, $distinct = false, $con = null)
 	{
-		// we're going to modify criteria, so copy it first
-		$criteria = clone $criteria;
+				$criteria = clone $criteria;
 		
-		// clear out anything that might confuse the ORDER BY clause
-		$criteria->clearSelectColumns()->clearOrderByColumns();
+				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(EstablecimientoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(EstablecimientoPeer::COUNT);
 		}
 		
-		// just in case we're grouping: add those columns to the select statement
-		foreach($criteria->getGroupByColumns() as $column)
+				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
 		}
@@ -350,35 +221,24 @@ abstract class BaseEstablecimientoPeer {
 		if ($rs->next()) {
 			return $rs->getInt(1);
 		} else {
-			// no rows returned; we infer that means 0 matches.
-			return 0;
+						return 0;
 		}
 	}
 
 
-	/**
-	 * Returns the number of rows matching criteria, joining the related Organizacion table
-	 *
-	 * @param Criteria $c
-	 * @param boolean $distinct Whether to select only distinct columns (You can also set DISTINCT modifier in Criteria).
-	 * @param Connection $con
-	 * @return int Number of matching rows.
-	 */
+	
 	public static function doCountJoinOrganizacion(Criteria $criteria, $distinct = false, $con = null)
 	{
-		// we're going to modify criteria, so copy it first
-		$criteria = clone $criteria;
+				$criteria = clone $criteria;
 		
-		// clear out anything that might confuse the ORDER BY clause
-		$criteria->clearSelectColumns()->clearOrderByColumns();
+				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(EstablecimientoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(EstablecimientoPeer::COUNT);
 		}
 		
-		// just in case we're grouping: add those columns to the select statement
-		foreach($criteria->getGroupByColumns() as $column)
+				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
 		}
@@ -389,35 +249,24 @@ abstract class BaseEstablecimientoPeer {
 		if ($rs->next()) {
 			return $rs->getInt(1);
 		} else {
-			// no rows returned; we infer that means 0 matches.
-			return 0;
+						return 0;
 		}
 	}
 
 
-	/**
-	 * Returns the number of rows matching criteria, joining the related Distritoescolar table
-	 *
-	 * @param Criteria $c
-	 * @param boolean $distinct Whether to select only distinct columns (You can also set DISTINCT modifier in Criteria).
-	 * @param Connection $con
-	 * @return int Number of matching rows.
-	 */
+	
 	public static function doCountJoinDistritoescolar(Criteria $criteria, $distinct = false, $con = null)
 	{
-		// we're going to modify criteria, so copy it first
-		$criteria = clone $criteria;
+				$criteria = clone $criteria;
 		
-		// clear out anything that might confuse the ORDER BY clause
-		$criteria->clearSelectColumns()->clearOrderByColumns();
+				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(EstablecimientoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(EstablecimientoPeer::COUNT);
 		}
 		
-		// just in case we're grouping: add those columns to the select statement
-		foreach($criteria->getGroupByColumns() as $column)
+				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
 		}
@@ -428,25 +277,17 @@ abstract class BaseEstablecimientoPeer {
 		if ($rs->next()) {
 			return $rs->getInt(1);
 		} else {
-			// no rows returned; we infer that means 0 matches.
-			return 0;
+						return 0;
 		}
 	}
 
 
-	/**
-	 * Selects a collection of Establecimiento objects pre-filled with their Niveltipo objects.
-	 *
-	 * @return array Array of Establecimiento objects.
-	 * @throws PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 */
+	
 	public static function doSelectJoinNiveltipo(Criteria $c, $con = null)
 	{
 		$c = clone $c;
 
-		// Set the correct dbName if it has not been overridden
-		if ($c->getDbName() == Propel::getDefaultDB()) {
+				if ($c->getDbName() == Propel::getDefaultDB()) {
 			$c->setDbName(self::DATABASE_NAME);
 		}
 
@@ -474,37 +315,26 @@ abstract class BaseEstablecimientoPeer {
 
 			$newObject = true;
 			foreach($results as $temp_obj1) {
-				$temp_obj2 = $temp_obj1->getNiveltipo(); //CHECKME
-				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getNiveltipo(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
-					// e.g. $author->addBookRelatedByBookId()
-					$temp_obj2->addEstablecimiento($obj1); //CHECKME
-					break;
+										$temp_obj2->addEstablecimiento($obj1); 					break;
 				}
 			}
 			if ($newObject) {
 				$obj2->initEstablecimientos();
-				$obj2->addEstablecimiento($obj1); //CHECKME
-			}
+				$obj2->addEstablecimiento($obj1); 			}
 			$results[] = $obj1;
 		}
 		return $results;
 	}
 
 
-	/**
-	 * Selects a collection of Establecimiento objects pre-filled with their Organizacion objects.
-	 *
-	 * @return array Array of Establecimiento objects.
-	 * @throws PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 */
+	
 	public static function doSelectJoinOrganizacion(Criteria $c, $con = null)
 	{
 		$c = clone $c;
 
-		// Set the correct dbName if it has not been overridden
-		if ($c->getDbName() == Propel::getDefaultDB()) {
+				if ($c->getDbName() == Propel::getDefaultDB()) {
 			$c->setDbName(self::DATABASE_NAME);
 		}
 
@@ -532,37 +362,26 @@ abstract class BaseEstablecimientoPeer {
 
 			$newObject = true;
 			foreach($results as $temp_obj1) {
-				$temp_obj2 = $temp_obj1->getOrganizacion(); //CHECKME
-				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getOrganizacion(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
-					// e.g. $author->addBookRelatedByBookId()
-					$temp_obj2->addEstablecimiento($obj1); //CHECKME
-					break;
+										$temp_obj2->addEstablecimiento($obj1); 					break;
 				}
 			}
 			if ($newObject) {
 				$obj2->initEstablecimientos();
-				$obj2->addEstablecimiento($obj1); //CHECKME
-			}
+				$obj2->addEstablecimiento($obj1); 			}
 			$results[] = $obj1;
 		}
 		return $results;
 	}
 
 
-	/**
-	 * Selects a collection of Establecimiento objects pre-filled with their Distritoescolar objects.
-	 *
-	 * @return array Array of Establecimiento objects.
-	 * @throws PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 */
+	
 	public static function doSelectJoinDistritoescolar(Criteria $c, $con = null)
 	{
 		$c = clone $c;
 
-		// Set the correct dbName if it has not been overridden
-		if ($c->getDbName() == Propel::getDefaultDB()) {
+				if ($c->getDbName() == Propel::getDefaultDB()) {
 			$c->setDbName(self::DATABASE_NAME);
 		}
 
@@ -590,46 +409,33 @@ abstract class BaseEstablecimientoPeer {
 
 			$newObject = true;
 			foreach($results as $temp_obj1) {
-				$temp_obj2 = $temp_obj1->getDistritoescolar(); //CHECKME
-				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getDistritoescolar(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
-					// e.g. $author->addBookRelatedByBookId()
-					$temp_obj2->addEstablecimiento($obj1); //CHECKME
-					break;
+										$temp_obj2->addEstablecimiento($obj1); 					break;
 				}
 			}
 			if ($newObject) {
 				$obj2->initEstablecimientos();
-				$obj2->addEstablecimiento($obj1); //CHECKME
-			}
+				$obj2->addEstablecimiento($obj1); 			}
 			$results[] = $obj1;
 		}
 		return $results;
 	}
 
 
-	/**
-	 * Returns the number of rows matching criteria, joining all related tables
-	 *
-	 * @param Criteria $c
-	 * @param boolean $distinct Whether to select only distinct columns (You can also set DISTINCT modifier in Criteria).
-	 * @param Connection $con
-	 * @return int Number of matching rows.
-	 */
+	
 	public static function doCountJoinAll(Criteria $criteria, $distinct = false, $con = null)
 	{
 		$criteria = clone $criteria;
 
-		// clear out anything that might confuse the ORDER BY clause
-		$criteria->clearSelectColumns()->clearOrderByColumns();
+				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(EstablecimientoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(EstablecimientoPeer::COUNT);
 		}
 		
-		// just in case we're grouping: add those columns to the select statement
-		foreach($criteria->getGroupByColumns() as $column)
+				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
 		}
@@ -644,25 +450,17 @@ abstract class BaseEstablecimientoPeer {
 		if ($rs->next()) {
 			return $rs->getInt(1);
 		} else {
-			// no rows returned; we infer that means 0 matches.
-			return 0;
+						return 0;
 		}
 	}
 
 
-	/**
-	 * Selects a collection of Establecimiento objects pre-filled with all related objects.
-	 *
-	 * @return array Array of Establecimiento objects.
-	 * @throws PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 */
+	
 	public static function doSelectJoinAll(Criteria $c, $con = null)
 	{
 		$c = clone $c;
 
-		// Set the correct dbName if it has not been overridden
-		if ($c->getDbName() == Propel::getDefaultDB()) {
+				if ($c->getDbName() == Propel::getDefaultDB()) {
 			$c->setDbName(self::DATABASE_NAME);
 		}
 
@@ -697,8 +495,7 @@ abstract class BaseEstablecimientoPeer {
 			$obj1->hydrate($rs);
 
 				
-				// Add objects for joined Niveltipo rows
-	
+					
 			$omClass = NiveltipoPeer::getOMClass();
 
 	
@@ -709,11 +506,9 @@ abstract class BaseEstablecimientoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getNiveltipo(); // CHECKME
-				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getNiveltipo(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
-					$temp_obj2->addEstablecimiento($obj1); // CHECKME
-					break;
+					$temp_obj2->addEstablecimiento($obj1); 					break;
 				}
 			}
 			
@@ -723,8 +518,7 @@ abstract class BaseEstablecimientoPeer {
 			}
 
 				
-				// Add objects for joined Organizacion rows
-	
+					
 			$omClass = OrganizacionPeer::getOMClass();
 
 	
@@ -735,11 +529,9 @@ abstract class BaseEstablecimientoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getOrganizacion(); // CHECKME
-				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+				$temp_obj3 = $temp_obj1->getOrganizacion(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
 					$newObject = false;
-					$temp_obj3->addEstablecimiento($obj1); // CHECKME
-					break;
+					$temp_obj3->addEstablecimiento($obj1); 					break;
 				}
 			}
 			
@@ -749,8 +541,7 @@ abstract class BaseEstablecimientoPeer {
 			}
 
 				
-				// Add objects for joined Distritoescolar rows
-	
+					
 			$omClass = DistritoescolarPeer::getOMClass();
 
 	
@@ -761,11 +552,9 @@ abstract class BaseEstablecimientoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj4 = $temp_obj1->getDistritoescolar(); // CHECKME
-				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
+				$temp_obj4 = $temp_obj1->getDistritoescolar(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
 					$newObject = false;
-					$temp_obj4->addEstablecimiento($obj1); // CHECKME
-					break;
+					$temp_obj4->addEstablecimiento($obj1); 					break;
 				}
 			}
 			
@@ -780,29 +569,19 @@ abstract class BaseEstablecimientoPeer {
 	}
 
 
-	/**
-	 * Returns the number of rows matching criteria, joining the related Niveltipo table
-	 *
-	 * @param Criteria $c
-	 * @param boolean $distinct Whether to select only distinct columns (You can also set DISTINCT modifier in Criteria).
-	 * @param Connection $con
-	 * @return int Number of matching rows.
-	 */
+	
 	public static function doCountJoinAllExceptNiveltipo(Criteria $criteria, $distinct = false, $con = null)
 	{
-		// we're going to modify criteria, so copy it first
-		$criteria = clone $criteria;
+				$criteria = clone $criteria;
 		
-		// clear out anything that might confuse the ORDER BY clause
-		$criteria->clearSelectColumns()->clearOrderByColumns();
+				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(EstablecimientoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(EstablecimientoPeer::COUNT);
 		}
 		
-		// just in case we're grouping: add those columns to the select statement
-		foreach($criteria->getGroupByColumns() as $column)
+				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
 		}
@@ -815,35 +594,24 @@ abstract class BaseEstablecimientoPeer {
 		if ($rs->next()) {
 			return $rs->getInt(1);
 		} else {
-			// no rows returned; we infer that means 0 matches.
-			return 0;
+						return 0;
 		}
 	}
 
 
-	/**
-	 * Returns the number of rows matching criteria, joining the related Organizacion table
-	 *
-	 * @param Criteria $c
-	 * @param boolean $distinct Whether to select only distinct columns (You can also set DISTINCT modifier in Criteria).
-	 * @param Connection $con
-	 * @return int Number of matching rows.
-	 */
+	
 	public static function doCountJoinAllExceptOrganizacion(Criteria $criteria, $distinct = false, $con = null)
 	{
-		// we're going to modify criteria, so copy it first
-		$criteria = clone $criteria;
+				$criteria = clone $criteria;
 		
-		// clear out anything that might confuse the ORDER BY clause
-		$criteria->clearSelectColumns()->clearOrderByColumns();
+				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(EstablecimientoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(EstablecimientoPeer::COUNT);
 		}
 		
-		// just in case we're grouping: add those columns to the select statement
-		foreach($criteria->getGroupByColumns() as $column)
+				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
 		}
@@ -856,35 +624,24 @@ abstract class BaseEstablecimientoPeer {
 		if ($rs->next()) {
 			return $rs->getInt(1);
 		} else {
-			// no rows returned; we infer that means 0 matches.
-			return 0;
+						return 0;
 		}
 	}
 
 
-	/**
-	 * Returns the number of rows matching criteria, joining the related Distritoescolar table
-	 *
-	 * @param Criteria $c
-	 * @param boolean $distinct Whether to select only distinct columns (You can also set DISTINCT modifier in Criteria).
-	 * @param Connection $con
-	 * @return int Number of matching rows.
-	 */
+	
 	public static function doCountJoinAllExceptDistritoescolar(Criteria $criteria, $distinct = false, $con = null)
 	{
-		// we're going to modify criteria, so copy it first
-		$criteria = clone $criteria;
+				$criteria = clone $criteria;
 		
-		// clear out anything that might confuse the ORDER BY clause
-		$criteria->clearSelectColumns()->clearOrderByColumns();
+				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(EstablecimientoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(EstablecimientoPeer::COUNT);
 		}
 		
-		// just in case we're grouping: add those columns to the select statement
-		foreach($criteria->getGroupByColumns() as $column)
+				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
 		}
@@ -897,27 +654,17 @@ abstract class BaseEstablecimientoPeer {
 		if ($rs->next()) {
 			return $rs->getInt(1);
 		} else {
-			// no rows returned; we infer that means 0 matches.
-			return 0;
+						return 0;
 		}
 	}
 
 
-	/**
-	 * Selects a collection of Establecimiento objects pre-filled with all related objects except Niveltipo.
-	 *
-	 * @return array Array of Establecimiento objects.
-	 * @throws PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 */
+	
 	public static function doSelectJoinAllExceptNiveltipo(Criteria $c, $con = null)
 	{
 		$c = clone $c;
 
-		// Set the correct dbName if it has not been overridden
-		// $c->getDbName() will return the same object if not set to another value
-		// so == check is okay and faster
-		if ($c->getDbName() == Propel::getDefaultDB()) {
+								if ($c->getDbName() == Propel::getDefaultDB()) {
 			$c->setDbName(self::DATABASE_NAME);
 		}
 
@@ -956,8 +703,7 @@ abstract class BaseEstablecimientoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getOrganizacion(); //CHECKME
-				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getOrganizacion(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addEstablecimiento($obj1);
 					break;
@@ -979,8 +725,7 @@ abstract class BaseEstablecimientoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getDistritoescolar(); //CHECKME
-				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+				$temp_obj3 = $temp_obj1->getDistritoescolar(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj3->addEstablecimiento($obj1);
 					break;
@@ -998,21 +743,12 @@ abstract class BaseEstablecimientoPeer {
 	}
 
 
-	/**
-	 * Selects a collection of Establecimiento objects pre-filled with all related objects except Organizacion.
-	 *
-	 * @return array Array of Establecimiento objects.
-	 * @throws PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 */
+	
 	public static function doSelectJoinAllExceptOrganizacion(Criteria $c, $con = null)
 	{
 		$c = clone $c;
 
-		// Set the correct dbName if it has not been overridden
-		// $c->getDbName() will return the same object if not set to another value
-		// so == check is okay and faster
-		if ($c->getDbName() == Propel::getDefaultDB()) {
+								if ($c->getDbName() == Propel::getDefaultDB()) {
 			$c->setDbName(self::DATABASE_NAME);
 		}
 
@@ -1051,8 +787,7 @@ abstract class BaseEstablecimientoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getNiveltipo(); //CHECKME
-				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getNiveltipo(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addEstablecimiento($obj1);
 					break;
@@ -1074,8 +809,7 @@ abstract class BaseEstablecimientoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getDistritoescolar(); //CHECKME
-				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+				$temp_obj3 = $temp_obj1->getDistritoescolar(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj3->addEstablecimiento($obj1);
 					break;
@@ -1093,21 +827,12 @@ abstract class BaseEstablecimientoPeer {
 	}
 
 
-	/**
-	 * Selects a collection of Establecimiento objects pre-filled with all related objects except Distritoescolar.
-	 *
-	 * @return array Array of Establecimiento objects.
-	 * @throws PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 */
+	
 	public static function doSelectJoinAllExceptDistritoescolar(Criteria $c, $con = null)
 	{
 		$c = clone $c;
 
-		// Set the correct dbName if it has not been overridden
-		// $c->getDbName() will return the same object if not set to another value
-		// so == check is okay and faster
-		if ($c->getDbName() == Propel::getDefaultDB()) {
+								if ($c->getDbName() == Propel::getDefaultDB()) {
 			$c->setDbName(self::DATABASE_NAME);
 		}
 
@@ -1146,8 +871,7 @@ abstract class BaseEstablecimientoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getNiveltipo(); //CHECKME
-				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getNiveltipo(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addEstablecimiento($obj1);
 					break;
@@ -1169,8 +893,7 @@ abstract class BaseEstablecimientoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getOrganizacion(); //CHECKME
-				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+				$temp_obj3 = $temp_obj1->getOrganizacion(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj3->addEstablecimiento($obj1);
 					break;
@@ -1187,41 +910,19 @@ abstract class BaseEstablecimientoPeer {
 		return $results;
 	}
 
-	/**
-	 * Returns the TableMap related to this peer.
-	 * This method is not needed for general use but a specific application could have a need.
-	 * @return TableMap
-	 * @throws PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 */
+	
 	public static function getTableMap()
 	{
 		return Propel::getDatabaseMap(self::DATABASE_NAME)->getTable(self::TABLE_NAME);
 	}
 
-	/**
-	 * The class that the Peer will make instances of.
-	 *
-	 * This uses a dot-path notation which is tranalted into a path
-	 * relative to a location on the PHP include_path.
-	 * (e.g. path.to.MyClass -> 'path/to/MyClass.php')
-	 *
-	 * @return string path.to.ClassName
-	 */
+	
 	public static function getOMClass()
 	{
 		return EstablecimientoPeer::CLASS_DEFAULT;
 	}
 
-	/**
-	 * Method perform an INSERT on the database, given a Establecimiento or Criteria object.
-	 *
-	 * @param mixed $values Criteria or Establecimiento object containing data that is used to create the INSERT statement.
-	 * @param Connection $con the connection to use
-	 * @return mixed The new primary key.
-	 * @throws PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 */
+	
 	public static function doInsert($values, $con = null)
 	{
 		if ($con === null) {
@@ -1229,21 +930,15 @@ abstract class BaseEstablecimientoPeer {
 		}
 
 		if ($values instanceof Criteria) {
-			$criteria = clone $values; // rename for clarity
-		} else {
-			$criteria = $values->buildCriteria(); // build Criteria from Establecimiento object
-		}
+			$criteria = clone $values; 		} else {
+			$criteria = $values->buildCriteria(); 		}
 
-		$criteria->remove(EstablecimientoPeer::ID); // remove pkey col since this table uses auto-increment
+		$criteria->remove(EstablecimientoPeer::ID); 
 
-
-		// Set the correct dbName
-		$criteria->setDbName(self::DATABASE_NAME);
+				$criteria->setDbName(self::DATABASE_NAME);
 
 		try {
-			// use transaction because $criteria could contain info
-			// for more than one table (I guess, conceivably)
-			$con->begin();
+									$con->begin();
 			$pk = BasePeer::doInsert($criteria, $con);
 			$con->commit();
 		} catch(PropelException $e) {
@@ -1254,15 +949,7 @@ abstract class BaseEstablecimientoPeer {
 		return $pk;
 	}
 
-	/**
-	 * Method perform an UPDATE on the database, given a Establecimiento or Criteria object.
-	 *
-	 * @param mixed $values Criteria or Establecimiento object containing data that is used to create the UPDATE statement.
-	 * @param Connection $con The connection to use (specify Connection object to exert more control over transactions).
-	 * @return int The number of affected rows (if supported by underlying database driver).
-	 * @throws PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 */
+	
 	public static function doUpdate($values, $con = null)
 	{
 		if ($con === null) {
@@ -1272,37 +959,25 @@ abstract class BaseEstablecimientoPeer {
 		$selectCriteria = new Criteria(self::DATABASE_NAME);
 
 		if ($values instanceof Criteria) {
-			$criteria = clone $values; // rename for clarity
-
+			$criteria = clone $values; 
 			$comparison = $criteria->getComparison(EstablecimientoPeer::ID);
 			$selectCriteria->add(EstablecimientoPeer::ID, $criteria->remove(EstablecimientoPeer::ID), $comparison);
 
-		} else { // $values is Establecimiento object
-			$criteria = $values->buildCriteria(); // gets full criteria
-			$selectCriteria = $values->buildPkeyCriteria(); // gets criteria w/ primary key(s)
-		}
+		} else { 			$criteria = $values->buildCriteria(); 			$selectCriteria = $values->buildPkeyCriteria(); 		}
 
-		// set the correct dbName
-		$criteria->setDbName(self::DATABASE_NAME);
+				$criteria->setDbName(self::DATABASE_NAME);
 
 		return BasePeer::doUpdate($selectCriteria, $criteria, $con);
 	}
 
-	/**
-	 * Method to DELETE all rows from the establecimiento table.
-	 *
-	 * @return int The number of affected rows (if supported by underlying database driver).
-	 */
+	
 	public static function doDeleteAll($con = null)
 	{
 		if ($con === null) {
 			$con = Propel::getConnection(self::DATABASE_NAME);
 		}
-		$affectedRows = 0; // initialize var to track total num of affected rows
-		try {
-			// use transaction because $criteria could contain info
-			// for more than one table or we could emulating ON DELETE CASCADE, etc.
-			$con->begin();
+		$affectedRows = 0; 		try {
+									$con->begin();
 			$affectedRows += BasePeer::doDeleteAll(EstablecimientoPeer::TABLE_NAME, $con);
 			$con->commit();
 			return $affectedRows;
@@ -1312,17 +987,7 @@ abstract class BaseEstablecimientoPeer {
 		}
 	}
 
-	/**
-	 * Method perform a DELETE on the database, given a Establecimiento or Criteria object OR a primary key value.
-	 *
-	 * @param mixed $values Criteria or Establecimiento object or primary key or array of primary keys
-	 *              which is used to create the DELETE statement
-	 * @param Connection $con the connection to use
-	 * @return int 	The number of affected rows (if supported by underlying database driver).  This includes CASCADE-related rows
-	 *				if supported by native driver or if emulated using Propel.
-	 * @throws PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 */
+	
 	 public static function doDelete($values, $con = null)
 	 {
 		if ($con === null) {
@@ -1330,25 +995,19 @@ abstract class BaseEstablecimientoPeer {
 		}
 
 		if ($values instanceof Criteria) {
-			$criteria = clone $values; // rename for clarity
-		} elseif ($values instanceof Establecimiento) {
+			$criteria = clone $values; 		} elseif ($values instanceof Establecimiento) {
 
 			$criteria = $values->buildPkeyCriteria();
 		} else {
-			// it must be the primary key
-			$criteria = new Criteria(self::DATABASE_NAME);
+						$criteria = new Criteria(self::DATABASE_NAME);
 			$criteria->add(EstablecimientoPeer::ID, (array) $values, Criteria::IN);
 		}
 
-		// Set the correct dbName
-		$criteria->setDbName(self::DATABASE_NAME);
+				$criteria->setDbName(self::DATABASE_NAME);
 
-		$affectedRows = 0; // initialize var to track total num of affected rows
-
+		$affectedRows = 0; 
 		try {
-			// use transaction because $criteria could contain info
-			// for more than one table or we could emulating ON DELETE CASCADE, etc.
-			$con->begin();
+									$con->begin();
 			
 			$affectedRows += BasePeer::doDelete($criteria, $con);
 			$con->commit();
@@ -1359,18 +1018,7 @@ abstract class BaseEstablecimientoPeer {
 		}
 	}
 
-	/**
-	 * Validates all modified columns of given Establecimiento object.
-	 * If parameter $columns is either a single column name or an array of column names
-	 * than only those columns are validated.
-	 *
-	 * NOTICE: This does not apply to primary or foreign keys for now.
-	 *
-	 * @param Establecimiento $obj The object to validate.
-	 * @param mixed $cols Column name or array of column names.
-	 *
-	 * @return mixed TRUE if all columns are valid or the error message of the first invalid column.
-	 */
+	
 	public static function doValidate(Establecimiento $obj, $cols = null)
 	{
 		$columns = array();
@@ -1405,13 +1053,7 @@ abstract class BaseEstablecimientoPeer {
     return $res;
 	}
 
-	/**
-	 * Retrieve a single object by pkey.
-	 *
-	 * @param mixed $pk the primary key.
-	 * @param Connection $con the connection to use
-	 * @return Establecimiento
-	 */
+	
 	public static function retrieveByPK($pk, $con = null)
 	{
 		if ($con === null) {
@@ -1428,14 +1070,7 @@ abstract class BaseEstablecimientoPeer {
 		return !empty($v) > 0 ? $v[0] : null;
 	}
 
-	/**
-	 * Retrieve multiple objects by pkey.
-	 *
-	 * @param array $pks List of primary keys
-	 * @param Connection $con the connection to use
-	 * @throws PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 */
+	
 	public static function retrieveByPKs($pks, $con = null)
 	{
 		if ($con === null) {
@@ -1453,20 +1088,14 @@ abstract class BaseEstablecimientoPeer {
 		return $objs;
 	}
 
-} // BaseEstablecimientoPeer
-
-// static code to register the map builder for this Peer with the main Propel class
+} 
 if (Propel::isInit()) {
-	// the MapBuilder classes register themselves with Propel during initialization
-	// so we need to load them here.
-	try {
+			try {
 		BaseEstablecimientoPeer::getMapBuilder();
 	} catch (Exception $e) {
 		Propel::log('Could not initialize Peer: ' . $e->getMessage(), Propel::LOG_ERR);
 	}
 } else {
-	// even if Propel is not yet initialized, the map builder class can be registered
-	// now and then it will be loaded when Propel initializes.
-	require_once 'model/map/EstablecimientoMapBuilder.php';
-	Propel::registerMapBuilder('model.map.EstablecimientoMapBuilder');
+			require_once 'lib/model/map/EstablecimientoMapBuilder.php';
+	Propel::registerMapBuilder('lib.model.map.EstablecimientoMapBuilder');
 }

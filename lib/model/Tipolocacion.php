@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseTipolocacion.php';
+require_once 'lib/model/om/BaseTipolocacion.php';
 
 
 /**

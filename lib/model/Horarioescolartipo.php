@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseHorarioescolartipo.php';
+require_once 'lib/model/om/BaseHorarioescolartipo.php';
 
 
 /**

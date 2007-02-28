@@ -58,4 +58,30 @@ ul {
   background: url(../images/small/ir_a.png) no-repeat 3px 2px;
     border-right: 4px solid #73B65A !important;
 }
-    
+
+.form-errors
+{
+  margin-bottom: 10px;
+  border: 1px solid #f33;
+  background-color: #ffc;
+}
+
+.form-errors h2
+{
+  padding: 5px 20px 5px 25px;
+  font-size: 11px;
+  color: #fff;
+  background: #f33 url(/sf/images/sf_admin/error.png) no-repeat 5px 2px;
+}
+
+.form-errors ul
+{
+  padding: 5px;
+  list-style-type: none;
+}
+
+.form-errors li
+{
+  padding: 5px 20px;
+  background: url(/sf/images/sf_admin/error.png) no-repeat 0 2px;
+}

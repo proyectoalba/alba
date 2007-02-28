@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/om/BaseCiclolectivo.php';
+require_once 'lib/model/om/BaseCiclolectivo.php';
 
 
 /**

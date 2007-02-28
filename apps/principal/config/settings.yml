@@ -12,7 +12,7 @@ dev:
     stats:                  off
     no_script_name:         off
     etag:                   off
-    i18n:                   off
+    i18n:                   on
 test:
   .settings:
     # E_ALL | E_STRICT & ~E_NOTICE = 2047
@@ -88,7 +88,7 @@ all:
 #
 #    use_flash:              on
 #
-#    activated_modules:      [default]
+#    enabled_modules:        [default]
 #
 #    strip_comments:         off
 #

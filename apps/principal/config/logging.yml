@@ -1,13 +1,13 @@
 prod:
-  active: off
+  enabled: off
   level:  err
 
 dev:
-  active: on
+  enabled: on
   level:  debug
 
 test:
 
 all:
-#  active: on
+#  enabled: on
 #  level:  debug

@@ -1,5 +1,15 @@
+rendering: ~
+web_debug: ~
+security:  ~
+
+# generally, you will want to insert your own filters here
 # filtro par conectar en utf8 al servidor de bases de datos(mysql)
 
 albaUtf8ConnectionFilter:
     class: albaUtf8ConnectionFilter
     activate: on  
+
+cache:     ~
+common:    ~
+flash:     ~
+execution: ~
