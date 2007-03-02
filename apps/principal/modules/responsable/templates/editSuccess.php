@@ -21,7 +21,7 @@ document.getElementsByName("responsable[telefono]")[0].value = datosCuenta[4]
     }
 ?>
 <?php use_helper('Object', 'Validation', 'ObjectAdmin', 'I18N', 'Date') ?>
-
+<div id="sf_admin_container">
 <h1><?php 
     echo __('Editar Responsable',array());
     if ($responsable->getCuenta())
@@ -300,4 +300,5 @@ document.getElementsByName("responsable[telefono]")[0].value = datosCuenta[4]
 
 <div id="sf_admin_footer">
 <?php include_partial('responsable/edit_footer', array('responsable' => $responsable)) ?>
+</div>
 </div>
