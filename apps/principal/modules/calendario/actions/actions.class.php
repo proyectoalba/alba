@@ -427,7 +427,7 @@ class calendarioActions extends sfActions
                     $docente_id = $item->getFkDocenteId();
                     $var = $name."_".$horarioMaterias_id."_".$docente_id;
 
-                    $nombre = "<img src='".sfContext::getInstance()->getRequest()->getRelativeUrlRoot()."/sf/images/sf_admin/tick.png' id='".$var."_1'  style='position:relative' class='horarioMaterias-items' ><span class='title'>".$horasMaterias[$horarioMaterias_id."_".$docente_id]->nombre."</span>
+                    $nombre = "<img src='".sfContext::getInstance()->getRequest()->getRelativeUrlRoot()."/sf/sf_admin/images/tick.png' id='".$var."_1'  style='position:relative' class='horarioMaterias-items' ><span class='title'>".$horasMaterias[$horarioMaterias_id."_".$docente_id]->nombre."</span>
 <script type='text/javascript'>
 //<![CDATA[
 new Draggable('".$var."_1', {revert:1})

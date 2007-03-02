@@ -61,10 +61,10 @@
     <td>
       <ul class="sf_admin_td_actions">
         <li>
-            <?php echo link_to(image_tag('../sf/images/sf_admin/edit_icon'), 'alumno/edit?id='. $alumno->getID()) ?>            
+            <?php echo link_to(image_tag('../sf/sf_admin/images/edit_icon'), 'alumno/edit?id='. $alumno->getID()) ?>            
         </li>  
         <li>
-            <?php echo link_to(image_tag('../sf/images/sf_admin/delete_icon'), 'alumno/delete?id='. $alumno->getID()) ?>            
+            <?php echo link_to(image_tag('../sf/sf_admin/images/delete_icon'), 'alumno/delete?id='. $alumno->getID()) ?>            
         </li>
         <li>
             <?php echo link_to(image_tag('jeringa.gif',array("title"=>"Vacunas")), 'alumno/Vacunas?id='. $alumno->getID()) ?>
@@ -137,10 +137,10 @@
     <td>
       <ul class="sf_admin_td_actions">
         <li>
-            <?php echo link_to(image_tag('../sf/images/sf_admin/edit_icon'), 'responsable/edit?id='. $responsable->getID()) ?>
+            <?php echo link_to(image_tag('../sf/sf_admin/images/edit_icon'), 'responsable/edit?id='. $responsable->getID()) ?>
         </li>  
         <li>
-            <?php echo link_to(image_tag('../sf/images/sf_admin/delete_icon'), 'responsable/delete?id='. $responsable->getID()) ?>
+            <?php echo link_to(image_tag('../sf/sf_admin/images/delete_icon'), 'responsable/delete?id='. $responsable->getID()) ?>
         </li>
       </ul>
     </td>
