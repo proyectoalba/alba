@@ -3,6 +3,7 @@
 // date: 2007/02/14 16:46:15
 ?>
 <?php use_helper('I18N', 'Date') ?>
+<div id="sf_admin_container">
 
 <h1><?php echo __(' ', 
 array()) ?></h1>
@@ -16,7 +17,6 @@ array()) ?></h1>
 <?php echo include_partial('filters', array('filters' => $filters)) ?>
 
 </div>
-
 <div id="sf_admin_content">
 
 <?php if(!$pager->getNbResults()): ?>
@@ -64,4 +64,5 @@ array()) ?></h1>
 
 <div id="sf_admin_footer">
 <?php include_partial('alumno/list_footer') ?>
+</div>
 </div>

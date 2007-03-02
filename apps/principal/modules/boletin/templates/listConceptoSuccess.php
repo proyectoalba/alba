@@ -15,7 +15,7 @@
      }
 </script>
 
-
+<div id="sf_admin_container">
 <h1>Notas de Concepto del Bolet&iacute;n</h1>
 
 <?php echo form_tag('boletin/grabarNotasConcepto', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
@@ -91,3 +91,4 @@ if($division_id) { ?>
  ?>
 </fieldset>
 </form>
+</div>
