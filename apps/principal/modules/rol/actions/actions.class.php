@@ -23,8 +23,8 @@
  * rol Acciones
  *
  * @package    alba
- * @author     José Luis Di Biase <josx@interorganic.com.ar>
- * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     JosÃ© Luis Di Biase <josx@interorganic.com.ar>
+ * @author     HÃ©ctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
@@ -44,9 +44,9 @@ class rolActions extends autorolActions
         $rolPermisos = RelRolPermisoPeer::doSelectJoinPermiso($c);
     
             // esto puede ser descartado usando en el select_tag, objects_for_select                               
-        $this->optionsRolPermisos = array();
+        $optionsRolPermisos = array();
         foreach($rolPermisos as $rolPermiso) {
-            $this->optionsRolPermisos[$rolPermiso->getFkPermisoId()] = $rolPermiso->getPermiso()->getNombre();
+            $optionsRolPermisos[$rolPermiso->getFkPermisoId()] = $rolPermiso->getPermiso()->getNombre();
         }
 
         //estos son todos los permisos existentes
@@ -57,7 +57,7 @@ class rolActions extends autorolActions
         }
         
         // estos son los permisos existentes menos los del usuario
-        $this->optionsPermisos = array_diff_key($todosLosPermisos, $this->optionsRolPermisos);
+        $this->optionsPermisos = array_diff_key($todosLosPermisos, $optionsRolPermisos);
          
         $c = new Criteria();
         //$c->clearSelectColumns()->addSelectColumn(RolPeer::NOMBRE);
@@ -66,11 +66,12 @@ class rolActions extends autorolActions
         $c->add(RolPeer::ACTIVO, 1);
         $roles  = RolPeer::doSelect($c);
 
-        $this->optionsRol = array();
+        $optionsRol = array();
         foreach($roles as $rol) {
-            $this->optionsRol[$rol->getId()] = $rol->getNombre(); 
+            $optionsRol[$rol->getId()] = $rol->getNombre(); 
         }
-        
+        $this->optionsRol = $optionsRol;
+        $this->optionsRolPermisos = $optionsRolPermisos;
     }        
     
     function executeSavePermiso() {
