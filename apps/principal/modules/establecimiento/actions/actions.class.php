@@ -119,7 +119,9 @@ class establecimientoActions extends autoestablecimientoActions
                 return $this->redirect($this->getRequestParameter('referer', '@homepage'));
             }
             else {
-                setFlash('error', 'No se puede asignar un ciclo lectivo actual para este establecimiento');
+                $this->getUser()->setAttribute('fk_ciclolectivo_id',0);
+                $this->getUser()->setAttribute('ciclolectivo_descripcion','No Seleccionado');
+                return $this->redirect($this->getRequestParameter('referer', '@homepage'));
             }
                 
         }
