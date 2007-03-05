@@ -1,8 +1,7 @@
 <?php use_helper('Object', 'Validation', 'ObjectAdmin', 'I18N', 'Date') ?>
-
 <h1><?php echo __('Editar Entrada en Legajo Pedagógico para '.$alumno->getApellido().' '.$alumno->getNombre(), array()) ?></h1>
 
-<div id="sf_admin_content">
+<div id="sf_admin_container">
 
 <?php if ($sf_request->hasErrors()): ?>
 <div class="form-errors">
