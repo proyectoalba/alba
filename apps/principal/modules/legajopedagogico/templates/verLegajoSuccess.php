@@ -1,4 +1,3 @@
-
 <?php use_helper('I18N', 'Date') ?>
 <script>
      function filterCat() {
@@ -12,8 +11,6 @@
         var url  = "<?php echo url_for('legajopedagogico/', false);?>/create/aid/<?=$alumno->getId()?>/cid/"+objc.value;
         location.href = url;
     }
-
-
 </script>
 <div id="sf_admin_container">
 <h1>Legajo Pedagógico de <?=$alumno->getApellido()." ".$alumno->getNombre()?> </h1>
@@ -28,7 +25,6 @@
     </div>
     </div>
   </fieldset>
-
   <ul class="sf_admin_actions">
     <li><input class="sf_admin_action_reset_filter" value="borrar" type="reset" /></li>
     <li><input type="button" name="filter" value="filtrar" class="sf_admin_action_filter" onclick="filterCat()" /></li>
@@ -77,7 +73,6 @@
   </tr>
 </tfoot>  
 </table>
-
       <div class="float-right">
           <ul class="sf_admin_actions">
             <li>
