@@ -3,7 +3,7 @@
 // date: 2007/02/16 11:08:08
 ?>
 <?php use_helper('I18N', 'Date') ?>
-
+<div id="sf_admin_container">
 <div id="sf_admin_header">
 <?php include_partial('relCalendariovacunacionAlumno/list_header', array('filters' => $filters)) ?>
 </div>
@@ -61,4 +61,5 @@
 
 <div id="sf_admin_footer">
 <?php include_partial('relCalendariovacunacionAlumno/list_footer')?>
+</div>
 </div>
