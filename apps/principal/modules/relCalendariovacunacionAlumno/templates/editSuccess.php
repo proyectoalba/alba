@@ -9,7 +9,7 @@
 <?php include_partial('relCalendariovacunacionAlumno/edit_header', array('rel_calendariovacunacion_alumno' => $rel_calendariovacunacion_alumno)) ?>
 </div>
 
-<div id="sf_admin_content">
+<div id="sf_admin_container">
 
 <?php if ($sf_request->hasErrors()): ?>
 <div class="form-errors">
