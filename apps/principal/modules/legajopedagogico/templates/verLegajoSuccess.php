@@ -1,3 +1,4 @@
+
 <?php use_helper('I18N', 'Date') ?>
 <script>
      function filterCat() {
@@ -14,7 +15,7 @@
 
 
 </script>
-
+<div id="sf_admin_container">
 <h1>Legajo Pedagógico de <?=$alumno->getApellido()." ".$alumno->getNombre()?> </h1>
 <div class="sf_admin_filters">
 <?php echo form_tag('legajopedagogico/verLegajo', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
@@ -83,15 +84,15 @@
             <input type="button" name="create" value="Nuevo" class="sf_admin_action_create" onclick="create()" />
             </li>
             <li>
-                <?php echo button_to('Listado Alumnos','alumno/list')?>
+                <?php echo button_to('Listado Alumnos','alumno/list',"class=sf_admin_action_list")?>
             </li>
             <li>
-                <?php echo button_to('Ir a Cuenta','/cuenta/verCompleta?id='.$alumno->getFkCuentaId()) ?>
+                <?php echo button_to('Ir a Cuenta','/cuenta/verCompleta?id='.$alumno->getFkCuentaId(),"class=sf_admin_action_ir_a") ?>
             </li>
         </ul>
       </div>
 
 </div>
 
-
+</div>
 <? echo javascript_include_tag('varios/wz_tooltip.js'); ?>
