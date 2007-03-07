@@ -58,6 +58,14 @@
                 <source>no result</source>
                 <target>no existen resultados</target>
             </trans-unit>      
+            <trans-unit id="15">
+                <source>Could not delete the selected Establecimiento</source>
+                <target>No puede eliminar el Establecimiento seleccionado</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>Could not delete the selected Establecimiento. Make sure it does not have any associated items.</source>
+                <target>No puede eliminar el Establecimiento seleccionado. Asegurese que no este siendo utilizado.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
