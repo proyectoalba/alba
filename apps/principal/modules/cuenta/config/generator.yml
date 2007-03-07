@@ -27,7 +27,7 @@ generator:
             title: " "
             fields: 
                 pais_id: {name: País }
-            display: [ nombre, razon_social, cuit, direccion, ciudad, codigo_postal, _pais_id, _fk_provincia_id,  fk_tipoiva_id, telefono ]
+            display: [ nombre, razon_social, cuit, direccion, ciudad, codigo_postal, _pais_id, _fk_provincia_id,  _fk_tipoiva_id, telefono ]
             actions:
                 _delete: -
                 _save: -
