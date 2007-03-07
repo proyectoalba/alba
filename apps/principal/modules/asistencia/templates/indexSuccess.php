@@ -32,6 +32,7 @@
 * @license GPL
 */
 ?>                   
+<div id="sf_admin_container">
 <h1>Asistencias</h1>
     
     <?php if ($sf_request->hasErrors()): ?>
@@ -256,7 +257,7 @@
     <?php } else { ?>
         <div class="form-errors">
         <ul>
-            <li>No tiene permisos de escritura sobre el directorio tmp. Si quiere ver los gr&aacute;ficos de estad&iacute;sticas necesita necesita aplicarlos.</li>
+            <li>No tiene permisos de escritura sobre el directorio tmp. Si quiere ver los gr&aacute;ficos de estad&iacute;sticas necesita aplicarlos.</li>
         </ul>
         </div>    
     <?php } ?>
@@ -268,3 +269,4 @@
         </ul>
         </div>
 <?php } ?>
+</div>
