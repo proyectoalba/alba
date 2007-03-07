@@ -74,7 +74,12 @@ class docenteActions extends autodocenteActions
          $c->add(RelDocenteEstablecimientoPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
      }
 
-
+    public function executeCambiarPais() {
+        $pais_id = $this->getRequestParameter('pais_id');
+        $c = new Criteria();
+        $c->add(ProvinciaPeer::FK_PAIS_ID, $pais_id);
+        $this->provincias = ProvinciaPeer::getEnOrden($c);
+    }
 }
 
 ?>

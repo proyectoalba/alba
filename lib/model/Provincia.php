@@ -16,6 +16,6 @@ require_once 'lib/model/om/BaseProvincia.php';
  */	
 class Provincia extends BaseProvincia {
     public function __toString() {
-        return $this->getNombreCorto();
+        return $this->getNombreLargo();
     }
 } // Provincia

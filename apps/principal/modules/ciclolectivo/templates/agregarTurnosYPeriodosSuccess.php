@@ -9,9 +9,9 @@
 	</script>		
 
 
+<div id="sf_admin_container">
+
 <? echo form_tag('ciclolectivo/grabarTurnosYPeriodos', 'onSubmit="selectItem()"'); ?>
-
-
 
 <div id="content">
 <br> 
@@ -188,3 +188,4 @@ foreach($aTurnos as $turno){
       </div>
    
 </form>
+</div>

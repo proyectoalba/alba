@@ -74,8 +74,8 @@ class cuentaActions extends autocuentaActions
     public function executeCambiarPais() {
         $pais_id = $this->getRequestParameter('pais_id');
         $c = new Criteria();
-        $c->add(ProvinciaPeer::FK_PAIS_ID,$pais_id);
-        $this->provincias = ProvinciaPeer::doSelect($c);
+        $c->add(ProvinciaPeer::FK_PAIS_ID, $pais_id);
+        $this->provincias = ProvinciaPeer::getEnOrden($c);
     }
 }
 

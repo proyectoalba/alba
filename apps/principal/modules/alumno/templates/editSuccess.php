@@ -151,10 +151,12 @@
                 <?php echo form_error('alumno{fk_pais_id}', array('class' => 'form-error-msg')) ?>
               <?php endif; ?>
 
-              <?php echo object_select_tag($alumno, 'getFkPaisId', array (
-              'related_class' => 'Pais',
-              'control_name' => 'alumno[fk_pais_id]',
-            )) ?>
+<?php $value = object_select_tag($alumno, 'getFkPaisId', array (
+  'related_class' => 'Pais',
+    'control_name' => 'alumno[fk_pais_id]',
+    )); echo $value ? $value : '&nbsp;' ?>
+                
+            
                 </div>
             </div>
 
@@ -230,13 +232,24 @@
                 <?php echo form_error('alumno{fk_provincia_id}', array('class' => 'form-error-msg')) ?>
               <?php endif; ?>
 
+            <div id="item_provincia">
               <?php echo object_select_tag($alumno, 'getFkProvinciaId', array (
               'related_class' => 'Provincia',
+              'peer_method' => 'getEnOrden',
               'control_name' => 'alumno[fk_provincia_id]',
               'include_custom' => '>>Seleccione una Provincia<<',
             )) ?>
+            
+            </div>
                 </div>
             </div>
+            
+            
+               <div class="form-row">
+               <?php echo label_for('pais_id]', __('Pa&iacute;s:'), 'class="required" ') ?>
+               <?php echo include_partial('pais_id', array('type' => 'edit', 'alumno' => $alumno)) ?>
+               </div>
+            
 
             <div class="form-row">
               <?php echo label_for('alumno[codigo_postal]', __('CP:'), 'class="required" ') ?>

@@ -93,12 +93,13 @@
                 <?php echo form_error('cuenta{fk_provincia_id}', array('class' => 'form-error-msg')) ?>
                 <?php endif; ?>
               
-
-  <?php echo object_select_tag($cuenta, 'getFkProvinciaId', array (
+<div id="item_provincia">
+  <?php echo object_select_tag($alumno, 'getFkProvinciaId', array (
   'related_class' => 'Provincia',
+  'peer_method' => 'getEnOrden',
   'control_name' => 'cuenta[fk_provincia_id]',
 )) ?>
-            </td>
+</div>            </td>
 
             <td></td>
             <td></td>

@@ -20,4 +20,22 @@
  */	
 class ProvinciaPeer extends BaseProvinciaPeer {
 
+
+    public static function getEnOrden($criteria = NULL) {
+
+        if((!($criteria instanceof Criteria)) OR is_null($criteria)) {
+            $criteria = new Criteria(); 
+        }
+
+//      $criteria->add(ProvinciaPeer::ESTA_BORRADO, false);    Pensado para borrado logico
+
+        $criteria->addAscendingOrderByColumn(ProvinciaPeer::ORDEN);           
+        $criteria->addAscendingOrderByColumn(ProvinciaPeer::NOMBRE_CORTO);
+        $criteria->addAscendingOrderByColumn(ProvinciaPeer::NOMBRE_LARGO);
+        $provincias = ProvinciaPeer::doSelect($criteria);
+
+        return $provincias;
+    }
+
+
 } // ProvinciaPeer
