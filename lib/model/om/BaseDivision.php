@@ -23,6 +23,10 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 	
 	protected $fk_turnos_id = 0;
 
+
+	
+	protected $orden = 0;
+
 	
 	protected $aAnio;
 
@@ -76,6 +80,13 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 	}
 
 	
+	public function getOrden()
+	{
+
+		return $this->orden;
+	}
+
+	
 	public function setId($v)
 	{
 
@@ -124,6 +135,16 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 
 	} 
 	
+	public function setOrden($v)
+	{
+
+		if ($this->orden !== $v || $v === 0) {
+			$this->orden = $v;
+			$this->modifiedColumns[] = DivisionPeer::ORDEN;
+		}
+
+	} 
+	
 	public function hydrate(ResultSet $rs, $startcol = 1)
 	{
 		try {
@@ -136,11 +157,13 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 
 			$this->fk_turnos_id = $rs->getInt($startcol + 3);
 
+			$this->orden = $rs->getInt($startcol + 4);
+
 			$this->resetModified();
 
 			$this->setNew(false);
 
-						return $startcol + 4; 
+						return $startcol + 5; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Division object", $e);
 		}
@@ -341,6 +364,9 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 			case 3:
 				return $this->getFkTurnosId();
 				break;
+			case 4:
+				return $this->getOrden();
+				break;
 			default:
 				return null;
 				break;
@@ -355,6 +381,7 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 			$keys[1] => $this->getFkAnioId(),
 			$keys[2] => $this->getDescripcion(),
 			$keys[3] => $this->getFkTurnosId(),
+			$keys[4] => $this->getOrden(),
 		);
 		return $result;
 	}
@@ -382,6 +409,9 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 			case 3:
 				$this->setFkTurnosId($value);
 				break;
+			case 4:
+				$this->setOrden($value);
+				break;
 		} 	}
 
 	
@@ -393,6 +423,7 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[1], $arr)) $this->setFkAnioId($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setDescripcion($arr[$keys[2]]);
 		if (array_key_exists($keys[3], $arr)) $this->setFkTurnosId($arr[$keys[3]]);
+		if (array_key_exists($keys[4], $arr)) $this->setOrden($arr[$keys[4]]);
 	}
 
 	
@@ -404,6 +435,7 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(DivisionPeer::FK_ANIO_ID)) $criteria->add(DivisionPeer::FK_ANIO_ID, $this->fk_anio_id);
 		if ($this->isColumnModified(DivisionPeer::DESCRIPCION)) $criteria->add(DivisionPeer::DESCRIPCION, $this->descripcion);
 		if ($this->isColumnModified(DivisionPeer::FK_TURNOS_ID)) $criteria->add(DivisionPeer::FK_TURNOS_ID, $this->fk_turnos_id);
+		if ($this->isColumnModified(DivisionPeer::ORDEN)) $criteria->add(DivisionPeer::ORDEN, $this->orden);
 
 		return $criteria;
 	}
@@ -439,6 +471,8 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 		$copyObj->setDescripcion($this->descripcion);
 
 		$copyObj->setFkTurnosId($this->fk_turnos_id);
+
+		$copyObj->setOrden($this->orden);
 
 
 		if ($deepCopy) {

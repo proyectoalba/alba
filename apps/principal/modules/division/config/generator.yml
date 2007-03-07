@@ -9,13 +9,14 @@ generator:
         division: { name: Divisi&oacute;n }
         fk_turnos_id: { name: Turnos }
         descripcion: { name: Descripci&oacute;n }
+        orden: { name: Orden }
     edit:
         title: Editar Divisi&oacute;n
-        display: [ _fk_anio_id, descripcion, _fk_turnos_id ]
+        display: [ _fk_anio_id, descripcion, _fk_turnos_id, orden ]
                     
     list:
         title: Listado de Divisiones
-        display: [ anio, descripcion, turnos ]
+        display: [ anio, descripcion, turnos, orden ]
         object_actions:
             _edit:      -
             _delete:    -

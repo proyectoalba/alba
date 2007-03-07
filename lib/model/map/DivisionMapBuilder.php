@@ -39,6 +39,8 @@ class DivisionMapBuilder {
 		$tMap->addColumn('DESCRIPCION', 'Descripcion', 'string', CreoleTypes::VARCHAR, true, 255);
 
 		$tMap->addForeignKey('FK_TURNOS_ID', 'FkTurnosId', 'int', CreoleTypes::INTEGER, 'turnos', 'ID', true, 11);
+
+		$tMap->addColumn('ORDEN', 'Orden', 'int', CreoleTypes::INTEGER, false);
 				
     } 
 } 

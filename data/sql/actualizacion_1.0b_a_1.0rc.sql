@@ -109,5 +109,7 @@ ALTER TABLE `alumno` ADD `lugar_nacimiento` VARCHAR( 128 ) NOT NULL AFTER `id` ,
 ADD `fk_pais_id` INT NOT NULL AFTER `lugar_nacimiento` ;
 
 ALTER TABLE `alumno` CHANGE `fk_conceptobaja_id` `fk_conceptobaja_id` INT NULL;
+ALTER TABLE `division` ADD `orden` INT NOT NULL DEFAULT '0';
+
 
 SET FOREIGN_KEY_CHECKS = 1;

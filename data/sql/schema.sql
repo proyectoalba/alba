@@ -994,6 +994,7 @@ CREATE TABLE `division`
 	`fk_anio_id` INTEGER(11) default 0 NOT NULL,
 	`descripcion` VARCHAR(255) default '' NOT NULL,
 	`fk_turnos_id` INTEGER(11) default 0 NOT NULL,
+	`orden` INTEGER default 0,
 	PRIMARY KEY (`id`),
 	INDEX `division_FI_1` (`fk_anio_id`),
 	CONSTRAINT `division_FK_1`

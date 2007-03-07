@@ -13,7 +13,7 @@ abstract class BaseDivisionPeer {
 	const CLASS_DEFAULT = 'lib.model.Division';
 
 	
-	const NUM_COLUMNS = 4;
+	const NUM_COLUMNS = 5;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -32,23 +32,26 @@ abstract class BaseDivisionPeer {
 	const FK_TURNOS_ID = 'division.FK_TURNOS_ID';
 
 	
+	const ORDEN = 'division.ORDEN';
+
+	
 	private static $phpNameMap = null;
 
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'FkAnioId', 'Descripcion', 'FkTurnosId', ),
-		BasePeer::TYPE_COLNAME => array (DivisionPeer::ID, DivisionPeer::FK_ANIO_ID, DivisionPeer::DESCRIPCION, DivisionPeer::FK_TURNOS_ID, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'fk_anio_id', 'descripcion', 'fk_turnos_id', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'FkAnioId', 'Descripcion', 'FkTurnosId', 'Orden', ),
+		BasePeer::TYPE_COLNAME => array (DivisionPeer::ID, DivisionPeer::FK_ANIO_ID, DivisionPeer::DESCRIPCION, DivisionPeer::FK_TURNOS_ID, DivisionPeer::ORDEN, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'fk_anio_id', 'descripcion', 'fk_turnos_id', 'orden', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'FkAnioId' => 1, 'Descripcion' => 2, 'FkTurnosId' => 3, ),
-		BasePeer::TYPE_COLNAME => array (DivisionPeer::ID => 0, DivisionPeer::FK_ANIO_ID => 1, DivisionPeer::DESCRIPCION => 2, DivisionPeer::FK_TURNOS_ID => 3, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'fk_anio_id' => 1, 'descripcion' => 2, 'fk_turnos_id' => 3, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'FkAnioId' => 1, 'Descripcion' => 2, 'FkTurnosId' => 3, 'Orden' => 4, ),
+		BasePeer::TYPE_COLNAME => array (DivisionPeer::ID => 0, DivisionPeer::FK_ANIO_ID => 1, DivisionPeer::DESCRIPCION => 2, DivisionPeer::FK_TURNOS_ID => 3, DivisionPeer::ORDEN => 4, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'fk_anio_id' => 1, 'descripcion' => 2, 'fk_turnos_id' => 3, 'orden' => 4, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
 	);
 
 	
@@ -109,6 +112,8 @@ abstract class BaseDivisionPeer {
 		$criteria->addSelectColumn(DivisionPeer::DESCRIPCION);
 
 		$criteria->addSelectColumn(DivisionPeer::FK_TURNOS_ID);
+
+		$criteria->addSelectColumn(DivisionPeer::ORDEN);
 
 	}
 

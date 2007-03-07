@@ -514,6 +514,7 @@
         <column name="fk_anio_id" type="integer" size="11" required="true" default="0"/>
         <column name="descripcion" type="varchar" size="255" required="true" default=""/>
         <column name="fk_turnos_id" type="integer" size="11" required="true" default="0"/>
+        <column name="orden" type="INTEGER" required="false" default="0"/>
         <foreign-key foreignTable="anio">
             <reference local="fk_anio_id" foreign="id"/>       
         </foreign-key>

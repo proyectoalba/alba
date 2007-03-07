@@ -49,12 +49,12 @@ class InformesActions extends sfActions
         $optionsDivision = array();
         $criteria = new Criteria();
         $criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
+        $criteria->addAscendingOrderByColumn(DivisionPeer::ORDEN);
         $divisiones = DivisionPeer::doSelectJoinAnio($criteria);
         $optionsDivision['']  = "";
         foreach($divisiones as $division) {
             $optionsDivision[$division->getId()] = $division->getAnio()->getDescripcion()." ".$division->getDescripcion();
         }
-        asort($optionsDivision);
         return $optionsDivision;
     
     }
