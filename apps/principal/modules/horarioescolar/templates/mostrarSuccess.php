@@ -20,7 +20,7 @@
 <h1><?php echo __('Ver Horario Escolar', 
 array()) ?></h1>
 
-<div id="sf_admin_content">
+<div id="sf_admin_container">
 
 <table>
 <tr>
