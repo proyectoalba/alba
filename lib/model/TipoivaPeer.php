@@ -19,5 +19,10 @@
  * @package model
  */	
 class TipoivaPeer extends BaseTipoivaPeer {
-
+    public static function getEnOrden(){
+        $criteria = new Criteria(); 
+        $criteria->addAscendingOrderByColumn(TipoivaPeer::NOMBRE);
+        $tipoiva = TipoivaPeer::doSelect($criteria);
+        return $tipoiva;
+    }               
 } // TipoivaPeer
