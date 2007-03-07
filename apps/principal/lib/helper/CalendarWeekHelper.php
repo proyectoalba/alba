@@ -132,36 +132,35 @@ bgcolor="#D6D6BA"
 <table border="0" cellpadding="1" cellspacing="1" bgcolor="#000000">
   <tr> 
     <td width="<?=$tableCellWidth?>" ></td>
-<? for($i=0; $i < count($aDay);$i++) { ?>
+<?php for($i=0; $i < count($aDay);$i++) { ?>
     <td width="<?=$tableCellWidth?>" class="weekCalendarHours"> 
       <div align="center">
-<?
+<?php
         if($qtyDayNames > 0) {
             echo $aDayNames[$i];
         } else {
             echo date("D , M d",$aDay[$i]);   
         }
-     
 ?>
       </div>
     </td>
-<? } ?>
+<?php } ?>
   </tr>
 
-<? for($j = 0; $j < count($aHours);$j++) {
+<?php for($j = 0; $j < count($aHours);$j++) {
     $color = ($j%2==0)?"#F0F0E2":"#FFFFF9";
  ?>
   <tr> 
-    <td align="right" width="<?=$tableCellWidth?>" height="<?=$tableCellHeight?>" class="weekCalendarHours" ><?=$aHours[$j]?>&nbsp;</td>
-    <? for($i=0; $i < count($aDay);$i++) { ?>
+    <td align="right" width="<?=$tableCellWidth?>" height="<?=$tableCellHeight?>" class="weekCalendarHours" ><?php =$aHours[$j]?>&nbsp;</td>
+    <?php for($i=0; $i < count($aDay);$i++) { ?>
     <td id="relativePos" class="weekCalendarContent"></td>
-    <? } ?>
+    <?php } ?>
 
   </tr>
 <? } ?>
 
 </table>
-<? 
+<?php 
         for($j=0;$j<count($aEvent);$j++) {
             $dayPos = array_search(strtotime($aEvent[$j]->date), $aDay);
             if($dayPos !== false) { 
@@ -170,18 +169,16 @@ bgcolor="#D6D6BA"
 ?>
           <div id="event<?=$aEvent[$j]->id?>" class="activities" style="visibility:hidden;overflow:hidden">
           <div id="eventname<?=$aEvent[$j]->id?>" class="calendarWeekClient"><?=$aEvent[$j]->name?></div></div>
-<? 
+<?php 
             }
         }
-
-
 ?>
 
 <script>
     function FixEvents() {
         var coors = findPos(document.getElementById('relativePos'));
 
-<? 
+<?php 
     for($j=0;$j<count($aEvent);$j++) {
             if($multiple_colors) {
                 $color = $aColor[rand(0,$qtyColors-1)];
@@ -199,11 +196,11 @@ bgcolor="#D6D6BA"
                 list($left,$top,$width,$height) = _getGraphicValues($dayPos, $qtyHour, $qtyHourOffset, $time_interval,$tableCellWidth, $tableCellHeight); 
 ?>
         SetDivs(coors.top,coors.left,document.getElementById("event<?=$aEvent[$j]->id?>"),<?=$left?>,<?=$top?>,<?=$width?>,<?=$height?>,'<?=$color?>');
-    <?  }
+    <?php  }
     }?>
     }
 </script>
-<?
+<?php
     } 
 
     function _getGraphicValues ($daypos, $qtyHour,$qtyHourOffset, $time_interval, $cellWidth, $cellHeight) {
@@ -235,14 +232,10 @@ bgcolor="#D6D6BA"
         if ( $end_time>$max ) {
             $add=$max;
         } 
-        
         else {
             $add=$end_time;
         }
             
-        return array( ($add-$add2)/60, $qtyHourOffset); //minutes, offset in minutes
-    
+        return array( ($add-$add2)/60, $qtyHourOffset); //minutes, offset in minutes    
     }
-
-
 ?>
