@@ -59,12 +59,16 @@
                 <target>no existen resultados</target>
             </trans-unit>      
             <trans-unit id="15">
-                <source>Could not delete the selected Establecimiento</source>
-                <target>No puede eliminar el Establecimiento seleccionado</target>
+                <source>Could not delete the selected %s </source>
+                <target>No puede eliminar el %s seleccionado</target>
             </trans-unit>
             <trans-unit id="16">
                 <source>Could not delete the selected Establecimiento. Make sure it does not have any associated items.</source>
                 <target>No puede eliminar el Establecimiento seleccionado. Asegurese que no este siendo utilizado.</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>Could not delete the selected Turnos. Make sure it does not have any associated items.</source>
+                <target>No puede eliminar el Turno seleccionado. Asegurese que no este siendo utilizado.</target>
             </trans-unit>
         </body>
     </file>
