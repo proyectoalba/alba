@@ -294,13 +294,15 @@ class calendarioActions extends sfActions
                 $this->division_id = $eachDivision[0];  // me quedo con el primer indice del array
             }
 
+            if(array_key_exists($this->division_id,$aAnio)) {
+                $horasMateriasTodas = $this->getHorasMaterias($aAnio[$this->division_id]);
+                $this->horasMaterias = $this->getHorasMaterias($aAnio[$this->division_id], $actividad_id);
+                $this->getUser()->setAttribute('anio_id', $aAnio[$this->division_id]); 
+                $this->getUser()->setAttribute('division_id', $this->division_id);
+//              $this->turnos_id = $turnos_id;
+                $anio_id = $aAnio[$this->division_id];
+            }
 
-            $horasMateriasTodas = $this->getHorasMaterias($aAnio[$this->division_id]);
-            $this->horasMaterias = $this->getHorasMaterias($aAnio[$this->division_id], $actividad_id);
-            $this->getUser()->setAttribute('anio_id', $aAnio[$this->division_id]); 
-            $this->getUser()->setAttribute('division_id', $this->division_id);
-//             $this->turnos_id = $turnos_id;
-            $anio_id = $aAnio[$this->division_id];
         } else {
             $this->aHour = array(strtotime("8:00"), strtotime("17:00"));
             $this->time_interval = 15;
