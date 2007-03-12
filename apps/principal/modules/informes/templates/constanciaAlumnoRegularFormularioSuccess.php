@@ -1,3 +1,4 @@
+<div id="sf_admin_container">
 <h1>Informe: Constancia de Alumno Regular</h1>
 
 <?php echo form_tag('informes/constanciaAlumnoRegularFormulario', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
@@ -26,7 +27,7 @@
 
 <? if (count($aAlumno) > 0) {
     if ($txt) { ?>
-    Ustde busco -<?=$txt?>-
+    Usted busco -<?=$txt?>-
     <? } ?>
 <h1>Alumnos</h1>
 <table cellspacing="0" class="sf_admin_list">
@@ -60,3 +61,4 @@
     <? } 
 } 
 ?>
+</div>

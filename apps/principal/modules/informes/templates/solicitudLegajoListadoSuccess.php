@@ -1,4 +1,4 @@
-<?
+<?php
     use_helper('Misc');
     $meses = Meses();
 ?>

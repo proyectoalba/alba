@@ -1,6 +1,6 @@
 <h1>Alumnos de la Divisi&oacute;n <?php echo $division->getAnio()->getDescripcion()." ".$division->getDescripcion()?> </h1>
 
-<? if(count($aAlumno)>0) { ?>
+<?php if(count($aAlumno)>0) { ?>
 
 <table cellspacing="0" class="sf_admin_list">
   <thead>
@@ -17,7 +17,7 @@
   </thead>
 
   <tbody>
-<?
+<?php
   foreach($aAlumno as $alumno) {
 ?>
   <tr class="sf_admin_row_0">
@@ -31,10 +31,10 @@
     <td><?=$alumno->getTelefono();?></td>
 
   </tr>
-  <?}?>
+  <?php }?>
   </tbody>
 </table>
 
-<? } else {  ?>
+<?php } else {  ?>
 No hay Alumnos en esa divisi&oacute;n
-<? } ?>
+<?php } ?>

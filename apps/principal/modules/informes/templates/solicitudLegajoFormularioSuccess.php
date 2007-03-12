@@ -1,3 +1,4 @@
+<div id="sf_admin_container">
 <h1>Informe: Solicitud de Legajo para <?php echo $alumno->getApellido().", ".$alumno->getNombre();?></h1>
 
 <?php if ($sf_request->hasErrors()) {?>
@@ -33,5 +34,4 @@
 </ul>
 
 </form>
-
-
+</div>

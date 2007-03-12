@@ -24,10 +24,10 @@
 </form>
 
 
-<? if (count($aAlumno) > 0) {
+<?php if (count($aAlumno) > 0) {
     if ($txt) { ?>
     Ustde busco -<?=$txt?>-
-    <? } ?>
+    <?php } ?>
 <h1>Alumnos</h1>
 <table cellspacing="0" class="sf_admin_list">
   <thead>
@@ -38,7 +38,7 @@
   </thead>
 
   <tbody>
-<?
+<?php
     $i = 0;
     foreach($aAlumno as $alumno){
 ?>
@@ -50,13 +50,13 @@
     </ul>
     </td>
   </tr>
-  <? } ?>
+  <?php } ?>
   </tbody>
 </table>
 
-<? } else {
+<?php } else {
     if ($txt) { ?>
         Su b&uacute;squeda por -<?=$txt?>- no ha encontrado alumnos.
-    <? } 
+    <?php } 
 } 
 ?>
