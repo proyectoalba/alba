@@ -22,7 +22,7 @@
 
 <?php if (count($aAlumno) > 0) {
     if ($txt) { ?>
-    Ustde busco -<?=$txt?>-
+    Usted busc&oacute; -<?=$txt?>-
     <?php } ?>
 <h1>Alumnos</h1>
 <table cellspacing="0" class="sf_admin_list">
