@@ -120,7 +120,7 @@ if(method_exists($legajopedagogico->getTexto(),'getContents')) {
   'name' => 'save',
   'class' => 'sf_admin_action_save',
 )) ?></li>
-    <li><?php echo button_to(__('list'), 'legajopedagogico?action=verLegajo&aid='.$alumno_id.'&cid='.$legajo_categoria_id, array (
+    <li><?php echo button_to(__('Legajos'), 'legajopedagogico?action=verLegajo&aid='.$alumno_id.'&cid='.$legajo_categoria_id, array (
   'class' => 'sf_admin_action_list',
 )) ?></li>
 </ul>
