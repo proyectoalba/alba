@@ -176,6 +176,7 @@ class calendarioActions extends sfActions
         $actividad_id = "";
         $optionsActividad = array();
         $horasMateriasTodas = array();
+        $aAnio = array();
         $anio_id = "";
         
 /*
