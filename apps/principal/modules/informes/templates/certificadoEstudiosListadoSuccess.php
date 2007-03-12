@@ -1,4 +1,4 @@
-<?
+<?php
     use_helper('Misc');
     $meses = Meses();
 ?>
@@ -11,7 +11,6 @@
 </div>
 <br>
 <br>
-
 <div class="texto">
 Certifico que <?=$alumno->getApellido()?>, <?=$alumno->getNombre()?>  quien acredita identidad con <?=$alumno->getTipoDocumento()->getDescripcion()?> <br> N&deg; <?=$alumno->getNroDocumento()?> nacido  <?=($alumno->getLugarNacimiento())?" en ".$alumno->getLugarNacimiento():"";?> el <?=date("d",strtotime($alumno->getFechaNacimiento()))?> de <?=$meses[date("n",strtotime($alumno->getFechaNacimiento()))]?> de  <?=date("Y",strtotime($alumno->getFechaNacimiento()))?> aprob&oacute;  <?=$grado?>, como alumno <br> 
 regular en escuela <?=strtoupper($establecimiento->getNombre())?> D.E. <?=$establecimiento->getDistritoescolar()->getNombre()?> en el a&ntilde;o <?=$anio?><br>
@@ -23,8 +22,6 @@ en Buenos Aires, a los <?=date("d")?> d&iacute;as del mes de <?=$meses[date("n")
 <br>
 <br>
 <br>
-
-
 <table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="2">
   <tbody>
     <tr>

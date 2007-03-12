@@ -10,8 +10,7 @@
 <?php } ?>
 </ul>
 </div>
-<? } ?> 
-
+<?php } ?> 
 <?php echo form_tag('informes/solicitudLegajoListado', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
 <legend>Para generar la solicitud de legajo debe completar los siguiente datos</legend>
 <fieldset id="sf_fieldset_none" class="">
@@ -22,16 +21,13 @@
         ?>
     </div>
 </fieldset>
-
 <?php echo input_hidden_tag('alumno_id', $alumno->getId()) ?>
 <?php echo input_hidden_tag('division_id', $division_id) ?>
-
  <ul class="sf_admin_actions">
   <li><?php echo submit_tag(__('Mostrar'), array (
   'name' => 'Mostrar',
   'class' => 'sf_admin_action_save',
 )) ?></li>
 </ul>
-
 </form>
 </div>

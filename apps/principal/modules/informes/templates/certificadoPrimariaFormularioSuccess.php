@@ -1,25 +1,19 @@
 <div id="sf_admin_container">
 <h1>Informe: Certificado de Terminaci&oacute;n de Estudios Primarios</h1>
-
 <?php echo form_tag('informes/certificadoPrimariaFormulario', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
-
 <fieldset id="sf_fieldset_none" class="">
     <div class="form-row">
         <?php echo label_for('Buscar', __('Buscar Alumnos:')) ?>
         <?php echo input_tag('txt', $txt) ?>   
     </div>
 </fieldset>
-
  <ul class="sf_admin_actions">
   <li><?php echo submit_tag(__('Buscar'), array (
   'name' => 'Mostrar',
   'class' => 'sf_admin_action_save',
 )) ?></li>
 </ul>
-
 </form>
-
-
 <?php if (count($aAlumno) > 0) {
     if ($txt) { ?>
     Usted busc&oacute; -<?=$txt?>-
@@ -32,7 +26,6 @@
     <th id="sf_admin_list_th_sf_actions">Ver Informe</th>
   </tr>
   </thead>
-
   <tbody>
 <?php
     $i = 0;
@@ -49,7 +42,6 @@
   <? } ?>
   </tbody>
 </table>
-
 <?php } else {
     if ($txt) { ?>
         Su b&uacute;squeda por -<?=$txt?>- no ha encontrado alumnos.

@@ -15,11 +15,8 @@
   'class' => 'sf_admin_action_save',
 )) ?></li>
 </ul>
-
 </form>
-
-
-<? if (count($aAlumno) > 0) {
+<?php if (count($aAlumno) > 0) {
     if ($txt) { ?>
     Usted busc&oacute; -<?=$txt?>-
     <? } ?>
@@ -33,25 +30,24 @@
   </thead>
 
   <tbody>
-<?
+<?php
     $i = 0;
     foreach($aAlumno as $alumno){
 ?>
   <tr class="sf_admin_row_0">
-    <td><?echo $alumno->alumno_apellido." ".$alumno->alumno_nombre; ?></td>
+    <td><?php echo $alumno->alumno_apellido." ".$alumno->alumno_nombre; ?></td>
     <td>
     <ul class="sf_admin_td_actions">
      <li><?php echo link_to(image_tag(sfConfig::get('sf_admin_web_dir').'/images/edit_icon.png', array('alt' => 'editar', 'title' => 'Editar')) , 'informes?action=certificadoEstudiosFormulario&alumno_id='.$alumno->alumno_id); ?></li>
     </ul>
     </td>
   </tr>
-  <? } ?>
+  <?php } ?>
   </tbody>
 </table>
-
-<? } else {
+<?php } else {
     if ($txt) { ?>
         Su b&uacute;squeda por -<?=$txt?>- no ha encontrado alumnos.
-    <? } 
+    <?php } 
 } 
 ?>

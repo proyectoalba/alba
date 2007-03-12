@@ -13,17 +13,13 @@
         <?php echo select_tag('division_id', options_for_select($optionsDivision, $division_id)) ?>
     </div>
 </fieldset>
-
  <ul class="sf_admin_actions">
   <li><?php echo submit_tag(__('Buscar'), array (
   'name' => 'Mostrar',
   'class' => 'sf_admin_action_save',
 )) ?></li>
 </ul>
-
 </form>
-
-
 <?php if (count($aAlumno) > 0) {
     if ($txt) { ?>
     Ustde busc&oacute; -<?=$txt?>-
@@ -53,7 +49,6 @@
   <?php } ?>
   </tbody>
 </table>
-
 <?php } else {
     if ($txt) { ?>
         Su b&uacute;squeda por -<?=$txt?>- no ha encontrado alumnos.

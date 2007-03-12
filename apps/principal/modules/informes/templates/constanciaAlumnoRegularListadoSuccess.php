@@ -11,7 +11,7 @@
       <br>
       </div>
       <div style="text-align: center;" class="subtitulo"><?=strtoupper($establecimiento->getNombre())?> <br> 
-        <? if($locacion) { ?><?=$locacion->getDireccion()?> - T&eacute;lefono: <?=$locacion->getTelefono()?> (<?=$locacion->getCodigoPostal()?>) <?=$locacion->getCiudad()?><br><? } ?>
+        <?php if($locacion) { ?><?=$locacion->getDireccion()?> - T&eacute;lefono: <?=$locacion->getTelefono()?> (<?=$locacion->getCodigoPostal()?>) <?=$locacion->getCiudad()?><br><? } ?>
       <br>
       </div>
       <div style="text-align: center;"><span class="titulo">CONSTANCIA DE ALUMNO REGULAR<br>
