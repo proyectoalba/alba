@@ -50,6 +50,7 @@ class ciclolectivoActions extends autociclolectivoActions
         // info para completar el combo de ciclo lectivos
         $c = new Criteria();
         //$c->add(CiclolectivoPeer::ACTIVO, 1);
+        $c->add(CiclolectivoPeer::FK_ESTABLECIMIENTO_ID,$this->getUser()->getAttribute('fk_establecimiento_id'));
         $c->addAscendingOrderByColumn(CiclolectivoPeer::DESCRIPCION);
         $aCiclolectivo  = CiclolectivoPeer::doSelect($c);
 

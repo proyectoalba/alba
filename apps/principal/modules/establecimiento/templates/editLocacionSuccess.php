@@ -3,7 +3,7 @@
         <h2><?php echo $sf_flash->get('notice')?></h2>
     </div>
 <?php endif;?>
-
+<div id="sf_admin_container">
 <h1>Locaciones x Establecimiento "<?=$establecimiento->getNombre()?>"</h1>
 
 <?php echo form_tag('establecimiento/saveLocacion', 'onSubmit="selectItem()"')?>
@@ -26,7 +26,7 @@
 </ul>
 </table>
 </form>
-
+</div>
 <script type="text/javascript">
 createMovableOptions("fromBox","toBox",500,300,'Locaciones Disponibles','Locaciones Seleccionadas');
 </script>
