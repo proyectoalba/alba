@@ -49,7 +49,7 @@ if(!isset($vista)){
     </style>
 
     <?php if($vista == "imprimir") :?>
-        <link rel="stylesheet" type="text/css" href="/~josx/alba/css/impresion.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/css/impresion.css" />
     <? endif;?>
     <?php if (!$sf_user->isAuthenticated()):?>
         <link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/css/login.css">
