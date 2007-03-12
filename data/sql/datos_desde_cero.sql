@@ -193,9 +193,6 @@ INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`,
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (57, 'Definir horario clases', 'horarioescolar', '', 47, 0, '');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (58, 'Constancia Alumno Regular', 'informes/constanciaAlumnoRegularFormulario?vista=imprimir', 'informes', 9, 0, '_blank');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (60, 'Constancia Egreso 7mo', 'informes/certificadoPrimariaFormulario?vista=imprimir', 'informes', 9, 0, '_blank');
-INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (61, '-', '', '', 9, 10, '');
-INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (63, 'Matr&iacute;cula Inicial?', '', '', 9, 100, '');
-INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (64, 'Matr&iacute;cula Final?', '', '', 9, 100, '');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (65, 'Ayuda', '#', '', 1, 80, '');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (67, 'Indice...', 'ayuda/', '', 65, 0, '');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (68, 'Cr&eacute;ditos', 'creditos/', '', 65, 0, '');

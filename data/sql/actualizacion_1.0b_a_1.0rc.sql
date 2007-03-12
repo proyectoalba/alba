@@ -46,7 +46,7 @@ INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`,
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (29, '-', '#', '', 10, 50, '');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (30, 'Salir', 'seguridad/logout', '', 1, 90, '');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (31, 'Definir Escala de notas', 'escalanota', 'escalanota', 84, 30, '');
-INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (32, 'Definir Categor&iacute;­as del Bolet&iacute;acute;n de Concepto', 'concepto', 'concepto', 84, 50, '');
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (32, 'Definir Categor&iacute;as del Bolet&iacute;n de Concepto', 'concepto', 'concepto', 84, 50, '');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (33, 'Buscar Alumno para...', 'legajopedagogico', 'legajopedagogico', 4, 20, '');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (34, 'Tipos de entrada al legajo pedag&oacute;gico', 'legajocategoria', 'legajocategoria', 84, 40, '');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (35, 'Ingresar Nuevo', 'alumno/create', 'alumno', 4, 0, '');
@@ -72,9 +72,6 @@ INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`,
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (57, 'Definir horario clases', 'horarioescolar', '', 47, 0, '');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (58, 'Constancia Alumno Regular', 'informes/constanciaAlumnoRegularFormulario?vista=imprimir', 'informes', 9, 0, '_blank');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (60, 'Constancia Egreso 7mo', 'informes/certificadoPrimariaFormulario?vista=imprimir', 'informes', 9, 0, '_blank');
-INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (61, '-', '', '', 9, 10, '');
-INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (63, 'Matr&iacute;cula Inicial?', '', '', 9, 100, '');
-INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (64, 'Matr&iacute;cula Final?', '', '', 9, 100, '');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (65, 'Ayuda', '#', '', 1, 80, '');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (67, 'Indice...', 'ayuda/', '', 65, 0, '');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (68, 'Cr&eacute;ditos', 'creditos/', '', 65, 0, '');
@@ -99,7 +96,7 @@ INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`,
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (91, 'Boletines', 'informes/boletinFormulario', 'informes', 9, 0, '_blank');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (92, 'Certificado de Estudios', 'informes/certificadoEstudiosBusquedaFormulario', 'informes', '9', '0', '_blank');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (93, 'Solicitud de Legajo', 'informes/solicitudLegajoBusquedaFormulario', 'informes', '9', '0', '_blank');
-INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (94, 'Definir Períodos', '#', 'ciclolectivo', 86, 10, '');
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (94, 'Definir Per&iacute;odos', '#', 'ciclolectivo', 86, 10, '');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (95, 'Ir a Ciclo Lectivo Actual', 'ciclolectivo/agregarTurnosYPeriodos', 'ciclolectivo', 7, 0, '');
 
 
