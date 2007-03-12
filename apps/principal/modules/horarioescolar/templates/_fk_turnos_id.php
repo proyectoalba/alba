@@ -1,4 +1,4 @@
-<?
+<?php
     $aTurnos = array();
     $c = new Criteria();
     $c->add(TurnosPeer::FK_CICLOLECTIVO_ID,$sf_user->getAttribute('fk_ciclolectivo_id'));

@@ -1,1 +1,1 @@
-<? echo $horarioescolar->getEstablecimiento()->getNombre()?>
+<?php echo $horarioescolar->getEstablecimiento()->getNombre()?>
