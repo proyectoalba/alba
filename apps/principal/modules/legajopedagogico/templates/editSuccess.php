@@ -96,10 +96,20 @@ if(method_exists($legajopedagogico->getTexto(),'getContents')) {
 </div>
 
 
-        <div class="form-row">
-        <?php echo label_for('categoria', __('Categoria:')) ?>
+<div class="form-row">
+        <?php echo label_for('categoria', __('Categoria:'), 'class="required" ') ?>
+        
+     <div class="content<?php if ($sf_request->hasError('legajopedagogico{fk_legajocategoria_id}')): ?> form-error<?php endif; ?>">
+    <?php if ($sf_request->hasError('legajopedagogico{fk_legajocategoria_id}')): ?>
+        <?php echo form_error('legajopedagogico{fk_legajocategoria_id}', array('class' => 'form-error-msg')) ?>
+    <?php endif; ?>
+
         <?php echo select_tag('legajopedagogico[fk_legajocategoria_id]', options_for_select($optionsCategoriaLegajo, $legajo_categoria_id)) ?>
-        </div>
+   </div>
+        
+        
+
+</div>
 
         <div class="form-row">
         <?php echo label_for('adjunto', __('Agregar un nuevo adjunto:')) ?>

@@ -32,6 +32,7 @@ names:
 
     legajopedagogico{fk_legajocategoria_id}:
         required: Yes
+        validators: validarNumero
         required_msg: El campo categoria es obligatorio
 
     file:
@@ -60,9 +61,9 @@ caracteresMaximos128:
 validarNumero:
     class: sfNumberValidator
     param:
-        nan_error: Por favor ingrese un valor n&uacute;merico       
+        nan_error: Por favor ingrese un valor n&uacute;merico
         min: 1
-        min_error: El n&uacute;mero debe mayor a 0
+        min_error: Debe ingresar la categoria
     
 validarFecha:
     class:           albaDateValidator
