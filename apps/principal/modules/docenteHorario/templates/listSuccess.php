@@ -1,29 +1,20 @@
 <?php use_helper('DateForm') ?>
-
-    
     <script>     
      function linkTo() {
         var obj = document.getElementById('idDocente');
         location.href = "<?php echo url_for('docenteHorario/list', false);?>/idDocente/"+obj.options[obj.selectedIndex].value;
      }
 	</script>		
-
-
-<? 
+<?php 
 use_helper('Misc');
 echo form_tag('docenteHorario/grabarDocenteHorario', 'onSubmit="selectItem()"'); 
 ?>
-
-
-
-<div id="content">
+<div id="sf_admin_container">
 <br> 
 <h1>Docente  <?php echo select_tag('idDocente', options_for_select($optionsDocente, $sf_params->get('idDocente')), 'onChange=linkTo()'); ?></h1>
 <div id="sf_admin_header"></div>
 <br>
-<div id="sf_admin_content">
-
-
+<div id="sf_admin_container">
 <h2>Horarios Tentativos</h2>
 <table cellspacing="0" class="sf_admin_list">
   <thead>
@@ -36,16 +27,15 @@ echo form_tag('docenteHorario/grabarDocenteHorario', 'onSubmit="selectItem()"');
   </tr>
   </thead>
   <tbody>
-<?
+<?php
     $i = 0;
     foreach($aHorario as $horario){
 ?>
   <tr class="sf_admin_row_0">
-    <td><?echo select_tag("horario[$i][dia]", options_for_select(diasDeLaSemana(), $horario->getDia() ) );?></td>
-    <td><?echo select_tag("horario[$i][fk_repeticion_id]", options_for_select($aRepeticion ,$horario->getFkRepeticionId()  ) );?></td>
-    <td><?echo select_time_tag("horario[$i][hora_inicio]", $horario->getHoraInicio(), array('include_second' => false, '12hour_time' => true));?></td>
-    <td><?echo select_time_tag("horario[$i][hora_fin]", $horario->getHoraFin(), array('include_second' => false, '12hour_time' => true));?></td>
-    
+    <td><?php echo select_tag("horario[$i][dia]", options_for_select(diasDeLaSemana(), $horario->getDia() ) );?></td>
+    <td><?php echo select_tag("horario[$i][fk_repeticion_id]", options_for_select($aRepeticion ,$horario->getFkRepeticionId()  ) );?></td>
+    <td><?php echo select_time_tag("horario[$i][hora_inicio]", $horario->getHoraInicio(), array('include_second' => false, '12hour_time' => true));?></td>
+    <td><?php echo select_time_tag("horario[$i][hora_fin]", $horario->getHoraFin(), array('include_second' => false, '12hour_time' => true));?></td>    
     <?php echo input_hidden_tag("horario[$i][id]", $horario->getId()); ?>
     <td>
     <ul class="sf_admin_td_actions">
@@ -53,9 +43,7 @@ echo form_tag('docenteHorario/grabarDocenteHorario', 'onSubmit="selectItem()"');
     </ul>
     </td>
   </tr>
-  <?$i++; }?>
-
-
+  <?php $i++; }?>
   <tr class="sf_admin_row_0">
     <td><b>NUEVO</b></td>
     <td></td>
@@ -63,19 +51,14 @@ echo form_tag('docenteHorario/grabarDocenteHorario', 'onSubmit="selectItem()"');
     <td></td>
     <td></td>
   </tr>
-
-
   <tr class="sf_admin_row_0">
-    <td><?echo select_tag("horario[$i][dia]", options_for_select(diasDeLaSemana()));?></td>
-    <td><?echo select_tag("horario[$i][fk_repeticion_id]", options_for_select($aRepeticion) );?></td>
-    <td><?echo select_time_tag("horario[$i][hora_inicio]", array(), array('include_second' => false, '12hour_time' => true));?></td>
-    <td><?echo select_time_tag("horario[$i][hora_fin]", array(), array('include_second' => false, '12hour_time' => true));?></td>
+    <td><?php echo select_tag("horario[$i][dia]", options_for_select(diasDeLaSemana()));?></td>
+    <td><?php echo select_tag("horario[$i][fk_repeticion_id]", options_for_select($aRepeticion) );?></td>
+    <td><?php echo select_time_tag("horario[$i][hora_inicio]", array(), array('include_second' => false, '12hour_time' => true));?></td>
+    <td><?php echo select_time_tag("horario[$i][hora_fin]", array(), array('include_second' => false, '12hour_time' => true));?></td>
     <td></td>
   </tr>
-
-
   </tbody>
-
     <tfoot>
         <tr>
             <th colspan="9">
@@ -83,22 +66,14 @@ echo form_tag('docenteHorario/grabarDocenteHorario', 'onSubmit="selectItem()"');
         </tr>
     </tfoot>  
 </table>
-
         <div>
           <ul class="sf_admin_actions">
             <li>
-            <?  echo submit_tag('submit', 'class=default value=Grabar"'); ?>        
+            <?php echo submit_tag('submit', 'class=sf_admin_action_save value=Grabar"')?>
             <li>
             <li>
-             <?php echo button_to('Listado de Docentes','docente/list')?>   
+             <?php echo button_to('Listado de Docentes','docente/list', array ('class' => 'sf_admin_action_list'))?>
             </li>
         </ul>
       </div>
-
-
-
-
-
-
-   
 </form>
