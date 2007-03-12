@@ -151,7 +151,7 @@ bgcolor="#D6D6BA"
     $color = ($j%2==0)?"#F0F0E2":"#FFFFF9";
  ?>
   <tr> 
-    <td align="right" width="<?=$tableCellWidth?>" height="<?=$tableCellHeight?>" class="weekCalendarHours" ><?php =$aHours[$j]?>&nbsp;</td>
+    <td align="right" width="<?=$tableCellWidth?>" height="<?=$tableCellHeight?>" class="weekCalendarHours" ><?php echo $aHours[$j]?>&nbsp;</td>
     <?php for($i=0; $i < count($aDay);$i++) { ?>
     <td id="relativePos" class="weekCalendarContent"></td>
     <?php } ?>
