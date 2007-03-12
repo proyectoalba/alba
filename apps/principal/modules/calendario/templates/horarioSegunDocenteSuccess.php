@@ -37,15 +37,15 @@ table.horario td.evento {
   <thead>
   <tr>
     <th colspan="2">Horas/Días</th>
-<? foreach($aDia as $dia) {?>
-    <th><?=$dia?></th>
-<? } ?>
+<?php foreach($aDia as $dia) {?>
+    <th><?php echo $dia?></th>
+<?php } ?>
 
   </tr>
   </thead>
 
   <tbody>
-<? 
+<?php 
     $aColor= colorTurnos();
     $aColorUsado = array();
     $i=-1;
@@ -54,14 +54,14 @@ table.horario td.evento {
         if($ultimo != $horas->getFkTurnosId()) {
             $i++;
             $aColorUsado[] = $aColor[$i];
-            $aTurnos[] = $horas->getTurnos()->getDescripcion();
+            $aTurnos[] = ($horas->getTurnos())?$horas->getTurnos()->getDescripcion():"";
         }
 ?>
     <tr>
-        <td  style="background-color: <?=$aColor[$i]?>" width="3%"><?=$horas->getHoraInicio()." ".$horas->getHoraFin()?></td>
-        <td  style="background-color: <?=$aColor[$i]?>" width="8%"><?=$horas->getNombre()?></td>
+        <td  style="background-color: <?php echo $aColor[$i]?>" width="3%"><?=$horas->getHoraInicio()." ".$horas->getHoraFin()?></td>
+        <td  style="background-color: <?php echo $aColor[$i]?>" width="8%"><?=$horas->getNombre()?></td>
 
-        <? foreach($aDia as $idx_dia => $dia) { 
+        <?php foreach($aDia as $idx_dia => $dia) { 
                 switch($horas->getDia()) {
                     case "8":  case "$idx_dia": $color = "activo"; break;
                     default: $color = "inactivo";
@@ -73,9 +73,9 @@ table.horario td.evento {
                 }
 ?>
         <td  class="<?=$color?>"><?=$actividad?></td>
-        <? } ?>
+        <?php } ?>
     </tr>   
-<?      $ultimo = $horas->getFkTurnosId();
+<?php      $ultimo = $horas->getFkTurnosId();
     } 
 ?>
 
@@ -87,9 +87,9 @@ table.horario td.evento {
 Referencia de Turnos:
 <table cellspacing="0" class="horario">
   <tr>
-    <? for($i=0, $max=count($aColorUsado);$i<$max;$i++) { ?>
-        <td width="10%" style="background-color: <?=$aColorUsado[$i]?>"><?=$aTurnos[$i]?></td>
-    <? }  ?>
+    <?php for($i=0, $max=count($aColorUsado);$i<$max;$i++) { ?>
+        <td width="10%" style="background-color: <?=$aColorUsado[$i]?>"><?php echo $aTurnos[$i]?></td>
+    <?php }  ?>
   </tr>
 </table>
 

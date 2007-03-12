@@ -18,9 +18,9 @@
 </form>
 
 
-<? if (count($aDocente) > 0) {
+<?php if (count($aDocente) > 0) {
     if ($txt) { ?>
-    Ustde busco -<?=$txt?>-
+    Ustde busco -<?php echo $txt?>-
     <? } ?>
 <h1>Docentes</h1>
 <table cellspacing="0" class="sf_admin_list">
@@ -32,25 +32,25 @@
   </thead>
 
   <tbody>
-<?
+<?php
     $i = 0;
     foreach($aDocente as $docente){
 ?>
   <tr class="sf_admin_row_0">
-    <td><?echo $docente->getApellido()." ".$docente->getNombre(); ?></td>
+    <td><?php echo $docente->getApellido()." ".$docente->getNombre(); ?></td>
     <td>
     <ul class="sf_admin_td_actions">
     <li><?php echo link_to(image_tag(sfConfig::get('sf_admin_web_dir').'/images/edit_icon.png', array('alt' => __('verHorario'), 'title' => __('verHorario'))), 'calendario?action=horarioSegunDocente&id='.$docente->getId()); ?></li>
     </ul>
     </td>
   </tr>
-  <? } ?>
+  <?php } ?>
   </tbody>
 </table>
 </div>
-<? } else {
+<?php  } else {
     if ($txt) { ?>
-        Su busqueda por -<?=$txt?>- no ha encontrado docentes
-    <? } 
+        Su busqueda por -<?php echo $txt?>- no ha encontrado docentes
+    <?php } 
 } 
 ?>

@@ -31,13 +31,13 @@ table.horario td.evento {
 
 </style>
 
-<h1>Horario para la Divsión: <?=$division->getAnio()->getDescripcion()." ".$division->getDescripcion()?></h1>
+<h1>Horario para la Divsión: <?php echo $division->getAnio()->getDescripcion()." ".$division->getDescripcion()?></h1>
 
 <table cellspacing="0" class="horario">
   <thead>
   <tr>
     <th colspan="2">Horas/Días</th>
-<? foreach($aDia as $dia) {?>
+<?php foreach($aDia as $dia) {?>
     <th><?=$dia?></th>
 <? } ?>
 
@@ -45,7 +45,7 @@ table.horario td.evento {
   </thead>
 
   <tbody>
-<? 
+<?php 
     $aColor= colorTurnos();
     $aColorUsado = array();
     $i=-1;
@@ -54,12 +54,12 @@ table.horario td.evento {
         if($ultimo != $horas->getFkTurnosId()) {
             $i++;
             $aColorUsado[] = $aColor[$i];
-            $aTurnos[] = $horas->getTurnos()->getDescripcion();
+            $aTurnos[] = ($horas->getTurnos())?$horas->getTurnos()->getDescripcion():"";
         }
 ?>
     <tr>
-        <td  style="background-color: <?=$aColor[$i]?>" width="3%"><?=$horas->getHoraInicio()." ".$horas->getHoraFin()?></td>
-        <td  style="background-color: <?=$aColor[$i]?>" width="8%"><?=$horas->getNombre()?></td>
+        <td  style="background-color: <?php echo $aColor[$i]?>" width="3%"><?=$horas->getHoraInicio()." ".$horas->getHoraFin()?></td>
+        <td  style="background-color: <?php echo $aColor[$i]?>" width="8%"><?=$horas->getNombre()?></td>
 
         <? foreach($aDia as $idx_dia => $dia) { 
                 switch($horas->getDia()) {
@@ -72,7 +72,7 @@ table.horario td.evento {
                     $actividad = $aEvento[$idx][$idx_dia];  
                 }
 ?>
-        <td  class="<?=$color?>"><?=$actividad?></td>
+        <td  class="<?php echo $color?>"><?=$actividad?></td>
         <? } ?>
     </tr>   
 <?      $ultimo = $horas->getFkTurnosId();
