@@ -11,7 +11,9 @@
 
 <div id="sf_admin_container">
 
-<? echo form_tag('ciclolectivo/grabarTurnosYPeriodos', 'onSubmit="selectItem()"'); ?>
+<?php if(count($optionsCiclolectivo) > 0) { ?>
+
+<?php echo form_tag('ciclolectivo/grabarTurnosYPeriodos', 'onSubmit="selectItem()"'); ?>
 
 <div id="content">
 <br> 
@@ -62,7 +64,7 @@
 <? //echo image_tag(sfConfig::get('sf_admin_web_dir').'/images/date.png', array("id" => "trigger_ciclolectivo[fecha_inicio]", "style" => "cursor: pointer", "align" => "absmiddle", "alt" => "date")); 
  ?>
     <td> <?php echo input_date_tag('ciclolectivo[fecha_fin]', $ciclolectivo->getFechaFin() , 'rich=true calendar_button_img=/sf/sf_admin/images/date.png control_name=ciclolectivo[fecha_fin]'); ?></td>
-    <td><?echo $ciclolectivo->getEstablecimiento()->getNombre();?></td>
+    <td><?php echo ($ciclolectivo->getEstablecimiento())?$ciclolectivo->getEstablecimiento()->getNombre():"";?></td>
     <?php echo input_hidden_tag('ciclolectivo[id]', $sf_params->get('id')) ?>
   </tr>
   </tbody>
@@ -188,4 +190,7 @@ foreach($aTurnos as $turno){
       </div>
    
 </form>
+
+<?php } ?>
+
 </div>

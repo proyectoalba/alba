@@ -40,10 +40,14 @@ class ciclolectivoActions extends autociclolectivoActions
     public function executeAgregarTurnosYPeriodos() {
 
         $ciclolectivo_id = "";
+        $aTurnos = array();
+        $aPeriodo = array();
+        $ciclolectivo = "";
 
         if($this->getRequestParameter('id')) {
             $ciclolectivo_id = $this->getRequestParameter('id');
         } else {
+
             $ciclolectivo_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');
         }
 
@@ -61,15 +65,23 @@ class ciclolectivoActions extends autociclolectivoActions
         
         $this->optionsCiclolectivo = $optionsCiclolectivo;
 
-        $this->ciclolectivo = CiclolectivoPeer::retrieveByPk($ciclolectivo_id);
+        if($ciclolectivo_id) {        
+            $ciclolectivo = CiclolectivoPeer::retrieveByPk($ciclolectivo_id);
         
-        $c = new Criteria();
-        $c->add(TurnosPeer::FK_CICLOLECTIVO_ID, $ciclolectivo_id);
-        $this->aTurnos  = TurnosPeer::doSelect($c);
+            $c = new Criteria();
+            $c->add(TurnosPeer::FK_CICLOLECTIVO_ID, $ciclolectivo_id);
+            $aTurnos  = TurnosPeer::doSelect($c);
         
-        $c = new Criteria();
-        $c->add(PeriodoPeer::FK_CICLOLECTIVO_ID, $ciclolectivo_id);
-        $this->aPeriodo  = PeriodoPeer::doSelect($c);
+            $c = new Criteria();
+            $c->add(PeriodoPeer::FK_CICLOLECTIVO_ID, $ciclolectivo_id);
+            $aPeriodo  = PeriodoPeer::doSelect($c);
+        } else {
+            $ciclolectivo  = new Ciclolectivo();
+        }
+
+        $this->aPeriodo = $aPeriodo;
+        $this->aTurnos = $aTurnos;
+        $this->ciclolectivo = $ciclolectivo;
     
     }
 
