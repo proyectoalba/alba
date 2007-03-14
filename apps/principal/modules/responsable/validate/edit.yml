@@ -106,7 +106,7 @@ validarNumero:
 
 validaFecha:
     class:  sfStringValidator
-    params: 
+    param: 
         max: 10
         min: 10
         min_error: La cantidad de caracteres permitida es de 10
@@ -114,7 +114,7 @@ validaFecha:
     
 validaNroDocumento:
     class:  sfStringValidator
-    params: 
+    param: 
         max: 16
         max_error: La cantidad m&acute;xima de caracteres permitida es de 10      
         min: 6

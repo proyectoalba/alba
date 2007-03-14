@@ -35,7 +35,7 @@ caracteresMaximos255:
 
 validarFecha:
     class: albaDateValidator
-    params:
+    param:
         date_error: El campo debe ser una fecha
         
         

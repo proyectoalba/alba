@@ -111,12 +111,12 @@ validarNumero:
 
 validaFecha:
     class:  albaDateValidator
-    params: 
+    param: 
         date_error: El campo debe ser una fecha
     
 validaNroDocumento:
     class:  sfStringValidator
-    params: 
+    param: 
         max: 16
         max_error: La cantidad m&acute;xima de caracteres permitida es de 10      
         min: 6
