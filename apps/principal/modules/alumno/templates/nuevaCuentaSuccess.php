@@ -8,7 +8,7 @@
 
 <div class="transON" onmouseover="this.className='transOFF'" onmouseout="this.className='transON'">
 -->
-<div style="background-color: silver;border:1px solid black; position:relative;bottom:150px; left:360px; width:40%" >
+<div style="background-color: silver;border:1px solid black; position:relative;bottom:150px; left:360px; width:50%" >
 <h2>Nueva Cuenta</h2>
 <?php echo form_tag('alumno/grabarCuenta', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
 
@@ -94,7 +94,7 @@
                 <?php endif; ?>
               
 <div id="item_provincia">
-  <?php echo object_select_tag($alumno, 'getFkProvinciaId', array (
+  <?php echo object_select_tag($cuenta, 'getFkProvinciaId', array (
   'related_class' => 'Provincia',
   'peer_method' => 'getEnOrden',
   'control_name' => 'cuenta[fk_provincia_id]',

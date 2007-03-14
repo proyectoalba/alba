@@ -21,11 +21,12 @@
 
 <h1><?php echo __(' ',array()) ?></h1>
 <div id="sf_admin_container">
+
     <div id="sf_admin_header">
         <?php include_partial('alumno/edit_header', array('alumno' => $alumno)) ?>
     </div>
 
-<div id="sf_admin_content">
+
     <?php if ($sf_request->hasErrors()): ?>
     <div class="form-errors">
         <h2><?php echo __('There are some errors that prevent the form to validate') ?></h2>
