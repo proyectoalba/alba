@@ -11,6 +11,4 @@
         </div>
         
     </form>
-<?php else: ?>
-    <div>Todav&iacute;a no ha creado un Ciclo Lectivo?. Haga click <?php echo link_to('aqu&iacute;','ciclolectivo/list')?>.</div>
 <?php endif;?>
