@@ -15,6 +15,6 @@
   'class' => 'sf_admin_action_list',
 )) ?></li>
     <li><?php echo button_to(__('Ir a Cuenta'), 'cuenta/verCompleta?id='.$responsable->getFkCuentaId(), array (
-  'style' => 'background: #ffc url(next.png) no-repeat 3px 2px',
+  'class' => 'sf_admin_action_ir_a',
 )) ?></li>
 </ul>
