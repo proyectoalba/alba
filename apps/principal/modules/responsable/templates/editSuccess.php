@@ -1,5 +1,5 @@
 <?php
-    if($datosCuenta) {
+    if(isset($datosCuenta)) {
 ?>
 <script type="text/javascript">
 function completaDatos() 
@@ -128,7 +128,7 @@ document.getElementsByName("responsable[telefono]")[0].value = datosCuenta[4]
 <h2><?php echo __('Donde vive') ?></h2>
 <br>
 <?php
-    if($datosCuenta) {
+    if(isset($datosCuenta)) {
         echo button_to("Cargar datos de la cuenta", "#", array("class" => "sf_admin_action_sava", "onClick" => "javascript:completaDatos()"));
    }
 ?>
