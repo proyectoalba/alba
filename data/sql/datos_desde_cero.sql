@@ -17,10 +17,6 @@ INSERT INTO niveltipo (id, nombre, descripcion) VALUES (7, 'Otros', 'Otros');
 -- 
 
 INSERT INTO pais (id, nombre_largo, nombre_corto, orden) VALUES (1, 'Argentina', 'ARG', 100);
-INSERT INTO pais (id, nombre_largo, nombre_corto, orden) VALUES (3, 'United States of America', 'USA', 200);
-INSERT INTO pais (id, nombre_largo, nombre_corto, orden) VALUES (4, 'Brasil', 'BRA', 300);
-INSERT INTO pais (id, nombre_largo, nombre_corto, orden) VALUES (5, 'España', 'ESP', 400);
-INSERT INTO pais (id, nombre_largo, nombre_corto, orden) VALUES (6, 'Canadá', 'CAN', 500);
 
 -- 
 -- Volcar la base de datos para la tabla 'provincia'
