@@ -264,7 +264,7 @@ class calendarioActions extends sfActions
                 $this->time_interval = 15;
             }
 
-
+           
             $this->aHour = array(strtotime($turno->getHoraInicio()), strtotime($turno->getHoraFin()));
 
 
@@ -651,4 +651,11 @@ new Draggable('".$var."_1', {revert:1})
         return $turnos;
     }
 
+
+    public function handleErrorIndex() {
+        $this->redirect('calendario');
+    }
+
 }
+
+?>
