@@ -1,2 +1,3 @@
 # Sqlfile -> Database map
 schema.sql=alba
+lib.model.schema.sql=alba

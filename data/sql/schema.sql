@@ -1101,8 +1101,6 @@ CREATE TABLE `rel_division_actividad_docente`
 	`fk_division_id` INTEGER(11) default 0,
 	`fk_actividad_id` INTEGER(11) default 0 NOT NULL,
 	`fk_docente_id` INTEGER(11) default 0,
-	`fk_tipodocente_id` INTEGER(11) default 0,
-	`fk_cargobaja_id` INTEGER(11) default 0,
 	`fk_repeticion_id` INTEGER(11) default 0,
 	`fecha_inicio` DATETIME  NOT NULL,
 	`fecha_fin` DATETIME  NOT NULL,
@@ -1113,24 +1111,16 @@ CREATE TABLE `rel_division_actividad_docente`
 	CONSTRAINT `rel_division_actividad_docente_FK_1`
 		FOREIGN KEY (`fk_division_id`)
 		REFERENCES `division` (`id`),
-	INDEX `rel_division_actividad_docente_FI_2` (`fk_tipodocente_id`),
+	INDEX `rel_division_actividad_docente_FI_2` (`fk_docente_id`),
 	CONSTRAINT `rel_division_actividad_docente_FK_2`
-		FOREIGN KEY (`fk_tipodocente_id`)
-		REFERENCES `tipodocente` (`id`),
-	INDEX `rel_division_actividad_docente_FI_3` (`fk_cargobaja_id`),
-	CONSTRAINT `rel_division_actividad_docente_FK_3`
-		FOREIGN KEY (`fk_cargobaja_id`)
-		REFERENCES `cargobaja` (`id`),
-	INDEX `rel_division_actividad_docente_FI_4` (`fk_docente_id`),
-	CONSTRAINT `rel_division_actividad_docente_FK_4`
 		FOREIGN KEY (`fk_docente_id`)
 		REFERENCES `docente` (`id`),
-	INDEX `rel_division_actividad_docente_FI_5` (`fk_actividad_id`),
-	CONSTRAINT `rel_division_actividad_docente_FK_5`
+	INDEX `rel_division_actividad_docente_FI_3` (`fk_actividad_id`),
+	CONSTRAINT `rel_division_actividad_docente_FK_3`
 		FOREIGN KEY (`fk_actividad_id`)
 		REFERENCES `actividad` (`id`),
-	INDEX `rel_division_actividad_docente_FI_6` (`fk_repeticion_id`),
-	CONSTRAINT `rel_division_actividad_docente_FK_6`
+	INDEX `rel_division_actividad_docente_FI_4` (`fk_repeticion_id`),
+	CONSTRAINT `rel_division_actividad_docente_FK_4`
 		FOREIGN KEY (`fk_repeticion_id`)
 		REFERENCES `repeticion` (`id`)
 )Type=InnoDB;

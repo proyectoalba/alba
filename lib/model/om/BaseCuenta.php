@@ -709,7 +709,6 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 			
 		}
 		return $this->aTipoiva;
-        
 	}
 
 	

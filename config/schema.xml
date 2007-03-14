@@ -564,8 +564,8 @@
         <column name="fk_division_id" type="integer" size="11" required="false" default="0"/>
         <column name="fk_actividad_id" type="integer" size="11" required="true" default="0"/>
         <column name="fk_docente_id" type="integer" size="11" required="false" default="0"/>
-        <column name="fk_tipodocente_id" type="integer" size="11" required="false" default="0"/>
-        <column name="fk_cargobaja_id" type="integer" size="11" required="false" default="0"/>
+        <!-- column name="fk_tipodocente_id" type="integer" size="11" required="false" default="0"/ -->
+        <!-- column name="fk_cargobaja_id" type="integer" size="11" required="false" default="0"/ -->
         <column name="fk_repeticion_id" type="integer" size="11" required="false" default="0"/>
         <column name="fecha_inicio" type="timestamp" required="true"/>
         <column name="fecha_fin" type="timestamp" required="true"/>
@@ -574,12 +574,14 @@
         <foreign-key foreignTable="division">
             <reference local="fk_division_id" foreign="id"/>       
         </foreign-key>
+        <!--
         <foreign-key foreignTable="tipodocente">
           <reference local="fk_tipodocente_id" foreign="id"/>       
         </foreign-key>
         <foreign-key foreignTable="cargobaja">
           <reference local="fk_cargobaja_id" foreign="id"/>       
         </foreign-key>
+        -->
         <foreign-key foreignTable="docente">
           <reference local="fk_docente_id" foreign="id"/>       
         </foreign-key>

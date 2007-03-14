@@ -25,14 +25,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 
 
 	
-	protected $fk_tipodocente_id = 0;
-
-
-	
-	protected $fk_cargobaja_id = 0;
-
-
-	
 	protected $fk_repeticion_id = 0;
 
 
@@ -53,12 +45,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 
 	
 	protected $aDivision;
-
-	
-	protected $aTipodocente;
-
-	
-	protected $aCargobaja;
 
 	
 	protected $aDocente;
@@ -101,20 +87,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 	{
 
 		return $this->fk_docente_id;
-	}
-
-	
-	public function getFkTipodocenteId()
-	{
-
-		return $this->fk_tipodocente_id;
-	}
-
-	
-	public function getFkCargobajaId()
-	{
-
-		return $this->fk_cargobaja_id;
 	}
 
 	
@@ -265,34 +237,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 
 	} 
 	
-	public function setFkTipodocenteId($v)
-	{
-
-		if ($this->fk_tipodocente_id !== $v || $v === 0) {
-			$this->fk_tipodocente_id = $v;
-			$this->modifiedColumns[] = RelDivisionActividadDocentePeer::FK_TIPODOCENTE_ID;
-		}
-
-		if ($this->aTipodocente !== null && $this->aTipodocente->getId() !== $v) {
-			$this->aTipodocente = null;
-		}
-
-	} 
-	
-	public function setFkCargobajaId($v)
-	{
-
-		if ($this->fk_cargobaja_id !== $v || $v === 0) {
-			$this->fk_cargobaja_id = $v;
-			$this->modifiedColumns[] = RelDivisionActividadDocentePeer::FK_CARGOBAJA_ID;
-		}
-
-		if ($this->aCargobaja !== null && $this->aCargobaja->getId() !== $v) {
-			$this->aCargobaja = null;
-		}
-
-	} 
-	
 	public function setFkRepeticionId($v)
 	{
 
@@ -387,25 +331,21 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 
 			$this->fk_docente_id = $rs->getInt($startcol + 3);
 
-			$this->fk_tipodocente_id = $rs->getInt($startcol + 4);
+			$this->fk_repeticion_id = $rs->getInt($startcol + 4);
 
-			$this->fk_cargobaja_id = $rs->getInt($startcol + 5);
+			$this->fecha_inicio = $rs->getTimestamp($startcol + 5, null);
 
-			$this->fk_repeticion_id = $rs->getInt($startcol + 6);
+			$this->fecha_fin = $rs->getTimestamp($startcol + 6, null);
 
-			$this->fecha_inicio = $rs->getTimestamp($startcol + 7, null);
+			$this->hora_inicio = $rs->getTime($startcol + 7, null);
 
-			$this->fecha_fin = $rs->getTimestamp($startcol + 8, null);
-
-			$this->hora_inicio = $rs->getTime($startcol + 9, null);
-
-			$this->hora_fin = $rs->getTime($startcol + 10, null);
+			$this->hora_fin = $rs->getTime($startcol + 8, null);
 
 			$this->resetModified();
 
 			$this->setNew(false);
 
-						return $startcol + 11; 
+						return $startcol + 9; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating RelDivisionActividadDocente object", $e);
 		}
@@ -468,20 +408,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 					$affectedRows += $this->aDivision->save($con);
 				}
 				$this->setDivision($this->aDivision);
-			}
-
-			if ($this->aTipodocente !== null) {
-				if ($this->aTipodocente->isModified()) {
-					$affectedRows += $this->aTipodocente->save($con);
-				}
-				$this->setTipodocente($this->aTipodocente);
-			}
-
-			if ($this->aCargobaja !== null) {
-				if ($this->aCargobaja->isModified()) {
-					$affectedRows += $this->aCargobaja->save($con);
-				}
-				$this->setCargobaja($this->aCargobaja);
 			}
 
 			if ($this->aDocente !== null) {
@@ -560,18 +486,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 				}
 			}
 
-			if ($this->aTipodocente !== null) {
-				if (!$this->aTipodocente->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aTipodocente->getValidationFailures());
-				}
-			}
-
-			if ($this->aCargobaja !== null) {
-				if (!$this->aCargobaja->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aCargobaja->getValidationFailures());
-				}
-			}
-
 			if ($this->aDocente !== null) {
 				if (!$this->aDocente->validate($columns)) {
 					$failureMap = array_merge($failureMap, $this->aDocente->getValidationFailures());
@@ -627,24 +541,18 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 				return $this->getFkDocenteId();
 				break;
 			case 4:
-				return $this->getFkTipodocenteId();
-				break;
-			case 5:
-				return $this->getFkCargobajaId();
-				break;
-			case 6:
 				return $this->getFkRepeticionId();
 				break;
-			case 7:
+			case 5:
 				return $this->getFechaInicio();
 				break;
-			case 8:
+			case 6:
 				return $this->getFechaFin();
 				break;
-			case 9:
+			case 7:
 				return $this->getHoraInicio();
 				break;
-			case 10:
+			case 8:
 				return $this->getHoraFin();
 				break;
 			default:
@@ -661,13 +569,11 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 			$keys[1] => $this->getFkDivisionId(),
 			$keys[2] => $this->getFkActividadId(),
 			$keys[3] => $this->getFkDocenteId(),
-			$keys[4] => $this->getFkTipodocenteId(),
-			$keys[5] => $this->getFkCargobajaId(),
-			$keys[6] => $this->getFkRepeticionId(),
-			$keys[7] => $this->getFechaInicio(),
-			$keys[8] => $this->getFechaFin(),
-			$keys[9] => $this->getHoraInicio(),
-			$keys[10] => $this->getHoraFin(),
+			$keys[4] => $this->getFkRepeticionId(),
+			$keys[5] => $this->getFechaInicio(),
+			$keys[6] => $this->getFechaFin(),
+			$keys[7] => $this->getHoraInicio(),
+			$keys[8] => $this->getHoraFin(),
 		);
 		return $result;
 	}
@@ -696,24 +602,18 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 				$this->setFkDocenteId($value);
 				break;
 			case 4:
-				$this->setFkTipodocenteId($value);
-				break;
-			case 5:
-				$this->setFkCargobajaId($value);
-				break;
-			case 6:
 				$this->setFkRepeticionId($value);
 				break;
-			case 7:
+			case 5:
 				$this->setFechaInicio($value);
 				break;
-			case 8:
+			case 6:
 				$this->setFechaFin($value);
 				break;
-			case 9:
+			case 7:
 				$this->setHoraInicio($value);
 				break;
-			case 10:
+			case 8:
 				$this->setHoraFin($value);
 				break;
 		} 	}
@@ -727,13 +627,11 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 		if (array_key_exists($keys[1], $arr)) $this->setFkDivisionId($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setFkActividadId($arr[$keys[2]]);
 		if (array_key_exists($keys[3], $arr)) $this->setFkDocenteId($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setFkTipodocenteId($arr[$keys[4]]);
-		if (array_key_exists($keys[5], $arr)) $this->setFkCargobajaId($arr[$keys[5]]);
-		if (array_key_exists($keys[6], $arr)) $this->setFkRepeticionId($arr[$keys[6]]);
-		if (array_key_exists($keys[7], $arr)) $this->setFechaInicio($arr[$keys[7]]);
-		if (array_key_exists($keys[8], $arr)) $this->setFechaFin($arr[$keys[8]]);
-		if (array_key_exists($keys[9], $arr)) $this->setHoraInicio($arr[$keys[9]]);
-		if (array_key_exists($keys[10], $arr)) $this->setHoraFin($arr[$keys[10]]);
+		if (array_key_exists($keys[4], $arr)) $this->setFkRepeticionId($arr[$keys[4]]);
+		if (array_key_exists($keys[5], $arr)) $this->setFechaInicio($arr[$keys[5]]);
+		if (array_key_exists($keys[6], $arr)) $this->setFechaFin($arr[$keys[6]]);
+		if (array_key_exists($keys[7], $arr)) $this->setHoraInicio($arr[$keys[7]]);
+		if (array_key_exists($keys[8], $arr)) $this->setHoraFin($arr[$keys[8]]);
 	}
 
 	
@@ -745,8 +643,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 		if ($this->isColumnModified(RelDivisionActividadDocentePeer::FK_DIVISION_ID)) $criteria->add(RelDivisionActividadDocentePeer::FK_DIVISION_ID, $this->fk_division_id);
 		if ($this->isColumnModified(RelDivisionActividadDocentePeer::FK_ACTIVIDAD_ID)) $criteria->add(RelDivisionActividadDocentePeer::FK_ACTIVIDAD_ID, $this->fk_actividad_id);
 		if ($this->isColumnModified(RelDivisionActividadDocentePeer::FK_DOCENTE_ID)) $criteria->add(RelDivisionActividadDocentePeer::FK_DOCENTE_ID, $this->fk_docente_id);
-		if ($this->isColumnModified(RelDivisionActividadDocentePeer::FK_TIPODOCENTE_ID)) $criteria->add(RelDivisionActividadDocentePeer::FK_TIPODOCENTE_ID, $this->fk_tipodocente_id);
-		if ($this->isColumnModified(RelDivisionActividadDocentePeer::FK_CARGOBAJA_ID)) $criteria->add(RelDivisionActividadDocentePeer::FK_CARGOBAJA_ID, $this->fk_cargobaja_id);
 		if ($this->isColumnModified(RelDivisionActividadDocentePeer::FK_REPETICION_ID)) $criteria->add(RelDivisionActividadDocentePeer::FK_REPETICION_ID, $this->fk_repeticion_id);
 		if ($this->isColumnModified(RelDivisionActividadDocentePeer::FECHA_INICIO)) $criteria->add(RelDivisionActividadDocentePeer::FECHA_INICIO, $this->fecha_inicio);
 		if ($this->isColumnModified(RelDivisionActividadDocentePeer::FECHA_FIN)) $criteria->add(RelDivisionActividadDocentePeer::FECHA_FIN, $this->fecha_fin);
@@ -787,10 +683,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 		$copyObj->setFkActividadId($this->fk_actividad_id);
 
 		$copyObj->setFkDocenteId($this->fk_docente_id);
-
-		$copyObj->setFkTipodocenteId($this->fk_tipodocente_id);
-
-		$copyObj->setFkCargobajaId($this->fk_cargobaja_id);
 
 		$copyObj->setFkRepeticionId($this->fk_repeticion_id);
 
@@ -854,66 +746,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 			
 		}
 		return $this->aDivision;
-	}
-
-	
-	public function setTipodocente($v)
-	{
-
-
-		if ($v === null) {
-			$this->setFkTipodocenteId('0');
-		} else {
-			$this->setFkTipodocenteId($v->getId());
-		}
-
-
-		$this->aTipodocente = $v;
-	}
-
-
-	
-	public function getTipodocente($con = null)
-	{
-				include_once 'lib/model/om/BaseTipodocentePeer.php';
-
-		if ($this->aTipodocente === null && ($this->fk_tipodocente_id !== null)) {
-
-			$this->aTipodocente = TipodocentePeer::retrieveByPK($this->fk_tipodocente_id, $con);
-
-			
-		}
-		return $this->aTipodocente;
-	}
-
-	
-	public function setCargobaja($v)
-	{
-
-
-		if ($v === null) {
-			$this->setFkCargobajaId('0');
-		} else {
-			$this->setFkCargobajaId($v->getId());
-		}
-
-
-		$this->aCargobaja = $v;
-	}
-
-
-	
-	public function getCargobaja($con = null)
-	{
-				include_once 'lib/model/om/BaseCargobajaPeer.php';
-
-		if ($this->aCargobaja === null && ($this->fk_cargobaja_id !== null)) {
-
-			$this->aCargobaja = CargobajaPeer::retrieveByPK($this->fk_cargobaja_id, $con);
-
-			
-		}
-		return $this->aCargobaja;
 	}
 
 	
