@@ -17,7 +17,7 @@ require_once 'lib/model/om/BasePais.php';
 class Pais extends BasePais {
 
    public function __toString() {
-       return $this->getNombreCorto();
+       return $this->getNombreLargo();
    }
                
 
