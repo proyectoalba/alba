@@ -97,6 +97,15 @@ class locacionActions extends autolocacionActions
         $this->redirect( 'establecimiento?action=editLocacion&id='.$establecimiento_id);
     }
 
-}
 
+
+    public function executeCambiarPais() {
+        $this->pais_id = $this->getRequestParameter('pais_id');
+        $this->provincia_id = $this->getRequestParameter('provincia_id');
+        $c = new Criteria();
+        $c->add(ProvinciaPeer::FK_PAIS_ID, $this->pais_id);
+        $this->provincias = ProvinciaPeer::getEnOrden($c);
+    }
+                                              
+}
 ?>

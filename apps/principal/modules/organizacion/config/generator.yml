@@ -13,6 +13,7 @@ generator:
             ciudad: { name: Ciudad, params: size=64 }
             codigo_postal: { name: CP, params: size=20 }
             fk_provincia_id: { name: Provincia }
+            pais_id: { name: Pa&iacute;s }
             fk_tipoiva_id: { name: Tipo Iva } 
             telefono: { name: Tel&eacute;fono, params: size=20 }
         list:
@@ -24,6 +25,7 @@ generator:
                 
         edit:
             title: Editar Organizaci&oacute;n
+            display: [ nombre, descripcion, razon_social, cuit, direccion, ciudad, codigo_postal, _fk_provincia_id, _pais_id, fk_tipoiva_id , telefono]
             actions:
                 _save: -
                 _list: -

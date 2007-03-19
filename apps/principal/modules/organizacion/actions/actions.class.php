@@ -36,6 +36,20 @@ class organizacionActions extends autoorganizacionActions
     public function preExecute() {
         $this->vista = $this->getRequestParameter('vista');
     }
+
+
+   public function executeCambiarPais() {
+        $this->pais_id = $this->getRequestParameter('pais_id');
+        $this->provincia_id = $this->getRequestParameter('provincia_id');
+        $c = new Criteria();
+        $c->add(ProvinciaPeer::FK_PAIS_ID, $this->pais_id);
+        $this->provincias = ProvinciaPeer::getEnOrden($c);
+    }
+                                               
+                                               
+
+
+
 }
 
 ?>

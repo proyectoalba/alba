@@ -9,6 +9,7 @@ methods:
     - "locacion{encargado}"
     - "locacion{encargado_telefono}"
     - "locacion{codigo_postal}"
+    - "locacion{fk_provincia_id}"
 
     
 fillin:
@@ -54,6 +55,12 @@ names:
         required:     No
         validators: caracteresMaximos20
         
+    locacion{fk_provincia_id}:
+        required:     Yes
+        required_msg: El campo provincia es obligatorio
+        validators: validar_fk_provincia_id
+        
+        
 caracteresMaximos20:
     class:  sfStringValidator
     param:
@@ -72,4 +79,12 @@ caracteresMaximos255:
     param:
         max: 255
         max_error: La maxima cantidad de caracteres permitida es de 255
-       
+
+validar_fk_provincia_id:
+    class:  sfNumberValidator
+    param:
+        nan_error: Seleccione una provincia v&aacute;lida
+        min: 1
+        min_error: Seleccione una provincia v&aacute;lida
+        
+                                       
