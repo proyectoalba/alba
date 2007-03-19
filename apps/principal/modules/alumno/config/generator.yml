@@ -48,8 +48,8 @@ generator:
       edit:
             title: " "
             fields:
-                fk_cuenta_id:   { params: include_custom=>>Seleccione un Cuenta<<}
-                fk_provincia_id:   { params: include_custom=>>Seleccione una Provincia<<}
+                fk_cuenta_id:   { params: include_custom=--Seleccione un Cuenta--}
+                fk_provincia_id:   { params: include_custom=--Seleccione una Provincia--}
             display:
                 "Informacion general":  [apellido, nombre, _sexo, fk_tipodocumento_id, nro_documento, lugar_nacimiento, fecha_nacimiento, fk_pais_id, email, activo ]
                 "Donde vive": [direccion, ciudad, fk_provincia_id, codigo_postal, telefono]

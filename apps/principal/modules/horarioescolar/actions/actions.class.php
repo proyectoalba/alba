@@ -153,7 +153,7 @@ class horarioescolarActions extends autohorarioescolarActions
         $criteriaT->add(TurnosPeer::FK_CICLOLECTIVO_ID, $ciclolectivo_id);
         $turnos = TurnosPeer::doSelect($criteriaT);
         $optionsTurnos = array();
-        $optionsTurnos[] = ">>Seleccione<<";
+        $optionsTurnos[] = "--Seleccione--";
         foreach ($turnos as $turno) {
             $optionsTurnos[$turno->getId()] = $turno->getDescripcion();
         }

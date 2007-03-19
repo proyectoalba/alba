@@ -21,7 +21,7 @@
 
     $aDivision = array();
     $optionsAlumnos = array();
-    $optionsAlumnos[""] = ">>Seleccione un Alumno<<";   
+    $optionsAlumnos[""] = "--Seleccione un Alumno--";
 
     foreach ($alumnos as $alumno) {
         if($alumno[3] AND array_key_exists($alumno[0], $aDivision)) {

@@ -11,7 +11,7 @@ generator:
     edit:
         title: Editar Actividades del A&ntilde;o
         fields:
-            fk_anio_id:   { params: include_custom=>>Seleccione un Año<<}
+            fk_anio_id:   { params: include_custom=--Seleccione un Añ--<}
             fk_actividad_id:   { params: include_custom=>>Seleccione una Actividad<<}
         display: [ fk_anio_id, fk_actividad_id, horas ]
     list:

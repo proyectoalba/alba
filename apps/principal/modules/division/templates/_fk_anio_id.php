@@ -4,7 +4,7 @@
     $c->addAscendingOrderByColumn(AnioPeer::DESCRIPCION);
     $anios = AnioPeer::doSelect($c);
     $optionsAnios = array();
-    $optionsAnios[""] = ">>Seleccione un A&ntilde;o<<";   
+    $optionsAnios[""] = "--Seleccione un A&ntilde;o--";   
     foreach ($anios as $anio) {
         $optionsAnios[$anio->getId()] = $anio->getDescripcion();
     }

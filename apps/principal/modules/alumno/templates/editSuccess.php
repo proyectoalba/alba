@@ -238,7 +238,7 @@
               'related_class' => 'Provincia',
               'peer_method' => 'getEnOrden',
               'control_name' => 'alumno[fk_provincia_id]',
-              'include_custom' => '>>Seleccione una Provincia<<',
+              'include_custom' => '--Seleccione una Provincia--',
             )) ?>
             
             </div>

@@ -170,7 +170,7 @@ document.getElementsByName("responsable[telefono]")[0].value = datosCuenta[4]
   <?php echo object_select_tag($responsable, 'getFkProvinciaId', array (
   'related_class' => 'Provincia',
   'control_name' => 'responsable[fk_provincia_id]',
-  'include_custom' => '>>Selecciones una Provincia<<',
+  'include_custom' => '--Selecciones una Provincia--',
 )) ?>
     </div>
 </div>

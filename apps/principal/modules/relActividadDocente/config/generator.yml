@@ -9,8 +9,8 @@ generator:
     edit:
         title: Editar Actividades del Docente
         fields:
-            fk_actividad_id:   { params: include_custom=>>Seleccione una Actividad<<}
-            fk_docente_id:   { params: include_custom=>>Seleccione un Docente<<}
+            fk_actividad_id:   { params: include_custom=--Seleccione una Actividad--}
+            fk_docente_id:   { params: include_custom=--Seleccione un Docente--}
         display: [ fk_docente_id, fk_actividad_id ]
     list:
         title: Listado de Actividades del Docente

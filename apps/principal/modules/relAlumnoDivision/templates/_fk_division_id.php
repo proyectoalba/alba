@@ -9,7 +9,7 @@
     //$c->addAscendingOrderByColumn(AlumnoPeer::NOMBRE);
     $divisiones = DivisionPeer::doSelect($c);
     $optionsDivisiones = array();
-    $optionsDivisiones[""] = ">>Seleccione una Divisi&oacute;n<<";   
+    $optionsDivisiones[""] = "--Seleccione una Divisi&oacute;n--";
     foreach ($divisiones as $division) {
         $optionsDivisiones[$division->getId()] = $division->getAnio()->getDescripcion(). " / " . $division->getDescripcion();
     }

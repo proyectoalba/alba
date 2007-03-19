@@ -27,7 +27,7 @@ generator:
     edit:
         title: Editar Espacio
         fields:
-            fk_tipoespacio_id:   { params: include_custom=>>Seleccione un Espacio<<}
+            fk_tipoespacio_id:   { params: include_custom=--Seleccione un Espacio--}
         display: [ nombre, m2, capacidad, descripcion, estado, fk_tipoespacio_id, _fk_locacion_id ]
         actions:
             _delete: -
