@@ -24,11 +24,11 @@ names:
 
     legajopedagogico{resumen}:
         required:     No
-        validators: caracteresMaximos255
+#        validators: caracteresMaximos255
 
     legajopedagogico{texto}:
         required:     No
-        validators: caracteresMaximos255
+#        validators: caracteresMaximos255
 
     legajopedagogico{fk_legajocategoria_id}:
         required: Yes
