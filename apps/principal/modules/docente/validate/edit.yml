@@ -16,6 +16,7 @@ methods:
     - "docente{psicofisico}"            
     - "docente{activo}"   
     - "docente{fecha_nacimiento}"         
+    - "docente{fk_provincia_id}"         
     
 fillin:
     enabled:       on
@@ -81,6 +82,11 @@ names:
     docente{email}:
         required:     No
         validators: validaEmail, caracteresMaximos128
+
+    docente{fk_provincia_id}:
+        required:     Yes
+        required_msg: El campo provincia es obligatorio
+        validators: validaProvincia
         
         
 caracteresMaximos128:
@@ -126,4 +132,10 @@ validaEmail:
     class: sfEmailValidator
     param:
        email_error:   "No ingresaste un email correctamente ( ej: nombre@dominio.com)"
-                    
+
+validaProvincia:
+    class: sfNumberValidator
+    param:
+        nan_error: El campo provincia contiene un valor incorrecto       
+        min: 1
+        min_error: El campo provincia es obligatorio

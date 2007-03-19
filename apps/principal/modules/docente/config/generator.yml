@@ -28,7 +28,7 @@ generator:
         title: Editar Docente
         display:       
                  "Informacion general":  [apellido, nombre, fecha_nacimiento, _sexo, fk_tipodocumento_id, nro_documento ]
-                 "Donde vive": [direccion, ciudad, _fk_provincia_id, _pais_id, codigo_postal]
+                 "Donde vive": [direccion, ciudad, _pais_id, _fk_provincia_id, codigo_postal]
                  "Otros": [ email, telefono, telefono_movil, libreta_sanitaria, psicofisico, titulo, activo ]
                                                          
                     
