@@ -23,7 +23,7 @@
 <?php } else { ?>
 
 
-<div style="text-align: center;"><?=image_tag('small/escudo_bsas_chico.jpg')?></div>
+<div style="text-align: center;"><?php echo image_tag('small/escudo_bsas_chico.jpg')?></div>
 <div style="text-align: center;" class="titulo">
 <span style="font-weight: bold;" class="titulo">GOBIERNO DE LA CIUDAD DE BUENOS AIRES</span><br style="font-weight: bold;">
 <span style="font-weight: bold;" class="titulo">SECRETAR&iacute;A DE EDUCACION</span><br>
@@ -36,28 +36,28 @@
 <br>
 <div align="center">
 <table style="text-align: left; width: 766px; height: 143px; border-collapse: collapse; border: solid;" border="1" cellpadding="2" cellspacing="2">
-<CAPTION><em>BOLETIN DE CALIFICACIONES PERTENECIENTES A: </em>;&nbsp;<b><?=$alumno->getNombre()." ".$alumno->getApellido()?></b>&nbsp;&nbsp;&nbsp;&nbsp;<em>GRADO:</em> &nbsp;<b><?=$division->getAnio()->getDescripcion()?></b>&nbsp;&nbsp;&nbsp;&nbsp;<em>SECCION:</em>&nbsp; <b><?=$division->getDescripcion()?></b>&nbsp;&nbsp;&nbsp;&nbsp;<em>TURNO:</em>&nbsp;<b><?=$division->getTurnos()->getDescripcion()?></b><br></CAPTION>
+<CAPTION><em>BOLETIN DE CALIFICACIONES PERTENECIENTES A: </em>;&nbsp;<b><?php echo $alumno->getNombre()." ".$alumno->getApellido()?></b>&nbsp;&nbsp;&nbsp;&nbsp;<em>GRADO:</em> &nbsp;<b><?php echo ($division->getAnio())?$division->getAnio()->getDescripcion():""?></b>&nbsp;&nbsp;&nbsp;&nbsp;<em>SECCION:</em>&nbsp; <b><?php echo $division->getDescripcion()?></b>&nbsp;&nbsp;&nbsp;&nbsp;<em>TURNO:</em>&nbsp;<b><?php echo ($division->getTurnos())?$division->getTurnos()->getDescripcion():""?></b><br></CAPTION>
   <tbody>
     <tr>
       <td colspan="1" rowspan="2"><div class="etiquetas">PERIODO</div></td>
-      <td colspan="<?=$cantOptionsActividad?>" rowspan="1"><div class="etiquetas">AREAS FORMATIVAS</div></td>
-      <td colspan="<?=$cantOptionsConcepto?>" rowspan="1"><div class="etiquetas">APRECIACION PERSONAL</div></td>
-      <td colspan="<?=$cantOptionsAsistencia?>" rowspan="1"><div class="etiquetas">CONTROL DE ASISTENCIAS</div></td>
+      <td colspan="<?php echo $cantOptionsActividad?>" rowspan="1"><div class="etiquetas">AREAS FORMATIVAS</div></td>
+      <td colspan="<?php echo $cantOptionsConcepto?>" rowspan="1"><div class="etiquetas">APRECIACION PERSONAL</div></td>
+      <td colspan="<?php echo $cantOptionsAsistencia?>" rowspan="1"><div class="etiquetas">CONTROL DE ASISTENCIAS</div></td>
       <td colspan="2" rowspan="1"><div class="etiquetas">FIRMAS</div></td>
     </tr>
     <tr>
 
       <? foreach($optionsActividad as $actividad) { ?> 
-      <td><div class="etiquetas"><?=$actividad?></div></td>
+      <td><div class="etiquetas"><?php echo $actividad?></div></td>
       <? } ?>
 
       <? foreach($optionsConcepto as $concepto) { ?> 
-      <td><div class="etiquetas"><?=$concepto?></div></td>
+      <td><div class="etiquetas"><?php echo $concepto?></div></td>
       <? } ?>
 
       <? if(count($aAsistencia)>0) { 
             foreach( current($aAsistencia) as $grupo => $valor) { ?> 
-      <td><div class="etiquetas"><?=$grupo?></div></td>
+      <td><div class="etiquetas"><?php echo $grupo?></div></td>
       <?
             }
         } ?>
@@ -66,28 +66,30 @@
       <td><div class="etiquetas">Director</div></td>
     </tr>
 
-<? foreach($optionsPeriodo as $periodo_id => $periodo) { ?>
+
+
+<?php foreach($optionsPeriodo as $periodo_id => $periodo) { ?>
     <tr>
-      <td><div class="etiquetas"><?=$periodo?></div></td>
-    <? foreach($optionsActividad as $actividad_id => $actividad) { ?> 
-      <td><div style="text-align: center;"><?=(array_key_exists($periodo_id, $notaAlumno) AND array_key_exists($actividad_id, $notaAlumno[$periodo_id]))?$notaAlumno[$periodo_id][$actividad_id]:"";?>
+      <td><div class="etiquetas"><?php echo $periodo?></div></td>
+    <?php foreach($optionsActividad as $actividad_id => $actividad) { ?> 
+      <td><div style="text-align: center;"><?php echo (array_key_exists($periodo_id, $notaAlumno) AND array_key_exists($actividad_id, $notaAlumno[$periodo_id]))?$notaAlumno[$periodo_id][$actividad_id]:"";?>
     </div></td>
-    <? } ?>      
-    <? foreach($optionsConcepto as $concepto_id => $concepto) { ?> 
-      <td><div style="text-align: center;"><?=(array_key_exists($periodo_id, $conceptoAlumno) AND array_key_exists($concepto_id, $conceptoAlumno[$periodo_id]))?$conceptoAlumno[$periodo_id][$concepto_id]:"";?></div></td>
+    <?php } ?>      
+    <?php foreach($optionsConcepto as $concepto_id => $concepto) { ?> 
+      <td><div style="text-align: center;"><?php echo (array_key_exists($periodo_id, $conceptoAlumno) AND array_key_exists($concepto_id, $conceptoAlumno[$periodo_id]))?$conceptoAlumno[$periodo_id][$concepto_id]:"";?></div></td>
     <? } ?>      
 
-<? if(count($aAsistencia)>0) { 
+<?php if(count($aAsistencia)>0) { 
        foreach( $aAsistencia[$periodo_id] as $grupo => $valor) { ?> 
-      <td><div style="text-align: center;"><?=$valor?></div></td>
-      <?
+      <td><div style="text-align: center;"><?php echo $valor?></div></td>
+      <?php
     }
         } ?>
 
-      <td></td>
-      <td></td>
+      <td><div></div></td>
+      <td><div></div></td>
     </tr>
-<? } ?>
+<?php } ?>
   </tbody>
 </table>
 </div>
@@ -95,8 +97,8 @@
 <?php } ?>
 <?php if($vista != 'imprimir') { ?>
 <ul class="sf_admin_actions">
-<li><? echo button_to('Ir a la cuenta','cuenta?action=verCompleta&id='.$alumno->getFkCuentaId(),array('class'=>'sf_admin_action_list'))?></li>
+<li><?php echo button_to('Ir a la cuenta','cuenta?action=verCompleta&id='.$alumno->getFkCuentaId(),array('class'=>'sf_admin_action_list'))?></li>
 </ul>
-<? } ?>
+<?php } ?>
 </body>
 </html>

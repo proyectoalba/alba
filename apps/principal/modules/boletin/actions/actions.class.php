@@ -237,7 +237,7 @@ class boletinActions extends sfActions
         $criteria->add(ConceptoPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id );
         $conceptos = ConceptoPeer::doSelect($criteria);
         foreach($conceptos as $concepto) {
-            $optionsConcepto[$concepto->getId()] = $concepto->getDescripcion();
+            $optionsConcepto[$concepto->getId()] = $concepto->getNombre();
         }
         asort($optionsConcepto);
         return $optionsConcepto;
@@ -433,7 +433,7 @@ class boletinActions extends sfActions
         $this->notaAlumno = $notaAlumno;
         $this->conceptoAlumno = $conceptoAlumno;
         $this->aAsistencia = $aAsistencia;
-        $this->cantOptionsAsistencia = count($aAsistencia);
+        $this->cantOptionsAsistencia = (count($aAsistencia)>0)?count(current($aAsistencia)):0;
     }
 
     protected function getEscalanota($establecimiento_id) {
