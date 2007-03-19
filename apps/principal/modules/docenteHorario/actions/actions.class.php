@@ -46,31 +46,39 @@ class DocenteHorarioActions extends sfActions
 
   public function executeList ()
   {
-    if($this->getRequestParameter('idDocente')) {
 
-        $aRepeticion  = RepeticionPeer::doSelect(new Criteria());
+    $optionsDocente = array();
+    $aMuestraRepeticion = array();
+    $aHorario = array();
 
-        $aMuestraRepeticion = array();
-        foreach($aRepeticion  as $repeticion) {
-            $aMuestraRepeticion[$repeticion->getId()] = $repeticion->getDescripcion();
-        }
-    
-        $c = new Criteria();
-        $c->add(DocenteHorarioPeer::FK_DOCENTE_ID, $this->getRequestParameter('idDocente'));
-        $aHorario  = DocenteHorarioPeer::doSelect($c);
-        $this->aHorario = $aHorario;
+    $c = new Criteria();
+    $aDocente  = DocentePeer::doSelect($c);
+    $optionsDocente = array();
+    foreach($aDocente as $docente) {
+        $optionsDocente[$docente->getId()] = $docente->getApellido().' '.$docente->getNombre();
+    }
 
-        $c = new Criteria();
-        $aDocente  = DocentePeer::doSelect($c);
-        $optionsDocente = array();
-        foreach($aDocente as $docente) {
-            $optionsDocente[$docente->getId()] = $docente->getApellido().' '.$docente->getNombre();
-        }
+    $aRepeticion  = RepeticionPeer::doSelect(new Criteria());
 
-        $this->aRepeticion = $aMuestraRepeticion;
-        $this->optionsDocente = $optionsDocente;
-    } 
+    $aMuestraRepeticion = array();
+    foreach($aRepeticion  as $repeticion) {
+        $aMuestraRepeticion[$repeticion->getId()] = $repeticion->getDescripcion();
+    }
 
+
+    if(count($optionsDocente) > 0) {
+        $docente_id = ($this->getRequestParameter('idDocente')) ? $this->getRequestParameter('idDocente') : key(current($optionsDocente)) ;
+    } else {
+        // error si no tiene docente_id y no hay cargados docentes.
+    }
+
+    $c = new Criteria();
+    $c->add(DocenteHorarioPeer::FK_DOCENTE_ID, $this->getRequestParameter('idDocente'));
+    $aHorario  = DocenteHorarioPeer::doSelect($c);
+
+    $this->aHorario = $aHorario;
+    $this->optionsDocente = $optionsDocente;
+    $this->aRepeticion = $aMuestraRepeticion;
   }
 
     public function executeDeleteHorario ()  {
