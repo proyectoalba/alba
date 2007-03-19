@@ -67,13 +67,13 @@ class DocenteHorarioActions extends sfActions
 
 
     if(count($optionsDocente) > 0) {
-        $docente_id = ($this->getRequestParameter('idDocente')) ? $this->getRequestParameter('idDocente') : key(current($optionsDocente)) ;
+        $docente_id = ($this->getRequestParameter('idDocente')) ? $this->getRequestParameter('idDocente') : key($optionsDocente) ;
     } else {
         // error si no tiene docente_id y no hay cargados docentes.
     }
 
     $c = new Criteria();
-    $c->add(DocenteHorarioPeer::FK_DOCENTE_ID, $this->getRequestParameter('idDocente'));
+    $c->add(DocenteHorarioPeer::FK_DOCENTE_ID, $docente_id);
     $aHorario  = DocenteHorarioPeer::doSelect($c);
 
     $this->aHorario = $aHorario;
