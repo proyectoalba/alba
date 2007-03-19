@@ -68,9 +68,10 @@ class legajopedagogicoActions extends sfActions
             $criteria = new Criteria();
             if($division_id) {
                 $criteria->add(DivisionPeer::ID, $division_id);
+                $criteria->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
+                $criteria->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID);
             }
-            $criteria->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
-            $criteria->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID);
+            
         
             if($txt) {
                 $cton1 = $criteria->getNewCriterion(AlumnoPeer::NOMBRE, "%$txt%", Criteria::LIKE);
@@ -79,16 +80,16 @@ class legajopedagogicoActions extends sfActions
                 $criteria->add($cton1);
             }
 
-            $criteria->addAsColumn("alumno_id", AlumnoPeer::ID);
-            $criteria->addAsColumn("alumno_nombre", AlumnoPeer::NOMBRE);
-            $criteria->addAsColumn("alumno_apellido", AlumnoPeer::APELLIDO);
-            $criteria->addAsColumn("division_id", DivisionPeer::ID);
-            $criteria->addAsColumn("division_descripcion", DivisionPeer::DESCRIPCION);
+//             $criteria->addAsColumn("alumno_id", AlumnoPeer::ID);
+//             $criteria->addAsColumn("alumno_nombre", AlumnoPeer::NOMBRE);
+//             $criteria->addAsColumn("alumno_apellido", AlumnoPeer::APELLIDO);
+//             $criteria->addAsColumn("division_id", DivisionPeer::ID);
+//             $criteria->addAsColumn("division_descripcion", DivisionPeer::DESCRIPCION);
 
-            $alumnos = BasePeer::doSelect($criteria);
-            foreach($alumnos as $alumno) {
-                $aAlumno[] = (object) array( 'alumno_id' => $alumno[0],'alumno_nombre' => $alumno[1], 'alumno_apellido' => $alumno[2] );
-            }
+            $aAlumno = AlumnoPeer::doSelect($criteria);
+//             foreach($alumnos as $alumno) {
+//                 $aAlumno[] = (object) array( 'alumno_id' => $alumno[0],'alumno_nombre' => $alumno[1], 'alumno_apellido' => $alumno[2] );
+//             }
     
         }
 
@@ -335,6 +336,7 @@ class legajopedagogicoActions extends sfActions
 
         return $this->redirect("legajopedagogico?action=edit&aid=".$this->alumno_id."&id=".$this->legajopedagogico_id);
     }
+
 
 
 }

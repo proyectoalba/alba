@@ -243,5 +243,14 @@ class alumnoActions extends autoalumnoActions
         $this->provincias = ProvinciaPeer::getEnOrden($c);
     }
 
+
+    function executeIrCuenta(){
+        if ($this->getRequestParameter('id')) {
+            $this->redirect('cuenta/verCompleta?id='.$this->getRequestParameter('id'));
+        } else {
+            $this->redirect('alumno/list');
+        }
+    }
+
 }
 ?>

@@ -26,10 +26,10 @@
 </form>
 
 
-<? if (count($aAlumno) > 0) {
+<?php if (count($aAlumno) > 0) {
     if ($txt) { ?>
     Usted busco -<?=$txt?>-
-    <? } ?>
+    <?php } ?>
 <h1>Alumnos</h1>
 <table cellspacing="0" class="sf_admin_list">
   <thead>
@@ -40,23 +40,23 @@
   </thead>
 
   <tbody>
-<?
+<?php
     $i = 0;
     foreach($aAlumno as $alumno){
 ?>
   <tr class="sf_admin_row_0">
-    <td><?echo $alumno->alumno_apellido." ".$alumno->alumno_nombre; ?></td>
+    <td><?echo $alumno->getApellido()." ".$alumno->getNombre(); ?></td>
     <td>
     <ul class="sf_admin_td_actions">
-     <li><?php echo link_to(image_tag(sfConfig::get('sf_admin_web_dir').'/images/edit_icon.png', array('alt' => 'editar', 'title' => 'Editar')) , 'alumno?action=edit&id='.$alumno->alumno_id); ?></li>
+     <li><?php echo link_to(image_tag(sfConfig::get('sf_admin_web_dir').'/images/edit_icon.png', array('alt' => 'editar', 'title' => 'Editar')) , 'alumno?action=edit&id='.$alumno->getId()); ?></li>
     &nbsp;
-    <li><?php echo link_to(image_tag('small/legajo.png', array('alt' => __('verLegajo'), 'title' => 'Ver el legajo')), 'legajopedagogico?action=verLegajo&aid='.$alumno->alumno_id); ?></li>  
+    <li><?php echo link_to(image_tag('small/legajo.png', array('alt' => __('verLegajo'), 'title' => 'Ver el legajo')), 'legajopedagogico?action=verLegajo&aid='.$alumno->getId()); ?></li>  
     &nbsp;
-    <li><?php echo link_to(image_tag('small/asistencia.png', array('alt' => 'Asistencia', 'title' => 'Asistencia')) , 'asistencia?action=index&vistas=2&alumno_id='.$alumno->alumno_id); ?></li>
+    <li><?php echo link_to(image_tag('small/asistencia.png', array('alt' => 'Asistencia', 'title' => 'Asistencia')) , 'asistencia?action=index&vistas=2&alumno_id='.$alumno->getId()); ?></li>
   &nbsp;    
-    <li><?php echo link_to(image_tag('jeringa.gif', array('alt' => __('Vacunas'), 'title' => __('Vacunas'))), 'alumno?action=vacunas&id='.$alumno->alumno_id); ?></li>
+    <li><?php echo link_to(image_tag('jeringa.gif', array('alt' => __('Vacunas'), 'title' => __('Vacunas'))), 'alumno?action=vacunas&id='.$alumno->getId()); ?></li>
   &nbsp;    
-    <li><?php echo link_to(image_tag('next.png', array('alt' => 'Cuenta', 'title' => 'Cuenta')), 'alumno?action=irCuenta&id='.$alumno->alumno_id); ?></li>
+    <li><?php echo link_to(image_tag('next.png', array('alt' => 'Cuenta', 'title' => 'Cuenta')), 'alumno?action=irCuenta&id='.$alumno->getFkCuentaId()); ?></li>
     </ul>
     </td>
   </tr>
@@ -64,7 +64,7 @@
   </tbody>
 </table>
 
-<? } else {
+<?php } else {
     if ($txt) { ?>
         Su b&uacute;squeda por -<?=$txt?>- no ha encontrado alumnos.
     <? } 
