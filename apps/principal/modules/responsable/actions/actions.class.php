@@ -147,7 +147,7 @@ class responsableActions extends autoresponsableActions {
     $this->responsable->setAutorizacionRetiro(isset($responsable['autorizacion_retiro']) ? $responsable['autorizacion_retiro'] : 0);
   }
   
-    function executeIrCuenta() {
+    public function executeIrCuenta() {
         //Obtener el id de cuenta.
   
         $c = new Criteria();
@@ -155,6 +155,14 @@ class responsableActions extends autoresponsableActions {
         $Resp = ResponsablePeer::doSelectOne($c);
         return $this->redirect('cuenta/verCompleta?id='.$Resp->getFkCuentaId());
     }   
+
+    public function executeCambiarPais() {
+        $this->pais_id = $this->getRequestParameter('pais_id');
+        $this->provincia_id = $this->getRequestParameter('provincia_id');
+        $c = new Criteria();
+        $c->add(ProvinciaPeer::FK_PAIS_ID, $this->pais_id);
+        $this->provincias = ProvinciaPeer::getEnOrden($c);
+    }                                      
 }  
 
 ?>

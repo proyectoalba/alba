@@ -160,18 +160,19 @@ document.getElementsByName("responsable[telefono]")[0].value = datosCuenta[4]
     </div>
 </div>
 
+
+<div class="form-row">
+    <?php echo label_for('responsable[fk_pais_id]', __('Pais:'), 'class="required" ') ?>
+    <?php include_partial('pais_id',array('responsable' => $responsable))?>
+</div>
+
 <div class="form-row">
   <?php echo label_for('responsable[fk_provincia_id]', __('Provincia:'), 'class="required" ') ?>
   <div class="content<?php if ($sf_request->hasError('responsable{fk_provincia_id}')): ?> form-error<?php endif; ?>">
   <?php if ($sf_request->hasError('responsable{fk_provincia_id}')): ?>
     <?php echo form_error('responsable{fk_provincia_id}', array('class' => 'form-error-msg')) ?>
   <?php endif; ?>
-
-  <?php echo object_select_tag($responsable, 'getFkProvinciaId', array (
-  'related_class' => 'Provincia',
-  'control_name' => 'responsable[fk_provincia_id]',
-  'include_custom' => '--Selecciones una Provincia--',
-)) ?>
+    <div id="item_provincia"></div>
     </div>
 </div>
 

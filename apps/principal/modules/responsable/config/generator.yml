@@ -31,11 +31,11 @@ generator:
       edit:
         title: Editar Responsable
         fields:
-            fk_cuenta_id:   { params: include_custom=--Selecciones un Cuenta--}
+            fk_cuenta_id:   { params: include_custom=>>Selecciones un Cuenta<<}
             fk_provincia_id:   { params: include_custom=--Selecciones una Provincia--}
         display:
                 "Informaci&oacute;n general":  [apellido, nombre, _sexo, fk_tipodocumento_id, nro_documento]
-                "Donde vive": [direccion, ciudad, fk_provincia_id, codigo_postal ]
+                "Donde vive": [direccion, ciudad, _pais_id, _fk_provincia_id, codigo_postal ]
                 "Otros":  [ telefono, telefono_movil, email, relacion, observacion,  autorizacion_retiro]
         actions:
           _delete: -
