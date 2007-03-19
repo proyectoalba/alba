@@ -1,5 +1,6 @@
 <?php use_helper('Object') ?>
 <?php use_helper('Javascript') ?>
+<?php use_helper('Validation') ?>
 <!--
 <style>
 .transOFF { background-color: silver;border:1px solid black; position:relative;bottom:150px; left:360px; width:40% }
