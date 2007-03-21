@@ -62,5 +62,29 @@ class relAlumnoDivisionActions extends autorelAlumnoDivisionActions
         }                                                                                                                        
     }  
 
+
+    // Valida si ya esta en la tabla este conjunto de datos ( alumno, division )
+    function validateEdit() {
+         if ($this->getRequest()->getMethod() == sfRequest::POST) {
+            $rel_alumno_division = $this->getRequestParameter('rel_alumno_division');
+            $c = new Criteria();
+            $c->add(RelAlumnoDivisionPeer::FK_ALUMNO_ID, $rel_alumno_division['fk_alumno_id']);
+            $c->add(RelAlumnoDivisionPeer::FK_DIVISION_ID, $rel_alumno_division['fk_division_id']);
+            $aRelAlumnoDivision = RelAlumnoDivisionPeer::doSelect($c);
+            if(count($aRelAlumnoDivision) > 0) {
+                $this->getRequest()->setError('rel_alumno_division{fk_alumno_id}', 'Esta asociaci&oacute;n ya fue hecha');
+                $this->getRequest()->setError('rel_alumno_division{fk_division_id}', 'Esta asociaci&oacute;n ya fue hecha');
+                return false;
+            }
+        }
+        
+        return true;
+    }
+
+
+
+
+
+
 }
 ?>
