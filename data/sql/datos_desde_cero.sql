@@ -191,7 +191,7 @@ INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`,
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (60, 'Constancia Egreso 7mo', 'informes/certificadoPrimariaFormulario?vista=imprimir', 'informes', 9, 0, '_blank');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (65, 'Ayuda', '#', '', 1, 80, '');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (67, 'Indice...', 'ayuda/', '', 65, 0, '');
-INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (68, 'Cr&eacute;ditos', 'creditos/', '', 65, 0, '');
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (68, 'Cr&eacute;ditos', 'default', '', 65, 0, '');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (69, 'Generar Horario por secci&oacute;n/divisi&oacute;n', 'calendario', 'calendario', 47, 0, '');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (71, 'Configuraciones Previas', '#', '', 10, 10, '');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (72, 'Definir tipo de bajas', 'conceptobaja', 'conceptobaja', 84, 10, '');

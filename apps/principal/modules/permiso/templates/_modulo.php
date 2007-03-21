@@ -1,1 +1,1 @@
-<? echo link_to($permiso->getModulo()->getNombre(),'modulo/edit?id='.$permiso->getFkModuloId());?>
+<? echo ($permiso->getModulo())?link_to($permiso->getModulo()->getNombre(),'modulo/edit?id='.$permiso->getFkModuloId()):"";?>

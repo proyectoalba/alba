@@ -11,7 +11,7 @@ array()) ?></h1>
 <?php include_partial('usuario/edit_header', array('usuario' => $usuario)) ?>
 </div>
 
-<div id="sf_admin_content">
+<div id="sf_admin_container">
 
 <?php if ($sf_request->hasErrors()): ?>
 <div class="form-errors">
