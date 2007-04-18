@@ -2711,6 +2711,7 @@ INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`,
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (93, 'Boletines', 'informes/boletinFormulario', 'informes', 9, 0, '_blank');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (94, 'Certificado de Estudios', 'informes/certificadoEstudiosBusquedaFormulario', 'informes', 9, 0, '_blank');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (95, 'Solicitud de Legajo', 'informes/solicitudLegajoBusquedaFormulario', 'informes', 9, 0, '_blank');
+INSERT INTO `menu` ( `id` , `nombre` , `link` , `perm` , `fk_padre_menu_id` , `orden` , `target` ) VALUES (96, 'Biblioteca de contenidos', 'sfMediaLibrary', 'informes', 9, 0, '');
 
 -- 
 -- Volcar la base de datos para la tabla `modulo`

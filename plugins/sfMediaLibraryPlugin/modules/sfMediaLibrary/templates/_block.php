@@ -29,7 +29,7 @@
     ) + $size2) ?>
   <?php if($action === "index"): ?>
     <?php echo content_tag('a', $thumbnail, array(
-      'href' => $web_abs_current_path.'/'.$name,
+      'href' => sfContext::getInstance()->getRequest()->getRelativeUrlRoot().$web_abs_current_path.'/'.$name,
       'target' => '_blank',
     )) ?>
   <?php else: ?>
