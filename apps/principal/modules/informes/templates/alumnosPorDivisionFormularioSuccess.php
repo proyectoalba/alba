@@ -1,3 +1,5 @@
+<?php use_helper('I18N') ?>
+
 <h1>Informe: Alumnos por Divis&oacute;n </h1>
 
 <?php if ($sf_request->hasErrors()) {?>

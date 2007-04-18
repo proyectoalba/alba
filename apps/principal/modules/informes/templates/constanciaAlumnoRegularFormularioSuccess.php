@@ -1,3 +1,4 @@
+<?php use_helper('I18N'); ?>
 <div id="sf_admin_container">
 <h1>Informe: Constancia de Alumno Regular</h1>
 <?php echo form_tag('informes/constanciaAlumnoRegularFormulario', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>

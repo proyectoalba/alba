@@ -1,3 +1,4 @@
+<?php use_helper('I18N'); ?>
 <h1>Informe: Boletines</h1>
 
 <?php echo form_tag('informes/boletinFormulario', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
