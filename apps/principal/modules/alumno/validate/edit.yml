@@ -40,7 +40,7 @@ names:
     alumno{nro_documento}:
         required:     Yes
         required_msg: El campo n&uacute;mero de documento es obligatorio
-        validators: validaNroDocumento
+        validators: validaNroDocumento, validarNumero
 
     alumno{ciudad}:
         required:     Yes
@@ -129,10 +129,8 @@ validaFecha:
 validaNroDocumento:
     class:  sfStringValidator
     param: 
-        max: 16
+        max: 10
         max_error: La cantidad m&acute;xima de caracteres permitida es de 10      
-        min: 6
-        min_error: La cantidad minima de caracteres permitida es de 6
         
 validaEmail:
     class: sfEmailValidator
