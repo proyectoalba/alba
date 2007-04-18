@@ -27,6 +27,7 @@ all:
   .actions:
     default_module:         default
     default_action:         index
+
 #
 #    error_404_module:       default
 #    error_404_action:       error404
@@ -44,6 +45,8 @@ all:
 #    unavailable_action:     unavailable
 #
   .settings:
+  
+     enabled_modules:       [ default, sfMediaLibrary]  
 #    available:              on
 #
 #    path_info_array:        SERVER
