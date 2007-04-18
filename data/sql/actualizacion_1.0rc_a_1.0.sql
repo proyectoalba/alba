@@ -7,3 +7,12 @@ VALUES (
 );
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+CREATE TABLE `roles`
+(
+    `id` INTEGER  NOT NULL AUTO_INCREMENT,
+    `nombre` VARCHAR(128) default '' NOT NULL,
+    `descripcion` VARCHAR(255) default '',
+    `activo` INTEGER default 1 NOT NULL,
+    PRIMARY KEY (`id`)
+)Type=InnoDB;
