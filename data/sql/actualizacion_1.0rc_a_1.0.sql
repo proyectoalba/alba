@@ -8,7 +8,7 @@ VALUES (
 
 SET FOREIGN_KEY_CHECKS = 1;
 
-CREATE TABLE `roles`
+CREATE TABLE `rol_responsable`
 (
     `id` INTEGER  NOT NULL AUTO_INCREMENT,
     `nombre` VARCHAR(128) default '' NOT NULL,
