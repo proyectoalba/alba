@@ -1,7 +1,7 @@
 <?php
 
 
-abstract class BaseRoles extends BaseObject  implements Persistent {
+abstract class BaseRolResponsable extends BaseObject  implements Persistent {
 
 
 	
@@ -63,7 +63,7 @@ abstract class BaseRoles extends BaseObject  implements Persistent {
 
 		if ($this->id !== $v) {
 			$this->id = $v;
-			$this->modifiedColumns[] = RolesPeer::ID;
+			$this->modifiedColumns[] = RolResponsablePeer::ID;
 		}
 
 	} 
@@ -73,7 +73,7 @@ abstract class BaseRoles extends BaseObject  implements Persistent {
 
 		if ($this->nombre !== $v || $v === '') {
 			$this->nombre = $v;
-			$this->modifiedColumns[] = RolesPeer::NOMBRE;
+			$this->modifiedColumns[] = RolResponsablePeer::NOMBRE;
 		}
 
 	} 
@@ -83,7 +83,7 @@ abstract class BaseRoles extends BaseObject  implements Persistent {
 
 		if ($this->descripcion !== $v || $v === '') {
 			$this->descripcion = $v;
-			$this->modifiedColumns[] = RolesPeer::DESCRIPCION;
+			$this->modifiedColumns[] = RolResponsablePeer::DESCRIPCION;
 		}
 
 	} 
@@ -93,7 +93,7 @@ abstract class BaseRoles extends BaseObject  implements Persistent {
 
 		if ($this->activo !== $v || $v === true) {
 			$this->activo = $v;
-			$this->modifiedColumns[] = RolesPeer::ACTIVO;
+			$this->modifiedColumns[] = RolResponsablePeer::ACTIVO;
 		}
 
 	} 
@@ -116,7 +116,7 @@ abstract class BaseRoles extends BaseObject  implements Persistent {
 
 						return $startcol + 4; 
 		} catch (Exception $e) {
-			throw new PropelException("Error populating Roles object", $e);
+			throw new PropelException("Error populating RolResponsable object", $e);
 		}
 	}
 
@@ -128,12 +128,12 @@ abstract class BaseRoles extends BaseObject  implements Persistent {
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(RolesPeer::DATABASE_NAME);
+			$con = Propel::getConnection(RolResponsablePeer::DATABASE_NAME);
 		}
 
 		try {
 			$con->begin();
-			RolesPeer::doDelete($this, $con);
+			RolResponsablePeer::doDelete($this, $con);
 			$this->setDeleted(true);
 			$con->commit();
 		} catch (PropelException $e) {
@@ -150,7 +150,7 @@ abstract class BaseRoles extends BaseObject  implements Persistent {
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(RolesPeer::DATABASE_NAME);
+			$con = Propel::getConnection(RolResponsablePeer::DATABASE_NAME);
 		}
 
 		try {
@@ -173,12 +173,12 @@ abstract class BaseRoles extends BaseObject  implements Persistent {
 
 						if ($this->isModified()) {
 				if ($this->isNew()) {
-					$pk = RolesPeer::doInsert($this, $con);
+					$pk = RolResponsablePeer::doInsert($this, $con);
 					$affectedRows += 1; 										 										 
 					$this->setId($pk);  
 					$this->setNew(false);
 				} else {
-					$affectedRows += RolesPeer::doUpdate($this, $con);
+					$affectedRows += RolResponsablePeer::doUpdate($this, $con);
 				}
 				$this->resetModified(); 			}
 
@@ -218,7 +218,7 @@ abstract class BaseRoles extends BaseObject  implements Persistent {
 			$failureMap = array();
 
 
-			if (($retval = RolesPeer::doValidate($this, $columns)) !== true) {
+			if (($retval = RolResponsablePeer::doValidate($this, $columns)) !== true) {
 				$failureMap = array_merge($failureMap, $retval);
 			}
 
@@ -233,7 +233,7 @@ abstract class BaseRoles extends BaseObject  implements Persistent {
 	
 	public function getByName($name, $type = BasePeer::TYPE_PHPNAME)
 	{
-		$pos = RolesPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
+		$pos = RolResponsablePeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
 		return $this->getByPosition($pos);
 	}
 
@@ -261,7 +261,7 @@ abstract class BaseRoles extends BaseObject  implements Persistent {
 	
 	public function toArray($keyType = BasePeer::TYPE_PHPNAME)
 	{
-		$keys = RolesPeer::getFieldNames($keyType);
+		$keys = RolResponsablePeer::getFieldNames($keyType);
 		$result = array(
 			$keys[0] => $this->getId(),
 			$keys[1] => $this->getNombre(),
@@ -274,7 +274,7 @@ abstract class BaseRoles extends BaseObject  implements Persistent {
 	
 	public function setByName($name, $value, $type = BasePeer::TYPE_PHPNAME)
 	{
-		$pos = RolesPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
+		$pos = RolResponsablePeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
 		return $this->setByPosition($pos, $value);
 	}
 
@@ -299,7 +299,7 @@ abstract class BaseRoles extends BaseObject  implements Persistent {
 	
 	public function fromArray($arr, $keyType = BasePeer::TYPE_PHPNAME)
 	{
-		$keys = RolesPeer::getFieldNames($keyType);
+		$keys = RolResponsablePeer::getFieldNames($keyType);
 
 		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setNombre($arr[$keys[1]]);
@@ -310,12 +310,12 @@ abstract class BaseRoles extends BaseObject  implements Persistent {
 	
 	public function buildCriteria()
 	{
-		$criteria = new Criteria(RolesPeer::DATABASE_NAME);
+		$criteria = new Criteria(RolResponsablePeer::DATABASE_NAME);
 
-		if ($this->isColumnModified(RolesPeer::ID)) $criteria->add(RolesPeer::ID, $this->id);
-		if ($this->isColumnModified(RolesPeer::NOMBRE)) $criteria->add(RolesPeer::NOMBRE, $this->nombre);
-		if ($this->isColumnModified(RolesPeer::DESCRIPCION)) $criteria->add(RolesPeer::DESCRIPCION, $this->descripcion);
-		if ($this->isColumnModified(RolesPeer::ACTIVO)) $criteria->add(RolesPeer::ACTIVO, $this->activo);
+		if ($this->isColumnModified(RolResponsablePeer::ID)) $criteria->add(RolResponsablePeer::ID, $this->id);
+		if ($this->isColumnModified(RolResponsablePeer::NOMBRE)) $criteria->add(RolResponsablePeer::NOMBRE, $this->nombre);
+		if ($this->isColumnModified(RolResponsablePeer::DESCRIPCION)) $criteria->add(RolResponsablePeer::DESCRIPCION, $this->descripcion);
+		if ($this->isColumnModified(RolResponsablePeer::ACTIVO)) $criteria->add(RolResponsablePeer::ACTIVO, $this->activo);
 
 		return $criteria;
 	}
@@ -323,9 +323,9 @@ abstract class BaseRoles extends BaseObject  implements Persistent {
 	
 	public function buildPkeyCriteria()
 	{
-		$criteria = new Criteria(RolesPeer::DATABASE_NAME);
+		$criteria = new Criteria(RolResponsablePeer::DATABASE_NAME);
 
-		$criteria->add(RolesPeer::ID, $this->id);
+		$criteria->add(RolResponsablePeer::ID, $this->id);
 
 		return $criteria;
 	}
@@ -371,7 +371,7 @@ abstract class BaseRoles extends BaseObject  implements Persistent {
 	public function getPeer()
 	{
 		if (self::$peer === null) {
-			self::$peer = new RolesPeer();
+			self::$peer = new RolResponsablePeer();
 		}
 		return self::$peer;
 	}

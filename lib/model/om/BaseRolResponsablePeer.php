@@ -1,16 +1,16 @@
 <?php
 
 
-abstract class BaseRolesPeer {
+abstract class BaseRolResponsablePeer {
 
 	
 	const DATABASE_NAME = 'alba';
 
 	
-	const TABLE_NAME = 'roles';
+	const TABLE_NAME = 'rol_responsable';
 
 	
-	const CLASS_DEFAULT = 'lib.model.Roles';
+	const CLASS_DEFAULT = 'lib.model.RolResponsable';
 
 	
 	const NUM_COLUMNS = 4;
@@ -20,16 +20,16 @@ abstract class BaseRolesPeer {
 
 
 	
-	const ID = 'roles.ID';
+	const ID = 'rol_responsable.ID';
 
 	
-	const NOMBRE = 'roles.NOMBRE';
+	const NOMBRE = 'rol_responsable.NOMBRE';
 
 	
-	const DESCRIPCION = 'roles.DESCRIPCION';
+	const DESCRIPCION = 'rol_responsable.DESCRIPCION';
 
 	
-	const ACTIVO = 'roles.ACTIVO';
+	const ACTIVO = 'rol_responsable.ACTIVO';
 
 	
 	private static $phpNameMap = null;
@@ -38,7 +38,7 @@ abstract class BaseRolesPeer {
 	
 	private static $fieldNames = array (
 		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Descripcion', 'Activo', ),
-		BasePeer::TYPE_COLNAME => array (RolesPeer::ID, RolesPeer::NOMBRE, RolesPeer::DESCRIPCION, RolesPeer::ACTIVO, ),
+		BasePeer::TYPE_COLNAME => array (RolResponsablePeer::ID, RolResponsablePeer::NOMBRE, RolResponsablePeer::DESCRIPCION, RolResponsablePeer::ACTIVO, ),
 		BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'descripcion', 'activo', ),
 		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
 	);
@@ -46,7 +46,7 @@ abstract class BaseRolesPeer {
 	
 	private static $fieldKeys = array (
 		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Descripcion' => 2, 'Activo' => 3, ),
-		BasePeer::TYPE_COLNAME => array (RolesPeer::ID => 0, RolesPeer::NOMBRE => 1, RolesPeer::DESCRIPCION => 2, RolesPeer::ACTIVO => 3, ),
+		BasePeer::TYPE_COLNAME => array (RolResponsablePeer::ID => 0, RolResponsablePeer::NOMBRE => 1, RolResponsablePeer::DESCRIPCION => 2, RolResponsablePeer::ACTIVO => 3, ),
 		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'descripcion' => 2, 'activo' => 3, ),
 		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
 	);
@@ -54,14 +54,14 @@ abstract class BaseRolesPeer {
 	
 	public static function getMapBuilder()
 	{
-		include_once 'lib/model/map/RolesMapBuilder.php';
-		return BasePeer::getMapBuilder('lib.model.map.RolesMapBuilder');
+		include_once 'lib/model/map/RolResponsableMapBuilder.php';
+		return BasePeer::getMapBuilder('lib.model.map.RolResponsableMapBuilder');
 	}
 	
 	public static function getPhpNameMap()
 	{
 		if (self::$phpNameMap === null) {
-			$map = RolesPeer::getTableMap();
+			$map = RolResponsablePeer::getTableMap();
 			$columns = $map->getColumns();
 			$nameMap = array();
 			foreach ($columns as $column) {
@@ -95,25 +95,25 @@ abstract class BaseRolesPeer {
 	
 	public static function alias($alias, $column)
 	{
-		return str_replace(RolesPeer::TABLE_NAME.'.', $alias.'.', $column);
+		return str_replace(RolResponsablePeer::TABLE_NAME.'.', $alias.'.', $column);
 	}
 
 	
 	public static function addSelectColumns(Criteria $criteria)
 	{
 
-		$criteria->addSelectColumn(RolesPeer::ID);
+		$criteria->addSelectColumn(RolResponsablePeer::ID);
 
-		$criteria->addSelectColumn(RolesPeer::NOMBRE);
+		$criteria->addSelectColumn(RolResponsablePeer::NOMBRE);
 
-		$criteria->addSelectColumn(RolesPeer::DESCRIPCION);
+		$criteria->addSelectColumn(RolResponsablePeer::DESCRIPCION);
 
-		$criteria->addSelectColumn(RolesPeer::ACTIVO);
+		$criteria->addSelectColumn(RolResponsablePeer::ACTIVO);
 
 	}
 
-	const COUNT = 'COUNT(roles.ID)';
-	const COUNT_DISTINCT = 'COUNT(DISTINCT roles.ID)';
+	const COUNT = 'COUNT(rol_responsable.ID)';
+	const COUNT_DISTINCT = 'COUNT(DISTINCT rol_responsable.ID)';
 
 	
 	public static function doCount(Criteria $criteria, $distinct = false, $con = null)
@@ -122,9 +122,9 @@ abstract class BaseRolesPeer {
 
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(RolesPeer::COUNT_DISTINCT);
+			$criteria->addSelectColumn(RolResponsablePeer::COUNT_DISTINCT);
 		} else {
-			$criteria->addSelectColumn(RolesPeer::COUNT);
+			$criteria->addSelectColumn(RolResponsablePeer::COUNT);
 		}
 
 				foreach($criteria->getGroupByColumns() as $column)
@@ -132,7 +132,7 @@ abstract class BaseRolesPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$rs = RolesPeer::doSelectRS($criteria, $con);
+		$rs = RolResponsablePeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
 			return $rs->getInt(1);
 		} else {
@@ -144,7 +144,7 @@ abstract class BaseRolesPeer {
 	{
 		$critcopy = clone $criteria;
 		$critcopy->setLimit(1);
-		$objects = RolesPeer::doSelect($critcopy, $con);
+		$objects = RolResponsablePeer::doSelect($critcopy, $con);
 		if ($objects) {
 			return $objects[0];
 		}
@@ -153,7 +153,7 @@ abstract class BaseRolesPeer {
 	
 	public static function doSelect(Criteria $criteria, $con = null)
 	{
-		return RolesPeer::populateObjects(RolesPeer::doSelectRS($criteria, $con));
+		return RolResponsablePeer::populateObjects(RolResponsablePeer::doSelectRS($criteria, $con));
 	}
 	
 	public static function doSelectRS(Criteria $criteria, $con = null)
@@ -164,7 +164,7 @@ abstract class BaseRolesPeer {
 
 		if (!$criteria->getSelectColumns()) {
 			$criteria = clone $criteria;
-			RolesPeer::addSelectColumns($criteria);
+			RolResponsablePeer::addSelectColumns($criteria);
 		}
 
 				$criteria->setDbName(self::DATABASE_NAME);
@@ -176,7 +176,7 @@ abstract class BaseRolesPeer {
 	{
 		$results = array();
 	
-				$cls = RolesPeer::getOMClass();
+				$cls = RolResponsablePeer::getOMClass();
 		$cls = Propel::import($cls);
 				while($rs->next()) {
 		
@@ -196,7 +196,7 @@ abstract class BaseRolesPeer {
 	
 	public static function getOMClass()
 	{
-		return RolesPeer::CLASS_DEFAULT;
+		return RolResponsablePeer::CLASS_DEFAULT;
 	}
 
 	
@@ -210,7 +210,7 @@ abstract class BaseRolesPeer {
 			$criteria = clone $values; 		} else {
 			$criteria = $values->buildCriteria(); 		}
 
-		$criteria->remove(RolesPeer::ID); 
+		$criteria->remove(RolResponsablePeer::ID); 
 
 				$criteria->setDbName(self::DATABASE_NAME);
 
@@ -237,8 +237,8 @@ abstract class BaseRolesPeer {
 
 		if ($values instanceof Criteria) {
 			$criteria = clone $values; 
-			$comparison = $criteria->getComparison(RolesPeer::ID);
-			$selectCriteria->add(RolesPeer::ID, $criteria->remove(RolesPeer::ID), $comparison);
+			$comparison = $criteria->getComparison(RolResponsablePeer::ID);
+			$selectCriteria->add(RolResponsablePeer::ID, $criteria->remove(RolResponsablePeer::ID), $comparison);
 
 		} else { 			$criteria = $values->buildCriteria(); 			$selectCriteria = $values->buildPkeyCriteria(); 		}
 
@@ -255,7 +255,7 @@ abstract class BaseRolesPeer {
 		}
 		$affectedRows = 0; 		try {
 									$con->begin();
-			$affectedRows += BasePeer::doDeleteAll(RolesPeer::TABLE_NAME, $con);
+			$affectedRows += BasePeer::doDeleteAll(RolResponsablePeer::TABLE_NAME, $con);
 			$con->commit();
 			return $affectedRows;
 		} catch (PropelException $e) {
@@ -268,16 +268,16 @@ abstract class BaseRolesPeer {
 	 public static function doDelete($values, $con = null)
 	 {
 		if ($con === null) {
-			$con = Propel::getConnection(RolesPeer::DATABASE_NAME);
+			$con = Propel::getConnection(RolResponsablePeer::DATABASE_NAME);
 		}
 
 		if ($values instanceof Criteria) {
-			$criteria = clone $values; 		} elseif ($values instanceof Roles) {
+			$criteria = clone $values; 		} elseif ($values instanceof RolResponsable) {
 
 			$criteria = $values->buildPkeyCriteria();
 		} else {
 						$criteria = new Criteria(self::DATABASE_NAME);
-			$criteria->add(RolesPeer::ID, (array) $values, Criteria::IN);
+			$criteria->add(RolResponsablePeer::ID, (array) $values, Criteria::IN);
 		}
 
 				$criteria->setDbName(self::DATABASE_NAME);
@@ -296,13 +296,13 @@ abstract class BaseRolesPeer {
 	}
 
 	
-	public static function doValidate(Roles $obj, $cols = null)
+	public static function doValidate(RolResponsable $obj, $cols = null)
 	{
 		$columns = array();
 
 		if ($cols) {
-			$dbMap = Propel::getDatabaseMap(RolesPeer::DATABASE_NAME);
-			$tableMap = $dbMap->getTable(RolesPeer::TABLE_NAME);
+			$dbMap = Propel::getDatabaseMap(RolResponsablePeer::DATABASE_NAME);
+			$tableMap = $dbMap->getTable(RolResponsablePeer::TABLE_NAME);
 
 			if (! is_array($cols)) {
 				$cols = array($cols);
@@ -318,11 +318,11 @@ abstract class BaseRolesPeer {
 
 		}
 
-		$res =  BasePeer::doValidate(RolesPeer::DATABASE_NAME, RolesPeer::TABLE_NAME, $columns);
+		$res =  BasePeer::doValidate(RolResponsablePeer::DATABASE_NAME, RolResponsablePeer::TABLE_NAME, $columns);
     if ($res !== true) {
         $request = sfContext::getInstance()->getRequest();
         foreach ($res as $failed) {
-            $col = RolesPeer::translateFieldname($failed->getColumn(), BasePeer::TYPE_COLNAME, BasePeer::TYPE_PHPNAME);
+            $col = RolResponsablePeer::translateFieldname($failed->getColumn(), BasePeer::TYPE_COLNAME, BasePeer::TYPE_PHPNAME);
             $request->setError($col, $failed->getMessage());
         }
     }
@@ -337,12 +337,12 @@ abstract class BaseRolesPeer {
 			$con = Propel::getConnection(self::DATABASE_NAME);
 		}
 
-		$criteria = new Criteria(RolesPeer::DATABASE_NAME);
+		$criteria = new Criteria(RolResponsablePeer::DATABASE_NAME);
 
-		$criteria->add(RolesPeer::ID, $pk);
+		$criteria->add(RolResponsablePeer::ID, $pk);
 
 
-		$v = RolesPeer::doSelect($criteria, $con);
+		$v = RolResponsablePeer::doSelect($criteria, $con);
 
 		return !empty($v) > 0 ? $v[0] : null;
 	}
@@ -359,8 +359,8 @@ abstract class BaseRolesPeer {
 			$objs = array();
 		} else {
 			$criteria = new Criteria();
-			$criteria->add(RolesPeer::ID, $pks, Criteria::IN);
-			$objs = RolesPeer::doSelect($criteria, $con);
+			$criteria->add(RolResponsablePeer::ID, $pks, Criteria::IN);
+			$objs = RolResponsablePeer::doSelect($criteria, $con);
 		}
 		return $objs;
 	}
@@ -368,11 +368,11 @@ abstract class BaseRolesPeer {
 } 
 if (Propel::isInit()) {
 			try {
-		BaseRolesPeer::getMapBuilder();
+		BaseRolResponsablePeer::getMapBuilder();
 	} catch (Exception $e) {
 		Propel::log('Could not initialize Peer: ' . $e->getMessage(), Propel::LOG_ERR);
 	}
 } else {
-			require_once 'lib/model/map/RolesMapBuilder.php';
-	Propel::registerMapBuilder('lib.model.map.RolesMapBuilder');
+			require_once 'lib/model/map/RolResponsableMapBuilder.php';
+	Propel::registerMapBuilder('lib.model.map.RolResponsableMapBuilder');
 }

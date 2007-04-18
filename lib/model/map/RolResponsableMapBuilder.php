@@ -2,10 +2,10 @@
 
 
 	
-class RolesMapBuilder {
+class RolResponsableMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.RolesMapBuilder';	
+	const CLASS_NAME = 'lib.model.map.RolResponsableMapBuilder';	
 
     
     private $dbMap;
@@ -27,8 +27,8 @@ class RolesMapBuilder {
     {
 		$this->dbMap = Propel::getDatabaseMap('alba');
 		
-		$tMap = $this->dbMap->addTable('roles');
-		$tMap->setPhpName('Roles');
+		$tMap = $this->dbMap->addTable('rol_responsable');
+		$tMap->setPhpName('RolResponsable');
 
 		$tMap->setUseIdGenerator(true);
 

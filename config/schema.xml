@@ -723,7 +723,7 @@
         <column name="grupo" type="varchar" size="30" required="false" default=""/>
        	<column name="defecto" type="boolean" required="true" default="0"/>
 	</table>
-    <table name="roles" idMethod="native">
+    <table name="rol_responsable" idMethod="native">
         <column name="id" type="INTEGER" required="true" autoIncrement="true" primaryKey="true"/>
         <column name="nombre" type="VARCHAR" size="128" required="true" default=""/>
         <column name="descripcion" type="VARCHAR" size="255" default=""/>
