@@ -1,4 +1,4 @@
-<?php use_helper('DateForm') ?>
+<?php use_helper('DateForm','I18N') ?>
 
     
     <script>     
