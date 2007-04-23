@@ -1,3 +1,6 @@
+<?php
+    use_helper("I18N");
+?>
 <div id="content">
 <h1>Composici&oacute;n de la Cuenta: <?php echo $cuenta->getNombre()?></h1>
 <div id="sf_admin_container">
