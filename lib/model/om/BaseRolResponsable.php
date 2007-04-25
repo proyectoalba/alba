@@ -24,6 +24,12 @@ abstract class BaseRolResponsable extends BaseObject  implements Persistent {
 	protected $activo = true;
 
 	
+	protected $collRelRolresponsableResponsables;
+
+	
+	protected $lastRelRolresponsableResponsableCriteria = null;
+
+	
 	protected $alreadyInSave = false;
 
 	
@@ -182,6 +188,14 @@ abstract class BaseRolResponsable extends BaseObject  implements Persistent {
 				}
 				$this->resetModified(); 			}
 
+			if ($this->collRelRolresponsableResponsables !== null) {
+				foreach($this->collRelRolresponsableResponsables as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
 			$this->alreadyInSave = false;
 		}
 		return $affectedRows;
@@ -222,6 +236,14 @@ abstract class BaseRolResponsable extends BaseObject  implements Persistent {
 				$failureMap = array_merge($failureMap, $retval);
 			}
 
+
+				if ($this->collRelRolresponsableResponsables !== null) {
+					foreach($this->collRelRolresponsableResponsables as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
 
 
 			$this->alreadyInValidation = false;
@@ -353,6 +375,15 @@ abstract class BaseRolResponsable extends BaseObject  implements Persistent {
 		$copyObj->setActivo($this->activo);
 
 
+		if ($deepCopy) {
+									$copyObj->setNew(false);
+
+			foreach($this->getRelRolresponsableResponsables() as $relObj) {
+				$copyObj->addRelRolresponsableResponsable($relObj->copy($deepCopy));
+			}
+
+		} 
+
 		$copyObj->setNew(true);
 
 		$copyObj->setId(NULL); 
@@ -374,6 +405,111 @@ abstract class BaseRolResponsable extends BaseObject  implements Persistent {
 			self::$peer = new RolResponsablePeer();
 		}
 		return self::$peer;
+	}
+
+	
+	public function initRelRolresponsableResponsables()
+	{
+		if ($this->collRelRolresponsableResponsables === null) {
+			$this->collRelRolresponsableResponsables = array();
+		}
+	}
+
+	
+	public function getRelRolresponsableResponsables($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseRelRolresponsableResponsablePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collRelRolresponsableResponsables === null) {
+			if ($this->isNew()) {
+			   $this->collRelRolresponsableResponsables = array();
+			} else {
+
+				$criteria->add(RelRolresponsableResponsablePeer::FK_ROLRESPONSABLE_ID, $this->getId());
+
+				RelRolresponsableResponsablePeer::addSelectColumns($criteria);
+				$this->collRelRolresponsableResponsables = RelRolresponsableResponsablePeer::doSelect($criteria, $con);
+			}
+		} else {
+						if (!$this->isNew()) {
+												
+
+				$criteria->add(RelRolresponsableResponsablePeer::FK_ROLRESPONSABLE_ID, $this->getId());
+
+				RelRolresponsableResponsablePeer::addSelectColumns($criteria);
+				if (!isset($this->lastRelRolresponsableResponsableCriteria) || !$this->lastRelRolresponsableResponsableCriteria->equals($criteria)) {
+					$this->collRelRolresponsableResponsables = RelRolresponsableResponsablePeer::doSelect($criteria, $con);
+				}
+			}
+		}
+		$this->lastRelRolresponsableResponsableCriteria = $criteria;
+		return $this->collRelRolresponsableResponsables;
+	}
+
+	
+	public function countRelRolresponsableResponsables($criteria = null, $distinct = false, $con = null)
+	{
+				include_once 'lib/model/om/BaseRelRolresponsableResponsablePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		$criteria->add(RelRolresponsableResponsablePeer::FK_ROLRESPONSABLE_ID, $this->getId());
+
+		return RelRolresponsableResponsablePeer::doCount($criteria, $distinct, $con);
+	}
+
+	
+	public function addRelRolresponsableResponsable(RelRolresponsableResponsable $l)
+	{
+		$this->collRelRolresponsableResponsables[] = $l;
+		$l->setRolResponsable($this);
+	}
+
+
+	
+	public function getRelRolresponsableResponsablesJoinResponsable($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseRelRolresponsableResponsablePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collRelRolresponsableResponsables === null) {
+			if ($this->isNew()) {
+				$this->collRelRolresponsableResponsables = array();
+			} else {
+
+				$criteria->add(RelRolresponsableResponsablePeer::FK_ROLRESPONSABLE_ID, $this->getId());
+
+				$this->collRelRolresponsableResponsables = RelRolresponsableResponsablePeer::doSelectJoinResponsable($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(RelRolresponsableResponsablePeer::FK_ROLRESPONSABLE_ID, $this->getId());
+
+			if (!isset($this->lastRelRolresponsableResponsableCriteria) || !$this->lastRelRolresponsableResponsableCriteria->equals($criteria)) {
+				$this->collRelRolresponsableResponsables = RelRolresponsableResponsablePeer::doSelectJoinResponsable($criteria, $con);
+			}
+		}
+		$this->lastRelRolresponsableResponsableCriteria = $criteria;
+
+		return $this->collRelRolresponsableResponsables;
 	}
 
 } 
