@@ -1375,5 +1375,42 @@ CREATE TABLE `tipoasistencia`
 	PRIMARY KEY (`id`)
 )Type=InnoDB;
 
+#-----------------------------------------------------------------------------
+#-- rol_responsable
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `rol_responsable`;
+
+
+CREATE TABLE `rol_responsable`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(128) default '' NOT NULL,
+	`descripcion` VARCHAR(255) default '',
+	`activo` INTEGER default 1 NOT NULL,
+	PRIMARY KEY (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- evento
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `evento`;
+
+
+CREATE TABLE `evento`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`fecha_inicio` DATETIME  NOT NULL,
+	`fecha_fin` DATETIME  NOT NULL,
+	`tipo` INTEGER default 0 NOT NULL,
+	`frecuencia` INTEGER default 0 NOT NULL,
+	`frecuencia_intervalo` INTEGER default 0 NOT NULL,
+	`recurrencia_fin` VARCHAR(16) default '',
+	`recurrencia_dias` INTEGER default 0 NOT NULL,
+	`estado` INTEGER default 0 NOT NULL,
+	PRIMARY KEY (`id`)
+)Type=InnoDB;
+
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;

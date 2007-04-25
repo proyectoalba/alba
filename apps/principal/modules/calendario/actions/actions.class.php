@@ -657,5 +657,4 @@ new Draggable('".$var."_1', {revert:1})
     }
 
 }
-
 ?>

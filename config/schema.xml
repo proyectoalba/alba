@@ -716,17 +716,28 @@
         </foreign-key>
     </table>
 	<table name="tipoasistencia" idMethod="native">
-    	<column name="id" type="integer" size="11" required="true" autoIncrement="true" primaryKey="true"/>
-       	<column name="nombre" type="varchar" size="10" required="true"/>
-       	<column name="descripcion" type="varchar" size="255" required="false" default=""/>
-        <column name="valor" type="decimal" size="4,2" required="true" default="1"/>
-        <column name="grupo" type="varchar" size="30" required="false" default=""/>
-       	<column name="defecto" type="boolean" required="true" default="0"/>
+    	<column name="id" type="INTEGER" size="11" required="true" autoIncrement="true" primaryKey="true"/>
+       	<column name="nombre" type="VARCHAR" size="10" required="true"/>
+       	<column name="descripcion" type="VARCHAR" size="255" required="false" default=""/>
+        <column name="valor" type="DECIMAL" size="4,2" required="true" default="1"/>
+        <column name="grupo" type="VARCHAR" size="30" required="false" default=""/>
+       	<column name="defecto" type="BOOLEAN" required="true" default="0"/>
 	</table>
     <table name="rol_responsable" idMethod="native">
         <column name="id" type="INTEGER" required="true" autoIncrement="true" primaryKey="true"/>
         <column name="nombre" type="VARCHAR" size="128" required="true" default=""/>
         <column name="descripcion" type="VARCHAR" size="255" default=""/>
         <column name="activo" type="BOOLEAN" required="true" default="true"/>
+    </table>
+    <table name="evento" idMethod="native">
+        <column name="id" type="INTEGER" required="true" autoIncrement="true" primaryKey="true"/>
+        <column name="fecha_inicio"  type="TIMESTAMP" required="true"/>
+        <column name="fecha_fin"  type="TIMESTAMP" required="true"/>
+        <column name="tipo" type="INTEGER" required="true" default="0"/>
+        <column name="frecuencia" type="INTEGER" required="true" default="0"/>
+        <column name="frecuencia_intervalo" type="INTEGER" required="true" default="0"/>
+        <column name="recurrencia_fin" type="VARCHAR" size="16" required="false" default=""/>
+        <column name="recurrencia_dias" type="INTEGER" required="true" default="0"/>
+        <column name="estado" type="INTEGER" required="true" default="0"/>
     </table>
 </database>

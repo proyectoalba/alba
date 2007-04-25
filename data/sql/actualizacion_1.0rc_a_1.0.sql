@@ -6,8 +6,6 @@ VALUES (
 '96', 'Biblioteca de contenidos', 'sfMediaLibrary', 'informes', '9', '0', ''
 );
 
-SET FOREIGN_KEY_CHECKS = 1;
-
 CREATE TABLE `rol_responsable`
 (
     `id` INTEGER  NOT NULL AUTO_INCREMENT,
@@ -16,3 +14,21 @@ CREATE TABLE `rol_responsable`
     `activo` INTEGER default 1 NOT NULL,
     PRIMARY KEY (`id`)
 )Type=InnoDB;
+
+CREATE TABLE `evento`
+(
+    `id` INTEGER  NOT NULL AUTO_INCREMENT,
+    `fecha_inicio` DATETIME  NOT NULL,
+    `fecha_fin` DATETIME  NOT NULL,
+    `tipo` INTEGER default 0 NOT NULL,
+    `frecuencia` INTEGER default 0 NOT NULL,
+    `frecuencia_intervalo` INTEGER default 0 NOT NULL,
+    `recurrencia_fin` VARCHAR(16) default '',
+    `recurrencia_dias` INTEGER default 0 NOT NULL,
+    `estado` INTEGER default 0 NOT NULL,
+    PRIMARY KEY (`id`)
+)Type=InnoDB;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+
