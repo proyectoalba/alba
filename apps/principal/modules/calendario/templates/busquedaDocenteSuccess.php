@@ -1,3 +1,4 @@
+<?php use_helper("I18N"); ?>
 <div id="sf_admin_container">
 <h1>Horarios seg&uacute;n Docentes</h1>
 <?php echo form_tag('calendario/busquedaDocente', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>

@@ -1,3 +1,5 @@
+<?php use_helper("I18N")?>
+
 <script>
      function linkTo(flag) {
         

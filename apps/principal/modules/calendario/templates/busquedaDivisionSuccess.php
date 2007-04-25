@@ -1,3 +1,4 @@
+<?php use_helper("I18N"); ?>
 <div id ="sf_admin_container">
 <?php if (count($aDivision) > 0) { ?>
 <h1>Horario según Divisiones</h1>

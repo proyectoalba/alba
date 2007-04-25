@@ -1,3 +1,4 @@
+<?php use_helper("I18N")?>
 <div id="sf_admin_container">
 
 <?php echo form_tag('legajopedagogico/index', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
