@@ -22,7 +22,7 @@ CREATE TABLE `rol_responsable`
 )Type=InnoDB;
 
 INSERT INTO modulo (id,nombre,titulo,descripcion) VALUES (48,'rolResponsable','Rol Responsables','Roles de los Resposables de Alumos');
-INSERT INTO permiso (nombre,descripcion,fk_modulo_id,credencial) VALUES ('rolResponsable','Rol de Responsables',48,'rolResponsable');=======
+INSERT INTO permiso (nombre,descripcion,fk_modulo_id,credencial) VALUES ('rolResponsable','Rol de Responsables',48,'rolResponsable');
 
 CREATE TABLE `evento`
 (
