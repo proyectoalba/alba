@@ -5,6 +5,12 @@ INSERT INTO `menu` ( `id` , `nombre` , `link` , `perm` , `fk_padre_menu_id` , `o
 VALUES (
 '96', 'Biblioteca de contenidos', 'sfMediaLibrary', 'informes', '9', '0', ''
 );
+INSERT INTO `menu` ( `id` , `nombre` , `link` , `perm` , `fk_padre_menu_id` , `orden` , `target` )
+VALUES (
+'97', 'Definir Roles de responsables', 'rolResponsable', 'rolResponsable', '84', '0', '');
+
+
+SET FOREIGN_KEY_CHECKS = 1;
 
 CREATE TABLE `rol_responsable`
 (
@@ -14,6 +20,9 @@ CREATE TABLE `rol_responsable`
     `activo` INTEGER default 1 NOT NULL,
     PRIMARY KEY (`id`)
 )Type=InnoDB;
+
+INSERT INTO modulo (id,nombre,titulo,descripcion) VALUES (48,'rolResponsable','Rol Responsables','Roles de los Resposables de Alumos');
+INSERT INTO permiso (nombre,descripcion,fk_modulo_id,credencial) VALUES ('rolResponsable','Rol de Responsables',48,'rolResponsable');=======
 
 CREATE TABLE `evento`
 (
@@ -30,5 +39,4 @@ CREATE TABLE `evento`
 )Type=InnoDB;
 
 SET FOREIGN_KEY_CHECKS = 1;
-
 

@@ -215,7 +215,8 @@ INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`,
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (93, 'Solicitud de Legajo', 'informes/solicitudLegajoBusquedaFormulario', 'informes', '9', '0', '_blank');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (94, 'Definir Períodos', '#', 'ciclolectivo', 86, 10, '');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (95, 'Ir a Ciclo Lectivo Actual', 'ciclolectivo/agregarTurnosYPeriodos', 'ciclolectivo', 7, 0, '');
-INSERT INTO `menu` ( `id` , `nombre` , `link` , `perm` , `fk_padre_menu_id` , `orden` , `target` ) VALUES (96, 'Biblioteca de contenidos', 'sfMediaLibrary', 'informes', 9, 0, ''); 
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (96, 'Biblioteca de contenidos', 'sfMediaLibrary', 'informes', 9, 0, ''); 
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (97, 'Definir Roles de responsables', 'rolResponsable', 'rolResponsable', '84', '0', '');
 
 -- 
 -- Volcar la base de datos para la tabla 'modulo'
@@ -268,6 +269,7 @@ INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (44, 'legajo
 INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (45, 'Boletin', 'Boletin', '', 1);
 INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (46, 'tipodocumento', 'Tipo Documento', 'Tipo Documento', 1);
 INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (47, 'informes', 'informes', 'informes', 1);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (58, 'rolResponsable','Rol Responsables','Roles de los Resposables de Alumos', 1);
 
 -- 
 -- Volcar la base de datos para la tabla 'permiso'
@@ -326,7 +328,7 @@ INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (57, 'boletinnotas', 'boletinnotas', 'boletinnotas', 45);
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (58, 'tipodocumento', 'tipodocumento', 'tipodocumento', 46);
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (59, 'informes', 'informes', 'informes', 47);
-
+INSERT INTO permiso (nombre,descripcion,fk_modulo_id,credencial) VALUES ('rolResponsable','Rol de Responsables',48,'rolResponsable');
 -- 
 -- Volcar la base de datos para la tabla 'rel_usuario_permiso'
 -- 
