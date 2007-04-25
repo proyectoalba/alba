@@ -731,6 +731,7 @@
     </table>
     <table name="evento" idMethod="native">
         <column name="id" type="INTEGER" required="true" autoIncrement="true" primaryKey="true"/>
+        <column name="titulo" type="VARCHAR" size="128" required="true"/>
         <column name="fecha_inicio"  type="TIMESTAMP" required="true"/>
         <column name="fecha_fin"  type="TIMESTAMP" required="true"/>
         <column name="tipo" type="INTEGER" required="true" default="0"/>

@@ -13,7 +13,7 @@ abstract class BaseEventoPeer {
 	const CLASS_DEFAULT = 'lib.model.Evento';
 
 	
-	const NUM_COLUMNS = 9;
+	const NUM_COLUMNS = 10;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -21,6 +21,9 @@ abstract class BaseEventoPeer {
 
 	
 	const ID = 'evento.ID';
+
+	
+	const TITULO = 'evento.TITULO';
 
 	
 	const FECHA_INICIO = 'evento.FECHA_INICIO';
@@ -52,18 +55,18 @@ abstract class BaseEventoPeer {
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'FechaInicio', 'FechaFin', 'Tipo', 'Frecuencia', 'FrecuenciaIntervalo', 'RecurrenciaFin', 'RecurrenciaDias', 'Estado', ),
-		BasePeer::TYPE_COLNAME => array (EventoPeer::ID, EventoPeer::FECHA_INICIO, EventoPeer::FECHA_FIN, EventoPeer::TIPO, EventoPeer::FRECUENCIA, EventoPeer::FRECUENCIA_INTERVALO, EventoPeer::RECURRENCIA_FIN, EventoPeer::RECURRENCIA_DIAS, EventoPeer::ESTADO, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'fecha_inicio', 'fecha_fin', 'tipo', 'frecuencia', 'frecuencia_intervalo', 'recurrencia_fin', 'recurrencia_dias', 'estado', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Titulo', 'FechaInicio', 'FechaFin', 'Tipo', 'Frecuencia', 'FrecuenciaIntervalo', 'RecurrenciaFin', 'RecurrenciaDias', 'Estado', ),
+		BasePeer::TYPE_COLNAME => array (EventoPeer::ID, EventoPeer::TITULO, EventoPeer::FECHA_INICIO, EventoPeer::FECHA_FIN, EventoPeer::TIPO, EventoPeer::FRECUENCIA, EventoPeer::FRECUENCIA_INTERVALO, EventoPeer::RECURRENCIA_FIN, EventoPeer::RECURRENCIA_DIAS, EventoPeer::ESTADO, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'titulo', 'fecha_inicio', 'fecha_fin', 'tipo', 'frecuencia', 'frecuencia_intervalo', 'recurrencia_fin', 'recurrencia_dias', 'estado', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'FechaInicio' => 1, 'FechaFin' => 2, 'Tipo' => 3, 'Frecuencia' => 4, 'FrecuenciaIntervalo' => 5, 'RecurrenciaFin' => 6, 'RecurrenciaDias' => 7, 'Estado' => 8, ),
-		BasePeer::TYPE_COLNAME => array (EventoPeer::ID => 0, EventoPeer::FECHA_INICIO => 1, EventoPeer::FECHA_FIN => 2, EventoPeer::TIPO => 3, EventoPeer::FRECUENCIA => 4, EventoPeer::FRECUENCIA_INTERVALO => 5, EventoPeer::RECURRENCIA_FIN => 6, EventoPeer::RECURRENCIA_DIAS => 7, EventoPeer::ESTADO => 8, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'fecha_inicio' => 1, 'fecha_fin' => 2, 'tipo' => 3, 'frecuencia' => 4, 'frecuencia_intervalo' => 5, 'recurrencia_fin' => 6, 'recurrencia_dias' => 7, 'estado' => 8, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Titulo' => 1, 'FechaInicio' => 2, 'FechaFin' => 3, 'Tipo' => 4, 'Frecuencia' => 5, 'FrecuenciaIntervalo' => 6, 'RecurrenciaFin' => 7, 'RecurrenciaDias' => 8, 'Estado' => 9, ),
+		BasePeer::TYPE_COLNAME => array (EventoPeer::ID => 0, EventoPeer::TITULO => 1, EventoPeer::FECHA_INICIO => 2, EventoPeer::FECHA_FIN => 3, EventoPeer::TIPO => 4, EventoPeer::FRECUENCIA => 5, EventoPeer::FRECUENCIA_INTERVALO => 6, EventoPeer::RECURRENCIA_FIN => 7, EventoPeer::RECURRENCIA_DIAS => 8, EventoPeer::ESTADO => 9, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'titulo' => 1, 'fecha_inicio' => 2, 'fecha_fin' => 3, 'tipo' => 4, 'frecuencia' => 5, 'frecuencia_intervalo' => 6, 'recurrencia_fin' => 7, 'recurrencia_dias' => 8, 'estado' => 9, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, )
 	);
 
 	
@@ -118,6 +121,8 @@ abstract class BaseEventoPeer {
 	{
 
 		$criteria->addSelectColumn(EventoPeer::ID);
+
+		$criteria->addSelectColumn(EventoPeer::TITULO);
 
 		$criteria->addSelectColumn(EventoPeer::FECHA_INICIO);
 

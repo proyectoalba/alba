@@ -13,6 +13,10 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 
 
 	
+	protected $titulo;
+
+
+	
 	protected $fecha_inicio;
 
 
@@ -54,6 +58,13 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 	{
 
 		return $this->id;
+	}
+
+	
+	public function getTitulo()
+	{
+
+		return $this->titulo;
 	}
 
 	
@@ -149,6 +160,16 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = EventoPeer::ID;
+		}
+
+	} 
+	
+	public function setTitulo($v)
+	{
+
+		if ($this->titulo !== $v) {
+			$this->titulo = $v;
+			$this->modifiedColumns[] = EventoPeer::TITULO;
 		}
 
 	} 
@@ -253,27 +274,29 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 
 			$this->id = $rs->getInt($startcol + 0);
 
-			$this->fecha_inicio = $rs->getTimestamp($startcol + 1, null);
+			$this->titulo = $rs->getString($startcol + 1);
 
-			$this->fecha_fin = $rs->getTimestamp($startcol + 2, null);
+			$this->fecha_inicio = $rs->getTimestamp($startcol + 2, null);
 
-			$this->tipo = $rs->getInt($startcol + 3);
+			$this->fecha_fin = $rs->getTimestamp($startcol + 3, null);
 
-			$this->frecuencia = $rs->getInt($startcol + 4);
+			$this->tipo = $rs->getInt($startcol + 4);
 
-			$this->frecuencia_intervalo = $rs->getInt($startcol + 5);
+			$this->frecuencia = $rs->getInt($startcol + 5);
 
-			$this->recurrencia_fin = $rs->getString($startcol + 6);
+			$this->frecuencia_intervalo = $rs->getInt($startcol + 6);
 
-			$this->recurrencia_dias = $rs->getInt($startcol + 7);
+			$this->recurrencia_fin = $rs->getString($startcol + 7);
 
-			$this->estado = $rs->getInt($startcol + 8);
+			$this->recurrencia_dias = $rs->getInt($startcol + 8);
+
+			$this->estado = $rs->getInt($startcol + 9);
 
 			$this->resetModified();
 
 			$this->setNew(false);
 
-						return $startcol + 9; 
+						return $startcol + 10; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Evento object", $e);
 		}
@@ -404,27 +427,30 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 				return $this->getId();
 				break;
 			case 1:
-				return $this->getFechaInicio();
+				return $this->getTitulo();
 				break;
 			case 2:
-				return $this->getFechaFin();
+				return $this->getFechaInicio();
 				break;
 			case 3:
-				return $this->getTipo();
+				return $this->getFechaFin();
 				break;
 			case 4:
-				return $this->getFrecuencia();
+				return $this->getTipo();
 				break;
 			case 5:
-				return $this->getFrecuenciaIntervalo();
+				return $this->getFrecuencia();
 				break;
 			case 6:
-				return $this->getRecurrenciaFin();
+				return $this->getFrecuenciaIntervalo();
 				break;
 			case 7:
-				return $this->getRecurrenciaDias();
+				return $this->getRecurrenciaFin();
 				break;
 			case 8:
+				return $this->getRecurrenciaDias();
+				break;
+			case 9:
 				return $this->getEstado();
 				break;
 			default:
@@ -438,14 +464,15 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 		$keys = EventoPeer::getFieldNames($keyType);
 		$result = array(
 			$keys[0] => $this->getId(),
-			$keys[1] => $this->getFechaInicio(),
-			$keys[2] => $this->getFechaFin(),
-			$keys[3] => $this->getTipo(),
-			$keys[4] => $this->getFrecuencia(),
-			$keys[5] => $this->getFrecuenciaIntervalo(),
-			$keys[6] => $this->getRecurrenciaFin(),
-			$keys[7] => $this->getRecurrenciaDias(),
-			$keys[8] => $this->getEstado(),
+			$keys[1] => $this->getTitulo(),
+			$keys[2] => $this->getFechaInicio(),
+			$keys[3] => $this->getFechaFin(),
+			$keys[4] => $this->getTipo(),
+			$keys[5] => $this->getFrecuencia(),
+			$keys[6] => $this->getFrecuenciaIntervalo(),
+			$keys[7] => $this->getRecurrenciaFin(),
+			$keys[8] => $this->getRecurrenciaDias(),
+			$keys[9] => $this->getEstado(),
 		);
 		return $result;
 	}
@@ -465,27 +492,30 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 				$this->setId($value);
 				break;
 			case 1:
-				$this->setFechaInicio($value);
+				$this->setTitulo($value);
 				break;
 			case 2:
-				$this->setFechaFin($value);
+				$this->setFechaInicio($value);
 				break;
 			case 3:
-				$this->setTipo($value);
+				$this->setFechaFin($value);
 				break;
 			case 4:
-				$this->setFrecuencia($value);
+				$this->setTipo($value);
 				break;
 			case 5:
-				$this->setFrecuenciaIntervalo($value);
+				$this->setFrecuencia($value);
 				break;
 			case 6:
-				$this->setRecurrenciaFin($value);
+				$this->setFrecuenciaIntervalo($value);
 				break;
 			case 7:
-				$this->setRecurrenciaDias($value);
+				$this->setRecurrenciaFin($value);
 				break;
 			case 8:
+				$this->setRecurrenciaDias($value);
+				break;
+			case 9:
 				$this->setEstado($value);
 				break;
 		} 	}
@@ -496,14 +526,15 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 		$keys = EventoPeer::getFieldNames($keyType);
 
 		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
-		if (array_key_exists($keys[1], $arr)) $this->setFechaInicio($arr[$keys[1]]);
-		if (array_key_exists($keys[2], $arr)) $this->setFechaFin($arr[$keys[2]]);
-		if (array_key_exists($keys[3], $arr)) $this->setTipo($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setFrecuencia($arr[$keys[4]]);
-		if (array_key_exists($keys[5], $arr)) $this->setFrecuenciaIntervalo($arr[$keys[5]]);
-		if (array_key_exists($keys[6], $arr)) $this->setRecurrenciaFin($arr[$keys[6]]);
-		if (array_key_exists($keys[7], $arr)) $this->setRecurrenciaDias($arr[$keys[7]]);
-		if (array_key_exists($keys[8], $arr)) $this->setEstado($arr[$keys[8]]);
+		if (array_key_exists($keys[1], $arr)) $this->setTitulo($arr[$keys[1]]);
+		if (array_key_exists($keys[2], $arr)) $this->setFechaInicio($arr[$keys[2]]);
+		if (array_key_exists($keys[3], $arr)) $this->setFechaFin($arr[$keys[3]]);
+		if (array_key_exists($keys[4], $arr)) $this->setTipo($arr[$keys[4]]);
+		if (array_key_exists($keys[5], $arr)) $this->setFrecuencia($arr[$keys[5]]);
+		if (array_key_exists($keys[6], $arr)) $this->setFrecuenciaIntervalo($arr[$keys[6]]);
+		if (array_key_exists($keys[7], $arr)) $this->setRecurrenciaFin($arr[$keys[7]]);
+		if (array_key_exists($keys[8], $arr)) $this->setRecurrenciaDias($arr[$keys[8]]);
+		if (array_key_exists($keys[9], $arr)) $this->setEstado($arr[$keys[9]]);
 	}
 
 	
@@ -512,6 +543,7 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 		$criteria = new Criteria(EventoPeer::DATABASE_NAME);
 
 		if ($this->isColumnModified(EventoPeer::ID)) $criteria->add(EventoPeer::ID, $this->id);
+		if ($this->isColumnModified(EventoPeer::TITULO)) $criteria->add(EventoPeer::TITULO, $this->titulo);
 		if ($this->isColumnModified(EventoPeer::FECHA_INICIO)) $criteria->add(EventoPeer::FECHA_INICIO, $this->fecha_inicio);
 		if ($this->isColumnModified(EventoPeer::FECHA_FIN)) $criteria->add(EventoPeer::FECHA_FIN, $this->fecha_fin);
 		if ($this->isColumnModified(EventoPeer::TIPO)) $criteria->add(EventoPeer::TIPO, $this->tipo);
@@ -549,6 +581,8 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 	
 	public function copyInto($copyObj, $deepCopy = false)
 	{
+
+		$copyObj->setTitulo($this->titulo);
 
 		$copyObj->setFechaInicio($this->fecha_inicio);
 

@@ -27,6 +27,7 @@ INSERT INTO permiso (nombre,descripcion,fk_modulo_id,credencial) VALUES ('rolRes
 CREATE TABLE `evento`
 (
     `id` INTEGER  NOT NULL AUTO_INCREMENT,
+    `titulo` VARCHAR(128)  NOT NULL,
     `fecha_inicio` DATETIME  NOT NULL,
     `fecha_fin` DATETIME  NOT NULL,
     `tipo` INTEGER default 0 NOT NULL,
