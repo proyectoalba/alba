@@ -269,7 +269,7 @@ INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (44, 'legajo
 INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (45, 'Boletin', 'Boletin', '', 1);
 INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (46, 'tipodocumento', 'Tipo Documento', 'Tipo Documento', 1);
 INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (47, 'informes', 'informes', 'informes', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (58, 'rolResponsable','Rol Responsables','Roles de los Resposables de Alumos', 1);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (48, 'rolResponsable','Rol Responsables','Roles de los Resposables de Alumos', 1);
 
 -- 
 -- Volcar la base de datos para la tabla 'permiso'
