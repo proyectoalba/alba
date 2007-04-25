@@ -328,7 +328,8 @@ INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (57, 'boletinnotas', 'boletinnotas', 'boletinnotas', 45);
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (58, 'tipodocumento', 'tipodocumento', 'tipodocumento', 46);
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (59, 'informes', 'informes', 'informes', 47);
-INSERT INTO permiso (nombre,descripcion,fk_modulo_id,credencial) VALUES ('rolResponsable','Rol de Responsables',48,'rolResponsable');
+INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (60, 'rolResponsable', 'Rol de Responsables', 'rolResponsable', 48);
+
 -- 
 -- Volcar la base de datos para la tabla 'rel_usuario_permiso'
 -- 
