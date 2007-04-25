@@ -12,7 +12,7 @@ propel.schema.validate     = false
 
 ; directories
 propel.home                    = .
-propel.output.dir              = ALBA_PATH
+propel.output.dir              = ${propel.home}
 propel.schema.dir              = ${propel.output.dir}/config
 propel.conf.dir                = ${propel.output.dir}/config
 propel.phpconf.dir             = ${propel.output.dir}/config
