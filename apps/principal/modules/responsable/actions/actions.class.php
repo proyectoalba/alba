@@ -143,7 +143,10 @@ class responsableActions extends autoresponsableActions {
     {
       $this->responsable->setFkCuentaId($responsable['fk_cuenta_id']);
     }
-        
+    if (isset($responsable['fk_rolresponsable_id']))
+    {
+      $this->responsable->setFkRolresponsableId($responsable['fk_rolresponsable_id']);
+    }    
     $this->responsable->setAutorizacionRetiro(isset($responsable['autorizacion_retiro']) ? $responsable['autorizacion_retiro'] : 0);
   }
   

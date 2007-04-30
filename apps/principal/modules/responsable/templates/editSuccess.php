@@ -248,6 +248,11 @@ document.getElementsByName("responsable[telefono]")[0].value = datosCuenta[4]
   'control_name' => 'responsable[relacion]',
 )) ?>
     </div>
+    
+   <?php echo object_select_tag($responsable, 'getFkRolresponsableId', array (
+  'related_class' => 'RolResponsable',
+  'control_name' => 'responsable[fk_rolresponsable_id]',
+)) ?>   
 </div>
 
 <div class="form-row">
@@ -281,7 +286,8 @@ document.getElementsByName("responsable[telefono]")[0].value = datosCuenta[4]
         echo object_input_hidden_tag($responsable,'getFkCuentaId',array('control_name' =>'responsable[fk_cuenta_id]'));
     ?>
 
-</fieldset>
+        </fieldset>
+
 
 <?php echo include_partial('edit_actions', array('responsable' => $responsable)) ?>
 
