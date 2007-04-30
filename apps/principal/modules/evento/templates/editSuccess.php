@@ -304,7 +304,7 @@
 
         </div>
 
-
+        <?php echo object_input_hidden_tag($evento, 'getId') ?>
 </fieldset>
 
 
