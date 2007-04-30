@@ -537,6 +537,7 @@ CREATE TABLE `responsable`
 	`observacion` VARCHAR(255) default '',
 	`autorizacion_retiro` INTEGER default 0 NOT NULL,
 	`fk_cuenta_id` INTEGER default 0 NOT NULL,
+	`fk_rolresponsable_id` INTEGER default 1 NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `responsable_FI_1` (`fk_cuenta_id`),
 	CONSTRAINT `responsable_FK_1`
@@ -549,7 +550,11 @@ CREATE TABLE `responsable`
 	INDEX `responsable_FI_3` (`fk_tipodocumento_id`),
 	CONSTRAINT `responsable_FK_3`
 		FOREIGN KEY (`fk_tipodocumento_id`)
-		REFERENCES `tipodocumento` (`id`)
+		REFERENCES `tipodocumento` (`id`),
+	INDEX `responsable_FI_4` (`fk_rolresponsable_id`),
+	CONSTRAINT `responsable_FK_4`
+		FOREIGN KEY (`fk_rolresponsable_id`)
+		REFERENCES `rol_responsable` (`id`)
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
