@@ -9,4 +9,8 @@
  */ 
 class RolResponsable extends BaseRolResponsable
 {
+ public function __toString() {
+         return $this->getNombre();
+             }
+             
 }
