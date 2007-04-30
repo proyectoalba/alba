@@ -1,4 +1,60 @@
-<?php use_helper('I18N','Object') ?>
+<?php 
+
+    use_helper('I18N','Object'); 
+    $hora_fin = "";
+    $hora_inicio = "";
+    $seleccion_4 = true;
+    $seleccion_5 = $seleccion_6 = $seleccion_7 = $hora_asociada = $activar_repeticion = false;
+    $mostrar_div_anual = $mostrar_div_mensual = $mostrar_div_semana = $mostrar_div_diaria = "display:none";
+    $recurrencia_fin_fecha  = '';
+    $recurrencia_fin_repeticion = '';
+    $recurrencia_fin_0 = true;
+    $recurrencia_fin_1 = false;
+    $recurrencia_fin_2 = false;
+    $numero_binario = "0000000";
+    
+    if($evento->getId()) {
+        $hora_inicio = date( "H:i" , strtotime($evento->getFechaInicio()));
+        $hora_fin = date( "H:i" , strtotime($evento->getFechaFin()));
+        if($hora_inicio == "00:00" AND $hora_fin == "00:00")  {
+            $hora_asociada = false;
+        } else {
+            $hora_asociada = true;
+        }
+        
+        switch($evento->getFrecuencia()) {
+            case '0': $activar_repeticion = false; break;
+            case '4': $activar_repeticion = true; $seleccion_4 = true; $seleccion_5 = $seleccion_6 = $seleccion_7 = false; $mostrar_div_diaria = ""; break;
+            case '5': $activar_repeticion = true; $seleccion_5 = true; $seleccion_4 = $seleccion_6 = $seleccion_7 = false; $mostrar_div_semana = ""; break;
+            case '6': $activar_repeticion = true; $seleccion_6 = true; $seleccion_5 = $seleccion_4 = $seleccion_7 = false; $mostrar_div_mensual = ""; break;
+            case '7': $activar_repeticion = true; $seleccion_7 = true; $seleccion_5 = $seleccion_6 = $seleccion_4 = false; $mostrar_div_anual = ""; break;
+        }
+        
+        
+        if($evento->getRecurrenciaFin() != "") {
+            if(is_numeric($evento->getRecurrenciaFin())) {
+                $recurrencia_fin_fecha  = '';
+                $recurrencia_fin_repeticion = $evento->getRecurrenciaFin();            
+                $recurrencia_fin_2 = $recurrencia_fin_0 = false;
+                $recurrencia_fin_1 = true;
+            } else {
+                $dateFormat = new sfDateFormat($sf_user->getCulture());
+                $value = $dateFormat->format($evento->getRecurrenciaFin()." 00:00:00", 'I', $dateFormat->getInputPattern('g'));
+
+                $recurrencia_fin_fecha  = $value;
+                $recurrencia_fin_repeticion = '';            
+                $recurrencia_fin_2 = true;
+                $recurrencia_fin_0 = $recurrencia_fin_1 = false;
+            }
+        } 
+            
+
+             $numero_binario = str_pad(decbin($evento->getRecurrenciaDias()), 7, "0", STR_PAD_LEFT);
+        
+
+
+    }
+?>
 
 <script type="text/javascript">
     function cambiarDeEstado(element) {
@@ -47,11 +103,11 @@
         }
 
         if(document.getElementById('evento_recurrencia_fin_tipo_1').disabled == false && document.getElementById('evento_recurrencia_fin_tipo_1').checked == true) {
-            HabilitaDeshabilitaRangoFrecuencia('evento_frecuencia_fin_repeticion');
+            HabilitaDeshabilitaRangoFrecuencia('evento_recurrencia_fin_repeticion');
         }
 
         if(document.getElementById('evento_recurrencia_fin_tipo_2').disabled == false && document.getElementById('evento_recurrencia_fin_tipo_2').checked == true) {
-            HabilitaDeshabilitaRangoFrecuencia('evento_frecuencia_fin_fecha');
+            HabilitaDeshabilitaRangoFrecuencia('evento_recurrencia_fin_fecha');
         }
 
     }
@@ -63,8 +119,8 @@
     }
 
     function deshabilitaRangoFrecuencia() {
-        document.getElementById('evento_frecuencia_fin_repeticion').disabled=true;
-        document.getElementById('evento_frecuencia_fin_fecha').disabled=true;
+        document.getElementById('evento_recurrencia_fin_repeticion').disabled=true;
+        document.getElementById('evento_recurrencia_fin_fecha').disabled=true;
     }
 
     function mostrarRegla(element) {
@@ -77,8 +133,17 @@
         document.getElementById('evento_recurrencia_dias_4').disabled = false;
         document.getElementById('evento_recurrencia_dias_5').disabled = false;
         document.getElementById('evento_recurrencia_dias_6').disabled = false;
-        document.getElementById('evento_frecuencia_intervalo_diaria').disabled = false;
-        document.getElementById('evento_frecuencia_intervalo_semana').disabled = false; 
+
+        if(element == 'diaria') {
+            document.getElementById('evento_frecuencia_intervalo_diaria').disabled = false;
+            document.getElementById('evento_frecuencia_intervalo_semana').disabled = true; 
+        } 
+
+        if(element == 'semana') {
+            document.getElementById('evento_frecuencia_intervalo_diaria').disabled = true;
+            document.getElementById('evento_frecuencia_intervalo_semana').disabled = false;
+        }
+
     }
 
     function deshabilitaReglas() {
@@ -154,7 +219,7 @@
               'control_name' => 'evento[fecha_inicio]',
             )) ?>
                 &nbsp;&nbsp;&nbsp;
-                <?php include_partial('hora_inicio', array ('evento' => $evento));?>
+                <?php include_partial('hora_inicio', array ('evento' => $evento,  'hora_inicio' => $hora_inicio, 'hora_asociada' => $hora_asociada ));?>
                 </div>
             </div>
 
@@ -173,14 +238,14 @@
               'control_name' => 'evento[fecha_fin]',
             )) ?>
                 &nbsp;&nbsp;&nbsp;
-                <?php include_partial('hora_fin', array ('evento' => $evento));?>
+                <?php include_partial('hora_fin', array ('evento' => $evento, 'hora_fin' => $hora_fin, 'hora_asociada' => $hora_asociada ));?>
                 </div>
              </div>
             
         <div class="form-row">
             <?php echo label_for('hora_asociada', __('Hora asociada:')) ?>
             <div class="content">
-                <?php echo checkbox_tag('evento[hora_asociada]', 1, false, array('onChange'=>'javascrip:HabilitaDeshabilitaHora();')) ?>                
+                <?php echo checkbox_tag('evento[hora_asociada]', 1, $hora_asociada , array('onChange'=>'javascrip:HabilitaDeshabilitaHora();')) ?>                
             </div>
         </div>
 
@@ -190,50 +255,51 @@
         
         <h2>
         <?php echo __('Activar Repetición') ?>
-        <?php echo checkbox_tag('evento[activar]', 1, false, array('onChange'=>'javascrip:HabilitaDeshabilitaRepeticion();')) ?>                
+        <?php echo checkbox_tag('evento[activar_repeticion]', 1, $activar_repeticion, array('onChange'=>'javascrip:HabilitaDeshabilitaRepeticion();')) ?>                
         </h2>       
         
         <h4>Regla de recurrencia</h4>
         
         <div class="form-row">
-        <?php echo radiobutton_tag('evento[frecuencia][]', '4', true, array('disabled' => true, 'onChange' => 'javascript:mostrarRegla(\'diaria\')') ) ?>Diaria&nbsp;&nbsp;
-        <?php echo radiobutton_tag('evento[frecuencia][]', '5', false, array('disabled' => true, 'onChange' => 'javascript:mostrarRegla(\'semana\')')) ?>Semanal&nbsp;&nbsp;
-        <?php echo radiobutton_tag('evento[frecuencia][]', '6', false, array('disabled' => true, 'onChange' => 'javascript:mostrarRegla(\'mensual\')')) ?>Mensual&nbsp;&nbsp;
-        <?php echo radiobutton_tag('evento[frecuencia][]', '7', false, array('disabled' => true, 'onChange' => 'javascript:mostrarRegla(\'anual\')')) ?>Anual&nbsp;&nbsp;
+        <?php echo radiobutton_tag('evento[frecuencia][]', '4', $seleccion_4, array('disabled' => !$activar_repeticion, 'onChange' => 'javascript:mostrarRegla(\'diaria\')') ) ?>Diaria&nbsp;&nbsp;
+        <?php echo radiobutton_tag('evento[frecuencia][]', '5', $seleccion_5, array('disabled' => !$activar_repeticion, 'onChange' => 'javascript:mostrarRegla(\'semana\')')) ?>Semanal&nbsp;&nbsp;
+        <?php echo radiobutton_tag('evento[frecuencia][]', '6', $seleccion_6, array('disabled' => !$activar_repeticion, 'onChange' => 'javascript:mostrarRegla(\'mensual\')')) ?>Mensual&nbsp;&nbsp;
+        <?php echo radiobutton_tag('evento[frecuencia][]', '7', $seleccion_7, array('disabled' => !$activar_repeticion, 'onChange' => 'javascript:mostrarRegla(\'anual\')')) ?>Anual&nbsp;&nbsp;
         </div>
 
-        <div class="form-row" id="diaria" style="display:none">
-            Repetir cada <?php echo input_tag('evento[frecuencia_intervalo_diaria]', '1', array('disabled' => true, 'maxlength' => 3, 'size' => 3 )) ?>  d&iacute;a(s)
+        <div class="form-row" id="diaria" style="<?php echo $mostrar_div_diaria; ?>">
+            Repetir cada <?php echo object_input_tag($evento, 'getFrecuenciaIntervalo', array('disabled' => !$seleccion_4, 'maxlength' => 3, 'size' => 3, 'control_name' => 'evento[frecuencia_intervalo_diaria]' )); ?> d&iacute;a(s)
         </div>
 
-        <div class="form-row" id="semana" style="display:none">
-            Repetir cada <?php echo input_tag('evento[frecuencia_intervalo_semana]', '1', array('disabled' => true, 'maxlength' => 2, 'size' => 2 )) ?> semana(s)<br><br>
-            <?php echo checkbox_tag('evento[recurrencia_dias][]', '0', false, array('disabled' => true) ) ?>Domingo&nbsp;&nbsp;
-            <?php echo checkbox_tag('evento[recurrencia_dias][]', '1', false, array('disabled' => true) ) ?>Lunes&nbsp;&nbsp;
-            <?php echo checkbox_tag('evento[recurrencia_dias][]', '2', false, array('disabled' => true) ) ?>Martes&nbsp;&nbsp;
-            <?php echo checkbox_tag('evento[recurrencia_dias][]', '3', false, array('disabled' => true) ) ?>Miercoles&nbsp;&nbsp;
-            <?php echo checkbox_tag('evento[recurrencia_dias][]', '4', false, array('disabled' => true) ) ?>Jueves&nbsp;&nbsp;
-            <?php echo checkbox_tag('evento[recurrencia_dias][]', '5', false, array('disabled' => true) ) ?>Viernes&nbsp;&nbsp;
-            <?php echo checkbox_tag('evento[recurrencia_dias][]', '6', false, array('disabled' => true) ) ?>Sabado&nbsp;&nbsp;
+        <div class="form-row" id="semana" style="<?php echo $mostrar_div_semana?>">
+            Repetir cada <?php echo object_input_tag($evento, 'getFrecuenciaIntervalo', array('disabled' => !$seleccion_5, 'maxlength' => 3, 'size' => 3, 'control_name' => 'evento[frecuencia_intervalo_semana]')); ?> semana(s)<br><br>
+
+            <?php echo checkbox_tag('evento[recurrencia_dias][]', '0', ($numero_binario[6])?true:false, array('disabled' => !$seleccion_5) ) ?>Domingo&nbsp;&nbsp;
+            <?php echo checkbox_tag('evento[recurrencia_dias][]', '1', ($numero_binario[5])?true:false, array('disabled' => !$seleccion_5) ) ?>Lunes&nbsp;&nbsp;
+            <?php echo checkbox_tag('evento[recurrencia_dias][]', '2', ($numero_binario[4])?true:false, array('disabled' => !$seleccion_5) ) ?>Martes&nbsp;&nbsp;
+            <?php echo checkbox_tag('evento[recurrencia_dias][]', '3', ($numero_binario[3])?true:false, array('disabled' => !$seleccion_5) ) ?>Miercoles&nbsp;&nbsp;
+            <?php echo checkbox_tag('evento[recurrencia_dias][]', '4', ($numero_binario[2])?true:false, array('disabled' => !$seleccion_5) ) ?>Jueves&nbsp;&nbsp;
+            <?php echo checkbox_tag('evento[recurrencia_dias][]', '5', ($numero_binario[1])?true:false, array('disabled' => !$seleccion_5) ) ?>Viernes&nbsp;&nbsp;
+            <?php echo checkbox_tag('evento[recurrencia_dias][]', '6', ($numero_binario[0])?true:false, array('disabled' => !$seleccion_5) ) ?>Sabado&nbsp;&nbsp;
         </div>
 
-        <div class="form-row" id="mensual" style="display:none">
+        <div class="form-row" id="mensual" style="<?php echo $mostrar_div_mensual?>">
         </div>
 
-        <div class="form-row" id="anual" style="display:none">
+        <div class="form-row" id="anual" style="<?php echo $mostrar_div_anual?>">
         </div>
 
 
         <h4>Rango de frecuencia</h4>
         <div class="form-row">  
-            <?php echo radiobutton_tag('evento[recurrencia_fin_tipo][]', '0', true, array('disabled' => true, 'onClick' => 'javascript:deshabilitaRangoFrecuencia()') ) ?>Sin fecha de Finalizaci&oacute;n&nbsp;&nbsp;<br>
+            <?php echo radiobutton_tag('evento[recurrencia_fin_tipo][]', '0', $recurrencia_fin_0, array('disabled' => !$activar_repeticion, 'onClick' => 'javascript:deshabilitaRangoFrecuencia()') ) ?>Sin fecha de Finalizaci&oacute;n&nbsp;&nbsp;<br>
         
-            <?php echo radiobutton_tag('evento[recurrencia_fin_tipo][]', '1', false, array('disabled' => true, 'onClick' => 'javascript:HabilitaDeshabilitaRangoFrecuencia(\'evento_frecuencia_fin_repeticion\')') ) ?>Terminar despues: &nbsp;&nbsp;
-            <?php echo input_tag('evento[frecuencia_fin_repeticion]', '1', array('disabled' => true, 'maxlength' => 4, 'size' => 4 )) ?>    <br>
+            <?php echo radiobutton_tag('evento[recurrencia_fin_tipo][]', '1', $recurrencia_fin_1, array('disabled' => !$activar_repeticion, 'onClick' => 'javascript:HabilitaDeshabilitaRangoFrecuencia(\'evento_recurrencia_fin_repeticion\')') ) ?>Terminar despues: &nbsp;&nbsp;
+            <?php echo input_tag('evento[recurrencia_fin_repeticion]', $recurrencia_fin_repeticion, array('disabled' => !$activar_repeticion, 'maxlength' => 4, 'size' => 4 )) ?>    <br>
 
-            <?php echo radiobutton_tag('evento[recurrencia_fin_tipo][]', '2', false, array('disabled' => true, 'onClick' => 'javascript:HabilitaDeshabilitaRangoFrecuencia(\'evento_frecuencia_fin_fecha\')') ) ?>Terminar el:&nbsp;&nbsp;
-            <?php echo input_date_tag('evento[frecuencia_fin_fecha]', '', array ( 'rich' => true, 'calendar_button_img' => sfConfig::get('sf_admin_web_dir').'/images/date.png',
-              'control_name' => 'evento[frecuencia_fin_fecha]', 'disabled' => true
+            <?php echo radiobutton_tag('evento[recurrencia_fin_tipo][]', '2', $recurrencia_fin_2, array('disabled' => !$activar_repeticion, 'onClick' => 'javascript:HabilitaDeshabilitaRangoFrecuencia(\'evento_recurrencia_fin_fecha\')') ) ?>Terminar el:&nbsp;&nbsp;
+            <?php echo input_date_tag('evento[recurrencia_fin_fecha]', $recurrencia_fin_fecha, array ( 'rich' => true, 'calendar_button_img' => sfConfig::get('sf_admin_web_dir').'/images/date.png',
+              'control_name' => 'evento[recurrencia_fin_fecha]', 'disabled' => !$activar_repeticion
             )) ?><br>
 
         </div>

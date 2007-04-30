@@ -1,2 +1,4 @@
-<?php use_helper('DateForm') ?>
-<?php echo select_time_tag("evento[hora_inicio]", $evento->getHoraInicio(), array('include_second' => false, '12hour_time' => true), array('disabled' => true));?>
+<?php 
+    use_helper('DateForm');
+    echo select_time_tag("evento[hora_inicio]", $hora_inicio, array('include_second' => false, '12hour_time' => true), ($hora_asociada == 0)? array('disabled' => true):array());
+?>
