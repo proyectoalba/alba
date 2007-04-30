@@ -1,6 +1,6 @@
 <?php 
 
-    use_helper('I18N','Object'); 
+    use_helper('I18N','Object','Validation'); 
     $hora_fin = "";
     $hora_inicio = "";
     $seleccion_4 = true;
