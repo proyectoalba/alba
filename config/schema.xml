@@ -749,12 +749,16 @@
         <column name="id" type="INTEGER" size="11" required="true" autoIncrement="true" primaryKey="true"/>
         <column name="fk_rolresponsable_id" type="INTEGER" size="11" required="true" default="0"/>
         <column name="fk_responsable_id" type="INTEGER" size="11" required="true" default="0"/>
+        <column name="fk_alumno_id" type="INTEGER" size="11" required="true" default="0"/>
         <column name="descripcion" type="VARCHAR" size="255" default=""/>
         <foreign-key foreignTable="rol_responsable">
             <reference local="fk_rolresponsable_id" foreign="id"/>       
         </foreign-key>
         <foreign-key foreignTable="responsable">
             <reference local="fk_responsable_id" foreign="id"/>       
+        </foreign-key>
+        <foreign-key foreignTable="alumno">
+            <reference local="fk_alumno_id" foreign="id"/>       
         </foreign-key>
     </table>
 </database>

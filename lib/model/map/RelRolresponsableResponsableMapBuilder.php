@@ -38,6 +38,8 @@ class RelRolresponsableResponsableMapBuilder {
 
 		$tMap->addForeignKey('FK_RESPONSABLE_ID', 'FkResponsableId', 'int', CreoleTypes::INTEGER, 'responsable', 'ID', true, 11);
 
+		$tMap->addForeignKey('FK_ALUMNO_ID', 'FkAlumnoId', 'int', CreoleTypes::INTEGER, 'alumno', 'ID', true, 11);
+
 		$tMap->addColumn('DESCRIPCION', 'Descripcion', 'string', CreoleTypes::VARCHAR, false, 255);
 				
     } 

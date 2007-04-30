@@ -1192,4 +1192,39 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		return $this->collRelRolresponsableResponsables;
 	}
 
+
+	
+	public function getRelRolresponsableResponsablesJoinAlumno($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseRelRolresponsableResponsablePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collRelRolresponsableResponsables === null) {
+			if ($this->isNew()) {
+				$this->collRelRolresponsableResponsables = array();
+			} else {
+
+				$criteria->add(RelRolresponsableResponsablePeer::FK_RESPONSABLE_ID, $this->getId());
+
+				$this->collRelRolresponsableResponsables = RelRolresponsableResponsablePeer::doSelectJoinAlumno($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(RelRolresponsableResponsablePeer::FK_RESPONSABLE_ID, $this->getId());
+
+			if (!isset($this->lastRelRolresponsableResponsableCriteria) || !$this->lastRelRolresponsableResponsableCriteria->equals($criteria)) {
+				$this->collRelRolresponsableResponsables = RelRolresponsableResponsablePeer::doSelectJoinAlumno($criteria, $con);
+			}
+		}
+		$this->lastRelRolresponsableResponsableCriteria = $criteria;
+
+		return $this->collRelRolresponsableResponsables;
+	}
+
 } 

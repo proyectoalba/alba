@@ -13,7 +13,7 @@ abstract class BaseRelRolresponsableResponsablePeer {
 	const CLASS_DEFAULT = 'lib.model.RelRolresponsableResponsable';
 
 	
-	const NUM_COLUMNS = 4;
+	const NUM_COLUMNS = 5;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -29,6 +29,9 @@ abstract class BaseRelRolresponsableResponsablePeer {
 	const FK_RESPONSABLE_ID = 'rel_rolresponsable_responsable.FK_RESPONSABLE_ID';
 
 	
+	const FK_ALUMNO_ID = 'rel_rolresponsable_responsable.FK_ALUMNO_ID';
+
+	
 	const DESCRIPCION = 'rel_rolresponsable_responsable.DESCRIPCION';
 
 	
@@ -37,18 +40,18 @@ abstract class BaseRelRolresponsableResponsablePeer {
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'FkRolresponsableId', 'FkResponsableId', 'Descripcion', ),
-		BasePeer::TYPE_COLNAME => array (RelRolresponsableResponsablePeer::ID, RelRolresponsableResponsablePeer::FK_ROLRESPONSABLE_ID, RelRolresponsableResponsablePeer::FK_RESPONSABLE_ID, RelRolresponsableResponsablePeer::DESCRIPCION, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'fk_rolresponsable_id', 'fk_responsable_id', 'descripcion', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'FkRolresponsableId', 'FkResponsableId', 'FkAlumnoId', 'Descripcion', ),
+		BasePeer::TYPE_COLNAME => array (RelRolresponsableResponsablePeer::ID, RelRolresponsableResponsablePeer::FK_ROLRESPONSABLE_ID, RelRolresponsableResponsablePeer::FK_RESPONSABLE_ID, RelRolresponsableResponsablePeer::FK_ALUMNO_ID, RelRolresponsableResponsablePeer::DESCRIPCION, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'fk_rolresponsable_id', 'fk_responsable_id', 'fk_alumno_id', 'descripcion', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'FkRolresponsableId' => 1, 'FkResponsableId' => 2, 'Descripcion' => 3, ),
-		BasePeer::TYPE_COLNAME => array (RelRolresponsableResponsablePeer::ID => 0, RelRolresponsableResponsablePeer::FK_ROLRESPONSABLE_ID => 1, RelRolresponsableResponsablePeer::FK_RESPONSABLE_ID => 2, RelRolresponsableResponsablePeer::DESCRIPCION => 3, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'fk_rolresponsable_id' => 1, 'fk_responsable_id' => 2, 'descripcion' => 3, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'FkRolresponsableId' => 1, 'FkResponsableId' => 2, 'FkAlumnoId' => 3, 'Descripcion' => 4, ),
+		BasePeer::TYPE_COLNAME => array (RelRolresponsableResponsablePeer::ID => 0, RelRolresponsableResponsablePeer::FK_ROLRESPONSABLE_ID => 1, RelRolresponsableResponsablePeer::FK_RESPONSABLE_ID => 2, RelRolresponsableResponsablePeer::FK_ALUMNO_ID => 3, RelRolresponsableResponsablePeer::DESCRIPCION => 4, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'fk_rolresponsable_id' => 1, 'fk_responsable_id' => 2, 'fk_alumno_id' => 3, 'descripcion' => 4, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
 	);
 
 	
@@ -107,6 +110,8 @@ abstract class BaseRelRolresponsableResponsablePeer {
 		$criteria->addSelectColumn(RelRolresponsableResponsablePeer::FK_ROLRESPONSABLE_ID);
 
 		$criteria->addSelectColumn(RelRolresponsableResponsablePeer::FK_RESPONSABLE_ID);
+
+		$criteria->addSelectColumn(RelRolresponsableResponsablePeer::FK_ALUMNO_ID);
 
 		$criteria->addSelectColumn(RelRolresponsableResponsablePeer::DESCRIPCION);
 
@@ -245,6 +250,34 @@ abstract class BaseRelRolresponsableResponsablePeer {
 
 
 	
+	public static function doCountJoinAlumno(Criteria $criteria, $distinct = false, $con = null)
+	{
+				$criteria = clone $criteria;
+		
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(RelRolresponsableResponsablePeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(RelRolresponsableResponsablePeer::COUNT);
+		}
+		
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
+		}
+
+		$criteria->addJoin(RelRolresponsableResponsablePeer::FK_ALUMNO_ID, AlumnoPeer::ID);
+
+		$rs = RelRolresponsableResponsablePeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
+	}
+
+
+	
 	public static function doSelectJoinRolResponsable(Criteria $c, $con = null)
 	{
 		$c = clone $c;
@@ -339,6 +372,53 @@ abstract class BaseRelRolresponsableResponsablePeer {
 
 
 	
+	public static function doSelectJoinAlumno(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+				if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		RelRolresponsableResponsablePeer::addSelectColumns($c);
+		$startcol = (RelRolresponsableResponsablePeer::NUM_COLUMNS - RelRolresponsableResponsablePeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+		AlumnoPeer::addSelectColumns($c);
+
+		$c->addJoin(RelRolresponsableResponsablePeer::FK_ALUMNO_ID, AlumnoPeer::ID);
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = RelRolresponsableResponsablePeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = AlumnoPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj2 = new $cls();
+			$obj2->hydrate($rs, $startcol);
+
+			$newObject = true;
+			foreach($results as $temp_obj1) {
+				$temp_obj2 = $temp_obj1->getAlumno(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+										$temp_obj2->addRelRolresponsableResponsable($obj1); 					break;
+				}
+			}
+			if ($newObject) {
+				$obj2->initRelRolresponsableResponsables();
+				$obj2->addRelRolresponsableResponsable($obj1); 			}
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	
 	public static function doCountJoinAll(Criteria $criteria, $distinct = false, $con = null)
 	{
 		$criteria = clone $criteria;
@@ -358,6 +438,8 @@ abstract class BaseRelRolresponsableResponsablePeer {
 		$criteria->addJoin(RelRolresponsableResponsablePeer::FK_ROLRESPONSABLE_ID, RolResponsablePeer::ID);
 
 		$criteria->addJoin(RelRolresponsableResponsablePeer::FK_RESPONSABLE_ID, ResponsablePeer::ID);
+
+		$criteria->addJoin(RelRolresponsableResponsablePeer::FK_ALUMNO_ID, AlumnoPeer::ID);
 
 		$rs = RelRolresponsableResponsablePeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -386,9 +468,14 @@ abstract class BaseRelRolresponsableResponsablePeer {
 		ResponsablePeer::addSelectColumns($c);
 		$startcol4 = $startcol3 + ResponsablePeer::NUM_COLUMNS;
 
+		AlumnoPeer::addSelectColumns($c);
+		$startcol5 = $startcol4 + AlumnoPeer::NUM_COLUMNS;
+
 		$c->addJoin(RelRolresponsableResponsablePeer::FK_ROLRESPONSABLE_ID, RolResponsablePeer::ID);
 
 		$c->addJoin(RelRolresponsableResponsablePeer::FK_RESPONSABLE_ID, ResponsablePeer::ID);
+
+		$c->addJoin(RelRolresponsableResponsablePeer::FK_ALUMNO_ID, AlumnoPeer::ID);
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
@@ -448,6 +535,29 @@ abstract class BaseRelRolresponsableResponsablePeer {
 				$obj3->addRelRolresponsableResponsable($obj1);
 			}
 
+				
+					
+			$omClass = AlumnoPeer::getOMClass();
+
+	
+			$cls = Propel::import($omClass);
+			$obj4 = new $cls();
+			$obj4->hydrate($rs, $startcol4);
+			
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj4 = $temp_obj1->getAlumno(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj4->addRelRolresponsableResponsable($obj1); 					break;
+				}
+			}
+			
+			if ($newObject) {
+				$obj4->initRelRolresponsableResponsables();
+				$obj4->addRelRolresponsableResponsable($obj1);
+			}
+
 			$results[] = $obj1;
 		}
 		return $results;
@@ -472,6 +582,8 @@ abstract class BaseRelRolresponsableResponsablePeer {
 		}
 
 		$criteria->addJoin(RelRolresponsableResponsablePeer::FK_RESPONSABLE_ID, ResponsablePeer::ID);
+
+		$criteria->addJoin(RelRolresponsableResponsablePeer::FK_ALUMNO_ID, AlumnoPeer::ID);
 
 		$rs = RelRolresponsableResponsablePeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -501,6 +613,38 @@ abstract class BaseRelRolresponsableResponsablePeer {
 
 		$criteria->addJoin(RelRolresponsableResponsablePeer::FK_ROLRESPONSABLE_ID, RolResponsablePeer::ID);
 
+		$criteria->addJoin(RelRolresponsableResponsablePeer::FK_ALUMNO_ID, AlumnoPeer::ID);
+
+		$rs = RelRolresponsableResponsablePeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
+	}
+
+
+	
+	public static function doCountJoinAllExceptAlumno(Criteria $criteria, $distinct = false, $con = null)
+	{
+				$criteria = clone $criteria;
+		
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(RelRolresponsableResponsablePeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(RelRolresponsableResponsablePeer::COUNT);
+		}
+		
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
+		}
+
+		$criteria->addJoin(RelRolresponsableResponsablePeer::FK_ROLRESPONSABLE_ID, RolResponsablePeer::ID);
+
+		$criteria->addJoin(RelRolresponsableResponsablePeer::FK_RESPONSABLE_ID, ResponsablePeer::ID);
+
 		$rs = RelRolresponsableResponsablePeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
 			return $rs->getInt(1);
@@ -525,7 +669,12 @@ abstract class BaseRelRolresponsableResponsablePeer {
 		ResponsablePeer::addSelectColumns($c);
 		$startcol3 = $startcol2 + ResponsablePeer::NUM_COLUMNS;
 
+		AlumnoPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + AlumnoPeer::NUM_COLUMNS;
+
 		$c->addJoin(RelRolresponsableResponsablePeer::FK_RESPONSABLE_ID, ResponsablePeer::ID);
+
+		$c->addJoin(RelRolresponsableResponsablePeer::FK_ALUMNO_ID, AlumnoPeer::ID);
 
 
 		$rs = BasePeer::doSelect($c, $con);
@@ -561,6 +710,28 @@ abstract class BaseRelRolresponsableResponsablePeer {
 				$obj2->addRelRolresponsableResponsable($obj1);
 			}
 
+			$omClass = AlumnoPeer::getOMClass();
+
+	
+			$cls = Propel::import($omClass);
+			$obj3  = new $cls();
+			$obj3->hydrate($rs, $startcol3);
+			
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj3 = $temp_obj1->getAlumno(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj3->addRelRolresponsableResponsable($obj1);
+					break;
+				}
+			}
+			
+			if ($newObject) {
+				$obj3->initRelRolresponsableResponsables();
+				$obj3->addRelRolresponsableResponsable($obj1);
+			}
+
 			$results[] = $obj1;
 		}
 		return $results;
@@ -582,7 +753,12 @@ abstract class BaseRelRolresponsableResponsablePeer {
 		RolResponsablePeer::addSelectColumns($c);
 		$startcol3 = $startcol2 + RolResponsablePeer::NUM_COLUMNS;
 
+		AlumnoPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + AlumnoPeer::NUM_COLUMNS;
+
 		$c->addJoin(RelRolresponsableResponsablePeer::FK_ROLRESPONSABLE_ID, RolResponsablePeer::ID);
+
+		$c->addJoin(RelRolresponsableResponsablePeer::FK_ALUMNO_ID, AlumnoPeer::ID);
 
 
 		$rs = BasePeer::doSelect($c, $con);
@@ -616,6 +792,112 @@ abstract class BaseRelRolresponsableResponsablePeer {
 			if ($newObject) {
 				$obj2->initRelRolresponsableResponsables();
 				$obj2->addRelRolresponsableResponsable($obj1);
+			}
+
+			$omClass = AlumnoPeer::getOMClass();
+
+	
+			$cls = Propel::import($omClass);
+			$obj3  = new $cls();
+			$obj3->hydrate($rs, $startcol3);
+			
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj3 = $temp_obj1->getAlumno(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj3->addRelRolresponsableResponsable($obj1);
+					break;
+				}
+			}
+			
+			if ($newObject) {
+				$obj3->initRelRolresponsableResponsables();
+				$obj3->addRelRolresponsableResponsable($obj1);
+			}
+
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	
+	public static function doSelectJoinAllExceptAlumno(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+								if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		RelRolresponsableResponsablePeer::addSelectColumns($c);
+		$startcol2 = (RelRolresponsableResponsablePeer::NUM_COLUMNS - RelRolresponsableResponsablePeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+
+		RolResponsablePeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + RolResponsablePeer::NUM_COLUMNS;
+
+		ResponsablePeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + ResponsablePeer::NUM_COLUMNS;
+
+		$c->addJoin(RelRolresponsableResponsablePeer::FK_ROLRESPONSABLE_ID, RolResponsablePeer::ID);
+
+		$c->addJoin(RelRolresponsableResponsablePeer::FK_RESPONSABLE_ID, ResponsablePeer::ID);
+
+
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+		
+		while($rs->next()) {
+
+			$omClass = RelRolresponsableResponsablePeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);		
+
+			$omClass = RolResponsablePeer::getOMClass();
+
+	
+			$cls = Propel::import($omClass);
+			$obj2  = new $cls();
+			$obj2->hydrate($rs, $startcol2);
+			
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj2 = $temp_obj1->getRolResponsable(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj2->addRelRolresponsableResponsable($obj1);
+					break;
+				}
+			}
+			
+			if ($newObject) {
+				$obj2->initRelRolresponsableResponsables();
+				$obj2->addRelRolresponsableResponsable($obj1);
+			}
+
+			$omClass = ResponsablePeer::getOMClass();
+
+	
+			$cls = Propel::import($omClass);
+			$obj3  = new $cls();
+			$obj3->hydrate($rs, $startcol3);
+			
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj3 = $temp_obj1->getResponsable(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj3->addRelRolresponsableResponsable($obj1);
+					break;
+				}
+			}
+			
+			if ($newObject) {
+				$obj3->initRelRolresponsableResponsables();
+				$obj3->addRelRolresponsableResponsable($obj1);
 			}
 
 			$results[] = $obj1;

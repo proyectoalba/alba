@@ -43,7 +43,8 @@ CREATE TABLE `rel_rolresponsable_responsable`
 (      
     `id` INTEGER  NOT NULL AUTO_INCREMENT,      
     `fk_rolresponsable_id` INTEGER default 0 NOT NULL,      
-    `fk_responsable_id` INTEGER default 0 NOT NULL,      
+    `fk_responsable_id` INTEGER default 0 NOT NULL,
+    `fk_alumno_id` INTEGER default 0 NOT NULL,
     `descripcion` VARCHAR(255) default "" NOT NULL,      
     PRIMARY KEY (`id`),      
     INDEX `rel_rolresponsable_responsable_FI_1` (`fk_rolresponsable_id`),      
@@ -53,7 +54,11 @@ CREATE TABLE `rel_rolresponsable_responsable`
     INDEX `rel_rolresponsable_responsable_FI_2` (`fk_responsable_id`),      
         CONSTRAINT `rel_rolresponsable_responsable_FK_2`         
         FOREIGN KEY (`fk_responsable_id`)       
-        REFERENCES `responsable` (`id`)  
+        REFERENCES `responsable` (`id`),
+    INDEX `rel_rolresponsable_responsable_FI_3` (`fk_alumno_id`),      
+        CONSTRAINT `rel_rolresponsable_responsable_FK_3`         
+        FOREIGN KEY (`fk_alumno_id`)       
+        REFERENCES `alumno` (`id`)
 )Type=InnoDB;
 
 ALTER TABLE responsable ADD COLUMN fk_rolresponsable_id INT NOT NULL DEFAULT 1;

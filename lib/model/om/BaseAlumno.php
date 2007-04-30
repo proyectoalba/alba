@@ -160,6 +160,12 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	protected $lastRelAlumnoDivisionCriteria = null;
 
 	
+	protected $collRelRolresponsableResponsables;
+
+	
+	protected $lastRelRolresponsableResponsableCriteria = null;
+
+	
 	protected $alreadyInSave = false;
 
 	
@@ -825,6 +831,14 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				}
 			}
 
+			if ($this->collRelRolresponsableResponsables !== null) {
+				foreach($this->collRelRolresponsableResponsables as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
 			$this->alreadyInSave = false;
 		}
 		return $affectedRows;
@@ -954,6 +968,14 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 
 				if ($this->collRelAlumnoDivisions !== null) {
 					foreach($this->collRelAlumnoDivisions as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
+
+				if ($this->collRelRolresponsableResponsables !== null) {
+					foreach($this->collRelRolresponsableResponsables as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -1328,6 +1350,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 
 			foreach($this->getRelAlumnoDivisions() as $relObj) {
 				$copyObj->addRelAlumnoDivision($relObj->copy($deepCopy));
+			}
+
+			foreach($this->getRelRolresponsableResponsables() as $relObj) {
+				$copyObj->addRelRolresponsableResponsable($relObj->copy($deepCopy));
 			}
 
 		} 
@@ -2513,6 +2539,146 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		$this->lastRelAlumnoDivisionCriteria = $criteria;
 
 		return $this->collRelAlumnoDivisions;
+	}
+
+	
+	public function initRelRolresponsableResponsables()
+	{
+		if ($this->collRelRolresponsableResponsables === null) {
+			$this->collRelRolresponsableResponsables = array();
+		}
+	}
+
+	
+	public function getRelRolresponsableResponsables($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseRelRolresponsableResponsablePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collRelRolresponsableResponsables === null) {
+			if ($this->isNew()) {
+			   $this->collRelRolresponsableResponsables = array();
+			} else {
+
+				$criteria->add(RelRolresponsableResponsablePeer::FK_ALUMNO_ID, $this->getId());
+
+				RelRolresponsableResponsablePeer::addSelectColumns($criteria);
+				$this->collRelRolresponsableResponsables = RelRolresponsableResponsablePeer::doSelect($criteria, $con);
+			}
+		} else {
+						if (!$this->isNew()) {
+												
+
+				$criteria->add(RelRolresponsableResponsablePeer::FK_ALUMNO_ID, $this->getId());
+
+				RelRolresponsableResponsablePeer::addSelectColumns($criteria);
+				if (!isset($this->lastRelRolresponsableResponsableCriteria) || !$this->lastRelRolresponsableResponsableCriteria->equals($criteria)) {
+					$this->collRelRolresponsableResponsables = RelRolresponsableResponsablePeer::doSelect($criteria, $con);
+				}
+			}
+		}
+		$this->lastRelRolresponsableResponsableCriteria = $criteria;
+		return $this->collRelRolresponsableResponsables;
+	}
+
+	
+	public function countRelRolresponsableResponsables($criteria = null, $distinct = false, $con = null)
+	{
+				include_once 'lib/model/om/BaseRelRolresponsableResponsablePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		$criteria->add(RelRolresponsableResponsablePeer::FK_ALUMNO_ID, $this->getId());
+
+		return RelRolresponsableResponsablePeer::doCount($criteria, $distinct, $con);
+	}
+
+	
+	public function addRelRolresponsableResponsable(RelRolresponsableResponsable $l)
+	{
+		$this->collRelRolresponsableResponsables[] = $l;
+		$l->setAlumno($this);
+	}
+
+
+	
+	public function getRelRolresponsableResponsablesJoinRolResponsable($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseRelRolresponsableResponsablePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collRelRolresponsableResponsables === null) {
+			if ($this->isNew()) {
+				$this->collRelRolresponsableResponsables = array();
+			} else {
+
+				$criteria->add(RelRolresponsableResponsablePeer::FK_ALUMNO_ID, $this->getId());
+
+				$this->collRelRolresponsableResponsables = RelRolresponsableResponsablePeer::doSelectJoinRolResponsable($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(RelRolresponsableResponsablePeer::FK_ALUMNO_ID, $this->getId());
+
+			if (!isset($this->lastRelRolresponsableResponsableCriteria) || !$this->lastRelRolresponsableResponsableCriteria->equals($criteria)) {
+				$this->collRelRolresponsableResponsables = RelRolresponsableResponsablePeer::doSelectJoinRolResponsable($criteria, $con);
+			}
+		}
+		$this->lastRelRolresponsableResponsableCriteria = $criteria;
+
+		return $this->collRelRolresponsableResponsables;
+	}
+
+
+	
+	public function getRelRolresponsableResponsablesJoinResponsable($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseRelRolresponsableResponsablePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collRelRolresponsableResponsables === null) {
+			if ($this->isNew()) {
+				$this->collRelRolresponsableResponsables = array();
+			} else {
+
+				$criteria->add(RelRolresponsableResponsablePeer::FK_ALUMNO_ID, $this->getId());
+
+				$this->collRelRolresponsableResponsables = RelRolresponsableResponsablePeer::doSelectJoinResponsable($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(RelRolresponsableResponsablePeer::FK_ALUMNO_ID, $this->getId());
+
+			if (!isset($this->lastRelRolresponsableResponsableCriteria) || !$this->lastRelRolresponsableResponsableCriteria->equals($criteria)) {
+				$this->collRelRolresponsableResponsables = RelRolresponsableResponsablePeer::doSelectJoinResponsable($criteria, $con);
+			}
+		}
+		$this->lastRelRolresponsableResponsableCriteria = $criteria;
+
+		return $this->collRelRolresponsableResponsables;
 	}
 
 } 

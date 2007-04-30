@@ -21,6 +21,10 @@ abstract class BaseRelRolresponsableResponsable extends BaseObject  implements P
 
 
 	
+	protected $fk_alumno_id = 0;
+
+
+	
 	protected $descripcion = '';
 
 	
@@ -28,6 +32,9 @@ abstract class BaseRelRolresponsableResponsable extends BaseObject  implements P
 
 	
 	protected $aResponsable;
+
+	
+	protected $aAlumno;
 
 	
 	protected $alreadyInSave = false;
@@ -54,6 +61,13 @@ abstract class BaseRelRolresponsableResponsable extends BaseObject  implements P
 	{
 
 		return $this->fk_responsable_id;
+	}
+
+	
+	public function getFkAlumnoId()
+	{
+
+		return $this->fk_alumno_id;
 	}
 
 	
@@ -102,6 +116,20 @@ abstract class BaseRelRolresponsableResponsable extends BaseObject  implements P
 
 	} 
 	
+	public function setFkAlumnoId($v)
+	{
+
+		if ($this->fk_alumno_id !== $v || $v === 0) {
+			$this->fk_alumno_id = $v;
+			$this->modifiedColumns[] = RelRolresponsableResponsablePeer::FK_ALUMNO_ID;
+		}
+
+		if ($this->aAlumno !== null && $this->aAlumno->getId() !== $v) {
+			$this->aAlumno = null;
+		}
+
+	} 
+	
 	public function setDescripcion($v)
 	{
 
@@ -122,13 +150,15 @@ abstract class BaseRelRolresponsableResponsable extends BaseObject  implements P
 
 			$this->fk_responsable_id = $rs->getInt($startcol + 2);
 
-			$this->descripcion = $rs->getString($startcol + 3);
+			$this->fk_alumno_id = $rs->getInt($startcol + 3);
+
+			$this->descripcion = $rs->getString($startcol + 4);
 
 			$this->resetModified();
 
 			$this->setNew(false);
 
-						return $startcol + 4; 
+						return $startcol + 5; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating RelRolresponsableResponsable object", $e);
 		}
@@ -200,6 +230,13 @@ abstract class BaseRelRolresponsableResponsable extends BaseObject  implements P
 				$this->setResponsable($this->aResponsable);
 			}
 
+			if ($this->aAlumno !== null) {
+				if ($this->aAlumno->isModified()) {
+					$affectedRows += $this->aAlumno->save($con);
+				}
+				$this->setAlumno($this->aAlumno);
+			}
+
 
 						if ($this->isModified()) {
 				if ($this->isNew()) {
@@ -261,6 +298,12 @@ abstract class BaseRelRolresponsableResponsable extends BaseObject  implements P
 				}
 			}
 
+			if ($this->aAlumno !== null) {
+				if (!$this->aAlumno->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aAlumno->getValidationFailures());
+				}
+			}
+
 
 			if (($retval = RelRolresponsableResponsablePeer::doValidate($this, $columns)) !== true) {
 				$failureMap = array_merge($failureMap, $retval);
@@ -295,6 +338,9 @@ abstract class BaseRelRolresponsableResponsable extends BaseObject  implements P
 				return $this->getFkResponsableId();
 				break;
 			case 3:
+				return $this->getFkAlumnoId();
+				break;
+			case 4:
 				return $this->getDescripcion();
 				break;
 			default:
@@ -310,7 +356,8 @@ abstract class BaseRelRolresponsableResponsable extends BaseObject  implements P
 			$keys[0] => $this->getId(),
 			$keys[1] => $this->getFkRolresponsableId(),
 			$keys[2] => $this->getFkResponsableId(),
-			$keys[3] => $this->getDescripcion(),
+			$keys[3] => $this->getFkAlumnoId(),
+			$keys[4] => $this->getDescripcion(),
 		);
 		return $result;
 	}
@@ -336,6 +383,9 @@ abstract class BaseRelRolresponsableResponsable extends BaseObject  implements P
 				$this->setFkResponsableId($value);
 				break;
 			case 3:
+				$this->setFkAlumnoId($value);
+				break;
+			case 4:
 				$this->setDescripcion($value);
 				break;
 		} 	}
@@ -348,7 +398,8 @@ abstract class BaseRelRolresponsableResponsable extends BaseObject  implements P
 		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setFkRolresponsableId($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setFkResponsableId($arr[$keys[2]]);
-		if (array_key_exists($keys[3], $arr)) $this->setDescripcion($arr[$keys[3]]);
+		if (array_key_exists($keys[3], $arr)) $this->setFkAlumnoId($arr[$keys[3]]);
+		if (array_key_exists($keys[4], $arr)) $this->setDescripcion($arr[$keys[4]]);
 	}
 
 	
@@ -359,6 +410,7 @@ abstract class BaseRelRolresponsableResponsable extends BaseObject  implements P
 		if ($this->isColumnModified(RelRolresponsableResponsablePeer::ID)) $criteria->add(RelRolresponsableResponsablePeer::ID, $this->id);
 		if ($this->isColumnModified(RelRolresponsableResponsablePeer::FK_ROLRESPONSABLE_ID)) $criteria->add(RelRolresponsableResponsablePeer::FK_ROLRESPONSABLE_ID, $this->fk_rolresponsable_id);
 		if ($this->isColumnModified(RelRolresponsableResponsablePeer::FK_RESPONSABLE_ID)) $criteria->add(RelRolresponsableResponsablePeer::FK_RESPONSABLE_ID, $this->fk_responsable_id);
+		if ($this->isColumnModified(RelRolresponsableResponsablePeer::FK_ALUMNO_ID)) $criteria->add(RelRolresponsableResponsablePeer::FK_ALUMNO_ID, $this->fk_alumno_id);
 		if ($this->isColumnModified(RelRolresponsableResponsablePeer::DESCRIPCION)) $criteria->add(RelRolresponsableResponsablePeer::DESCRIPCION, $this->descripcion);
 
 		return $criteria;
@@ -393,6 +445,8 @@ abstract class BaseRelRolresponsableResponsable extends BaseObject  implements P
 		$copyObj->setFkRolresponsableId($this->fk_rolresponsable_id);
 
 		$copyObj->setFkResponsableId($this->fk_responsable_id);
+
+		$copyObj->setFkAlumnoId($this->fk_alumno_id);
 
 		$copyObj->setDescripcion($this->descripcion);
 
@@ -478,6 +532,36 @@ abstract class BaseRelRolresponsableResponsable extends BaseObject  implements P
 			
 		}
 		return $this->aResponsable;
+	}
+
+	
+	public function setAlumno($v)
+	{
+
+
+		if ($v === null) {
+			$this->setFkAlumnoId('0');
+		} else {
+			$this->setFkAlumnoId($v->getId());
+		}
+
+
+		$this->aAlumno = $v;
+	}
+
+
+	
+	public function getAlumno($con = null)
+	{
+				include_once 'lib/model/om/BaseAlumnoPeer.php';
+
+		if ($this->aAlumno === null && ($this->fk_alumno_id !== null)) {
+
+			$this->aAlumno = AlumnoPeer::retrieveByPK($this->fk_alumno_id, $con);
+
+			
+		}
+		return $this->aAlumno;
 	}
 
 } 
