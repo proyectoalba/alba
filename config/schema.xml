@@ -285,6 +285,7 @@
     <column name="observacion" type="VARCHAR" size="255" required="false" default=""/>
     <column name="autorizacion_retiro" type="boolean" required="true" default="false"/>
     <column name="fk_cuenta_id" type="INTEGER" required="true" default="0"/>
+    <column name="fk_rolresponsable_id" type="INTEGER" required="true" default="1"/>
     <foreign-key foreignTable="cuenta">         
         <reference local="fk_cuenta_id" foreign="id"/>       
     </foreign-key>
@@ -293,6 +294,9 @@
     </foreign-key>
     <foreign-key foreignTable="tipodocumento">         
         <reference local="fk_tipodocumento_id" foreign="id"/>       
+    </foreign-key>
+    <foreign-key foreignTable="rol_responsable">         
+        <reference local="fk_rolresponsable_id" foreign="id"/>       
     </foreign-key>
   </table>    
   <table name="ciclolectivo" idMethod="native">

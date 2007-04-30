@@ -56,5 +56,6 @@ CREATE TABLE `rel_rolresponsable_responsable`
         REFERENCES `responsable` (`id`)  
 )Type=InnoDB;
 
+ALTER TABLE responsable ADD COLUMN fk_rolresponsable_id INT NOT NULL DEFAULT 1;
 SET FOREIGN_KEY_CHECKS = 1;
 
