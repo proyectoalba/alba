@@ -65,6 +65,8 @@ class ResponsableMapBuilder {
 		$tMap->addColumn('AUTORIZACION_RETIRO', 'AutorizacionRetiro', 'boolean', CreoleTypes::BOOLEAN, true);
 
 		$tMap->addForeignKey('FK_CUENTA_ID', 'FkCuentaId', 'int', CreoleTypes::INTEGER, 'cuenta', 'ID', true, null);
+
+		$tMap->addForeignKey('FK_ROLRESPONSABLE_ID', 'FkRolresponsableId', 'int', CreoleTypes::INTEGER, 'rol_responsable', 'ID', true, null);
 				
     } 
 } 

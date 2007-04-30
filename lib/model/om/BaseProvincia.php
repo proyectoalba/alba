@@ -1325,6 +1325,41 @@ abstract class BaseProvincia extends BaseObject  implements Persistent {
 		return $this->collResponsables;
 	}
 
+
+	
+	public function getResponsablesJoinRolResponsable($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseResponsablePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collResponsables === null) {
+			if ($this->isNew()) {
+				$this->collResponsables = array();
+			} else {
+
+				$criteria->add(ResponsablePeer::FK_PROVINCIA_ID, $this->getId());
+
+				$this->collResponsables = ResponsablePeer::doSelectJoinRolResponsable($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(ResponsablePeer::FK_PROVINCIA_ID, $this->getId());
+
+			if (!isset($this->lastResponsableCriteria) || !$this->lastResponsableCriteria->equals($criteria)) {
+				$this->collResponsables = ResponsablePeer::doSelectJoinRolResponsable($criteria, $con);
+			}
+		}
+		$this->lastResponsableCriteria = $criteria;
+
+		return $this->collResponsables;
+	}
+
 	
 	public function initDocentes()
 	{

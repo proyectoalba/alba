@@ -75,6 +75,10 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 	
 	protected $fk_cuenta_id = 0;
 
+
+	
+	protected $fk_rolresponsable_id = 1;
+
 	
 	protected $aCuenta;
 
@@ -83,6 +87,9 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 
 	
 	protected $aTipodocumento;
+
+	
+	protected $aRolResponsable;
 
 	
 	protected $collRelRolresponsableResponsables;
@@ -213,6 +220,13 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 	{
 
 		return $this->fk_cuenta_id;
+	}
+
+	
+	public function getFkRolresponsableId()
+	{
+
+		return $this->fk_rolresponsable_id;
 	}
 
 	
@@ -398,6 +412,20 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 
 	} 
 	
+	public function setFkRolresponsableId($v)
+	{
+
+		if ($this->fk_rolresponsable_id !== $v || $v === 1) {
+			$this->fk_rolresponsable_id = $v;
+			$this->modifiedColumns[] = ResponsablePeer::FK_ROLRESPONSABLE_ID;
+		}
+
+		if ($this->aRolResponsable !== null && $this->aRolResponsable->getId() !== $v) {
+			$this->aRolResponsable = null;
+		}
+
+	} 
+	
 	public function hydrate(ResultSet $rs, $startcol = 1)
 	{
 		try {
@@ -436,11 +464,13 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 
 			$this->fk_cuenta_id = $rs->getInt($startcol + 16);
 
+			$this->fk_rolresponsable_id = $rs->getInt($startcol + 17);
+
 			$this->resetModified();
 
 			$this->setNew(false);
 
-						return $startcol + 17; 
+						return $startcol + 18; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Responsable object", $e);
 		}
@@ -519,6 +549,13 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 				$this->setTipodocumento($this->aTipodocumento);
 			}
 
+			if ($this->aRolResponsable !== null) {
+				if ($this->aRolResponsable->isModified()) {
+					$affectedRows += $this->aRolResponsable->save($con);
+				}
+				$this->setRolResponsable($this->aRolResponsable);
+			}
+
 
 						if ($this->isModified()) {
 				if ($this->isNew()) {
@@ -591,6 +628,12 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			if ($this->aTipodocumento !== null) {
 				if (!$this->aTipodocumento->validate($columns)) {
 					$failureMap = array_merge($failureMap, $this->aTipodocumento->getValidationFailures());
+				}
+			}
+
+			if ($this->aRolResponsable !== null) {
+				if (!$this->aRolResponsable->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aRolResponsable->getValidationFailures());
 				}
 			}
 
@@ -677,6 +720,9 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			case 16:
 				return $this->getFkCuentaId();
 				break;
+			case 17:
+				return $this->getFkRolresponsableId();
+				break;
 			default:
 				return null;
 				break;
@@ -704,6 +750,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$keys[14] => $this->getObservacion(),
 			$keys[15] => $this->getAutorizacionRetiro(),
 			$keys[16] => $this->getFkCuentaId(),
+			$keys[17] => $this->getFkRolresponsableId(),
 		);
 		return $result;
 	}
@@ -770,6 +817,9 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			case 16:
 				$this->setFkCuentaId($value);
 				break;
+			case 17:
+				$this->setFkRolresponsableId($value);
+				break;
 		} 	}
 
 	
@@ -794,6 +844,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[14], $arr)) $this->setObservacion($arr[$keys[14]]);
 		if (array_key_exists($keys[15], $arr)) $this->setAutorizacionRetiro($arr[$keys[15]]);
 		if (array_key_exists($keys[16], $arr)) $this->setFkCuentaId($arr[$keys[16]]);
+		if (array_key_exists($keys[17], $arr)) $this->setFkRolresponsableId($arr[$keys[17]]);
 	}
 
 	
@@ -818,6 +869,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(ResponsablePeer::OBSERVACION)) $criteria->add(ResponsablePeer::OBSERVACION, $this->observacion);
 		if ($this->isColumnModified(ResponsablePeer::AUTORIZACION_RETIRO)) $criteria->add(ResponsablePeer::AUTORIZACION_RETIRO, $this->autorizacion_retiro);
 		if ($this->isColumnModified(ResponsablePeer::FK_CUENTA_ID)) $criteria->add(ResponsablePeer::FK_CUENTA_ID, $this->fk_cuenta_id);
+		if ($this->isColumnModified(ResponsablePeer::FK_ROLRESPONSABLE_ID)) $criteria->add(ResponsablePeer::FK_ROLRESPONSABLE_ID, $this->fk_rolresponsable_id);
 
 		return $criteria;
 	}
@@ -879,6 +931,8 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		$copyObj->setAutorizacionRetiro($this->autorizacion_retiro);
 
 		$copyObj->setFkCuentaId($this->fk_cuenta_id);
+
+		$copyObj->setFkRolresponsableId($this->fk_rolresponsable_id);
 
 
 		if ($deepCopy) {
@@ -1001,6 +1055,36 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			
 		}
 		return $this->aTipodocumento;
+	}
+
+	
+	public function setRolResponsable($v)
+	{
+
+
+		if ($v === null) {
+			$this->setFkRolresponsableId('1');
+		} else {
+			$this->setFkRolresponsableId($v->getId());
+		}
+
+
+		$this->aRolResponsable = $v;
+	}
+
+
+	
+	public function getRolResponsable($con = null)
+	{
+				include_once 'lib/model/om/BaseRolResponsablePeer.php';
+
+		if ($this->aRolResponsable === null && ($this->fk_rolresponsable_id !== null)) {
+
+			$this->aRolResponsable = RolResponsablePeer::retrieveByPK($this->fk_rolresponsable_id, $con);
+
+			
+		}
+		return $this->aRolResponsable;
 	}
 
 	

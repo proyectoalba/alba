@@ -13,7 +13,7 @@ abstract class BaseResponsablePeer {
 	const CLASS_DEFAULT = 'lib.model.Responsable';
 
 	
-	const NUM_COLUMNS = 17;
+	const NUM_COLUMNS = 18;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -71,23 +71,26 @@ abstract class BaseResponsablePeer {
 	const FK_CUENTA_ID = 'responsable.FK_CUENTA_ID';
 
 	
+	const FK_ROLRESPONSABLE_ID = 'responsable.FK_ROLRESPONSABLE_ID';
+
+	
 	private static $phpNameMap = null;
 
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Apellido', 'Direccion', 'Ciudad', 'CodigoPostal', 'FkProvinciaId', 'Telefono', 'TelefonoMovil', 'NroDocumento', 'FkTipodocumentoId', 'Sexo', 'Email', 'Relacion', 'Observacion', 'AutorizacionRetiro', 'FkCuentaId', ),
-		BasePeer::TYPE_COLNAME => array (ResponsablePeer::ID, ResponsablePeer::NOMBRE, ResponsablePeer::APELLIDO, ResponsablePeer::DIRECCION, ResponsablePeer::CIUDAD, ResponsablePeer::CODIGO_POSTAL, ResponsablePeer::FK_PROVINCIA_ID, ResponsablePeer::TELEFONO, ResponsablePeer::TELEFONO_MOVIL, ResponsablePeer::NRO_DOCUMENTO, ResponsablePeer::FK_TIPODOCUMENTO_ID, ResponsablePeer::SEXO, ResponsablePeer::EMAIL, ResponsablePeer::RELACION, ResponsablePeer::OBSERVACION, ResponsablePeer::AUTORIZACION_RETIRO, ResponsablePeer::FK_CUENTA_ID, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'apellido', 'direccion', 'ciudad', 'codigo_postal', 'fk_provincia_id', 'telefono', 'telefono_movil', 'nro_documento', 'fk_tipodocumento_id', 'sexo', 'email', 'relacion', 'observacion', 'autorizacion_retiro', 'fk_cuenta_id', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Apellido', 'Direccion', 'Ciudad', 'CodigoPostal', 'FkProvinciaId', 'Telefono', 'TelefonoMovil', 'NroDocumento', 'FkTipodocumentoId', 'Sexo', 'Email', 'Relacion', 'Observacion', 'AutorizacionRetiro', 'FkCuentaId', 'FkRolresponsableId', ),
+		BasePeer::TYPE_COLNAME => array (ResponsablePeer::ID, ResponsablePeer::NOMBRE, ResponsablePeer::APELLIDO, ResponsablePeer::DIRECCION, ResponsablePeer::CIUDAD, ResponsablePeer::CODIGO_POSTAL, ResponsablePeer::FK_PROVINCIA_ID, ResponsablePeer::TELEFONO, ResponsablePeer::TELEFONO_MOVIL, ResponsablePeer::NRO_DOCUMENTO, ResponsablePeer::FK_TIPODOCUMENTO_ID, ResponsablePeer::SEXO, ResponsablePeer::EMAIL, ResponsablePeer::RELACION, ResponsablePeer::OBSERVACION, ResponsablePeer::AUTORIZACION_RETIRO, ResponsablePeer::FK_CUENTA_ID, ResponsablePeer::FK_ROLRESPONSABLE_ID, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'apellido', 'direccion', 'ciudad', 'codigo_postal', 'fk_provincia_id', 'telefono', 'telefono_movil', 'nro_documento', 'fk_tipodocumento_id', 'sexo', 'email', 'relacion', 'observacion', 'autorizacion_retiro', 'fk_cuenta_id', 'fk_rolresponsable_id', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Apellido' => 2, 'Direccion' => 3, 'Ciudad' => 4, 'CodigoPostal' => 5, 'FkProvinciaId' => 6, 'Telefono' => 7, 'TelefonoMovil' => 8, 'NroDocumento' => 9, 'FkTipodocumentoId' => 10, 'Sexo' => 11, 'Email' => 12, 'Relacion' => 13, 'Observacion' => 14, 'AutorizacionRetiro' => 15, 'FkCuentaId' => 16, ),
-		BasePeer::TYPE_COLNAME => array (ResponsablePeer::ID => 0, ResponsablePeer::NOMBRE => 1, ResponsablePeer::APELLIDO => 2, ResponsablePeer::DIRECCION => 3, ResponsablePeer::CIUDAD => 4, ResponsablePeer::CODIGO_POSTAL => 5, ResponsablePeer::FK_PROVINCIA_ID => 6, ResponsablePeer::TELEFONO => 7, ResponsablePeer::TELEFONO_MOVIL => 8, ResponsablePeer::NRO_DOCUMENTO => 9, ResponsablePeer::FK_TIPODOCUMENTO_ID => 10, ResponsablePeer::SEXO => 11, ResponsablePeer::EMAIL => 12, ResponsablePeer::RELACION => 13, ResponsablePeer::OBSERVACION => 14, ResponsablePeer::AUTORIZACION_RETIRO => 15, ResponsablePeer::FK_CUENTA_ID => 16, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'apellido' => 2, 'direccion' => 3, 'ciudad' => 4, 'codigo_postal' => 5, 'fk_provincia_id' => 6, 'telefono' => 7, 'telefono_movil' => 8, 'nro_documento' => 9, 'fk_tipodocumento_id' => 10, 'sexo' => 11, 'email' => 12, 'relacion' => 13, 'observacion' => 14, 'autorizacion_retiro' => 15, 'fk_cuenta_id' => 16, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Apellido' => 2, 'Direccion' => 3, 'Ciudad' => 4, 'CodigoPostal' => 5, 'FkProvinciaId' => 6, 'Telefono' => 7, 'TelefonoMovil' => 8, 'NroDocumento' => 9, 'FkTipodocumentoId' => 10, 'Sexo' => 11, 'Email' => 12, 'Relacion' => 13, 'Observacion' => 14, 'AutorizacionRetiro' => 15, 'FkCuentaId' => 16, 'FkRolresponsableId' => 17, ),
+		BasePeer::TYPE_COLNAME => array (ResponsablePeer::ID => 0, ResponsablePeer::NOMBRE => 1, ResponsablePeer::APELLIDO => 2, ResponsablePeer::DIRECCION => 3, ResponsablePeer::CIUDAD => 4, ResponsablePeer::CODIGO_POSTAL => 5, ResponsablePeer::FK_PROVINCIA_ID => 6, ResponsablePeer::TELEFONO => 7, ResponsablePeer::TELEFONO_MOVIL => 8, ResponsablePeer::NRO_DOCUMENTO => 9, ResponsablePeer::FK_TIPODOCUMENTO_ID => 10, ResponsablePeer::SEXO => 11, ResponsablePeer::EMAIL => 12, ResponsablePeer::RELACION => 13, ResponsablePeer::OBSERVACION => 14, ResponsablePeer::AUTORIZACION_RETIRO => 15, ResponsablePeer::FK_CUENTA_ID => 16, ResponsablePeer::FK_ROLRESPONSABLE_ID => 17, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'apellido' => 2, 'direccion' => 3, 'ciudad' => 4, 'codigo_postal' => 5, 'fk_provincia_id' => 6, 'telefono' => 7, 'telefono_movil' => 8, 'nro_documento' => 9, 'fk_tipodocumento_id' => 10, 'sexo' => 11, 'email' => 12, 'relacion' => 13, 'observacion' => 14, 'autorizacion_retiro' => 15, 'fk_cuenta_id' => 16, 'fk_rolresponsable_id' => 17, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, )
 	);
 
 	
@@ -174,6 +177,8 @@ abstract class BaseResponsablePeer {
 		$criteria->addSelectColumn(ResponsablePeer::AUTORIZACION_RETIRO);
 
 		$criteria->addSelectColumn(ResponsablePeer::FK_CUENTA_ID);
+
+		$criteria->addSelectColumn(ResponsablePeer::FK_ROLRESPONSABLE_ID);
 
 	}
 
@@ -338,6 +343,34 @@ abstract class BaseResponsablePeer {
 
 
 	
+	public static function doCountJoinRolResponsable(Criteria $criteria, $distinct = false, $con = null)
+	{
+				$criteria = clone $criteria;
+		
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(ResponsablePeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(ResponsablePeer::COUNT);
+		}
+		
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
+		}
+
+		$criteria->addJoin(ResponsablePeer::FK_ROLRESPONSABLE_ID, RolResponsablePeer::ID);
+
+		$rs = ResponsablePeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
+	}
+
+
+	
 	public static function doSelectJoinCuenta(Criteria $c, $con = null)
 	{
 		$c = clone $c;
@@ -479,6 +512,53 @@ abstract class BaseResponsablePeer {
 
 
 	
+	public static function doSelectJoinRolResponsable(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+				if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		ResponsablePeer::addSelectColumns($c);
+		$startcol = (ResponsablePeer::NUM_COLUMNS - ResponsablePeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+		RolResponsablePeer::addSelectColumns($c);
+
+		$c->addJoin(ResponsablePeer::FK_ROLRESPONSABLE_ID, RolResponsablePeer::ID);
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = ResponsablePeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = RolResponsablePeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj2 = new $cls();
+			$obj2->hydrate($rs, $startcol);
+
+			$newObject = true;
+			foreach($results as $temp_obj1) {
+				$temp_obj2 = $temp_obj1->getRolResponsable(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+										$temp_obj2->addResponsable($obj1); 					break;
+				}
+			}
+			if ($newObject) {
+				$obj2->initResponsables();
+				$obj2->addResponsable($obj1); 			}
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	
 	public static function doCountJoinAll(Criteria $criteria, $distinct = false, $con = null)
 	{
 		$criteria = clone $criteria;
@@ -500,6 +580,8 @@ abstract class BaseResponsablePeer {
 		$criteria->addJoin(ResponsablePeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
 		$criteria->addJoin(ResponsablePeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
+
+		$criteria->addJoin(ResponsablePeer::FK_ROLRESPONSABLE_ID, RolResponsablePeer::ID);
 
 		$rs = ResponsablePeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -531,11 +613,16 @@ abstract class BaseResponsablePeer {
 		TipodocumentoPeer::addSelectColumns($c);
 		$startcol5 = $startcol4 + TipodocumentoPeer::NUM_COLUMNS;
 
+		RolResponsablePeer::addSelectColumns($c);
+		$startcol6 = $startcol5 + RolResponsablePeer::NUM_COLUMNS;
+
 		$c->addJoin(ResponsablePeer::FK_CUENTA_ID, CuentaPeer::ID);
 
 		$c->addJoin(ResponsablePeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
 		$c->addJoin(ResponsablePeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
+
+		$c->addJoin(ResponsablePeer::FK_ROLRESPONSABLE_ID, RolResponsablePeer::ID);
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
@@ -618,6 +705,29 @@ abstract class BaseResponsablePeer {
 				$obj4->addResponsable($obj1);
 			}
 
+				
+					
+			$omClass = RolResponsablePeer::getOMClass();
+
+	
+			$cls = Propel::import($omClass);
+			$obj5 = new $cls();
+			$obj5->hydrate($rs, $startcol5);
+			
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj5 = $temp_obj1->getRolResponsable(); 				if ($temp_obj5->getPrimaryKey() === $obj5->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj5->addResponsable($obj1); 					break;
+				}
+			}
+			
+			if ($newObject) {
+				$obj5->initResponsables();
+				$obj5->addResponsable($obj1);
+			}
+
 			$results[] = $obj1;
 		}
 		return $results;
@@ -644,6 +754,8 @@ abstract class BaseResponsablePeer {
 		$criteria->addJoin(ResponsablePeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
 		$criteria->addJoin(ResponsablePeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
+
+		$criteria->addJoin(ResponsablePeer::FK_ROLRESPONSABLE_ID, RolResponsablePeer::ID);
 
 		$rs = ResponsablePeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -675,6 +787,8 @@ abstract class BaseResponsablePeer {
 
 		$criteria->addJoin(ResponsablePeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
 
+		$criteria->addJoin(ResponsablePeer::FK_ROLRESPONSABLE_ID, RolResponsablePeer::ID);
+
 		$rs = ResponsablePeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
 			return $rs->getInt(1);
@@ -705,6 +819,40 @@ abstract class BaseResponsablePeer {
 
 		$criteria->addJoin(ResponsablePeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
+		$criteria->addJoin(ResponsablePeer::FK_ROLRESPONSABLE_ID, RolResponsablePeer::ID);
+
+		$rs = ResponsablePeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
+	}
+
+
+	
+	public static function doCountJoinAllExceptRolResponsable(Criteria $criteria, $distinct = false, $con = null)
+	{
+				$criteria = clone $criteria;
+		
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(ResponsablePeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(ResponsablePeer::COUNT);
+		}
+		
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
+		}
+
+		$criteria->addJoin(ResponsablePeer::FK_CUENTA_ID, CuentaPeer::ID);
+
+		$criteria->addJoin(ResponsablePeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+
+		$criteria->addJoin(ResponsablePeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
+
 		$rs = ResponsablePeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
 			return $rs->getInt(1);
@@ -732,9 +880,14 @@ abstract class BaseResponsablePeer {
 		TipodocumentoPeer::addSelectColumns($c);
 		$startcol4 = $startcol3 + TipodocumentoPeer::NUM_COLUMNS;
 
+		RolResponsablePeer::addSelectColumns($c);
+		$startcol5 = $startcol4 + RolResponsablePeer::NUM_COLUMNS;
+
 		$c->addJoin(ResponsablePeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
 		$c->addJoin(ResponsablePeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
+
+		$c->addJoin(ResponsablePeer::FK_ROLRESPONSABLE_ID, RolResponsablePeer::ID);
 
 
 		$rs = BasePeer::doSelect($c, $con);
@@ -792,6 +945,28 @@ abstract class BaseResponsablePeer {
 				$obj3->addResponsable($obj1);
 			}
 
+			$omClass = RolResponsablePeer::getOMClass();
+
+	
+			$cls = Propel::import($omClass);
+			$obj4  = new $cls();
+			$obj4->hydrate($rs, $startcol4);
+			
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj4 = $temp_obj1->getRolResponsable(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj4->addResponsable($obj1);
+					break;
+				}
+			}
+			
+			if ($newObject) {
+				$obj4->initResponsables();
+				$obj4->addResponsable($obj1);
+			}
+
 			$results[] = $obj1;
 		}
 		return $results;
@@ -816,9 +991,14 @@ abstract class BaseResponsablePeer {
 		TipodocumentoPeer::addSelectColumns($c);
 		$startcol4 = $startcol3 + TipodocumentoPeer::NUM_COLUMNS;
 
+		RolResponsablePeer::addSelectColumns($c);
+		$startcol5 = $startcol4 + RolResponsablePeer::NUM_COLUMNS;
+
 		$c->addJoin(ResponsablePeer::FK_CUENTA_ID, CuentaPeer::ID);
 
 		$c->addJoin(ResponsablePeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
+
+		$c->addJoin(ResponsablePeer::FK_ROLRESPONSABLE_ID, RolResponsablePeer::ID);
 
 
 		$rs = BasePeer::doSelect($c, $con);
@@ -876,6 +1056,28 @@ abstract class BaseResponsablePeer {
 				$obj3->addResponsable($obj1);
 			}
 
+			$omClass = RolResponsablePeer::getOMClass();
+
+	
+			$cls = Propel::import($omClass);
+			$obj4  = new $cls();
+			$obj4->hydrate($rs, $startcol4);
+			
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj4 = $temp_obj1->getRolResponsable(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj4->addResponsable($obj1);
+					break;
+				}
+			}
+			
+			if ($newObject) {
+				$obj4->initResponsables();
+				$obj4->addResponsable($obj1);
+			}
+
 			$results[] = $obj1;
 		}
 		return $results;
@@ -900,9 +1102,14 @@ abstract class BaseResponsablePeer {
 		ProvinciaPeer::addSelectColumns($c);
 		$startcol4 = $startcol3 + ProvinciaPeer::NUM_COLUMNS;
 
+		RolResponsablePeer::addSelectColumns($c);
+		$startcol5 = $startcol4 + RolResponsablePeer::NUM_COLUMNS;
+
 		$c->addJoin(ResponsablePeer::FK_CUENTA_ID, CuentaPeer::ID);
 
 		$c->addJoin(ResponsablePeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+
+		$c->addJoin(ResponsablePeer::FK_ROLRESPONSABLE_ID, RolResponsablePeer::ID);
 
 
 		$rs = BasePeer::doSelect($c, $con);
@@ -958,6 +1165,139 @@ abstract class BaseResponsablePeer {
 			if ($newObject) {
 				$obj3->initResponsables();
 				$obj3->addResponsable($obj1);
+			}
+
+			$omClass = RolResponsablePeer::getOMClass();
+
+	
+			$cls = Propel::import($omClass);
+			$obj4  = new $cls();
+			$obj4->hydrate($rs, $startcol4);
+			
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj4 = $temp_obj1->getRolResponsable(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj4->addResponsable($obj1);
+					break;
+				}
+			}
+			
+			if ($newObject) {
+				$obj4->initResponsables();
+				$obj4->addResponsable($obj1);
+			}
+
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	
+	public static function doSelectJoinAllExceptRolResponsable(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+								if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		ResponsablePeer::addSelectColumns($c);
+		$startcol2 = (ResponsablePeer::NUM_COLUMNS - ResponsablePeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+
+		CuentaPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + CuentaPeer::NUM_COLUMNS;
+
+		ProvinciaPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + ProvinciaPeer::NUM_COLUMNS;
+
+		TipodocumentoPeer::addSelectColumns($c);
+		$startcol5 = $startcol4 + TipodocumentoPeer::NUM_COLUMNS;
+
+		$c->addJoin(ResponsablePeer::FK_CUENTA_ID, CuentaPeer::ID);
+
+		$c->addJoin(ResponsablePeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+
+		$c->addJoin(ResponsablePeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
+
+
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+		
+		while($rs->next()) {
+
+			$omClass = ResponsablePeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);		
+
+			$omClass = CuentaPeer::getOMClass();
+
+	
+			$cls = Propel::import($omClass);
+			$obj2  = new $cls();
+			$obj2->hydrate($rs, $startcol2);
+			
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj2 = $temp_obj1->getCuenta(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj2->addResponsable($obj1);
+					break;
+				}
+			}
+			
+			if ($newObject) {
+				$obj2->initResponsables();
+				$obj2->addResponsable($obj1);
+			}
+
+			$omClass = ProvinciaPeer::getOMClass();
+
+	
+			$cls = Propel::import($omClass);
+			$obj3  = new $cls();
+			$obj3->hydrate($rs, $startcol3);
+			
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj3 = $temp_obj1->getProvincia(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj3->addResponsable($obj1);
+					break;
+				}
+			}
+			
+			if ($newObject) {
+				$obj3->initResponsables();
+				$obj3->addResponsable($obj1);
+			}
+
+			$omClass = TipodocumentoPeer::getOMClass();
+
+	
+			$cls = Propel::import($omClass);
+			$obj4  = new $cls();
+			$obj4->hydrate($rs, $startcol4);
+			
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj4 = $temp_obj1->getTipodocumento(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj4->addResponsable($obj1);
+					break;
+				}
+			}
+			
+			if ($newObject) {
+				$obj4->initResponsables();
+				$obj4->addResponsable($obj1);
 			}
 
 			$results[] = $obj1;
