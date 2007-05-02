@@ -185,6 +185,11 @@ class relDivisionActividadDocenteActions extends autorelDivisionActividadDocente
                                 break; 
                 }
             }
+       } else {
+            $evento_obj->setFrecuenciaIntervalo(null);
+            $evento_obj->setRecurrenciaFin(null);
+            $evento_obj->setRecurrenciaDias(null);
+            $evento_obj->setFrecuencia(null); 
        }
 
        return $evento_obj;
@@ -211,10 +216,10 @@ class relDivisionActividadDocenteActions extends autorelDivisionActividadDocente
 
       $this->evento = $this->updateEventoFromRequest($this->evento);
       $this->evento->save();
+      $this->forward404Unless($this->evento);
 
       $this->updateRelDivisionActividadDocenteFromRequest($this->evento->getId());
       $this->saveRelDivisionActividadDocente($this->rel_division_actividad_docente);
-
      
       $this->setFlash('notice', 'Your modifications have been saved');
       if ($this->getRequestParameter('save_and_add')) {
