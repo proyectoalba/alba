@@ -1106,6 +1106,7 @@ CREATE TABLE `rel_division_actividad_docente`
 	`fk_division_id` INTEGER(11) default 0,
 	`fk_actividad_id` INTEGER(11) default 0 NOT NULL,
 	`fk_docente_id` INTEGER(11) default 0,
+	`fk_evento_id` INTEGER(11) default 0,
 	`fk_repeticion_id` INTEGER(11) default 0,
 	`fecha_inicio` DATETIME  NOT NULL,
 	`fecha_fin` DATETIME  NOT NULL,
@@ -1127,7 +1128,11 @@ CREATE TABLE `rel_division_actividad_docente`
 	INDEX `rel_division_actividad_docente_FI_4` (`fk_repeticion_id`),
 	CONSTRAINT `rel_division_actividad_docente_FK_4`
 		FOREIGN KEY (`fk_repeticion_id`)
-		REFERENCES `repeticion` (`id`)
+		REFERENCES `repeticion` (`id`),
+	INDEX `rel_division_actividad_docente_FI_5` (`fk_evento_id`),
+	CONSTRAINT `rel_division_actividad_docente_FK_5`
+		FOREIGN KEY (`fk_evento_id`)
+		REFERENCES `evento` (`id`)
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------

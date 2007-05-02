@@ -568,6 +568,7 @@
         <column name="fk_division_id" type="integer" size="11" required="false" default="0"/>
         <column name="fk_actividad_id" type="integer" size="11" required="true" default="0"/>
         <column name="fk_docente_id" type="integer" size="11" required="false" default="0"/>
+        <column name="fk_evento_id" type="integer" size="11" required="false" default="0"/>
         <!-- column name="fk_tipodocente_id" type="integer" size="11" required="false" default="0"/ -->
         <!-- column name="fk_cargobaja_id" type="integer" size="11" required="false" default="0"/ -->
         <column name="fk_repeticion_id" type="integer" size="11" required="false" default="0"/>
@@ -594,6 +595,9 @@
         </foreign-key>
         <foreign-key foreignTable="repeticion">
             <reference local="fk_repeticion_id" foreign="id"/>       
+        </foreign-key>
+        <foreign-key foreignTable="evento">
+            <reference local="fk_evento_id" foreign="id"/>       
         </foreign-key>
     </table>
     <table name="docente" idMethod="native">

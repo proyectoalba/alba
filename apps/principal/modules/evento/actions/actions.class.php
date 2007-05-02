@@ -33,6 +33,11 @@
 class eventoActions extends sfActions
 {
 
+    public function preExecute() {
+        $this->vista = $this->getRequestParameter('vista');
+    }
+
+
     public function executeIndex() {
         return $this->forward('evento', 'edit');
 //         $this->evento = new Evento();
@@ -56,6 +61,8 @@ class eventoActions extends sfActions
             $this->updateEventoFromRequest();
             $this->saveEvento($this->evento);
             $this->setFlash('notice', 'Your modifications have been saved');
+            return $this->redirect('evento/');
+            /*
             if ($this->getRequestParameter('save_and_add')) {
                 return $this->redirect('evento/create');
             } else if ($this->getRequestParameter('save_and_list')) {
@@ -63,6 +70,8 @@ class eventoActions extends sfActions
             } else {
                 return $this->redirect('evento/edit?id='.$this->evento->getId());
             }
+            */
+
         } else {
 //             $this->labels = $this->getLabels();
         }

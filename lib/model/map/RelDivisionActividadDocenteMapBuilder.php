@@ -40,6 +40,8 @@ class RelDivisionActividadDocenteMapBuilder {
 
 		$tMap->addForeignKey('FK_DOCENTE_ID', 'FkDocenteId', 'int', CreoleTypes::INTEGER, 'docente', 'ID', false, 11);
 
+		$tMap->addForeignKey('FK_EVENTO_ID', 'FkEventoId', 'int', CreoleTypes::INTEGER, 'evento', 'ID', false, 11);
+
 		$tMap->addForeignKey('FK_REPETICION_ID', 'FkRepeticionId', 'int', CreoleTypes::INTEGER, 'repeticion', 'ID', false, 11);
 
 		$tMap->addColumn('FECHA_INICIO', 'FechaInicio', 'int', CreoleTypes::TIMESTAMP, true);

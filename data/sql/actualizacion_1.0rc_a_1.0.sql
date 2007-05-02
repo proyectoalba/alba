@@ -21,8 +21,8 @@ CREATE TABLE `rol_responsable`
     PRIMARY KEY (`id`)
 )Type=InnoDB;
 
-INSERT INTO modulo (id,nombre,titulo,descripcion) VALUES (48,'rolResponsable','Rol Responsables','Roles de los Resposables de Alumos');
-INSERT INTO permiso (nombre,descripcion,fk_modulo_id,credencial) VALUES ('rolResponsable','Rol de Responsables',48,'rolResponsable');
+INSERT INTO modulo (id,nombre,titulo,descripcion) VALUES ( 48, 'rolResponsable', 'Rol Responsables', 'Roles de los Resposables de Alumos');
+INSERT INTO permiso (nombre,descripcion,fk_modulo_id,credencial) VALUES ( 'rolResponsable', 'Rol de Responsables', 48, 'rolResponsable');
 
 CREATE TABLE `evento`
 (
@@ -62,5 +62,7 @@ CREATE TABLE `rel_rolresponsable_responsable`
 )Type=InnoDB;
 
 ALTER TABLE responsable ADD COLUMN fk_rolresponsable_id INT NOT NULL DEFAULT 1;
-SET FOREIGN_KEY_CHECKS = 1;
 
+ALTER TABLE `rel_division_actividad_docente` ADD `fk_evento_id` INT NULL ;
+
+SET FOREIGN_KEY_CHECKS = 1;

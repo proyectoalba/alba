@@ -574,6 +574,41 @@ abstract class BaseRepeticion extends BaseObject  implements Persistent {
 		return $this->collRelDivisionActividadDocentes;
 	}
 
+
+	
+	public function getRelDivisionActividadDocentesJoinEvento($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseRelDivisionActividadDocentePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collRelDivisionActividadDocentes === null) {
+			if ($this->isNew()) {
+				$this->collRelDivisionActividadDocentes = array();
+			} else {
+
+				$criteria->add(RelDivisionActividadDocentePeer::FK_REPETICION_ID, $this->getId());
+
+				$this->collRelDivisionActividadDocentes = RelDivisionActividadDocentePeer::doSelectJoinEvento($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(RelDivisionActividadDocentePeer::FK_REPETICION_ID, $this->getId());
+
+			if (!isset($this->lastRelDivisionActividadDocenteCriteria) || !$this->lastRelDivisionActividadDocenteCriteria->equals($criteria)) {
+				$this->collRelDivisionActividadDocentes = RelDivisionActividadDocentePeer::doSelectJoinEvento($criteria, $con);
+			}
+		}
+		$this->lastRelDivisionActividadDocenteCriteria = $criteria;
+
+		return $this->collRelDivisionActividadDocentes;
+	}
+
 	
 	public function initDocenteHorarios()
 	{
