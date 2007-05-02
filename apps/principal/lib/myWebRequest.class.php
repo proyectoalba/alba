@@ -2,6 +2,8 @@
 
 class myWebRequest extends sfWebRequest
 {
+  
+
 }
 
 ?>

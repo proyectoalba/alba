@@ -1,15 +1,15 @@
 <?php
 
-class myAction extends sfAction
+class miEvento extends sfWebRequest
 {
 
-  protected function updateEventoFromRequest($evento_obj) {
-        $evento = $this->getRequestParameter('evento');
+  public function updateEventoFromRequest($evento_obj, $evento, $cultura) {
+//         $evento = $this->getRequestParameter('evento');
       
         if (isset($evento['fecha_inicio'])) {
             if ($evento['fecha_inicio']) {
                 try {
-                    $dateFormat = new sfDateFormat($this->getUser()->getCulture());
+                    $dateFormat = new sfDateFormat($cultura);
                     if(!is_array($evento['fecha_inicio'])) {
 
                         if(isset($evento['hora_asociada']) AND $evento['hora_asociada'] == 1) {
@@ -56,7 +56,7 @@ class myAction extends sfAction
         if (isset($evento['fecha_fin'])) {
             if ($evento['fecha_fin']) {
                 try {
-                    $dateFormat = new sfDateFormat($this->getUser()->getCulture());
+                    $dateFormat = new sfDateFormat($cultura);
                     if (!is_array($evento['fecha_fin'])) {
 
                         if(isset($evento['hora_asociada']) AND $evento['hora_asociada'] == 1) {
@@ -166,16 +166,15 @@ class myAction extends sfAction
   }
 
 
-  protected function getEventoOrCreate($id = 0)  {
+  public function getEventoOrCreate($id = 0)  {
     if (!$id) {
         $evento = new Evento();
     } else {
       $evento = EventoPeer::retrieveByPk($id);
-      $this->forward404Unless($evento);
+//       $this->forward404Unless($evento);
     }
     return $evento;
   }
-
 
 
 }

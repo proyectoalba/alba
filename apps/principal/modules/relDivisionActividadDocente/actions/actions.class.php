@@ -32,7 +32,7 @@
  */
 class relDivisionActividadDocenteActions extends autorelDivisionActividadDocenteActions
 {
-
+/*
     protected function updateEventoFromRequest($evento_obj) {
         $evento = $this->getRequestParameter('evento');
       
@@ -205,16 +205,20 @@ class relDivisionActividadDocenteActions extends autorelDivisionActividadDocente
     }
     return $evento;
   }
-
+*/
 
   public function executeEdit()
   {
+
+    $evento_generico = new miEvento();
+
     $this->rel_division_actividad_docente = $this->getRelDivisionActividadDocenteOrCreate();
-    $this->evento = $this->getEventoOrCreate($this->rel_division_actividad_docente->getFkEventoId());
+    $this->evento = $evento_generico->getEventoOrCreate($this->rel_division_actividad_docente->getFkEventoId());
     
     if ($this->getRequest()->getMethod() == sfRequest::POST) {
 
-      $this->evento = $this->updateEventoFromRequest($this->evento);
+
+      $this->evento = $evento_generico->updateEventoFromRequest($this->evento, $this->getRequestParameter('evento'), $this->getUser()->getCulture());
       $this->evento->save();
       $this->forward404Unless($this->evento);
 
