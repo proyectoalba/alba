@@ -16,12 +16,12 @@ generator:
             sexo: { name: Sexo }
             email: { name: Email , params: size=64 }
             telefono_movil: { name: Tel. Movil , params: size=20}
-            relacion: { name: Relaci&oacute;n con los alumnos }
+            fk_rolresponsable_id: { name: Relaci&oacute;n con los alumnos }
             observacion: { name: Observaci&oacute;n, params: size=80}
             autorizacion_retiro: { name: Aut. Retiro }
       list:
         title: Listado de Responsables
-        display: [ cuenta, =apellido, nombre, nro_documento, direccion, ciudad, _provincia, telefono, relacion, autorizacion_retiro ]
+        display: [ cuenta, =apellido, nombre, nro_documento, direccion, ciudad, _provincia, telefono, _rolresponsable, autorizacion_retiro ]
         object_actions:
           _edit: -
           _delete: -
@@ -36,7 +36,7 @@ generator:
         display:
                 "Informaci&oacute;n general":  [apellido, nombre, _sexo, fk_tipodocumento_id, nro_documento]
                 "Donde vive": [direccion, ciudad, _pais_id, _fk_provincia_id, codigo_postal ]
-                "Otros":  [ telefono, telefono_movil, email, relacion, observacion,  autorizacion_retiro]
+                "Otros":  [ telefono, telefono_movil, email, observacion,  autorizacion_retiro]
         actions:
           _delete: -
           _save: -

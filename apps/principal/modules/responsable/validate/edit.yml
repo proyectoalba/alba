@@ -10,10 +10,10 @@ methods:
     - "responsable{sexo}" 
     - "responsable{email}"               
     - "responsable{telefono_movil}"        
-    - "responsable{relacion}"            
     - "responsable{autorizacion_retiro}"            
     - "responsable{fk_cuenta_id}"            
-    - "responsable{fk_provincia_id}"            
+    - "responsable{fk_provincia_id}"  
+    - "responsable{fk_rolresponsable_id}"
     
 fillin:
     enabled:       on
@@ -60,10 +60,6 @@ names:
     responsable{autorizacion_retiro}:
         required:    No
         
-    responsable{relacion}:
-        required:    Yes
-        required_msg: El campo relaci&oacute;n es obligatorio
-        
     responsable{email}:
         required:     No
         validators: validaEmail, caracteresMaximos128
@@ -77,6 +73,12 @@ names:
         required:    Yes
         required_msg: El campo provincia es obligatorio
         validators: validaFkProvinciaId
+        
+    responsable{fk_rolresponsable_id}:
+        required:    Yes
+        required_msg: El campo rol del responsable es obligatorio
+        validators: validaFkProvinciaId
+        
         
 caracteresMaximos128:
     class:  sfStringValidator
@@ -138,3 +140,10 @@ validaFkProvinciaId:
         nan_error: Por favor seleccione una provincia       
         min: 1
         min_error: Por favor seleccione una provincia 
+
+validaFkRolresponsableId:
+    class: sfNumberValidator
+    param:
+        nan_error: Por favor ingrese un rol de responsable v&aacute;lido
+        min: 1
+        min_error: El identificador del rol es inv&aacute;lido

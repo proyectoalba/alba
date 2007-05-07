@@ -238,21 +238,18 @@ document.getElementsByName("responsable[telefono]")[0].value = datosCuenta[4]
 
 <div class="form-row">
   <?php echo label_for('responsable[relacion]', __('Relaci&oacute;n con los alumnos:'), 'class="required" ') ?>
-  <div class="content<?php if ($sf_request->hasError('responsable{relacion}')): ?> form-error<?php endif; ?>">
-  <?php if ($sf_request->hasError('responsable{relacion}')): ?>
-    <?php echo form_error('responsable{relacion}', array('class' => 'form-error-msg')) ?>
-  <?php endif; ?>
-
-  <?php echo object_input_tag($responsable, 'getRelacion', array (
-  'size' => 20,
-  'control_name' => 'responsable[relacion]',
-)) ?>
-    </div>
+  
     
+   <div class="content<?php if ($sf_request->hasError('responsable{fk_rolresponsable_id}')): ?> form-error<?php endif; ?>">
+  <?php if ($sf_request->hasError('responsable{fk_rolresponsable_id}')): ?>
+    <?php echo form_error('responsable{fk_rolresponsable_id}', array('class' => 'form-error-msg')) ?>
+  <?php endif; ?>    
+  
    <?php echo object_select_tag($responsable, 'getFkRolresponsableId', array (
   'related_class' => 'RolResponsable',
   'control_name' => 'responsable[fk_rolresponsable_id]',
 )) ?>   
+    </div>
 </div>
 
 <div class="form-row">

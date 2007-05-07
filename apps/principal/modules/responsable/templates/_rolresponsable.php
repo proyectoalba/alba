@@ -1,0 +1,1 @@
+<? echo $responsable->getRolResponsable();?>
