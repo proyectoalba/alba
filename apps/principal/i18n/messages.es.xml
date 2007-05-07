@@ -12,15 +12,15 @@
             </trans-unit>              
             <trans-unit id="3">
                 <source>filters</source>
-                <target>filtros</target>
+                <target>Filtros</target>
             </trans-unit>              
             <trans-unit id="4">
                 <source>filter</source>
-                <target>filtrar</target>
+                <target>Filtrar</target>
             </trans-unit>              
             <trans-unit id="5">
                 <source>reset</source>
-                <target>borrar</target>
+                <target>Borrar</target>
             </trans-unit>              
             <trans-unit id="6">
                 <source>[0] no result|[1] 1 result|(1,+Inf] %1% results</source>
@@ -28,19 +28,19 @@
             </trans-unit>              
             <trans-unit id="7">
                 <source>list</source>
-                <target>listado</target>
+                <target>Listado</target>
             </trans-unit>              
             <trans-unit id="8">
                 <source>delete</source>
-                <target>borrar</target>
+                <target>Borrar</target>
             </trans-unit>              
             <trans-unit id="9">
                 <source>save</source>
-                <target>guardar</target>
+                <target>Guardar</target>
             </trans-unit>              
             <trans-unit id="10">
                 <source>save and add</source>
-                <target>guardar y agregar nuevo</target>
+                <target>Guardar y agregar nuevo</target>
             </trans-unit>              
             <trans-unit id="11">
                 <source>Your modifications have been saved</source>
@@ -69,6 +69,10 @@
             <trans-unit id="17">
                 <source>Could not delete the selected Turnos. Make sure it does not have any associated items.</source>
                 <target>No puede eliminar el Turno seleccionado. Asegurese que no este siendo utilizado.</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>edit</source>
+                <target>Editar</target>
             </trans-unit>
         </body>
     </file>
