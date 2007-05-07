@@ -156,10 +156,10 @@ class miEvento extends sfWebRequest
                 }
             }
        } else {
-            $evento_obj->setFrecuenciaIntervalo(null);
-            $evento_obj->setRecurrenciaFin(null);
-            $evento_obj->setRecurrenciaDias(null);
-            $evento_obj->setFrecuencia(null); 
+            $evento_obj->setFrecuenciaIntervalo(0);
+            $evento_obj->setRecurrenciaFin("");
+            $evento_obj->setRecurrenciaDias("");
+            $evento_obj->setFrecuencia(0); 
        }
 
        return $evento_obj;
