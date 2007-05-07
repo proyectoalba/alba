@@ -71,7 +71,7 @@ echo form_tag('docenteHorario/grabarDocenteHorario', 'onSubmit="selectItem()"');
         <div>
           <ul class="sf_admin_actions">
             <li>
-            <?php echo submit_tag('submit', 'class=sf_admin_action_save value=Grabar"')?>
+            <?php echo submit_tag('submit', 'class=sf_admin_action_save value=Grabar')?>
             <li>
             <li>
              <?php echo button_to('Listado de Docentes','docente/list', array ('class' => 'sf_admin_action_list'))?>

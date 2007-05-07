@@ -20,8 +20,8 @@ generator:
             _delete:    -
         actions:
             _create: -
-            listadoDocente: { name: Listado de Docentes, action: listadoDocente }
-        filters: [ fk_docente_id ]                                                                
+            listadoDocente: { name: Listado de Docentes, action: listadoDocente, icon: /sf/sf_admin/images/list.png }
+        filters: [ fk_actividad_id ]                                                                
 
 
 

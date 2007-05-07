@@ -7,9 +7,9 @@ generator:
     fields:
         apellido: { name: Apellido, params: size=64 }
         nombre: { name: Nombre , params: size=64 }
-        fk_tipodocumento_id: { name: Tipo de Documento }
-        tipodocumento: { name: Tipo de Documento }
-        nro_documento:  { name: Nro. de Documento, params: size=16 }
+        fk_tipodocumento_id: { name: Doc. }
+        tipodocumento: { name: Doc. }
+        nro_documento:  { name: Nro. }
         direccion: { name: Direcci&oacute;n , params: size=64 }
         ciudad: { name: Ciudad , params: size=64}
         codigo_postal: { name: CP }
