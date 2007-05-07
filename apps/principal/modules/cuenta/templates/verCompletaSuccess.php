@@ -134,7 +134,7 @@
     <td><?echo $responsable->getNroDocumento();?></td>
     <td><?echo $responsable->getDireccion();?></td>
     <td><?echo $responsable->getCiudad();?></td>
-    <td><?echo $responsable->getRelacion();?></td>
+    <td><?echo $responsable->getRolResponsable();?></td>
     <td><?echo $responsable->getAutorizacionRetiro() == 1 ? "Si" : "No";?></td>
     <td><?echo $responsable->getTelefono();?></td>
     <td>
