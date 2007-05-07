@@ -62,6 +62,7 @@ class alumnoActions extends autoalumnoActions
   function saveAlumno ($alumno) {
     $alumno->setSexo($this->getRequestParameter('sexo'));  
     $alumno->setFkEstablecimientoId($this->getUser()->getAttribute('fk_establecimiento_id'));
+    $alumno->setFechaNacimiento($this->getRequestParameter('alumno[fecha_nacimiento]'));
     $alumno->save();
   }
   
