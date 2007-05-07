@@ -2791,6 +2791,7 @@ INSERT INTO `pais` (`id`, `nombre_largo`, `nombre_corto`, `orden`) VALUES (5, 'P
 INSERT INTO `pais` (`id`, `nombre_largo`, `nombre_corto`, `orden`) VALUES (6, 'Mexico', 'MEX', 60);
 INSERT INTO `pais` (`id`, `nombre_largo`, `nombre_corto`, `orden`) VALUES (7, 'Bolivia ', 'BOL', 20);
 INSERT INTO `pais` (`id`, `nombre_largo`, `nombre_corto`, `orden`) VALUES (8, 'Chile', 'CHI', 40);
+INSERT INTO `pais` (`id`, `nombre_largo`, `nombre_corto`, `orden`) VALUES (9, 'Uruguay', 'URU', 80);
 
 -- 
 -- Volcar la base de datos para la tabla `periodo`
