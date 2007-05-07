@@ -1,3 +1,4 @@
+<div id="sf_admin_container">
     <script>	
     function linkTo() {
         var obj = document.getElementById('rolId');
@@ -15,7 +16,7 @@ Rol:  <?php echo select_tag('rolId', options_for_select($optionsRol, $sf_params-
     echo input_hidden_tag('id', $sf_params->get('id'));
 ?>
 <ul class="sf_admin_actions">
-<li><? echo submit_tag('submit', 'class=sf_admin_action_save value=Grabar"');?></li>
+<li><? echo submit_tag('submit', 'class=sf_admin_action_save value=Grabar');?></li>
 <li><? echo button_to('Listado de usuarios','usuario/list',array('class'=>'sf_admin_action_list'))?></li>
 </ul>
 </form>
@@ -23,3 +24,4 @@ Rol:  <?php echo select_tag('rolId', options_for_select($optionsRol, $sf_params-
 createMovableOptions("fromBox","toBox",500,300,'Permisos Disponibles','Permisos Seleccionados');
 </script>
 
+</div>
