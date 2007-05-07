@@ -1,4 +1,6 @@
 <?php use_helper('DateForm') ?>
+<?php use_helper('I18N') ?>
+
     <script>     
      function linkTo() {
         var obj = document.getElementById('idDocente');
