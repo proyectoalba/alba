@@ -281,7 +281,6 @@
     <column name="fk_tipodocumento_id" type="INTEGER" required="true" default="0"/>
     <column name="sexo" type="CHAR" size="1" required="true" default=""/>
     <column name="email" type="VARCHAR" size="128" required="false" default=""/>
-    <column name="relacion" type="VARCHAR" size="128" required="true" default=""/>
     <column name="observacion" type="VARCHAR" size="255" required="false" default=""/>
     <column name="autorizacion_retiro" type="boolean" required="true" default="false"/>
     <column name="fk_cuenta_id" type="INTEGER" required="true" default="0"/>

@@ -61,10 +61,6 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 
 
 	
-	protected $relacion = '';
-
-
-	
 	protected $observacion = '';
 
 
@@ -192,13 +188,6 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 	{
 
 		return $this->email;
-	}
-
-	
-	public function getRelacion()
-	{
-
-		return $this->relacion;
 	}
 
 	
@@ -368,16 +357,6 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 
 	} 
 	
-	public function setRelacion($v)
-	{
-
-		if ($this->relacion !== $v || $v === '') {
-			$this->relacion = $v;
-			$this->modifiedColumns[] = ResponsablePeer::RELACION;
-		}
-
-	} 
-	
 	public function setObservacion($v)
 	{
 
@@ -456,21 +435,19 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 
 			$this->email = $rs->getString($startcol + 12);
 
-			$this->relacion = $rs->getString($startcol + 13);
+			$this->observacion = $rs->getString($startcol + 13);
 
-			$this->observacion = $rs->getString($startcol + 14);
+			$this->autorizacion_retiro = $rs->getBoolean($startcol + 14);
 
-			$this->autorizacion_retiro = $rs->getBoolean($startcol + 15);
+			$this->fk_cuenta_id = $rs->getInt($startcol + 15);
 
-			$this->fk_cuenta_id = $rs->getInt($startcol + 16);
-
-			$this->fk_rolresponsable_id = $rs->getInt($startcol + 17);
+			$this->fk_rolresponsable_id = $rs->getInt($startcol + 16);
 
 			$this->resetModified();
 
 			$this->setNew(false);
 
-						return $startcol + 18; 
+						return $startcol + 17; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Responsable object", $e);
 		}
@@ -709,18 +686,15 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 				return $this->getEmail();
 				break;
 			case 13:
-				return $this->getRelacion();
-				break;
-			case 14:
 				return $this->getObservacion();
 				break;
-			case 15:
+			case 14:
 				return $this->getAutorizacionRetiro();
 				break;
-			case 16:
+			case 15:
 				return $this->getFkCuentaId();
 				break;
-			case 17:
+			case 16:
 				return $this->getFkRolresponsableId();
 				break;
 			default:
@@ -746,11 +720,10 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$keys[10] => $this->getFkTipodocumentoId(),
 			$keys[11] => $this->getSexo(),
 			$keys[12] => $this->getEmail(),
-			$keys[13] => $this->getRelacion(),
-			$keys[14] => $this->getObservacion(),
-			$keys[15] => $this->getAutorizacionRetiro(),
-			$keys[16] => $this->getFkCuentaId(),
-			$keys[17] => $this->getFkRolresponsableId(),
+			$keys[13] => $this->getObservacion(),
+			$keys[14] => $this->getAutorizacionRetiro(),
+			$keys[15] => $this->getFkCuentaId(),
+			$keys[16] => $this->getFkRolresponsableId(),
 		);
 		return $result;
 	}
@@ -806,18 +779,15 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 				$this->setEmail($value);
 				break;
 			case 13:
-				$this->setRelacion($value);
-				break;
-			case 14:
 				$this->setObservacion($value);
 				break;
-			case 15:
+			case 14:
 				$this->setAutorizacionRetiro($value);
 				break;
-			case 16:
+			case 15:
 				$this->setFkCuentaId($value);
 				break;
-			case 17:
+			case 16:
 				$this->setFkRolresponsableId($value);
 				break;
 		} 	}
@@ -840,11 +810,10 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[10], $arr)) $this->setFkTipodocumentoId($arr[$keys[10]]);
 		if (array_key_exists($keys[11], $arr)) $this->setSexo($arr[$keys[11]]);
 		if (array_key_exists($keys[12], $arr)) $this->setEmail($arr[$keys[12]]);
-		if (array_key_exists($keys[13], $arr)) $this->setRelacion($arr[$keys[13]]);
-		if (array_key_exists($keys[14], $arr)) $this->setObservacion($arr[$keys[14]]);
-		if (array_key_exists($keys[15], $arr)) $this->setAutorizacionRetiro($arr[$keys[15]]);
-		if (array_key_exists($keys[16], $arr)) $this->setFkCuentaId($arr[$keys[16]]);
-		if (array_key_exists($keys[17], $arr)) $this->setFkRolresponsableId($arr[$keys[17]]);
+		if (array_key_exists($keys[13], $arr)) $this->setObservacion($arr[$keys[13]]);
+		if (array_key_exists($keys[14], $arr)) $this->setAutorizacionRetiro($arr[$keys[14]]);
+		if (array_key_exists($keys[15], $arr)) $this->setFkCuentaId($arr[$keys[15]]);
+		if (array_key_exists($keys[16], $arr)) $this->setFkRolresponsableId($arr[$keys[16]]);
 	}
 
 	
@@ -865,7 +834,6 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(ResponsablePeer::FK_TIPODOCUMENTO_ID)) $criteria->add(ResponsablePeer::FK_TIPODOCUMENTO_ID, $this->fk_tipodocumento_id);
 		if ($this->isColumnModified(ResponsablePeer::SEXO)) $criteria->add(ResponsablePeer::SEXO, $this->sexo);
 		if ($this->isColumnModified(ResponsablePeer::EMAIL)) $criteria->add(ResponsablePeer::EMAIL, $this->email);
-		if ($this->isColumnModified(ResponsablePeer::RELACION)) $criteria->add(ResponsablePeer::RELACION, $this->relacion);
 		if ($this->isColumnModified(ResponsablePeer::OBSERVACION)) $criteria->add(ResponsablePeer::OBSERVACION, $this->observacion);
 		if ($this->isColumnModified(ResponsablePeer::AUTORIZACION_RETIRO)) $criteria->add(ResponsablePeer::AUTORIZACION_RETIRO, $this->autorizacion_retiro);
 		if ($this->isColumnModified(ResponsablePeer::FK_CUENTA_ID)) $criteria->add(ResponsablePeer::FK_CUENTA_ID, $this->fk_cuenta_id);
@@ -923,8 +891,6 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		$copyObj->setSexo($this->sexo);
 
 		$copyObj->setEmail($this->email);
-
-		$copyObj->setRelacion($this->relacion);
 
 		$copyObj->setObservacion($this->observacion);
 

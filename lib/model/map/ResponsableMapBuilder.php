@@ -58,8 +58,6 @@ class ResponsableMapBuilder {
 
 		$tMap->addColumn('EMAIL', 'Email', 'string', CreoleTypes::VARCHAR, false, 128);
 
-		$tMap->addColumn('RELACION', 'Relacion', 'string', CreoleTypes::VARCHAR, true, 128);
-
 		$tMap->addColumn('OBSERVACION', 'Observacion', 'string', CreoleTypes::VARCHAR, false, 255);
 
 		$tMap->addColumn('AUTORIZACION_RETIRO', 'AutorizacionRetiro', 'boolean', CreoleTypes::BOOLEAN, true);
