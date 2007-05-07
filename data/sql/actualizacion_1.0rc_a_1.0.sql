@@ -65,4 +65,6 @@ ALTER TABLE responsable ADD COLUMN fk_rolresponsable_id INT NOT NULL DEFAULT 1;
 
 ALTER TABLE `rel_division_actividad_docente` ADD `fk_evento_id` INT NULL ;
 
+ALTER TABLE responsable DROP COLUMN relacion;
+
 SET FOREIGN_KEY_CHECKS = 1;
