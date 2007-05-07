@@ -138,7 +138,7 @@
 
               <?php echo object_input_date_tag($alumno, 'getFechaNacimiento', array (
               'rich' => true,
-              'withtime' => true,
+              'withtime' => false,
               'calendar_button_img' => sfConfig::get('sf_admin_web_dir').'/images/date.png',
               'control_name' => 'alumno[fecha_nacimiento]',
             )) ?>

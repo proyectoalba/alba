@@ -13,7 +13,7 @@ generator:
         direccion: { name: Direcci&oacute;n , params: size=64 }
         ciudad: { name: Ciudad , params: size=64}
         codigo_postal: { name: CP }
-        fecha_nacimiento: { name: Fecha de Nacimiento}
+        fecha_nacimiento: { name: Fecha de Nacimiento, params: withtime=false}
         email: { name: Email , params: size=64}
         telefono: { name: Tel&eacute;fono, params: size=20}
         sexo: { name: Sexo }

@@ -11,7 +11,7 @@ generator:
             fk_cuenta_id: { name: Cuenta }
             fk_conceptobaja_id: { name: Concepto de Baja }
             fk_tipodocumento_id: { name: Tipo de Documento }
-            fecha_nacimiento: { name: Fecha Nacimiento}
+            fecha_nacimiento: { name: Fecha Nacimiento, params: withtime=false}
             direccion: { name: Direcci&oacute;n , params: size=64}
             ciudad: { name: Ciudad, params: size=64 }
             codigo_postal: { name: CP, params: size=20}
