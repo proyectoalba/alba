@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 
 	
@@ -37,6 +37,8 @@ class TipoivaMapBuilder {
 		$tMap->addColumn('NOMBRE', 'Nombre', 'string', CreoleTypes::VARCHAR, true, 128);
 
 		$tMap->addColumn('DESCRIPCION', 'Descripcion', 'string', CreoleTypes::VARCHAR, false, 255);
+
+		$tMap->addColumn('ORDEN', 'Orden', 'int', CreoleTypes::INTEGER, false);
 				
     } 
 } 

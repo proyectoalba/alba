@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 
 abstract class BaseTipoiva extends BaseObject  implements Persistent {
@@ -18,6 +18,10 @@ abstract class BaseTipoiva extends BaseObject  implements Persistent {
 
 	
 	protected $descripcion = '';
+
+
+	
+	protected $orden = 0;
 
 	
 	protected $collOrganizacions;
@@ -59,6 +63,13 @@ abstract class BaseTipoiva extends BaseObject  implements Persistent {
 	}
 
 	
+	public function getOrden()
+	{
+
+		return $this->orden;
+	}
+
+	
 	public function setId($v)
 	{
 
@@ -89,6 +100,16 @@ abstract class BaseTipoiva extends BaseObject  implements Persistent {
 
 	} 
 	
+	public function setOrden($v)
+	{
+
+		if ($this->orden !== $v || $v === 0) {
+			$this->orden = $v;
+			$this->modifiedColumns[] = TipoivaPeer::ORDEN;
+		}
+
+	} 
+	
 	public function hydrate(ResultSet $rs, $startcol = 1)
 	{
 		try {
@@ -99,11 +120,13 @@ abstract class BaseTipoiva extends BaseObject  implements Persistent {
 
 			$this->descripcion = $rs->getString($startcol + 2);
 
+			$this->orden = $rs->getInt($startcol + 3);
+
 			$this->resetModified();
 
 			$this->setNew(false);
 
-						return $startcol + 3; 
+						return $startcol + 4; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Tipoiva object", $e);
 		}
@@ -270,6 +293,9 @@ abstract class BaseTipoiva extends BaseObject  implements Persistent {
 			case 2:
 				return $this->getDescripcion();
 				break;
+			case 3:
+				return $this->getOrden();
+				break;
 			default:
 				return null;
 				break;
@@ -283,6 +309,7 @@ abstract class BaseTipoiva extends BaseObject  implements Persistent {
 			$keys[0] => $this->getId(),
 			$keys[1] => $this->getNombre(),
 			$keys[2] => $this->getDescripcion(),
+			$keys[3] => $this->getOrden(),
 		);
 		return $result;
 	}
@@ -307,6 +334,9 @@ abstract class BaseTipoiva extends BaseObject  implements Persistent {
 			case 2:
 				$this->setDescripcion($value);
 				break;
+			case 3:
+				$this->setOrden($value);
+				break;
 		} 	}
 
 	
@@ -317,6 +347,7 @@ abstract class BaseTipoiva extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setNombre($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setDescripcion($arr[$keys[2]]);
+		if (array_key_exists($keys[3], $arr)) $this->setOrden($arr[$keys[3]]);
 	}
 
 	
@@ -327,6 +358,7 @@ abstract class BaseTipoiva extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(TipoivaPeer::ID)) $criteria->add(TipoivaPeer::ID, $this->id);
 		if ($this->isColumnModified(TipoivaPeer::NOMBRE)) $criteria->add(TipoivaPeer::NOMBRE, $this->nombre);
 		if ($this->isColumnModified(TipoivaPeer::DESCRIPCION)) $criteria->add(TipoivaPeer::DESCRIPCION, $this->descripcion);
+		if ($this->isColumnModified(TipoivaPeer::ORDEN)) $criteria->add(TipoivaPeer::ORDEN, $this->orden);
 
 		return $criteria;
 	}
@@ -360,6 +392,8 @@ abstract class BaseTipoiva extends BaseObject  implements Persistent {
 		$copyObj->setNombre($this->nombre);
 
 		$copyObj->setDescripcion($this->descripcion);
+
+		$copyObj->setOrden($this->orden);
 
 
 		if ($deepCopy) {

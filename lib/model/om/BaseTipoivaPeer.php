@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 
 abstract class BaseTipoivaPeer {
@@ -13,7 +13,7 @@ abstract class BaseTipoivaPeer {
 	const CLASS_DEFAULT = 'lib.model.Tipoiva';
 
 	
-	const NUM_COLUMNS = 3;
+	const NUM_COLUMNS = 4;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -29,23 +29,26 @@ abstract class BaseTipoivaPeer {
 	const DESCRIPCION = 'tipoiva.DESCRIPCION';
 
 	
+	const ORDEN = 'tipoiva.ORDEN';
+
+	
 	private static $phpNameMap = null;
 
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Descripcion', ),
-		BasePeer::TYPE_COLNAME => array (TipoivaPeer::ID, TipoivaPeer::NOMBRE, TipoivaPeer::DESCRIPCION, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'descripcion', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Descripcion', 'Orden', ),
+		BasePeer::TYPE_COLNAME => array (TipoivaPeer::ID, TipoivaPeer::NOMBRE, TipoivaPeer::DESCRIPCION, TipoivaPeer::ORDEN, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'descripcion', 'orden', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Descripcion' => 2, ),
-		BasePeer::TYPE_COLNAME => array (TipoivaPeer::ID => 0, TipoivaPeer::NOMBRE => 1, TipoivaPeer::DESCRIPCION => 2, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'descripcion' => 2, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Descripcion' => 2, 'Orden' => 3, ),
+		BasePeer::TYPE_COLNAME => array (TipoivaPeer::ID => 0, TipoivaPeer::NOMBRE => 1, TipoivaPeer::DESCRIPCION => 2, TipoivaPeer::ORDEN => 3, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'descripcion' => 2, 'orden' => 3, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
 	);
 
 	
@@ -104,6 +107,8 @@ abstract class BaseTipoivaPeer {
 		$criteria->addSelectColumn(TipoivaPeer::NOMBRE);
 
 		$criteria->addSelectColumn(TipoivaPeer::DESCRIPCION);
+
+		$criteria->addSelectColumn(TipoivaPeer::ORDEN);
 
 	}
 
