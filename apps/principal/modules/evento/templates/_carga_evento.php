@@ -39,9 +39,9 @@
                 $recurrencia_fin_2 = $recurrencia_fin_0 = false;
                 $recurrencia_fin_1 = true;
             } else {
-                $dateFormat = new sfDateFormat($sf_user->getCulture());
-                $value = $dateFormat->format($evento->getRecurrenciaFin()." 00:00:00", 'I', $dateFormat->getInputPattern('g'));
-
+//                 $dateFormat = new sfDateFormat($sf_user->getCulture());
+//                 $value = $dateFormat->format($evento->getRecurrenciaFin()." 00:00:00", 'I', $dateFormat->getInputPattern('g'));
+                $value = $evento->getRecurrenciaFin();
                 $recurrencia_fin_fecha  = $value;
                 $recurrencia_fin_repeticion = '';            
                 $recurrencia_fin_2 = true;

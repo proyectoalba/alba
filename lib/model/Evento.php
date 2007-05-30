@@ -1,14 +1,41 @@
 <?php
+/**
+ *    This file is part of Alba.
+ *
+ *    Alba is free software; you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as published by
+ *    the Free Software Foundation; either version 2 of the License, or
+ *    (at your option) any later version.
+ *
+ *    Alba is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU General Public License for more details.
+ *
+ *    You should have received a copy of the GNU General Public License
+ *    along with Alba; if not, write to the Free Software
+ *    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
+
 
 /**
  * Subclass for representing a row from the 'evento' table.
  *
- * 
- *
  * @package lib.model
- */ 
+ * @author     José Luis Di Biase <josx@interorganic.com.ar>
+ * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
+ * @version    SVN: $Id: actions.class.php 4566 2007-04-25 15:07:43Z josx $
+ * @filesource
+ * @license GPL
+ */
+
 class Evento extends BaseEvento
 {
+
+    var $aFreq = array ( '', 'SECONDLY', 'MINUTELY' , 'HOURLY', 'DAILY' ,'WEEKLY', 'MONTHLY', 'YEARLY');
+    var $aDias = array ( 'SA', 'FR', 'TH', 'WE', 'TU', 'MO', 'SU');
+
 
     function getHoraInicio() {
         // si la hora de ambos es diferente de 00:00:00 entonces si tiene hora
@@ -17,6 +44,29 @@ class Evento extends BaseEvento
 
     function getHoraFin() {
         // si la hora de ambos es diferente de 00:00:00 entonces si tiene hora
+    }
+
+
+    function getRecurrenciaDiasIcal() {
+        if(is_numeric($this->getRecurrenciaDias())) {
+            $dias = "";
+            $numero_binario = $this->getRecurrenciaDiasEnBinario();
+            foreach( array(0,1,2,3,4,5,6) as $idx ) {
+                $dias .= ($numero_binario[$idx] == 1)?$this->aDias[$idx].",":"";
+            }
+            return substr($dias,0,-1);
+        } else {
+            return '';
+        }
+    }
+
+
+    function getRecurrenciaDiasEnBinario() {
+        return str_pad(decbin($this->getRecurrenciaDias()), 7, "0", STR_PAD_LEFT); 
+    }
+
+    function getFrecuenciaTexo() {
+        return $aFreq[$this->getFrecuencia()];
     }
 
 
@@ -33,7 +83,7 @@ class Evento extends BaseEvento
                        $frecuencia_intervalo = " cada " . $this->getFrecuenciaIntervalo() . "d&iacute;as";;
                        break;
             case '5' : $frecuencia .= "semanal"; 
-                       $numero_binario = str_pad(decbin($this->getRecurrenciaDias()), 7, "0", STR_PAD_LEFT); 
+                       $numero_binario = $this->getRecurrenciaDiasEnBinario(); 
                        $dias_semana .= ($numero_binario[6] == 1)?" Dom":"";
                        $dias_semana .= ($numero_binario[5] == 1)?" Lun":"";
                        $dias_semana .= ($numero_binario[4] == 1)?" Mar":"";

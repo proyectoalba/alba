@@ -1,4 +1,33 @@
 <?php
+/**
+ *    This file is part of Alba.
+ *
+ *    Alba is free software; you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as published by
+ *    the Free Software Foundation; either version 2 of the License, or
+ *    (at your option) any later version.
+ *
+ *    Alba is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU General Public License for more details.
+ *
+ *    You should have received a copy of the GNU General Public License
+ *    along with Alba; if not, write to the Free Software
+ *    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
+
+/**
+ *  Clase para manejo de Evento
+ *
+ * @package miEvento
+ * @author     José Luis Di Biase <josx@interorganic.com.ar>
+ * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
+ * @version    SVN: $Id: actions.class.php 4566 2007-04-25 15:07:43Z josx $
+ * @filesource
+ * @license GPL
+ */
 
 class miEvento extends sfWebRequest
 {
@@ -149,8 +178,8 @@ class miEvento extends sfWebRequest
                                 break;
                     case '1':   $evento_obj->setRecurrenciaFin($evento['recurrencia_fin_repeticion']);
                                 break;
-                    case '2':   $dateFormat = new sfDateFormat($this->getUser()->getCulture());
-                                $value = $dateFormat->format($evento['recurrencia_fin_fecha']." 00:00:00", 'I', $dateFormat->getInputPattern('g'));
+                    case '2':   $dateFormat = new sfDateFormat($cultura);
+                                $value = $dateFormat->format($evento['recurrencia_fin_fecha']." 00:00", 'I', $dateFormat->getInputPattern('g'));
                                 $evento_obj->setRecurrenciaFin($value);
                                 break; 
                 }

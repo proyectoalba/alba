@@ -6,4 +6,9 @@
   <li><?php echo button_to(__('create'), 'relDivisionActividadDocente/create', array (
   'class' => 'sf_admin_action_create',
 )) ?></li>
+
+<li><?php echo button_to(__('export'), 'relDivisionActividadDocente/exportToIcal', array (
+  'class' => '',
+)) ?></li>
+
 </ul>
