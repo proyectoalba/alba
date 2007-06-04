@@ -68,3 +68,6 @@ ALTER TABLE `rel_division_actividad_docente` ADD `fk_evento_id` INT NULL ;
 ALTER TABLE responsable DROP COLUMN relacion;
 
 SET FOREIGN_KEY_CHECKS = 1;
+ALTER TABLE tipoiva ADD COLUMN orden INT DEFAULT 0 NOTt NULL;
+
+

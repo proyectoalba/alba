@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 
 abstract class BaseTipoiva extends BaseObject  implements Persistent {
