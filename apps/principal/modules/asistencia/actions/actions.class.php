@@ -367,8 +367,9 @@ class asistenciaActions extends sfActions
 
                 foreach($aAsistencia as $alumno_id => $aPeriodo ) {
                     foreach($aPeriodo as $fecha => $Tipoasistencia) {
-                        //die($TipoAsistencia);
                         $Asistencia = new Asistencia();
+                        $Tipoasistencia = strtoupper($Tipoasistencia);
+                        
                         if(array_key_exists($Tipoasistencia, $aDatosTablaTipoAsistencias)){
                             $Asistencia->setFkAlumnoId($alumno_id);
                             list($y, $m, $d) = split("[/. -]",$fecha);        
