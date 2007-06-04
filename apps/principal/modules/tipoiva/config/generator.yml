@@ -6,14 +6,17 @@ generator:
     fields:
         nombre:     { name: Nombre , params: size=64}
         descripcion:  { name: Descripci&oacute;n , params: size=64}
+        orden: { name: Orden }
+
     edit:
         title: Editar Tipos de IVA
         display: [ nombre, descripcion, orden ]
     
     list:
         title: Listado de Tipos de IVA
+        sort: orden
         display: [ =nombre, descripcion, orden ]
+
         object_actions:
             _edit:      -
             _delete:    -
-            
