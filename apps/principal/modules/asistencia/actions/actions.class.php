@@ -37,14 +37,12 @@ class asistenciaActions extends sfActions
         $this->vista = $this->getRequestParameter('vista');
     }
 
-    
     /**
     * Executes index action
     *
     */
     public function executeIndex() {
         
-
         Misc::use_helper('Misc');
         
         //Iniciando Variables
@@ -67,8 +65,8 @@ class asistenciaActions extends sfActions
 
         if ($this->getUser()->getAttribute('fk_ciclolectivo_id') == 0)
             return $this->redirect('ciclolectivo/sinciclolectivo?m=' . $this->getRequestParameter('module'));
-        // tomando los datos del formulario y completando variable
         
+        // tomando los datos del formulario y completando variable
         $ciclolectivo_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');       
         $ciclolectivo = CiclolectivoPeer::retrieveByPK($ciclolectivo_id);
 
@@ -81,16 +79,16 @@ class asistenciaActions extends sfActions
         $m = $aFechaActual['mon'];
         $y = $aFechaActual['year'];
 
-        
         // tomo el año de la fecha de inicio y de fin del ciclo lectivo
         $anio_desde = date("Y",$ciclolectivo_fecha_inicio);
         $anio_hasta = date("Y",$ciclolectivo_fecha_fin);
         
-
         if ($this->getRequestParameter('alumno_id')) {
             $alumno_id = $this->getRequestParameter('alumno_id');   
             $a = AlumnoPeer::retrieveByPK($alumno_id);
             $cuenta_id = $a->getFkCuentaId();
+            
+            //$a->getRelAlumnoDivisions()
         }
 
 
@@ -110,46 +108,43 @@ class asistenciaActions extends sfActions
             $y = $this->getRequestParameter('ano');
         }
 
-
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
 
         $criteria = new Criteria();
         $criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
-        $criteria->addAscendingOrderByColumn(AnioPeer::DESCRIPCION);           
-        $criteria->addAscendingOrderByColumn(DivisionPeer::ORDEN);           
-        $criteria->addAscendingOrderByColumn(DivisionPeer::DESCRIPCION);           
-        $divisiones = DivisionPeer::doSelectJoinAnio($criteria);        // divisiones a mostrar
-
-        foreach ($divisiones as $division) {
-             $optionsDivision[$division->getId()] = $division->getAnio()->getDescripcion()." ".$division->getDescripcion();        
+        
+        
+        if ($this->getRequestParameter('alumno_id')){
+            $criteria->add(RelAlumnoDivisionPeer::FK_ALUMNO_ID, $alumno_id);
+            $criteria->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID );
         }
 
+        $criteria->addAscendingOrderByColumn(AnioPeer::DESCRIPCION);
+        $criteria->addAscendingOrderByColumn(DivisionPeer::ORDEN);     
+        $criteria->addAscendingOrderByColumn(DivisionPeer::DESCRIPCION);
+        $divisiones = DivisionPeer::doSelectJoinAnio($criteria);        // divisiones a mostrar
+
+        foreach ($divisiones as $division)
+             $optionsDivision[$division->getId()] = $division->getAnio()->getDescripcion()." ".$division->getDescripcion();        
 
         if ($this->getRequestParameter('division_id')) {
             $division_id = $this->getRequestParameter('division_id');    
         } else {
-            if ($this->getRequestParameter('alumno_id')) {
-                $division_id = 1;
+            if (count($optionsDivision) > 0){
+                $aTemp = array_keys($optionsDivision);        
+                $division_id = $aTemp[0];
             } else {
-                if (count($optionsDivision) > 0){
-                    $aTemp = array_keys($optionsDivision);        
-                    $division_id = $aTemp[0];
-                } else {
-                    // Ver si se puede hacer desde el validate
-                    $this->getRequest()->setError('Division', 'No hay Ninguna División cargada');
-                    $flag_error = 1;
-                }
-            }     
+                // Ver si se puede hacer desde el validate
+                $this->getRequest()->setError('Division', 'No hay Ninguna División cargada');
+                $flag_error = 1;
+            }
         }
-
 
         if(!checkdate($m,$d,$y)) {
             // Ver si se puede hacer desde el validate
             $this->getRequest()->setError('Fecha', 'La fecha ingresada es erronea');
             $flag_error = 1;
         } 
-
-
 
         if($flag_error == 0) {
             // devuelve un intervalo de dias según vista y fecha seleccionada
@@ -165,14 +160,12 @@ class asistenciaActions extends sfActions
             $aIntervalo = $aFechaTemp;
         }
 
-
         // obteniendo los feriados actuales
         $criteria = new Criteria();
         $feriados = FeriadoPeer::doSelect($criteria);        
         foreach($feriados as $feriado) {
             $aFeriado[$feriado->getFecha()] = $feriado->getNombre(); 
         }
-
 
         // esto deberia estar hecho muy diferente guardar en un /tmp con archivo aleatorio
         if(file_exists(sfConfig::get('sf_upload_dir_name').'/grafico_asistencias.png'))
@@ -226,7 +219,6 @@ class asistenciaActions extends sfActions
             $aPorcentajeAsistencia = array();
             $flag = 0;
             $tot = 0;
-
 
             // cantidad de fechas sin fines de semana
             $cantFechas = 0;
