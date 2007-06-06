@@ -18,6 +18,7 @@ generator:
     list:
         title: Listado de A&ntilde;os
         display: [ =descripcion ]
+        sort: descripcion
         object_actions:
             _edit:      -
             _delete:    -

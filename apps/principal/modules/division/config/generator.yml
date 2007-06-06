@@ -10,6 +10,7 @@ generator:
         fk_turnos_id: { name: Turnos }
         descripcion: { name: Descripci&oacute;n }
         orden: { name: Orden }
+
     edit:
         title: Editar Divisi&oacute;n
         display: [ _fk_anio_id, descripcion, _fk_turnos_id, orden ]
@@ -20,4 +21,6 @@ generator:
         object_actions:
             _edit:      -
             _delete:    -
-            alumnosPorDivision:  { name: Alumnos por Division, action: alumnosPorDivision, icon: small/alumnos.png }            
+            alumnosPorDivision:  { name: Alumnos por Division, action: alumnosPorDivision, icon: small/alumnos.png } 
+        filters: [ fk_anio_id ]
+
