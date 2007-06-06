@@ -115,7 +115,9 @@ class asistenciaActions extends sfActions
 
         $criteria = new Criteria();
         $criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
+        $criteria->addAscendingOrderByColumn(AnioPeer::DESCRIPCION);           
         $criteria->addAscendingOrderByColumn(DivisionPeer::ORDEN);           
+        $criteria->addAscendingOrderByColumn(DivisionPeer::DESCRIPCION);           
         $divisiones = DivisionPeer::doSelectJoinAnio($criteria);        // divisiones a mostrar
 
         foreach ($divisiones as $division) {

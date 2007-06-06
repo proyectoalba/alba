@@ -55,7 +55,7 @@
             <tr>
 
                 <td>
-                    <?php echo label_for('division_id', __('Divisi&oacute;n:'), 'class="required" '); ?>
+                    <?php echo label_for('division_id', __('A&ntilde;o/Divisi&oacute;n:'), 'class="required" '); ?>
                 </td>
                 <td>
                     <?php echo select_tag('division_id', options_for_select($optionsDivision, $division_id)); ?>
