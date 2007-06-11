@@ -2,18 +2,20 @@
 
 <script>
      function linkTo(flag) {
-        
         var objd = document.getElementById('division_id');
-        var objp = document.getElementById('periodo_id');
         var url  = "<?php echo url_for('boletin/', false);?>/list/division_id/"+objd.options[objd.selectedIndex].value;
-        if(flag == 1) {
+        if(flag == 1){
+            var objp = document.getElementById('periodo_id');
+            alert(objp.options[objp.selectedIndex].value);
             url = url + "/periodo_id/"+objp.options[objp.selectedIndex].value;
         }
         
-        <? if($division_id) {?>
-        var obja = document.getElementById('actividad_id');
-        url = url + "/actividad_id/"+obja.options[obja.selectedIndex].value;
-        <? } ?>
+        <?php if($division_id) {
+                if($actividad_id){?>
+                    var obja = document.getElementById('actividad_id');
+                    url = url + "/actividad_id/"+obja.options[obja.selectedIndex].value;
+        <?php   }    
+             } ?>
         location.href = url;
      }
 </script>
