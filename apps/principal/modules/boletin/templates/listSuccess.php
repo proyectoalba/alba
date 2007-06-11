@@ -6,7 +6,6 @@
         var url  = "<?php echo url_for('boletin/', false);?>/list/division_id/"+objd.options[objd.selectedIndex].value;
         if(flag == 1){
             var objp = document.getElementById('periodo_id');
-            alert(objp.options[objp.selectedIndex].value);
             url = url + "/periodo_id/"+objp.options[objp.selectedIndex].value;
         }
         
