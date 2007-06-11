@@ -34,7 +34,9 @@ class asistenciaActions extends sfActions
 {
 
     public function preExecute() {
-        $this->vista = $this->getRequestParameter('vista');
+        $fecha = $this->getRequestParameter('fecha');
+
+
     }
 
     /**

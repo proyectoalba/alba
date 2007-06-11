@@ -1,0 +1,140 @@
+/* Style sheet for the silver calendar (default) */
+
+#icalVisualizador table, td {font: 11px Verdana, Arial, sans-serif; color: #000;}
+
+/* Background images for tables */
+#icalVisualizador .tbll	{background: url(../images/shadow_l.gif) no-repeat; width:8px}
+#icalVisualizador .tblbot	{background: url(../images/shadow_m.gif) repeat-x; width:100%}
+#icalVisualizador .tblr	{background: url(../images/shadow_r.gif) no-repeat; width:8px}
+
+#icalVisualizador .alldaybg_1 {background: url(../images/allday_1.gif) repeat-x; height: 19px; padding-top: 5px; text-align: center;}
+#icalVisualizador .alldaybg_2 {background: url(../images/allday_2.gif) repeat-x; height: 19px; padding-top: 5px; text-align: center;}
+#icalVisualizador .alldaybg_3 {background: url(../images/allday_3.gif) repeat-x; height: 19px; padding-top: 5px; text-align: center;}
+#icalVisualizador .alldaybg_4 {background: url(../images/allday_4.gif) repeat-x; height: 19px; padding-top: 5px; text-align: center;}
+#icalVisualizador .alldaybg_5 {background: url(../images/allday_5.gif) repeat-x; height: 19px; padding-top: 5px; text-align: center;}
+#icalVisualizador .alldaybg_6 {background: url(../images/allday_6.gif) repeat-x; height: 19px; padding-top: 5px; text-align: center;}
+#icalVisualizador .alldaybg_7 {background: url(../images/allday_7.gif) repeat-x; height: 19px; padding-top: 5px; text-align: center;}
+
+#icalVisualizador .rowOn			{ background-color: #cfc; border-top: 1px solid #fff; border-left: 1px solid #fff; }
+#icalVisualizador .rowOn2			{ background-color: #cfc; border-top: 1px solid #fff; }
+#icalVisualizador .rowOff			{ background-color: #E1E8F1; border-top: 1px solid #fff; border-left: 1px solid #fff; }
+#icalVisualizador .rowOff2		{ background-color: #E1E8F1; border-top: 1px solid #fff; }
+#icalVisualizador .rowToday		{ background-color: #cff; border-top: 1px solid #fff; border-left: 1px solid #fff; }
+
+#icalVisualizador .padd			{ padding: 2px; }
+
+/* Styles for day and week events */
+#icalVisualizador .eventbg_1	 	{ background-color: #557CA3; padding: 2px;}
+#icalVisualizador .eventbg_2	 	{ background-color: #53A062; padding: 2px;}
+#icalVisualizador .eventbg_3	 	{ background-color: #E84F25; padding: 2px;}
+#icalVisualizador .eventbg_4	 	{ background-color: #B257A2; padding: 2px;}
+#icalVisualizador .eventbg_5	 	{ background-color: #D42020; padding: 2px;}
+#icalVisualizador .eventbg_6	 	{ background-color: #B88F0B; padding: 2px;}
+#icalVisualizador .eventbg_7	 	{ background-color: #73738C; padding: 2px;}
+#icalVisualizador  #allday a		{ font-size: 9px; color: #fff; font-weight: 900; text-decoration:none;}
+#icalVisualizador  #allday a:hover	{ text-decoration:underline;}
+
+#icalVisualizador .eventbg2_1	 		{ background-color: #6699CC; border: 1px solid #557CA3; }
+#icalVisualizador .eventbg2_2	 		{ background-color: #4FC464; border: 1px solid #53A062; }
+#icalVisualizador .eventbg2_3	 		{ background-color: #FF6D3B; border: 1px solid #E84F25; }
+#icalVisualizador .eventbg2_4	 		{ background-color: #EA62D4; border: 1px solid #B257A2; }
+#icalVisualizador .eventbg2_5	 		{ background-color: #FF5E56; border: 1px solid #D42020; }
+#icalVisualizador .eventbg2_6	 		{ background-color: #CCB21F; border: 1px solid #B88F0B; }
+#icalVisualizador .eventbg2_7	 		{ background-color: #9292A1; border: 1px solid #73738C; }
+
+#icalVisualizador .dayborder 		{ background-color: #fff; border-top: 1px solid #A1A5A9; }
+#icalVisualizador .dayborder2 	{ background-color: #fff; border-top: 1px dashed #ccc; }
+
+#icalVisualizador .title  		{ background-image: url(../images/time_bg.gif); padding: 5px; }
+#icalVisualizador .title h1 		{ font-family: Helvetica, sans-serif; font-size: 18px; color: #000; margin: 0px;}
+
+/* Month View */
+
+#icalVisualizador .monthback		{ background-color: #A1A5A9; }
+#icalVisualizador .monthreg		{ background-color: #fff; height: 105px; width: 105px; text-align: left; vertical-align: top; }
+#icalVisualizador .monthoff		{ background-color: #F2F2F2; height: 105px; width: 105px; text-align: left;  vertical-align: top; }
+#icalVisualizador .monthon		{ background-color: #F2F9FF; height: 105px; width: 105px; text-align: left;  vertical-align: top; }
+#icalVisualizador .montheventtop	{ background-image: url(../images/side_bg.gif); border-top: 1px solid #A1A5A9; }
+#icalVisualizador .montheventline	{ border-right: 1px dotted #A1A5A9; }
+
+/* Year View */
+
+#icalVisualizador .medtitle		{ background-image: url(../images/side_bg.gif); height: 20px; margin-top: 3px; font-weight: 900; }
+#icalVisualizador .yearreg		{ background-color: #fff; height: 30px; width: 30px; text-align: right; vertical-align: top; font-size: 9px; }
+#icalVisualizador .yearoff		{ background-color: #F2F2F2; height: 30px; width: 30px; text-align: right;  vertical-align: top; font-size: 9px; }
+#icalVisualizador .yearon			{ background-color: #F2F9FF; height: 30px; width: 30px; text-align: right;  vertical-align: top; font-size: 9px; }
+#icalVisualizador .yearmonth		{ background-color: #ccc; }
+#icalVisualizador .yearweek		{ background-color: #eee; width: 30px; font-size: 9px; font-weight: 900; text-align: center; height: 15px; }
+
+
+/* older styles */
+
+#icalVisualizador .eventborder	{ background-image: url(../images/day_title.gif); border: 1px #006699 solid; }
+#icalVisualizador .eventbg	 	{ background-color: #6699CC; }
+
+#icalVisualizador .calborder 		{ background-color: #fff; border: 1px #A1A5A9 solid; }
+#icalVisualizador .dateback		{ background-color: #eee; }
+#icalVisualizador .weekborder 	{ border-top: 1px dashed #A1A5A9; border-right: 1px solid #A1A5A9; }
+#icalVisualizador .weekborder2 	{ border-right: 1px solid #A1A5A9; }
+#icalVisualizador .timeborder 	{ border-right: 2px solid #A1A5A9; border-top: 1px dashed #A1A5A9; background-image: url(../images/time_bg.gif); }
+#icalVisualizador .timeborder2 	{ border-right: 2px solid #A1A5A9; border-top: 1px solid #A1A5A9; background-image: url(../images/time_bg.gif); }
+#icalVisualizador .navback 		{ background-image: url(../images/time_bg.gif); }
+#icalVisualizador .sideback 		{ background-image: url(../images/side_bg.gif); }
+
+
+/* Link colors and attributes */
+/* This is the main link style */
+#icalVisualizador a.psf			{ text-decoration:	none; }
+#icalVisualizador a.psf:link		{ color: #0066FF; }
+#icalVisualizador a.psf:visited	{ color: #0066FF; }
+#icalVisualizador a.psf:active	{ color: #3366CC; }
+#icalVisualizador a.psf:hover		{ color: #000099; text-decoration: underline; }
+
+/* This is the link style for the mini-cals */	
+#icalVisualizador a.ps2			{ text-decoration:	underline; }
+#icalVisualizador a.ps2:link		{ color: #0066FF; }
+#icalVisualizador a.ps2:visited	{ color: #0066FF; }
+#icalVisualizador a.ps2:active	{ color: #3366CC; }
+#icalVisualizador a.ps2:hover		{ color: #000099; }
+
+/* This is the link style for year months */	
+#icalVisualizador a.ps3			{ text-decoration:	none; }
+#icalVisualizador a.ps3:link		{ color: #000; }
+#icalVisualizador a.ps3:visited	{ color: #000; }
+#icalVisualizador a.ps3:active	{ color: #000; }
+#icalVisualizador a.ps3:hover		{ color: #000; text-decoration: underline; }
+
+/* This is the link style for events */	
+#icalVisualizador a.ps			{ text-decoration:	none; }
+#icalVisualizador a.ps:link		{ color: #fff; }
+#icalVisualizador a.ps:visited	{ color: #fff; }
+#icalVisualizador a.ps:active		{ color: #fff; }
+#icalVisualizador a.ps:hover		{ color: #fff; text-decoration: underline; }
+	
+/* Body attributes */
+
+#icalVisualizador body			{ background-color: #E5E5E5; }
+
+/* CSS definitions for fonts */
+
+#icalVisualizador .V9 			{ font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 9px; color: #000000; }
+#icalVisualizador .V10W 			{ font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 10px; color: #FFFFFF; text-decoration:	none;}
+#icalVisualizador .V9W 			{ font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 9px; color: #FFFFFF; text-decoration:	none;}
+#icalVisualizador .V10WB 			{ font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 10px; color: #FFFFFF; font-weight: 900; }
+#icalVisualizador .V9G 			{ font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 9px; color: #666666; }
+#icalVisualizador .V10 			{ font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 10px; color: #000000; }
+#icalVisualizador .V9BOLD 		{ font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 9px; font-weight: 900; }
+#icalVisualizador .G10 			{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #0066FF; }
+#icalVisualizador .G10B 			{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #000000; }
+#icalVisualizador .G10BOLD 		{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; font-weight: 900; }
+#icalVisualizador .G10G 			{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #A1A5A9; }
+#icalVisualizador .V12 			{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px;  color: #000000; }
+/*h1 				{ font-family: Helvetica, sans-serif; font-size: 18px; color: #000000; }*/
+#icalVisualizador .eventfont 		{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #FFFFFF; }
+
+
+/* Length of the form drop downs */
+
+#icalVisualizador .query_style 	{ font-size: 11px; font-family: verdana, geneva, arial, sans-serif; width: 156px; margin-bottom: 0; }
+#icalVisualizador .search_style 	{ font-size: 12px; font-family: verdana, geneva, arial, sans-serif; width: 134px; margin-bottom: 0; }
+#icalVisualizador .login_style	{ font-size: 11px; font-family: verdana, geneva, arial, sans-serif; width: 80px; margin-bottom: 0; }
