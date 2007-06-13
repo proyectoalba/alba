@@ -121,7 +121,7 @@
 <td rowspan="<?php echo $rowspan?>" width="<?php echo floor(460/($event['event_overlap']+1))?>" colspan="<?php echo floor($nbrGridCols / ($event['event_overlap']+1)) ?>" align="left" valign="top" class="eventbg2_1">
     <div class="eventfont">
         <div class="eventbg_1"><b><?php echo date("H:i A", $event['start_unixtime'])?></b> - <?php echo date("H:i A", $event['end_unixtime'])?></div>
-        <div class="padd">
+        <div class="padd" style="width:<?php echo floor(460/($event['event_overlap']+1))?>px">
         <a class="ps" title="<?php echo $event['event_text']?>" href="#" onclick="openEventWindow(0); return false;"><?php echo $event['event_text']?></a>
         </div>
     </div>
@@ -131,12 +131,12 @@
 
                                         if($j==0) {
                         ?>
-                                        <td colspan="<?php echo $nbrGridCols?>"  class="dayborder">&nbsp;</td>
+                          <!--              <td colspan="<?php echo $nbrGridCols?>"  class="dayborder">&nbsp;</td>-->
                                 </tr>
                         <?php
                                         } else {
                         ?>
-                            <td colspan="<?php echo $nbrGridCols?>"  class="dayborder<?php echo ($j%2==0)?'':'2'?>">&nbsp;</td>
+<!--                            <td colspan="<?php echo $nbrGridCols?>"  class="dayborder<?php echo ($j%2==0)?'':'2'?>">&nbsp;</td>-->  
                                 </tr>
                         <? 
                                         }

@@ -36,6 +36,9 @@ class icalVisualizadorActions extends sfActions
             return $x;
         }
 
+
+
+
     public function  executeVerPorDia() {
 //         $aWeek = array('Domingo','Lunes','Martes'.'Miercoles','Jueves','Viernes','Sabado');
         $aAllDay = array();
@@ -53,7 +56,6 @@ class icalVisualizadorActions extends sfActions
             $unix_time = strtotime ("now");
         }
 
-
         $day_of_week = date("w", $unix_time); // get number of the day of the week
         $day_start_of_week = $unix_time - ($day_of_week * 86400); // get the starts day the of this week
         $day_end_of_week = $day_start_of_week + (7 * 86400); // get the end day the of this week
@@ -66,164 +68,12 @@ class icalVisualizadorActions extends sfActions
             $aTime[] = $time;
         }
 
-        $aEvent['20070508'] = array(
 
-            "1600" => array ( "xxx1" =>  array(
-                            "event_start" => 1600,
-                            "event_end" => 2200,
-                            "start_unixtime" => 117864000,
-                            "end_unixtime" => 1178661600,
-                            "event_text" => "Primer",
-                            "event_length" => 17900,
-                            "event_overlap" => 2,
-                            "description" => "Horas+de+maestro%2Fprofesor",
-                            "status" => '',
-                            "class" => "PUBLIC",
-                            "spans_day" => '',
-                            "location" => '',
-                            "organizer" => "a:0:{}",
-                            "attendee" => "a:0:{}",
-                            "calnumber" => 1,
-                            "calname" => 20070608153450,
-                            "url" => '',
-                                                ),
-),
+        require(sfConfig::get('sf_app_module_dir')."/icalVisualizador/".sfConfig::get('sf_app_module_lib_dir_name')."/ical_parser.php");
 
 
+        $aEvent = @icalToArray("/tmp/pepe.ics");
 
-
-
-
-
-            "1700" => array ( "xxx1" =>  array(
-                            "event_start" => 1700,
-                            "event_end" => 2200,
-                            "start_unixtime" => 1178643600,
-                            "end_unixtime" => 1178661600,
-                            "event_text" => "Primer",
-                            "event_length" => 17900,
-                            "event_overlap" => 2,
-                            "description" => "Horas+de+maestro%2Fprofesor",
-                            "status" => '',
-                            "class" => "PUBLIC",
-                            "spans_day" => '',
-                            "location" => '',
-                            "organizer" => "a:0:{}",
-                            "attendee" => "a:0:{}",
-                            "calnumber" => 1,
-                            "calname" => 20070608153450,
-                            "url" => '',
-                                                ),
-"xxx44" =>  array(
-                            "event_start" => 1700,
-                            "event_end" => 2200,
-                            "start_unixtime" => 1178643600,
-                            "end_unixtime" => 1178661600,
-                            "event_text" => "Primer",
-                            "event_length" => 17900,
-                            "event_overlap" => 2,
-                            "description" => "Horas+de+maestro%2Fprofesor",
-                            "status" => '',
-                            "class" => "PUBLIC",
-                            "spans_day" => '',
-                            "location" => '',
-                            "organizer" => "a:0:{}",
-                            "attendee" => "a:0:{}",
-                            "calnumber" => 1,
-                            "calname" => 20070608153450,
-                            "url" => '',
-                                                ),
-
-
-
-
-
-                            ),
-
-
-
-          "1300" => array ( "xxx2" =>  array(
-                            "event_start" => 1300,
-                            "event_end" => 1400,
-                            "start_unixtime" => 1181307600,
-                            "end_unixtime" => 1181311200,
-                            "event_text" => "JOSX",
-                            "event_length" => 3600,
-                            "event_overlap" => 2,
-                            "description" => "Horas",
-                            "status" => '',
-                            "class" => "PUBLIC",
-                            "spans_day" => '',
-                            "location" => '',
-                            "organizer" => "a:0:{}",
-                            "attendee" => "a:0:{}",
-                            "calnumber" => 1,
-                            "calname" => 20070608153450,
-                            "url" => '',
-                                                ),
-/*"xxx3" =>  array(
-                            "event_start" => 1300,
-                            "event_end" => 1400,
-                            "start_unixtime" => 1181307600,
-                            "end_unixtime" => 1181311200,
-                            "event_text" => "JOSX",
-                            "event_length" => 3600,
-                            "event_overlap" => 2,
-                            "description" => "Horas+de+maestro%2Fprofesor",
-                            "status" => '',
-                            "class" => "PUBLIC",
-                            "spans_day" => '',
-                            "location" => '',
-                            "organizer" => "a:0:{}",
-                            "attendee" => "a:0:{}",
-                            "calnumber" => 1,
-                            "calname" => 20070608153450,
-                            "url" => '',
-                                                ),*/
-"xxx5" =>  array(
-                            "event_start" => 1300,
-                            "event_end" => 1400,
-                            "start_unixtime" => 1181307600,
-                            "end_unixtime" => 1181311200,
-                            "event_text" => "JOSX",
-                            "event_length" => 3600,
-                            "event_overlap" => 2,
-                            "description" => "Horas+de+maestro%2Fprofesor",
-                            "status" => '',
-                            "class" => "PUBLIC",
-                            "spans_day" => '',
-                            "location" => '',
-                            "organizer" => "a:0:{}",
-                            "attendee" => "a:0:{}",
-                            "calnumber" => 1,
-                            "calname" => 20070608153450,
-                            "url" => '',
-                                                )
-                            ),
-
-          "1245" => array ( "xxx2" =>  array(
-                            "event_start" => 1245,
-                            "event_end" => 1400,
-                            "start_unixtime" => 1181306700,
-                            "end_unixtime" => 1181311200,
-                            "event_text" => "JOSX",
-                            "event_length" => 3600,
-                            "event_overlap" => 2,
-                            "description" => "Horas",
-                            "status" => '',
-                            "class" => "PUBLIC",
-                            "spans_day" => '',
-                            "location" => '',
-                            "organizer" => "a:0:{}",
-                            "attendee" => "a:0:{}",
-                            "calnumber" => 1,
-                            "calname" => 20070608153450,
-                            "url" => '',
-                                                )),
-
-
-
-        );
 
         $nbrGridCols = 1;
         foreach($aEvent as $day) {
@@ -233,7 +83,6 @@ class icalVisualizadorActions extends sfActions
                 }
             }
         }
-
 
         $this->nbrGridCols = $nbrGridCols;
         $this->aEvent = $aEvent;
@@ -246,46 +95,5 @@ class icalVisualizadorActions extends sfActions
     }
 
 }
-
-
-/*
-[20070510] => Array
-        (
-            [1400] => Array
-                (
-                    [20070608T153450CEST-njzdXfKppU@192.168.1.20] => Array
-                        (
-                            [event_start] => 1400
-                            [event_end] => 1500
-                            [start_unixtime] => 1178805600
-                            [end_unixtime] => 1178809200
-                            [event_text] => S%C3%83%C2%A9ptimo+Grado+B-Formaci%C3%83%C2%B3n+%C3%83%C2%A9tica+y+ciudadana.-222222222222+2222222222222
-                            [event_length] => 3600
-                            [event_overlap] => 0
-                            [description] => Horas+de+maestro%2Fprofesor
-                            [status] => 
-                            [class] => PUBLIC
-                            [spans_day] => 
-                            [location] => 
-                            [organizer] => a:0:{}
-                            [attendee] => a:0:{}
-                            [calnumber] => 1
-                            [calname] => 20070608153450
-                            [url] => 
-                            [recur] => Array
-                                (
-                                    [FREQ] => daily
-                                    [INTERVAL] => 1
-                                    [UNTIL] => 30 de Diciembre
-                                )
-
-                        )
-
-                )
-*/
-
-
-
-
 
 ?>
