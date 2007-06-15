@@ -94,6 +94,15 @@ class relDivisionActividadDocenteActions extends autorelDivisionActividadDocente
     }
 
 
+    public function executeVerCalendarioPorDia() {
+        $this->executeList();
+        include("miExportadorIcal.class.php");
+        $e  = new miExportadorIcal();
+        $this->archivo = sfConfig::get('app_alba_tmpdir')."/".$e->exportar($this->pager->getResults(), 0);
+        $this->date_component = "";
+    }
+
+
     protected function updateRelDivisionActividadDocenteFromRequest($fk_evento_id = '') {
         $rel_division_actividad_docente = $this->getRequestParameter('rel_division_actividad_docente');
         if (isset($rel_division_actividad_docente['fk_division_id'])) {

@@ -36,10 +36,10 @@ class miExportadorIcal extends sfWebRequest {
     var $aFreq = array ( '', 'SECONDLY', 'MINUTELY' , 'HOURLY', 'DAILY' ,'WEEKLY', 'MONTHLY', 'YEARLY');
     var $aDias = array ( 'SA', 'FR', 'TH', 'WE', 'TU', 'MO', 'SU');
 
-    function exportar($aObj = array() ) {
+    function exportar($aObj = array(), $directo_a_browser = 1 ) {
         if(is_array($aObj)) {
             $v = new vcalendar();
-            $v->setConfig('DIRECTORY',sfConfig::get('sf_upload_dir_name')); //sfConfig::get('app_alba_tmpdir');
+            $v->setConfig('DIRECTORY',sfConfig::get('app_alba_tmpdir')); //sfConfig::get('app_alba_tmpdir');
 
             foreach ($aObj as $rel_division_actividad_docente) {
                 if($rel_division_actividad_docente->getEvento()) {
@@ -83,7 +83,12 @@ class miExportadorIcal extends sfWebRequest {
                     $v->addComponent($e);	
                 }
             }
-            $v->returnCalendar();
+            if($directo_a_browser == 1) {
+                $v->returnCalendar();
+            } else {
+                $v->saveCalendar();
+                return $v->getConfig('filename');
+            }
         } else {
             $error = 'No envío un array para la exportación';
             throw new Exception($error);

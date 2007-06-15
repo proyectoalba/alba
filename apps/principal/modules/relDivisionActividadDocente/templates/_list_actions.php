@@ -7,7 +7,11 @@
   'class' => 'sf_admin_action_create',
 )) ?></li>
 
-<li><?php echo button_to(__('export'), 'relDivisionActividadDocente/exportToIcal', array (
+<li><?php echo button_to(__('exportar'), 'relDivisionActividadDocente/exportToIcal', array (
+  'class' => '',
+)) ?></li>
+
+<li><?php echo button_to(__('ver calendario'), 'relDivisionActividadDocente/verCalendarioPorDia', array (
   'class' => '',
 )) ?></li>
 

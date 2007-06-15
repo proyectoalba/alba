@@ -21,10 +21,7 @@ class icalVisualizadorActions extends sfActions
   public function executeIndex()
   {
 //     $this->date_component = "20070407";
-
-
     $this->archivo = "/tmp/pepe.ics";
-
     $this->date_component="20070404";
   }
 

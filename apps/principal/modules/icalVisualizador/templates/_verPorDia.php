@@ -1,3 +1,6 @@
+
+<link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/icalVisualizador/css/icalVisualizador.css"/>
+
 <center>
 <div id="icalVisualizador">
 <table border="0" width="700" cellspacing="0" cellpadding="0">
