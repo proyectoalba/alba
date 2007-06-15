@@ -1,4 +1,4 @@
-all: pdf html 
+all: pdf 
 
 pdf:
 	mkdir -p out/pdf
@@ -17,7 +17,6 @@ htmls:
 	mkdir -p out/htmls
 	docbook2html xml/manual.xml
 	mv *.html out/htmls/
-
 
 clean:
 	rm -rf out
