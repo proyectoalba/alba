@@ -4,6 +4,8 @@
 <!ENTITY recomendaciones.xml SYSTEM "recomendaciones.xml">                                          
 <!ENTITY capitulo_1.xml SYSTEM "capitulo_1.xml">                                              
 <!ENTITY indice.xml SYSTEM "indice.xml">                                                  
+<!ENTITY capitulo_2.xml SYSTEM "capitulo_2.xml">
+<!ENTITY capitulo_3.xml SYSTEM "capitulo_3.xml">
 ]>
 <book>
 	<title>ALBA - Manual de Usuario</title>
@@ -13,5 +15,7 @@
     &presentacion.xml;
     &recomendaciones.xml;
     &capitulo_1.xml;
+    &capitulo_2.xml;
+    &capitulo_3.xml;
     &indice.xml;   
 </book>
