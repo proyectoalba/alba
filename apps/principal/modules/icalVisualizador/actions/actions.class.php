@@ -20,9 +20,27 @@ class icalVisualizadorActions extends sfActions
    */
   public function executeIndex()
   {
-//     $this->date_component = "20070407";
+
+    $date = $this->getRequestParameter("date");
+    $view = $this->getRequestParameter("view");
+
+    if(!$date) {
+        $this->date_component="20070404";
+    } else {
+        $this->date_component = $date;
+    }
+
+    switch($view) {
+        case "day": $this->view = "verPorDia";  break;
+        case "week": $this->view = "verPorSemana"; break;
+        case "month":  $this->view = "verPorDia"; break;
+        case "year": $this->view = "verPorDia"; break;
+        default: $this->view = "verPorDia"; 
+    }
+
+
     $this->archivo = "/tmp/pepe.ics";
-    $this->date_component="20070404";
+
   }
 
 

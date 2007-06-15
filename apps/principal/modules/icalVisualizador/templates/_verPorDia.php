@@ -18,10 +18,10 @@
                                     <div style="padding-top: 3px;">
                                         <table width="120" border="0" cellpadding="0" cellspacing="0">
                                             <tr valign="top">
-                                                <td><a class="psf" href="?cal={CAL}&amp;getdate={GETDATE}"><img src="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/icalVisualizador/images/day_on.gif" alt="{L_DAY}" border="0" /></a></td>
-                                                <td><a class="psf" href="week.php?cal={CAL}&amp;getdate={GETDATE}"><img src="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/icalVisualizador/images/week_on.gif" alt="{L_WEEK}" border="0" /></a></td>
-                                                <td><a class="psf" href="month.php?cal={CAL}&amp;getdate={GETDATE}"><img src="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/icalVisualizador/images/month_on.gif" alt="{L_MONTH}" border="0" /></a></td>
-                                                <td><a class="psf" href="year.php?cal={CAL}&amp;getdate={GETDATE}"><img src="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/icalVisualizador/images/year_on.gif" alt="{L_YEAR}" border="0" /></a></td>
+                                                <td><a class="psf" href="?view=day&amp;date=<?php echo date("Ymd",$date)?>"><img src="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/icalVisualizador/images/day_on.gif" alt="d&iacute;a" border="0" /></a></td>
+                                                <td><a class="psf" href="?view=week&amp;date=<?php echo date("Ymd",$date)?>"><img src="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/icalVisualizador/images/week_on.gif" alt="semana" border="0" /></a></td>
+                                                <td><a class="psf" href="?view=month&amp;date=<?php echo date("Ymd",$date)?>"><img src="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/icalVisualizador/images/month_on.gif" alt="mes" border="0" /></a></td>
+                                                <td><a class="psf" href="?view=year&amp;date=<?php echo date("Ymd",$date)?>"><img src="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/icalVisualizador/images/year_on.gif" alt="a&ntilde;o" border="0" /></a></td>
                                             </tr>
                                         </table>
                                     </div>
@@ -31,7 +31,7 @@
                                 <td colspan="2">
                                     <table width="100%" border="0" cellspacing="0" cellpadding="2">
                                         <tr>
-                                            <td align="left" valign="top" width="20" class="rowOff2" onmouseover="this.className='rowOn2'" onmouseout="this.className='rowOff2'" onclick="window.location.href='?cal={CAL}&amp;date=<?php echo date('Ymd', strtotime("-1 day",  $date))?>'"><span class="V12"><a class="psf" href="?cal={CAL}&amp;date=<?php echo date('Ymd', strtotime("-1 day",  $date))?>">&laquo;</a></span>
+                                            <td align="left" valign="top" width="20" class="rowOff2" onmouseover="this.className='rowOn2'" onmouseout="this.className='rowOff2'" onclick="window.location.href='?view=day&amp;date=<?php echo date('Ymd', strtotime("-1 day",  $date))?>'"><span class="V12"><a class="psf" href="?view=day&amp;date=<?php echo date('Ymd', strtotime("-1 day",  $date))?>">&laquo;</a></span>
                                             </td>
 
                                             <?php 
@@ -39,13 +39,13 @@
                                                     $day_of_week = date('w', $date);
                                                     foreach($aWeek as $week) {
                                             ?>
-                                            <td width="14%" align="center" class="<?php echo ($i == $day_of_week)?'rowToday':'rowOff';?>" onmouseover="this.className='rowOn'" onmouseout="this.className='<?php echo ($i == $day_of_week)?'rowToday':'rowOff';?>'" onclick="window.location.href='?cal={CAL}&amp;date=<?php echo date('Ymd',$week['day'])?>'"><span class="V9BOLD"><a class="ps3" href="?cal={CAL}&amp;date=<?php echo date('Ymd',$week['day'])?>"><?php echo date('F j, Y',$week['day'])?></a></span>
+                                            <td width="14%" align="center" class="<?php echo ($i == $day_of_week)?'rowToday':'rowOff';?>" onmouseover="this.className='rowOn'" onmouseout="this.className='<?php echo ($i == $day_of_week)?'rowToday':'rowOff';?>'" onclick="window.location.href='?view=day&amp;date=<?php echo date('Ymd',$week['day'])?>'"><span class="V9BOLD"><a class="ps3" href="?view=day&amp;date=<?php echo date('Ymd',$week['day'])?>"><?php echo date('F j, Y',$week['day'])?></a></span>
                                             </td>
                                             <?php       $i++;
                                                     } 
                                             ?>
 
-                                            <td align="right" valign="top" width="20" class="rowOff" onmouseover="this.className='rowOn'" onmouseout="this.className='rowOff'" onclick="window.location.href='?cal={CAL}&amp;date=<?php echo date('Ymd', strtotime("+1 day",  $date))?>'"><span class="V12"><a class="psf" href="?cal={CAL}&amp;date=<?php echo date('Ymd', strtotime("+1 day",  $date))?>">&raquo;</a></span>
+                                            <td align="right" valign="top" width="20" class="rowOff" onmouseover="this.className='rowOn'" onmouseout="this.className='rowOff'" onclick="window.location.href='?view=day&amp;date=<?php echo date('Ymd', strtotime("+1 day",  $date))?>'"><span class="V12"><a class="psf" href="?view=day&amp;date=<?php echo date('Ymd', strtotime("+1 day",  $date))?>">&raquo;</a></span>
                                             </td>
                                         </tr>	
                                     </table>
@@ -65,7 +65,7 @@
                 </tr>
 
                 <tr>
-		  <td align="center" valign="top">
+		  <td align="center" valign="top" colspan="3">
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <?php 
                             $date_ymd = date("Ymd", $date);
@@ -100,8 +100,6 @@
                             <td colspan="<?php echo $nbrGridCols?>" class="dayborder2">&nbsp;</td>
                         </tr>
                         <?php 
-// Cuando tiene eventos superpuestos el max es el colspan de las horas que no tienen eventos ( default 1)
-// Pero cada uno de los que tiene evento tiene si es despues de en punto el que traia pero luego debe ser el 
                                 } else {
                                     for($j=0;$j<4;$j++) {
                                         if($j!=0) { 
@@ -139,7 +137,7 @@
                         <?php
                                         } else {
                         ?>
-<!--                            <td colspan="<?php echo $nbrGridCols?>"  class="dayborder<?php echo ($j%2==0)?'':'2'?>">&nbsp;</td>-->  
+                            <!--<td colspan="<?php echo $nbrGridCols?>"  class="dayborder<?php echo ($j%2==0)?'':'2'?>">&nbsp;</td>-->  
                                 </tr>
                         <? 
                                         }
