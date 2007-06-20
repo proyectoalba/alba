@@ -49,25 +49,30 @@ class icalVisualizadorComponents extends sfComponents
         require(sfConfig::get('sf_app_module_dir')."/icalVisualizador/".sfConfig::get('sf_app_module_lib_dir_name')."/ical_parser.php");
         $aEvent = @icalToArray($this->archivo);
 
-        $nbrGridCols = 1;
-        foreach($aEvent as $day) {
-            foreach($day as $time) {
-                foreach($time as $event) {
-                     $nbrGridCols = $this->kgv($nbrGridCols, ($event['event_overlap'] + 1));
-                }
-            }
-        }
-
-        $this->nbrGridCols = $nbrGridCols;
         $date = $this->getDate();
         $this->aEvent = $aEvent;
-        $this->aWeek = $this->getWeekRange($date);
+        $aWeek = $this->getWeekRange($date);
         $this->aTime = $this->getTimeRange();
         $this->l_calendar = "";
         $this->calendar_name = "XXXX";
         $this->date = strtotime($date);
-        $this->day_end_of_week = $this->aWeek[6]['day'];
-        $this->day_start_of_week =  $this->aWeek[0]['day'];
+        $this->day_end_of_week = $aWeek[6]['day'];
+        $this->day_start_of_week =  $aWeek[0]['day'];
+
+        foreach($aWeek as $week) {
+            $nbrGridCols[$week['day']] = 1;
+            $idx = date("Ymd", $week['day']);
+            if(array_key_exists($idx, $aEvent)) {
+                foreach($aEvent[$idx] as $day) {
+                    foreach($day as $event) {
+                        $nbrGridCols[$week['day']] = $this->kgv($nbrGridCols[$week['day']], ($event['event_overlap'] + 1));
+                    }
+                }
+            }
+        }
+        $this->nbrGridCols = $nbrGridCols;
+        $this->aWeek  = $aWeek;
+
     }
 
 

@@ -60,7 +60,7 @@
                                                     $day_of_week = date('w', $date);
                                                     foreach($aWeek as $week) {
                                                 ?> <!-- Aca va el colspan dinamico-->
-                                                <td width="80" colspan="1" align="center" class="<?php echo ($i == $day_of_week)?'rowToday':'rowOff';?>" onmouseover="this.className='rowOn'" onmouseout="this.className='<?php echo ($i == $day_of_week)?'rowToday':'rowOff';?>'" onclick="window.location.href='?view=day&amp;date=<?php echo date('Ymd',$week['day'])?>'">
+                                                <td width="80" colspan="<?php echo $nbrGridCols[$week['day']]?>" align="center" class="<?php echo ($i == $day_of_week)?'rowToday':'rowOff';?>" onmouseover="this.className='rowOn'" onmouseout="this.className='<?php echo ($i == $day_of_week)?'rowToday':'rowOff';?>'" onclick="window.location.href='?view=day&amp;date=<?php echo date('Ymd',$week['day'])?>'">
                                                 <a class="ps3" href="?view=day&amp;date=<?php echo date('Ymd',$week['day'])?>"><span class="V9BOLD"><?php echo date('F j, Y',$week['day'])?></span></a> 
                                                 </td>
                                                 <?php 
@@ -68,7 +68,7 @@
                                                     } 
                                                 ?>
                                             </tr>
--
+
                                             <tr valign="top" id="allday">
                                                 <td width="60" class="rowOff2" colspan="4"><img src="images/spacer.gif" width="60" height="1" alt=" " /></td>
                                                 <td width="1"></td>
@@ -76,15 +76,20 @@
                                                     $i=0; 
                                                     $day_of_week = date('w', $date);
                                                     foreach($aWeek as $week) {
-                                                ?> <!-- Aca va el colspan dinamico-->
-                                                <td width="80" colspan="1" class="rowOff"><!-- <div class="alldaybg_{CALNO}"> {ALLDAY}  <img src="images/spacer.gif" width="80" height="1 alt=" " /></div>--></td>
+                                                ?> 
+                                                <td width="80" colspan="<?php echo $nbrGridCols[$week['day']]?>" class="rowOff"><!-- <div class="alldaybg_{CALNO}"> {ALLDAY}  <img src="images/spacer.gif" width="80" height="1 alt=" " /></div>--></td>
                                                 <?php 
                                                         $i++;
                                                     }
                                                 ?>
                                             </tr>
 
-                                            <?php
+
+
+
+
+
+                                            <?php 
                                                 $date_ymd = date("Ymd", $date);
                                                 for($i = 0, $max = count($aTime); $i < $max; $i += 4) { 
                                                     $time_idx0 = date("Gi",$aTime[$i]);
@@ -92,56 +97,46 @@
                                                     $time_idx2 = date("Gi",$aTime[($i+2)]);
                                                     $time_idx3 = date("Gi",$aTime[($i+3)]);
 
+                                                    
                                                     if(!(  array_key_exists($date_ymd, $aEvent) AND 
                                                         (array_key_exists($time_idx0, $aEvent[$date_ymd]) OR
                                                         array_key_exists($time_idx1, $aEvent[$date_ymd]) OR
                                                         array_key_exists($time_idx2, $aEvent[$date_ymd]) OR
                                                         array_key_exists($time_idx3, $aEvent[$date_ymd])) 
                                                         )) { 
-                                            ?>
-                                            <tr>
-                                                <td colspan="4" rowspan="4" align="center" valign="top" width="60" class="timeborder"><?php echo date("H:i A",$aTime[$i])?></td>
-                                                <td bgcolor="#a1a5a9" width="1" height="15"></td>
-                                                <td width="40" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="40" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="40" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="40" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="40" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="40" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="40" colspan="1"  class="weekborder">&nbsp;</td>
-                                            </tr>
 
+
+
+                                            ?>
+<?php
+ for($k=0;$k<4;$k++) {
+?>
                                             <tr>
-                                                <td bgcolor="#a1a5a9" width="1" height="15"></td><td width="80" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="80" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="80" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="80" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="80" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="80" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="80" colspan="1"  class="weekborder">&nbsp;</td>
+<?php if( $k==0) { ?>
+                                <td colspan="4" rowspan="4" align="center" valign="top" width="60" class="timeborder"><?php echo date("H:i A",$aTime[$i])?></td>
+<? } ?>
+                                <td bgcolor="#a1a5a9" width="1" height="15"></td>
+<?
+
+foreach($aWeek as $week) {
+    $drawWidth = 1;
+    $width = round ((80/$nbrGridCols[$week['day']])*$drawWidth);
+?>
+    <td width="<?php echo $width?>" colspan="<?php echo $nbrGridCols[$week['day']]?>"  class="weekborder">&nbsp;</td>
+<? }
+?>
                                             </tr>
-                                            <tr>
-                                                <td bgcolor="#a1a5a9" width="1" height="15"></td>
-                                                <td width="80" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="80" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="80" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="80" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="80" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="80" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="80" colspan="1"  class="weekborder">&nbsp;</td>
-                                            </tr>
-                                            <tr>
-                                                <td bgcolor="#a1a5a9" width="1" height="15"></td>
-                                                <td width="80" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="80" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="80" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="80" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="80" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="80" colspan="1"  class="weekborder">&nbsp;</td>
-                                                <td width="80" colspan="1"  class="weekborder">&nbsp;</td>
-                                            </tr>
+<?php
+}
+?>
+
+
+
                                             <?php 
                                                     } else {
+
+
+
                                                         for($j=0;$j<4;$j++) {
                                                             if($j!=0) { 
                                             ?>
@@ -149,36 +144,61 @@
                                                 <td width="80" colspan="1"  class="weekborder">&nbsp;</td>
 
                                             <?php           } else {  ?>
-
                                             <tr>
                                                 <td colspan="4" rowspan="4" align="center" valign="top" width="60" class="timeborder"><?php echo date("H:i A",$aTime[$i])?></td><td bgcolor="#a1a5a9" width="1" height="15"></td>
                                                         
                                             <?php           } 
-                                                            $var_time_idx = "time_idx".$j;
-                                                            if(array_key_exists($$var_time_idx, $aEvent[$date_ymd])) {
+
+$var_time_idx = "time_idx".$j;
+
+
+foreach($aWeek as $week) {
+$date_ymd = date("Ymd",$week['day']);
+$drawWidth = 1;
+$width = round ((80/$nbrGridCols[$week['day']])*$drawWidth);
+
+                                                            if(array_key_exists($date_ymd, $aEvent) AND array_key_exists($$var_time_idx, $aEvent[$date_ymd])) {
                                                                 $k=0;
                                                                 foreach($aEvent[$date_ymd][$$var_time_idx] as $event) {
                                                                     $k++;
-                                                                    $rowspan = ceil(($event['event_length'] / 60 ) / 15); // en el array esta en seg lo divido 60 y obtengo min luego divido 15 min (que es una linea de rowspan y obtengo cantidad de lineas hacia abajo a rellenar
-?>
-                                                <td width="80" rowspan="<?php echo $rowspan?>" colspan="1" align="left" valign="top" class="eventbg2_1">
+                                                                    $rowspan = ceil(($event['event_length'] / 60 ) / 15); ?>
+
+                                                <td width="<?php echo $width?>" rowspan="<?php echo $rowspan?>" colspan="<?php echo floor($nbrGridCols[$week['day']] / ($event['event_overlap']+1)) ?>" align="left" valign="top" class="eventbg2_1">
                                                     <div class="eventfont">
                                                         <div class="eventbg_1"><b><?php echo date("H:i A", $event['start_unixtime'])?></b></div>
                                                         <div class="padd"><a class="ps" title="<?php echo $event['event_text']?>" href="#" onclick="openEventWindow(0); return false;"><?php echo $event['event_text']?></a>
                                                         </div>
                                                     </div>
                                                 </td>
-                                        <?php                   }
-                                                            } 
+                                        <?php                   } 
+                                                            } else {
+
+                                                            ?><td width="80" colspan="1"  class="weekborder">&nbsp;</td><?
+                                                            }
                                         ?>
 
-                                            </tr>
+                                            
+<?  
+}
+?></tr>
+
+
+
+
+
+
+
 
                                             <?php
                                                         }
                                                     }
                                                 }
                                             ?>
+
+
+
+
+
 
                                         </table>	
                                     </td>
