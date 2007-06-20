@@ -6,6 +6,7 @@
 <!ENTITY indice.xml SYSTEM "indice.xml">                                                  
 <!ENTITY capitulo_2.xml SYSTEM "capitulo_2.xml">
 <!ENTITY capitulo_3.xml SYSTEM "capitulo_3.xml">
+<!ENTITY capitulo_4.xml SYSTEM "capitulo_4.xml">
 ]>
 <book>
 	<title>ALBA - Manual de Usuario</title>
@@ -17,5 +18,6 @@
     &capitulo_1.xml;
     &capitulo_2.xml;
     &capitulo_3.xml;
+    &capitulo_4.xml;
     &indice.xml;   
 </book>
