@@ -38,14 +38,7 @@ class icalVisualizadorActions extends sfActions
         default: $this->view = "verPorDia"; 
     }
 
-    // falta ver en el calendario mensual:
-
-    // de juntar la actuales dos
-    // partes donde se cicla por 4 trs y luego por cada dia de toda la semana
-    // Esto es por no poder discriminar entre en los que hay eventos o no previamente
-
-    // Además incorporar el tema de que funcione para todos los dias de la semana (no solo para el primero)
-
+    // falta ver en el calendario mensual y anual;
     // También considerar si no empiezan en punto.
     
 

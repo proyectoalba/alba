@@ -91,7 +91,7 @@
 
 
 <?php
- print_R($aEvent);
+ //print_R($aEvent);
     $aTimeIdx = array();
     for($i = 0, $max = count($aTime); $i < $max; $i += 4) { // each time iteration (60 minutes)
         $aTimeIdx[0] = date("Gi",$aTime[$i]);
