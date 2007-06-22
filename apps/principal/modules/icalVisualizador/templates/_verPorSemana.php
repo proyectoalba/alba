@@ -89,112 +89,59 @@
 
 
 
-                                            <?php 
-                                                $date_ymd = date("Ymd", $date);
-                                                for($i = 0, $max = count($aTime); $i < $max; $i += 4) { 
-                                                    $time_idx0 = date("Gi",$aTime[$i]);
-                                                    $time_idx1 = date("Gi",$aTime[($i+1)]);
-                                                    $time_idx2 = date("Gi",$aTime[($i+2)]);
-                                                    $time_idx3 = date("Gi",$aTime[($i+3)]);
 
-                                                    
-                                                    if(!(  array_key_exists($date_ymd, $aEvent) AND 
-                                                        (array_key_exists($time_idx0, $aEvent[$date_ymd]) OR
-                                                        array_key_exists($time_idx1, $aEvent[$date_ymd]) OR
-                                                        array_key_exists($time_idx2, $aEvent[$date_ymd]) OR
-                                                        array_key_exists($time_idx3, $aEvent[$date_ymd])) 
-                                                        )) { 
-
-
-
-                                            ?>
 <?php
- for($k=0;$k<4;$k++) {
-?>
-                                            <tr>
-<?php if( $k==0) { ?>
-                                <td colspan="4" rowspan="4" align="center" valign="top" width="60" class="timeborder"><?php echo date("H:i A",$aTime[$i])?></td>
-<? } ?>
-                                <td bgcolor="#a1a5a9" width="1" height="15"></td>
-<?
+ print_R($aEvent);
+    $aTimeIdx = array();
+    for($i = 0, $max = count($aTime); $i < $max; $i += 4) { // each time iteration (60 minutes)
+        $aTimeIdx[0] = date("Gi",$aTime[$i]);
+        $aTimeIdx[1] = date("Gi",$aTime[($i+1)]);
+        $aTimeIdx[2] = date("Gi",$aTime[($i+2)]);
+        $aTimeIdx[3] = date("Gi",$aTime[($i+3)]);
 
-foreach($aWeek as $week) {
-    $drawWidth = 1;
-    $width = round ((80/$nbrGridCols[$week['day']])*$drawWidth);
-?>
-    <td width="<?php echo $width?>" colspan="<?php echo $nbrGridCols[$week['day']]?>"  class="weekborder">&nbsp;</td>
-<? }
-?>
-                                            </tr>
-<?php
-}
-?>
-
-
-
-                                            <?php 
-                                                    } else {
-
-
-
-                                                        for($j=0;$j<4;$j++) {
-                                                            if($j!=0) { 
-                                            ?>
-                                            <tr>
-                                                <td width="80" colspan="1"  class="weekborder">&nbsp;</td>
-
-                                            <?php           } else {  ?>
-                                            <tr>
-                                                <td colspan="4" rowspan="4" align="center" valign="top" width="60" class="timeborder"><?php echo date("H:i A",$aTime[$i])?></td><td bgcolor="#a1a5a9" width="1" height="15"></td>
-                                                        
-                                            <?php           } 
-
-$var_time_idx = "time_idx".$j;
-
-
-foreach($aWeek as $week) {
-$date_ymd = date("Ymd",$week['day']);
-$drawWidth = 1;
-$width = round ((80/$nbrGridCols[$week['day']])*$drawWidth);
-
-                                                            if(array_key_exists($date_ymd, $aEvent) AND array_key_exists($$var_time_idx, $aEvent[$date_ymd])) {
-                                                                $k=0;
-                                                                foreach($aEvent[$date_ymd][$$var_time_idx] as $event) {
-                                                                    $k++;
-                                                                    $rowspan = ceil(($event['event_length'] / 60 ) / 15); ?>
-
+        for($k=0;$k<4;$k++) {
+            echo "<tr>\n"; 
+            $j=0;
+            foreach($aWeek as $week) { //each day of the week
+                $drawWidth = 1;
+                $width = round ((80/$nbrGridCols[$week['day']])*$drawWidth);
+                $each_date = date("Ymd", $week['day']);
+                if(array_key_exists($each_date, $aEvent) AND  array_key_exists($aTimeIdx[0], $aEvent[$each_date])) { 
+                    if($j == 0 AND $k == 0) {
+                        echo '<td colspan="4" rowspan="4" align="center" valign="top" width="60" class="timeborder">'.date("H:i A",$aTime[$i]).'</td><td bgcolor="#a1a5a9" width="1" height="15"></td>';
+                    } else {
+                        if($k!=0 AND $j==0) { // Second time
+                            echo '<td bgcolor="#a1a5a9" width="1" height="15"></td>'."\n";
+                        }
+                    }
+                    if($k == 0) {
+                    foreach($aEvent[$each_date][$aTimeIdx[0]] as $event) {
+                        $rowspan = ceil(($event['event_length'] / 60 ) / 15); ?>
                                                 <td width="<?php echo $width?>" rowspan="<?php echo $rowspan?>" colspan="<?php echo floor($nbrGridCols[$week['day']] / ($event['event_overlap']+1)) ?>" align="left" valign="top" class="eventbg2_1">
                                                     <div class="eventfont">
                                                         <div class="eventbg_1"><b><?php echo date("H:i A", $event['start_unixtime'])?></b></div>
                                                         <div class="padd"><a class="ps" title="<?php echo $event['event_text']?>" href="#" onclick="openEventWindow(0); return false;"><?php echo $event['event_text']?></a>
                                                         </div>
                                                     </div>
-                                                </td>
-                                        <?php                   } 
-                                                            } else {
-
-                                                            ?><td width="80" colspan="1"  class="weekborder">&nbsp;</td><?
-                                                            }
-                                        ?>
-
-                                            
-<?  
+                                               </td>
+<?php               }}
+                } else {
+                    if($j == 0 AND $k == 0) { // first time 
+                    echo '<td colspan="4" rowspan="4" align="center" valign="top" width="60" class="timeborder">'.date("H:i A",$aTime[$i]).'</td>'."\n";
+                    echo '<td bgcolor="#a1a5a9" width="1" height="15"></td>'."\n";
+                    } else {
+                        if($k!=0 AND $j==0) { // Second time
+                            echo '<td bgcolor="#a1a5a9" width="1" height="15"></td>'."\n";
+                        }
+                    }
+                    echo '<td width="'.$width.'" colspan="'.$nbrGridCols[$week['day']].'"  class="weekborder">&nbsp;</td>'."\n";
+                }
+                $j++;
+            }
+            echo "</tr>\n";
+        }
 }
-?></tr>
-
-
-
-
-
-
-
-
-                                            <?php
-                                                        }
-                                                    }
-                                                }
-                                            ?>
-
+?>
 
 
 
