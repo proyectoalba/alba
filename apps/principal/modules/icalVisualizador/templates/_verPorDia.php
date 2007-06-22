@@ -70,10 +70,10 @@
                         <?php 
                             $date_ymd = date("Ymd", $date);
                             for($i = 0, $max = count($aTime); $i < $max; $i += 4) { 
-                                $time_idx0 = date("Gi",$aTime[$i]);
-                                $time_idx1 = date("Gi",$aTime[($i+1)]);
-                                $time_idx2 = date("Gi",$aTime[($i+2)]);
-                                $time_idx3 = date("Gi",$aTime[($i+3)]);
+                                $time_idx0 = date("Hi",$aTime[$i]);
+                                $time_idx1 = date("Hi",$aTime[($i+1)]);
+                                $time_idx2 = date("Hi",$aTime[($i+2)]);
+                                $time_idx3 = date("Hi",$aTime[($i+3)]);
 
                                 if(!(  array_key_exists($date_ymd, $aEvent) AND 
                                     (array_key_exists($time_idx0, $aEvent[$date_ymd]) OR

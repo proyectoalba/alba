@@ -83,21 +83,14 @@
                                                     }
                                                 ?>
                                             </tr>
-
-
-
-
-
-
-
 <?php
- //print_R($aEvent);
+//  print_R($aEvent);
     $aTimeIdx = array();
     for($i = 0, $max = count($aTime); $i < $max; $i += 4) { // each time iteration (60 minutes)
-        $aTimeIdx[0] = date("Gi",$aTime[$i]);
-        $aTimeIdx[1] = date("Gi",$aTime[($i+1)]);
-        $aTimeIdx[2] = date("Gi",$aTime[($i+2)]);
-        $aTimeIdx[3] = date("Gi",$aTime[($i+3)]);
+        $aTimeIdx[0] = date("Hi",$aTime[$i]);
+        $aTimeIdx[1] = date("Hi",$aTime[($i+1)]);
+        $aTimeIdx[2] = date("Hi",$aTime[($i+2)]);
+        $aTimeIdx[3] = date("Hi",$aTime[($i+3)]);
 
         for($k=0;$k<4;$k++) {
             echo "<tr>\n"; 
@@ -106,7 +99,8 @@
                 $drawWidth = 1;
                 $width = round ((80/$nbrGridCols[$week['day']])*$drawWidth);
                 $each_date = date("Ymd", $week['day']);
-                if(array_key_exists($each_date, $aEvent) AND  array_key_exists($aTimeIdx[0], $aEvent[$each_date])) { 
+// echo $each_date." ".$aTimeIdx[$k]."<br>";
+                if(array_key_exists($each_date, $aEvent) AND  array_key_exists($aTimeIdx[$k], $aEvent[$each_date])) { 
                     if($j == 0 AND $k == 0) {
                         echo '<td colspan="4" rowspan="4" align="center" valign="top" width="60" class="timeborder">'.date("H:i A",$aTime[$i]).'</td><td bgcolor="#a1a5a9" width="1" height="15"></td>';
                     } else {
@@ -114,8 +108,11 @@
                             echo '<td bgcolor="#a1a5a9" width="1" height="15"></td>'."\n";
                         }
                     }
-                    if($k == 0) {
-                    foreach($aEvent[$each_date][$aTimeIdx[0]] as $event) {
+                    if(count($aEvent[$each_date][$aTimeIdx[$k]])==1) {
+                        $width = "80";
+                    } 
+
+                    foreach($aEvent[$each_date][$aTimeIdx[$k]] as $event) {
                         $rowspan = ceil(($event['event_length'] / 60 ) / 15); ?>
                                                 <td width="<?php echo $width?>" rowspan="<?php echo $rowspan?>" colspan="<?php echo floor($nbrGridCols[$week['day']] / ($event['event_overlap']+1)) ?>" align="left" valign="top" class="eventbg2_1">
                                                     <div class="eventfont">
@@ -124,7 +121,8 @@
                                                         </div>
                                                     </div>
                                                </td>
-<?php               }}
+<?
+                    }
                 } else {
                     if($j == 0 AND $k == 0) { // first time 
                     echo '<td colspan="4" rowspan="4" align="center" valign="top" width="60" class="timeborder">'.date("H:i A",$aTime[$i]).'</td>'."\n";
@@ -142,11 +140,6 @@
         }
 }
 ?>
-
-
-
-
-
                                         </table>	
                                     </td>
                                 </tr>

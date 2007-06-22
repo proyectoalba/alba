@@ -39,7 +39,7 @@ class icalVisualizadorActions extends sfActions
     }
 
     // falta ver en el calendario mensual y anual;
-    // También considerar si no empiezan en punto.
+    // Falta ver porque genera una columna mas y cuando no empieza en punto no grafica las filas hacia la derecha
     
 
 
