@@ -20,4 +20,55 @@
  */	
 class DivisionPeer extends BaseDivisionPeer {
 
+
+	public static function doSelectJoinAnioByOrden(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+	    if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		DivisionPeer::addSelectColumns($c);
+		$startcol = (DivisionPeer::NUM_COLUMNS - DivisionPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+		AnioPeer::addSelectColumns($c);
+
+		$c->addJoin(DivisionPeer::FK_ANIO_ID, AnioPeer::ID);
+        $c->addAscendingOrderByColumn(AnioPeer::DESCRIPCION);           
+        $c->addAscendingOrderByColumn(DivisionPeer::ORDEN);           
+        $c->addAscendingOrderByColumn(DivisionPeer::DESCRIPCION);           
+		$rs = BasePeer::doSelect($c, $con);
+        $results = array();
+
+		while($rs->next()) {
+
+			$omClass = DivisionPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = AnioPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj2 = new $cls();
+			$obj2->hydrate($rs, $startcol);
+
+			$newObject = true;
+			foreach($results as $temp_obj1) {
+				$temp_obj2 = $temp_obj1->getAnio(); 				
+                if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj2->addDivision($obj1);
+                    break;
+				}
+			}
+			if ($newObject) {
+				$obj2->initDivisions();
+				$obj2->addDivision($obj1);
+            }
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
 } // DivisionPeer
