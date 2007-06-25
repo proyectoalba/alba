@@ -22,5 +22,5 @@ generator:
             _edit:      -
             _delete:    -
             alumnosPorDivision:  { name: Alumnos por Division, action: alumnosPorDivision, icon: small/alumnos.png } 
-        filters: [ fk_anio_id ]
+        filters: [ _fk_anioorden_id ]
 
