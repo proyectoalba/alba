@@ -99,7 +99,24 @@ class relDivisionActividadDocenteActions extends autorelDivisionActividadDocente
         include("miExportadorIcal.class.php");
         $e  = new miExportadorIcal();
         $this->archivo = sfConfig::get('app_alba_tmpdir')."/".$e->exportar($this->pager->getResults(), 0);
-        $this->date_component = "";
+        
+        if($this->getRequestParameter('date')) {
+            $this->date_component = $this->getRequestParameter('date');
+        } else {
+            $this->date_component = "";
+        }
+
+        if($this->getRequestParameter('view')) {
+            switch($this->getRequestParameter('view')) {
+                case 'week': $this->view = 'verPorSemana'; break;
+                case 'day': $this->view = 'verPorDia'; break;
+                default: $this->view = 'verPorDia';
+            }
+        } else {
+            $this->view = "verPorDia";
+        }
+
+
     }
 
 

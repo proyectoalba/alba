@@ -39,7 +39,7 @@ class icalVisualizadorComponents extends sfComponents
         $this->aEvent = $aEvent;
         $this->aAllDay = $aAllDay;
         $this->l_calendar = "";
-        $this->calendar_name = "XXXX";
+        $this->calendar_name = "";
         $this->date = strtotime($date);
     }
 
@@ -54,7 +54,7 @@ class icalVisualizadorComponents extends sfComponents
         $aWeek = $this->getWeekRange($date);
         $this->aTime = $this->getTimeRange();
         $this->l_calendar = "";
-        $this->calendar_name = "XXXX";
+        $this->calendar_name = "";
         $this->date = strtotime($date);
         $this->day_end_of_week = $aWeek[6]['day'];
         $this->day_start_of_week =  $aWeek[0]['day'];
