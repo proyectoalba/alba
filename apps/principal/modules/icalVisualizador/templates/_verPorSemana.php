@@ -17,8 +17,8 @@
                                                 <tr valign="top">
                                                 <td><a class="psf" href="?view=day&amp;date=<?php echo date("Ymd",$date)?>"><img src="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/icalVisualizador/images/day_on.gif" alt="d&iacute;a" border="0" /></a></td>
                                                 <td><a class="psf" href="?view=week&amp;date=<?php echo date("Ymd",$date)?>"><img src="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/icalVisualizador/images/week_on.gif" alt="semana" border="0" /></a></td>
-                                                <td><a class="psf" href="?view=month&amp;date=<?php echo date("Ymd",$date)?>"><img src="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/icalVisualizador/images/month_on.gif" alt="mes" border="0" /></a></td>
-                                                <td><a class="psf" href="?view=year&amp;date=<?php echo date("Ymd",$date)?>"><img src="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/icalVisualizador/images/year_on.gif" alt="a&ntilde;o" border="0" /></a></td>
+                                                <!--<td><a class="psf" href="?view=month&amp;date=<?php echo date("Ymd",$date)?>"><img src="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/icalVisualizador/images/month_on.gif" alt="mes" border="0" /></a></td>
+                                                <td><a class="psf" href="?view=year&amp;date=<?php echo date("Ymd",$date)?>"><img src="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/icalVisualizador/images/year_on.gif" alt="a&ntilde;o" border="0" /></a></td>-->
                                                 </tr>
                                             </table>
                                         </div>
@@ -85,22 +85,27 @@
                                             </tr>
 <?php
 //  print_R($aEvent);
+    
     $aTimeIdx = array();
     for($i = 0, $max = count($aTime); $i < $max; $i += 4) { // each time iteration (60 minutes)
         $aTimeIdx[0] = date("Hi",$aTime[$i]);
         $aTimeIdx[1] = date("Hi",$aTime[($i+1)]);
         $aTimeIdx[2] = date("Hi",$aTime[($i+2)]);
         $aTimeIdx[3] = date("Hi",$aTime[($i+3)]);
+        $find = 0;
 
         for($k=0;$k<4;$k++) {
             echo "<tr>\n"; 
             $j=0;
             foreach($aWeek as $week) { //each day of the week
                 $drawWidth = 1;
+// echo $nbrGridCols[$week['day']]."<br>";
                 $width = round ((80/$nbrGridCols[$week['day']])*$drawWidth);
                 $each_date = date("Ymd", $week['day']);
 // echo $each_date." ".$aTimeIdx[$k]."<br>";
                 if(array_key_exists($each_date, $aEvent) AND  array_key_exists($aTimeIdx[$k], $aEvent[$each_date])) { 
+
+                    $find = 1;
                     if($j == 0 AND $k == 0) {
                         echo '<td colspan="4" rowspan="4" align="center" valign="top" width="60" class="timeborder">'.date("H:i A",$aTime[$i]).'</td><td bgcolor="#a1a5a9" width="1" height="15"></td>';
                     } else {
@@ -108,11 +113,9 @@
                             echo '<td bgcolor="#a1a5a9" width="1" height="15"></td>'."\n";
                         }
                     }
-                    if(count($aEvent[$each_date][$aTimeIdx[$k]])==1) {
-                        $width = "80";
-                    } 
 
                     foreach($aEvent[$each_date][$aTimeIdx[$k]] as $event) {
+                        $width = ceil(80 / ($event['event_overlap']+1));
                         $rowspan = ceil(($event['event_length'] / 60 ) / 15); ?>
                                                 <td width="<?php echo $width?>" rowspan="<?php echo $rowspan?>" colspan="<?php echo floor($nbrGridCols[$week['day']] / ($event['event_overlap']+1)) ?>" align="left" valign="top" class="eventbg2_1">
                                                     <div class="eventfont">
@@ -122,17 +125,26 @@
                                                     </div>
                                                </td>
 <?
+if($event['event_overlap']>1) {
+//     echo "<td colspan='".($event['event_overlap']+1)."'  class='weekborder'>&nbsp;</td>";
+}
+
                     }
                 } else {
                     if($j == 0 AND $k == 0) { // first time 
-                    echo '<td colspan="4" rowspan="4" align="center" valign="top" width="60" class="timeborder">'.date("H:i A",$aTime[$i]).'</td>'."\n";
-                    echo '<td bgcolor="#a1a5a9" width="1" height="15"></td>'."\n";
+                        echo '<td colspan="4" rowspan="4" align="center" valign="top" width="60" class="timeborder">'.date("H:i A",$aTime[$i]).'</td>'."\n";
+                        echo '<td bgcolor="#a1a5a9" width="1" height="15"></td>'."\n";
                     } else {
                         if($k!=0 AND $j==0) { // Second time
                             echo '<td bgcolor="#a1a5a9" width="1" height="15"></td>'."\n";
                         }
                     }
-                    echo '<td width="'.$width.'" colspan="'.$nbrGridCols[$week['day']].'"  class="weekborder">&nbsp;</td>'."\n";
+
+                    if($k>0 AND $find == 1 AND $j==6) { // only write 6 td if event was find 
+                    } else {
+                        echo '<td width="'.$width.'" colspan="'.$nbrGridCols[$week['day']].'"  class="weekborder">&nbsp;</td>'."\n"; 
+                    }
+
                 }
                 $j++;
             }

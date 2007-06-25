@@ -72,7 +72,6 @@ class icalVisualizadorComponents extends sfComponents
         }
         $this->nbrGridCols = $nbrGridCols;
         $this->aWeek  = $aWeek;
-
     }
 
 

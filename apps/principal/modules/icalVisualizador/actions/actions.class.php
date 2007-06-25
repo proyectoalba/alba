@@ -33,12 +33,11 @@ class icalVisualizadorActions extends sfActions
     switch($view) {
         case "day": $this->view = "verPorDia";  break;
         case "week": $this->view = "verPorSemana"; break;
-        case "month":  $this->view = "verPorDia"; break;
-        case "year": $this->view = "verPorDia"; break;
+//         case "month":  $this->view = "verPorDia"; break;
+//         case "year": $this->view = "verPorDia"; break;
         default: $this->view = "verPorDia"; 
     }
 
-    // falta ver en el calendario mensual y anual;
     // Falta ver porque genera una columna mas y cuando no empieza en punto no grafica las filas hacia la derecha
     
 
