@@ -9,6 +9,10 @@ INSERT INTO `menu` ( `id` , `nombre` , `link` , `perm` , `fk_padre_menu_id` , `o
 VALUES (
 '97', 'Definir Roles de responsables', 'rolResponsable', 'rolResponsable', '84', '0', '');
 
+INSERT INTO `menu` ( `id` , `nombre` , `link` , `perm` , `fk_padre_menu_id` , `orden` , `target` )
+VALUES (98,'Periodos','ciclolectivo/agregarTurnosYPeriodos','ciclolectivo',86,0,'');
+
+
 
 SET FOREIGN_KEY_CHECKS = 1;
 
