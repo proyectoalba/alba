@@ -1,4 +1,4 @@
-SET CHARACTER SET utf8;
+﻿SET CHARACTER SET utf8;
 SET FOREIGN_KEY_CHECKS = 0;
  
 -- Volcar la base de datos para la tabla 'niveltipo'
@@ -213,10 +213,13 @@ INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`,
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (91, 'Boletines', 'informes/boletinFormulario', 'informes', 9, 0, '_blank');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (92, 'Certificado de Estudios', 'informes/certificadoEstudiosBusquedaFormulario', 'informes', '9', '0', '_blank');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (93, 'Solicitud de Legajo', 'informes/solicitudLegajoBusquedaFormulario', 'informes', '9', '0', '_blank');
-INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (94, 'Definir Períodos', '#', 'ciclolectivo', 86, 10, '');
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (94, 'Definir Per&iacute;odos', '#', 'ciclolectivo', 86, 10, '');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (95, 'Ir a Ciclo Lectivo Actual', 'ciclolectivo/agregarTurnosYPeriodos', 'ciclolectivo', 7, 0, '');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (96, 'Biblioteca de contenidos', 'sfMediaLibrary', 'informes', 9, 0, ''); 
-INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (97, 'Definir Roles de responsables', 'rolResponsable', 'rolResponsable', '84', '0', '');
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (97, 'Definir Roles de responsables', 'rolResponsable', 'rolResponsable', 84, 0, '');
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (98, 'Per&iacute;odos','ciclolectivo/agregarTurnosYPeriodos','ciclolectivo', 86, 0, '');
+
+
 
 -- 
 -- Volcar la base de datos para la tabla 'modulo'

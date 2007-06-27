@@ -1,4 +1,4 @@
-SET CHARACTER SET utf8;
+﻿SET CHARACTER SET utf8;
 SET FOREIGN_KEY_CHECKS = 0;
  
 
@@ -2712,6 +2712,8 @@ INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`,
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (94, 'Certificado de Estudios', 'informes/certificadoEstudiosBusquedaFormulario', 'informes', 9, 0, '_blank');
 INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (95, 'Solicitud de Legajo', 'informes/solicitudLegajoBusquedaFormulario', 'informes', 9, 0, '_blank');
 INSERT INTO `menu` (`id` ,`nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (96, 'Biblioteca de contenidos', 'sfMediaLibrary', 'informes', 9, 0, '');
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (97, 'Definir Roles de responsables', 'rolResponsable', 'rolResponsable', 84, 0, '');
+INSERT INTO `menu` (`id`, `nombre`, `link`, `perm`, `fk_padre_menu_id`, `orden`, `target`) VALUES (98, 'Per&iacute;odos','ciclolectivo/agregarTurnosYPeriodos','ciclolectivo', 86, 0, '');
 
 -- 
 -- Volcar la base de datos para la tabla `modulo`
