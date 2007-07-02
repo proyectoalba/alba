@@ -38,7 +38,10 @@ class docenteActions extends autodocenteActions
     }
 
     function executeActividadesPorDocente() {
-        $this->redirect('relActividadDocente/list?filters%5Bfk_docente_id%5D='.$this->getRequestParameter('id').'&filter=filtrar');
+        $this->id_docente = $this->getRequestParameter('id');
+        $this->docente = DocentePeer::RetrieveByPK($this->id_docente);
+
+        //$this->redirect('relActividadDocente/list?filters%5Bfk_docente_id%5D='.$this->getRequestParameter('id').'&filter=filtrar');
     }
 
     function executeHorariosPorDocente() {
