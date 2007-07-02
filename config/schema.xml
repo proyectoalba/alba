@@ -642,9 +642,8 @@
         <column name="orden" type="integer" size="11" required="false" default="0"/>
     </table>
     <table name="rel_actividad_docente" idMethod="native">
-        <column name="id" type="integer" size="11" required="true" autoIncrement="true" primaryKey="true"/>
-        <column name="fk_actividad_id" type="integer" size="11" required="true" default="0"/>
-        <column name="fk_docente_id" type="integer" size="11" required="true" default="0"/>
+        <column name="fk_actividad_id" type="integer" size="11" required="true" primaryKey="true"/>
+        <column name="fk_docente_id" type="integer" size="11" required="true" primaryKey="true"/>
         <foreign-key foreignTable="docente">
             <reference local="fk_docente_id" foreign="id"/>       
         </foreign-key>
@@ -676,10 +675,6 @@
         <foreign-key foreignTable="ciclolectivo">
             <reference local="fk_ciclolectivo_id" foreign="id"/>       
         </foreign-key>
-    </table>
-    <table name="legajocategoria" idMethod="native">
-        <column name="id" type="integer" size="11" required="true" autoIncrement="true" primaryKey="true"/>
-        <column name="descripcion" type="varchar" size="255" required="true"/>
     </table>
   <table name="horarioescolar" idMethod="native">
     <column name="id" type="integer" size="11" required="true" autoIncrement="true" primaryKey="true"/>
