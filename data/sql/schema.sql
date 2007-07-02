@@ -398,6 +398,7 @@ CREATE TABLE `tipoiva`
 	`id` INTEGER  NOT NULL,
 	`nombre` VARCHAR(128) default '' NOT NULL,
 	`descripcion` VARCHAR(255) default '',
+	`orden` INTEGER default 0,
 	PRIMARY KEY (`id`)
 )Type=InnoDB;
 
@@ -1218,15 +1219,13 @@ DROP TABLE IF EXISTS `rel_actividad_docente`;
 
 CREATE TABLE `rel_actividad_docente`
 (
-	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
-	`fk_actividad_id` INTEGER(11) default 0 NOT NULL,
-	`fk_docente_id` INTEGER(11) default 0 NOT NULL,
-	PRIMARY KEY (`id`),
+	`fk_actividad_id` INTEGER(11)  NOT NULL,
+	`fk_docente_id` INTEGER(11)  NOT NULL,
+	PRIMARY KEY (`fk_actividad_id`,`fk_docente_id`),
 	INDEX `rel_actividad_docente_FI_1` (`fk_docente_id`),
 	CONSTRAINT `rel_actividad_docente_FK_1`
 		FOREIGN KEY (`fk_docente_id`)
 		REFERENCES `docente` (`id`),
-	INDEX `rel_actividad_docente_FI_2` (`fk_actividad_id`),
 	CONSTRAINT `rel_actividad_docente_FK_2`
 		FOREIGN KEY (`fk_actividad_id`)
 		REFERENCES `actividad` (`id`)
@@ -1278,20 +1277,6 @@ CREATE TABLE `feriado`
 	CONSTRAINT `feriado_FK_1`
 		FOREIGN KEY (`fk_ciclolectivo_id`)
 		REFERENCES `ciclolectivo` (`id`)
-)Type=InnoDB;
-
-#-----------------------------------------------------------------------------
-#-- legajocategoria
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `legajocategoria`;
-
-
-CREATE TABLE `legajocategoria`
-(
-	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
-	`descripcion` VARCHAR(255)  NOT NULL,
-	PRIMARY KEY (`id`)
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
