@@ -103,6 +103,10 @@ abstract class BaseMenu extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = MenuPeer::ID;
@@ -112,6 +116,10 @@ abstract class BaseMenu extends BaseObject  implements Persistent {
 	
 	public function setNombre($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->nombre !== $v || $v === '') {
 			$this->nombre = $v;
@@ -123,6 +131,10 @@ abstract class BaseMenu extends BaseObject  implements Persistent {
 	public function setLink($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->link !== $v || $v === '') {
 			$this->link = $v;
 			$this->modifiedColumns[] = MenuPeer::LINK;
@@ -132,6 +144,10 @@ abstract class BaseMenu extends BaseObject  implements Persistent {
 	
 	public function setPerm($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->perm !== $v || $v === '') {
 			$this->perm = $v;
@@ -143,6 +159,10 @@ abstract class BaseMenu extends BaseObject  implements Persistent {
 	public function setTarget($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->target !== $v || $v === '') {
 			$this->target = $v;
 			$this->modifiedColumns[] = MenuPeer::TARGET;
@@ -152,6 +172,10 @@ abstract class BaseMenu extends BaseObject  implements Persistent {
 	
 	public function setFkPadreMenuId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_padre_menu_id !== $v) {
 			$this->fk_padre_menu_id = $v;
@@ -166,6 +190,10 @@ abstract class BaseMenu extends BaseObject  implements Persistent {
 	
 	public function setOrden($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->orden !== $v) {
 			$this->orden = $v;

@@ -197,14 +197,14 @@ abstract class BaseProvinciaPeer {
 	public static function doCountJoinPais(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(ProvinciaPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(ProvinciaPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -279,7 +279,7 @@ abstract class BaseProvinciaPeer {
 		} else {
 			$criteria->addSelectColumn(ProvinciaPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -315,25 +315,25 @@ abstract class BaseProvinciaPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = ProvinciaPeer::getOMClass();
 
-			
+
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-				
+
 					
 			$omClass = PaisPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -342,7 +342,7 @@ abstract class BaseProvinciaPeer {
 					$temp_obj2->addProvincia($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initProvincias();
 				$obj2->addProvincia($obj1);

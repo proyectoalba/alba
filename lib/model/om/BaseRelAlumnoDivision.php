@@ -56,6 +56,10 @@ abstract class BaseRelAlumnoDivision extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = RelAlumnoDivisionPeer::ID;
@@ -65,6 +69,10 @@ abstract class BaseRelAlumnoDivision extends BaseObject  implements Persistent {
 	
 	public function setFkDivisionId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_division_id !== $v || $v === 0) {
 			$this->fk_division_id = $v;
@@ -79,6 +87,10 @@ abstract class BaseRelAlumnoDivision extends BaseObject  implements Persistent {
 	
 	public function setFkAlumnoId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_alumno_id !== $v || $v === 0) {
 			$this->fk_alumno_id = $v;

@@ -351,6 +351,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = AlumnoPeer::ID;
@@ -361,6 +365,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	public function setNombre($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->nombre !== $v || $v === '') {
 			$this->nombre = $v;
 			$this->modifiedColumns[] = AlumnoPeer::NOMBRE;
@@ -370,6 +378,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	
 	public function setApellido($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->apellido !== $v || $v === '') {
 			$this->apellido = $v;
@@ -398,6 +410,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	public function setDireccion($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->direccion !== $v || $v === '') {
 			$this->direccion = $v;
 			$this->modifiedColumns[] = AlumnoPeer::DIRECCION;
@@ -407,6 +423,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	
 	public function setCiudad($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->ciudad !== $v || $v === '') {
 			$this->ciudad = $v;
@@ -418,6 +438,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	public function setCodigoPostal($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->codigo_postal !== $v || $v === '') {
 			$this->codigo_postal = $v;
 			$this->modifiedColumns[] = AlumnoPeer::CODIGO_POSTAL;
@@ -427,6 +451,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	
 	public function setFkProvinciaId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_provincia_id !== $v || $v === 0) {
 			$this->fk_provincia_id = $v;
@@ -442,6 +470,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	public function setTelefono($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->telefono !== $v || $v === '') {
 			$this->telefono = $v;
 			$this->modifiedColumns[] = AlumnoPeer::TELEFONO;
@@ -452,6 +484,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	public function setLugarNacimiento($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->lugar_nacimiento !== $v || $v === '') {
 			$this->lugar_nacimiento = $v;
 			$this->modifiedColumns[] = AlumnoPeer::LUGAR_NACIMIENTO;
@@ -461,6 +497,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	
 	public function setFkTipodocumentoId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_tipodocumento_id !== $v || $v === 0) {
 			$this->fk_tipodocumento_id = $v;
@@ -476,6 +516,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	public function setNroDocumento($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->nro_documento !== $v || $v === '') {
 			$this->nro_documento = $v;
 			$this->modifiedColumns[] = AlumnoPeer::NRO_DOCUMENTO;
@@ -485,6 +529,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	
 	public function setSexo($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->sexo !== $v || $v === '') {
 			$this->sexo = $v;
@@ -496,6 +544,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	public function setEmail($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->email !== $v || $v === '') {
 			$this->email = $v;
 			$this->modifiedColumns[] = AlumnoPeer::EMAIL;
@@ -505,6 +557,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	
 	public function setDistanciaEscuela($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->distancia_escuela !== $v || $v === 0) {
 			$this->distancia_escuela = $v;
@@ -536,6 +592,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	public function setFkEstablecimientoId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->fk_establecimiento_id !== $v || $v === 0) {
 			$this->fk_establecimiento_id = $v;
 			$this->modifiedColumns[] = AlumnoPeer::FK_ESTABLECIMIENTO_ID;
@@ -549,6 +609,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	
 	public function setFkCuentaId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_cuenta_id !== $v || $v === 0) {
 			$this->fk_cuenta_id = $v;
@@ -584,6 +648,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	public function setFkConceptobajaId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->fk_conceptobaja_id !== $v) {
 			$this->fk_conceptobaja_id = $v;
 			$this->modifiedColumns[] = AlumnoPeer::FK_CONCEPTOBAJA_ID;
@@ -597,6 +665,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	
 	public function setFkPaisId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_pais_id !== $v || $v === 0) {
 			$this->fk_pais_id = $v;

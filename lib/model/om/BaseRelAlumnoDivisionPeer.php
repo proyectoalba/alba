@@ -187,14 +187,14 @@ abstract class BaseRelAlumnoDivisionPeer {
 	public static function doCountJoinAlumno(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelAlumnoDivisionPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelAlumnoDivisionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -215,14 +215,14 @@ abstract class BaseRelAlumnoDivisionPeer {
 	public static function doCountJoinDivision(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelAlumnoDivisionPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelAlumnoDivisionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -344,7 +344,7 @@ abstract class BaseRelAlumnoDivisionPeer {
 		} else {
 			$criteria->addSelectColumn(RelAlumnoDivisionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -387,25 +387,25 @@ abstract class BaseRelAlumnoDivisionPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelAlumnoDivisionPeer::getOMClass();
 
-			
+
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-				
+
 					
 			$omClass = AlumnoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -414,21 +414,21 @@ abstract class BaseRelAlumnoDivisionPeer {
 					$temp_obj2->addRelAlumnoDivision($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelAlumnoDivisions();
 				$obj2->addRelAlumnoDivision($obj1);
 			}
 
-				
+
 					
 			$omClass = DivisionPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3 = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -437,7 +437,7 @@ abstract class BaseRelAlumnoDivisionPeer {
 					$temp_obj3->addRelAlumnoDivision($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initRelAlumnoDivisions();
 				$obj3->addRelAlumnoDivision($obj1);
@@ -453,14 +453,14 @@ abstract class BaseRelAlumnoDivisionPeer {
 	public static function doCountJoinAllExceptAlumno(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelAlumnoDivisionPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelAlumnoDivisionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -481,14 +481,14 @@ abstract class BaseRelAlumnoDivisionPeer {
 	public static function doCountJoinAllExceptDivision(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelAlumnoDivisionPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelAlumnoDivisionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -525,22 +525,22 @@ abstract class BaseRelAlumnoDivisionPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelAlumnoDivisionPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = DivisionPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -550,7 +550,7 @@ abstract class BaseRelAlumnoDivisionPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelAlumnoDivisions();
 				$obj2->addRelAlumnoDivision($obj1);
@@ -582,22 +582,22 @@ abstract class BaseRelAlumnoDivisionPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelAlumnoDivisionPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = AlumnoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -607,7 +607,7 @@ abstract class BaseRelAlumnoDivisionPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelAlumnoDivisions();
 				$obj2->addRelAlumnoDivision($obj1);

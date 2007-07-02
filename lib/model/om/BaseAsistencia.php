@@ -82,6 +82,10 @@ abstract class BaseAsistencia extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = AsistenciaPeer::ID;
@@ -91,6 +95,10 @@ abstract class BaseAsistencia extends BaseObject  implements Persistent {
 	
 	public function setFkAlumnoId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_alumno_id !== $v) {
 			$this->fk_alumno_id = $v;
@@ -105,6 +113,10 @@ abstract class BaseAsistencia extends BaseObject  implements Persistent {
 	
 	public function setFkTipoasistenciaId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_tipoasistencia_id !== $v) {
 			$this->fk_tipoasistencia_id = $v;

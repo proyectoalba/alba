@@ -207,14 +207,14 @@ abstract class BaseBoletinConceptualPeer {
 	public static function doCountJoinEscalanota(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(BoletinConceptualPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(BoletinConceptualPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -235,14 +235,14 @@ abstract class BaseBoletinConceptualPeer {
 	public static function doCountJoinAlumno(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(BoletinConceptualPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(BoletinConceptualPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -263,14 +263,14 @@ abstract class BaseBoletinConceptualPeer {
 	public static function doCountJoinConcepto(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(BoletinConceptualPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(BoletinConceptualPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -291,14 +291,14 @@ abstract class BaseBoletinConceptualPeer {
 	public static function doCountJoinPeriodo(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(BoletinConceptualPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(BoletinConceptualPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -514,7 +514,7 @@ abstract class BaseBoletinConceptualPeer {
 		} else {
 			$criteria->addSelectColumn(BoletinConceptualPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -571,25 +571,25 @@ abstract class BaseBoletinConceptualPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = BoletinConceptualPeer::getOMClass();
 
-			
+
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-				
+
 					
 			$omClass = EscalanotaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -598,21 +598,21 @@ abstract class BaseBoletinConceptualPeer {
 					$temp_obj2->addBoletinConceptual($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initBoletinConceptuals();
 				$obj2->addBoletinConceptual($obj1);
 			}
 
-				
+
 					
 			$omClass = AlumnoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3 = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -621,21 +621,21 @@ abstract class BaseBoletinConceptualPeer {
 					$temp_obj3->addBoletinConceptual($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initBoletinConceptuals();
 				$obj3->addBoletinConceptual($obj1);
 			}
 
-				
+
 					
 			$omClass = ConceptoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj4 = new $cls();
 			$obj4->hydrate($rs, $startcol4);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -644,21 +644,21 @@ abstract class BaseBoletinConceptualPeer {
 					$temp_obj4->addBoletinConceptual($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj4->initBoletinConceptuals();
 				$obj4->addBoletinConceptual($obj1);
 			}
 
-				
+
 					
 			$omClass = PeriodoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj5 = new $cls();
 			$obj5->hydrate($rs, $startcol5);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -667,7 +667,7 @@ abstract class BaseBoletinConceptualPeer {
 					$temp_obj5->addBoletinConceptual($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj5->initBoletinConceptuals();
 				$obj5->addBoletinConceptual($obj1);
@@ -683,14 +683,14 @@ abstract class BaseBoletinConceptualPeer {
 	public static function doCountJoinAllExceptEscalanota(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(BoletinConceptualPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(BoletinConceptualPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -715,14 +715,14 @@ abstract class BaseBoletinConceptualPeer {
 	public static function doCountJoinAllExceptAlumno(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(BoletinConceptualPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(BoletinConceptualPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -747,14 +747,14 @@ abstract class BaseBoletinConceptualPeer {
 	public static function doCountJoinAllExceptConcepto(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(BoletinConceptualPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(BoletinConceptualPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -779,14 +779,14 @@ abstract class BaseBoletinConceptualPeer {
 	public static function doCountJoinAllExceptPeriodo(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(BoletinConceptualPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(BoletinConceptualPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -837,22 +837,22 @@ abstract class BaseBoletinConceptualPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = BoletinConceptualPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = AlumnoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -862,7 +862,7 @@ abstract class BaseBoletinConceptualPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initBoletinConceptuals();
 				$obj2->addBoletinConceptual($obj1);
@@ -870,11 +870,11 @@ abstract class BaseBoletinConceptualPeer {
 
 			$omClass = ConceptoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3  = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -884,7 +884,7 @@ abstract class BaseBoletinConceptualPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initBoletinConceptuals();
 				$obj3->addBoletinConceptual($obj1);
@@ -892,11 +892,11 @@ abstract class BaseBoletinConceptualPeer {
 
 			$omClass = PeriodoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj4  = new $cls();
 			$obj4->hydrate($rs, $startcol4);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -906,7 +906,7 @@ abstract class BaseBoletinConceptualPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj4->initBoletinConceptuals();
 				$obj4->addBoletinConceptual($obj1);
@@ -948,22 +948,22 @@ abstract class BaseBoletinConceptualPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = BoletinConceptualPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = EscalanotaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -973,7 +973,7 @@ abstract class BaseBoletinConceptualPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initBoletinConceptuals();
 				$obj2->addBoletinConceptual($obj1);
@@ -981,11 +981,11 @@ abstract class BaseBoletinConceptualPeer {
 
 			$omClass = ConceptoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3  = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -995,7 +995,7 @@ abstract class BaseBoletinConceptualPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initBoletinConceptuals();
 				$obj3->addBoletinConceptual($obj1);
@@ -1003,11 +1003,11 @@ abstract class BaseBoletinConceptualPeer {
 
 			$omClass = PeriodoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj4  = new $cls();
 			$obj4->hydrate($rs, $startcol4);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1017,7 +1017,7 @@ abstract class BaseBoletinConceptualPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj4->initBoletinConceptuals();
 				$obj4->addBoletinConceptual($obj1);
@@ -1059,22 +1059,22 @@ abstract class BaseBoletinConceptualPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = BoletinConceptualPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = EscalanotaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1084,7 +1084,7 @@ abstract class BaseBoletinConceptualPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initBoletinConceptuals();
 				$obj2->addBoletinConceptual($obj1);
@@ -1092,11 +1092,11 @@ abstract class BaseBoletinConceptualPeer {
 
 			$omClass = AlumnoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3  = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1106,7 +1106,7 @@ abstract class BaseBoletinConceptualPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initBoletinConceptuals();
 				$obj3->addBoletinConceptual($obj1);
@@ -1114,11 +1114,11 @@ abstract class BaseBoletinConceptualPeer {
 
 			$omClass = PeriodoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj4  = new $cls();
 			$obj4->hydrate($rs, $startcol4);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1128,7 +1128,7 @@ abstract class BaseBoletinConceptualPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj4->initBoletinConceptuals();
 				$obj4->addBoletinConceptual($obj1);
@@ -1170,22 +1170,22 @@ abstract class BaseBoletinConceptualPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = BoletinConceptualPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = EscalanotaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1195,7 +1195,7 @@ abstract class BaseBoletinConceptualPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initBoletinConceptuals();
 				$obj2->addBoletinConceptual($obj1);
@@ -1203,11 +1203,11 @@ abstract class BaseBoletinConceptualPeer {
 
 			$omClass = AlumnoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3  = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1217,7 +1217,7 @@ abstract class BaseBoletinConceptualPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initBoletinConceptuals();
 				$obj3->addBoletinConceptual($obj1);
@@ -1225,11 +1225,11 @@ abstract class BaseBoletinConceptualPeer {
 
 			$omClass = ConceptoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj4  = new $cls();
 			$obj4->hydrate($rs, $startcol4);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1239,7 +1239,7 @@ abstract class BaseBoletinConceptualPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj4->initBoletinConceptuals();
 				$obj4->addBoletinConceptual($obj1);

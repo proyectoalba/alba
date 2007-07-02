@@ -119,6 +119,10 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = DocenteHorarioPeer::ID;
@@ -128,6 +132,10 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 	
 	public function setFkDocenteId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_docente_id !== $v || $v === 0) {
 			$this->fk_docente_id = $v;
@@ -142,6 +150,10 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 	
 	public function setFkRepeticionId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_repeticion_id !== $v || $v === 0) {
 			$this->fk_repeticion_id = $v;
@@ -190,6 +202,10 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 	
 	public function setDia($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->dia !== $v || $v === 0) {
 			$this->dia = $v;

@@ -1,32 +1,32 @@
 <?php
 
 
-	
+
 class RepeticionMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.RepeticionMapBuilder';	
-
-    
-    private $dbMap;
+	const CLASS_NAME = 'lib.model.map.RepeticionMapBuilder';
 
 	
-    public function isBuilt()
-    {
-        return ($this->dbMap !== null);
-    }
+	private $dbMap;
 
 	
-    public function getDatabaseMap()
-    {
-        return $this->dbMap;
-    }
+	public function isBuilt()
+	{
+		return ($this->dbMap !== null);
+	}
 
-    
-    public function doBuild()
-    {
+	
+	public function getDatabaseMap()
+	{
+		return $this->dbMap;
+	}
+
+	
+	public function doBuild()
+	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
-		
+
 		$tMap = $this->dbMap->addTable('repeticion');
 		$tMap->setPhpName('Repeticion');
 
@@ -36,7 +36,7 @@ class RepeticionMapBuilder {
 
 		$tMap->addColumn('DESCRIPCION', 'Descripcion', 'string', CreoleTypes::VARCHAR, true, 255);
 
-		$tMap->addColumn('ORDEN', 'Orden', 'int', CreoleTypes::INTEGER, true);
-				
-    } 
+		$tMap->addColumn('ORDEN', 'Orden', 'int', CreoleTypes::INTEGER, true, 11);
+
+	} 
 } 

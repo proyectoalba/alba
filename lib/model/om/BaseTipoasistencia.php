@@ -89,6 +89,10 @@ abstract class BaseTipoasistencia extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = TipoasistenciaPeer::ID;
@@ -99,6 +103,10 @@ abstract class BaseTipoasistencia extends BaseObject  implements Persistent {
 	public function setNombre($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->nombre !== $v) {
 			$this->nombre = $v;
 			$this->modifiedColumns[] = TipoasistenciaPeer::NOMBRE;
@@ -108,6 +116,10 @@ abstract class BaseTipoasistencia extends BaseObject  implements Persistent {
 	
 	public function setDescripcion($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->descripcion !== $v || $v === '') {
 			$this->descripcion = $v;
@@ -128,6 +140,10 @@ abstract class BaseTipoasistencia extends BaseObject  implements Persistent {
 	
 	public function setGrupo($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->grupo !== $v || $v === '') {
 			$this->grupo = $v;

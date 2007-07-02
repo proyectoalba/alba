@@ -1,32 +1,32 @@
 <?php
 
 
-	
+
 class AlumnoMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.AlumnoMapBuilder';	
-
-    
-    private $dbMap;
+	const CLASS_NAME = 'lib.model.map.AlumnoMapBuilder';
 
 	
-    public function isBuilt()
-    {
-        return ($this->dbMap !== null);
-    }
+	private $dbMap;
 
 	
-    public function getDatabaseMap()
-    {
-        return $this->dbMap;
-    }
+	public function isBuilt()
+	{
+		return ($this->dbMap !== null);
+	}
 
-    
-    public function doBuild()
-    {
+	
+	public function getDatabaseMap()
+	{
+		return $this->dbMap;
+	}
+
+	
+	public function doBuild()
+	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
-		
+
 		$tMap = $this->dbMap->addTable('alumno');
 		$tMap->setPhpName('Alumno');
 
@@ -38,7 +38,7 @@ class AlumnoMapBuilder {
 
 		$tMap->addColumn('APELLIDO', 'Apellido', 'string', CreoleTypes::VARCHAR, true, 128);
 
-		$tMap->addColumn('FECHA_NACIMIENTO', 'FechaNacimiento', 'int', CreoleTypes::TIMESTAMP, true);
+		$tMap->addColumn('FECHA_NACIMIENTO', 'FechaNacimiento', 'int', CreoleTypes::TIMESTAMP, true, null);
 
 		$tMap->addColumn('DIRECCION', 'Direccion', 'string', CreoleTypes::VARCHAR, true, 128);
 
@@ -56,27 +56,27 @@ class AlumnoMapBuilder {
 
 		$tMap->addColumn('NRO_DOCUMENTO', 'NroDocumento', 'string', CreoleTypes::VARCHAR, true, 16);
 
-		$tMap->addColumn('SEXO', 'Sexo', 'string', CreoleTypes::CHAR, true);
+		$tMap->addColumn('SEXO', 'Sexo', 'string', CreoleTypes::CHAR, true, 1);
 
 		$tMap->addColumn('EMAIL', 'Email', 'string', CreoleTypes::VARCHAR, true, 128);
 
-		$tMap->addColumn('DISTANCIA_ESCUELA', 'DistanciaEscuela', 'int', CreoleTypes::INTEGER, false);
+		$tMap->addColumn('DISTANCIA_ESCUELA', 'DistanciaEscuela', 'int', CreoleTypes::INTEGER, false, null);
 
-		$tMap->addColumn('HERMANOS_ESCUELA', 'HermanosEscuela', 'boolean', CreoleTypes::BOOLEAN, true);
+		$tMap->addColumn('HERMANOS_ESCUELA', 'HermanosEscuela', 'boolean', CreoleTypes::BOOLEAN, true, null);
 
-		$tMap->addColumn('HIJO_MAESTRO_ESCUELA', 'HijoMaestroEscuela', 'boolean', CreoleTypes::BOOLEAN, true);
+		$tMap->addColumn('HIJO_MAESTRO_ESCUELA', 'HijoMaestroEscuela', 'boolean', CreoleTypes::BOOLEAN, true, null);
 
 		$tMap->addForeignKey('FK_ESTABLECIMIENTO_ID', 'FkEstablecimientoId', 'int', CreoleTypes::INTEGER, 'establecimiento', 'ID', true, null);
 
 		$tMap->addForeignKey('FK_CUENTA_ID', 'FkCuentaId', 'int', CreoleTypes::INTEGER, 'cuenta', 'ID', true, null);
 
-		$tMap->addColumn('CERTIFICADO_MEDICO', 'CertificadoMedico', 'boolean', CreoleTypes::BOOLEAN, true);
+		$tMap->addColumn('CERTIFICADO_MEDICO', 'CertificadoMedico', 'boolean', CreoleTypes::BOOLEAN, true, null);
 
-		$tMap->addColumn('ACTIVO', 'Activo', 'boolean', CreoleTypes::BOOLEAN, true);
+		$tMap->addColumn('ACTIVO', 'Activo', 'boolean', CreoleTypes::BOOLEAN, true, null);
 
 		$tMap->addForeignKey('FK_CONCEPTOBAJA_ID', 'FkConceptobajaId', 'int', CreoleTypes::INTEGER, 'conceptobaja', 'ID', false, null);
 
 		$tMap->addForeignKey('FK_PAIS_ID', 'FkPaisId', 'int', CreoleTypes::INTEGER, 'pais', 'ID', true, null);
-				
-    } 
+
+	} 
 } 

@@ -1,32 +1,32 @@
 <?php
 
 
-	
+
 class CalendariovacunacionMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.CalendariovacunacionMapBuilder';	
-
-    
-    private $dbMap;
+	const CLASS_NAME = 'lib.model.map.CalendariovacunacionMapBuilder';
 
 	
-    public function isBuilt()
-    {
-        return ($this->dbMap !== null);
-    }
+	private $dbMap;
 
 	
-    public function getDatabaseMap()
-    {
-        return $this->dbMap;
-    }
+	public function isBuilt()
+	{
+		return ($this->dbMap !== null);
+	}
 
-    
-    public function doBuild()
-    {
+	
+	public function getDatabaseMap()
+	{
+		return $this->dbMap;
+	}
+
+	
+	public function doBuild()
+	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
-		
+
 		$tMap = $this->dbMap->addTable('calendariovacunacion');
 		$tMap->setPhpName('Calendariovacunacion');
 
@@ -41,6 +41,6 @@ class CalendariovacunacionMapBuilder {
 		$tMap->addColumn('PERIODO', 'Periodo', 'string', CreoleTypes::VARCHAR, false, 128);
 
 		$tMap->addColumn('OBSERVACION', 'Observacion', 'string', CreoleTypes::VARCHAR, false, 255);
-				
-    } 
+
+	} 
 } 

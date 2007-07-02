@@ -202,6 +202,10 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = RelDivisionActividadDocentePeer::ID;
@@ -211,6 +215,10 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 	
 	public function setFkDivisionId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_division_id !== $v || $v === 0) {
 			$this->fk_division_id = $v;
@@ -226,6 +234,10 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 	public function setFkActividadId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->fk_actividad_id !== $v || $v === 0) {
 			$this->fk_actividad_id = $v;
 			$this->modifiedColumns[] = RelDivisionActividadDocentePeer::FK_ACTIVIDAD_ID;
@@ -239,6 +251,10 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 	
 	public function setFkDocenteId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_docente_id !== $v || $v === 0) {
 			$this->fk_docente_id = $v;
@@ -254,6 +270,10 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 	public function setFkEventoId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->fk_evento_id !== $v || $v === 0) {
 			$this->fk_evento_id = $v;
 			$this->modifiedColumns[] = RelDivisionActividadDocentePeer::FK_EVENTO_ID;
@@ -267,6 +287,10 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 	
 	public function setFkRepeticionId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_repeticion_id !== $v || $v === 0) {
 			$this->fk_repeticion_id = $v;

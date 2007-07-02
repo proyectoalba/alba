@@ -1,32 +1,32 @@
 <?php
 
 
-	
+
 class PaisMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.PaisMapBuilder';	
-
-    
-    private $dbMap;
+	const CLASS_NAME = 'lib.model.map.PaisMapBuilder';
 
 	
-    public function isBuilt()
-    {
-        return ($this->dbMap !== null);
-    }
+	private $dbMap;
 
 	
-    public function getDatabaseMap()
-    {
-        return $this->dbMap;
-    }
+	public function isBuilt()
+	{
+		return ($this->dbMap !== null);
+	}
 
-    
-    public function doBuild()
-    {
+	
+	public function getDatabaseMap()
+	{
+		return $this->dbMap;
+	}
+
+	
+	public function doBuild()
+	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
-		
+
 		$tMap = $this->dbMap->addTable('pais');
 		$tMap->setPhpName('Pais');
 
@@ -38,7 +38,7 @@ class PaisMapBuilder {
 
 		$tMap->addColumn('NOMBRE_CORTO', 'NombreCorto', 'string', CreoleTypes::VARCHAR, true, 32);
 
-		$tMap->addColumn('ORDEN', 'Orden', 'int', CreoleTypes::INTEGER, false);
-				
-    } 
+		$tMap->addColumn('ORDEN', 'Orden', 'int', CreoleTypes::INTEGER, false, null);
+
+	} 
 } 

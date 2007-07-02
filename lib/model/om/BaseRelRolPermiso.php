@@ -56,6 +56,10 @@ abstract class BaseRelRolPermiso extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = RelRolPermisoPeer::ID;
@@ -65,6 +69,10 @@ abstract class BaseRelRolPermiso extends BaseObject  implements Persistent {
 	
 	public function setFkRolId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_rol_id !== $v || $v === 0) {
 			$this->fk_rol_id = $v;
@@ -79,6 +87,10 @@ abstract class BaseRelRolPermiso extends BaseObject  implements Persistent {
 	
 	public function setFkPermisoId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_permiso_id !== $v || $v === 0) {
 			$this->fk_permiso_id = $v;

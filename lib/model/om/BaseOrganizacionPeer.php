@@ -227,14 +227,14 @@ abstract class BaseOrganizacionPeer {
 	public static function doCountJoinTipoiva(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(OrganizacionPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(OrganizacionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -255,14 +255,14 @@ abstract class BaseOrganizacionPeer {
 	public static function doCountJoinProvincia(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(OrganizacionPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(OrganizacionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -384,7 +384,7 @@ abstract class BaseOrganizacionPeer {
 		} else {
 			$criteria->addSelectColumn(OrganizacionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -427,25 +427,25 @@ abstract class BaseOrganizacionPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = OrganizacionPeer::getOMClass();
 
-			
+
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-				
+
 					
 			$omClass = TipoivaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -454,21 +454,21 @@ abstract class BaseOrganizacionPeer {
 					$temp_obj2->addOrganizacion($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initOrganizacions();
 				$obj2->addOrganizacion($obj1);
 			}
 
-				
+
 					
 			$omClass = ProvinciaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3 = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -477,7 +477,7 @@ abstract class BaseOrganizacionPeer {
 					$temp_obj3->addOrganizacion($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initOrganizacions();
 				$obj3->addOrganizacion($obj1);
@@ -493,14 +493,14 @@ abstract class BaseOrganizacionPeer {
 	public static function doCountJoinAllExceptTipoiva(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(OrganizacionPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(OrganizacionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -521,14 +521,14 @@ abstract class BaseOrganizacionPeer {
 	public static function doCountJoinAllExceptProvincia(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(OrganizacionPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(OrganizacionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -565,22 +565,22 @@ abstract class BaseOrganizacionPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = OrganizacionPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = ProvinciaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -590,7 +590,7 @@ abstract class BaseOrganizacionPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initOrganizacions();
 				$obj2->addOrganizacion($obj1);
@@ -622,22 +622,22 @@ abstract class BaseOrganizacionPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = OrganizacionPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = TipoivaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -647,7 +647,7 @@ abstract class BaseOrganizacionPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initOrganizacions();
 				$obj2->addOrganizacion($obj1);

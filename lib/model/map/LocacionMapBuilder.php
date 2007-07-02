@@ -1,32 +1,32 @@
 <?php
 
 
-	
+
 class LocacionMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.LocacionMapBuilder';	
-
-    
-    private $dbMap;
+	const CLASS_NAME = 'lib.model.map.LocacionMapBuilder';
 
 	
-    public function isBuilt()
-    {
-        return ($this->dbMap !== null);
-    }
+	private $dbMap;
 
 	
-    public function getDatabaseMap()
-    {
-        return $this->dbMap;
-    }
+	public function isBuilt()
+	{
+		return ($this->dbMap !== null);
+	}
 
-    
-    public function doBuild()
-    {
+	
+	public function getDatabaseMap()
+	{
+		return $this->dbMap;
+	}
+
+	
+	public function doBuild()
+	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
-		
+
 		$tMap = $this->dbMap->addTable('locacion');
 		$tMap->setPhpName('Locacion');
 
@@ -56,7 +56,7 @@ class LocacionMapBuilder {
 
 		$tMap->addColumn('ENCARGADO_TELEFONO', 'EncargadoTelefono', 'string', CreoleTypes::VARCHAR, false, 20);
 
-		$tMap->addColumn('PRINCIPAL', 'Principal', 'boolean', CreoleTypes::BOOLEAN, true);
-				
-    } 
+		$tMap->addColumn('PRINCIPAL', 'Principal', 'boolean', CreoleTypes::BOOLEAN, true, null);
+
+	} 
 } 

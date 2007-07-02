@@ -1,32 +1,32 @@
 <?php
 
 
-	
+
 class EscalanotaMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.EscalanotaMapBuilder';	
-
-    
-    private $dbMap;
+	const CLASS_NAME = 'lib.model.map.EscalanotaMapBuilder';
 
 	
-    public function isBuilt()
-    {
-        return ($this->dbMap !== null);
-    }
+	private $dbMap;
 
 	
-    public function getDatabaseMap()
-    {
-        return $this->dbMap;
-    }
+	public function isBuilt()
+	{
+		return ($this->dbMap !== null);
+	}
 
-    
-    public function doBuild()
-    {
+	
+	public function getDatabaseMap()
+	{
+		return $this->dbMap;
+	}
+
+	
+	public function doBuild()
+	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
-		
+
 		$tMap = $this->dbMap->addTable('escalanota');
 		$tMap->setPhpName('Escalanota');
 
@@ -40,9 +40,9 @@ class EscalanotaMapBuilder {
 
 		$tMap->addColumn('DESCRIPCION', 'Descripcion', 'string', CreoleTypes::VARCHAR, false, 255);
 
-		$tMap->addColumn('ORDEN', 'Orden', 'int', CreoleTypes::INTEGER, true);
+		$tMap->addColumn('ORDEN', 'Orden', 'int', CreoleTypes::INTEGER, true, 11);
 
-		$tMap->addColumn('APROBADO', 'Aprobado', 'boolean', CreoleTypes::BOOLEAN, true);
-				
-    } 
+		$tMap->addColumn('APROBADO', 'Aprobado', 'boolean', CreoleTypes::BOOLEAN, true, null);
+
+	} 
 } 

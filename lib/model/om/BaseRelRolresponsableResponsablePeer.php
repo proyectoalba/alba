@@ -197,14 +197,14 @@ abstract class BaseRelRolresponsableResponsablePeer {
 	public static function doCountJoinRolResponsable(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelRolresponsableResponsablePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelRolresponsableResponsablePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -225,14 +225,14 @@ abstract class BaseRelRolresponsableResponsablePeer {
 	public static function doCountJoinResponsable(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelRolresponsableResponsablePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelRolresponsableResponsablePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -253,14 +253,14 @@ abstract class BaseRelRolresponsableResponsablePeer {
 	public static function doCountJoinAlumno(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelRolresponsableResponsablePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelRolresponsableResponsablePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -429,7 +429,7 @@ abstract class BaseRelRolresponsableResponsablePeer {
 		} else {
 			$criteria->addSelectColumn(RelRolresponsableResponsablePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -479,25 +479,25 @@ abstract class BaseRelRolresponsableResponsablePeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelRolresponsableResponsablePeer::getOMClass();
 
-			
+
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-				
+
 					
 			$omClass = RolResponsablePeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -506,21 +506,21 @@ abstract class BaseRelRolresponsableResponsablePeer {
 					$temp_obj2->addRelRolresponsableResponsable($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelRolresponsableResponsables();
 				$obj2->addRelRolresponsableResponsable($obj1);
 			}
 
-				
+
 					
 			$omClass = ResponsablePeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3 = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -529,21 +529,21 @@ abstract class BaseRelRolresponsableResponsablePeer {
 					$temp_obj3->addRelRolresponsableResponsable($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initRelRolresponsableResponsables();
 				$obj3->addRelRolresponsableResponsable($obj1);
 			}
 
-				
+
 					
 			$omClass = AlumnoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj4 = new $cls();
 			$obj4->hydrate($rs, $startcol4);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -552,7 +552,7 @@ abstract class BaseRelRolresponsableResponsablePeer {
 					$temp_obj4->addRelRolresponsableResponsable($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj4->initRelRolresponsableResponsables();
 				$obj4->addRelRolresponsableResponsable($obj1);
@@ -568,14 +568,14 @@ abstract class BaseRelRolresponsableResponsablePeer {
 	public static function doCountJoinAllExceptRolResponsable(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelRolresponsableResponsablePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelRolresponsableResponsablePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -598,14 +598,14 @@ abstract class BaseRelRolresponsableResponsablePeer {
 	public static function doCountJoinAllExceptResponsable(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelRolresponsableResponsablePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelRolresponsableResponsablePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -628,14 +628,14 @@ abstract class BaseRelRolresponsableResponsablePeer {
 	public static function doCountJoinAllExceptAlumno(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelRolresponsableResponsablePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelRolresponsableResponsablePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -679,22 +679,22 @@ abstract class BaseRelRolresponsableResponsablePeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelRolresponsableResponsablePeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = ResponsablePeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -704,7 +704,7 @@ abstract class BaseRelRolresponsableResponsablePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelRolresponsableResponsables();
 				$obj2->addRelRolresponsableResponsable($obj1);
@@ -712,11 +712,11 @@ abstract class BaseRelRolresponsableResponsablePeer {
 
 			$omClass = AlumnoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3  = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -726,7 +726,7 @@ abstract class BaseRelRolresponsableResponsablePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initRelRolresponsableResponsables();
 				$obj3->addRelRolresponsableResponsable($obj1);
@@ -763,22 +763,22 @@ abstract class BaseRelRolresponsableResponsablePeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelRolresponsableResponsablePeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = RolResponsablePeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -788,7 +788,7 @@ abstract class BaseRelRolresponsableResponsablePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelRolresponsableResponsables();
 				$obj2->addRelRolresponsableResponsable($obj1);
@@ -796,11 +796,11 @@ abstract class BaseRelRolresponsableResponsablePeer {
 
 			$omClass = AlumnoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3  = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -810,7 +810,7 @@ abstract class BaseRelRolresponsableResponsablePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initRelRolresponsableResponsables();
 				$obj3->addRelRolresponsableResponsable($obj1);
@@ -847,22 +847,22 @@ abstract class BaseRelRolresponsableResponsablePeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelRolresponsableResponsablePeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = RolResponsablePeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -872,7 +872,7 @@ abstract class BaseRelRolresponsableResponsablePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelRolresponsableResponsables();
 				$obj2->addRelRolresponsableResponsable($obj1);
@@ -880,11 +880,11 @@ abstract class BaseRelRolresponsableResponsablePeer {
 
 			$omClass = ResponsablePeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3  = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -894,7 +894,7 @@ abstract class BaseRelRolresponsableResponsablePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initRelRolresponsableResponsables();
 				$obj3->addRelRolresponsableResponsable($obj1);

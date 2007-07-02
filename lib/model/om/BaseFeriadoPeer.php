@@ -202,14 +202,14 @@ abstract class BaseFeriadoPeer {
 	public static function doCountJoinCiclolectivo(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(FeriadoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(FeriadoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -284,7 +284,7 @@ abstract class BaseFeriadoPeer {
 		} else {
 			$criteria->addSelectColumn(FeriadoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -320,25 +320,25 @@ abstract class BaseFeriadoPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = FeriadoPeer::getOMClass();
 
-			
+
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-				
+
 					
 			$omClass = CiclolectivoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -347,7 +347,7 @@ abstract class BaseFeriadoPeer {
 					$temp_obj2->addFeriado($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initFeriados();
 				$obj2->addFeriado($obj1);

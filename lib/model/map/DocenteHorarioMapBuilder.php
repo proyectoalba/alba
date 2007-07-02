@@ -1,32 +1,32 @@
 <?php
 
 
-	
+
 class DocenteHorarioMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.DocenteHorarioMapBuilder';	
-
-    
-    private $dbMap;
+	const CLASS_NAME = 'lib.model.map.DocenteHorarioMapBuilder';
 
 	
-    public function isBuilt()
-    {
-        return ($this->dbMap !== null);
-    }
+	private $dbMap;
 
 	
-    public function getDatabaseMap()
-    {
-        return $this->dbMap;
-    }
+	public function isBuilt()
+	{
+		return ($this->dbMap !== null);
+	}
 
-    
-    public function doBuild()
-    {
+	
+	public function getDatabaseMap()
+	{
+		return $this->dbMap;
+	}
+
+	
+	public function doBuild()
+	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
-		
+
 		$tMap = $this->dbMap->addTable('docente_horario');
 		$tMap->setPhpName('DocenteHorario');
 
@@ -38,11 +38,11 @@ class DocenteHorarioMapBuilder {
 
 		$tMap->addForeignKey('FK_REPETICION_ID', 'FkRepeticionId', 'int', CreoleTypes::INTEGER, 'repeticion', 'ID', true, 11);
 
-		$tMap->addColumn('HORA_INICIO', 'HoraInicio', 'int', CreoleTypes::TIME, true);
+		$tMap->addColumn('HORA_INICIO', 'HoraInicio', 'int', CreoleTypes::TIME, true, null);
 
-		$tMap->addColumn('HORA_FIN', 'HoraFin', 'int', CreoleTypes::TIME, true);
+		$tMap->addColumn('HORA_FIN', 'HoraFin', 'int', CreoleTypes::TIME, true, null);
 
-		$tMap->addColumn('DIA', 'Dia', 'int', CreoleTypes::INTEGER, true);
-				
-    } 
+		$tMap->addColumn('DIA', 'Dia', 'int', CreoleTypes::INTEGER, true, 11);
+
+	} 
 } 

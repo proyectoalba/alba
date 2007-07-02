@@ -111,6 +111,10 @@ abstract class BaseEspacio extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = EspacioPeer::ID;
@@ -120,6 +124,10 @@ abstract class BaseEspacio extends BaseObject  implements Persistent {
 	
 	public function setNombre($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->nombre !== $v || $v === '') {
 			$this->nombre = $v;
@@ -141,6 +149,10 @@ abstract class BaseEspacio extends BaseObject  implements Persistent {
 	public function setCapacidad($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->capacidad !== $v) {
 			$this->capacidad = $v;
 			$this->modifiedColumns[] = EspacioPeer::CAPACIDAD;
@@ -150,6 +162,10 @@ abstract class BaseEspacio extends BaseObject  implements Persistent {
 	
 	public function setDescripcion($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->descripcion !== $v) {
 			$this->descripcion = $v;
@@ -161,6 +177,10 @@ abstract class BaseEspacio extends BaseObject  implements Persistent {
 	public function setEstado($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->estado !== $v) {
 			$this->estado = $v;
 			$this->modifiedColumns[] = EspacioPeer::ESTADO;
@@ -170,6 +190,10 @@ abstract class BaseEspacio extends BaseObject  implements Persistent {
 	
 	public function setFkTipoespacioId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_tipoespacio_id !== $v) {
 			$this->fk_tipoespacio_id = $v;
@@ -184,6 +208,10 @@ abstract class BaseEspacio extends BaseObject  implements Persistent {
 	
 	public function setFkLocacionId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_locacion_id !== $v || $v === 0) {
 			$this->fk_locacion_id = $v;

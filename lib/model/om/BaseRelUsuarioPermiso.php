@@ -56,6 +56,10 @@ abstract class BaseRelUsuarioPermiso extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = RelUsuarioPermisoPeer::ID;
@@ -65,6 +69,10 @@ abstract class BaseRelUsuarioPermiso extends BaseObject  implements Persistent {
 	
 	public function setFkUsuarioId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_usuario_id !== $v || $v === 0) {
 			$this->fk_usuario_id = $v;
@@ -79,6 +87,10 @@ abstract class BaseRelUsuarioPermiso extends BaseObject  implements Persistent {
 	
 	public function setFkPermisoId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_permiso_id !== $v || $v === 0) {
 			$this->fk_permiso_id = $v;

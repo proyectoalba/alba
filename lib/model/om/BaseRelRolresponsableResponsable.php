@@ -81,6 +81,10 @@ abstract class BaseRelRolresponsableResponsable extends BaseObject  implements P
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = RelRolresponsableResponsablePeer::ID;
@@ -90,6 +94,10 @@ abstract class BaseRelRolresponsableResponsable extends BaseObject  implements P
 	
 	public function setFkRolresponsableId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_rolresponsable_id !== $v || $v === 0) {
 			$this->fk_rolresponsable_id = $v;
@@ -105,6 +113,10 @@ abstract class BaseRelRolresponsableResponsable extends BaseObject  implements P
 	public function setFkResponsableId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->fk_responsable_id !== $v || $v === 0) {
 			$this->fk_responsable_id = $v;
 			$this->modifiedColumns[] = RelRolresponsableResponsablePeer::FK_RESPONSABLE_ID;
@@ -119,6 +131,10 @@ abstract class BaseRelRolresponsableResponsable extends BaseObject  implements P
 	public function setFkAlumnoId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->fk_alumno_id !== $v || $v === 0) {
 			$this->fk_alumno_id = $v;
 			$this->modifiedColumns[] = RelRolresponsableResponsablePeer::FK_ALUMNO_ID;
@@ -132,6 +148,10 @@ abstract class BaseRelRolresponsableResponsable extends BaseObject  implements P
 	
 	public function setDescripcion($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->descripcion !== $v || $v === '') {
 			$this->descripcion = $v;

@@ -56,6 +56,10 @@ abstract class BaseRelEstablecimientoLocacion extends BaseObject  implements Per
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = RelEstablecimientoLocacionPeer::ID;
@@ -65,6 +69,10 @@ abstract class BaseRelEstablecimientoLocacion extends BaseObject  implements Per
 	
 	public function setFkEstablecimientoId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_establecimiento_id !== $v || $v === 0) {
 			$this->fk_establecimiento_id = $v;
@@ -79,6 +87,10 @@ abstract class BaseRelEstablecimientoLocacion extends BaseObject  implements Per
 	
 	public function setFkLocacionId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_locacion_id !== $v || $v === 0) {
 			$this->fk_locacion_id = $v;

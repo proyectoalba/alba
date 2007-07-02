@@ -73,6 +73,10 @@ abstract class BasePais extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = PaisPeer::ID;
@@ -82,6 +86,10 @@ abstract class BasePais extends BaseObject  implements Persistent {
 	
 	public function setNombreLargo($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->nombre_largo !== $v || $v === '') {
 			$this->nombre_largo = $v;
@@ -93,6 +101,10 @@ abstract class BasePais extends BaseObject  implements Persistent {
 	public function setNombreCorto($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->nombre_corto !== $v || $v === '') {
 			$this->nombre_corto = $v;
 			$this->modifiedColumns[] = PaisPeer::NOMBRE_CORTO;
@@ -102,6 +114,10 @@ abstract class BasePais extends BaseObject  implements Persistent {
 	
 	public function setOrden($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->orden !== $v || $v === 0) {
 			$this->orden = $v;

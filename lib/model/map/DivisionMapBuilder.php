@@ -1,32 +1,32 @@
 <?php
 
 
-	
+
 class DivisionMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.DivisionMapBuilder';	
-
-    
-    private $dbMap;
+	const CLASS_NAME = 'lib.model.map.DivisionMapBuilder';
 
 	
-    public function isBuilt()
-    {
-        return ($this->dbMap !== null);
-    }
+	private $dbMap;
 
 	
-    public function getDatabaseMap()
-    {
-        return $this->dbMap;
-    }
+	public function isBuilt()
+	{
+		return ($this->dbMap !== null);
+	}
 
-    
-    public function doBuild()
-    {
+	
+	public function getDatabaseMap()
+	{
+		return $this->dbMap;
+	}
+
+	
+	public function doBuild()
+	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
-		
+
 		$tMap = $this->dbMap->addTable('division');
 		$tMap->setPhpName('Division');
 
@@ -40,7 +40,7 @@ class DivisionMapBuilder {
 
 		$tMap->addForeignKey('FK_TURNOS_ID', 'FkTurnosId', 'int', CreoleTypes::INTEGER, 'turnos', 'ID', true, 11);
 
-		$tMap->addColumn('ORDEN', 'Orden', 'int', CreoleTypes::INTEGER, false);
-				
-    } 
+		$tMap->addColumn('ORDEN', 'Orden', 'int', CreoleTypes::INTEGER, false, null);
+
+	} 
 } 

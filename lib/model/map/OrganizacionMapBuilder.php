@@ -1,32 +1,32 @@
 <?php
 
 
-	
+
 class OrganizacionMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.OrganizacionMapBuilder';	
-
-    
-    private $dbMap;
+	const CLASS_NAME = 'lib.model.map.OrganizacionMapBuilder';
 
 	
-    public function isBuilt()
-    {
-        return ($this->dbMap !== null);
-    }
+	private $dbMap;
 
 	
-    public function getDatabaseMap()
-    {
-        return $this->dbMap;
-    }
+	public function isBuilt()
+	{
+		return ($this->dbMap !== null);
+	}
 
-    
-    public function doBuild()
-    {
+	
+	public function getDatabaseMap()
+	{
+		return $this->dbMap;
+	}
+
+	
+	public function doBuild()
+	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
-		
+
 		$tMap = $this->dbMap->addTable('organizacion');
 		$tMap->setPhpName('Organizacion');
 
@@ -53,6 +53,6 @@ class OrganizacionMapBuilder {
 		$tMap->addForeignKey('FK_PROVINCIA_ID', 'FkProvinciaId', 'int', CreoleTypes::INTEGER, 'provincia', 'ID', true, null);
 
 		$tMap->addForeignKey('FK_TIPOIVA_ID', 'FkTipoivaId', 'int', CreoleTypes::INTEGER, 'tipoiva', 'ID', true, null);
-				
-    } 
+
+	} 
 } 

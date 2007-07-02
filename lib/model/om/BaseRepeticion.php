@@ -62,6 +62,10 @@ abstract class BaseRepeticion extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = RepeticionPeer::ID;
@@ -72,6 +76,10 @@ abstract class BaseRepeticion extends BaseObject  implements Persistent {
 	public function setDescripcion($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->descripcion !== $v || $v === '') {
 			$this->descripcion = $v;
 			$this->modifiedColumns[] = RepeticionPeer::DESCRIPCION;
@@ -81,6 +89,10 @@ abstract class BaseRepeticion extends BaseObject  implements Persistent {
 	
 	public function setOrden($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->orden !== $v || $v === 0) {
 			$this->orden = $v;

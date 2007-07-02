@@ -9,15 +9,11 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 
 
 	
-	protected $id;
+	protected $fk_actividad_id;
 
 
 	
-	protected $fk_actividad_id = 0;
-
-
-	
-	protected $fk_docente_id = 0;
+	protected $fk_docente_id;
 
 	
 	protected $aDocente;
@@ -30,13 +26,6 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 
 	
 	protected $alreadyInValidation = false;
-
-	
-	public function getId()
-	{
-
-		return $this->id;
-	}
 
 	
 	public function getFkActividadId()
@@ -53,20 +42,14 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	}
 
 	
-	public function setId($v)
-	{
-
-		if ($this->id !== $v) {
-			$this->id = $v;
-			$this->modifiedColumns[] = RelActividadDocentePeer::ID;
-		}
-
-	} 
-	
 	public function setFkActividadId($v)
 	{
 
-		if ($this->fk_actividad_id !== $v || $v === 0) {
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
+		if ($this->fk_actividad_id !== $v) {
 			$this->fk_actividad_id = $v;
 			$this->modifiedColumns[] = RelActividadDocentePeer::FK_ACTIVIDAD_ID;
 		}
@@ -80,7 +63,11 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	public function setFkDocenteId($v)
 	{
 
-		if ($this->fk_docente_id !== $v || $v === 0) {
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
+		if ($this->fk_docente_id !== $v) {
 			$this->fk_docente_id = $v;
 			$this->modifiedColumns[] = RelActividadDocentePeer::FK_DOCENTE_ID;
 		}
@@ -95,17 +82,15 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	{
 		try {
 
-			$this->id = $rs->getInt($startcol + 0);
+			$this->fk_actividad_id = $rs->getInt($startcol + 0);
 
-			$this->fk_actividad_id = $rs->getInt($startcol + 1);
-
-			$this->fk_docente_id = $rs->getInt($startcol + 2);
+			$this->fk_docente_id = $rs->getInt($startcol + 1);
 
 			$this->resetModified();
 
 			$this->setNew(false);
 
-						return $startcol + 3; 
+						return $startcol + 2; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating RelActividadDocente object", $e);
 		}
@@ -182,7 +167,6 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 				if ($this->isNew()) {
 					$pk = RelActividadDocentePeer::doInsert($this, $con);
 					$affectedRows += 1; 										 										 
-					$this->setId($pk);  
 					$this->setNew(false);
 				} else {
 					$affectedRows += RelActividadDocentePeer::doUpdate($this, $con);
@@ -263,12 +247,9 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	{
 		switch($pos) {
 			case 0:
-				return $this->getId();
-				break;
-			case 1:
 				return $this->getFkActividadId();
 				break;
-			case 2:
+			case 1:
 				return $this->getFkDocenteId();
 				break;
 			default:
@@ -281,9 +262,8 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	{
 		$keys = RelActividadDocentePeer::getFieldNames($keyType);
 		$result = array(
-			$keys[0] => $this->getId(),
-			$keys[1] => $this->getFkActividadId(),
-			$keys[2] => $this->getFkDocenteId(),
+			$keys[0] => $this->getFkActividadId(),
+			$keys[1] => $this->getFkDocenteId(),
 		);
 		return $result;
 	}
@@ -300,12 +280,9 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	{
 		switch($pos) {
 			case 0:
-				$this->setId($value);
-				break;
-			case 1:
 				$this->setFkActividadId($value);
 				break;
-			case 2:
+			case 1:
 				$this->setFkDocenteId($value);
 				break;
 		} 	}
@@ -315,9 +292,8 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	{
 		$keys = RelActividadDocentePeer::getFieldNames($keyType);
 
-		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
-		if (array_key_exists($keys[1], $arr)) $this->setFkActividadId($arr[$keys[1]]);
-		if (array_key_exists($keys[2], $arr)) $this->setFkDocenteId($arr[$keys[2]]);
+		if (array_key_exists($keys[0], $arr)) $this->setFkActividadId($arr[$keys[0]]);
+		if (array_key_exists($keys[1], $arr)) $this->setFkDocenteId($arr[$keys[1]]);
 	}
 
 	
@@ -325,7 +301,6 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	{
 		$criteria = new Criteria(RelActividadDocentePeer::DATABASE_NAME);
 
-		if ($this->isColumnModified(RelActividadDocentePeer::ID)) $criteria->add(RelActividadDocentePeer::ID, $this->id);
 		if ($this->isColumnModified(RelActividadDocentePeer::FK_ACTIVIDAD_ID)) $criteria->add(RelActividadDocentePeer::FK_ACTIVIDAD_ID, $this->fk_actividad_id);
 		if ($this->isColumnModified(RelActividadDocentePeer::FK_DOCENTE_ID)) $criteria->add(RelActividadDocentePeer::FK_DOCENTE_ID, $this->fk_docente_id);
 
@@ -337,7 +312,8 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	{
 		$criteria = new Criteria(RelActividadDocentePeer::DATABASE_NAME);
 
-		$criteria->add(RelActividadDocentePeer::ID, $this->id);
+		$criteria->add(RelActividadDocentePeer::FK_ACTIVIDAD_ID, $this->fk_actividad_id);
+		$criteria->add(RelActividadDocentePeer::FK_DOCENTE_ID, $this->fk_docente_id);
 
 		return $criteria;
 	}
@@ -345,27 +321,34 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	
 	public function getPrimaryKey()
 	{
-		return $this->getId();
+		$pks = array();
+
+		$pks[0] = $this->getFkActividadId();
+
+		$pks[1] = $this->getFkDocenteId();
+
+		return $pks;
 	}
 
 	
-	public function setPrimaryKey($key)
+	public function setPrimaryKey($keys)
 	{
-		$this->setId($key);
+
+		$this->setFkActividadId($keys[0]);
+
+		$this->setFkDocenteId($keys[1]);
+
 	}
 
 	
 	public function copyInto($copyObj, $deepCopy = false)
 	{
 
-		$copyObj->setFkActividadId($this->fk_actividad_id);
-
-		$copyObj->setFkDocenteId($this->fk_docente_id);
-
 
 		$copyObj->setNew(true);
 
-		$copyObj->setId(NULL); 
+		$copyObj->setFkActividadId(NULL); 
+		$copyObj->setFkDocenteId(NULL); 
 	}
 
 	
@@ -392,7 +375,7 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 
 
 		if ($v === null) {
-			$this->setFkDocenteId('0');
+			$this->setFkDocenteId(NULL);
 		} else {
 			$this->setFkDocenteId($v->getId());
 		}
@@ -422,7 +405,7 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 
 
 		if ($v === null) {
-			$this->setFkActividadId('0');
+			$this->setFkActividadId(NULL);
 		} else {
 			$this->setFkActividadId($v->getId());
 		}

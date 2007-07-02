@@ -115,6 +115,10 @@ abstract class BaseAdjunto extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = AdjuntoPeer::ID;
@@ -124,6 +128,10 @@ abstract class BaseAdjunto extends BaseObject  implements Persistent {
 	
 	public function setDescripcion($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->descripcion !== $v) {
 			$this->descripcion = $v;
@@ -135,6 +143,10 @@ abstract class BaseAdjunto extends BaseObject  implements Persistent {
 	public function setTitulo($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->titulo !== $v) {
 			$this->titulo = $v;
 			$this->modifiedColumns[] = AdjuntoPeer::TITULO;
@@ -144,6 +156,10 @@ abstract class BaseAdjunto extends BaseObject  implements Persistent {
 	
 	public function setNombreArchivo($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->nombre_archivo !== $v) {
 			$this->nombre_archivo = $v;
@@ -155,6 +171,10 @@ abstract class BaseAdjunto extends BaseObject  implements Persistent {
 	public function setTipoArchivo($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->tipo_archivo !== $v) {
 			$this->tipo_archivo = $v;
 			$this->modifiedColumns[] = AdjuntoPeer::TIPO_ARCHIVO;
@@ -164,6 +184,10 @@ abstract class BaseAdjunto extends BaseObject  implements Persistent {
 	
 	public function setRuta($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->ruta !== $v) {
 			$this->ruta = $v;

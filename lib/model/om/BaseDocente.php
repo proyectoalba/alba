@@ -260,6 +260,10 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = DocentePeer::ID;
@@ -269,6 +273,10 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 	
 	public function setApellido($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->apellido !== $v || $v === '') {
 			$this->apellido = $v;
@@ -280,6 +288,10 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 	public function setNombre($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->nombre !== $v || $v === '') {
 			$this->nombre = $v;
 			$this->modifiedColumns[] = DocentePeer::NOMBRE;
@@ -289,6 +301,10 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 	
 	public function setSexo($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->sexo !== $v || $v === 'U') {
 			$this->sexo = $v;
@@ -317,6 +333,10 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 	public function setFkTipodocumentoId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->fk_tipodocumento_id !== $v || $v === 0) {
 			$this->fk_tipodocumento_id = $v;
 			$this->modifiedColumns[] = DocentePeer::FK_TIPODOCUMENTO_ID;
@@ -331,6 +351,10 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 	public function setNroDocumento($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->nro_documento !== $v || $v === '') {
 			$this->nro_documento = $v;
 			$this->modifiedColumns[] = DocentePeer::NRO_DOCUMENTO;
@@ -340,6 +364,10 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 	
 	public function setDireccion($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->direccion !== $v || $v === '') {
 			$this->direccion = $v;
@@ -351,6 +379,10 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 	public function setCiudad($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->ciudad !== $v || $v === '') {
 			$this->ciudad = $v;
 			$this->modifiedColumns[] = DocentePeer::CIUDAD;
@@ -360,6 +392,10 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 	
 	public function setCodigoPostal($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->codigo_postal !== $v || $v === '') {
 			$this->codigo_postal = $v;
@@ -371,6 +407,10 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 	public function setEmail($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->email !== $v || $v === '') {
 			$this->email = $v;
 			$this->modifiedColumns[] = DocentePeer::EMAIL;
@@ -380,6 +420,10 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 	
 	public function setTelefono($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->telefono !== $v || $v === '') {
 			$this->telefono = $v;
@@ -391,6 +435,10 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 	public function setTelefonoMovil($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->telefono_movil !== $v || $v === '') {
 			$this->telefono_movil = $v;
 			$this->modifiedColumns[] = DocentePeer::TELEFONO_MOVIL;
@@ -400,6 +448,10 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 	
 	public function setTitulo($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->titulo !== $v || $v === '') {
 			$this->titulo = $v;
@@ -440,6 +492,10 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 	
 	public function setFkProvinciaId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_provincia_id !== $v || $v === 0) {
 			$this->fk_provincia_id = $v;

@@ -1,32 +1,32 @@
 <?php
 
 
-	
+
 class RelAnioActividadMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.RelAnioActividadMapBuilder';	
-
-    
-    private $dbMap;
+	const CLASS_NAME = 'lib.model.map.RelAnioActividadMapBuilder';
 
 	
-    public function isBuilt()
-    {
-        return ($this->dbMap !== null);
-    }
+	private $dbMap;
 
 	
-    public function getDatabaseMap()
-    {
-        return $this->dbMap;
-    }
+	public function isBuilt()
+	{
+		return ($this->dbMap !== null);
+	}
 
-    
-    public function doBuild()
-    {
+	
+	public function getDatabaseMap()
+	{
+		return $this->dbMap;
+	}
+
+	
+	public function doBuild()
+	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
-		
+
 		$tMap = $this->dbMap->addTable('rel_anio_actividad');
 		$tMap->setPhpName('RelAnioActividad');
 
@@ -38,7 +38,7 @@ class RelAnioActividadMapBuilder {
 
 		$tMap->addForeignKey('FK_ACTIVIDAD_ID', 'FkActividadId', 'int', CreoleTypes::INTEGER, 'actividad', 'ID', true, 11);
 
-		$tMap->addColumn('HORAS', 'Horas', 'double', CreoleTypes::DECIMAL, true);
-				
-    } 
+		$tMap->addColumn('HORAS', 'Horas', 'double', CreoleTypes::DECIMAL, true, 10,2);
+
+	} 
 } 

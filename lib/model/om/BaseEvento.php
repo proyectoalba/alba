@@ -163,6 +163,10 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = EventoPeer::ID;
@@ -172,6 +176,10 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 	
 	public function setTitulo($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->titulo !== $v) {
 			$this->titulo = $v;
@@ -217,6 +225,10 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 	public function setTipo($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->tipo !== $v || $v === 0) {
 			$this->tipo = $v;
 			$this->modifiedColumns[] = EventoPeer::TIPO;
@@ -226,6 +238,10 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 	
 	public function setFrecuencia($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->frecuencia !== $v || $v === 0) {
 			$this->frecuencia = $v;
@@ -237,6 +253,10 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 	public function setFrecuenciaIntervalo($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->frecuencia_intervalo !== $v || $v === 0) {
 			$this->frecuencia_intervalo = $v;
 			$this->modifiedColumns[] = EventoPeer::FRECUENCIA_INTERVALO;
@@ -246,6 +266,10 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 	
 	public function setRecurrenciaFin($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->recurrencia_fin !== $v || $v === '') {
 			$this->recurrencia_fin = $v;
@@ -257,6 +281,10 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 	public function setRecurrenciaDias($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->recurrencia_dias !== $v || $v === 0) {
 			$this->recurrencia_dias = $v;
 			$this->modifiedColumns[] = EventoPeer::RECURRENCIA_DIAS;
@@ -266,6 +294,10 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 	
 	public function setEstado($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->estado !== $v || $v === 0) {
 			$this->estado = $v;

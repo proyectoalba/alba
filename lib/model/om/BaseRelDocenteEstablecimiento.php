@@ -45,6 +45,10 @@ abstract class BaseRelDocenteEstablecimiento extends BaseObject  implements Pers
 	public function setFkEstablecimientoId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->fk_establecimiento_id !== $v || $v === 0) {
 			$this->fk_establecimiento_id = $v;
 			$this->modifiedColumns[] = RelDocenteEstablecimientoPeer::FK_ESTABLECIMIENTO_ID;
@@ -58,6 +62,10 @@ abstract class BaseRelDocenteEstablecimiento extends BaseObject  implements Pers
 	
 	public function setFkDocenteId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_docente_id !== $v || $v === 0) {
 			$this->fk_docente_id = $v;

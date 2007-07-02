@@ -1,32 +1,32 @@
 <?php
 
 
-	
+
 class PermisoMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.PermisoMapBuilder';	
-
-    
-    private $dbMap;
+	const CLASS_NAME = 'lib.model.map.PermisoMapBuilder';
 
 	
-    public function isBuilt()
-    {
-        return ($this->dbMap !== null);
-    }
+	private $dbMap;
 
 	
-    public function getDatabaseMap()
-    {
-        return $this->dbMap;
-    }
+	public function isBuilt()
+	{
+		return ($this->dbMap !== null);
+	}
 
-    
-    public function doBuild()
-    {
+	
+	public function getDatabaseMap()
+	{
+		return $this->dbMap;
+	}
+
+	
+	public function doBuild()
+	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
-		
+
 		$tMap = $this->dbMap->addTable('permiso');
 		$tMap->setPhpName('Permiso');
 
@@ -41,6 +41,6 @@ class PermisoMapBuilder {
 		$tMap->addForeignKey('FK_MODULO_ID', 'FkModuloId', 'int', CreoleTypes::INTEGER, 'modulo', 'ID', true, null);
 
 		$tMap->addColumn('CREDENCIAL', 'Credencial', 'string', CreoleTypes::VARCHAR, false, 32);
-				
-    } 
+
+	} 
 } 

@@ -194,6 +194,10 @@ abstract class BaseUsuario extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = UsuarioPeer::ID;
@@ -204,6 +208,10 @@ abstract class BaseUsuario extends BaseObject  implements Persistent {
 	public function setUsuario($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->usuario !== $v || $v === '') {
 			$this->usuario = $v;
 			$this->modifiedColumns[] = UsuarioPeer::USUARIO;
@@ -213,6 +221,10 @@ abstract class BaseUsuario extends BaseObject  implements Persistent {
 	
 	public function setClave($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->clave !== $v || $v === '') {
 			$this->clave = $v;
@@ -278,6 +290,10 @@ abstract class BaseUsuario extends BaseObject  implements Persistent {
 	public function setSeguridadPregunta($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->seguridad_pregunta !== $v) {
 			$this->seguridad_pregunta = $v;
 			$this->modifiedColumns[] = UsuarioPeer::SEGURIDAD_PREGUNTA;
@@ -287,6 +303,10 @@ abstract class BaseUsuario extends BaseObject  implements Persistent {
 	
 	public function setSeguridadRespuesta($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->seguridad_respuesta !== $v) {
 			$this->seguridad_respuesta = $v;
@@ -298,6 +318,10 @@ abstract class BaseUsuario extends BaseObject  implements Persistent {
 	public function setEmail($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->email !== $v) {
 			$this->email = $v;
 			$this->modifiedColumns[] = UsuarioPeer::EMAIL;
@@ -307,6 +331,10 @@ abstract class BaseUsuario extends BaseObject  implements Persistent {
 	
 	public function setFkEstablecimientoId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_establecimiento_id !== $v || $v === 0) {
 			$this->fk_establecimiento_id = $v;

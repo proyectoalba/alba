@@ -1,32 +1,32 @@
 <?php
 
 
-	
+
 class ResponsableMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.ResponsableMapBuilder';	
-
-    
-    private $dbMap;
+	const CLASS_NAME = 'lib.model.map.ResponsableMapBuilder';
 
 	
-    public function isBuilt()
-    {
-        return ($this->dbMap !== null);
-    }
+	private $dbMap;
 
 	
-    public function getDatabaseMap()
-    {
-        return $this->dbMap;
-    }
+	public function isBuilt()
+	{
+		return ($this->dbMap !== null);
+	}
 
-    
-    public function doBuild()
-    {
+	
+	public function getDatabaseMap()
+	{
+		return $this->dbMap;
+	}
+
+	
+	public function doBuild()
+	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
-		
+
 		$tMap = $this->dbMap->addTable('responsable');
 		$tMap->setPhpName('Responsable');
 
@@ -54,17 +54,17 @@ class ResponsableMapBuilder {
 
 		$tMap->addForeignKey('FK_TIPODOCUMENTO_ID', 'FkTipodocumentoId', 'int', CreoleTypes::INTEGER, 'tipodocumento', 'ID', true, null);
 
-		$tMap->addColumn('SEXO', 'Sexo', 'string', CreoleTypes::CHAR, true);
+		$tMap->addColumn('SEXO', 'Sexo', 'string', CreoleTypes::CHAR, true, 1);
 
 		$tMap->addColumn('EMAIL', 'Email', 'string', CreoleTypes::VARCHAR, false, 128);
 
 		$tMap->addColumn('OBSERVACION', 'Observacion', 'string', CreoleTypes::VARCHAR, false, 255);
 
-		$tMap->addColumn('AUTORIZACION_RETIRO', 'AutorizacionRetiro', 'boolean', CreoleTypes::BOOLEAN, true);
+		$tMap->addColumn('AUTORIZACION_RETIRO', 'AutorizacionRetiro', 'boolean', CreoleTypes::BOOLEAN, true, null);
 
 		$tMap->addForeignKey('FK_CUENTA_ID', 'FkCuentaId', 'int', CreoleTypes::INTEGER, 'cuenta', 'ID', true, null);
 
 		$tMap->addForeignKey('FK_ROLRESPONSABLE_ID', 'FkRolresponsableId', 'int', CreoleTypes::INTEGER, 'rol_responsable', 'ID', true, null);
-				
-    } 
+
+	} 
 } 

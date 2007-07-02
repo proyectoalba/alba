@@ -257,14 +257,14 @@ abstract class BaseResponsablePeer {
 	public static function doCountJoinCuenta(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(ResponsablePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(ResponsablePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -285,14 +285,14 @@ abstract class BaseResponsablePeer {
 	public static function doCountJoinProvincia(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(ResponsablePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(ResponsablePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -313,14 +313,14 @@ abstract class BaseResponsablePeer {
 	public static function doCountJoinTipodocumento(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(ResponsablePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(ResponsablePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -341,14 +341,14 @@ abstract class BaseResponsablePeer {
 	public static function doCountJoinRolResponsable(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(ResponsablePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(ResponsablePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -564,7 +564,7 @@ abstract class BaseResponsablePeer {
 		} else {
 			$criteria->addSelectColumn(ResponsablePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -621,25 +621,25 @@ abstract class BaseResponsablePeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = ResponsablePeer::getOMClass();
 
-			
+
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-				
+
 					
 			$omClass = CuentaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -648,21 +648,21 @@ abstract class BaseResponsablePeer {
 					$temp_obj2->addResponsable($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initResponsables();
 				$obj2->addResponsable($obj1);
 			}
 
-				
+
 					
 			$omClass = ProvinciaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3 = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -671,21 +671,21 @@ abstract class BaseResponsablePeer {
 					$temp_obj3->addResponsable($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initResponsables();
 				$obj3->addResponsable($obj1);
 			}
 
-				
+
 					
 			$omClass = TipodocumentoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj4 = new $cls();
 			$obj4->hydrate($rs, $startcol4);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -694,21 +694,21 @@ abstract class BaseResponsablePeer {
 					$temp_obj4->addResponsable($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj4->initResponsables();
 				$obj4->addResponsable($obj1);
 			}
 
-				
+
 					
 			$omClass = RolResponsablePeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj5 = new $cls();
 			$obj5->hydrate($rs, $startcol5);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -717,7 +717,7 @@ abstract class BaseResponsablePeer {
 					$temp_obj5->addResponsable($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj5->initResponsables();
 				$obj5->addResponsable($obj1);
@@ -733,14 +733,14 @@ abstract class BaseResponsablePeer {
 	public static function doCountJoinAllExceptCuenta(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(ResponsablePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(ResponsablePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -765,14 +765,14 @@ abstract class BaseResponsablePeer {
 	public static function doCountJoinAllExceptProvincia(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(ResponsablePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(ResponsablePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -797,14 +797,14 @@ abstract class BaseResponsablePeer {
 	public static function doCountJoinAllExceptTipodocumento(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(ResponsablePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(ResponsablePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -829,14 +829,14 @@ abstract class BaseResponsablePeer {
 	public static function doCountJoinAllExceptRolResponsable(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(ResponsablePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(ResponsablePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -887,22 +887,22 @@ abstract class BaseResponsablePeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = ResponsablePeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = ProvinciaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -912,7 +912,7 @@ abstract class BaseResponsablePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initResponsables();
 				$obj2->addResponsable($obj1);
@@ -920,11 +920,11 @@ abstract class BaseResponsablePeer {
 
 			$omClass = TipodocumentoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3  = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -934,7 +934,7 @@ abstract class BaseResponsablePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initResponsables();
 				$obj3->addResponsable($obj1);
@@ -942,11 +942,11 @@ abstract class BaseResponsablePeer {
 
 			$omClass = RolResponsablePeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj4  = new $cls();
 			$obj4->hydrate($rs, $startcol4);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -956,7 +956,7 @@ abstract class BaseResponsablePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj4->initResponsables();
 				$obj4->addResponsable($obj1);
@@ -998,22 +998,22 @@ abstract class BaseResponsablePeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = ResponsablePeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = CuentaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1023,7 +1023,7 @@ abstract class BaseResponsablePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initResponsables();
 				$obj2->addResponsable($obj1);
@@ -1031,11 +1031,11 @@ abstract class BaseResponsablePeer {
 
 			$omClass = TipodocumentoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3  = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1045,7 +1045,7 @@ abstract class BaseResponsablePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initResponsables();
 				$obj3->addResponsable($obj1);
@@ -1053,11 +1053,11 @@ abstract class BaseResponsablePeer {
 
 			$omClass = RolResponsablePeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj4  = new $cls();
 			$obj4->hydrate($rs, $startcol4);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1067,7 +1067,7 @@ abstract class BaseResponsablePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj4->initResponsables();
 				$obj4->addResponsable($obj1);
@@ -1109,22 +1109,22 @@ abstract class BaseResponsablePeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = ResponsablePeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = CuentaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1134,7 +1134,7 @@ abstract class BaseResponsablePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initResponsables();
 				$obj2->addResponsable($obj1);
@@ -1142,11 +1142,11 @@ abstract class BaseResponsablePeer {
 
 			$omClass = ProvinciaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3  = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1156,7 +1156,7 @@ abstract class BaseResponsablePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initResponsables();
 				$obj3->addResponsable($obj1);
@@ -1164,11 +1164,11 @@ abstract class BaseResponsablePeer {
 
 			$omClass = RolResponsablePeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj4  = new $cls();
 			$obj4->hydrate($rs, $startcol4);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1178,7 +1178,7 @@ abstract class BaseResponsablePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj4->initResponsables();
 				$obj4->addResponsable($obj1);
@@ -1220,22 +1220,22 @@ abstract class BaseResponsablePeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = ResponsablePeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = CuentaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1245,7 +1245,7 @@ abstract class BaseResponsablePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initResponsables();
 				$obj2->addResponsable($obj1);
@@ -1253,11 +1253,11 @@ abstract class BaseResponsablePeer {
 
 			$omClass = ProvinciaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3  = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1267,7 +1267,7 @@ abstract class BaseResponsablePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initResponsables();
 				$obj3->addResponsable($obj1);
@@ -1275,11 +1275,11 @@ abstract class BaseResponsablePeer {
 
 			$omClass = TipodocumentoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj4  = new $cls();
 			$obj4->hydrate($rs, $startcol4);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1289,7 +1289,7 @@ abstract class BaseResponsablePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj4->initResponsables();
 				$obj4->addResponsable($obj1);

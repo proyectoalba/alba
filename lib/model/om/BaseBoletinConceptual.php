@@ -121,6 +121,10 @@ abstract class BaseBoletinConceptual extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = BoletinConceptualPeer::ID;
@@ -130,6 +134,10 @@ abstract class BaseBoletinConceptual extends BaseObject  implements Persistent {
 	
 	public function setFkEscalanotaId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_escalanota_id !== $v || $v === 0) {
 			$this->fk_escalanota_id = $v;
@@ -145,6 +153,10 @@ abstract class BaseBoletinConceptual extends BaseObject  implements Persistent {
 	public function setFkAlumnoId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->fk_alumno_id !== $v || $v === 0) {
 			$this->fk_alumno_id = $v;
 			$this->modifiedColumns[] = BoletinConceptualPeer::FK_ALUMNO_ID;
@@ -159,6 +171,10 @@ abstract class BaseBoletinConceptual extends BaseObject  implements Persistent {
 	public function setFkConceptoId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->fk_concepto_id !== $v || $v === 0) {
 			$this->fk_concepto_id = $v;
 			$this->modifiedColumns[] = BoletinConceptualPeer::FK_CONCEPTO_ID;
@@ -172,6 +188,10 @@ abstract class BaseBoletinConceptual extends BaseObject  implements Persistent {
 	
 	public function setFkPeriodoId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_periodo_id !== $v || $v === 0) {
 			$this->fk_periodo_id = $v;

@@ -1,32 +1,32 @@
 <?php
 
 
-	
+
 class PreferenciaMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.PreferenciaMapBuilder';	
-
-    
-    private $dbMap;
+	const CLASS_NAME = 'lib.model.map.PreferenciaMapBuilder';
 
 	
-    public function isBuilt()
-    {
-        return ($this->dbMap !== null);
-    }
+	private $dbMap;
 
 	
-    public function getDatabaseMap()
-    {
-        return $this->dbMap;
-    }
+	public function isBuilt()
+	{
+		return ($this->dbMap !== null);
+	}
 
-    
-    public function doBuild()
-    {
+	
+	public function getDatabaseMap()
+	{
+		return $this->dbMap;
+	}
+
+	
+	public function doBuild()
+	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
-		
+
 		$tMap = $this->dbMap->addTable('preferencia');
 		$tMap->setPhpName('Preferencia');
 
@@ -38,7 +38,7 @@ class PreferenciaMapBuilder {
 
 		$tMap->addColumn('VALOR_POR_DEFECTO', 'ValorPorDefecto', 'string', CreoleTypes::VARCHAR, false, 128);
 
-		$tMap->addColumn('ACTIVO', 'Activo', 'boolean', CreoleTypes::BOOLEAN, true);
-				
-    } 
+		$tMap->addColumn('ACTIVO', 'Activo', 'boolean', CreoleTypes::BOOLEAN, true, null);
+
+	} 
 } 

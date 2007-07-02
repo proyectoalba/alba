@@ -187,14 +187,14 @@ abstract class BaseRelUsuarioPermisoPeer {
 	public static function doCountJoinUsuario(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelUsuarioPermisoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelUsuarioPermisoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -215,14 +215,14 @@ abstract class BaseRelUsuarioPermisoPeer {
 	public static function doCountJoinPermiso(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelUsuarioPermisoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelUsuarioPermisoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -344,7 +344,7 @@ abstract class BaseRelUsuarioPermisoPeer {
 		} else {
 			$criteria->addSelectColumn(RelUsuarioPermisoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -387,25 +387,25 @@ abstract class BaseRelUsuarioPermisoPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelUsuarioPermisoPeer::getOMClass();
 
-			
+
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-				
+
 					
 			$omClass = UsuarioPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -414,21 +414,21 @@ abstract class BaseRelUsuarioPermisoPeer {
 					$temp_obj2->addRelUsuarioPermiso($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelUsuarioPermisos();
 				$obj2->addRelUsuarioPermiso($obj1);
 			}
 
-				
+
 					
 			$omClass = PermisoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3 = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -437,7 +437,7 @@ abstract class BaseRelUsuarioPermisoPeer {
 					$temp_obj3->addRelUsuarioPermiso($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initRelUsuarioPermisos();
 				$obj3->addRelUsuarioPermiso($obj1);
@@ -453,14 +453,14 @@ abstract class BaseRelUsuarioPermisoPeer {
 	public static function doCountJoinAllExceptUsuario(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelUsuarioPermisoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelUsuarioPermisoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -481,14 +481,14 @@ abstract class BaseRelUsuarioPermisoPeer {
 	public static function doCountJoinAllExceptPermiso(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelUsuarioPermisoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelUsuarioPermisoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -525,22 +525,22 @@ abstract class BaseRelUsuarioPermisoPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelUsuarioPermisoPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = PermisoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -550,7 +550,7 @@ abstract class BaseRelUsuarioPermisoPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelUsuarioPermisos();
 				$obj2->addRelUsuarioPermiso($obj1);
@@ -582,22 +582,22 @@ abstract class BaseRelUsuarioPermisoPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelUsuarioPermisoPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = UsuarioPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -607,7 +607,7 @@ abstract class BaseRelUsuarioPermisoPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelUsuarioPermisos();
 				$obj2->addRelUsuarioPermiso($obj1);

@@ -1,32 +1,32 @@
 <?php
 
 
-	
+
 class RelCalendariovacunacionAlumnoMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.RelCalendariovacunacionAlumnoMapBuilder';	
-
-    
-    private $dbMap;
+	const CLASS_NAME = 'lib.model.map.RelCalendariovacunacionAlumnoMapBuilder';
 
 	
-    public function isBuilt()
-    {
-        return ($this->dbMap !== null);
-    }
+	private $dbMap;
 
 	
-    public function getDatabaseMap()
-    {
-        return $this->dbMap;
-    }
+	public function isBuilt()
+	{
+		return ($this->dbMap !== null);
+	}
 
-    
-    public function doBuild()
-    {
+	
+	public function getDatabaseMap()
+	{
+		return $this->dbMap;
+	}
+
+	
+	public function doBuild()
+	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
-		
+
 		$tMap = $this->dbMap->addTable('rel_calendariovacunacion_alumno');
 		$tMap->setPhpName('RelCalendariovacunacionAlumno');
 
@@ -40,9 +40,9 @@ class RelCalendariovacunacionAlumnoMapBuilder {
 
 		$tMap->addColumn('OBSERVACION', 'Observacion', 'string', CreoleTypes::VARCHAR, false, 255);
 
-		$tMap->addColumn('COMPROBANTE', 'Comprobante', 'boolean', CreoleTypes::BOOLEAN, true);
+		$tMap->addColumn('COMPROBANTE', 'Comprobante', 'boolean', CreoleTypes::BOOLEAN, true, null);
 
-		$tMap->addColumn('FECHA', 'Fecha', 'int', CreoleTypes::TIMESTAMP, false);
-				
-    } 
+		$tMap->addColumn('FECHA', 'Fecha', 'int', CreoleTypes::TIMESTAMP, false, null);
+
+	} 
 } 

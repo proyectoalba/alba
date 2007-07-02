@@ -1,32 +1,32 @@
 <?php
 
 
-	
+
 class RelRolresponsableResponsableMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.RelRolresponsableResponsableMapBuilder';	
-
-    
-    private $dbMap;
+	const CLASS_NAME = 'lib.model.map.RelRolresponsableResponsableMapBuilder';
 
 	
-    public function isBuilt()
-    {
-        return ($this->dbMap !== null);
-    }
+	private $dbMap;
 
 	
-    public function getDatabaseMap()
-    {
-        return $this->dbMap;
-    }
+	public function isBuilt()
+	{
+		return ($this->dbMap !== null);
+	}
 
-    
-    public function doBuild()
-    {
+	
+	public function getDatabaseMap()
+	{
+		return $this->dbMap;
+	}
+
+	
+	public function doBuild()
+	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
-		
+
 		$tMap = $this->dbMap->addTable('rel_rolresponsable_responsable');
 		$tMap->setPhpName('RelRolresponsableResponsable');
 
@@ -41,6 +41,6 @@ class RelRolresponsableResponsableMapBuilder {
 		$tMap->addForeignKey('FK_ALUMNO_ID', 'FkAlumnoId', 'int', CreoleTypes::INTEGER, 'alumno', 'ID', true, 11);
 
 		$tMap->addColumn('DESCRIPCION', 'Descripcion', 'string', CreoleTypes::VARCHAR, false, 255);
-				
-    } 
+
+	} 
 } 

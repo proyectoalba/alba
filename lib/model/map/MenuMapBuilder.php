@@ -1,32 +1,32 @@
 <?php
 
 
-	
+
 class MenuMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.MenuMapBuilder';	
-
-    
-    private $dbMap;
+	const CLASS_NAME = 'lib.model.map.MenuMapBuilder';
 
 	
-    public function isBuilt()
-    {
-        return ($this->dbMap !== null);
-    }
+	private $dbMap;
 
 	
-    public function getDatabaseMap()
-    {
-        return $this->dbMap;
-    }
+	public function isBuilt()
+	{
+		return ($this->dbMap !== null);
+	}
 
-    
-    public function doBuild()
-    {
+	
+	public function getDatabaseMap()
+	{
+		return $this->dbMap;
+	}
+
+	
+	public function doBuild()
+	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
-		
+
 		$tMap = $this->dbMap->addTable('menu');
 		$tMap->setPhpName('Menu');
 
@@ -44,7 +44,7 @@ class MenuMapBuilder {
 
 		$tMap->addForeignKey('FK_PADRE_MENU_ID', 'FkPadreMenuId', 'int', CreoleTypes::INTEGER, 'menu', 'ID', false, null);
 
-		$tMap->addColumn('ORDEN', 'Orden', 'int', CreoleTypes::INTEGER, false);
-				
-    } 
+		$tMap->addColumn('ORDEN', 'Orden', 'int', CreoleTypes::INTEGER, false, null);
+
+	} 
 } 

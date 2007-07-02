@@ -45,6 +45,10 @@ abstract class BaseLegajocategoria extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = LegajocategoriaPeer::ID;
@@ -54,6 +58,10 @@ abstract class BaseLegajocategoria extends BaseObject  implements Persistent {
 	
 	public function setDescripcion($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->descripcion !== $v) {
 			$this->descripcion = $v;

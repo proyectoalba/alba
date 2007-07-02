@@ -1,32 +1,32 @@
 <?php
 
 
-	
+
 class AsistenciaMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.AsistenciaMapBuilder';	
-
-    
-    private $dbMap;
+	const CLASS_NAME = 'lib.model.map.AsistenciaMapBuilder';
 
 	
-    public function isBuilt()
-    {
-        return ($this->dbMap !== null);
-    }
+	private $dbMap;
 
 	
-    public function getDatabaseMap()
-    {
-        return $this->dbMap;
-    }
+	public function isBuilt()
+	{
+		return ($this->dbMap !== null);
+	}
 
-    
-    public function doBuild()
-    {
+	
+	public function getDatabaseMap()
+	{
+		return $this->dbMap;
+	}
+
+	
+	public function doBuild()
+	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
-		
+
 		$tMap = $this->dbMap->addTable('asistencia');
 		$tMap->setPhpName('Asistencia');
 
@@ -38,7 +38,7 @@ class AsistenciaMapBuilder {
 
 		$tMap->addForeignKey('FK_TIPOASISTENCIA_ID', 'FkTipoasistenciaId', 'int', CreoleTypes::INTEGER, 'tipoasistencia', 'ID', true, 11);
 
-		$tMap->addColumn('FECHA', 'Fecha', 'int', CreoleTypes::TIMESTAMP, true);
-				
-    } 
+		$tMap->addColumn('FECHA', 'Fecha', 'int', CreoleTypes::TIMESTAMP, true, null);
+
+	} 
 } 

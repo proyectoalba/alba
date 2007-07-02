@@ -212,14 +212,14 @@ abstract class BaseLegajopedagogicoPeer {
 	public static function doCountJoinLegajocategoria(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -240,14 +240,14 @@ abstract class BaseLegajopedagogicoPeer {
 	public static function doCountJoinAlumno(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -268,14 +268,14 @@ abstract class BaseLegajopedagogicoPeer {
 	public static function doCountJoinUsuario(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -444,7 +444,7 @@ abstract class BaseLegajopedagogicoPeer {
 		} else {
 			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -494,25 +494,25 @@ abstract class BaseLegajopedagogicoPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = LegajopedagogicoPeer::getOMClass();
 
-			
+
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-				
+
 					
 			$omClass = LegajocategoriaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -521,21 +521,21 @@ abstract class BaseLegajopedagogicoPeer {
 					$temp_obj2->addLegajopedagogico($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initLegajopedagogicos();
 				$obj2->addLegajopedagogico($obj1);
 			}
 
-				
+
 					
 			$omClass = AlumnoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3 = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -544,21 +544,21 @@ abstract class BaseLegajopedagogicoPeer {
 					$temp_obj3->addLegajopedagogico($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initLegajopedagogicos();
 				$obj3->addLegajopedagogico($obj1);
 			}
 
-				
+
 					
 			$omClass = UsuarioPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj4 = new $cls();
 			$obj4->hydrate($rs, $startcol4);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -567,7 +567,7 @@ abstract class BaseLegajopedagogicoPeer {
 					$temp_obj4->addLegajopedagogico($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj4->initLegajopedagogicos();
 				$obj4->addLegajopedagogico($obj1);
@@ -583,14 +583,14 @@ abstract class BaseLegajopedagogicoPeer {
 	public static function doCountJoinAllExceptLegajocategoria(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -613,14 +613,14 @@ abstract class BaseLegajopedagogicoPeer {
 	public static function doCountJoinAllExceptAlumno(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -643,14 +643,14 @@ abstract class BaseLegajopedagogicoPeer {
 	public static function doCountJoinAllExceptUsuario(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -694,22 +694,22 @@ abstract class BaseLegajopedagogicoPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = LegajopedagogicoPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = AlumnoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -719,7 +719,7 @@ abstract class BaseLegajopedagogicoPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initLegajopedagogicos();
 				$obj2->addLegajopedagogico($obj1);
@@ -727,11 +727,11 @@ abstract class BaseLegajopedagogicoPeer {
 
 			$omClass = UsuarioPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3  = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -741,7 +741,7 @@ abstract class BaseLegajopedagogicoPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initLegajopedagogicos();
 				$obj3->addLegajopedagogico($obj1);
@@ -778,22 +778,22 @@ abstract class BaseLegajopedagogicoPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = LegajopedagogicoPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = LegajocategoriaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -803,7 +803,7 @@ abstract class BaseLegajopedagogicoPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initLegajopedagogicos();
 				$obj2->addLegajopedagogico($obj1);
@@ -811,11 +811,11 @@ abstract class BaseLegajopedagogicoPeer {
 
 			$omClass = UsuarioPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3  = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -825,7 +825,7 @@ abstract class BaseLegajopedagogicoPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initLegajopedagogicos();
 				$obj3->addLegajopedagogico($obj1);
@@ -862,22 +862,22 @@ abstract class BaseLegajopedagogicoPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = LegajopedagogicoPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = LegajocategoriaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -887,7 +887,7 @@ abstract class BaseLegajopedagogicoPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initLegajopedagogicos();
 				$obj2->addLegajopedagogico($obj1);
@@ -895,11 +895,11 @@ abstract class BaseLegajopedagogicoPeer {
 
 			$omClass = AlumnoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3  = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -909,7 +909,7 @@ abstract class BaseLegajopedagogicoPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initLegajopedagogicos();
 				$obj3->addLegajopedagogico($obj1);

@@ -182,14 +182,14 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 	public static function doCountJoinDocente(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelDocenteEstablecimientoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelDocenteEstablecimientoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -210,14 +210,14 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 	public static function doCountJoinEstablecimiento(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelDocenteEstablecimientoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelDocenteEstablecimientoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -339,7 +339,7 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 		} else {
 			$criteria->addSelectColumn(RelDocenteEstablecimientoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -382,25 +382,25 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelDocenteEstablecimientoPeer::getOMClass();
 
-			
+
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-				
+
 					
 			$omClass = DocentePeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -409,21 +409,21 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 					$temp_obj2->addRelDocenteEstablecimiento($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelDocenteEstablecimientos();
 				$obj2->addRelDocenteEstablecimiento($obj1);
 			}
 
-				
+
 					
 			$omClass = EstablecimientoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3 = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -432,7 +432,7 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 					$temp_obj3->addRelDocenteEstablecimiento($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initRelDocenteEstablecimientos();
 				$obj3->addRelDocenteEstablecimiento($obj1);
@@ -448,14 +448,14 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 	public static function doCountJoinAllExceptDocente(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelDocenteEstablecimientoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelDocenteEstablecimientoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -476,14 +476,14 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 	public static function doCountJoinAllExceptEstablecimiento(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelDocenteEstablecimientoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelDocenteEstablecimientoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -520,22 +520,22 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelDocenteEstablecimientoPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = EstablecimientoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -545,7 +545,7 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelDocenteEstablecimientos();
 				$obj2->addRelDocenteEstablecimiento($obj1);
@@ -577,22 +577,22 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelDocenteEstablecimientoPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = DocentePeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -602,7 +602,7 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelDocenteEstablecimientos();
 				$obj2->addRelDocenteEstablecimiento($obj1);

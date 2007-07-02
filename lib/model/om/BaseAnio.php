@@ -65,6 +65,10 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = AnioPeer::ID;
@@ -74,6 +78,10 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 	
 	public function setFkEstablecimientoId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_establecimiento_id !== $v || $v === 0) {
 			$this->fk_establecimiento_id = $v;
@@ -88,6 +96,10 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 	
 	public function setDescripcion($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->descripcion !== $v || $v === '') {
 			$this->descripcion = $v;

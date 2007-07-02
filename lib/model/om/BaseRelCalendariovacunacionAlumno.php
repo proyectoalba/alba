@@ -104,6 +104,10 @@ abstract class BaseRelCalendariovacunacionAlumno extends BaseObject  implements 
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = RelCalendariovacunacionAlumnoPeer::ID;
@@ -113,6 +117,10 @@ abstract class BaseRelCalendariovacunacionAlumno extends BaseObject  implements 
 	
 	public function setFkAlumnoId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_alumno_id !== $v) {
 			$this->fk_alumno_id = $v;
@@ -128,6 +136,10 @@ abstract class BaseRelCalendariovacunacionAlumno extends BaseObject  implements 
 	public function setFkCalendariovacunacionId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->fk_calendariovacunacion_id !== $v) {
 			$this->fk_calendariovacunacion_id = $v;
 			$this->modifiedColumns[] = RelCalendariovacunacionAlumnoPeer::FK_CALENDARIOVACUNACION_ID;
@@ -141,6 +153,10 @@ abstract class BaseRelCalendariovacunacionAlumno extends BaseObject  implements 
 	
 	public function setObservacion($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->observacion !== $v) {
 			$this->observacion = $v;

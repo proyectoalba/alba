@@ -1,32 +1,32 @@
 <?php
 
 
-	
+
 class TipoasistenciaMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.TipoasistenciaMapBuilder';	
-
-    
-    private $dbMap;
+	const CLASS_NAME = 'lib.model.map.TipoasistenciaMapBuilder';
 
 	
-    public function isBuilt()
-    {
-        return ($this->dbMap !== null);
-    }
+	private $dbMap;
 
 	
-    public function getDatabaseMap()
-    {
-        return $this->dbMap;
-    }
+	public function isBuilt()
+	{
+		return ($this->dbMap !== null);
+	}
 
-    
-    public function doBuild()
-    {
+	
+	public function getDatabaseMap()
+	{
+		return $this->dbMap;
+	}
+
+	
+	public function doBuild()
+	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
-		
+
 		$tMap = $this->dbMap->addTable('tipoasistencia');
 		$tMap->setPhpName('Tipoasistencia');
 
@@ -38,11 +38,11 @@ class TipoasistenciaMapBuilder {
 
 		$tMap->addColumn('DESCRIPCION', 'Descripcion', 'string', CreoleTypes::VARCHAR, false, 255);
 
-		$tMap->addColumn('VALOR', 'Valor', 'double', CreoleTypes::DECIMAL, true);
+		$tMap->addColumn('VALOR', 'Valor', 'double', CreoleTypes::DECIMAL, true, 4,2);
 
 		$tMap->addColumn('GRUPO', 'Grupo', 'string', CreoleTypes::VARCHAR, false, 30);
 
-		$tMap->addColumn('DEFECTO', 'Defecto', 'boolean', CreoleTypes::BOOLEAN, true);
-				
-    } 
+		$tMap->addColumn('DEFECTO', 'Defecto', 'boolean', CreoleTypes::BOOLEAN, true, null);
+
+	} 
 } 

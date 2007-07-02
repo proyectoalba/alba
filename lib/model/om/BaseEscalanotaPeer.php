@@ -202,14 +202,14 @@ abstract class BaseEscalanotaPeer {
 	public static function doCountJoinEstablecimiento(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(EscalanotaPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(EscalanotaPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -284,7 +284,7 @@ abstract class BaseEscalanotaPeer {
 		} else {
 			$criteria->addSelectColumn(EscalanotaPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -320,25 +320,25 @@ abstract class BaseEscalanotaPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = EscalanotaPeer::getOMClass();
 
-			
+
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-				
+
 					
 			$omClass = EstablecimientoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -347,7 +347,7 @@ abstract class BaseEscalanotaPeer {
 					$temp_obj2->addEscalanota($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initEscalanotas();
 				$obj2->addEscalanota($obj1);

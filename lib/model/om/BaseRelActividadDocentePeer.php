@@ -13,14 +13,11 @@ abstract class BaseRelActividadDocentePeer {
 	const CLASS_DEFAULT = 'lib.model.RelActividadDocente';
 
 	
-	const NUM_COLUMNS = 3;
+	const NUM_COLUMNS = 2;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
-
-	
-	const ID = 'rel_actividad_docente.ID';
 
 	
 	const FK_ACTIVIDAD_ID = 'rel_actividad_docente.FK_ACTIVIDAD_ID';
@@ -34,18 +31,18 @@ abstract class BaseRelActividadDocentePeer {
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'FkActividadId', 'FkDocenteId', ),
-		BasePeer::TYPE_COLNAME => array (RelActividadDocentePeer::ID, RelActividadDocentePeer::FK_ACTIVIDAD_ID, RelActividadDocentePeer::FK_DOCENTE_ID, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'fk_actividad_id', 'fk_docente_id', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, )
+		BasePeer::TYPE_PHPNAME => array ('FkActividadId', 'FkDocenteId', ),
+		BasePeer::TYPE_COLNAME => array (RelActividadDocentePeer::FK_ACTIVIDAD_ID, RelActividadDocentePeer::FK_DOCENTE_ID, ),
+		BasePeer::TYPE_FIELDNAME => array ('fk_actividad_id', 'fk_docente_id', ),
+		BasePeer::TYPE_NUM => array (0, 1, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'FkActividadId' => 1, 'FkDocenteId' => 2, ),
-		BasePeer::TYPE_COLNAME => array (RelActividadDocentePeer::ID => 0, RelActividadDocentePeer::FK_ACTIVIDAD_ID => 1, RelActividadDocentePeer::FK_DOCENTE_ID => 2, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'fk_actividad_id' => 1, 'fk_docente_id' => 2, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, )
+		BasePeer::TYPE_PHPNAME => array ('FkActividadId' => 0, 'FkDocenteId' => 1, ),
+		BasePeer::TYPE_COLNAME => array (RelActividadDocentePeer::FK_ACTIVIDAD_ID => 0, RelActividadDocentePeer::FK_DOCENTE_ID => 1, ),
+		BasePeer::TYPE_FIELDNAME => array ('fk_actividad_id' => 0, 'fk_docente_id' => 1, ),
+		BasePeer::TYPE_NUM => array (0, 1, )
 	);
 
 	
@@ -99,16 +96,14 @@ abstract class BaseRelActividadDocentePeer {
 	public static function addSelectColumns(Criteria $criteria)
 	{
 
-		$criteria->addSelectColumn(RelActividadDocentePeer::ID);
-
 		$criteria->addSelectColumn(RelActividadDocentePeer::FK_ACTIVIDAD_ID);
 
 		$criteria->addSelectColumn(RelActividadDocentePeer::FK_DOCENTE_ID);
 
 	}
 
-	const COUNT = 'COUNT(rel_actividad_docente.ID)';
-	const COUNT_DISTINCT = 'COUNT(DISTINCT rel_actividad_docente.ID)';
+	const COUNT = 'COUNT(rel_actividad_docente.FK_ACTIVIDAD_ID)';
+	const COUNT_DISTINCT = 'COUNT(DISTINCT rel_actividad_docente.FK_ACTIVIDAD_ID)';
 
 	
 	public static function doCount(Criteria $criteria, $distinct = false, $con = null)
@@ -187,14 +182,14 @@ abstract class BaseRelActividadDocentePeer {
 	public static function doCountJoinDocente(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelActividadDocentePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelActividadDocentePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -215,14 +210,14 @@ abstract class BaseRelActividadDocentePeer {
 	public static function doCountJoinActividad(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelActividadDocentePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelActividadDocentePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -344,7 +339,7 @@ abstract class BaseRelActividadDocentePeer {
 		} else {
 			$criteria->addSelectColumn(RelActividadDocentePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -387,25 +382,25 @@ abstract class BaseRelActividadDocentePeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelActividadDocentePeer::getOMClass();
 
-			
+
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-				
+
 					
 			$omClass = DocentePeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -414,21 +409,21 @@ abstract class BaseRelActividadDocentePeer {
 					$temp_obj2->addRelActividadDocente($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelActividadDocentes();
 				$obj2->addRelActividadDocente($obj1);
 			}
 
-				
+
 					
 			$omClass = ActividadPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3 = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -437,7 +432,7 @@ abstract class BaseRelActividadDocentePeer {
 					$temp_obj3->addRelActividadDocente($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initRelActividadDocentes();
 				$obj3->addRelActividadDocente($obj1);
@@ -453,14 +448,14 @@ abstract class BaseRelActividadDocentePeer {
 	public static function doCountJoinAllExceptDocente(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelActividadDocentePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelActividadDocentePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -481,14 +476,14 @@ abstract class BaseRelActividadDocentePeer {
 	public static function doCountJoinAllExceptActividad(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelActividadDocentePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelActividadDocentePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -525,22 +520,22 @@ abstract class BaseRelActividadDocentePeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelActividadDocentePeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = ActividadPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -550,7 +545,7 @@ abstract class BaseRelActividadDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelActividadDocentes();
 				$obj2->addRelActividadDocente($obj1);
@@ -582,22 +577,22 @@ abstract class BaseRelActividadDocentePeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelActividadDocentePeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = DocentePeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -607,7 +602,7 @@ abstract class BaseRelActividadDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelActividadDocentes();
 				$obj2->addRelActividadDocente($obj1);
@@ -641,7 +636,6 @@ abstract class BaseRelActividadDocentePeer {
 			$criteria = clone $values; 		} else {
 			$criteria = $values->buildCriteria(); 		}
 
-		$criteria->remove(RelActividadDocentePeer::ID); 
 
 				$criteria->setDbName(self::DATABASE_NAME);
 
@@ -668,8 +662,11 @@ abstract class BaseRelActividadDocentePeer {
 
 		if ($values instanceof Criteria) {
 			$criteria = clone $values; 
-			$comparison = $criteria->getComparison(RelActividadDocentePeer::ID);
-			$selectCriteria->add(RelActividadDocentePeer::ID, $criteria->remove(RelActividadDocentePeer::ID), $comparison);
+			$comparison = $criteria->getComparison(RelActividadDocentePeer::FK_ACTIVIDAD_ID);
+			$selectCriteria->add(RelActividadDocentePeer::FK_ACTIVIDAD_ID, $criteria->remove(RelActividadDocentePeer::FK_ACTIVIDAD_ID), $comparison);
+
+			$comparison = $criteria->getComparison(RelActividadDocentePeer::FK_DOCENTE_ID);
+			$selectCriteria->add(RelActividadDocentePeer::FK_DOCENTE_ID, $criteria->remove(RelActividadDocentePeer::FK_DOCENTE_ID), $comparison);
 
 		} else { 			$criteria = $values->buildCriteria(); 			$selectCriteria = $values->buildPkeyCriteria(); 		}
 
@@ -708,7 +705,20 @@ abstract class BaseRelActividadDocentePeer {
 			$criteria = $values->buildPkeyCriteria();
 		} else {
 						$criteria = new Criteria(self::DATABASE_NAME);
-			$criteria->add(RelActividadDocentePeer::ID, (array) $values, Criteria::IN);
+												if(count($values) == count($values, COUNT_RECURSIVE))
+			{
+								$values = array($values);
+			}
+			$vals = array();
+			foreach($values as $value)
+			{
+
+				$vals[0][] = $value[0];
+				$vals[1][] = $value[1];
+			}
+
+			$criteria->add(RelActividadDocentePeer::FK_ACTIVIDAD_ID, $vals[0], Criteria::IN);
+			$criteria->add(RelActividadDocentePeer::FK_DOCENTE_ID, $vals[1], Criteria::IN);
 		}
 
 				$criteria->setDbName(self::DATABASE_NAME);
@@ -762,40 +772,17 @@ abstract class BaseRelActividadDocentePeer {
 	}
 
 	
-	public static function retrieveByPK($pk, $con = null)
-	{
+	public static function retrieveByPK( $fk_actividad_id, $fk_docente_id, $con = null) {
 		if ($con === null) {
 			$con = Propel::getConnection(self::DATABASE_NAME);
 		}
-
-		$criteria = new Criteria(RelActividadDocentePeer::DATABASE_NAME);
-
-		$criteria->add(RelActividadDocentePeer::ID, $pk);
-
-
+		$criteria = new Criteria();
+		$criteria->add(RelActividadDocentePeer::FK_ACTIVIDAD_ID, $fk_actividad_id);
+		$criteria->add(RelActividadDocentePeer::FK_DOCENTE_ID, $fk_docente_id);
 		$v = RelActividadDocentePeer::doSelect($criteria, $con);
 
-		return !empty($v) > 0 ? $v[0] : null;
+		return !empty($v) ? $v[0] : null;
 	}
-
-	
-	public static function retrieveByPKs($pks, $con = null)
-	{
-		if ($con === null) {
-			$con = Propel::getConnection(self::DATABASE_NAME);
-		}
-
-		$objs = null;
-		if (empty($pks)) {
-			$objs = array();
-		} else {
-			$criteria = new Criteria();
-			$criteria->add(RelActividadDocentePeer::ID, $pks, Criteria::IN);
-			$objs = RelActividadDocentePeer::doSelect($criteria, $con);
-		}
-		return $objs;
-	}
-
 } 
 if (Propel::isInit()) {
 			try {

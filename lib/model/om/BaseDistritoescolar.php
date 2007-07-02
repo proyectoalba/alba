@@ -78,6 +78,10 @@ abstract class BaseDistritoescolar extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = DistritoescolarPeer::ID;
@@ -87,6 +91,10 @@ abstract class BaseDistritoescolar extends BaseObject  implements Persistent {
 	
 	public function setNombre($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->nombre !== $v || $v === '') {
 			$this->nombre = $v;
@@ -98,6 +106,10 @@ abstract class BaseDistritoescolar extends BaseObject  implements Persistent {
 	public function setDireccion($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->direccion !== $v) {
 			$this->direccion = $v;
 			$this->modifiedColumns[] = DistritoescolarPeer::DIRECCION;
@@ -108,6 +120,10 @@ abstract class BaseDistritoescolar extends BaseObject  implements Persistent {
 	public function setTelefono($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->telefono !== $v) {
 			$this->telefono = $v;
 			$this->modifiedColumns[] = DistritoescolarPeer::TELEFONO;
@@ -117,6 +133,10 @@ abstract class BaseDistritoescolar extends BaseObject  implements Persistent {
 	
 	public function setCiudad($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->ciudad !== $v) {
 			$this->ciudad = $v;

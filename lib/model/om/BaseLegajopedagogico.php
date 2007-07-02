@@ -135,6 +135,10 @@ abstract class BaseLegajopedagogico extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = LegajopedagogicoPeer::ID;
@@ -144,6 +148,10 @@ abstract class BaseLegajopedagogico extends BaseObject  implements Persistent {
 	
 	public function setFkAlumnoId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_alumno_id !== $v) {
 			$this->fk_alumno_id = $v;
@@ -158,6 +166,10 @@ abstract class BaseLegajopedagogico extends BaseObject  implements Persistent {
 	
 	public function setTitulo($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->titulo !== $v) {
 			$this->titulo = $v;
@@ -228,6 +240,10 @@ abstract class BaseLegajopedagogico extends BaseObject  implements Persistent {
 	public function setFkUsuarioId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->fk_usuario_id !== $v) {
 			$this->fk_usuario_id = $v;
 			$this->modifiedColumns[] = LegajopedagogicoPeer::FK_USUARIO_ID;
@@ -241,6 +257,10 @@ abstract class BaseLegajopedagogico extends BaseObject  implements Persistent {
 	
 	public function setFkLegajocategoriaId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_legajocategoria_id !== $v) {
 			$this->fk_legajocategoria_id = $v;

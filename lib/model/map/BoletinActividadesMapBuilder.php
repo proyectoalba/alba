@@ -1,32 +1,32 @@
 <?php
 
 
-	
+
 class BoletinActividadesMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.BoletinActividadesMapBuilder';	
-
-    
-    private $dbMap;
+	const CLASS_NAME = 'lib.model.map.BoletinActividadesMapBuilder';
 
 	
-    public function isBuilt()
-    {
-        return ($this->dbMap !== null);
-    }
+	private $dbMap;
 
 	
-    public function getDatabaseMap()
-    {
-        return $this->dbMap;
-    }
+	public function isBuilt()
+	{
+		return ($this->dbMap !== null);
+	}
 
-    
-    public function doBuild()
-    {
+	
+	public function getDatabaseMap()
+	{
+		return $this->dbMap;
+	}
+
+	
+	public function doBuild()
+	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
-		
+
 		$tMap = $this->dbMap->addTable('boletin_actividades');
 		$tMap->setPhpName('BoletinActividades');
 
@@ -42,9 +42,9 @@ class BoletinActividadesMapBuilder {
 
 		$tMap->addForeignKey('FK_PERIODO_ID', 'FkPeriodoId', 'int', CreoleTypes::INTEGER, 'periodo', 'ID', true, 11);
 
-		$tMap->addColumn('OBSERVACION', 'Observacion', 'string', CreoleTypes::BLOB, true);
+		$tMap->addColumn('OBSERVACION', 'Observacion', 'string', CreoleTypes::BLOB, true, null);
 
-		$tMap->addColumn('FECHA', 'Fecha', 'int', CreoleTypes::TIMESTAMP, true);
-				
-    } 
+		$tMap->addColumn('FECHA', 'Fecha', 'int', CreoleTypes::TIMESTAMP, true, null);
+
+	} 
 } 

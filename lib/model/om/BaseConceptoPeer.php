@@ -192,14 +192,14 @@ abstract class BaseConceptoPeer {
 	public static function doCountJoinEstablecimiento(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(ConceptoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(ConceptoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -274,7 +274,7 @@ abstract class BaseConceptoPeer {
 		} else {
 			$criteria->addSelectColumn(ConceptoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -310,25 +310,25 @@ abstract class BaseConceptoPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = ConceptoPeer::getOMClass();
 
-			
+
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-				
+
 					
 			$omClass = EstablecimientoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -337,7 +337,7 @@ abstract class BaseConceptoPeer {
 					$temp_obj2->addConcepto($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initConceptos();
 				$obj2->addConcepto($obj1);

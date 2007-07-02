@@ -155,6 +155,10 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = HorarioescolarPeer::ID;
@@ -164,6 +168,10 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 	
 	public function setDia($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->dia !== $v || $v === 0) {
 			$this->dia = $v;
@@ -209,6 +217,10 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 	public function setNombre($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->nombre !== $v) {
 			$this->nombre = $v;
 			$this->modifiedColumns[] = HorarioescolarPeer::NOMBRE;
@@ -219,6 +231,10 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 	public function setDescripcion($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->descripcion !== $v) {
 			$this->descripcion = $v;
 			$this->modifiedColumns[] = HorarioescolarPeer::DESCRIPCION;
@@ -228,6 +244,10 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 	
 	public function setFkEstablecimientoId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_establecimiento_id !== $v || $v === 0) {
 			$this->fk_establecimiento_id = $v;
@@ -243,6 +263,10 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 	public function setFkTurnosId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->fk_turnos_id !== $v || $v === 0) {
 			$this->fk_turnos_id = $v;
 			$this->modifiedColumns[] = HorarioescolarPeer::FK_TURNOS_ID;
@@ -256,6 +280,10 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 	
 	public function setFkHorarioescolartipoId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_horarioescolartipo_id !== $v || $v === 0) {
 			$this->fk_horarioescolartipo_id = $v;

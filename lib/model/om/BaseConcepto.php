@@ -70,6 +70,10 @@ abstract class BaseConcepto extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = ConceptoPeer::ID;
@@ -79,6 +83,10 @@ abstract class BaseConcepto extends BaseObject  implements Persistent {
 	
 	public function setFkEstablecimientoId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_establecimiento_id !== $v || $v === 0) {
 			$this->fk_establecimiento_id = $v;
@@ -94,6 +102,10 @@ abstract class BaseConcepto extends BaseObject  implements Persistent {
 	public function setNombre($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->nombre !== $v) {
 			$this->nombre = $v;
 			$this->modifiedColumns[] = ConceptoPeer::NOMBRE;
@@ -103,6 +115,10 @@ abstract class BaseConcepto extends BaseObject  implements Persistent {
 	
 	public function setDescripcion($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->descripcion !== $v) {
 			$this->descripcion = $v;

@@ -1,32 +1,32 @@
 <?php
 
 
-	
+
 class DistritoescolarMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.DistritoescolarMapBuilder';	
-
-    
-    private $dbMap;
+	const CLASS_NAME = 'lib.model.map.DistritoescolarMapBuilder';
 
 	
-    public function isBuilt()
-    {
-        return ($this->dbMap !== null);
-    }
+	private $dbMap;
 
 	
-    public function getDatabaseMap()
-    {
-        return $this->dbMap;
-    }
+	public function isBuilt()
+	{
+		return ($this->dbMap !== null);
+	}
 
-    
-    public function doBuild()
-    {
+	
+	public function getDatabaseMap()
+	{
+		return $this->dbMap;
+	}
+
+	
+	public function doBuild()
+	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
-		
+
 		$tMap = $this->dbMap->addTable('distritoescolar');
 		$tMap->setPhpName('Distritoescolar');
 
@@ -41,6 +41,6 @@ class DistritoescolarMapBuilder {
 		$tMap->addColumn('TELEFONO', 'Telefono', 'string', CreoleTypes::VARCHAR, false, 20);
 
 		$tMap->addColumn('CIUDAD', 'Ciudad', 'string', CreoleTypes::VARCHAR, false, 128);
-				
-    } 
+
+	} 
 } 

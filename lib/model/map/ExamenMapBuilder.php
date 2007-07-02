@@ -1,32 +1,32 @@
 <?php
 
 
-	
+
 class ExamenMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.ExamenMapBuilder';	
-
-    
-    private $dbMap;
+	const CLASS_NAME = 'lib.model.map.ExamenMapBuilder';
 
 	
-    public function isBuilt()
-    {
-        return ($this->dbMap !== null);
-    }
+	private $dbMap;
 
 	
-    public function getDatabaseMap()
-    {
-        return $this->dbMap;
-    }
+	public function isBuilt()
+	{
+		return ($this->dbMap !== null);
+	}
 
-    
-    public function doBuild()
-    {
+	
+	public function getDatabaseMap()
+	{
+		return $this->dbMap;
+	}
+
+	
+	public function doBuild()
+	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
-		
+
 		$tMap = $this->dbMap->addTable('examen');
 		$tMap->setPhpName('Examen');
 
@@ -44,9 +44,9 @@ class ExamenMapBuilder {
 
 		$tMap->addColumn('NOMBRE', 'Nombre', 'string', CreoleTypes::VARCHAR, true, 255);
 
-		$tMap->addColumn('OBSERVACION', 'Observacion', 'string', CreoleTypes::BLOB, true);
+		$tMap->addColumn('OBSERVACION', 'Observacion', 'string', CreoleTypes::BLOB, true, null);
 
-		$tMap->addColumn('FECHA', 'Fecha', 'int', CreoleTypes::TIMESTAMP, true);
-				
-    } 
+		$tMap->addColumn('FECHA', 'Fecha', 'int', CreoleTypes::TIMESTAMP, true, null);
+
+	} 
 } 

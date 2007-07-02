@@ -197,14 +197,14 @@ abstract class BaseDivisionPeer {
 	public static function doCountJoinAnio(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(DivisionPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(DivisionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -225,14 +225,14 @@ abstract class BaseDivisionPeer {
 	public static function doCountJoinTurnos(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(DivisionPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(DivisionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -354,7 +354,7 @@ abstract class BaseDivisionPeer {
 		} else {
 			$criteria->addSelectColumn(DivisionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -397,25 +397,25 @@ abstract class BaseDivisionPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = DivisionPeer::getOMClass();
 
-			
+
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-				
+
 					
 			$omClass = AnioPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -424,21 +424,21 @@ abstract class BaseDivisionPeer {
 					$temp_obj2->addDivision($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initDivisions();
 				$obj2->addDivision($obj1);
 			}
 
-				
+
 					
 			$omClass = TurnosPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3 = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -447,7 +447,7 @@ abstract class BaseDivisionPeer {
 					$temp_obj3->addDivision($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initDivisions();
 				$obj3->addDivision($obj1);
@@ -463,14 +463,14 @@ abstract class BaseDivisionPeer {
 	public static function doCountJoinAllExceptAnio(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(DivisionPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(DivisionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -491,14 +491,14 @@ abstract class BaseDivisionPeer {
 	public static function doCountJoinAllExceptTurnos(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(DivisionPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(DivisionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -535,22 +535,22 @@ abstract class BaseDivisionPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = DivisionPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = TurnosPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -560,7 +560,7 @@ abstract class BaseDivisionPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initDivisions();
 				$obj2->addDivision($obj1);
@@ -592,22 +592,22 @@ abstract class BaseDivisionPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = DivisionPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = AnioPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -617,7 +617,7 @@ abstract class BaseDivisionPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initDivisions();
 				$obj2->addDivision($obj1);

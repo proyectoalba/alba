@@ -187,14 +187,14 @@ abstract class BaseRelEstablecimientoLocacionPeer {
 	public static function doCountJoinEstablecimiento(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelEstablecimientoLocacionPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelEstablecimientoLocacionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -215,14 +215,14 @@ abstract class BaseRelEstablecimientoLocacionPeer {
 	public static function doCountJoinLocacion(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelEstablecimientoLocacionPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelEstablecimientoLocacionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -344,7 +344,7 @@ abstract class BaseRelEstablecimientoLocacionPeer {
 		} else {
 			$criteria->addSelectColumn(RelEstablecimientoLocacionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -387,25 +387,25 @@ abstract class BaseRelEstablecimientoLocacionPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelEstablecimientoLocacionPeer::getOMClass();
 
-			
+
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-				
+
 					
 			$omClass = EstablecimientoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -414,21 +414,21 @@ abstract class BaseRelEstablecimientoLocacionPeer {
 					$temp_obj2->addRelEstablecimientoLocacion($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelEstablecimientoLocacions();
 				$obj2->addRelEstablecimientoLocacion($obj1);
 			}
 
-				
+
 					
 			$omClass = LocacionPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3 = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -437,7 +437,7 @@ abstract class BaseRelEstablecimientoLocacionPeer {
 					$temp_obj3->addRelEstablecimientoLocacion($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initRelEstablecimientoLocacions();
 				$obj3->addRelEstablecimientoLocacion($obj1);
@@ -453,14 +453,14 @@ abstract class BaseRelEstablecimientoLocacionPeer {
 	public static function doCountJoinAllExceptEstablecimiento(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelEstablecimientoLocacionPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelEstablecimientoLocacionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -481,14 +481,14 @@ abstract class BaseRelEstablecimientoLocacionPeer {
 	public static function doCountJoinAllExceptLocacion(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelEstablecimientoLocacionPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelEstablecimientoLocacionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -525,22 +525,22 @@ abstract class BaseRelEstablecimientoLocacionPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelEstablecimientoLocacionPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = LocacionPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -550,7 +550,7 @@ abstract class BaseRelEstablecimientoLocacionPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelEstablecimientoLocacions();
 				$obj2->addRelEstablecimientoLocacion($obj1);
@@ -582,22 +582,22 @@ abstract class BaseRelEstablecimientoLocacionPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelEstablecimientoLocacionPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = EstablecimientoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -607,7 +607,7 @@ abstract class BaseRelEstablecimientoLocacionPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelEstablecimientoLocacions();
 				$obj2->addRelEstablecimientoLocacion($obj1);

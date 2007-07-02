@@ -1,32 +1,32 @@
 <?php
 
 
-	
+
 class CiclolectivoMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.CiclolectivoMapBuilder';	
-
-    
-    private $dbMap;
+	const CLASS_NAME = 'lib.model.map.CiclolectivoMapBuilder';
 
 	
-    public function isBuilt()
-    {
-        return ($this->dbMap !== null);
-    }
+	private $dbMap;
 
 	
-    public function getDatabaseMap()
-    {
-        return $this->dbMap;
-    }
+	public function isBuilt()
+	{
+		return ($this->dbMap !== null);
+	}
 
-    
-    public function doBuild()
-    {
+	
+	public function getDatabaseMap()
+	{
+		return $this->dbMap;
+	}
+
+	
+	public function doBuild()
+	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
-		
+
 		$tMap = $this->dbMap->addTable('ciclolectivo');
 		$tMap->setPhpName('Ciclolectivo');
 
@@ -36,13 +36,13 @@ class CiclolectivoMapBuilder {
 
 		$tMap->addForeignKey('FK_ESTABLECIMIENTO_ID', 'FkEstablecimientoId', 'int', CreoleTypes::INTEGER, 'establecimiento', 'ID', true, 11);
 
-		$tMap->addColumn('FECHA_INICIO', 'FechaInicio', 'int', CreoleTypes::TIMESTAMP, true);
+		$tMap->addColumn('FECHA_INICIO', 'FechaInicio', 'int', CreoleTypes::TIMESTAMP, true, null);
 
-		$tMap->addColumn('FECHA_FIN', 'FechaFin', 'int', CreoleTypes::TIMESTAMP, true);
+		$tMap->addColumn('FECHA_FIN', 'FechaFin', 'int', CreoleTypes::TIMESTAMP, true, null);
 
 		$tMap->addColumn('DESCRIPCION', 'Descripcion', 'string', CreoleTypes::VARCHAR, true, 255);
 
-		$tMap->addColumn('ACTUAL', 'Actual', 'boolean', CreoleTypes::BOOLEAN, true);
-				
-    } 
+		$tMap->addColumn('ACTUAL', 'Actual', 'boolean', CreoleTypes::BOOLEAN, true, null);
+
+	} 
 } 

@@ -237,14 +237,14 @@ abstract class BaseLocacionPeer {
 	public static function doCountJoinProvincia(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(LocacionPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(LocacionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -265,14 +265,14 @@ abstract class BaseLocacionPeer {
 	public static function doCountJoinTipolocacion(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(LocacionPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(LocacionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -394,7 +394,7 @@ abstract class BaseLocacionPeer {
 		} else {
 			$criteria->addSelectColumn(LocacionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -437,25 +437,25 @@ abstract class BaseLocacionPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = LocacionPeer::getOMClass();
 
-			
+
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-				
+
 					
 			$omClass = ProvinciaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -464,21 +464,21 @@ abstract class BaseLocacionPeer {
 					$temp_obj2->addLocacion($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initLocacions();
 				$obj2->addLocacion($obj1);
 			}
 
-				
+
 					
 			$omClass = TipolocacionPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3 = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -487,7 +487,7 @@ abstract class BaseLocacionPeer {
 					$temp_obj3->addLocacion($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initLocacions();
 				$obj3->addLocacion($obj1);
@@ -503,14 +503,14 @@ abstract class BaseLocacionPeer {
 	public static function doCountJoinAllExceptProvincia(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(LocacionPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(LocacionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -531,14 +531,14 @@ abstract class BaseLocacionPeer {
 	public static function doCountJoinAllExceptTipolocacion(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(LocacionPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(LocacionPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -575,22 +575,22 @@ abstract class BaseLocacionPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = LocacionPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = TipolocacionPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -600,7 +600,7 @@ abstract class BaseLocacionPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initLocacions();
 				$obj2->addLocacion($obj1);
@@ -632,22 +632,22 @@ abstract class BaseLocacionPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = LocacionPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = ProvinciaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -657,7 +657,7 @@ abstract class BaseLocacionPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initLocacions();
 				$obj2->addLocacion($obj1);

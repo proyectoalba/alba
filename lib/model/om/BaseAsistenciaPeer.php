@@ -192,14 +192,14 @@ abstract class BaseAsistenciaPeer {
 	public static function doCountJoinAlumno(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(AsistenciaPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(AsistenciaPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -220,14 +220,14 @@ abstract class BaseAsistenciaPeer {
 	public static function doCountJoinTipoasistencia(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(AsistenciaPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(AsistenciaPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -349,7 +349,7 @@ abstract class BaseAsistenciaPeer {
 		} else {
 			$criteria->addSelectColumn(AsistenciaPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -392,25 +392,25 @@ abstract class BaseAsistenciaPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = AsistenciaPeer::getOMClass();
 
-			
+
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-				
+
 					
 			$omClass = AlumnoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -419,21 +419,21 @@ abstract class BaseAsistenciaPeer {
 					$temp_obj2->addAsistencia($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initAsistencias();
 				$obj2->addAsistencia($obj1);
 			}
 
-				
+
 					
 			$omClass = TipoasistenciaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3 = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -442,7 +442,7 @@ abstract class BaseAsistenciaPeer {
 					$temp_obj3->addAsistencia($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initAsistencias();
 				$obj3->addAsistencia($obj1);
@@ -458,14 +458,14 @@ abstract class BaseAsistenciaPeer {
 	public static function doCountJoinAllExceptAlumno(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(AsistenciaPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(AsistenciaPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -486,14 +486,14 @@ abstract class BaseAsistenciaPeer {
 	public static function doCountJoinAllExceptTipoasistencia(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(AsistenciaPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(AsistenciaPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -530,22 +530,22 @@ abstract class BaseAsistenciaPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = AsistenciaPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = TipoasistenciaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -555,7 +555,7 @@ abstract class BaseAsistenciaPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initAsistencias();
 				$obj2->addAsistencia($obj1);
@@ -587,22 +587,22 @@ abstract class BaseAsistenciaPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = AsistenciaPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = AlumnoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -612,7 +612,7 @@ abstract class BaseAsistenciaPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initAsistencias();
 				$obj2->addAsistencia($obj1);

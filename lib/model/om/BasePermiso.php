@@ -87,6 +87,10 @@ abstract class BasePermiso extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = PermisoPeer::ID;
@@ -96,6 +100,10 @@ abstract class BasePermiso extends BaseObject  implements Persistent {
 	
 	public function setNombre($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->nombre !== $v || $v === '') {
 			$this->nombre = $v;
@@ -107,6 +115,10 @@ abstract class BasePermiso extends BaseObject  implements Persistent {
 	public function setDescripcion($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->descripcion !== $v) {
 			$this->descripcion = $v;
 			$this->modifiedColumns[] = PermisoPeer::DESCRIPCION;
@@ -116,6 +128,10 @@ abstract class BasePermiso extends BaseObject  implements Persistent {
 	
 	public function setFkModuloId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_modulo_id !== $v || $v === 0) {
 			$this->fk_modulo_id = $v;
@@ -130,6 +146,10 @@ abstract class BasePermiso extends BaseObject  implements Persistent {
 	
 	public function setCredencial($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->credencial !== $v) {
 			$this->credencial = $v;

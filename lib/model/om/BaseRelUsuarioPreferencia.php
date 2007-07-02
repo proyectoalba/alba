@@ -50,6 +50,10 @@ abstract class BaseRelUsuarioPreferencia extends BaseObject  implements Persiste
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = RelUsuarioPreferenciaPeer::ID;
@@ -60,6 +64,10 @@ abstract class BaseRelUsuarioPreferencia extends BaseObject  implements Persiste
 	public function setFkUsuarioId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->fk_usuario_id !== $v || $v === 0) {
 			$this->fk_usuario_id = $v;
 			$this->modifiedColumns[] = RelUsuarioPreferenciaPeer::FK_USUARIO_ID;
@@ -69,6 +77,10 @@ abstract class BaseRelUsuarioPreferencia extends BaseObject  implements Persiste
 	
 	public function setFkPreferenciaId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_preferencia_id !== $v || $v === 0) {
 			$this->fk_preferencia_id = $v;

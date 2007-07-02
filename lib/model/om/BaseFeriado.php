@@ -101,6 +101,10 @@ abstract class BaseFeriado extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = FeriadoPeer::ID;
@@ -110,6 +114,10 @@ abstract class BaseFeriado extends BaseObject  implements Persistent {
 	
 	public function setNombre($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->nombre !== $v) {
 			$this->nombre = $v;
@@ -157,6 +165,10 @@ abstract class BaseFeriado extends BaseObject  implements Persistent {
 	
 	public function setFkCiclolectivoId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_ciclolectivo_id !== $v || $v === 0) {
 			$this->fk_ciclolectivo_id = $v;

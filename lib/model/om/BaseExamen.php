@@ -132,6 +132,10 @@ abstract class BaseExamen extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = ExamenPeer::ID;
@@ -141,6 +145,10 @@ abstract class BaseExamen extends BaseObject  implements Persistent {
 	
 	public function setFkEscalanotaId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_escalanota_id !== $v || $v === 0) {
 			$this->fk_escalanota_id = $v;
@@ -156,6 +164,10 @@ abstract class BaseExamen extends BaseObject  implements Persistent {
 	public function setFkAlumnoId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->fk_alumno_id !== $v || $v === 0) {
 			$this->fk_alumno_id = $v;
 			$this->modifiedColumns[] = ExamenPeer::FK_ALUMNO_ID;
@@ -169,6 +181,10 @@ abstract class BaseExamen extends BaseObject  implements Persistent {
 	
 	public function setFkActividadId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_actividad_id !== $v || $v === 0) {
 			$this->fk_actividad_id = $v;
@@ -184,6 +200,10 @@ abstract class BaseExamen extends BaseObject  implements Persistent {
 	public function setFkPeriodoId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->fk_periodo_id !== $v || $v === 0) {
 			$this->fk_periodo_id = $v;
 			$this->modifiedColumns[] = ExamenPeer::FK_PERIODO_ID;
@@ -197,6 +217,10 @@ abstract class BaseExamen extends BaseObject  implements Persistent {
 	
 	public function setNombre($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->nombre !== $v || $v === '') {
 			$this->nombre = $v;

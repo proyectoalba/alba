@@ -222,14 +222,14 @@ abstract class BaseRelDivisionActividadDocentePeer {
 	public static function doCountJoinDivision(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelDivisionActividadDocentePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelDivisionActividadDocentePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -250,14 +250,14 @@ abstract class BaseRelDivisionActividadDocentePeer {
 	public static function doCountJoinDocente(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelDivisionActividadDocentePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelDivisionActividadDocentePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -278,14 +278,14 @@ abstract class BaseRelDivisionActividadDocentePeer {
 	public static function doCountJoinActividad(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelDivisionActividadDocentePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelDivisionActividadDocentePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -306,14 +306,14 @@ abstract class BaseRelDivisionActividadDocentePeer {
 	public static function doCountJoinRepeticion(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelDivisionActividadDocentePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelDivisionActividadDocentePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -334,14 +334,14 @@ abstract class BaseRelDivisionActividadDocentePeer {
 	public static function doCountJoinEvento(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelDivisionActividadDocentePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelDivisionActividadDocentePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -604,7 +604,7 @@ abstract class BaseRelDivisionActividadDocentePeer {
 		} else {
 			$criteria->addSelectColumn(RelDivisionActividadDocentePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -668,25 +668,25 @@ abstract class BaseRelDivisionActividadDocentePeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelDivisionActividadDocentePeer::getOMClass();
 
-			
+
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-				
+
 					
 			$omClass = DivisionPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -695,21 +695,21 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					$temp_obj2->addRelDivisionActividadDocente($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelDivisionActividadDocentes();
 				$obj2->addRelDivisionActividadDocente($obj1);
 			}
 
-				
+
 					
 			$omClass = DocentePeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3 = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -718,21 +718,21 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					$temp_obj3->addRelDivisionActividadDocente($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initRelDivisionActividadDocentes();
 				$obj3->addRelDivisionActividadDocente($obj1);
 			}
 
-				
+
 					
 			$omClass = ActividadPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj4 = new $cls();
 			$obj4->hydrate($rs, $startcol4);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -741,21 +741,21 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					$temp_obj4->addRelDivisionActividadDocente($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj4->initRelDivisionActividadDocentes();
 				$obj4->addRelDivisionActividadDocente($obj1);
 			}
 
-				
+
 					
 			$omClass = RepeticionPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj5 = new $cls();
 			$obj5->hydrate($rs, $startcol5);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -764,21 +764,21 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					$temp_obj5->addRelDivisionActividadDocente($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj5->initRelDivisionActividadDocentes();
 				$obj5->addRelDivisionActividadDocente($obj1);
 			}
 
-				
+
 					
 			$omClass = EventoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj6 = new $cls();
 			$obj6->hydrate($rs, $startcol6);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -787,7 +787,7 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					$temp_obj6->addRelDivisionActividadDocente($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj6->initRelDivisionActividadDocentes();
 				$obj6->addRelDivisionActividadDocente($obj1);
@@ -803,14 +803,14 @@ abstract class BaseRelDivisionActividadDocentePeer {
 	public static function doCountJoinAllExceptDivision(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelDivisionActividadDocentePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelDivisionActividadDocentePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -837,14 +837,14 @@ abstract class BaseRelDivisionActividadDocentePeer {
 	public static function doCountJoinAllExceptDocente(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelDivisionActividadDocentePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelDivisionActividadDocentePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -871,14 +871,14 @@ abstract class BaseRelDivisionActividadDocentePeer {
 	public static function doCountJoinAllExceptActividad(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelDivisionActividadDocentePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelDivisionActividadDocentePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -905,14 +905,14 @@ abstract class BaseRelDivisionActividadDocentePeer {
 	public static function doCountJoinAllExceptRepeticion(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelDivisionActividadDocentePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelDivisionActividadDocentePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -939,14 +939,14 @@ abstract class BaseRelDivisionActividadDocentePeer {
 	public static function doCountJoinAllExceptEvento(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(RelDivisionActividadDocentePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(RelDivisionActividadDocentePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -1004,22 +1004,22 @@ abstract class BaseRelDivisionActividadDocentePeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelDivisionActividadDocentePeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = DocentePeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1029,7 +1029,7 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelDivisionActividadDocentes();
 				$obj2->addRelDivisionActividadDocente($obj1);
@@ -1037,11 +1037,11 @@ abstract class BaseRelDivisionActividadDocentePeer {
 
 			$omClass = ActividadPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3  = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1051,7 +1051,7 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initRelDivisionActividadDocentes();
 				$obj3->addRelDivisionActividadDocente($obj1);
@@ -1059,11 +1059,11 @@ abstract class BaseRelDivisionActividadDocentePeer {
 
 			$omClass = RepeticionPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj4  = new $cls();
 			$obj4->hydrate($rs, $startcol4);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1073,7 +1073,7 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj4->initRelDivisionActividadDocentes();
 				$obj4->addRelDivisionActividadDocente($obj1);
@@ -1081,11 +1081,11 @@ abstract class BaseRelDivisionActividadDocentePeer {
 
 			$omClass = EventoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj5  = new $cls();
 			$obj5->hydrate($rs, $startcol5);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1095,7 +1095,7 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj5->initRelDivisionActividadDocentes();
 				$obj5->addRelDivisionActividadDocente($obj1);
@@ -1142,22 +1142,22 @@ abstract class BaseRelDivisionActividadDocentePeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelDivisionActividadDocentePeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = DivisionPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1167,7 +1167,7 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelDivisionActividadDocentes();
 				$obj2->addRelDivisionActividadDocente($obj1);
@@ -1175,11 +1175,11 @@ abstract class BaseRelDivisionActividadDocentePeer {
 
 			$omClass = ActividadPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3  = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1189,7 +1189,7 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initRelDivisionActividadDocentes();
 				$obj3->addRelDivisionActividadDocente($obj1);
@@ -1197,11 +1197,11 @@ abstract class BaseRelDivisionActividadDocentePeer {
 
 			$omClass = RepeticionPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj4  = new $cls();
 			$obj4->hydrate($rs, $startcol4);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1211,7 +1211,7 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj4->initRelDivisionActividadDocentes();
 				$obj4->addRelDivisionActividadDocente($obj1);
@@ -1219,11 +1219,11 @@ abstract class BaseRelDivisionActividadDocentePeer {
 
 			$omClass = EventoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj5  = new $cls();
 			$obj5->hydrate($rs, $startcol5);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1233,7 +1233,7 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj5->initRelDivisionActividadDocentes();
 				$obj5->addRelDivisionActividadDocente($obj1);
@@ -1280,22 +1280,22 @@ abstract class BaseRelDivisionActividadDocentePeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelDivisionActividadDocentePeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = DivisionPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1305,7 +1305,7 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelDivisionActividadDocentes();
 				$obj2->addRelDivisionActividadDocente($obj1);
@@ -1313,11 +1313,11 @@ abstract class BaseRelDivisionActividadDocentePeer {
 
 			$omClass = DocentePeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3  = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1327,7 +1327,7 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initRelDivisionActividadDocentes();
 				$obj3->addRelDivisionActividadDocente($obj1);
@@ -1335,11 +1335,11 @@ abstract class BaseRelDivisionActividadDocentePeer {
 
 			$omClass = RepeticionPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj4  = new $cls();
 			$obj4->hydrate($rs, $startcol4);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1349,7 +1349,7 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj4->initRelDivisionActividadDocentes();
 				$obj4->addRelDivisionActividadDocente($obj1);
@@ -1357,11 +1357,11 @@ abstract class BaseRelDivisionActividadDocentePeer {
 
 			$omClass = EventoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj5  = new $cls();
 			$obj5->hydrate($rs, $startcol5);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1371,7 +1371,7 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj5->initRelDivisionActividadDocentes();
 				$obj5->addRelDivisionActividadDocente($obj1);
@@ -1418,22 +1418,22 @@ abstract class BaseRelDivisionActividadDocentePeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelDivisionActividadDocentePeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = DivisionPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1443,7 +1443,7 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelDivisionActividadDocentes();
 				$obj2->addRelDivisionActividadDocente($obj1);
@@ -1451,11 +1451,11 @@ abstract class BaseRelDivisionActividadDocentePeer {
 
 			$omClass = DocentePeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3  = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1465,7 +1465,7 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initRelDivisionActividadDocentes();
 				$obj3->addRelDivisionActividadDocente($obj1);
@@ -1473,11 +1473,11 @@ abstract class BaseRelDivisionActividadDocentePeer {
 
 			$omClass = ActividadPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj4  = new $cls();
 			$obj4->hydrate($rs, $startcol4);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1487,7 +1487,7 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj4->initRelDivisionActividadDocentes();
 				$obj4->addRelDivisionActividadDocente($obj1);
@@ -1495,11 +1495,11 @@ abstract class BaseRelDivisionActividadDocentePeer {
 
 			$omClass = EventoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj5  = new $cls();
 			$obj5->hydrate($rs, $startcol5);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1509,7 +1509,7 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj5->initRelDivisionActividadDocentes();
 				$obj5->addRelDivisionActividadDocente($obj1);
@@ -1556,22 +1556,22 @@ abstract class BaseRelDivisionActividadDocentePeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = RelDivisionActividadDocentePeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = DivisionPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1581,7 +1581,7 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initRelDivisionActividadDocentes();
 				$obj2->addRelDivisionActividadDocente($obj1);
@@ -1589,11 +1589,11 @@ abstract class BaseRelDivisionActividadDocentePeer {
 
 			$omClass = DocentePeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3  = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1603,7 +1603,7 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initRelDivisionActividadDocentes();
 				$obj3->addRelDivisionActividadDocente($obj1);
@@ -1611,11 +1611,11 @@ abstract class BaseRelDivisionActividadDocentePeer {
 
 			$omClass = ActividadPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj4  = new $cls();
 			$obj4->hydrate($rs, $startcol4);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1625,7 +1625,7 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj4->initRelDivisionActividadDocentes();
 				$obj4->addRelDivisionActividadDocente($obj1);
@@ -1633,11 +1633,11 @@ abstract class BaseRelDivisionActividadDocentePeer {
 
 			$omClass = RepeticionPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj5  = new $cls();
 			$obj5->hydrate($rs, $startcol5);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -1647,7 +1647,7 @@ abstract class BaseRelDivisionActividadDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj5->initRelDivisionActividadDocentes();
 				$obj5->addRelDivisionActividadDocente($obj1);

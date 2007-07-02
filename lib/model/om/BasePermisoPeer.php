@@ -197,14 +197,14 @@ abstract class BasePermisoPeer {
 	public static function doCountJoinModulo(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(PermisoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(PermisoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -279,7 +279,7 @@ abstract class BasePermisoPeer {
 		} else {
 			$criteria->addSelectColumn(PermisoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -315,25 +315,25 @@ abstract class BasePermisoPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = PermisoPeer::getOMClass();
 
-			
+
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-				
+
 					
 			$omClass = ModuloPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -342,7 +342,7 @@ abstract class BasePermisoPeer {
 					$temp_obj2->addPermiso($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initPermisos();
 				$obj2->addPermiso($obj1);

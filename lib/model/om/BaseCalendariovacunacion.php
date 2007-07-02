@@ -78,6 +78,10 @@ abstract class BaseCalendariovacunacion extends BaseObject  implements Persisten
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = CalendariovacunacionPeer::ID;
@@ -87,6 +91,10 @@ abstract class BaseCalendariovacunacion extends BaseObject  implements Persisten
 	
 	public function setNombre($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->nombre !== $v) {
 			$this->nombre = $v;
@@ -98,6 +106,10 @@ abstract class BaseCalendariovacunacion extends BaseObject  implements Persisten
 	public function setDescripcion($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->descripcion !== $v) {
 			$this->descripcion = $v;
 			$this->modifiedColumns[] = CalendariovacunacionPeer::DESCRIPCION;
@@ -108,6 +120,10 @@ abstract class BaseCalendariovacunacion extends BaseObject  implements Persisten
 	public function setPeriodo($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->periodo !== $v) {
 			$this->periodo = $v;
 			$this->modifiedColumns[] = CalendariovacunacionPeer::PERIODO;
@@ -117,6 +133,10 @@ abstract class BaseCalendariovacunacion extends BaseObject  implements Persisten
 	
 	public function setObservacion($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->observacion !== $v || $v === '') {
 			$this->observacion = $v;

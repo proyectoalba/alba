@@ -67,6 +67,10 @@ abstract class BaseRol extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = RolPeer::ID;
@@ -77,6 +81,10 @@ abstract class BaseRol extends BaseObject  implements Persistent {
 	public function setNombre($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->nombre !== $v || $v === '') {
 			$this->nombre = $v;
 			$this->modifiedColumns[] = RolPeer::NOMBRE;
@@ -86,6 +94,10 @@ abstract class BaseRol extends BaseObject  implements Persistent {
 	
 	public function setDescripcion($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->descripcion !== $v || $v === '') {
 			$this->descripcion = $v;

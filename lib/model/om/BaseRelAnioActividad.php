@@ -67,6 +67,10 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = RelAnioActividadPeer::ID;
@@ -76,6 +80,10 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 	
 	public function setFkAnioId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_anio_id !== $v || $v === 0) {
 			$this->fk_anio_id = $v;
@@ -90,6 +98,10 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 	
 	public function setFkActividadId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_actividad_id !== $v || $v === 0) {
 			$this->fk_actividad_id = $v;

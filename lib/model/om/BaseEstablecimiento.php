@@ -152,6 +152,10 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = EstablecimientoPeer::ID;
@@ -161,6 +165,10 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 	
 	public function setNombre($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->nombre !== $v || $v === '') {
 			$this->nombre = $v;
@@ -172,6 +180,10 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 	public function setDescripcion($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->descripcion !== $v) {
 			$this->descripcion = $v;
 			$this->modifiedColumns[] = EstablecimientoPeer::DESCRIPCION;
@@ -181,6 +193,10 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 	
 	public function setFkDistritoescolarId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_distritoescolar_id !== $v || $v === 0) {
 			$this->fk_distritoescolar_id = $v;
@@ -196,6 +212,10 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 	public function setFkOrganizacionId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->fk_organizacion_id !== $v || $v === 0) {
 			$this->fk_organizacion_id = $v;
 			$this->modifiedColumns[] = EstablecimientoPeer::FK_ORGANIZACION_ID;
@@ -209,6 +229,10 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 	
 	public function setFkNiveltipoId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_niveltipo_id !== $v || $v === 0) {
 			$this->fk_niveltipo_id = $v;

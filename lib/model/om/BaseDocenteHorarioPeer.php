@@ -202,14 +202,14 @@ abstract class BaseDocenteHorarioPeer {
 	public static function doCountJoinRepeticion(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(DocenteHorarioPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(DocenteHorarioPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -230,14 +230,14 @@ abstract class BaseDocenteHorarioPeer {
 	public static function doCountJoinDocente(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(DocenteHorarioPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(DocenteHorarioPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -359,7 +359,7 @@ abstract class BaseDocenteHorarioPeer {
 		} else {
 			$criteria->addSelectColumn(DocenteHorarioPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -402,25 +402,25 @@ abstract class BaseDocenteHorarioPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = DocenteHorarioPeer::getOMClass();
 
-			
+
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-				
+
 					
 			$omClass = RepeticionPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -429,21 +429,21 @@ abstract class BaseDocenteHorarioPeer {
 					$temp_obj2->addDocenteHorario($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initDocenteHorarios();
 				$obj2->addDocenteHorario($obj1);
 			}
 
-				
+
 					
 			$omClass = DocentePeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3 = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -452,7 +452,7 @@ abstract class BaseDocenteHorarioPeer {
 					$temp_obj3->addDocenteHorario($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initDocenteHorarios();
 				$obj3->addDocenteHorario($obj1);
@@ -468,14 +468,14 @@ abstract class BaseDocenteHorarioPeer {
 	public static function doCountJoinAllExceptRepeticion(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(DocenteHorarioPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(DocenteHorarioPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -496,14 +496,14 @@ abstract class BaseDocenteHorarioPeer {
 	public static function doCountJoinAllExceptDocente(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(DocenteHorarioPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(DocenteHorarioPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -540,22 +540,22 @@ abstract class BaseDocenteHorarioPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = DocenteHorarioPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = DocentePeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -565,7 +565,7 @@ abstract class BaseDocenteHorarioPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initDocenteHorarios();
 				$obj2->addDocenteHorario($obj1);
@@ -597,22 +597,22 @@ abstract class BaseDocenteHorarioPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = DocenteHorarioPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = RepeticionPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -622,7 +622,7 @@ abstract class BaseDocenteHorarioPeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initDocenteHorarios();
 				$obj2->addDocenteHorario($obj1);

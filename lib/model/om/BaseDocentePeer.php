@@ -262,14 +262,14 @@ abstract class BaseDocentePeer {
 	public static function doCountJoinTipodocumento(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(DocentePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(DocentePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -290,14 +290,14 @@ abstract class BaseDocentePeer {
 	public static function doCountJoinProvincia(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(DocentePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(DocentePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -419,7 +419,7 @@ abstract class BaseDocentePeer {
 		} else {
 			$criteria->addSelectColumn(DocentePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -462,25 +462,25 @@ abstract class BaseDocentePeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = DocentePeer::getOMClass();
 
-			
+
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-				
+
 					
 			$omClass = TipodocumentoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -489,21 +489,21 @@ abstract class BaseDocentePeer {
 					$temp_obj2->addDocente($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initDocentes();
 				$obj2->addDocente($obj1);
 			}
 
-				
+
 					
 			$omClass = ProvinciaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj3 = new $cls();
 			$obj3->hydrate($rs, $startcol3);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -512,7 +512,7 @@ abstract class BaseDocentePeer {
 					$temp_obj3->addDocente($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj3->initDocentes();
 				$obj3->addDocente($obj1);
@@ -528,14 +528,14 @@ abstract class BaseDocentePeer {
 	public static function doCountJoinAllExceptTipodocumento(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(DocentePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(DocentePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -556,14 +556,14 @@ abstract class BaseDocentePeer {
 	public static function doCountJoinAllExceptProvincia(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(DocentePeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(DocentePeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -600,22 +600,22 @@ abstract class BaseDocentePeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = DocentePeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = ProvinciaPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -625,7 +625,7 @@ abstract class BaseDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initDocentes();
 				$obj2->addDocente($obj1);
@@ -657,22 +657,22 @@ abstract class BaseDocentePeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = DocentePeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);		
+			$obj1->hydrate($rs);
 
 			$omClass = TipodocumentoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2  = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -682,7 +682,7 @@ abstract class BaseDocentePeer {
 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initDocentes();
 				$obj2->addDocente($obj1);

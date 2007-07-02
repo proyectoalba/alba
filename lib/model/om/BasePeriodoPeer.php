@@ -197,14 +197,14 @@ abstract class BasePeriodoPeer {
 	public static function doCountJoinCiclolectivo(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
-		
+
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->addSelectColumn(PeriodoPeer::COUNT_DISTINCT);
 		} else {
 			$criteria->addSelectColumn(PeriodoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -279,7 +279,7 @@ abstract class BasePeriodoPeer {
 		} else {
 			$criteria->addSelectColumn(PeriodoPeer::COUNT);
 		}
-		
+
 				foreach($criteria->getGroupByColumns() as $column)
 		{
 			$criteria->addSelectColumn($column);
@@ -315,25 +315,25 @@ abstract class BasePeriodoPeer {
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
-		
+
 		while($rs->next()) {
 
 			$omClass = PeriodoPeer::getOMClass();
 
-			
+
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-				
+
 					
 			$omClass = CiclolectivoPeer::getOMClass();
 
-	
+
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
 			$obj2->hydrate($rs, $startcol2);
-			
+
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
@@ -342,7 +342,7 @@ abstract class BasePeriodoPeer {
 					$temp_obj2->addPeriodo($obj1); 					break;
 				}
 			}
-			
+
 			if ($newObject) {
 				$obj2->initPeriodos();
 				$obj2->addPeriodo($obj1);

@@ -61,6 +61,10 @@ abstract class BasePreferencia extends BaseObject  implements Persistent {
 	public function setId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = PreferenciaPeer::ID;
@@ -71,6 +75,10 @@ abstract class BasePreferencia extends BaseObject  implements Persistent {
 	public function setNombre($v)
 	{
 
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
+
 		if ($this->nombre !== $v || $v === '') {
 			$this->nombre = $v;
 			$this->modifiedColumns[] = PreferenciaPeer::NOMBRE;
@@ -80,6 +88,10 @@ abstract class BasePreferencia extends BaseObject  implements Persistent {
 	
 	public function setValorPorDefecto($v)
 	{
+
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
+		}
 
 		if ($this->valor_por_defecto !== $v) {
 			$this->valor_por_defecto = $v;

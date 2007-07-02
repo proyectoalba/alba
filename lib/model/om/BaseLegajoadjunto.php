@@ -45,6 +45,10 @@ abstract class BaseLegajoadjunto extends BaseObject  implements Persistent {
 	public function setFkLegajopedagogicoId($v)
 	{
 
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
 		if ($this->fk_legajopedagogico_id !== $v) {
 			$this->fk_legajopedagogico_id = $v;
 			$this->modifiedColumns[] = LegajoadjuntoPeer::FK_LEGAJOPEDAGOGICO_ID;
@@ -58,6 +62,10 @@ abstract class BaseLegajoadjunto extends BaseObject  implements Persistent {
 	
 	public function setFkAdjuntoId($v)
 	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
 
 		if ($this->fk_adjunto_id !== $v) {
 			$this->fk_adjunto_id = $v;
