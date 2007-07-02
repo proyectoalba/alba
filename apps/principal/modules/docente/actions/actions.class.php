@@ -57,6 +57,22 @@ class docenteActions extends autodocenteActions
             $relDocenteEstablecimiento->setFkEstablecimientoId($this->getUser()->getAttribute('fk_establecimiento_id'));
             $relDocenteEstablecimiento->save();
         }
+    
+    // Update many-to-many for "actividades"
+    $c = new Criteria();
+    $c->add(RelActividadDocentePeer::FK_DOCENTE_ID, $docente->getPrimaryKey());
+    RelActividadDocentePeer::doDelete($c);
+    $ids = $this->getRequestParameter('associated_actividades');
+    if (is_array($ids)) {
+        foreach ($ids as $id){
+            $RelActividadDocente = new RelActividadDocente();
+            $RelActividadDocente->setFkDocenteId($docente->getPrimaryKey());
+            $RelActividadDocente->setFkActividadId($id);
+            $RelActividadDocente->save();
+        }
+    }
+
+
     }
 
     protected function deleteDocente($docente)
