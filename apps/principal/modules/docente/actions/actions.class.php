@@ -40,6 +40,9 @@ class docenteActions extends autodocenteActions
     function executeActividadesPorDocente() {
         $this->id_docente = $this->getRequestParameter('id');
         $this->docente = DocentePeer::RetrieveByPK($this->id_docente);
+        if (!$this->docente){
+            $this->forward404();
+        }
 
         //$this->redirect('relActividadDocente/list?filters%5Bfk_docente_id%5D='.$this->getRequestParameter('id').'&filter=filtrar');
     }
