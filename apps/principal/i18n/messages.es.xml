@@ -74,6 +74,14 @@
                 <source>edit</source>
                 <target>Editar</target>
             </trans-unit>
+            <trans-unit id="18">
+                <source>Unassociated</source>
+                <target>No Asociadas</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>Associated</source>
+                <target>Asociadas</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
