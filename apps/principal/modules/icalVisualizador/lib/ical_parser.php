@@ -1,13 +1,103 @@
-<?
+<?php
+//                 ______________________________________
+//                |            PHP iCalendar             |
+//                | http://www.phpicalendar.net/         |
+//                |______________________________________|
+//
+//Introduction:
+//-------------
+//PHP iCalendar is a PHP-based iCal file viewer/parser to display iCals in a Web browser.
+//Its based on v2.0 of the IETF spec. It displays iCal files in a nice logical,
+//clean manner with day, week, month, and year navigation. It is available in 13
+//languages and includes support for printing, searching and RSS news feeds.
+//If you need a Calendar application (for creating calendar files), please check
+//the 'Supported Calendar Applications' section of the README.
+//
+//This is GPL code extrated from PHP iCalendar
+//
+
+//TZIDs in calendars often contain leading information that should be stripped
+//Example: TZID=/mozilla.org/20050126_1/Europe/Berlin
+//Need to return the last part only
+function parse_tz($data){
+        $fields = explode("/",$data);
+        $tz = array_pop($fields);
+        $tmp = array_pop($fields);
+        if (isset($tmp) && $tmp != "") $tz = "$tmp/$tz";
+        return $tz;
+}
 
 
 
+// function to compare to dates in Ymd and return the number of days
+// that differ between them.
+function dayCompare($now, $then) {
+        $seconds_now = strtotime($now);
+        $seconds_then =  strtotime($then);
+        $diff_seconds = $seconds_now - $seconds_then;
+        $diff_minutes = $diff_seconds/60;
+        $diff_hours = $diff_minutes/60;
+        $diff_days = round($diff_hours/24);
+
+        return $diff_days;
+}
+
+
+// function to compare to dates in Ymd and return the number of weeks
+// that differ between them. requires dateOfWeek()
+function weekCompare($now, $then) {
+        $sun_now = dateOfWeek($now, "Sunday");
+        $sun_then = dateOfWeek($then, "Sunday");
+        $seconds_now = strtotime($sun_now);
+        $seconds_then =  strtotime($sun_then);
+        $diff_weeks = round(($seconds_now - $seconds_then)/(60*60*24*7));
+        return $diff_weeks;
+}
+
+
+
+
+// dateOfWeek() takes a date in Ymd and a day of week in 3 letters or more
+// and returns the date of that day. (ie: "sun" or "sunday" would be acceptable values of $day but not "su")
+function dateOfWeek($Ymd, $day, $week_start_day = 'Sunday') {
+//         global $week_start_day;
+        if (!isset($week_start_day)) $week_start_day = 'Sunday';
+        $timestamp = strtotime($Ymd);
+        $num = date('w', strtotime($week_start_day));
+        $start_day_time = strtotime((date('w',$timestamp)==$num ? "$week_start_day" : "last $week_start_day"), $timestamp);
+        $ret_unixtime = strtotime($day,$start_day_time);
+        // Fix for 992744
+        // $ret_unixtime = strtotime('+12 hours', $ret_unixtime);
+        $ret_unixtime += (12 * 60 * 60);
+        $ret = date('Ymd',$ret_unixtime);
+        return $ret;
+}
+
+
+
+// takes iCalendar 2 day format and makes it into 3 characters
+// if $txt is true, it returns the 3 letters, otherwise it returns the
+// integer of that day; 0=Sun, 1=Mon, etc.
+function two2threeCharDays($day, $txt=true) {
+        switch($day) {
+                case 'SU': return ($txt ? 'sun' : '0');
+                case 'MO': return ($txt ? 'mon' : '1');
+                case 'TU': return ($txt ? 'tue' : '2');
+                case 'WE': return ($txt ? 'wed' : '3');
+                case 'TH': return ($txt ? 'thu' : '4');
+                case 'FR': return ($txt ? 'fri' : '5');
+                case 'SA': return ($txt ? 'sat' : '6');
+        }
+}
 
 // localizeDate() - similar to strftime but uses our preset arrays of localized
 // months and week days and only supports %A, %a, %B, %b, %e, and %Y
 // more can be added as needed but trying to keep it small while we can
 function localizeDate($format, $timestamp) {
+
 	global $daysofweek_lang, $daysofweekshort_lang, $daysofweekreallyshort_lang, $monthsofyear_lang, $monthsofyear_lang, $monthsofyearshort_lang;
+
+
 	$year = date("Y", $timestamp);
 	$month = date("n", $timestamp)-1;
 	$day = date("j", $timestamp);
@@ -27,7 +117,7 @@ function localizeDate($format, $timestamp) {
 
 // Remove an event from the overlap data.
 // This could be completely bogus, since overlap array is empty when this gets called in my tests, but I'm leaving it in anyways.
-function removeOverlap($ol_start_date, $ol_start_time, &$ol_key,$master_array, &$overlap_array) {
+function removeOverlap($ol_start_date, $ol_start_time, $ol_key, &$master_array, &$overlap_array) {
 // 	global $master_array, $overlap_array;
 	if (isset($overlap_array[$ol_start_date])) {
 		if (sizeof($overlap_array[$ol_start_date]) > 0) {
@@ -338,6 +428,18 @@ function calcTime($have, $want, $time) {
 }
 
 
+// calcOffset takes an offset (ie, -0500) and returns it in the number of seconds
+function calcOffset($offset_str) {
+        $sign = substr($offset_str, 0, 1);
+        $hours = substr($offset_str, 1, 2);
+        $mins = substr($offset_str, 3, 2);
+        $secs = ((int)$hours * 3600) + ((int)$mins * 60);
+        if ($sign == '-') $secs = 0 - $secs;
+        return $secs;
+}
+
+
+
 function chooseOffset($time, &$timezone, &$tz_array) {
 //         global $timezone, $tz_array;
         if (!isset($timezone)) $timezone = '';
@@ -447,20 +549,30 @@ function extractDateTime($data, $property, $field, &$tz_array) {
 
 
 
-function icalToArray($filename) {
+function icalToArray($filename, $fromdate, $todate) {
 //                 $filename = "/var/www/phpicalendar/calendars/pepe.ics";
+
+$timezone = "America/Buenos_Aires";
+$tz_array['America/Buenos_Aires']       = array('-0300', '-0300');
+
                 $master_array = array();
 		$ifile = @fopen($filename, "r");
 		if ($ifile == FALSE) exit("Cant Open file: ". $filename."\n");
 		$nextline = fgets($ifile, 1024);
 		if (trim($nextline) != 'BEGIN:VCALENDAR') exit("It is not a valid ical file: ". $filename."\n");
 		
+//     $master_array['-4'] = Array ( Array  ( 'mtime' => 1182541233, 'filename'  => './calendars/pepe.ics','webcal' => 'no'));
+
+//     $master_array['-3'] = Array  ( 'pepe');
+        
 		// Set a value so we can check to make sure $master_array contains valid data
-// 		$master_array['-1'] = 'valid cal file';
+  		$master_array['-1'] = 'valid cal file';
 	
 		// Set default calendar name - can be overridden by X-WR-CALNAME
 		$calendar_name = $cal_filename;
-// 		$master_array['calendar_name'] 	= $calendar_name;
+  		$master_array['calendar_name'] 	= $calendar_name;
+
+$overlap_array = array();
 		
 	// read file in line by line
 	// XXX end line is skipped because of the 1-line readahead
@@ -759,18 +871,19 @@ function icalToArray($filename) {
 					$start_date_time = strtotime($start_date);
 					if (!isset($fromdate)){
 						#this should happen if not in one of the rss views
-						$this_month_start_time = strtotime($this_year.$this_month.'01');
+/*						$this_month_start_time = strtotime($this_year.$this_month.'01');
 						if ($current_view == 'year' || ($save_parsed_cals == 'yes' && !$is_webcal)|| $current_view == 'print' && $printview == 'year') {
 							$start_range_time = strtotime($this_year.'-01-01 -2 weeks');
 							$end_range_time = strtotime($this_year.'-12-31 +2 weeks');
 						} else {
 							$start_range_time = strtotime('-1 month -2 day', $this_month_start_time);
 							$end_range_time = strtotime('+2 month +2 day', $this_month_start_time);
-						}
+						}*/
 					}else{
-							$start_range_time = strtotime($fromdate);			
-							$end_range_time = strtotime($todate)+60*60*24; 						
+							$start_range_time = strtotime($fromdate);
+							$end_range_time = strtotime($todate)+60*60*24;
 					}
+
 					foreach ($rrule_array as $key => $val) {
 						switch($key) {
 							case 'FREQ':
@@ -864,13 +977,15 @@ function icalToArray($filename) {
 							}
 						
 							if (!isset($number)) $number = 1;
-							// if $until isn't set yet, we set it to the end of our range we're looking at
+							// if $until isn't set yet, we set it to the end of our range we're looking at   
 							
 							if (!isset($until)) $until = $end_range_time;
 							if (!isset($abs_until)) $abs_until = date('YmdHis', $end_range_time);
 							$end_date_time = $until;
 							$start_range_time_tmp = $start_range_time;
 							$end_range_time_tmp = $end_range_time;
+// echo date("Ymd",$until)." ".date("Ymd",$end_range_time)."<br>";
+// echo date("Ymd",$end_range_time_tmp)." >= ".date("Ymd",$start_date_time)." && ".date("Ymd",$start_range_time_tmp)." <= ".date("Ymd",$end_date_time)."<br>";
 							
 							// If the $end_range_time is less than the $start_date_time, or $start_range_time is greater
 							// than $end_date_time, we may as well forget the whole thing
@@ -1379,7 +1494,8 @@ function icalToArray($filename) {
 						$data = str_replace("\\r", "<br />", $data);
 						$data = str_replace('$', '&#36;', $data);
 						$data = stripslashes($data);
-						$data = htmlentities(urlencode($data));
+// 						$data = htmlentities(urlencode($data));
+                        $data = htmlentities($data);
 						if ($valarm_set == FALSE) { 
 							$summary = $data;
 						} else {
@@ -1501,6 +1617,14 @@ function icalToArray($filename) {
 			}
 		}
 	}
+ 
+    unset($master_array['calendar_name']);
+    unset($master_array['-1']);
+    unset($master_array['-3']);
+    unset($master_array['-4']);
+
+// print_R($master_array);
+// print_R($overlap_array);
     return $master_array;
 }	
  

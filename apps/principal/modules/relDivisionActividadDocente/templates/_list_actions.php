@@ -11,7 +11,7 @@
   'class' => '',
 )) ?></li>
 
-<li><?php echo button_to(__('ver calendario'), 'relDivisionActividadDocente/verCalendarioPorDia', array (
+<li><?php echo button_to(__('ver calendario'), 'relDivisionActividadDocente/verCalendario', array (
   'class' => '',
 )) ?></li>
 

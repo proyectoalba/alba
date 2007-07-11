@@ -19,9 +19,11 @@ class icalVisualizadorComponents extends sfComponents
     public function  executeVerPorDia() {
         $aAllDay = array();
         $minutes = 60;
+        $date = $this->getDate();
+        $this->aWeek = $this->getWeekRange($date);
 
         require(sfConfig::get('sf_app_module_dir')."/icalVisualizador/".sfConfig::get('sf_app_module_lib_dir_name')."/ical_parser.php");
-        $aEvent = @icalToArray($this->archivo);
+        $aEvent = @icalToArray($this->archivo, date("Ymd",$this->aWeek[0]['day']), date("Ymd",$this->aWeek[6]['day']) );
 
         $nbrGridCols = 1;
         foreach($aEvent as $day) {
@@ -32,8 +34,7 @@ class icalVisualizadorComponents extends sfComponents
             }
         }
 
-        $date = $this->getDate();
-        $this->aWeek = $this->getWeekRange($date);
+        
         $this->aTime = $this->getTimeRange();
         $this->nbrGridCols = $nbrGridCols;
         $this->aEvent = $aEvent;
@@ -46,12 +47,13 @@ class icalVisualizadorComponents extends sfComponents
 
     public function  executeVerPorSemana() {
 
-        require(sfConfig::get('sf_app_module_dir')."/icalVisualizador/".sfConfig::get('sf_app_module_lib_dir_name')."/ical_parser.php");
-        $aEvent = @icalToArray($this->archivo);
-
         $date = $this->getDate();
-        $this->aEvent = $aEvent;
         $aWeek = $this->getWeekRange($date);
+
+        require(sfConfig::get('sf_app_module_dir')."/icalVisualizador/".sfConfig::get('sf_app_module_lib_dir_name')."/ical_parser.php");
+        $aEvent = @icalToArray($this->archivo, date("Ymd",$aWeek[0]['day']), date("Ymd",$aWeek[6]['day']) );
+
+        $this->aEvent = $aEvent;
         $this->aTime = $this->getTimeRange();
         $this->l_calendar = "";
         $this->calendar_name = "";
@@ -70,13 +72,10 @@ class icalVisualizadorComponents extends sfComponents
                 }
             }
         }
+
         $this->nbrGridCols = $nbrGridCols;
         $this->aWeek  = $aWeek;
     }
-
-
-
-    
 
 
     private function getTimeRange() {

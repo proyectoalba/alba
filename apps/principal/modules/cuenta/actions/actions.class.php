@@ -53,7 +53,6 @@ class cuentaActions extends autocuentaActions
         $c = new Criteria();
         $c->add(ResponsablePeer::FK_CUENTA_ID, $this->getRequestParameter('id'));
         $this->aResponsable  = ResponsablePeer::doSelect($c);
-        
   }  
  protected function addSortCriteria ($c)                                                
   {                                                                                       

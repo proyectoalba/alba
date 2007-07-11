@@ -1,3 +1,4 @@
+<?php use_helper('I18N') ?>
 <link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/icalVisualizador/css/icalVisualizador.css"/>
 
 <center>
