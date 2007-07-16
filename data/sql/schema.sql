@@ -1328,30 +1328,6 @@ CREATE TABLE `horarioescolartipo`
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
-#-- menu
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `menu`;
-
-
-CREATE TABLE `menu`
-(
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`nombre` VARCHAR(255) default '' NOT NULL,
-	`link` VARCHAR(255) default '' NOT NULL,
-	`perm` VARCHAR(255) default '' NOT NULL,
-	`target` VARCHAR(255) default '' NOT NULL,
-	`fk_padre_menu_id` INTEGER,
-	`orden` INTEGER,
-	PRIMARY KEY (`id`),
-	KEY `nombre_menu`(`nombre`),
-	INDEX `menu_FI_1` (`fk_padre_menu_id`),
-	CONSTRAINT `menu_FK_1`
-		FOREIGN KEY (`fk_padre_menu_id`)
-		REFERENCES `menu` (`id`)
-)Type=InnoDB;
-
-#-----------------------------------------------------------------------------
 #-- tipoasistencia
 #-----------------------------------------------------------------------------
 

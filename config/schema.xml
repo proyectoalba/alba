@@ -702,21 +702,6 @@
     <column name="descripcion" type="VARCHAR" size="255" required="false"/>
   </table>
  
-    <table name="menu" idMethod="native">
-        <column name="id" type="INTEGER" required="true" autoIncrement="true" primaryKey="true"/>
-        <column name="nombre" type="VARCHAR" size="255" required="true" default=""/>
-        <column name="link" type="VARCHAR" size="255" required="true" default=""/>
-        <column name="perm" type="VARCHAR" size="255" required="true" default=""/>
-        <column name="target" type="VARCHAR" size="255" required="true" default=""/>
-        <column name="fk_padre_menu_id" type="INTEGER" required="false"/>
-        <column name="orden" type="INTEGER" required="false"/>
-        <index name="nombre_menu">
-          <index-column name="nombre"/>
-        </index>
-        <foreign-key foreignTable="menu">         
-          <reference local="fk_padre_menu_id" foreign="id"/>       
-        </foreign-key>
-    </table>
 	<table name="tipoasistencia" idMethod="native">
     	<column name="id" type="INTEGER" size="11" required="true" autoIncrement="true" primaryKey="true"/>
        	<column name="nombre" type="VARCHAR" size="10" required="true"/>
