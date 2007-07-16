@@ -42,7 +42,7 @@
                         </li>
 	                    <li><span></span><a href="#">Calendarios y Horarios</a>
                             <ul>
-	                            <li><span></span><?php echo link_to("Definir Ciclos Lectivos","coclilectivo")?></li>
+	                            <li><span></span><?php echo link_to("Definir Ciclos Lectivos","ciclolectivo")?></li>
 	                            <li><span></span><?php echo link_to("Definir Períodos","ciclolectivo/agregarTurnosYPeriodos")?></li>
 	                            <li><span></span><?php echo link_to("Definir turnos","turnos")?></li>
 	                            <li><span></span><?php echo link_to("Tipos de intevalos de horario escolar","horarioescolartipo")?></li>
@@ -92,7 +92,6 @@
 	    <li><span></span><a href="#">Docentes</a>
             <ul>
 	            <li><span></span><?php echo link_to("Administrar","docente")?></li>
-	            <li><span></span><?php echo link_to("Actividad/Materia por Docente","relActividadDocente")?></li>
             </ul>
         </li>
 	    <li><span></span><a href="#">Gesti&oacute;n Escolar</a>
@@ -110,10 +109,10 @@
 	            <li><span></span><a href="#">Horario Escolar</a>
                     <ul>
 	                    <li><span></span><?php echo link_to("Definir horario clases","horarioescolar")?></li>
-	                    <li><span></span><?php echo link_to("Generar Horario por secci&oacute;n/divisi&oacute;n","calendario")?></li>
+	                    <li><span></span><?php echo link_to("Generar Horario por secci&oacute;n/divisi&oacute;n","relDivisionActividadDocente")?></li>
                     </ul>
                 </li>
-	            <li><span></span><a href="#">Horario seg&uacute;n...?</a>
+	            <li><span></span><a href="#">&iquest; Horario seg&uacute;n...?</a>
                     <ul>
 	                    <li><span></span><?php echo link_to("...docentes","calendario/busquedaDocente")?></li>
 	                    <li><span></span><?php echo link_to ("...secci&oacute;n/divisi&oacute;n","calendario/busquedaDivision")?></li>
@@ -130,18 +129,18 @@
 	    <li><span></span><a href="#">Informes y Consultas</a>
             <ul>
 	            <li><span></span><?php echo link_to("Constancia Alumno Regular","informes/constanciaAlumnoRegularFormulario",'target=_blank')?></li>
-	            <li><span></span><a href="#">Constancia Egreso 7mo</a></li>
+	            <li><span></span><?php echo link_to("Constancia Egreso 7mo","informes/certificadoPrimariaFormulario/vista/imprimir",'target=_blank')?></li>
 	            <li><span></span><?php echo link_to("Alumnos por divisi&oacute;n","informes/alumnosPorDivisionFormulario",'target=_blank')?></li>
 	            <li><span></span><?php echo link_to("Boletines","informes/boletinFormulario","target=_blank")?></li>
 	            <li><span></span><?php echo link_to("Certificado de Estudios","informes/certificadoEstudiosBusquedaFormulario","target=_blank")?></li>
-	            <li><span></span><?php echo link_to("Solicitud de Legajo","informes/solicitudLegajoBusquedaFormulario",'target?_blank')?></li>
+	            <li><span></span><?php echo link_to("Solicitud de Legajo","informes/solicitudLegajoBusquedaFormulario",'target=_blank')?></li>
 	            <li><span></span><?php echo link_to("Biblioteca de contenidos","sfMediaLibrary")?></li>
             </ul>
         </li>
 	    <li><span></span><a href="#">Ayuda</a>
             <ul>
 	            <li><span></span><?php echo link_to("Indice...","ayuda")?></li>
-	            <li><span></span><?php echo link_to("Cr&eacute;ditos","creditos")?></li>
+	            <li><span></span><?php echo link_to("Cr&eacute;ditos","default")?></li>
             </ul>
         </li>
 	    <li><span></span><?php echo link_to("Salir","seguridad/logout")?></li>

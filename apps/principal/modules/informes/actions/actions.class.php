@@ -285,7 +285,7 @@ class InformesActions extends sfActions
 
         Misc::use_helper('Misc');
         $aMeses = meses();
-
+        $this->meses = meses();
         $this->anio = date("Y");
         $this->mes = $aMeses[date("n")];
         $this->dia = date("d");

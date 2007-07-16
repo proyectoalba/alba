@@ -1,7 +1,3 @@
-<?php
-    use_helper('Misc');
-    $meses = Meses();
-?>
 <div style="text-align: center;"><?=image_tag('small/escudo_bsas_chico.jpg')?></div>
 <div style="text-align: center;" class="titulo">REP&Uacute;BLICA ARGENTINA<br><br>
 <span style="font-weight: bold;" class="titulo">GOBIERNO DE LA CIUDAD DE BUENOS AIRES</span><br style="font-weight: bold;">
