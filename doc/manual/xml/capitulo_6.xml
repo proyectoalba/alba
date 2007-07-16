@@ -1,0 +1,62 @@
+<chapter><title> Cuentas</title>
+<para>
+La sección Cuentas del menú desplegable, ofrece las herramientas necesarias para organizar la información de varios alumnos con un responsable común. Una cuenta puede funcionar como una familia particular, pero también puede no ser una familia en sentido estricto. 
+</para>
+<sect1>
+<para><title>Administrar.</title>
+Desde este menú es posible crear nuevas cuentas y gestionar las existentes. 
+</para>
+<para>
+<figure><title>Listado de cuentas.</title>
+<graphic fileref="img/figura24.png"/>
+</figure>
+</para>
+<sect2><title>Crear una cuenta nueva.</title>
+<para>
+Para crear una cuenta nueva, se debe utilizar el acceso al pié que indica "Nuevo" y completar siguientes  datos: 
+</para>
+<para>
+<emphasis>Nombre:</emphasis>Una denominación de la cuenta, que puede expresar (por ejemplo) el apellido de la una familia o el nombre de otra organización que nuclea un grupo de alumnos. 
+</para>
+<para>
+<emphasis>Razón Social, CUIT y tipo de IVA:</emphasis> Si se trata de una persona jurídica la que se responsabiliza de los alumnos (especialmente cuando se trata de toma a cargo de valores en unidades educativas privadas). El CUIT posibilita el cobro de futuras transacciones.
+</para>
+<para>
+<emphasis>Dirección, Ciudad, CP, Teléfono</emphasis>, son datos solicitados también.
+</para>
+</sect2>
+<sect2><title>Editar una cuenta</title>
+<para>
+El listado de Cuentas, posee barra de acción de edición. Por otro lado, tanto haciendo click sobre el nombre de la cuenta como en el ícono triangular de la barra de acción, es posible visualizar los responsables y los alumnos asociados, así como agregar nuevos. 
+</para>
+<para>
+<figure><title>Edición de cuenta.</title>
+<graphic fileref="img/figura25.png"/>
+</figure>
+</para>
+<para>
+Al <emphasis>agregar tanto alumnos como responsables</emphasis> desde esta pantalla, quedarán asociados a la <emphasis>cuenta</emphasis> correspondiente. En ambos casos, es posible duplicar la información de Dirección, Ciudad, CP y Teléfono de la cuenta a estas personas; utilizando el botón <emphasis>"Cargar datos de la Cuenta"</emphasis>.  
+</para>
+<para>
+Las listas de alumnos y responsables asociados a la cuenta, también poseen una barra de  acciones que permite editarlos y acceder a diferentes herramientas. En el caso de Alumnos puede acceder a (Vacunas, Asistencias, Legajos, Boletín) y tratándose de Responsables posee acciones de edición.
+</para>
+</sect2>
+</sect1>
+
+<sect1><title>Responsables.</title>
+<para>
+Todos los responsables de las cuentas, constituyen un listado completo que puede ser utilizado (si bien una cuenta puede tener varios responsables) para hacer una comunicación directa y no redundante con éstos, sin la intercesión de los alumnos asociados. 
+</para>
+<para>
+Como todo listado, puede ser ordenado según diversos criterios y cuenta con la herramienta de filtrado para realizar búsquedas. También tienen opciones de edición y de acceso a la cuenta asociada. 
+</para>
+<para>
+<figure><title>Listado de responsables.</title>
+<graphic fileref="img/figura26.png"/>
+</figure>
+</para>
+<para>
+Accediendo desde el apellido del responsable (clickeando), se permite la edición de los datos del mismo. Le recordamos que el rol de cada responsable se elije entre aquellos asignados en Administración --> Configuraciones previas --> Alumnos --> Definir Roles de responsables. 
+</para>
+</sect1>
+</chapter>
