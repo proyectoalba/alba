@@ -94,10 +94,11 @@
         $aTimeIdx[2] = date("Hi",$aTime[($i+2)]);
         $aTimeIdx[3] = date("Hi",$aTime[($i+3)]);
         $find = 0;
-
+        $cant = 0;
         for($k=0;$k<4;$k++) {
             echo "<tr>\n"; 
             $j=0;
+            
             foreach($aWeek as $week) { //each day of the week
                 $drawWidth = 1;
 // echo $nbrGridCols[$week['day']]."<br>";
@@ -105,7 +106,7 @@
                 $each_date = date("Ymd", $week['day']);
 // echo $each_date." ".$aTimeIdx[$k]."<br>";
                 if(array_key_exists($each_date, $aEvent) AND  array_key_exists($aTimeIdx[$k], $aEvent[$each_date])) { 
-
+                    $cant++;
                     $find = 1;
                     if($j == 0 AND $k == 0) {
                         echo '<td colspan="4" rowspan="4" align="center" valign="top" width="60" class="timeborder">'.date("H:i A",$aTime[$i]).'</td><td bgcolor="#a1a5a9" width="1" height="15"></td>';
@@ -126,10 +127,9 @@
                                                     </div>
                                                </td>
 <?
-if($event['event_overlap']>1) {
-//     echo "<td colspan='".($event['event_overlap']+1)."'  class='weekborder'>&nbsp;</td>";
-}
-
+                        if($event['event_overlap']>1) {
+                        //     echo "<td colspan='".($event['event_overlap']+1)."'  class='weekborder'>&nbsp;</td>";
+                        }
                     }
                 } else {
                     if($j == 0 AND $k == 0) { // first time 
@@ -141,9 +141,15 @@ if($event['event_overlap']>1) {
                         }
                     }
 
-                    if($k>0 AND $find == 1 AND $j==6) { // only write 6 td if event was find 
+                    if($k > 0 AND $find == 1 AND $j == 6) { // only write 6 td if event was find 
                     } else {
-                        echo '<td width="'.$width.'" colspan="'.$nbrGridCols[$week['day']].'"  class="weekborder">&nbsp;</td>'."\n"; 
+                        if($k > 0 AND $find == 1) {
+                            if($cant <= $j+1) { 
+                                echo '<td width="'.$width.'" colspan="1"  class="weekborder">&nbsp;</td>'."\n";
+                            }
+                        } else {
+                           echo '<td width="'.$width.'" colspan="'.$nbrGridCols[$week['day']].'"  class="weekborder">&nbsp;</td>'."\n";
+                        }
                     }
 
                 }

@@ -550,10 +550,10 @@ function extractDateTime($data, $property, $field, &$tz_array) {
 
 
 function icalToArray($filename, $fromdate, $todate) {
-//                 $filename = "/var/www/phpicalendar/calendars/pepe.ics";
+//      $filename = "/var/www/phpicalendar/calendars/pepe.ics";
 
-$timezone = "America/Buenos_Aires";
-$tz_array['America/Buenos_Aires']       = array('-0300', '-0300');
+        $timezone = "America/Buenos_Aires";
+        $tz_array['America/Buenos_Aires']       = array('-0300', '-0300');
 
                 $master_array = array();
 		$ifile = @fopen($filename, "r");
@@ -572,7 +572,7 @@ $tz_array['America/Buenos_Aires']       = array('-0300', '-0300');
 		$calendar_name = $cal_filename;
   		$master_array['calendar_name'] 	= $calendar_name;
 
-$overlap_array = array();
+        $overlap_array = array();
 		
 	// read file in line by line
 	// XXX end line is skipped because of the 1-line readahead
