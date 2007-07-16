@@ -8,6 +8,10 @@ dev:
 
 test:
 
+demo:
+    enabled: off
+    level: err
+
 all:
 #  enabled: on
 #  level:  debug
