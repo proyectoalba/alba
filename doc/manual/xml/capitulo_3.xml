@@ -37,19 +37,18 @@ La locaci&oacute;n de un establecimiento, es el espacio f&iacute;sico donde se d
 
 <sect2><title>M&oacute;dulo.</title>
 <para>
-Un m&oacute;dulo agrupa diferentes acciones sobre un determinado elemento. Por ejemplo, el m&oacute;dulo <emphasis>alumno</emphasis> (Ingresar alumno) permite realizar diferentes acciones sobre la informaci&oacute;n como editar, borrar, relacionar con cuentas, etc. Muchos m&oacute;dulos, se relacionan entre s&iacute; conformando una secci&oacute;n del men&uacute; desplegable (por ejemplo: Alumnos.)
-</para>
+Un m&oacute;dulo agrupa diferentes acciones sobre un determinado elemento. (Se completar&aacute; en breve.)</para>
 </sect2>
 
 <sect2><title>Organizaci&oacute;n.</title>
 <para>
-Una organizaci&oacute;n, refiere a una persona jur&iacute;dica que administra uno o m&aacute;s establecimientos. En ALBA, el m&oacute;dulo organizaci&oacute;n permite el ingreso de todos los datos administrativos de la misma, para las acciones futuras de cobro en caso de tratarse de establecimientos educativos privados. 
+Una organizaci&oacute;n, refiere a una persona jur&iacute;dica que administra uno o m&aacute;s establecimientos. En ALBA, el m&oacute;dulo organizaci&oacute;n permite el ingreso de todos los datos administrativos y comerciales de la misma. (Por ejemplo, para el cobro a través de un futuro módulo contable en caso de tratarse de establecimientos educativos privados. 
 </para>
 </sect2>
 
 <sect2><title>Permiso.</title>
 <para>
-Un permiso permite acceder a determinado m&oacute;dulo del sistema. ALBA cuenta con un sistema de permisos para administrar la seguridad, donde un usuario puede tener asignados permisos para unos m&oacute;dulos y otros no (seg&uacute;n lo gestione el administrador del sistema).
+Un permiso permite acceder a determinada funcionalidad de los m&oacute;dulos del sistema. ALBA cuenta con un sistema de permisos para administrar la seguridad, donde un usuario puede tener asignados permisos para unos m&oacute;dulos y otros no (seg&uacute;n lo gestione el administrador del sistema).
 </para>
 </sect2>
 

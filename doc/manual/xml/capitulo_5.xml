@@ -1,6 +1,231 @@
-<chapter><title>        </title>
+<chapter><title> Administraci&oacute;n</title>
+
+<para>
+La secci&oacute;n Administraci&oacute;n del men&uacute; desplegable, ofrece las primeras herramientas para configurar ALBA a la medida de las necesidades de su instituci&oacute;n. Como se dijo, muchos de los datos iniciales, se encuentran precargados para posibilitar un uso inicial: en esos casos, ser&aacute; necesario editar esa informaci&oacute;n. 
+</para>
+
+<sect1><title>General.</title>
+<sect2><title>Definir Organizaci&oacute;n</title>
+<para>
+ALBA provee como ejemplo, datos datos cargados del nombre y la descripci&oacute;n de la organizaci&oacute;n, que deber&aacute;n ser removidos y completados. 
+</para>
+</sect2>
+
+<sect2><title>Definir Establecimiento</title>
+<para>
+De la misma forma, ser&aacute; necesario editar los datos del o los establecimientos que tenga la organizaci&oacute;n. 
+</para>
+<important><para>
+Recuerde que ALBA posibilita la gesti&oacute;n de varios establecimientos de una misma organizaci&oacute;n. (Puede revisar las definiciones de ambos conceptos en el Cap&iacute;tulo 5 ante cualquier duda).
+</para></important>
+</sect2>
+</sect1>
+
+<sect1><title>Configuraciones Previas</title>
+
+<sect2><title>Generales.</title>
+<para>
+En este tipo de configuraci&oacute;n se incluyen los <emphasis>pa&iacute;ses, provincias, distritos escolares y categor&iacute;as de IVA.</emphasis> Recuerde que todos los datos precargados pueden ser modificados seg&uacute;n la necesidad del establecimiento. 
+</para>
+</sect2>
+
+<sect2><title>Alumnos.</title>
+<para>
+Refiere a las configuraciones sobre: 
+</para>
+<para>
+1) <emphasis>tipos de posibles bajas de alumnos</emphasis>: donde se establecen las posibles motivaciones de las bajas de alumnos, por ejemplo: pase, enfermedad etc. En este listado se ingresa el nombre del tipo y una breve descripci&oacute;n explicativa. Se permiten acciones de edici&oacute;n.
+</para>
+<para>
+<figure><title>Listados de conceptos de baja.</title>
+<graphic fileref="img/figura9.png"/>
+</figure>
+</para>
 
 
+<para>
+2) <emphasis> tipos de asistencia que utilice el establecimiento</emphasis>: donde se definen asistencia e inasistencia, un nombre corto usual y un valor. Este &uacute;ltimo, permite contabilizar las inasistencias que no son completas (el caso de media falta que se indicar&aacute; como 0,5 o en algunos establecimientos impuntualidad, etc.) Al dar de alta un nuevo tipo de asistencia, se debe indicar a qu&eacute; grupo pertenece: si es asistencia (positiva) o inasistencia, y se define tambi&eacute;n cu&aacute;l es el que quedar&aacute; indicado como por defecto (se sugiere sea el de asistencia). Se permiten acciones de edici&oacute;n. 
+</para>
+<para>
+<figure><title>Listados de tipo de Asistencia.</title>
+<graphic fileref="img/figura10.png"/>
+</figure>
+</para>
+<para>
+3) <emphasis>escala de notas:</emphasis>permite definir seg&uacute;n el establecimiento, valores para la evaluaci&oacute;n (ya sea num&eacute;rica o conceptual) y si &eacute;stos corresponden a la categor&iacute;a de "aprobado" o no de las actividades/materias. El "orden" indicar&aacute; sucesi&oacute;n en que se visualizar&aacute;n. Tiene habilitadas las acciones de edici&oacute;n. 
+</para>
+<para>
+<figure><title>Escala de notas.</title>
+<graphic fileref="img/figura11.png"/>
+</figure>
+</para>
 
+<para>
+4) <emphasis> tipos de entrada al legajo pedag&oacute;gico</emphasis>: clasifica la informaci&oacute;n textual que se ingresar&aacute; a los legajos pedag&oacute;gicos de los alumnos. Por ejemplo, puede crearse la categor&iacute;a de "Seguimiento Docente" (ingresos de textos al legajo referidos al desempe&ntilde;o del alumno en clase) o del "Equipo de Orientaci&oacute;n Escolar" (informes del equipo o del gabinete). Es posible crear una nueva categor&iacute;a de entrada al legajo seg&uacute;n el tipo de establecimiento y el nivel. Permite acciones de edici&oacute;n. 
+</para>
+<para>
+<figure><title>Tipos de entrada al legajo pedag&oacute;gica.</title>
+<graphic fileref="img/figura12.png"/>
+</figure>
+</para>
 
+<para>
+5) <emphasis>categor&iacute;as del bolet&iacute;n de concepto</emphasis>: complementa la "escala de notas" (punto 3), ofreciendo definir otros &iacute;tems que integrar&aacute;n el bolet&iacute;n a nivel conceptual. Los elementos, pueden incluirse m&aacute;s all&aacute; de la forma de evaluarlos (con nota, con comentarios textuales, etc). La carga solicita el nombre del &iacute;tem, y una breve descripci&oacute;n. Permite acciones de edici&oacute;n. 
+</para>
+<para>
+<figure><title>Categor&iacute;as del bolet&iacute;n de concepto.</title>
+<graphic fileref="img/figura13.png"/>
+</figure>
+</para>
+</sect2>
+
+<sect2><title>Docentes.</title>
+<para>
+Refiere a configuraciones sobre: 
+</para>
+<para>
+1) <emphasis>tipos de docente</emphasis>: permite establecer los diferentes categor&iacute;as de docentes seg&uacute;n el cargo, proporcionando una breve descripci&oacute;n. Posibilita acciones de edici&oacute;n. 
+</para>
+<para>
+<figure><title>Tipos de docente.</title>
+<graphic fileref="img/figura14.png"/>
+</figure>
+</para>
+<para>
+2) <emphasis>motivos de baja</emphasis>:  se establecen las posibles motivaciones de las bajas de docentes, por ejemplo: renuncia, retiro, ascenso etc. En este listado se ingresa el nombre del tipo de baja del cargo y una breve descripci&oacute;n explicativa. Se permiten acciones de edici&oacute;n. 
+</para>
+<para>
+<figure><title>Motivos de baja.</title>
+<graphic fileref="img/figura15.png"/>
+</figure>
+</para>
+</sect2>
+
+<sect2><title>Calendarios y Horarios.</title>
+<para>
+Refiere a configuraciones sobre: 
+</para>
+<para>
+1) <emphasis>Ciclos Lectivos</emphasis>: permite ingresar un nuevo ciclo lectivo, indicando nombre, fecha de inicio y fin. Uno de los ciclos lectivos deber&aacute; ser se&ntilde;alizado como el actual y actuar&aacute; como predeterminado en las futuras cargas de datos. 
+</para>
+<para>
+<figure><title>Ciclos lectivos.</title>
+<graphic fileref="img/figura16.png"/>
+</figure>
+</para>
+<para>
+2) <emphasis>Per&iacute;odos</emphasis>: los per&iacute;odos organizan el ciclo lectivo en partes (como bimestres, trimestres, etc.) Indicar los per&iacute;odos es necesario para la incorporaci&oacute;n de calificaciones futuras de los alumnos. 
+</para>
+<para>
+<figure><title>Per&iacute;odos.</title>
+<graphic fileref="img/figura17.png"/>
+</figure>
+</para>
+<para>
+3) <emphasis>turnos</emphasis>: permite definir los turnos del establecimiento. La carga solicita el nombre (descripci&oacute;n) del turno y el horario de inicio y fin. Contempla el uso de acciones de edici&oacute;n. 
+</para>
+<para>
+4) <emphasis>tipos de intervalo de horario escolar</emphasis>: definir este tipo de elemento, permite la construcci&oacute;n futura de los horarios.  Recuerde que se trata de "tipos" de intervalos, y que la duraci&oacute;n y ubicaci&oacute;n de &eacute;stos se realizan en la secci&oacute;n del men&uacute; desplegable "Calendarios y Horarios --> Horario Escolar --> Definir horario de clases. Permite acciones de edici&oacute;n. 
+</para>
+<para>
+<figure><title>Tipos de intervalo de horario escolar.</title>
+<graphic fileref="img/figura18.png"/>
+</figure>
+</para>
+<para>
+5) <emphasis>feriados del a&ntilde;o</emphasis>: define los feriados que se producir&aacute;n en el ciclo lectivo. Como existen feriados inamovibles y otros trasladables (as&iacute; como d&iacute;as no laborables), la carga de los feriados del a&ntilde;o permite diferenciar los que son: anuales (de repetici&oacute;n anual) y los que son inamovibles (que no se trasladan) en un determinado ciclo lectivo. As&iacute; pues, es posible definir feriados productos de situaciones particulares o locales que no se repiten a lo largo del a&ntilde;o, o que no sean parte del calendario de feriados oficiales del pa&iacute;s. Esta herramienta, cuenta con un acceso directo a la informaci&oacute;n oficial del pa&iacute;s (Argentina) desde el bot&oacute;n: "Listado oficial". Permite acciones de edici&oacute;n. 
+</para>
+<para>
+6) <emphasis>calendario de vacunas: </emphasis> expresa el listado de vacunas oficiales informadas por el Ministerio de Salud (Rep. Argentina), indicando nombre, descripci&oacute;n, per&iacute;odo/edad en que se recibe y observaciones. Se tratan de <emphasis> datos precargados </emphasis>, que permiten de todas formas su edici&oacute;n y actualizaci&oacute;n de ser necesario. 
+</para>
+<para>
+<figure><title>Calendario de vacunas:</title>
+<graphic fileref="img/figura19.png"/>
+</figure>
+</para>
+</sect2>
+
+<sect2><title>Locaciones y Espacios.</title>
+<para>
+Refiere a configuraciones sobre: 
+</para>
+<para>
+1) <emphasis>tipos de locaciones</emphasis>: define los diferentes tipos de locaciones dentro de un mismo establecimiento. Existen datos precargados, que diferencian el tipo Sede y Anexo para facilitar la carga, pero pueden existir m&aacute;s tipos seg&uacute;n el establecimiento gestionado. Admite acciones de edici&oacute;n. 
+</para>
+<para>
+<figure><title>Tipos de locaciones. </title>
+<graphic fileref="img/figura20.png"/>
+</figure>
+</para>
+
+<para>
+2) <emphasis>tipos de espacios</emphasis>: define los espacios que pueden gestionarse en cada locaci&oacute;n, seg&uacute;n criterios de funcionalidad.  ALBA provee los datos del Ejemplo  para facilitar la carga inicial, pero la herramienta admite acciones de edici&oacute;n.  
+</para>
+<para>
+<figure><title>Tipos de espacios. </title>
+<graphic fileref="img/figura21.png"/>
+</figure>
+</para>
+</sect2>
+</sect1>
+
+<sect1><title>Preferencias generales.</title>
+<para>
+A&uacute;n no implementado. 
+<emphasis>Permitir&aacute; en el futuro, personalizar algunas variables del sistema a su gusto (como la moneda, la forma de indicar las fechas, etc.)</emphasis>
+</para>
+</sect1>
+
+<sect1><title>Seguridad.</title>
+<para>
+Refiere a configuraciones de: 
+</para>
+<sect2><title>Usuario.</title>
+<para>
+Esta herramienta permite administrar los usuarios del sistema ALBA. Una vez ingresado al sistema como usuario admin (el que se crea por defecto durante la instalaci&oacute;n), es posible crear nuevos usuarios que tambi&eacute;n podr&aacute;n administrar todos o algunos de los m&oacute;dulos de ALBA. El listado de usuarios, posee un filtro para la b&uacute;squeda seg&uacute;n usuario y establecimiento, as&iacute; como botones de barra inferior para agregar nuevos. 
+</para>
+<para>
+Al crear un nuevo usuario se le solicitar&aacute; nombre, una clave, e-mail,   establecimiento al que pertenece, y una pregunta y respuesta para recuperar la clave a trav&eacute;s del e-mail.  Una vez creado, desde el listado de usuarios, puede accederse a trav&eacute;s del bot&oacute;n de acci&oacute;n "Permisos" identificado con el &iacute;cono de un candado a la herramienta que gestionar&aacute; los accesos a las diferentes partes del ALBA.
+</para>
+<para>
+Por ejemplo, as&iacute; como el admin tiene acceso a todos los m&oacute;dulos,  un usuario "X" puede tener acceso &uacute;nicamente al legajo de los alumnos o a las asistencias. Para ello, existe una pantalla que lista todos los posibles permisos y que ofrece la selecci&oacute;n de uno o varios para cada usuario.
+</para>
+<para>
+Este m&oacute;dulo posee un sistema de flechas que posibilita la selecci&oacute;n de los permisos del usuario en cuesti&oacute;n (Permisos Seleccionados) de una lista de Permisos Disponibles, donde el s&iacute;mbolo > indica el pase de un &uacute;nico m&oacute;dulo, y el >> de todos los disponibles.
+</para>
+<para>
+<figure><title>Tipos de espacios. </title>
+<graphic fileref="img/figura22.png"/>
+</figure>
+</para>
+<para>
+Si se define que el usuario debe contar con los permisos de determinado rol (ver secci&oacute;n siguiente), al seleccionarlo en el cuadro superior, se informar&aacute;n como posibles permisos aquellos asociados al rol elegido. Debe incorporarlos al listados de Permisos Seleccionados a trav&eacute;s del sistema de flechas. 
+</para>
+<important>
+<para>Este cap&iacute;tulo puede sufrir modificaciones. Los cambios se encuentran en elaboraci&oacute;n.
+</para>
+</important>
+</sect2>
+
+<sect2><title>Rol.</title>
+<para>
+A trav&eacute;s de esta herramienta, es posible dar de alta diferentes perfiles para utilizar ALBA. Los roles, se utilizan para asociar un grupo de diferentes permisos que proveen accesos definidos seg&uacute;n las gestiones que realice la persona en el sistema ALBA. El listado de roles posibles, permite acciones de edici&oacute;n, y su funcionamiento (as&iacute; como la asociaci&oacute;n con diferentes permisos) se establece de la misma forma que con un usuario (seleccionando permisos que tendr&aacute; el rol de una lista de posibles). 
+</para>
+<para>
+<figure><title>Tipos de espacios. </title>
+<graphic fileref="img/figura23.png"/>
+</figure>
+</para>
+</sect2>
+<sect2><title>Permiso.</title>
+<para>
+A trav&eacute;s de esta herramienta, se administran los permisos de seguridad para cada m&oacute;dulo que contiene ALBA. Usualmente, no es utilizado por el destinatario final de esta herramienta. 
+</para>
+</sect2>
+<sect2><title>M&oacute;dulo.</title>
+<para>
+Desde aqu&iacute;, se administran los m&oacute;dulos y las credenciales que contiene ALBA. Usualmente, no es utilizado por el destinatario final de esta herramienta.
+</para>
+</sect2>
+</sect1>
 </chapter>
