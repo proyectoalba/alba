@@ -17,49 +17,37 @@ echo form_tag('docenteHorario/grabarDocenteHorario', 'onSubmit="selectItem()"');
 <div id="sf_admin_header"></div>
 <br>
 <div id="sf_admin_container">
+
+<?php if(count($aHorario) > 0 ) {?>
 <h2>Horarios Tentativos</h2>
 <table cellspacing="0" class="sf_admin_list">
   <thead>
   <tr>
-    <th id="sf_admin_list_th_dia">d&iacute;a</th>
-    <th id="sf_admin_list_th_repeticion">Repetici&oacute;n</th>
-    <th id="sf_admin_list_th_hora_inicio">Hora Inicio</th>
-    <th id="sf_admin_list_th_hora_fin">Hora Fin</th>
-    <th id="sf_admin_list_th_action">Acciones</th>
+    <th id="sf_admin_list_th_dia">Evento</th>
   </tr>
   </thead>
   <tbody>
-<?php
-    $i = 0;
-    foreach($aHorario as $horario){
-?>
+
+<?php $i = 1; foreach ($aHorario as $docente_horario): $odd = fmod(++$i, 2) ?>
   <tr class="sf_admin_row_0">
-    <td><?php echo select_tag("horario[$i][dia]", options_for_select(diasDeLaSemana(), $horario->getDia() ) );?></td>
-    <td><?php echo select_tag("horario[$i][fk_repeticion_id]", options_for_select($aRepeticion ,$horario->getFkRepeticionId()  ) );?></td>
-    <td><?php echo select_time_tag("horario[$i][hora_inicio]", $horario->getHoraInicio(), array('include_second' => false, '12hour_time' => true));?></td>
-    <td><?php echo select_time_tag("horario[$i][hora_fin]", $horario->getHoraFin(), array('include_second' => false, '12hour_time' => true));?></td>    
-    <?php echo input_hidden_tag("horario[$i][id]", $horario->getId()); ?>
-    <td>
-    <ul class="sf_admin_td_actions">
-    <li><?php echo link_to(image_tag(sfConfig::get('sf_admin_web_dir').'/images/delete_icon.png', array('alt' => __('delete'), 'title' => __('delete'))), 'docenteHorario/deleteHorario?id='.$horario->getId()); ?>
-    </ul>
-    </td>
+    <td><?php echo ($docente_horario->getEvento())?$docente_horario->getEvento()->getInfoEnTexto():""; ?></td>
+
+
+<td>
+<ul class="sf_admin_td_actions">
+  <li><?php echo link_to(image_tag('/sf/sf_admin/images/edit_icon.png', array('alt' => __('edit'), 'title' => __('edit'))), 'docenteHorario/edit?idDocente='.$docente_horario->getFkDocenteId()."&idEvento=".$docente_horario->getFkEventoId()) ?></li>
+  <li><?php echo link_to(image_tag('/sf/sf_admin/images/delete_icon.png', array('alt' => __('delete'), 'title' => __('delete'))), 'docenteHorario/delete?idDocente='.$docente_horario->getFkDocenteId()."&idEvento=".$docente_horario->getFkEventoId(), array (
+  'post' => true,
+  'confirm' => __('Are you sure?'),
+)) ?></li>
+</ul>
+</td>
+
+
+
+
   </tr>
-  <?php $i++; }?>
-  <tr class="sf_admin_row_0">
-    <td><b>NUEVO</b></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr class="sf_admin_row_0">
-    <td><?php echo select_tag("horario[$i][dia]", options_for_select(diasDeLaSemana()));?></td>
-    <td><?php echo select_tag("horario[$i][fk_repeticion_id]", options_for_select($aRepeticion) );?></td>
-    <td><?php echo select_time_tag("horario[$i][hora_inicio]", array(), array('include_second' => false, '12hour_time' => true));?></td>
-    <td><?php echo select_time_tag("horario[$i][hora_fin]", array(), array('include_second' => false, '12hour_time' => true));?></td>
-    <td></td>
-  </tr>
+<?php endforeach; ?>
   </tbody>
     <tfoot>
         <tr>
@@ -68,10 +56,19 @@ echo form_tag('docenteHorario/grabarDocenteHorario', 'onSubmit="selectItem()"');
         </tr>
     </tfoot>  
 </table>
-        <div>
+<?php } else { ?>
+No hay horarios cargados
+<?php }?>
+<div>
           <ul class="sf_admin_actions">
             <li>
-            <?php echo submit_tag('submit', 'class=sf_admin_action_save value=Grabar')?>
+<?php 
+
+$id  = ($sf_params->get('idDocente'))?$sf_params->get('idDocente'):1;
+echo button_to(__('create'), 'docenteHorario/edit?idDocente='.$id, array ( 'class' => 'sf_admin_action_create',)) 
+
+
+?>
             <li>
             <li>
              <?php echo button_to('Listado de Docentes','docente/list', array ('class' => 'sf_admin_action_list'))?>

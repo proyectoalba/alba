@@ -13,29 +13,17 @@ abstract class BaseDocenteHorarioPeer {
 	const CLASS_DEFAULT = 'lib.model.DocenteHorario';
 
 	
-	const NUM_COLUMNS = 6;
+	const NUM_COLUMNS = 2;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 
 	
-	const ID = 'docente_horario.ID';
-
-	
 	const FK_DOCENTE_ID = 'docente_horario.FK_DOCENTE_ID';
 
 	
-	const FK_REPETICION_ID = 'docente_horario.FK_REPETICION_ID';
-
-	
-	const HORA_INICIO = 'docente_horario.HORA_INICIO';
-
-	
-	const HORA_FIN = 'docente_horario.HORA_FIN';
-
-	
-	const DIA = 'docente_horario.DIA';
+	const FK_EVENTO_ID = 'docente_horario.FK_EVENTO_ID';
 
 	
 	private static $phpNameMap = null;
@@ -43,18 +31,18 @@ abstract class BaseDocenteHorarioPeer {
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'FkDocenteId', 'FkRepeticionId', 'HoraInicio', 'HoraFin', 'Dia', ),
-		BasePeer::TYPE_COLNAME => array (DocenteHorarioPeer::ID, DocenteHorarioPeer::FK_DOCENTE_ID, DocenteHorarioPeer::FK_REPETICION_ID, DocenteHorarioPeer::HORA_INICIO, DocenteHorarioPeer::HORA_FIN, DocenteHorarioPeer::DIA, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'fk_docente_id', 'fk_repeticion_id', 'hora_inicio', 'hora_fin', 'dia', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
+		BasePeer::TYPE_PHPNAME => array ('FkDocenteId', 'FkEventoId', ),
+		BasePeer::TYPE_COLNAME => array (DocenteHorarioPeer::FK_DOCENTE_ID, DocenteHorarioPeer::FK_EVENTO_ID, ),
+		BasePeer::TYPE_FIELDNAME => array ('fk_docente_id', 'fk_evento_id', ),
+		BasePeer::TYPE_NUM => array (0, 1, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'FkDocenteId' => 1, 'FkRepeticionId' => 2, 'HoraInicio' => 3, 'HoraFin' => 4, 'Dia' => 5, ),
-		BasePeer::TYPE_COLNAME => array (DocenteHorarioPeer::ID => 0, DocenteHorarioPeer::FK_DOCENTE_ID => 1, DocenteHorarioPeer::FK_REPETICION_ID => 2, DocenteHorarioPeer::HORA_INICIO => 3, DocenteHorarioPeer::HORA_FIN => 4, DocenteHorarioPeer::DIA => 5, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'fk_docente_id' => 1, 'fk_repeticion_id' => 2, 'hora_inicio' => 3, 'hora_fin' => 4, 'dia' => 5, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
+		BasePeer::TYPE_PHPNAME => array ('FkDocenteId' => 0, 'FkEventoId' => 1, ),
+		BasePeer::TYPE_COLNAME => array (DocenteHorarioPeer::FK_DOCENTE_ID => 0, DocenteHorarioPeer::FK_EVENTO_ID => 1, ),
+		BasePeer::TYPE_FIELDNAME => array ('fk_docente_id' => 0, 'fk_evento_id' => 1, ),
+		BasePeer::TYPE_NUM => array (0, 1, )
 	);
 
 	
@@ -108,22 +96,14 @@ abstract class BaseDocenteHorarioPeer {
 	public static function addSelectColumns(Criteria $criteria)
 	{
 
-		$criteria->addSelectColumn(DocenteHorarioPeer::ID);
-
 		$criteria->addSelectColumn(DocenteHorarioPeer::FK_DOCENTE_ID);
 
-		$criteria->addSelectColumn(DocenteHorarioPeer::FK_REPETICION_ID);
-
-		$criteria->addSelectColumn(DocenteHorarioPeer::HORA_INICIO);
-
-		$criteria->addSelectColumn(DocenteHorarioPeer::HORA_FIN);
-
-		$criteria->addSelectColumn(DocenteHorarioPeer::DIA);
+		$criteria->addSelectColumn(DocenteHorarioPeer::FK_EVENTO_ID);
 
 	}
 
-	const COUNT = 'COUNT(docente_horario.ID)';
-	const COUNT_DISTINCT = 'COUNT(DISTINCT docente_horario.ID)';
+	const COUNT = 'COUNT(docente_horario.FK_DOCENTE_ID)';
+	const COUNT_DISTINCT = 'COUNT(DISTINCT docente_horario.FK_DOCENTE_ID)';
 
 	
 	public static function doCount(Criteria $criteria, $distinct = false, $con = null)
@@ -199,7 +179,7 @@ abstract class BaseDocenteHorarioPeer {
 	}
 
 	
-	public static function doCountJoinRepeticion(Criteria $criteria, $distinct = false, $con = null)
+	public static function doCountJoinEvento(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
 
@@ -215,7 +195,7 @@ abstract class BaseDocenteHorarioPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(DocenteHorarioPeer::FK_REPETICION_ID, RepeticionPeer::ID);
+		$criteria->addJoin(DocenteHorarioPeer::FK_EVENTO_ID, EventoPeer::ID);
 
 		$rs = DocenteHorarioPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -255,7 +235,7 @@ abstract class BaseDocenteHorarioPeer {
 
 
 	
-	public static function doSelectJoinRepeticion(Criteria $c, $con = null)
+	public static function doSelectJoinEvento(Criteria $c, $con = null)
 	{
 		$c = clone $c;
 
@@ -265,9 +245,9 @@ abstract class BaseDocenteHorarioPeer {
 
 		DocenteHorarioPeer::addSelectColumns($c);
 		$startcol = (DocenteHorarioPeer::NUM_COLUMNS - DocenteHorarioPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-		RepeticionPeer::addSelectColumns($c);
+		EventoPeer::addSelectColumns($c);
 
-		$c->addJoin(DocenteHorarioPeer::FK_REPETICION_ID, RepeticionPeer::ID);
+		$c->addJoin(DocenteHorarioPeer::FK_EVENTO_ID, EventoPeer::ID);
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
 
@@ -279,7 +259,7 @@ abstract class BaseDocenteHorarioPeer {
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-			$omClass = RepeticionPeer::getOMClass();
+			$omClass = EventoPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
@@ -287,7 +267,7 @@ abstract class BaseDocenteHorarioPeer {
 
 			$newObject = true;
 			foreach($results as $temp_obj1) {
-				$temp_obj2 = $temp_obj1->getRepeticion(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getEvento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 										$temp_obj2->addDocenteHorario($obj1); 					break;
 				}
@@ -365,7 +345,7 @@ abstract class BaseDocenteHorarioPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(DocenteHorarioPeer::FK_REPETICION_ID, RepeticionPeer::ID);
+		$criteria->addJoin(DocenteHorarioPeer::FK_EVENTO_ID, EventoPeer::ID);
 
 		$criteria->addJoin(DocenteHorarioPeer::FK_DOCENTE_ID, DocentePeer::ID);
 
@@ -390,13 +370,13 @@ abstract class BaseDocenteHorarioPeer {
 		DocenteHorarioPeer::addSelectColumns($c);
 		$startcol2 = (DocenteHorarioPeer::NUM_COLUMNS - DocenteHorarioPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
-		RepeticionPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + RepeticionPeer::NUM_COLUMNS;
+		EventoPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + EventoPeer::NUM_COLUMNS;
 
 		DocentePeer::addSelectColumns($c);
 		$startcol4 = $startcol3 + DocentePeer::NUM_COLUMNS;
 
-		$c->addJoin(DocenteHorarioPeer::FK_REPETICION_ID, RepeticionPeer::ID);
+		$c->addJoin(DocenteHorarioPeer::FK_EVENTO_ID, EventoPeer::ID);
 
 		$c->addJoin(DocenteHorarioPeer::FK_DOCENTE_ID, DocentePeer::ID);
 
@@ -414,7 +394,7 @@ abstract class BaseDocenteHorarioPeer {
 
 
 					
-			$omClass = RepeticionPeer::getOMClass();
+			$omClass = EventoPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -424,7 +404,7 @@ abstract class BaseDocenteHorarioPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getRepeticion(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getEvento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addDocenteHorario($obj1); 					break;
 				}
@@ -465,7 +445,7 @@ abstract class BaseDocenteHorarioPeer {
 
 
 	
-	public static function doCountJoinAllExceptRepeticion(Criteria $criteria, $distinct = false, $con = null)
+	public static function doCountJoinAllExceptEvento(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
 
@@ -509,7 +489,7 @@ abstract class BaseDocenteHorarioPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(DocenteHorarioPeer::FK_REPETICION_ID, RepeticionPeer::ID);
+		$criteria->addJoin(DocenteHorarioPeer::FK_EVENTO_ID, EventoPeer::ID);
 
 		$rs = DocenteHorarioPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -521,7 +501,7 @@ abstract class BaseDocenteHorarioPeer {
 
 
 	
-	public static function doSelectJoinAllExceptRepeticion(Criteria $c, $con = null)
+	public static function doSelectJoinAllExceptEvento(Criteria $c, $con = null)
 	{
 		$c = clone $c;
 
@@ -589,10 +569,10 @@ abstract class BaseDocenteHorarioPeer {
 		DocenteHorarioPeer::addSelectColumns($c);
 		$startcol2 = (DocenteHorarioPeer::NUM_COLUMNS - DocenteHorarioPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
-		RepeticionPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + RepeticionPeer::NUM_COLUMNS;
+		EventoPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + EventoPeer::NUM_COLUMNS;
 
-		$c->addJoin(DocenteHorarioPeer::FK_REPETICION_ID, RepeticionPeer::ID);
+		$c->addJoin(DocenteHorarioPeer::FK_EVENTO_ID, EventoPeer::ID);
 
 
 		$rs = BasePeer::doSelect($c, $con);
@@ -606,7 +586,7 @@ abstract class BaseDocenteHorarioPeer {
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-			$omClass = RepeticionPeer::getOMClass();
+			$omClass = EventoPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -616,7 +596,7 @@ abstract class BaseDocenteHorarioPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getRepeticion(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getEvento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addDocenteHorario($obj1);
 					break;
@@ -656,7 +636,6 @@ abstract class BaseDocenteHorarioPeer {
 			$criteria = clone $values; 		} else {
 			$criteria = $values->buildCriteria(); 		}
 
-		$criteria->remove(DocenteHorarioPeer::ID); 
 
 				$criteria->setDbName(self::DATABASE_NAME);
 
@@ -683,8 +662,11 @@ abstract class BaseDocenteHorarioPeer {
 
 		if ($values instanceof Criteria) {
 			$criteria = clone $values; 
-			$comparison = $criteria->getComparison(DocenteHorarioPeer::ID);
-			$selectCriteria->add(DocenteHorarioPeer::ID, $criteria->remove(DocenteHorarioPeer::ID), $comparison);
+			$comparison = $criteria->getComparison(DocenteHorarioPeer::FK_DOCENTE_ID);
+			$selectCriteria->add(DocenteHorarioPeer::FK_DOCENTE_ID, $criteria->remove(DocenteHorarioPeer::FK_DOCENTE_ID), $comparison);
+
+			$comparison = $criteria->getComparison(DocenteHorarioPeer::FK_EVENTO_ID);
+			$selectCriteria->add(DocenteHorarioPeer::FK_EVENTO_ID, $criteria->remove(DocenteHorarioPeer::FK_EVENTO_ID), $comparison);
 
 		} else { 			$criteria = $values->buildCriteria(); 			$selectCriteria = $values->buildPkeyCriteria(); 		}
 
@@ -723,7 +705,20 @@ abstract class BaseDocenteHorarioPeer {
 			$criteria = $values->buildPkeyCriteria();
 		} else {
 						$criteria = new Criteria(self::DATABASE_NAME);
-			$criteria->add(DocenteHorarioPeer::ID, (array) $values, Criteria::IN);
+												if(count($values) == count($values, COUNT_RECURSIVE))
+			{
+								$values = array($values);
+			}
+			$vals = array();
+			foreach($values as $value)
+			{
+
+				$vals[0][] = $value[0];
+				$vals[1][] = $value[1];
+			}
+
+			$criteria->add(DocenteHorarioPeer::FK_DOCENTE_ID, $vals[0], Criteria::IN);
+			$criteria->add(DocenteHorarioPeer::FK_EVENTO_ID, $vals[1], Criteria::IN);
 		}
 
 				$criteria->setDbName(self::DATABASE_NAME);
@@ -777,40 +772,17 @@ abstract class BaseDocenteHorarioPeer {
 	}
 
 	
-	public static function retrieveByPK($pk, $con = null)
-	{
+	public static function retrieveByPK( $fk_docente_id, $fk_evento_id, $con = null) {
 		if ($con === null) {
 			$con = Propel::getConnection(self::DATABASE_NAME);
 		}
-
-		$criteria = new Criteria(DocenteHorarioPeer::DATABASE_NAME);
-
-		$criteria->add(DocenteHorarioPeer::ID, $pk);
-
-
+		$criteria = new Criteria();
+		$criteria->add(DocenteHorarioPeer::FK_DOCENTE_ID, $fk_docente_id);
+		$criteria->add(DocenteHorarioPeer::FK_EVENTO_ID, $fk_evento_id);
 		$v = DocenteHorarioPeer::doSelect($criteria, $con);
 
-		return !empty($v) > 0 ? $v[0] : null;
+		return !empty($v) ? $v[0] : null;
 	}
-
-	
-	public static function retrieveByPKs($pks, $con = null)
-	{
-		if ($con === null) {
-			$con = Propel::getConnection(self::DATABASE_NAME);
-		}
-
-		$objs = null;
-		if (empty($pks)) {
-			$objs = array();
-		} else {
-			$criteria = new Criteria();
-			$criteria->add(DocenteHorarioPeer::ID, $pks, Criteria::IN);
-			$objs = DocenteHorarioPeer::doSelect($criteria, $con);
-		}
-		return $objs;
-	}
-
 } 
 if (Propel::isInit()) {
 			try {

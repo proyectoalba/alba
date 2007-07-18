@@ -652,14 +652,10 @@
         </foreign-key>
     </table>
     <table name="docente_horario" idMethod="native">
-      <column name="id" type="integer" size="11" required="true" autoIncrement="true" primaryKey="true"/>
-      <column name="fk_docente_id" type="integer" size="11" required="true" default="0"/>
-      <column name="fk_repeticion_id" type="integer" size="11" required="true" default="0"/>
-      <column name="hora_inicio" type="time" required="true"/>
-      <column name="hora_fin" type="time" required="true"/>
-      <column name="dia" type="integer" size="11" required="true" default="0"/>
-      <foreign-key foreignTable="repeticion">
-        <reference local="fk_repeticion_id" foreign="id"/>       
+      <column name="fk_docente_id" type="integer" size="11" required="true" primaryKey="true"/>
+      <column name="fk_evento_id" type="integer" size="11" required="true" primaryKey="true"/>
+      <foreign-key foreignTable="evento">
+        <reference local="fk_evento_id" foreign="id"/>       
       </foreign-key>
       <foreign-key foreignTable="docente">
         <reference local="fk_docente_id" foreign="id"/>       

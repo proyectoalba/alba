@@ -54,6 +54,12 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 	protected $lastRelDivisionActividadDocenteCriteria = null;
 
 	
+	protected $collDocenteHorarios;
+
+	
+	protected $lastDocenteHorarioCriteria = null;
+
+	
 	protected $alreadyInSave = false;
 
 	
@@ -410,6 +416,14 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 				}
 			}
 
+			if ($this->collDocenteHorarios !== null) {
+				foreach($this->collDocenteHorarios as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
 			$this->alreadyInSave = false;
 		}
 		return $affectedRows;
@@ -453,6 +467,14 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 
 				if ($this->collRelDivisionActividadDocentes !== null) {
 					foreach($this->collRelDivisionActividadDocentes as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
+
+				if ($this->collDocenteHorarios !== null) {
+					foreach($this->collDocenteHorarios as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -660,6 +682,10 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 
 			foreach($this->getRelDivisionActividadDocentes() as $relObj) {
 				$copyObj->addRelDivisionActividadDocente($relObj->copy($deepCopy));
+			}
+
+			foreach($this->getDocenteHorarios() as $relObj) {
+				$copyObj->addDocenteHorario($relObj->copy($deepCopy));
 			}
 
 		} 
@@ -895,6 +921,111 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 		$this->lastRelDivisionActividadDocenteCriteria = $criteria;
 
 		return $this->collRelDivisionActividadDocentes;
+	}
+
+	
+	public function initDocenteHorarios()
+	{
+		if ($this->collDocenteHorarios === null) {
+			$this->collDocenteHorarios = array();
+		}
+	}
+
+	
+	public function getDocenteHorarios($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseDocenteHorarioPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collDocenteHorarios === null) {
+			if ($this->isNew()) {
+			   $this->collDocenteHorarios = array();
+			} else {
+
+				$criteria->add(DocenteHorarioPeer::FK_EVENTO_ID, $this->getId());
+
+				DocenteHorarioPeer::addSelectColumns($criteria);
+				$this->collDocenteHorarios = DocenteHorarioPeer::doSelect($criteria, $con);
+			}
+		} else {
+						if (!$this->isNew()) {
+												
+
+				$criteria->add(DocenteHorarioPeer::FK_EVENTO_ID, $this->getId());
+
+				DocenteHorarioPeer::addSelectColumns($criteria);
+				if (!isset($this->lastDocenteHorarioCriteria) || !$this->lastDocenteHorarioCriteria->equals($criteria)) {
+					$this->collDocenteHorarios = DocenteHorarioPeer::doSelect($criteria, $con);
+				}
+			}
+		}
+		$this->lastDocenteHorarioCriteria = $criteria;
+		return $this->collDocenteHorarios;
+	}
+
+	
+	public function countDocenteHorarios($criteria = null, $distinct = false, $con = null)
+	{
+				include_once 'lib/model/om/BaseDocenteHorarioPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		$criteria->add(DocenteHorarioPeer::FK_EVENTO_ID, $this->getId());
+
+		return DocenteHorarioPeer::doCount($criteria, $distinct, $con);
+	}
+
+	
+	public function addDocenteHorario(DocenteHorario $l)
+	{
+		$this->collDocenteHorarios[] = $l;
+		$l->setEvento($this);
+	}
+
+
+	
+	public function getDocenteHorariosJoinDocente($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseDocenteHorarioPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collDocenteHorarios === null) {
+			if ($this->isNew()) {
+				$this->collDocenteHorarios = array();
+			} else {
+
+				$criteria->add(DocenteHorarioPeer::FK_EVENTO_ID, $this->getId());
+
+				$this->collDocenteHorarios = DocenteHorarioPeer::doSelectJoinDocente($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(DocenteHorarioPeer::FK_EVENTO_ID, $this->getId());
+
+			if (!isset($this->lastDocenteHorarioCriteria) || !$this->lastDocenteHorarioCriteria->equals($criteria)) {
+				$this->collDocenteHorarios = DocenteHorarioPeer::doSelectJoinDocente($criteria, $con);
+			}
+		}
+		$this->lastDocenteHorarioCriteria = $criteria;
+
+		return $this->collDocenteHorarios;
 	}
 
 } 

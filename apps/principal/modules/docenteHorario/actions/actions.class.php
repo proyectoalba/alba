@@ -35,8 +35,8 @@ class DocenteHorarioActions extends sfActions
 {
   public function preExecute ()
   {
-    $this->getResponse()->addStylesheet(sfConfig::get('sf_admin_web_dir').'/css/main', 'first');
-    $this->vista = $this->getRequestParameter('vista');
+//     $this->getResponse()->addStylesheet(sfConfig::get('sf_admin_web_dir').'/css/main', 'first');
+//     $this->vista = $this->getRequestParameter('vista');
   }
 
   public function executeIndex ()
@@ -48,7 +48,6 @@ class DocenteHorarioActions extends sfActions
   {
 
     $optionsDocente = array();
-    $aMuestraRepeticion = array();
     $aHorario = array();
 
     $c = new Criteria();
@@ -57,14 +56,6 @@ class DocenteHorarioActions extends sfActions
     foreach($aDocente as $docente) {
         $optionsDocente[$docente->getId()] = $docente->getApellido().' '.$docente->getNombre();
     }
-
-    $aRepeticion  = RepeticionPeer::doSelect(new Criteria());
-
-    $aMuestraRepeticion = array();
-    foreach($aRepeticion  as $repeticion) {
-        $aMuestraRepeticion[$repeticion->getId()] = $repeticion->getDescripcion();
-    }
-
 
     if(count($optionsDocente) > 0) {
         $docente_id = ($this->getRequestParameter('idDocente')) ? $this->getRequestParameter('idDocente') : key($optionsDocente) ;
@@ -78,57 +69,127 @@ class DocenteHorarioActions extends sfActions
 
     $this->aHorario = $aHorario;
     $this->optionsDocente = $optionsDocente;
-    $this->aRepeticion = $aMuestraRepeticion;
+
   }
 
     public function executeDeleteHorario ()  {
-        $this->docenteHorario = DocenteHorarioPeer::retrieveByPk($this->getRequestParameter('id'));
+        $this->docenteHorario = DocenteHorarioPeer::retrieveByPk( array( $this->getRequestParameter('docente_id'), $this->getRequestParameter('evento_id')));
         $this->forward404Unless($this->docenteHorario);
         $idDocente = $this->docenteHorario->getFkDocenteId();
-        $this->docenteHorario->delete();
         $link = 'docenteHorario/list?idDocente='.$idDocente;
+        $this->docenteHorario->delete();
+        try {
+            $this->docenteHorario->delete();
+        }
+        catch (PropelException $e) {
+            $this->getRequest()->setError('delete', 'Could not delete the selected Docente Horario. Make sure it does not have any associated items.');
+            return $this->redirect($link);
+        }
+
         return $this->redirect($link);
     }
 
 
+  protected function saveDocenteHorario($docenteHorario)
+  {
+    $docenteHorario->save();
 
-    public function executeGrabarDocenteHorario() {
-        
-        $aHorario = $this->getRequestParameter('horario');
-        if(is_array($aHorario)) {        
-            foreach($aHorario as $horario) {
-                
-                $horaInicio = $this->_add_zeros($horario['hora_inicio']['hour'],2).":".$this->_add_zeros($horario['hora_inicio']['minute'],2)." ".$horario['hora_inicio']['ampm'];
-                $horaFin = $this->_add_zeros($horario['hora_fin']['hour'],2).":".$this->_add_zeros($horario['hora_fin']['minute'],2)." ".$horario['hora_fin']['ampm'];
-                
-                if($horaInicio != $horaFin) {
-                    if(isset($horario['id']) AND is_numeric($horario['id'])) {
-                        $this->horario = DocenteHorarioPeer::retrieveByPk($horario['id']);
-                    } else {
-                        $this->horario = new DocenteHorario();
-                    }
-                    $this->horario->setHoraInicio($horaInicio);
-                    $this->horario->setHoraFin($horaFin);
-                    $this->horario->setDia($horario['dia']);
-                    $this->horario->setFkDocenteId($this->getRequestParameter('idDocente'));
-                    $this->horario->setFkRepeticionId($horario['fk_repeticion_id']);
-                    $this->horario->save();
-                }
-            }    
-        }
-        
-        return $this->forward('docenteHorario','list','idDocente/'.$this->getRequestParameter('idDocente'));        
-    }
-    
+  }
 
-    function _add_zeros($string, $strlen) {
-        if ($strlen > strlen($string))  {
-            for ($x = strlen($string); $x < $strlen; $x++) {
-                $string = '0' . $string;
-            }
-        }
-        return $string;
+  protected function deleteDocenteHorario($docenteHorario)
+  {
+    $docenteHorario->delete();
+  }
+
+
+  protected function getDocenteHorarioOrCreate($id = 'idDocente', $id2 = 'idEvento')
+  {
+    if (!$this->getRequestParameter($id2))    {
+        $docenteHorario = new DocenteHorario();
+    } else { 
+        $c = new Criteria();
+        $c->add(DocenteHorarioPeer::FK_DOCENTE_ID, $this->getRequestParameter($id));
+        $c->add(DocenteHorarioPeer::FK_EVENTO_ID, $this->getRequestParameter($id2));
+        $docenteHorario = DocenteHorarioPeer::doSelectOne($c);
+// Esta linea de aca abajo deberia funcionar pero da un error no se si es del propel o que
+//         $docenteHorario = DocenteHorarioPeer::retrieveByPK(array($this->getRequestParameter($id2), $this->getRequestParameter($id)) );
+        $this->forward404Unless($docenteHorario);
     }
+
+    return $docenteHorario;
+  }
+
+
+  public function executeSave()
+  {
+    return $this->forward('docenteHorario', 'edit');
+  }
+
+
+  public function executeEdit()
+  {
+    $this->docente = DocentePeer::retrieveByPk($this->getRequestParameter('idDocente'));
+    $this->docenteHorario = $this->getDocenteHorarioOrCreate();
+
+    $evento_generico = new miEvento();
+    $this->evento = $evento_generico->getEventoOrCreate($this->docenteHorario->getFkEventoId());
+
+    if ($this->getRequest()->getMethod() == sfRequest::POST)
+    {
+        $this->evento = $evento_generico->updateEventoFromRequest($this->evento, $this->getRequestParameter('evento'), $this->getUser()->getCulture());
+        $this->evento->save();
+        $this->forward404Unless($this->evento);
+        $this->updateDocenteHorarioFromRequest($this->evento->getId());
+ 
+
+        $this->saveDocenteHorario($this->docenteHorario);
+        $this->setFlash('notice', 'Your modifications have been saved');
+
+        if ($this->getRequestParameter('save_and_add'))
+      {
+        return $this->redirect('docenteHorario/create');
+      }
+      else if ($this->getRequestParameter('save_and_list'))
+      {
+        return $this->redirect('docenteHorario/list');
+      }
+      else
+      {
+        return $this->redirect('docenteHorario/edit?idDocente='.$this->docenteHorario->getFkDocenteId().'&idEvento='.$this->docenteHorario->getFkEventoId());
+      }
+    }
+    else
+    {
+       $this->labels = $this->getLabels();
+    }
+
+  }
+
+  protected function updateDocenteHorarioFromRequest($fk_evento_id = '')  {
+    $docenteHorario = $this->getRequestParameter('docente_horario');
+
+    if ($fk_evento_id) {
+            $this->docenteHorario->setFkEventoId($fk_evento_id);
+    } else {
+            $this->docenteHorario->setFkEventoId(null);
+    }
+
+//     if (isset($docenteHorario['fk_evento_id'])) {
+//         $this->docenteHorario->setFkEventoId($docenteHorario['fk_evento_id'] ? $docenteHorario['fk_evento_id'] : null);
+//     }
+
+    if (isset($docenteHorario['fk_docente_id'])) {
+        $this->docenteHorario->setFkDocenteId($docenteHorario['fk_docente_id'] ? $docenteHorario['fk_docente_id'] : null);
+    }
+  }
+
+
+  protected function getLabels()  {
+    return array(
+      'docente_horario{fk_docente_id}' => 'Docente:',
+      'docente_horario{fk_evento_id}' => 'Evento:',
+    );
+  }
 
 }
 

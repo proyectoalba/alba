@@ -62,4 +62,11 @@ ALTER TABLE tipoiva ADD COLUMN orden INT DEFAULT 0 NOTt NULL;
 ALTER TABLE `rel_actividad_docente` DROP COLUMN id;
 ALTER TABLE `rel_actividad_docente` ADD PRIMARY KEY ( `fk_actividad_id` , `fk_docente_id` ) ;
 
+ALTER TABLE `docente_horario` DROP `id` , DROP `fk_repeticion_id` , DROP `hora_inicio` , DROP `hora_fin` , DROP `dia` ;
+ALTER TABLE `docente_horario` ADD `fk_evento_id` INT NOT NULL ;
+ALTER TABLE `docente_horario` ADD PRIMARY KEY ( `fk_docente_id` , `fk_evento_id` );
+ALTER TABLE `docente_horario` ADD INDEX `fk_evento_FI_1` ( `fk_evento_id` );
+
+DROP TABLE `menu`;
+ 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -9,30 +9,14 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 
 
 	
-	protected $id;
+	protected $fk_docente_id;
 
 
 	
-	protected $fk_docente_id = 0;
-
-
-	
-	protected $fk_repeticion_id = 0;
-
+	protected $fk_evento_id;
 
 	
-	protected $hora_inicio;
-
-
-	
-	protected $hora_fin;
-
-
-	
-	protected $dia = 0;
-
-	
-	protected $aRepeticion;
+	protected $aEvento;
 
 	
 	protected $aDocente;
@@ -44,13 +28,6 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 	protected $alreadyInValidation = false;
 
 	
-	public function getId()
-	{
-
-		return $this->id;
-	}
-
-	
 	public function getFkDocenteId()
 	{
 
@@ -58,77 +35,12 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 	}
 
 	
-	public function getFkRepeticionId()
+	public function getFkEventoId()
 	{
 
-		return $this->fk_repeticion_id;
+		return $this->fk_evento_id;
 	}
 
-	
-	public function getHoraInicio($format = 'H:i:s')
-	{
-
-		if ($this->hora_inicio === null || $this->hora_inicio === '') {
-			return null;
-		} elseif (!is_int($this->hora_inicio)) {
-						$ts = strtotime($this->hora_inicio);
-			if ($ts === -1 || $ts === false) { 				throw new PropelException("Unable to parse value of [hora_inicio] as date/time value: " . var_export($this->hora_inicio, true));
-			}
-		} else {
-			$ts = $this->hora_inicio;
-		}
-		if ($format === null) {
-			return $ts;
-		} elseif (strpos($format, '%') !== false) {
-			return strftime($format, $ts);
-		} else {
-			return date($format, $ts);
-		}
-	}
-
-	
-	public function getHoraFin($format = 'H:i:s')
-	{
-
-		if ($this->hora_fin === null || $this->hora_fin === '') {
-			return null;
-		} elseif (!is_int($this->hora_fin)) {
-						$ts = strtotime($this->hora_fin);
-			if ($ts === -1 || $ts === false) { 				throw new PropelException("Unable to parse value of [hora_fin] as date/time value: " . var_export($this->hora_fin, true));
-			}
-		} else {
-			$ts = $this->hora_fin;
-		}
-		if ($format === null) {
-			return $ts;
-		} elseif (strpos($format, '%') !== false) {
-			return strftime($format, $ts);
-		} else {
-			return date($format, $ts);
-		}
-	}
-
-	
-	public function getDia()
-	{
-
-		return $this->dia;
-	}
-
-	
-	public function setId($v)
-	{
-
-						if ($v !== null && !is_int($v) && is_numeric($v)) {
-			$v = (int) $v;
-		}
-
-		if ($this->id !== $v) {
-			$this->id = $v;
-			$this->modifiedColumns[] = DocenteHorarioPeer::ID;
-		}
-
-	} 
 	
 	public function setFkDocenteId($v)
 	{
@@ -137,7 +49,7 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 			$v = (int) $v;
 		}
 
-		if ($this->fk_docente_id !== $v || $v === 0) {
+		if ($this->fk_docente_id !== $v) {
 			$this->fk_docente_id = $v;
 			$this->modifiedColumns[] = DocenteHorarioPeer::FK_DOCENTE_ID;
 		}
@@ -148,68 +60,20 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 
 	} 
 	
-	public function setFkRepeticionId($v)
+	public function setFkEventoId($v)
 	{
 
 						if ($v !== null && !is_int($v) && is_numeric($v)) {
 			$v = (int) $v;
 		}
 
-		if ($this->fk_repeticion_id !== $v || $v === 0) {
-			$this->fk_repeticion_id = $v;
-			$this->modifiedColumns[] = DocenteHorarioPeer::FK_REPETICION_ID;
+		if ($this->fk_evento_id !== $v) {
+			$this->fk_evento_id = $v;
+			$this->modifiedColumns[] = DocenteHorarioPeer::FK_EVENTO_ID;
 		}
 
-		if ($this->aRepeticion !== null && $this->aRepeticion->getId() !== $v) {
-			$this->aRepeticion = null;
-		}
-
-	} 
-	
-	public function setHoraInicio($v)
-	{
-
-		if ($v !== null && !is_int($v)) {
-			$ts = strtotime($v);
-			if ($ts === -1 || $ts === false) { 				throw new PropelException("Unable to parse date/time value for [hora_inicio] from input: " . var_export($v, true));
-			}
-		} else {
-			$ts = $v;
-		}
-		if ($this->hora_inicio !== $ts) {
-			$this->hora_inicio = $ts;
-			$this->modifiedColumns[] = DocenteHorarioPeer::HORA_INICIO;
-		}
-
-	} 
-	
-	public function setHoraFin($v)
-	{
-
-		if ($v !== null && !is_int($v)) {
-			$ts = strtotime($v);
-			if ($ts === -1 || $ts === false) { 				throw new PropelException("Unable to parse date/time value for [hora_fin] from input: " . var_export($v, true));
-			}
-		} else {
-			$ts = $v;
-		}
-		if ($this->hora_fin !== $ts) {
-			$this->hora_fin = $ts;
-			$this->modifiedColumns[] = DocenteHorarioPeer::HORA_FIN;
-		}
-
-	} 
-	
-	public function setDia($v)
-	{
-
-						if ($v !== null && !is_int($v) && is_numeric($v)) {
-			$v = (int) $v;
-		}
-
-		if ($this->dia !== $v || $v === 0) {
-			$this->dia = $v;
-			$this->modifiedColumns[] = DocenteHorarioPeer::DIA;
+		if ($this->aEvento !== null && $this->aEvento->getId() !== $v) {
+			$this->aEvento = null;
 		}
 
 	} 
@@ -218,23 +82,15 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 	{
 		try {
 
-			$this->id = $rs->getInt($startcol + 0);
+			$this->fk_docente_id = $rs->getInt($startcol + 0);
 
-			$this->fk_docente_id = $rs->getInt($startcol + 1);
-
-			$this->fk_repeticion_id = $rs->getInt($startcol + 2);
-
-			$this->hora_inicio = $rs->getTime($startcol + 3, null);
-
-			$this->hora_fin = $rs->getTime($startcol + 4, null);
-
-			$this->dia = $rs->getInt($startcol + 5);
+			$this->fk_evento_id = $rs->getInt($startcol + 1);
 
 			$this->resetModified();
 
 			$this->setNew(false);
 
-						return $startcol + 6; 
+						return $startcol + 2; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating DocenteHorario object", $e);
 		}
@@ -292,11 +148,11 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 
 
 												
-			if ($this->aRepeticion !== null) {
-				if ($this->aRepeticion->isModified()) {
-					$affectedRows += $this->aRepeticion->save($con);
+			if ($this->aEvento !== null) {
+				if ($this->aEvento->isModified()) {
+					$affectedRows += $this->aEvento->save($con);
 				}
-				$this->setRepeticion($this->aRepeticion);
+				$this->setEvento($this->aEvento);
 			}
 
 			if ($this->aDocente !== null) {
@@ -311,7 +167,6 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 				if ($this->isNew()) {
 					$pk = DocenteHorarioPeer::doInsert($this, $con);
 					$affectedRows += 1; 										 										 
-					$this->setId($pk);  
 					$this->setNew(false);
 				} else {
 					$affectedRows += DocenteHorarioPeer::doUpdate($this, $con);
@@ -355,9 +210,9 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 
 
 												
-			if ($this->aRepeticion !== null) {
-				if (!$this->aRepeticion->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aRepeticion->getValidationFailures());
+			if ($this->aEvento !== null) {
+				if (!$this->aEvento->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aEvento->getValidationFailures());
 				}
 			}
 
@@ -392,22 +247,10 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 	{
 		switch($pos) {
 			case 0:
-				return $this->getId();
-				break;
-			case 1:
 				return $this->getFkDocenteId();
 				break;
-			case 2:
-				return $this->getFkRepeticionId();
-				break;
-			case 3:
-				return $this->getHoraInicio();
-				break;
-			case 4:
-				return $this->getHoraFin();
-				break;
-			case 5:
-				return $this->getDia();
+			case 1:
+				return $this->getFkEventoId();
 				break;
 			default:
 				return null;
@@ -419,12 +262,8 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 	{
 		$keys = DocenteHorarioPeer::getFieldNames($keyType);
 		$result = array(
-			$keys[0] => $this->getId(),
-			$keys[1] => $this->getFkDocenteId(),
-			$keys[2] => $this->getFkRepeticionId(),
-			$keys[3] => $this->getHoraInicio(),
-			$keys[4] => $this->getHoraFin(),
-			$keys[5] => $this->getDia(),
+			$keys[0] => $this->getFkDocenteId(),
+			$keys[1] => $this->getFkEventoId(),
 		);
 		return $result;
 	}
@@ -441,22 +280,10 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 	{
 		switch($pos) {
 			case 0:
-				$this->setId($value);
-				break;
-			case 1:
 				$this->setFkDocenteId($value);
 				break;
-			case 2:
-				$this->setFkRepeticionId($value);
-				break;
-			case 3:
-				$this->setHoraInicio($value);
-				break;
-			case 4:
-				$this->setHoraFin($value);
-				break;
-			case 5:
-				$this->setDia($value);
+			case 1:
+				$this->setFkEventoId($value);
 				break;
 		} 	}
 
@@ -465,12 +292,8 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 	{
 		$keys = DocenteHorarioPeer::getFieldNames($keyType);
 
-		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
-		if (array_key_exists($keys[1], $arr)) $this->setFkDocenteId($arr[$keys[1]]);
-		if (array_key_exists($keys[2], $arr)) $this->setFkRepeticionId($arr[$keys[2]]);
-		if (array_key_exists($keys[3], $arr)) $this->setHoraInicio($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setHoraFin($arr[$keys[4]]);
-		if (array_key_exists($keys[5], $arr)) $this->setDia($arr[$keys[5]]);
+		if (array_key_exists($keys[0], $arr)) $this->setFkDocenteId($arr[$keys[0]]);
+		if (array_key_exists($keys[1], $arr)) $this->setFkEventoId($arr[$keys[1]]);
 	}
 
 	
@@ -478,12 +301,8 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 	{
 		$criteria = new Criteria(DocenteHorarioPeer::DATABASE_NAME);
 
-		if ($this->isColumnModified(DocenteHorarioPeer::ID)) $criteria->add(DocenteHorarioPeer::ID, $this->id);
 		if ($this->isColumnModified(DocenteHorarioPeer::FK_DOCENTE_ID)) $criteria->add(DocenteHorarioPeer::FK_DOCENTE_ID, $this->fk_docente_id);
-		if ($this->isColumnModified(DocenteHorarioPeer::FK_REPETICION_ID)) $criteria->add(DocenteHorarioPeer::FK_REPETICION_ID, $this->fk_repeticion_id);
-		if ($this->isColumnModified(DocenteHorarioPeer::HORA_INICIO)) $criteria->add(DocenteHorarioPeer::HORA_INICIO, $this->hora_inicio);
-		if ($this->isColumnModified(DocenteHorarioPeer::HORA_FIN)) $criteria->add(DocenteHorarioPeer::HORA_FIN, $this->hora_fin);
-		if ($this->isColumnModified(DocenteHorarioPeer::DIA)) $criteria->add(DocenteHorarioPeer::DIA, $this->dia);
+		if ($this->isColumnModified(DocenteHorarioPeer::FK_EVENTO_ID)) $criteria->add(DocenteHorarioPeer::FK_EVENTO_ID, $this->fk_evento_id);
 
 		return $criteria;
 	}
@@ -493,7 +312,8 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 	{
 		$criteria = new Criteria(DocenteHorarioPeer::DATABASE_NAME);
 
-		$criteria->add(DocenteHorarioPeer::ID, $this->id);
+		$criteria->add(DocenteHorarioPeer::FK_DOCENTE_ID, $this->fk_docente_id);
+		$criteria->add(DocenteHorarioPeer::FK_EVENTO_ID, $this->fk_evento_id);
 
 		return $criteria;
 	}
@@ -501,33 +321,34 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 	
 	public function getPrimaryKey()
 	{
-		return $this->getId();
+		$pks = array();
+
+		$pks[0] = $this->getFkDocenteId();
+
+		$pks[1] = $this->getFkEventoId();
+
+		return $pks;
 	}
 
 	
-	public function setPrimaryKey($key)
+	public function setPrimaryKey($keys)
 	{
-		$this->setId($key);
+
+		$this->setFkDocenteId($keys[0]);
+
+		$this->setFkEventoId($keys[1]);
+
 	}
 
 	
 	public function copyInto($copyObj, $deepCopy = false)
 	{
 
-		$copyObj->setFkDocenteId($this->fk_docente_id);
-
-		$copyObj->setFkRepeticionId($this->fk_repeticion_id);
-
-		$copyObj->setHoraInicio($this->hora_inicio);
-
-		$copyObj->setHoraFin($this->hora_fin);
-
-		$copyObj->setDia($this->dia);
-
 
 		$copyObj->setNew(true);
 
-		$copyObj->setId(NULL); 
+		$copyObj->setFkDocenteId(NULL); 
+		$copyObj->setFkEventoId(NULL); 
 	}
 
 	
@@ -549,33 +370,33 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 	}
 
 	
-	public function setRepeticion($v)
+	public function setEvento($v)
 	{
 
 
 		if ($v === null) {
-			$this->setFkRepeticionId('0');
+			$this->setFkEventoId(NULL);
 		} else {
-			$this->setFkRepeticionId($v->getId());
+			$this->setFkEventoId($v->getId());
 		}
 
 
-		$this->aRepeticion = $v;
+		$this->aEvento = $v;
 	}
 
 
 	
-	public function getRepeticion($con = null)
+	public function getEvento($con = null)
 	{
-				include_once 'lib/model/om/BaseRepeticionPeer.php';
+				include_once 'lib/model/om/BaseEventoPeer.php';
 
-		if ($this->aRepeticion === null && ($this->fk_repeticion_id !== null)) {
+		if ($this->aEvento === null && ($this->fk_evento_id !== null)) {
 
-			$this->aRepeticion = RepeticionPeer::retrieveByPK($this->fk_repeticion_id, $con);
+			$this->aEvento = EventoPeer::retrieveByPK($this->fk_evento_id, $con);
 
 			
 		}
-		return $this->aRepeticion;
+		return $this->aEvento;
 	}
 
 	
@@ -584,7 +405,7 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 
 
 		if ($v === null) {
-			$this->setFkDocenteId('0');
+			$this->setFkDocenteId(NULL);
 		} else {
 			$this->setFkDocenteId($v->getId());
 		}

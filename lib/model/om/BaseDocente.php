@@ -1635,7 +1635,7 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 
 
 	
-	public function getDocenteHorariosJoinRepeticion($criteria = null, $con = null)
+	public function getDocenteHorariosJoinEvento($criteria = null, $con = null)
 	{
 				include_once 'lib/model/om/BaseDocenteHorarioPeer.php';
 		if ($criteria === null) {
@@ -1653,14 +1653,14 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 
 				$criteria->add(DocenteHorarioPeer::FK_DOCENTE_ID, $this->getId());
 
-				$this->collDocenteHorarios = DocenteHorarioPeer::doSelectJoinRepeticion($criteria, $con);
+				$this->collDocenteHorarios = DocenteHorarioPeer::doSelectJoinEvento($criteria, $con);
 			}
 		} else {
 									
 			$criteria->add(DocenteHorarioPeer::FK_DOCENTE_ID, $this->getId());
 
 			if (!isset($this->lastDocenteHorarioCriteria) || !$this->lastDocenteHorarioCriteria->equals($criteria)) {
-				$this->collDocenteHorarios = DocenteHorarioPeer::doSelectJoinRepeticion($criteria, $con);
+				$this->collDocenteHorarios = DocenteHorarioPeer::doSelectJoinEvento($criteria, $con);
 			}
 		}
 		$this->lastDocenteHorarioCriteria = $criteria;
