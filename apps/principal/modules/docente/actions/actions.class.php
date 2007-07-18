@@ -44,6 +44,10 @@ class docenteActions extends autodocenteActions
             $this->forward404();
         }
 
+        $c  = New Criteria();
+        $c->Add(RelActividadDocentePeer::FK_DOCENTE_ID,$this->docente->getId());
+        $this->actividades = RelActividadDocentePeer::doSelectJoinActividad($c); 
+
         //$this->redirect('relActividadDocente/list?filters%5Bfk_docente_id%5D='.$this->getRequestParameter('id').'&filter=filtrar');
     }
 
