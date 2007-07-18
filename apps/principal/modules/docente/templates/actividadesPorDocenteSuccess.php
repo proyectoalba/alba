@@ -3,7 +3,6 @@
 <div id="sf_admin_container">
 <?php echo object_input_hidden_tag($docente, 'getId') ?>
 
-<fieldset id="sf_fieldset_informacion_general" class="">
 <h2><?php echo __('Actividades/Materias por Docente') ?></h2>
 <div class="form-row">
 Apellido y Nombre:  
@@ -22,7 +21,7 @@ Apellido y Nombre:
 <table cellspacing="0" class="sf_admin_list">
   <thead>
   <tr>
-    <th id="sf_admin_list_th_materia">Materias</th>
+    <th id="sf_admin_list_th_materia">Actividades/Materias</th>
   </tr>
   </thead>
   <tbody>
@@ -48,5 +47,4 @@ Apellido y Nombre:
     'class' => 'sf_admin_action_list',
     )) ?></li>
 </ul>
-</fieldset>
 </div>

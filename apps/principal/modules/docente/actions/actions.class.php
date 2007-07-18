@@ -47,8 +47,6 @@ class docenteActions extends autodocenteActions
         $c  = New Criteria();
         $c->Add(RelActividadDocentePeer::FK_DOCENTE_ID,$this->docente->getId());
         $this->actividades = RelActividadDocentePeer::doSelectJoinActividad($c); 
-
-        //$this->redirect('relActividadDocente/list?filters%5Bfk_docente_id%5D='.$this->getRequestParameter('id').'&filter=filtrar');
     }
 
     function executeHorariosPorDocente() {
@@ -57,7 +55,6 @@ class docenteActions extends autodocenteActions
 
     protected function saveDocente($docente)
     {
-        
         $id = $docente->getId();
         $docente->save();
 
@@ -68,21 +65,19 @@ class docenteActions extends autodocenteActions
             $relDocenteEstablecimiento->save();
         }
     
-    // Update many-to-many for "actividades"
-    $c = new Criteria();
-    $c->add(RelActividadDocentePeer::FK_DOCENTE_ID, $docente->getPrimaryKey());
-    RelActividadDocentePeer::doDelete($c);
-    $ids = $this->getRequestParameter('associated_actividades');
-    if (is_array($ids)) {
-        foreach ($ids as $id){
-            $RelActividadDocente = new RelActividadDocente();
-            $RelActividadDocente->setFkDocenteId($docente->getPrimaryKey());
-            $RelActividadDocente->setFkActividadId($id);
-            $RelActividadDocente->save();
+        // Update many-to-many for "actividades"
+        $c = new Criteria();
+        $c->add(RelActividadDocentePeer::FK_DOCENTE_ID, $docente->getPrimaryKey());
+        RelActividadDocentePeer::doDelete($c);
+        $ids = $this->getRequestParameter('associated_actividades');
+        if (is_array($ids)) {
+            foreach ($ids as $id){
+                $RelActividadDocente = new RelActividadDocente();
+                $RelActividadDocente->setFkDocenteId($docente->getPrimaryKey());
+                $RelActividadDocente->setFkActividadId($id);
+                $RelActividadDocente->save();
+            }
         }
-    }
-
-
     }
 
     protected function deleteDocente($docente)
