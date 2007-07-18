@@ -179,34 +179,6 @@ abstract class BaseDocenteHorarioPeer {
 	}
 
 	
-	public static function doCountJoinEvento(Criteria $criteria, $distinct = false, $con = null)
-	{
-				$criteria = clone $criteria;
-
-				$criteria->clearSelectColumns()->clearOrderByColumns();
-		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(DocenteHorarioPeer::COUNT_DISTINCT);
-		} else {
-			$criteria->addSelectColumn(DocenteHorarioPeer::COUNT);
-		}
-
-				foreach($criteria->getGroupByColumns() as $column)
-		{
-			$criteria->addSelectColumn($column);
-		}
-
-		$criteria->addJoin(DocenteHorarioPeer::FK_EVENTO_ID, EventoPeer::ID);
-
-		$rs = DocenteHorarioPeer::doSelectRS($criteria, $con);
-		if ($rs->next()) {
-			return $rs->getInt(1);
-		} else {
-						return 0;
-		}
-	}
-
-
-	
 	public static function doCountJoinDocente(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
@@ -235,49 +207,30 @@ abstract class BaseDocenteHorarioPeer {
 
 
 	
-	public static function doSelectJoinEvento(Criteria $c, $con = null)
+	public static function doCountJoinEvento(Criteria $criteria, $distinct = false, $con = null)
 	{
-		$c = clone $c;
+				$criteria = clone $criteria;
 
-				if ($c->getDbName() == Propel::getDefaultDB()) {
-			$c->setDbName(self::DATABASE_NAME);
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(DocenteHorarioPeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(DocenteHorarioPeer::COUNT);
 		}
 
-		DocenteHorarioPeer::addSelectColumns($c);
-		$startcol = (DocenteHorarioPeer::NUM_COLUMNS - DocenteHorarioPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-		EventoPeer::addSelectColumns($c);
-
-		$c->addJoin(DocenteHorarioPeer::FK_EVENTO_ID, EventoPeer::ID);
-		$rs = BasePeer::doSelect($c, $con);
-		$results = array();
-
-		while($rs->next()) {
-
-			$omClass = DocenteHorarioPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj1 = new $cls();
-			$obj1->hydrate($rs);
-
-			$omClass = EventoPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj2 = new $cls();
-			$obj2->hydrate($rs, $startcol);
-
-			$newObject = true;
-			foreach($results as $temp_obj1) {
-				$temp_obj2 = $temp_obj1->getEvento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
-					$newObject = false;
-										$temp_obj2->addDocenteHorario($obj1); 					break;
-				}
-			}
-			if ($newObject) {
-				$obj2->initDocenteHorarios();
-				$obj2->addDocenteHorario($obj1); 			}
-			$results[] = $obj1;
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
 		}
-		return $results;
+
+		$criteria->addJoin(DocenteHorarioPeer::FK_EVENTO_ID, EventoPeer::ID);
+
+		$rs = DocenteHorarioPeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
 	}
 
 
@@ -329,6 +282,53 @@ abstract class BaseDocenteHorarioPeer {
 
 
 	
+	public static function doSelectJoinEvento(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+				if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		DocenteHorarioPeer::addSelectColumns($c);
+		$startcol = (DocenteHorarioPeer::NUM_COLUMNS - DocenteHorarioPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+		EventoPeer::addSelectColumns($c);
+
+		$c->addJoin(DocenteHorarioPeer::FK_EVENTO_ID, EventoPeer::ID);
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = DocenteHorarioPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = EventoPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj2 = new $cls();
+			$obj2->hydrate($rs, $startcol);
+
+			$newObject = true;
+			foreach($results as $temp_obj1) {
+				$temp_obj2 = $temp_obj1->getEvento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+										$temp_obj2->addDocenteHorario($obj1); 					break;
+				}
+			}
+			if ($newObject) {
+				$obj2->initDocenteHorarios();
+				$obj2->addDocenteHorario($obj1); 			}
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	
 	public static function doCountJoinAll(Criteria $criteria, $distinct = false, $con = null)
 	{
 		$criteria = clone $criteria;
@@ -345,9 +345,9 @@ abstract class BaseDocenteHorarioPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(DocenteHorarioPeer::FK_EVENTO_ID, EventoPeer::ID);
-
 		$criteria->addJoin(DocenteHorarioPeer::FK_DOCENTE_ID, DocentePeer::ID);
+
+		$criteria->addJoin(DocenteHorarioPeer::FK_EVENTO_ID, EventoPeer::ID);
 
 		$rs = DocenteHorarioPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -370,15 +370,15 @@ abstract class BaseDocenteHorarioPeer {
 		DocenteHorarioPeer::addSelectColumns($c);
 		$startcol2 = (DocenteHorarioPeer::NUM_COLUMNS - DocenteHorarioPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
-		EventoPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + EventoPeer::NUM_COLUMNS;
-
 		DocentePeer::addSelectColumns($c);
-		$startcol4 = $startcol3 + DocentePeer::NUM_COLUMNS;
+		$startcol3 = $startcol2 + DocentePeer::NUM_COLUMNS;
 
-		$c->addJoin(DocenteHorarioPeer::FK_EVENTO_ID, EventoPeer::ID);
+		EventoPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + EventoPeer::NUM_COLUMNS;
 
 		$c->addJoin(DocenteHorarioPeer::FK_DOCENTE_ID, DocentePeer::ID);
+
+		$c->addJoin(DocenteHorarioPeer::FK_EVENTO_ID, EventoPeer::ID);
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
@@ -394,7 +394,7 @@ abstract class BaseDocenteHorarioPeer {
 
 
 					
-			$omClass = EventoPeer::getOMClass();
+			$omClass = DocentePeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -404,7 +404,7 @@ abstract class BaseDocenteHorarioPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getEvento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getDocente(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addDocenteHorario($obj1); 					break;
 				}
@@ -417,7 +417,7 @@ abstract class BaseDocenteHorarioPeer {
 
 
 					
-			$omClass = DocentePeer::getOMClass();
+			$omClass = EventoPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -427,7 +427,7 @@ abstract class BaseDocenteHorarioPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getDocente(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+				$temp_obj3 = $temp_obj1->getEvento(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj3->addDocenteHorario($obj1); 					break;
 				}
@@ -441,34 +441,6 @@ abstract class BaseDocenteHorarioPeer {
 			$results[] = $obj1;
 		}
 		return $results;
-	}
-
-
-	
-	public static function doCountJoinAllExceptEvento(Criteria $criteria, $distinct = false, $con = null)
-	{
-				$criteria = clone $criteria;
-
-				$criteria->clearSelectColumns()->clearOrderByColumns();
-		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(DocenteHorarioPeer::COUNT_DISTINCT);
-		} else {
-			$criteria->addSelectColumn(DocenteHorarioPeer::COUNT);
-		}
-
-				foreach($criteria->getGroupByColumns() as $column)
-		{
-			$criteria->addSelectColumn($column);
-		}
-
-		$criteria->addJoin(DocenteHorarioPeer::FK_DOCENTE_ID, DocentePeer::ID);
-
-		$rs = DocenteHorarioPeer::doSelectRS($criteria, $con);
-		if ($rs->next()) {
-			return $rs->getInt(1);
-		} else {
-						return 0;
-		}
 	}
 
 
@@ -501,59 +473,30 @@ abstract class BaseDocenteHorarioPeer {
 
 
 	
-	public static function doSelectJoinAllExceptEvento(Criteria $c, $con = null)
+	public static function doCountJoinAllExceptEvento(Criteria $criteria, $distinct = false, $con = null)
 	{
-		$c = clone $c;
+				$criteria = clone $criteria;
 
-								if ($c->getDbName() == Propel::getDefaultDB()) {
-			$c->setDbName(self::DATABASE_NAME);
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(DocenteHorarioPeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(DocenteHorarioPeer::COUNT);
 		}
 
-		DocenteHorarioPeer::addSelectColumns($c);
-		$startcol2 = (DocenteHorarioPeer::NUM_COLUMNS - DocenteHorarioPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-
-		DocentePeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + DocentePeer::NUM_COLUMNS;
-
-		$c->addJoin(DocenteHorarioPeer::FK_DOCENTE_ID, DocentePeer::ID);
-
-
-		$rs = BasePeer::doSelect($c, $con);
-		$results = array();
-
-		while($rs->next()) {
-
-			$omClass = DocenteHorarioPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj1 = new $cls();
-			$obj1->hydrate($rs);
-
-			$omClass = DocentePeer::getOMClass();
-
-
-			$cls = Propel::import($omClass);
-			$obj2  = new $cls();
-			$obj2->hydrate($rs, $startcol2);
-
-			$newObject = true;
-			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
-				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getDocente(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
-					$newObject = false;
-					$temp_obj2->addDocenteHorario($obj1);
-					break;
-				}
-			}
-
-			if ($newObject) {
-				$obj2->initDocenteHorarios();
-				$obj2->addDocenteHorario($obj1);
-			}
-
-			$results[] = $obj1;
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
 		}
-		return $results;
+
+		$criteria->addJoin(DocenteHorarioPeer::FK_DOCENTE_ID, DocentePeer::ID);
+
+		$rs = DocenteHorarioPeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
 	}
 
 
@@ -597,6 +540,63 @@ abstract class BaseDocenteHorarioPeer {
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
 				$temp_obj2 = $temp_obj1->getEvento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj2->addDocenteHorario($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj2->initDocenteHorarios();
+				$obj2->addDocenteHorario($obj1);
+			}
+
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	
+	public static function doSelectJoinAllExceptEvento(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+								if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		DocenteHorarioPeer::addSelectColumns($c);
+		$startcol2 = (DocenteHorarioPeer::NUM_COLUMNS - DocenteHorarioPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+
+		DocentePeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + DocentePeer::NUM_COLUMNS;
+
+		$c->addJoin(DocenteHorarioPeer::FK_DOCENTE_ID, DocentePeer::ID);
+
+
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = DocenteHorarioPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = DocentePeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj2  = new $cls();
+			$obj2->hydrate($rs, $startcol2);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj2 = $temp_obj1->getDocente(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addDocenteHorario($obj1);
 					break;

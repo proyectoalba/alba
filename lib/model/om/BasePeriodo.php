@@ -25,7 +25,7 @@ abstract class BasePeriodo extends BaseObject  implements Persistent {
 
 
 	
-	protected $descripcion = '';
+	protected $descripcion = 'null';
 
 	
 	protected $aCiclolectivo;
@@ -193,7 +193,7 @@ abstract class BasePeriodo extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->descripcion !== $v || $v === '') {
+		if ($this->descripcion !== $v || $v === 'null') {
 			$this->descripcion = $v;
 			$this->modifiedColumns[] = PeriodoPeer::DESCRIPCION;
 		}

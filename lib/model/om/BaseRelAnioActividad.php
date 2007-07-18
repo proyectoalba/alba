@@ -24,10 +24,10 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 	protected $horas = 0;
 
 	
-	protected $aActividad;
+	protected $aAnio;
 
 	
-	protected $aAnio;
+	protected $aActividad;
 
 	
 	protected $alreadyInSave = false;
@@ -198,18 +198,18 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 
 
 												
-			if ($this->aActividad !== null) {
-				if ($this->aActividad->isModified()) {
-					$affectedRows += $this->aActividad->save($con);
-				}
-				$this->setActividad($this->aActividad);
-			}
-
 			if ($this->aAnio !== null) {
 				if ($this->aAnio->isModified()) {
 					$affectedRows += $this->aAnio->save($con);
 				}
 				$this->setAnio($this->aAnio);
+			}
+
+			if ($this->aActividad !== null) {
+				if ($this->aActividad->isModified()) {
+					$affectedRows += $this->aActividad->save($con);
+				}
+				$this->setActividad($this->aActividad);
 			}
 
 
@@ -261,15 +261,15 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 
 
 												
-			if ($this->aActividad !== null) {
-				if (!$this->aActividad->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aActividad->getValidationFailures());
-				}
-			}
-
 			if ($this->aAnio !== null) {
 				if (!$this->aAnio->validate($columns)) {
 					$failureMap = array_merge($failureMap, $this->aAnio->getValidationFailures());
+				}
+			}
+
+			if ($this->aActividad !== null) {
+				if (!$this->aActividad->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aActividad->getValidationFailures());
 				}
 			}
 
@@ -433,36 +433,6 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 	}
 
 	
-	public function setActividad($v)
-	{
-
-
-		if ($v === null) {
-			$this->setFkActividadId('0');
-		} else {
-			$this->setFkActividadId($v->getId());
-		}
-
-
-		$this->aActividad = $v;
-	}
-
-
-	
-	public function getActividad($con = null)
-	{
-				include_once 'lib/model/om/BaseActividadPeer.php';
-
-		if ($this->aActividad === null && ($this->fk_actividad_id !== null)) {
-
-			$this->aActividad = ActividadPeer::retrieveByPK($this->fk_actividad_id, $con);
-
-			
-		}
-		return $this->aActividad;
-	}
-
-	
 	public function setAnio($v)
 	{
 
@@ -490,6 +460,36 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 			
 		}
 		return $this->aAnio;
+	}
+
+	
+	public function setActividad($v)
+	{
+
+
+		if ($v === null) {
+			$this->setFkActividadId('0');
+		} else {
+			$this->setFkActividadId($v->getId());
+		}
+
+
+		$this->aActividad = $v;
+	}
+
+
+	
+	public function getActividad($con = null)
+	{
+				include_once 'lib/model/om/BaseActividadPeer.php';
+
+		if ($this->aActividad === null && ($this->fk_actividad_id !== null)) {
+
+			$this->aActividad = ActividadPeer::retrieveByPK($this->fk_actividad_id, $con);
+
+			
+		}
+		return $this->aActividad;
 	}
 
 } 

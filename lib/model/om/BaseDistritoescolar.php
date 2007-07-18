@@ -13,7 +13,7 @@ abstract class BaseDistritoescolar extends BaseObject  implements Persistent {
 
 
 	
-	protected $nombre = '';
+	protected $nombre = 'null';
 
 
 	
@@ -96,7 +96,7 @@ abstract class BaseDistritoescolar extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->nombre !== $v || $v === '') {
+		if ($this->nombre !== $v || $v === 'null') {
 			$this->nombre = $v;
 			$this->modifiedColumns[] = DistritoescolarPeer::NOMBRE;
 		}
@@ -533,41 +533,6 @@ abstract class BaseDistritoescolar extends BaseObject  implements Persistent {
 
 
 	
-	public function getEstablecimientosJoinNiveltipo($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseEstablecimientoPeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collEstablecimientos === null) {
-			if ($this->isNew()) {
-				$this->collEstablecimientos = array();
-			} else {
-
-				$criteria->add(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID, $this->getId());
-
-				$this->collEstablecimientos = EstablecimientoPeer::doSelectJoinNiveltipo($criteria, $con);
-			}
-		} else {
-									
-			$criteria->add(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID, $this->getId());
-
-			if (!isset($this->lastEstablecimientoCriteria) || !$this->lastEstablecimientoCriteria->equals($criteria)) {
-				$this->collEstablecimientos = EstablecimientoPeer::doSelectJoinNiveltipo($criteria, $con);
-			}
-		}
-		$this->lastEstablecimientoCriteria = $criteria;
-
-		return $this->collEstablecimientos;
-	}
-
-
-	
 	public function getEstablecimientosJoinOrganizacion($criteria = null, $con = null)
 	{
 				include_once 'lib/model/om/BaseEstablecimientoPeer.php';
@@ -594,6 +559,41 @@ abstract class BaseDistritoescolar extends BaseObject  implements Persistent {
 
 			if (!isset($this->lastEstablecimientoCriteria) || !$this->lastEstablecimientoCriteria->equals($criteria)) {
 				$this->collEstablecimientos = EstablecimientoPeer::doSelectJoinOrganizacion($criteria, $con);
+			}
+		}
+		$this->lastEstablecimientoCriteria = $criteria;
+
+		return $this->collEstablecimientos;
+	}
+
+
+	
+	public function getEstablecimientosJoinNiveltipo($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseEstablecimientoPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collEstablecimientos === null) {
+			if ($this->isNew()) {
+				$this->collEstablecimientos = array();
+			} else {
+
+				$criteria->add(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID, $this->getId());
+
+				$this->collEstablecimientos = EstablecimientoPeer::doSelectJoinNiveltipo($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID, $this->getId());
+
+			if (!isset($this->lastEstablecimientoCriteria) || !$this->lastEstablecimientoCriteria->equals($criteria)) {
+				$this->collEstablecimientos = EstablecimientoPeer::doSelectJoinNiveltipo($criteria, $con);
 			}
 		}
 		$this->lastEstablecimientoCriteria = $criteria;

@@ -17,7 +17,7 @@ abstract class BaseCargobaja extends BaseObject  implements Persistent {
 
 
 	
-	protected $descripcion = '';
+	protected $descripcion = 'null';
 
 	
 	protected $alreadyInSave = false;
@@ -82,7 +82,7 @@ abstract class BaseCargobaja extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->descripcion !== $v || $v === '') {
+		if ($this->descripcion !== $v || $v === 'null') {
 			$this->descripcion = $v;
 			$this->modifiedColumns[] = CargobajaPeer::DESCRIPCION;
 		}

@@ -13,11 +13,11 @@ abstract class BaseUsuario extends BaseObject  implements Persistent {
 
 
 	
-	protected $usuario = '';
+	protected $usuario = 'null';
 
 
 	
-	protected $clave = '';
+	protected $clave = 'null';
 
 
 	
@@ -53,7 +53,7 @@ abstract class BaseUsuario extends BaseObject  implements Persistent {
 
 
 	
-	protected $borrado = true;
+	protected $borrado = false;
 
 	
 	protected $aEstablecimiento;
@@ -212,7 +212,7 @@ abstract class BaseUsuario extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->usuario !== $v || $v === '') {
+		if ($this->usuario !== $v || $v === 'null') {
 			$this->usuario = $v;
 			$this->modifiedColumns[] = UsuarioPeer::USUARIO;
 		}
@@ -226,7 +226,7 @@ abstract class BaseUsuario extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->clave !== $v || $v === '') {
+		if ($this->clave !== $v || $v === 'null') {
 			$this->clave = $v;
 			$this->modifiedColumns[] = UsuarioPeer::CLAVE;
 		}
@@ -350,7 +350,7 @@ abstract class BaseUsuario extends BaseObject  implements Persistent {
 	public function setBorrado($v)
 	{
 
-		if ($this->borrado !== $v || $v === true) {
+		if ($this->borrado !== $v || $v === false) {
 			$this->borrado = $v;
 			$this->modifiedColumns[] = UsuarioPeer::BORRADO;
 		}
@@ -1008,41 +1008,6 @@ abstract class BaseUsuario extends BaseObject  implements Persistent {
 
 
 	
-	public function getLegajopedagogicosJoinLegajocategoria($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseLegajopedagogicoPeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collLegajopedagogicos === null) {
-			if ($this->isNew()) {
-				$this->collLegajopedagogicos = array();
-			} else {
-
-				$criteria->add(LegajopedagogicoPeer::FK_USUARIO_ID, $this->getId());
-
-				$this->collLegajopedagogicos = LegajopedagogicoPeer::doSelectJoinLegajocategoria($criteria, $con);
-			}
-		} else {
-									
-			$criteria->add(LegajopedagogicoPeer::FK_USUARIO_ID, $this->getId());
-
-			if (!isset($this->lastLegajopedagogicoCriteria) || !$this->lastLegajopedagogicoCriteria->equals($criteria)) {
-				$this->collLegajopedagogicos = LegajopedagogicoPeer::doSelectJoinLegajocategoria($criteria, $con);
-			}
-		}
-		$this->lastLegajopedagogicoCriteria = $criteria;
-
-		return $this->collLegajopedagogicos;
-	}
-
-
-	
 	public function getLegajopedagogicosJoinAlumno($criteria = null, $con = null)
 	{
 				include_once 'lib/model/om/BaseLegajopedagogicoPeer.php';
@@ -1069,6 +1034,41 @@ abstract class BaseUsuario extends BaseObject  implements Persistent {
 
 			if (!isset($this->lastLegajopedagogicoCriteria) || !$this->lastLegajopedagogicoCriteria->equals($criteria)) {
 				$this->collLegajopedagogicos = LegajopedagogicoPeer::doSelectJoinAlumno($criteria, $con);
+			}
+		}
+		$this->lastLegajopedagogicoCriteria = $criteria;
+
+		return $this->collLegajopedagogicos;
+	}
+
+
+	
+	public function getLegajopedagogicosJoinLegajocategoria($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseLegajopedagogicoPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collLegajopedagogicos === null) {
+			if ($this->isNew()) {
+				$this->collLegajopedagogicos = array();
+			} else {
+
+				$criteria->add(LegajopedagogicoPeer::FK_USUARIO_ID, $this->getId());
+
+				$this->collLegajopedagogicos = LegajopedagogicoPeer::doSelectJoinLegajocategoria($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(LegajopedagogicoPeer::FK_USUARIO_ID, $this->getId());
+
+			if (!isset($this->lastLegajopedagogicoCriteria) || !$this->lastLegajopedagogicoCriteria->equals($criteria)) {
+				$this->collLegajopedagogicos = LegajopedagogicoPeer::doSelectJoinLegajocategoria($criteria, $con);
 			}
 		}
 		$this->lastLegajopedagogicoCriteria = $criteria;

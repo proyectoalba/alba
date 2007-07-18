@@ -40,13 +40,13 @@ abstract class BaseLegajopedagogico extends BaseObject  implements Persistent {
 	protected $fk_legajocategoria_id;
 
 	
-	protected $aLegajocategoria;
-
-	
 	protected $aAlumno;
 
 	
 	protected $aUsuario;
+
+	
+	protected $aLegajocategoria;
 
 	
 	protected $collLegajoadjuntos;
@@ -355,13 +355,6 @@ abstract class BaseLegajopedagogico extends BaseObject  implements Persistent {
 
 
 												
-			if ($this->aLegajocategoria !== null) {
-				if ($this->aLegajocategoria->isModified()) {
-					$affectedRows += $this->aLegajocategoria->save($con);
-				}
-				$this->setLegajocategoria($this->aLegajocategoria);
-			}
-
 			if ($this->aAlumno !== null) {
 				if ($this->aAlumno->isModified()) {
 					$affectedRows += $this->aAlumno->save($con);
@@ -374,6 +367,13 @@ abstract class BaseLegajopedagogico extends BaseObject  implements Persistent {
 					$affectedRows += $this->aUsuario->save($con);
 				}
 				$this->setUsuario($this->aUsuario);
+			}
+
+			if ($this->aLegajocategoria !== null) {
+				if ($this->aLegajocategoria->isModified()) {
+					$affectedRows += $this->aLegajocategoria->save($con);
+				}
+				$this->setLegajocategoria($this->aLegajocategoria);
 			}
 
 
@@ -433,12 +433,6 @@ abstract class BaseLegajopedagogico extends BaseObject  implements Persistent {
 
 
 												
-			if ($this->aLegajocategoria !== null) {
-				if (!$this->aLegajocategoria->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aLegajocategoria->getValidationFailures());
-				}
-			}
-
 			if ($this->aAlumno !== null) {
 				if (!$this->aAlumno->validate($columns)) {
 					$failureMap = array_merge($failureMap, $this->aAlumno->getValidationFailures());
@@ -448,6 +442,12 @@ abstract class BaseLegajopedagogico extends BaseObject  implements Persistent {
 			if ($this->aUsuario !== null) {
 				if (!$this->aUsuario->validate($columns)) {
 					$failureMap = array_merge($failureMap, $this->aUsuario->getValidationFailures());
+				}
+			}
+
+			if ($this->aLegajocategoria !== null) {
+				if (!$this->aLegajocategoria->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aLegajocategoria->getValidationFailures());
 				}
 			}
 
@@ -672,36 +672,6 @@ abstract class BaseLegajopedagogico extends BaseObject  implements Persistent {
 	}
 
 	
-	public function setLegajocategoria($v)
-	{
-
-
-		if ($v === null) {
-			$this->setFkLegajocategoriaId(NULL);
-		} else {
-			$this->setFkLegajocategoriaId($v->getId());
-		}
-
-
-		$this->aLegajocategoria = $v;
-	}
-
-
-	
-	public function getLegajocategoria($con = null)
-	{
-				include_once 'lib/model/om/BaseLegajocategoriaPeer.php';
-
-		if ($this->aLegajocategoria === null && ($this->fk_legajocategoria_id !== null)) {
-
-			$this->aLegajocategoria = LegajocategoriaPeer::retrieveByPK($this->fk_legajocategoria_id, $con);
-
-			
-		}
-		return $this->aLegajocategoria;
-	}
-
-	
 	public function setAlumno($v)
 	{
 
@@ -759,6 +729,36 @@ abstract class BaseLegajopedagogico extends BaseObject  implements Persistent {
 			
 		}
 		return $this->aUsuario;
+	}
+
+	
+	public function setLegajocategoria($v)
+	{
+
+
+		if ($v === null) {
+			$this->setFkLegajocategoriaId(NULL);
+		} else {
+			$this->setFkLegajocategoriaId($v->getId());
+		}
+
+
+		$this->aLegajocategoria = $v;
+	}
+
+
+	
+	public function getLegajocategoria($con = null)
+	{
+				include_once 'lib/model/om/BaseLegajocategoriaPeer.php';
+
+		if ($this->aLegajocategoria === null && ($this->fk_legajocategoria_id !== null)) {
+
+			$this->aLegajocategoria = LegajocategoriaPeer::retrieveByPK($this->fk_legajocategoria_id, $con);
+
+			
+		}
+		return $this->aLegajocategoria;
 	}
 
 	

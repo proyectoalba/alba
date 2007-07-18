@@ -13,11 +13,11 @@ abstract class BaseRolResponsable extends BaseObject  implements Persistent {
 
 
 	
-	protected $nombre = '';
+	protected $nombre = 'null';
 
 
 	
-	protected $descripcion = '';
+	protected $descripcion = 'null';
 
 
 	
@@ -91,7 +91,7 @@ abstract class BaseRolResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->nombre !== $v || $v === '') {
+		if ($this->nombre !== $v || $v === 'null') {
 			$this->nombre = $v;
 			$this->modifiedColumns[] = RolResponsablePeer::NOMBRE;
 		}
@@ -105,7 +105,7 @@ abstract class BaseRolResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->descripcion !== $v || $v === '') {
+		if ($this->descripcion !== $v || $v === 'null') {
 			$this->descripcion = $v;
 			$this->modifiedColumns[] = RolResponsablePeer::DESCRIPCION;
 		}
@@ -517,41 +517,6 @@ abstract class BaseRolResponsable extends BaseObject  implements Persistent {
 
 
 	
-	public function getResponsablesJoinCuenta($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseResponsablePeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collResponsables === null) {
-			if ($this->isNew()) {
-				$this->collResponsables = array();
-			} else {
-
-				$criteria->add(ResponsablePeer::FK_ROLRESPONSABLE_ID, $this->getId());
-
-				$this->collResponsables = ResponsablePeer::doSelectJoinCuenta($criteria, $con);
-			}
-		} else {
-									
-			$criteria->add(ResponsablePeer::FK_ROLRESPONSABLE_ID, $this->getId());
-
-			if (!isset($this->lastResponsableCriteria) || !$this->lastResponsableCriteria->equals($criteria)) {
-				$this->collResponsables = ResponsablePeer::doSelectJoinCuenta($criteria, $con);
-			}
-		}
-		$this->lastResponsableCriteria = $criteria;
-
-		return $this->collResponsables;
-	}
-
-
-	
 	public function getResponsablesJoinProvincia($criteria = null, $con = null)
 	{
 				include_once 'lib/model/om/BaseResponsablePeer.php';
@@ -613,6 +578,41 @@ abstract class BaseRolResponsable extends BaseObject  implements Persistent {
 
 			if (!isset($this->lastResponsableCriteria) || !$this->lastResponsableCriteria->equals($criteria)) {
 				$this->collResponsables = ResponsablePeer::doSelectJoinTipodocumento($criteria, $con);
+			}
+		}
+		$this->lastResponsableCriteria = $criteria;
+
+		return $this->collResponsables;
+	}
+
+
+	
+	public function getResponsablesJoinCuenta($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseResponsablePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collResponsables === null) {
+			if ($this->isNew()) {
+				$this->collResponsables = array();
+			} else {
+
+				$criteria->add(ResponsablePeer::FK_ROLRESPONSABLE_ID, $this->getId());
+
+				$this->collResponsables = ResponsablePeer::doSelectJoinCuenta($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(ResponsablePeer::FK_ROLRESPONSABLE_ID, $this->getId());
+
+			if (!isset($this->lastResponsableCriteria) || !$this->lastResponsableCriteria->equals($criteria)) {
+				$this->collResponsables = ResponsablePeer::doSelectJoinCuenta($criteria, $con);
 			}
 		}
 		$this->lastResponsableCriteria = $criteria;

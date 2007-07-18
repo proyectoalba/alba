@@ -44,13 +44,13 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 	protected $fk_horarioescolartipo_id = 0;
 
 	
-	protected $aHorarioescolartipo;
-
-	
 	protected $aEstablecimiento;
 
 	
 	protected $aTurnos;
+
+	
+	protected $aHorarioescolartipo;
 
 	
 	protected $alreadyInSave = false;
@@ -380,13 +380,6 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 
 
 												
-			if ($this->aHorarioescolartipo !== null) {
-				if ($this->aHorarioescolartipo->isModified()) {
-					$affectedRows += $this->aHorarioescolartipo->save($con);
-				}
-				$this->setHorarioescolartipo($this->aHorarioescolartipo);
-			}
-
 			if ($this->aEstablecimiento !== null) {
 				if ($this->aEstablecimiento->isModified()) {
 					$affectedRows += $this->aEstablecimiento->save($con);
@@ -399,6 +392,13 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 					$affectedRows += $this->aTurnos->save($con);
 				}
 				$this->setTurnos($this->aTurnos);
+			}
+
+			if ($this->aHorarioescolartipo !== null) {
+				if ($this->aHorarioescolartipo->isModified()) {
+					$affectedRows += $this->aHorarioescolartipo->save($con);
+				}
+				$this->setHorarioescolartipo($this->aHorarioescolartipo);
 			}
 
 
@@ -450,12 +450,6 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 
 
 												
-			if ($this->aHorarioescolartipo !== null) {
-				if (!$this->aHorarioescolartipo->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aHorarioescolartipo->getValidationFailures());
-				}
-			}
-
 			if ($this->aEstablecimiento !== null) {
 				if (!$this->aEstablecimiento->validate($columns)) {
 					$failureMap = array_merge($failureMap, $this->aEstablecimiento->getValidationFailures());
@@ -465,6 +459,12 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 			if ($this->aTurnos !== null) {
 				if (!$this->aTurnos->validate($columns)) {
 					$failureMap = array_merge($failureMap, $this->aTurnos->getValidationFailures());
+				}
+			}
+
+			if ($this->aHorarioescolartipo !== null) {
+				if (!$this->aHorarioescolartipo->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aHorarioescolartipo->getValidationFailures());
 				}
 			}
 
@@ -683,36 +683,6 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 	}
 
 	
-	public function setHorarioescolartipo($v)
-	{
-
-
-		if ($v === null) {
-			$this->setFkHorarioescolartipoId('0');
-		} else {
-			$this->setFkHorarioescolartipoId($v->getId());
-		}
-
-
-		$this->aHorarioescolartipo = $v;
-	}
-
-
-	
-	public function getHorarioescolartipo($con = null)
-	{
-				include_once 'lib/model/om/BaseHorarioescolartipoPeer.php';
-
-		if ($this->aHorarioescolartipo === null && ($this->fk_horarioescolartipo_id !== null)) {
-
-			$this->aHorarioescolartipo = HorarioescolartipoPeer::retrieveByPK($this->fk_horarioescolartipo_id, $con);
-
-			
-		}
-		return $this->aHorarioescolartipo;
-	}
-
-	
 	public function setEstablecimiento($v)
 	{
 
@@ -770,6 +740,36 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 			
 		}
 		return $this->aTurnos;
+	}
+
+	
+	public function setHorarioescolartipo($v)
+	{
+
+
+		if ($v === null) {
+			$this->setFkHorarioescolartipoId('0');
+		} else {
+			$this->setFkHorarioescolartipoId($v->getId());
+		}
+
+
+		$this->aHorarioescolartipo = $v;
+	}
+
+
+	
+	public function getHorarioescolartipo($con = null)
+	{
+				include_once 'lib/model/om/BaseHorarioescolartipoPeer.php';
+
+		if ($this->aHorarioescolartipo === null && ($this->fk_horarioescolartipo_id !== null)) {
+
+			$this->aHorarioescolartipo = HorarioescolartipoPeer::retrieveByPK($this->fk_horarioescolartipo_id, $con);
+
+			
+		}
+		return $this->aHorarioescolartipo;
 	}
 
 } 

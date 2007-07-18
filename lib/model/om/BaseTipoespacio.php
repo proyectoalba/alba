@@ -13,11 +13,11 @@ abstract class BaseTipoespacio extends BaseObject  implements Persistent {
 
 
 	
-	protected $nombre = '';
+	protected $nombre = 'null';
 
 
 	
-	protected $descripcion = '';
+	protected $descripcion = 'null';
 
 	
 	protected $collEspacios;
@@ -74,7 +74,7 @@ abstract class BaseTipoespacio extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->nombre !== $v || $v === '') {
+		if ($this->nombre !== $v || $v === 'null') {
 			$this->nombre = $v;
 			$this->modifiedColumns[] = TipoespacioPeer::NOMBRE;
 		}
@@ -88,7 +88,7 @@ abstract class BaseTipoespacio extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->descripcion !== $v || $v === '') {
+		if ($this->descripcion !== $v || $v === 'null') {
 			$this->descripcion = $v;
 			$this->modifiedColumns[] = TipoespacioPeer::DESCRIPCION;
 		}

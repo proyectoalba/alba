@@ -284,6 +284,34 @@ abstract class BaseAlumnoPeer {
 	}
 
 	
+	public static function doCountJoinProvincia(Criteria $criteria, $distinct = false, $con = null)
+	{
+				$criteria = clone $criteria;
+
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(AlumnoPeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(AlumnoPeer::COUNT);
+		}
+
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
+		}
+
+		$criteria->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+
+		$rs = AlumnoPeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
+	}
+
+
+	
 	public static function doCountJoinTipodocumento(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
@@ -301,34 +329,6 @@ abstract class BaseAlumnoPeer {
 		}
 
 		$criteria->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
-
-		$rs = AlumnoPeer::doSelectRS($criteria, $con);
-		if ($rs->next()) {
-			return $rs->getInt(1);
-		} else {
-						return 0;
-		}
-	}
-
-
-	
-	public static function doCountJoinCuenta(Criteria $criteria, $distinct = false, $con = null)
-	{
-				$criteria = clone $criteria;
-
-				$criteria->clearSelectColumns()->clearOrderByColumns();
-		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(AlumnoPeer::COUNT_DISTINCT);
-		} else {
-			$criteria->addSelectColumn(AlumnoPeer::COUNT);
-		}
-
-				foreach($criteria->getGroupByColumns() as $column)
-		{
-			$criteria->addSelectColumn($column);
-		}
-
-		$criteria->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
 
 		$rs = AlumnoPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -368,7 +368,7 @@ abstract class BaseAlumnoPeer {
 
 
 	
-	public static function doCountJoinProvincia(Criteria $criteria, $distinct = false, $con = null)
+	public static function doCountJoinCuenta(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
 
@@ -384,7 +384,7 @@ abstract class BaseAlumnoPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+		$criteria->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
 
 		$rs = AlumnoPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -452,6 +452,53 @@ abstract class BaseAlumnoPeer {
 
 
 	
+	public static function doSelectJoinProvincia(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+				if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		AlumnoPeer::addSelectColumns($c);
+		$startcol = (AlumnoPeer::NUM_COLUMNS - AlumnoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+		ProvinciaPeer::addSelectColumns($c);
+
+		$c->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = AlumnoPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = ProvinciaPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj2 = new $cls();
+			$obj2->hydrate($rs, $startcol);
+
+			$newObject = true;
+			foreach($results as $temp_obj1) {
+				$temp_obj2 = $temp_obj1->getProvincia(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+										$temp_obj2->addAlumno($obj1); 					break;
+				}
+			}
+			if ($newObject) {
+				$obj2->initAlumnos();
+				$obj2->addAlumno($obj1); 			}
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	
 	public static function doSelectJoinTipodocumento(Criteria $c, $con = null)
 	{
 		$c = clone $c;
@@ -485,53 +532,6 @@ abstract class BaseAlumnoPeer {
 			$newObject = true;
 			foreach($results as $temp_obj1) {
 				$temp_obj2 = $temp_obj1->getTipodocumento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
-					$newObject = false;
-										$temp_obj2->addAlumno($obj1); 					break;
-				}
-			}
-			if ($newObject) {
-				$obj2->initAlumnos();
-				$obj2->addAlumno($obj1); 			}
-			$results[] = $obj1;
-		}
-		return $results;
-	}
-
-
-	
-	public static function doSelectJoinCuenta(Criteria $c, $con = null)
-	{
-		$c = clone $c;
-
-				if ($c->getDbName() == Propel::getDefaultDB()) {
-			$c->setDbName(self::DATABASE_NAME);
-		}
-
-		AlumnoPeer::addSelectColumns($c);
-		$startcol = (AlumnoPeer::NUM_COLUMNS - AlumnoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-		CuentaPeer::addSelectColumns($c);
-
-		$c->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
-		$rs = BasePeer::doSelect($c, $con);
-		$results = array();
-
-		while($rs->next()) {
-
-			$omClass = AlumnoPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj1 = new $cls();
-			$obj1->hydrate($rs);
-
-			$omClass = CuentaPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj2 = new $cls();
-			$obj2->hydrate($rs, $startcol);
-
-			$newObject = true;
-			foreach($results as $temp_obj1) {
-				$temp_obj2 = $temp_obj1->getCuenta(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 										$temp_obj2->addAlumno($obj1); 					break;
 				}
@@ -593,7 +593,7 @@ abstract class BaseAlumnoPeer {
 
 
 	
-	public static function doSelectJoinProvincia(Criteria $c, $con = null)
+	public static function doSelectJoinCuenta(Criteria $c, $con = null)
 	{
 		$c = clone $c;
 
@@ -603,9 +603,9 @@ abstract class BaseAlumnoPeer {
 
 		AlumnoPeer::addSelectColumns($c);
 		$startcol = (AlumnoPeer::NUM_COLUMNS - AlumnoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-		ProvinciaPeer::addSelectColumns($c);
+		CuentaPeer::addSelectColumns($c);
 
-		$c->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+		$c->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
 
@@ -617,7 +617,7 @@ abstract class BaseAlumnoPeer {
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-			$omClass = ProvinciaPeer::getOMClass();
+			$omClass = CuentaPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
@@ -625,7 +625,7 @@ abstract class BaseAlumnoPeer {
 
 			$newObject = true;
 			foreach($results as $temp_obj1) {
-				$temp_obj2 = $temp_obj1->getProvincia(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getCuenta(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 										$temp_obj2->addAlumno($obj1); 					break;
 				}
@@ -750,13 +750,13 @@ abstract class BaseAlumnoPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
+		$criteria->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
-		$criteria->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
+		$criteria->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
 
 		$criteria->addJoin(AlumnoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
 
-		$criteria->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+		$criteria->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
 
 		$criteria->addJoin(AlumnoPeer::FK_CONCEPTOBAJA_ID, ConceptobajaPeer::ID);
 
@@ -783,17 +783,17 @@ abstract class BaseAlumnoPeer {
 		AlumnoPeer::addSelectColumns($c);
 		$startcol2 = (AlumnoPeer::NUM_COLUMNS - AlumnoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
-		TipodocumentoPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + TipodocumentoPeer::NUM_COLUMNS;
+		ProvinciaPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + ProvinciaPeer::NUM_COLUMNS;
 
-		CuentaPeer::addSelectColumns($c);
-		$startcol4 = $startcol3 + CuentaPeer::NUM_COLUMNS;
+		TipodocumentoPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + TipodocumentoPeer::NUM_COLUMNS;
 
 		EstablecimientoPeer::addSelectColumns($c);
 		$startcol5 = $startcol4 + EstablecimientoPeer::NUM_COLUMNS;
 
-		ProvinciaPeer::addSelectColumns($c);
-		$startcol6 = $startcol5 + ProvinciaPeer::NUM_COLUMNS;
+		CuentaPeer::addSelectColumns($c);
+		$startcol6 = $startcol5 + CuentaPeer::NUM_COLUMNS;
 
 		ConceptobajaPeer::addSelectColumns($c);
 		$startcol7 = $startcol6 + ConceptobajaPeer::NUM_COLUMNS;
@@ -801,13 +801,13 @@ abstract class BaseAlumnoPeer {
 		PaisPeer::addSelectColumns($c);
 		$startcol8 = $startcol7 + PaisPeer::NUM_COLUMNS;
 
-		$c->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
+		$c->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
-		$c->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
+		$c->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
 
-		$c->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+		$c->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_CONCEPTOBAJA_ID, ConceptobajaPeer::ID);
 
@@ -827,7 +827,7 @@ abstract class BaseAlumnoPeer {
 
 
 					
-			$omClass = TipodocumentoPeer::getOMClass();
+			$omClass = ProvinciaPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -837,7 +837,7 @@ abstract class BaseAlumnoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getTipodocumento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getProvincia(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addAlumno($obj1); 					break;
 				}
@@ -850,7 +850,7 @@ abstract class BaseAlumnoPeer {
 
 
 					
-			$omClass = CuentaPeer::getOMClass();
+			$omClass = TipodocumentoPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -860,7 +860,7 @@ abstract class BaseAlumnoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getCuenta(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+				$temp_obj3 = $temp_obj1->getTipodocumento(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj3->addAlumno($obj1); 					break;
 				}
@@ -896,7 +896,7 @@ abstract class BaseAlumnoPeer {
 
 
 					
-			$omClass = ProvinciaPeer::getOMClass();
+			$omClass = CuentaPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -906,7 +906,7 @@ abstract class BaseAlumnoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj5 = $temp_obj1->getProvincia(); 				if ($temp_obj5->getPrimaryKey() === $obj5->getPrimaryKey()) {
+				$temp_obj5 = $temp_obj1->getCuenta(); 				if ($temp_obj5->getPrimaryKey() === $obj5->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj5->addAlumno($obj1); 					break;
 				}
@@ -970,43 +970,7 @@ abstract class BaseAlumnoPeer {
 
 
 	
-	public static function doCountJoinAllExceptTipodocumento(Criteria $criteria, $distinct = false, $con = null)
-	{
-				$criteria = clone $criteria;
-
-				$criteria->clearSelectColumns()->clearOrderByColumns();
-		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(AlumnoPeer::COUNT_DISTINCT);
-		} else {
-			$criteria->addSelectColumn(AlumnoPeer::COUNT);
-		}
-
-				foreach($criteria->getGroupByColumns() as $column)
-		{
-			$criteria->addSelectColumn($column);
-		}
-
-		$criteria->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
-
-		$criteria->addJoin(AlumnoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
-
-		$criteria->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
-
-		$criteria->addJoin(AlumnoPeer::FK_CONCEPTOBAJA_ID, ConceptobajaPeer::ID);
-
-		$criteria->addJoin(AlumnoPeer::FK_PAIS_ID, PaisPeer::ID);
-
-		$rs = AlumnoPeer::doSelectRS($criteria, $con);
-		if ($rs->next()) {
-			return $rs->getInt(1);
-		} else {
-						return 0;
-		}
-	}
-
-
-	
-	public static function doCountJoinAllExceptCuenta(Criteria $criteria, $distinct = false, $con = null)
+	public static function doCountJoinAllExceptProvincia(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
 
@@ -1026,7 +990,43 @@ abstract class BaseAlumnoPeer {
 
 		$criteria->addJoin(AlumnoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
 
+		$criteria->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
+
+		$criteria->addJoin(AlumnoPeer::FK_CONCEPTOBAJA_ID, ConceptobajaPeer::ID);
+
+		$criteria->addJoin(AlumnoPeer::FK_PAIS_ID, PaisPeer::ID);
+
+		$rs = AlumnoPeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
+	}
+
+
+	
+	public static function doCountJoinAllExceptTipodocumento(Criteria $criteria, $distinct = false, $con = null)
+	{
+				$criteria = clone $criteria;
+
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(AlumnoPeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(AlumnoPeer::COUNT);
+		}
+
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
+		}
+
 		$criteria->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+
+		$criteria->addJoin(AlumnoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
+
+		$criteria->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
 
 		$criteria->addJoin(AlumnoPeer::FK_CONCEPTOBAJA_ID, ConceptobajaPeer::ID);
 
@@ -1058,11 +1058,11 @@ abstract class BaseAlumnoPeer {
 			$criteria->addSelectColumn($column);
 		}
 
+		$criteria->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+
 		$criteria->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
 
 		$criteria->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
-
-		$criteria->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
 		$criteria->addJoin(AlumnoPeer::FK_CONCEPTOBAJA_ID, ConceptobajaPeer::ID);
 
@@ -1078,7 +1078,7 @@ abstract class BaseAlumnoPeer {
 
 
 	
-	public static function doCountJoinAllExceptProvincia(Criteria $criteria, $distinct = false, $con = null)
+	public static function doCountJoinAllExceptCuenta(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
 
@@ -1094,9 +1094,9 @@ abstract class BaseAlumnoPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
+		$criteria->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
-		$criteria->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
+		$criteria->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
 
 		$criteria->addJoin(AlumnoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
 
@@ -1130,13 +1130,13 @@ abstract class BaseAlumnoPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
+		$criteria->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
-		$criteria->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
+		$criteria->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
 
 		$criteria->addJoin(AlumnoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
 
-		$criteria->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+		$criteria->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
 
 		$criteria->addJoin(AlumnoPeer::FK_PAIS_ID, PaisPeer::ID);
 
@@ -1166,13 +1166,13 @@ abstract class BaseAlumnoPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
+		$criteria->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
-		$criteria->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
+		$criteria->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
 
 		$criteria->addJoin(AlumnoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
 
-		$criteria->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+		$criteria->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
 
 		$criteria->addJoin(AlumnoPeer::FK_CONCEPTOBAJA_ID, ConceptobajaPeer::ID);
 
@@ -1186,7 +1186,7 @@ abstract class BaseAlumnoPeer {
 
 
 	
-	public static function doSelectJoinAllExceptTipodocumento(Criteria $c, $con = null)
+	public static function doSelectJoinAllExceptProvincia(Criteria $c, $con = null)
 	{
 		$c = clone $c;
 
@@ -1197,14 +1197,14 @@ abstract class BaseAlumnoPeer {
 		AlumnoPeer::addSelectColumns($c);
 		$startcol2 = (AlumnoPeer::NUM_COLUMNS - AlumnoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
-		CuentaPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + CuentaPeer::NUM_COLUMNS;
+		TipodocumentoPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + TipodocumentoPeer::NUM_COLUMNS;
 
 		EstablecimientoPeer::addSelectColumns($c);
 		$startcol4 = $startcol3 + EstablecimientoPeer::NUM_COLUMNS;
 
-		ProvinciaPeer::addSelectColumns($c);
-		$startcol5 = $startcol4 + ProvinciaPeer::NUM_COLUMNS;
+		CuentaPeer::addSelectColumns($c);
+		$startcol5 = $startcol4 + CuentaPeer::NUM_COLUMNS;
 
 		ConceptobajaPeer::addSelectColumns($c);
 		$startcol6 = $startcol5 + ConceptobajaPeer::NUM_COLUMNS;
@@ -1212,11 +1212,11 @@ abstract class BaseAlumnoPeer {
 		PaisPeer::addSelectColumns($c);
 		$startcol7 = $startcol6 + PaisPeer::NUM_COLUMNS;
 
-		$c->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
+		$c->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
 
-		$c->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+		$c->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_CONCEPTOBAJA_ID, ConceptobajaPeer::ID);
 
@@ -1234,7 +1234,7 @@ abstract class BaseAlumnoPeer {
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-			$omClass = CuentaPeer::getOMClass();
+			$omClass = TipodocumentoPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -1244,7 +1244,7 @@ abstract class BaseAlumnoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getCuenta(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getTipodocumento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addAlumno($obj1);
 					break;
@@ -1278,7 +1278,7 @@ abstract class BaseAlumnoPeer {
 				$obj3->addAlumno($obj1);
 			}
 
-			$omClass = ProvinciaPeer::getOMClass();
+			$omClass = CuentaPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -1288,7 +1288,7 @@ abstract class BaseAlumnoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj4 = $temp_obj1->getProvincia(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
+				$temp_obj4 = $temp_obj1->getCuenta(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj4->addAlumno($obj1);
 					break;
@@ -1351,7 +1351,7 @@ abstract class BaseAlumnoPeer {
 
 
 	
-	public static function doSelectJoinAllExceptCuenta(Criteria $c, $con = null)
+	public static function doSelectJoinAllExceptTipodocumento(Criteria $c, $con = null)
 	{
 		$c = clone $c;
 
@@ -1362,14 +1362,14 @@ abstract class BaseAlumnoPeer {
 		AlumnoPeer::addSelectColumns($c);
 		$startcol2 = (AlumnoPeer::NUM_COLUMNS - AlumnoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
-		TipodocumentoPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + TipodocumentoPeer::NUM_COLUMNS;
+		ProvinciaPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + ProvinciaPeer::NUM_COLUMNS;
 
 		EstablecimientoPeer::addSelectColumns($c);
 		$startcol4 = $startcol3 + EstablecimientoPeer::NUM_COLUMNS;
 
-		ProvinciaPeer::addSelectColumns($c);
-		$startcol5 = $startcol4 + ProvinciaPeer::NUM_COLUMNS;
+		CuentaPeer::addSelectColumns($c);
+		$startcol5 = $startcol4 + CuentaPeer::NUM_COLUMNS;
 
 		ConceptobajaPeer::addSelectColumns($c);
 		$startcol6 = $startcol5 + ConceptobajaPeer::NUM_COLUMNS;
@@ -1377,11 +1377,11 @@ abstract class BaseAlumnoPeer {
 		PaisPeer::addSelectColumns($c);
 		$startcol7 = $startcol6 + PaisPeer::NUM_COLUMNS;
 
-		$c->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
+		$c->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
 
-		$c->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+		$c->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_CONCEPTOBAJA_ID, ConceptobajaPeer::ID);
 
@@ -1399,7 +1399,7 @@ abstract class BaseAlumnoPeer {
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-			$omClass = TipodocumentoPeer::getOMClass();
+			$omClass = ProvinciaPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -1409,7 +1409,7 @@ abstract class BaseAlumnoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getTipodocumento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getProvincia(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addAlumno($obj1);
 					break;
@@ -1443,7 +1443,7 @@ abstract class BaseAlumnoPeer {
 				$obj3->addAlumno($obj1);
 			}
 
-			$omClass = ProvinciaPeer::getOMClass();
+			$omClass = CuentaPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -1453,7 +1453,7 @@ abstract class BaseAlumnoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj4 = $temp_obj1->getProvincia(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
+				$temp_obj4 = $temp_obj1->getCuenta(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj4->addAlumno($obj1);
 					break;
@@ -1527,14 +1527,14 @@ abstract class BaseAlumnoPeer {
 		AlumnoPeer::addSelectColumns($c);
 		$startcol2 = (AlumnoPeer::NUM_COLUMNS - AlumnoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
+		ProvinciaPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + ProvinciaPeer::NUM_COLUMNS;
+
 		TipodocumentoPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + TipodocumentoPeer::NUM_COLUMNS;
+		$startcol4 = $startcol3 + TipodocumentoPeer::NUM_COLUMNS;
 
 		CuentaPeer::addSelectColumns($c);
-		$startcol4 = $startcol3 + CuentaPeer::NUM_COLUMNS;
-
-		ProvinciaPeer::addSelectColumns($c);
-		$startcol5 = $startcol4 + ProvinciaPeer::NUM_COLUMNS;
+		$startcol5 = $startcol4 + CuentaPeer::NUM_COLUMNS;
 
 		ConceptobajaPeer::addSelectColumns($c);
 		$startcol6 = $startcol5 + ConceptobajaPeer::NUM_COLUMNS;
@@ -1542,11 +1542,11 @@ abstract class BaseAlumnoPeer {
 		PaisPeer::addSelectColumns($c);
 		$startcol7 = $startcol6 + PaisPeer::NUM_COLUMNS;
 
+		$c->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+
 		$c->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
-
-		$c->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_CONCEPTOBAJA_ID, ConceptobajaPeer::ID);
 
@@ -1564,7 +1564,7 @@ abstract class BaseAlumnoPeer {
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-			$omClass = TipodocumentoPeer::getOMClass();
+			$omClass = ProvinciaPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -1574,7 +1574,7 @@ abstract class BaseAlumnoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getTipodocumento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getProvincia(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addAlumno($obj1);
 					break;
@@ -1586,7 +1586,7 @@ abstract class BaseAlumnoPeer {
 				$obj2->addAlumno($obj1);
 			}
 
-			$omClass = CuentaPeer::getOMClass();
+			$omClass = TipodocumentoPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -1596,7 +1596,7 @@ abstract class BaseAlumnoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getCuenta(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+				$temp_obj3 = $temp_obj1->getTipodocumento(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj3->addAlumno($obj1);
 					break;
@@ -1608,7 +1608,7 @@ abstract class BaseAlumnoPeer {
 				$obj3->addAlumno($obj1);
 			}
 
-			$omClass = ProvinciaPeer::getOMClass();
+			$omClass = CuentaPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -1618,7 +1618,7 @@ abstract class BaseAlumnoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj4 = $temp_obj1->getProvincia(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
+				$temp_obj4 = $temp_obj1->getCuenta(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj4->addAlumno($obj1);
 					break;
@@ -1681,7 +1681,7 @@ abstract class BaseAlumnoPeer {
 
 
 	
-	public static function doSelectJoinAllExceptProvincia(Criteria $c, $con = null)
+	public static function doSelectJoinAllExceptCuenta(Criteria $c, $con = null)
 	{
 		$c = clone $c;
 
@@ -1692,11 +1692,11 @@ abstract class BaseAlumnoPeer {
 		AlumnoPeer::addSelectColumns($c);
 		$startcol2 = (AlumnoPeer::NUM_COLUMNS - AlumnoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
-		TipodocumentoPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + TipodocumentoPeer::NUM_COLUMNS;
+		ProvinciaPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + ProvinciaPeer::NUM_COLUMNS;
 
-		CuentaPeer::addSelectColumns($c);
-		$startcol4 = $startcol3 + CuentaPeer::NUM_COLUMNS;
+		TipodocumentoPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + TipodocumentoPeer::NUM_COLUMNS;
 
 		EstablecimientoPeer::addSelectColumns($c);
 		$startcol5 = $startcol4 + EstablecimientoPeer::NUM_COLUMNS;
@@ -1707,9 +1707,9 @@ abstract class BaseAlumnoPeer {
 		PaisPeer::addSelectColumns($c);
 		$startcol7 = $startcol6 + PaisPeer::NUM_COLUMNS;
 
-		$c->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
+		$c->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
-		$c->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
+		$c->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
 
@@ -1729,7 +1729,7 @@ abstract class BaseAlumnoPeer {
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-			$omClass = TipodocumentoPeer::getOMClass();
+			$omClass = ProvinciaPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -1739,7 +1739,7 @@ abstract class BaseAlumnoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getTipodocumento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getProvincia(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addAlumno($obj1);
 					break;
@@ -1751,7 +1751,7 @@ abstract class BaseAlumnoPeer {
 				$obj2->addAlumno($obj1);
 			}
 
-			$omClass = CuentaPeer::getOMClass();
+			$omClass = TipodocumentoPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -1761,7 +1761,7 @@ abstract class BaseAlumnoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getCuenta(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+				$temp_obj3 = $temp_obj1->getTipodocumento(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj3->addAlumno($obj1);
 					break;
@@ -1857,28 +1857,28 @@ abstract class BaseAlumnoPeer {
 		AlumnoPeer::addSelectColumns($c);
 		$startcol2 = (AlumnoPeer::NUM_COLUMNS - AlumnoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
-		TipodocumentoPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + TipodocumentoPeer::NUM_COLUMNS;
+		ProvinciaPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + ProvinciaPeer::NUM_COLUMNS;
 
-		CuentaPeer::addSelectColumns($c);
-		$startcol4 = $startcol3 + CuentaPeer::NUM_COLUMNS;
+		TipodocumentoPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + TipodocumentoPeer::NUM_COLUMNS;
 
 		EstablecimientoPeer::addSelectColumns($c);
 		$startcol5 = $startcol4 + EstablecimientoPeer::NUM_COLUMNS;
 
-		ProvinciaPeer::addSelectColumns($c);
-		$startcol6 = $startcol5 + ProvinciaPeer::NUM_COLUMNS;
+		CuentaPeer::addSelectColumns($c);
+		$startcol6 = $startcol5 + CuentaPeer::NUM_COLUMNS;
 
 		PaisPeer::addSelectColumns($c);
 		$startcol7 = $startcol6 + PaisPeer::NUM_COLUMNS;
 
-		$c->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
+		$c->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
-		$c->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
+		$c->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
 
-		$c->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+		$c->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_PAIS_ID, PaisPeer::ID);
 
@@ -1894,7 +1894,7 @@ abstract class BaseAlumnoPeer {
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-			$omClass = TipodocumentoPeer::getOMClass();
+			$omClass = ProvinciaPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -1904,7 +1904,7 @@ abstract class BaseAlumnoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getTipodocumento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getProvincia(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addAlumno($obj1);
 					break;
@@ -1916,7 +1916,7 @@ abstract class BaseAlumnoPeer {
 				$obj2->addAlumno($obj1);
 			}
 
-			$omClass = CuentaPeer::getOMClass();
+			$omClass = TipodocumentoPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -1926,7 +1926,7 @@ abstract class BaseAlumnoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getCuenta(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+				$temp_obj3 = $temp_obj1->getTipodocumento(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj3->addAlumno($obj1);
 					break;
@@ -1960,7 +1960,7 @@ abstract class BaseAlumnoPeer {
 				$obj4->addAlumno($obj1);
 			}
 
-			$omClass = ProvinciaPeer::getOMClass();
+			$omClass = CuentaPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -1970,7 +1970,7 @@ abstract class BaseAlumnoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj5 = $temp_obj1->getProvincia(); 				if ($temp_obj5->getPrimaryKey() === $obj5->getPrimaryKey()) {
+				$temp_obj5 = $temp_obj1->getCuenta(); 				if ($temp_obj5->getPrimaryKey() === $obj5->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj5->addAlumno($obj1);
 					break;
@@ -2022,28 +2022,28 @@ abstract class BaseAlumnoPeer {
 		AlumnoPeer::addSelectColumns($c);
 		$startcol2 = (AlumnoPeer::NUM_COLUMNS - AlumnoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
-		TipodocumentoPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + TipodocumentoPeer::NUM_COLUMNS;
+		ProvinciaPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + ProvinciaPeer::NUM_COLUMNS;
 
-		CuentaPeer::addSelectColumns($c);
-		$startcol4 = $startcol3 + CuentaPeer::NUM_COLUMNS;
+		TipodocumentoPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + TipodocumentoPeer::NUM_COLUMNS;
 
 		EstablecimientoPeer::addSelectColumns($c);
 		$startcol5 = $startcol4 + EstablecimientoPeer::NUM_COLUMNS;
 
-		ProvinciaPeer::addSelectColumns($c);
-		$startcol6 = $startcol5 + ProvinciaPeer::NUM_COLUMNS;
+		CuentaPeer::addSelectColumns($c);
+		$startcol6 = $startcol5 + CuentaPeer::NUM_COLUMNS;
 
 		ConceptobajaPeer::addSelectColumns($c);
 		$startcol7 = $startcol6 + ConceptobajaPeer::NUM_COLUMNS;
 
-		$c->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
+		$c->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
 
-		$c->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
+		$c->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
 
-		$c->addJoin(AlumnoPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+		$c->addJoin(AlumnoPeer::FK_CUENTA_ID, CuentaPeer::ID);
 
 		$c->addJoin(AlumnoPeer::FK_CONCEPTOBAJA_ID, ConceptobajaPeer::ID);
 
@@ -2059,7 +2059,7 @@ abstract class BaseAlumnoPeer {
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-			$omClass = TipodocumentoPeer::getOMClass();
+			$omClass = ProvinciaPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -2069,7 +2069,7 @@ abstract class BaseAlumnoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getTipodocumento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getProvincia(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addAlumno($obj1);
 					break;
@@ -2081,7 +2081,7 @@ abstract class BaseAlumnoPeer {
 				$obj2->addAlumno($obj1);
 			}
 
-			$omClass = CuentaPeer::getOMClass();
+			$omClass = TipodocumentoPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -2091,7 +2091,7 @@ abstract class BaseAlumnoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getCuenta(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+				$temp_obj3 = $temp_obj1->getTipodocumento(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj3->addAlumno($obj1);
 					break;
@@ -2125,7 +2125,7 @@ abstract class BaseAlumnoPeer {
 				$obj4->addAlumno($obj1);
 			}
 
-			$omClass = ProvinciaPeer::getOMClass();
+			$omClass = CuentaPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -2135,7 +2135,7 @@ abstract class BaseAlumnoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj5 = $temp_obj1->getProvincia(); 				if ($temp_obj5->getPrimaryKey() === $obj5->getPrimaryKey()) {
+				$temp_obj5 = $temp_obj1->getCuenta(); 				if ($temp_obj5->getPrimaryKey() === $obj5->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj5->addAlumno($obj1);
 					break;

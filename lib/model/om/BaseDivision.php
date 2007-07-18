@@ -17,7 +17,7 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 
 
 	
-	protected $descripcion = '';
+	protected $descripcion = 'null';
 
 
 	
@@ -126,7 +126,7 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->descripcion !== $v || $v === '') {
+		if ($this->descripcion !== $v || $v === 'null') {
 			$this->descripcion = $v;
 			$this->modifiedColumns[] = DivisionPeer::DESCRIPCION;
 		}
@@ -768,41 +768,6 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 
 
 	
-	public function getRelDivisionActividadDocentesJoinDocente($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseRelDivisionActividadDocentePeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collRelDivisionActividadDocentes === null) {
-			if ($this->isNew()) {
-				$this->collRelDivisionActividadDocentes = array();
-			} else {
-
-				$criteria->add(RelDivisionActividadDocentePeer::FK_DIVISION_ID, $this->getId());
-
-				$this->collRelDivisionActividadDocentes = RelDivisionActividadDocentePeer::doSelectJoinDocente($criteria, $con);
-			}
-		} else {
-									
-			$criteria->add(RelDivisionActividadDocentePeer::FK_DIVISION_ID, $this->getId());
-
-			if (!isset($this->lastRelDivisionActividadDocenteCriteria) || !$this->lastRelDivisionActividadDocenteCriteria->equals($criteria)) {
-				$this->collRelDivisionActividadDocentes = RelDivisionActividadDocentePeer::doSelectJoinDocente($criteria, $con);
-			}
-		}
-		$this->lastRelDivisionActividadDocenteCriteria = $criteria;
-
-		return $this->collRelDivisionActividadDocentes;
-	}
-
-
-	
 	public function getRelDivisionActividadDocentesJoinActividad($criteria = null, $con = null)
 	{
 				include_once 'lib/model/om/BaseRelDivisionActividadDocentePeer.php';
@@ -838,7 +803,7 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 
 
 	
-	public function getRelDivisionActividadDocentesJoinRepeticion($criteria = null, $con = null)
+	public function getRelDivisionActividadDocentesJoinDocente($criteria = null, $con = null)
 	{
 				include_once 'lib/model/om/BaseRelDivisionActividadDocentePeer.php';
 		if ($criteria === null) {
@@ -856,14 +821,14 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 
 				$criteria->add(RelDivisionActividadDocentePeer::FK_DIVISION_ID, $this->getId());
 
-				$this->collRelDivisionActividadDocentes = RelDivisionActividadDocentePeer::doSelectJoinRepeticion($criteria, $con);
+				$this->collRelDivisionActividadDocentes = RelDivisionActividadDocentePeer::doSelectJoinDocente($criteria, $con);
 			}
 		} else {
 									
 			$criteria->add(RelDivisionActividadDocentePeer::FK_DIVISION_ID, $this->getId());
 
 			if (!isset($this->lastRelDivisionActividadDocenteCriteria) || !$this->lastRelDivisionActividadDocenteCriteria->equals($criteria)) {
-				$this->collRelDivisionActividadDocentes = RelDivisionActividadDocentePeer::doSelectJoinRepeticion($criteria, $con);
+				$this->collRelDivisionActividadDocentes = RelDivisionActividadDocentePeer::doSelectJoinDocente($criteria, $con);
 			}
 		}
 		$this->lastRelDivisionActividadDocenteCriteria = $criteria;
@@ -899,6 +864,41 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 
 			if (!isset($this->lastRelDivisionActividadDocenteCriteria) || !$this->lastRelDivisionActividadDocenteCriteria->equals($criteria)) {
 				$this->collRelDivisionActividadDocentes = RelDivisionActividadDocentePeer::doSelectJoinEvento($criteria, $con);
+			}
+		}
+		$this->lastRelDivisionActividadDocenteCriteria = $criteria;
+
+		return $this->collRelDivisionActividadDocentes;
+	}
+
+
+	
+	public function getRelDivisionActividadDocentesJoinRepeticion($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseRelDivisionActividadDocentePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collRelDivisionActividadDocentes === null) {
+			if ($this->isNew()) {
+				$this->collRelDivisionActividadDocentes = array();
+			} else {
+
+				$criteria->add(RelDivisionActividadDocentePeer::FK_DIVISION_ID, $this->getId());
+
+				$this->collRelDivisionActividadDocentes = RelDivisionActividadDocentePeer::doSelectJoinRepeticion($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(RelDivisionActividadDocentePeer::FK_DIVISION_ID, $this->getId());
+
+			if (!isset($this->lastRelDivisionActividadDocenteCriteria) || !$this->lastRelDivisionActividadDocenteCriteria->equals($criteria)) {
+				$this->collRelDivisionActividadDocentes = RelDivisionActividadDocentePeer::doSelectJoinRepeticion($criteria, $con);
 			}
 		}
 		$this->lastRelDivisionActividadDocenteCriteria = $criteria;

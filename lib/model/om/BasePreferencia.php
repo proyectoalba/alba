@@ -13,7 +13,7 @@ abstract class BasePreferencia extends BaseObject  implements Persistent {
 
 
 	
-	protected $nombre = '';
+	protected $nombre = 'null';
 
 
 	
@@ -79,7 +79,7 @@ abstract class BasePreferencia extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->nombre !== $v || $v === '') {
+		if ($this->nombre !== $v || $v === 'null') {
 			$this->nombre = $v;
 			$this->modifiedColumns[] = PreferenciaPeer::NOMBRE;
 		}

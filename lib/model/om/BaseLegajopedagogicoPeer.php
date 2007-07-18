@@ -209,34 +209,6 @@ abstract class BaseLegajopedagogicoPeer {
 	}
 
 	
-	public static function doCountJoinLegajocategoria(Criteria $criteria, $distinct = false, $con = null)
-	{
-				$criteria = clone $criteria;
-
-				$criteria->clearSelectColumns()->clearOrderByColumns();
-		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT_DISTINCT);
-		} else {
-			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT);
-		}
-
-				foreach($criteria->getGroupByColumns() as $column)
-		{
-			$criteria->addSelectColumn($column);
-		}
-
-		$criteria->addJoin(LegajopedagogicoPeer::FK_LEGAJOCATEGORIA_ID, LegajocategoriaPeer::ID);
-
-		$rs = LegajopedagogicoPeer::doSelectRS($criteria, $con);
-		if ($rs->next()) {
-			return $rs->getInt(1);
-		} else {
-						return 0;
-		}
-	}
-
-
-	
 	public static function doCountJoinAlumno(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
@@ -293,49 +265,30 @@ abstract class BaseLegajopedagogicoPeer {
 
 
 	
-	public static function doSelectJoinLegajocategoria(Criteria $c, $con = null)
+	public static function doCountJoinLegajocategoria(Criteria $criteria, $distinct = false, $con = null)
 	{
-		$c = clone $c;
+				$criteria = clone $criteria;
 
-				if ($c->getDbName() == Propel::getDefaultDB()) {
-			$c->setDbName(self::DATABASE_NAME);
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT);
 		}
 
-		LegajopedagogicoPeer::addSelectColumns($c);
-		$startcol = (LegajopedagogicoPeer::NUM_COLUMNS - LegajopedagogicoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-		LegajocategoriaPeer::addSelectColumns($c);
-
-		$c->addJoin(LegajopedagogicoPeer::FK_LEGAJOCATEGORIA_ID, LegajocategoriaPeer::ID);
-		$rs = BasePeer::doSelect($c, $con);
-		$results = array();
-
-		while($rs->next()) {
-
-			$omClass = LegajopedagogicoPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj1 = new $cls();
-			$obj1->hydrate($rs);
-
-			$omClass = LegajocategoriaPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj2 = new $cls();
-			$obj2->hydrate($rs, $startcol);
-
-			$newObject = true;
-			foreach($results as $temp_obj1) {
-				$temp_obj2 = $temp_obj1->getLegajocategoria(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
-					$newObject = false;
-										$temp_obj2->addLegajopedagogico($obj1); 					break;
-				}
-			}
-			if ($newObject) {
-				$obj2->initLegajopedagogicos();
-				$obj2->addLegajopedagogico($obj1); 			}
-			$results[] = $obj1;
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
 		}
-		return $results;
+
+		$criteria->addJoin(LegajopedagogicoPeer::FK_LEGAJOCATEGORIA_ID, LegajocategoriaPeer::ID);
+
+		$rs = LegajopedagogicoPeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
 	}
 
 
@@ -434,6 +387,53 @@ abstract class BaseLegajopedagogicoPeer {
 
 
 	
+	public static function doSelectJoinLegajocategoria(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+				if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		LegajopedagogicoPeer::addSelectColumns($c);
+		$startcol = (LegajopedagogicoPeer::NUM_COLUMNS - LegajopedagogicoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+		LegajocategoriaPeer::addSelectColumns($c);
+
+		$c->addJoin(LegajopedagogicoPeer::FK_LEGAJOCATEGORIA_ID, LegajocategoriaPeer::ID);
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = LegajopedagogicoPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = LegajocategoriaPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj2 = new $cls();
+			$obj2->hydrate($rs, $startcol);
+
+			$newObject = true;
+			foreach($results as $temp_obj1) {
+				$temp_obj2 = $temp_obj1->getLegajocategoria(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+										$temp_obj2->addLegajopedagogico($obj1); 					break;
+				}
+			}
+			if ($newObject) {
+				$obj2->initLegajopedagogicos();
+				$obj2->addLegajopedagogico($obj1); 			}
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	
 	public static function doCountJoinAll(Criteria $criteria, $distinct = false, $con = null)
 	{
 		$criteria = clone $criteria;
@@ -450,11 +450,11 @@ abstract class BaseLegajopedagogicoPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(LegajopedagogicoPeer::FK_LEGAJOCATEGORIA_ID, LegajocategoriaPeer::ID);
-
 		$criteria->addJoin(LegajopedagogicoPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
 
 		$criteria->addJoin(LegajopedagogicoPeer::FK_USUARIO_ID, UsuarioPeer::ID);
+
+		$criteria->addJoin(LegajopedagogicoPeer::FK_LEGAJOCATEGORIA_ID, LegajocategoriaPeer::ID);
 
 		$rs = LegajopedagogicoPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -477,20 +477,20 @@ abstract class BaseLegajopedagogicoPeer {
 		LegajopedagogicoPeer::addSelectColumns($c);
 		$startcol2 = (LegajopedagogicoPeer::NUM_COLUMNS - LegajopedagogicoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
-		LegajocategoriaPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + LegajocategoriaPeer::NUM_COLUMNS;
-
 		AlumnoPeer::addSelectColumns($c);
-		$startcol4 = $startcol3 + AlumnoPeer::NUM_COLUMNS;
+		$startcol3 = $startcol2 + AlumnoPeer::NUM_COLUMNS;
 
 		UsuarioPeer::addSelectColumns($c);
-		$startcol5 = $startcol4 + UsuarioPeer::NUM_COLUMNS;
+		$startcol4 = $startcol3 + UsuarioPeer::NUM_COLUMNS;
 
-		$c->addJoin(LegajopedagogicoPeer::FK_LEGAJOCATEGORIA_ID, LegajocategoriaPeer::ID);
+		LegajocategoriaPeer::addSelectColumns($c);
+		$startcol5 = $startcol4 + LegajocategoriaPeer::NUM_COLUMNS;
 
 		$c->addJoin(LegajopedagogicoPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
 
 		$c->addJoin(LegajopedagogicoPeer::FK_USUARIO_ID, UsuarioPeer::ID);
+
+		$c->addJoin(LegajopedagogicoPeer::FK_LEGAJOCATEGORIA_ID, LegajocategoriaPeer::ID);
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
@@ -506,7 +506,7 @@ abstract class BaseLegajopedagogicoPeer {
 
 
 					
-			$omClass = LegajocategoriaPeer::getOMClass();
+			$omClass = AlumnoPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -516,7 +516,7 @@ abstract class BaseLegajopedagogicoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getLegajocategoria(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getAlumno(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addLegajopedagogico($obj1); 					break;
 				}
@@ -529,7 +529,7 @@ abstract class BaseLegajopedagogicoPeer {
 
 
 					
-			$omClass = AlumnoPeer::getOMClass();
+			$omClass = UsuarioPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -539,7 +539,7 @@ abstract class BaseLegajopedagogicoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getAlumno(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+				$temp_obj3 = $temp_obj1->getUsuario(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj3->addLegajopedagogico($obj1); 					break;
 				}
@@ -552,7 +552,7 @@ abstract class BaseLegajopedagogicoPeer {
 
 
 					
-			$omClass = UsuarioPeer::getOMClass();
+			$omClass = LegajocategoriaPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -562,7 +562,7 @@ abstract class BaseLegajopedagogicoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj4 = $temp_obj1->getUsuario(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
+				$temp_obj4 = $temp_obj1->getLegajocategoria(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj4->addLegajopedagogico($obj1); 					break;
 				}
@@ -576,6 +576,66 @@ abstract class BaseLegajopedagogicoPeer {
 			$results[] = $obj1;
 		}
 		return $results;
+	}
+
+
+	
+	public static function doCountJoinAllExceptAlumno(Criteria $criteria, $distinct = false, $con = null)
+	{
+				$criteria = clone $criteria;
+
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT);
+		}
+
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
+		}
+
+		$criteria->addJoin(LegajopedagogicoPeer::FK_USUARIO_ID, UsuarioPeer::ID);
+
+		$criteria->addJoin(LegajopedagogicoPeer::FK_LEGAJOCATEGORIA_ID, LegajocategoriaPeer::ID);
+
+		$rs = LegajopedagogicoPeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
+	}
+
+
+	
+	public static function doCountJoinAllExceptUsuario(Criteria $criteria, $distinct = false, $con = null)
+	{
+				$criteria = clone $criteria;
+
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT);
+		}
+
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
+		}
+
+		$criteria->addJoin(LegajopedagogicoPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
+
+		$criteria->addJoin(LegajopedagogicoPeer::FK_LEGAJOCATEGORIA_ID, LegajocategoriaPeer::ID);
+
+		$rs = LegajopedagogicoPeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
 	}
 
 
@@ -610,62 +670,170 @@ abstract class BaseLegajopedagogicoPeer {
 
 
 	
-	public static function doCountJoinAllExceptAlumno(Criteria $criteria, $distinct = false, $con = null)
+	public static function doSelectJoinAllExceptAlumno(Criteria $c, $con = null)
 	{
-				$criteria = clone $criteria;
+		$c = clone $c;
 
-				$criteria->clearSelectColumns()->clearOrderByColumns();
-		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT_DISTINCT);
-		} else {
-			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT);
+								if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
 		}
 
-				foreach($criteria->getGroupByColumns() as $column)
-		{
-			$criteria->addSelectColumn($column);
+		LegajopedagogicoPeer::addSelectColumns($c);
+		$startcol2 = (LegajopedagogicoPeer::NUM_COLUMNS - LegajopedagogicoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+
+		UsuarioPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + UsuarioPeer::NUM_COLUMNS;
+
+		LegajocategoriaPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + LegajocategoriaPeer::NUM_COLUMNS;
+
+		$c->addJoin(LegajopedagogicoPeer::FK_USUARIO_ID, UsuarioPeer::ID);
+
+		$c->addJoin(LegajopedagogicoPeer::FK_LEGAJOCATEGORIA_ID, LegajocategoriaPeer::ID);
+
+
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = LegajopedagogicoPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = UsuarioPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj2  = new $cls();
+			$obj2->hydrate($rs, $startcol2);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj2 = $temp_obj1->getUsuario(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj2->addLegajopedagogico($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj2->initLegajopedagogicos();
+				$obj2->addLegajopedagogico($obj1);
+			}
+
+			$omClass = LegajocategoriaPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj3  = new $cls();
+			$obj3->hydrate($rs, $startcol3);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj3 = $temp_obj1->getLegajocategoria(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj3->addLegajopedagogico($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj3->initLegajopedagogicos();
+				$obj3->addLegajopedagogico($obj1);
+			}
+
+			$results[] = $obj1;
 		}
-
-		$criteria->addJoin(LegajopedagogicoPeer::FK_LEGAJOCATEGORIA_ID, LegajocategoriaPeer::ID);
-
-		$criteria->addJoin(LegajopedagogicoPeer::FK_USUARIO_ID, UsuarioPeer::ID);
-
-		$rs = LegajopedagogicoPeer::doSelectRS($criteria, $con);
-		if ($rs->next()) {
-			return $rs->getInt(1);
-		} else {
-						return 0;
-		}
+		return $results;
 	}
 
 
 	
-	public static function doCountJoinAllExceptUsuario(Criteria $criteria, $distinct = false, $con = null)
+	public static function doSelectJoinAllExceptUsuario(Criteria $c, $con = null)
 	{
-				$criteria = clone $criteria;
+		$c = clone $c;
 
-				$criteria->clearSelectColumns()->clearOrderByColumns();
-		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT_DISTINCT);
-		} else {
-			$criteria->addSelectColumn(LegajopedagogicoPeer::COUNT);
+								if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
 		}
 
-				foreach($criteria->getGroupByColumns() as $column)
-		{
-			$criteria->addSelectColumn($column);
+		LegajopedagogicoPeer::addSelectColumns($c);
+		$startcol2 = (LegajopedagogicoPeer::NUM_COLUMNS - LegajopedagogicoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+
+		AlumnoPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + AlumnoPeer::NUM_COLUMNS;
+
+		LegajocategoriaPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + LegajocategoriaPeer::NUM_COLUMNS;
+
+		$c->addJoin(LegajopedagogicoPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
+
+		$c->addJoin(LegajopedagogicoPeer::FK_LEGAJOCATEGORIA_ID, LegajocategoriaPeer::ID);
+
+
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = LegajopedagogicoPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = AlumnoPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj2  = new $cls();
+			$obj2->hydrate($rs, $startcol2);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj2 = $temp_obj1->getAlumno(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj2->addLegajopedagogico($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj2->initLegajopedagogicos();
+				$obj2->addLegajopedagogico($obj1);
+			}
+
+			$omClass = LegajocategoriaPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj3  = new $cls();
+			$obj3->hydrate($rs, $startcol3);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj3 = $temp_obj1->getLegajocategoria(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj3->addLegajopedagogico($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj3->initLegajopedagogicos();
+				$obj3->addLegajopedagogico($obj1);
+			}
+
+			$results[] = $obj1;
 		}
-
-		$criteria->addJoin(LegajopedagogicoPeer::FK_LEGAJOCATEGORIA_ID, LegajocategoriaPeer::ID);
-
-		$criteria->addJoin(LegajopedagogicoPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
-
-		$rs = LegajopedagogicoPeer::doSelectRS($criteria, $con);
-		if ($rs->next()) {
-			return $rs->getInt(1);
-		} else {
-						return 0;
-		}
+		return $results;
 	}
 
 
@@ -736,174 +904,6 @@ abstract class BaseLegajopedagogicoPeer {
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
 				$temp_obj3 = $temp_obj1->getUsuario(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
-					$newObject = false;
-					$temp_obj3->addLegajopedagogico($obj1);
-					break;
-				}
-			}
-
-			if ($newObject) {
-				$obj3->initLegajopedagogicos();
-				$obj3->addLegajopedagogico($obj1);
-			}
-
-			$results[] = $obj1;
-		}
-		return $results;
-	}
-
-
-	
-	public static function doSelectJoinAllExceptAlumno(Criteria $c, $con = null)
-	{
-		$c = clone $c;
-
-								if ($c->getDbName() == Propel::getDefaultDB()) {
-			$c->setDbName(self::DATABASE_NAME);
-		}
-
-		LegajopedagogicoPeer::addSelectColumns($c);
-		$startcol2 = (LegajopedagogicoPeer::NUM_COLUMNS - LegajopedagogicoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-
-		LegajocategoriaPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + LegajocategoriaPeer::NUM_COLUMNS;
-
-		UsuarioPeer::addSelectColumns($c);
-		$startcol4 = $startcol3 + UsuarioPeer::NUM_COLUMNS;
-
-		$c->addJoin(LegajopedagogicoPeer::FK_LEGAJOCATEGORIA_ID, LegajocategoriaPeer::ID);
-
-		$c->addJoin(LegajopedagogicoPeer::FK_USUARIO_ID, UsuarioPeer::ID);
-
-
-		$rs = BasePeer::doSelect($c, $con);
-		$results = array();
-
-		while($rs->next()) {
-
-			$omClass = LegajopedagogicoPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj1 = new $cls();
-			$obj1->hydrate($rs);
-
-			$omClass = LegajocategoriaPeer::getOMClass();
-
-
-			$cls = Propel::import($omClass);
-			$obj2  = new $cls();
-			$obj2->hydrate($rs, $startcol2);
-
-			$newObject = true;
-			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
-				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getLegajocategoria(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
-					$newObject = false;
-					$temp_obj2->addLegajopedagogico($obj1);
-					break;
-				}
-			}
-
-			if ($newObject) {
-				$obj2->initLegajopedagogicos();
-				$obj2->addLegajopedagogico($obj1);
-			}
-
-			$omClass = UsuarioPeer::getOMClass();
-
-
-			$cls = Propel::import($omClass);
-			$obj3  = new $cls();
-			$obj3->hydrate($rs, $startcol3);
-
-			$newObject = true;
-			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
-				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getUsuario(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
-					$newObject = false;
-					$temp_obj3->addLegajopedagogico($obj1);
-					break;
-				}
-			}
-
-			if ($newObject) {
-				$obj3->initLegajopedagogicos();
-				$obj3->addLegajopedagogico($obj1);
-			}
-
-			$results[] = $obj1;
-		}
-		return $results;
-	}
-
-
-	
-	public static function doSelectJoinAllExceptUsuario(Criteria $c, $con = null)
-	{
-		$c = clone $c;
-
-								if ($c->getDbName() == Propel::getDefaultDB()) {
-			$c->setDbName(self::DATABASE_NAME);
-		}
-
-		LegajopedagogicoPeer::addSelectColumns($c);
-		$startcol2 = (LegajopedagogicoPeer::NUM_COLUMNS - LegajopedagogicoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-
-		LegajocategoriaPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + LegajocategoriaPeer::NUM_COLUMNS;
-
-		AlumnoPeer::addSelectColumns($c);
-		$startcol4 = $startcol3 + AlumnoPeer::NUM_COLUMNS;
-
-		$c->addJoin(LegajopedagogicoPeer::FK_LEGAJOCATEGORIA_ID, LegajocategoriaPeer::ID);
-
-		$c->addJoin(LegajopedagogicoPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
-
-
-		$rs = BasePeer::doSelect($c, $con);
-		$results = array();
-
-		while($rs->next()) {
-
-			$omClass = LegajopedagogicoPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj1 = new $cls();
-			$obj1->hydrate($rs);
-
-			$omClass = LegajocategoriaPeer::getOMClass();
-
-
-			$cls = Propel::import($omClass);
-			$obj2  = new $cls();
-			$obj2->hydrate($rs, $startcol2);
-
-			$newObject = true;
-			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
-				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getLegajocategoria(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
-					$newObject = false;
-					$temp_obj2->addLegajopedagogico($obj1);
-					break;
-				}
-			}
-
-			if ($newObject) {
-				$obj2->initLegajopedagogicos();
-				$obj2->addLegajopedagogico($obj1);
-			}
-
-			$omClass = AlumnoPeer::getOMClass();
-
-
-			$cls = Propel::import($omClass);
-			$obj3  = new $cls();
-			$obj3->hydrate($rs, $startcol3);
-
-			$newObject = true;
-			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
-				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getAlumno(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj3->addLegajopedagogico($obj1);
 					break;

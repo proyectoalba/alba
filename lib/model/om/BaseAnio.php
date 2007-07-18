@@ -17,7 +17,7 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 
 
 	
-	protected $descripcion = '';
+	protected $descripcion = 'null';
 
 	
 	protected $aEstablecimiento;
@@ -101,7 +101,7 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->descripcion !== $v || $v === '') {
+		if ($this->descripcion !== $v || $v === 'null') {
 			$this->descripcion = $v;
 			$this->modifiedColumns[] = AnioPeer::DESCRIPCION;
 		}

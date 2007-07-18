@@ -13,11 +13,11 @@ abstract class BaseProvincia extends BaseObject  implements Persistent {
 
 
 	
-	protected $nombre_corto = '';
+	protected $nombre_corto = 'null';
 
 
 	
-	protected $nombre_largo = '';
+	protected $nombre_largo = 'null';
 
 
 	
@@ -129,7 +129,7 @@ abstract class BaseProvincia extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->nombre_corto !== $v || $v === '') {
+		if ($this->nombre_corto !== $v || $v === 'null') {
 			$this->nombre_corto = $v;
 			$this->modifiedColumns[] = ProvinciaPeer::NOMBRE_CORTO;
 		}
@@ -143,7 +143,7 @@ abstract class BaseProvincia extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->nombre_largo !== $v || $v === '') {
+		if ($this->nombre_largo !== $v || $v === 'null') {
 			$this->nombre_largo = $v;
 			$this->modifiedColumns[] = ProvinciaPeer::NOMBRE_LARGO;
 		}
@@ -1067,41 +1067,6 @@ abstract class BaseProvincia extends BaseObject  implements Persistent {
 
 
 	
-	public function getAlumnosJoinCuenta($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseAlumnoPeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collAlumnos === null) {
-			if ($this->isNew()) {
-				$this->collAlumnos = array();
-			} else {
-
-				$criteria->add(AlumnoPeer::FK_PROVINCIA_ID, $this->getId());
-
-				$this->collAlumnos = AlumnoPeer::doSelectJoinCuenta($criteria, $con);
-			}
-		} else {
-									
-			$criteria->add(AlumnoPeer::FK_PROVINCIA_ID, $this->getId());
-
-			if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
-				$this->collAlumnos = AlumnoPeer::doSelectJoinCuenta($criteria, $con);
-			}
-		}
-		$this->lastAlumnoCriteria = $criteria;
-
-		return $this->collAlumnos;
-	}
-
-
-	
 	public function getAlumnosJoinEstablecimiento($criteria = null, $con = null)
 	{
 				include_once 'lib/model/om/BaseAlumnoPeer.php';
@@ -1128,6 +1093,41 @@ abstract class BaseProvincia extends BaseObject  implements Persistent {
 
 			if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
 				$this->collAlumnos = AlumnoPeer::doSelectJoinEstablecimiento($criteria, $con);
+			}
+		}
+		$this->lastAlumnoCriteria = $criteria;
+
+		return $this->collAlumnos;
+	}
+
+
+	
+	public function getAlumnosJoinCuenta($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseAlumnoPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collAlumnos === null) {
+			if ($this->isNew()) {
+				$this->collAlumnos = array();
+			} else {
+
+				$criteria->add(AlumnoPeer::FK_PROVINCIA_ID, $this->getId());
+
+				$this->collAlumnos = AlumnoPeer::doSelectJoinCuenta($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(AlumnoPeer::FK_PROVINCIA_ID, $this->getId());
+
+			if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
+				$this->collAlumnos = AlumnoPeer::doSelectJoinCuenta($criteria, $con);
 			}
 		}
 		$this->lastAlumnoCriteria = $criteria;
@@ -1277,41 +1277,6 @@ abstract class BaseProvincia extends BaseObject  implements Persistent {
 
 
 	
-	public function getResponsablesJoinCuenta($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseResponsablePeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collResponsables === null) {
-			if ($this->isNew()) {
-				$this->collResponsables = array();
-			} else {
-
-				$criteria->add(ResponsablePeer::FK_PROVINCIA_ID, $this->getId());
-
-				$this->collResponsables = ResponsablePeer::doSelectJoinCuenta($criteria, $con);
-			}
-		} else {
-									
-			$criteria->add(ResponsablePeer::FK_PROVINCIA_ID, $this->getId());
-
-			if (!isset($this->lastResponsableCriteria) || !$this->lastResponsableCriteria->equals($criteria)) {
-				$this->collResponsables = ResponsablePeer::doSelectJoinCuenta($criteria, $con);
-			}
-		}
-		$this->lastResponsableCriteria = $criteria;
-
-		return $this->collResponsables;
-	}
-
-
-	
 	public function getResponsablesJoinTipodocumento($criteria = null, $con = null)
 	{
 				include_once 'lib/model/om/BaseResponsablePeer.php';
@@ -1338,6 +1303,41 @@ abstract class BaseProvincia extends BaseObject  implements Persistent {
 
 			if (!isset($this->lastResponsableCriteria) || !$this->lastResponsableCriteria->equals($criteria)) {
 				$this->collResponsables = ResponsablePeer::doSelectJoinTipodocumento($criteria, $con);
+			}
+		}
+		$this->lastResponsableCriteria = $criteria;
+
+		return $this->collResponsables;
+	}
+
+
+	
+	public function getResponsablesJoinCuenta($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseResponsablePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collResponsables === null) {
+			if ($this->isNew()) {
+				$this->collResponsables = array();
+			} else {
+
+				$criteria->add(ResponsablePeer::FK_PROVINCIA_ID, $this->getId());
+
+				$this->collResponsables = ResponsablePeer::doSelectJoinCuenta($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(ResponsablePeer::FK_PROVINCIA_ID, $this->getId());
+
+			if (!isset($this->lastResponsableCriteria) || !$this->lastResponsableCriteria->equals($criteria)) {
+				$this->collResponsables = ResponsablePeer::doSelectJoinCuenta($criteria, $con);
 			}
 		}
 		$this->lastResponsableCriteria = $criteria;

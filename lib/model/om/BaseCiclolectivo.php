@@ -25,11 +25,11 @@ abstract class BaseCiclolectivo extends BaseObject  implements Persistent {
 
 
 	
-	protected $descripcion = '';
+	protected $descripcion = 'null';
 
 
 	
-	protected $actual = true;
+	protected $actual = false;
 
 	
 	protected $aEstablecimiento;
@@ -204,7 +204,7 @@ abstract class BaseCiclolectivo extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->descripcion !== $v || $v === '') {
+		if ($this->descripcion !== $v || $v === 'null') {
 			$this->descripcion = $v;
 			$this->modifiedColumns[] = CiclolectivoPeer::DESCRIPCION;
 		}
@@ -214,7 +214,7 @@ abstract class BaseCiclolectivo extends BaseObject  implements Persistent {
 	public function setActual($v)
 	{
 
-		if ($this->actual !== $v || $v === true) {
+		if ($this->actual !== $v || $v === false) {
 			$this->actual = $v;
 			$this->modifiedColumns[] = CiclolectivoPeer::ACTUAL;
 		}

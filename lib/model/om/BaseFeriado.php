@@ -21,11 +21,11 @@ abstract class BaseFeriado extends BaseObject  implements Persistent {
 
 
 	
-	protected $repeticion_anual = true;
+	protected $repeticion_anual = false;
 
 
 	
-	protected $inamovible = true;
+	protected $inamovible = false;
 
 
 	
@@ -146,7 +146,7 @@ abstract class BaseFeriado extends BaseObject  implements Persistent {
 	public function setRepeticionAnual($v)
 	{
 
-		if ($this->repeticion_anual !== $v || $v === true) {
+		if ($this->repeticion_anual !== $v || $v === false) {
 			$this->repeticion_anual = $v;
 			$this->modifiedColumns[] = FeriadoPeer::REPETICION_ANUAL;
 		}
@@ -156,7 +156,7 @@ abstract class BaseFeriado extends BaseObject  implements Persistent {
 	public function setInamovible($v)
 	{
 
-		if ($this->inamovible !== $v || $v === true) {
+		if ($this->inamovible !== $v || $v === false) {
 			$this->inamovible = $v;
 			$this->modifiedColumns[] = FeriadoPeer::INAMOVIBLE;
 		}

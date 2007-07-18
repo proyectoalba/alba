@@ -13,31 +13,31 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 
 
 	
-	protected $nombre = '';
+	protected $nombre = 'null';
 
 
 	
-	protected $razon_social = '';
+	protected $razon_social = 'null';
 
 
 	
-	protected $cuit = '';
+	protected $cuit = 'null';
 
 
 	
-	protected $direccion = '';
+	protected $direccion = 'null';
 
 
 	
-	protected $ciudad = '';
+	protected $ciudad = 'null';
 
 
 	
-	protected $codigo_postal = '';
+	protected $codigo_postal = 'null';
 
 
 	
-	protected $telefono = '';
+	protected $telefono = 'null';
 
 
 	
@@ -48,10 +48,10 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 	protected $fk_tipoiva_id = 0;
 
 	
-	protected $aTipoiva;
+	protected $aProvincia;
 
 	
-	protected $aProvincia;
+	protected $aTipoiva;
 
 	
 	protected $collAlumnos;
@@ -163,7 +163,7 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->nombre !== $v || $v === '') {
+		if ($this->nombre !== $v || $v === 'null') {
 			$this->nombre = $v;
 			$this->modifiedColumns[] = CuentaPeer::NOMBRE;
 		}
@@ -177,7 +177,7 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->razon_social !== $v || $v === '') {
+		if ($this->razon_social !== $v || $v === 'null') {
 			$this->razon_social = $v;
 			$this->modifiedColumns[] = CuentaPeer::RAZON_SOCIAL;
 		}
@@ -191,7 +191,7 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->cuit !== $v || $v === '') {
+		if ($this->cuit !== $v || $v === 'null') {
 			$this->cuit = $v;
 			$this->modifiedColumns[] = CuentaPeer::CUIT;
 		}
@@ -205,7 +205,7 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->direccion !== $v || $v === '') {
+		if ($this->direccion !== $v || $v === 'null') {
 			$this->direccion = $v;
 			$this->modifiedColumns[] = CuentaPeer::DIRECCION;
 		}
@@ -219,7 +219,7 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->ciudad !== $v || $v === '') {
+		if ($this->ciudad !== $v || $v === 'null') {
 			$this->ciudad = $v;
 			$this->modifiedColumns[] = CuentaPeer::CIUDAD;
 		}
@@ -233,7 +233,7 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->codigo_postal !== $v || $v === '') {
+		if ($this->codigo_postal !== $v || $v === 'null') {
 			$this->codigo_postal = $v;
 			$this->modifiedColumns[] = CuentaPeer::CODIGO_POSTAL;
 		}
@@ -247,7 +247,7 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->telefono !== $v || $v === '') {
+		if ($this->telefono !== $v || $v === 'null') {
 			$this->telefono = $v;
 			$this->modifiedColumns[] = CuentaPeer::TELEFONO;
 		}
@@ -376,18 +376,18 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 
 
 												
-			if ($this->aTipoiva !== null) {
-				if ($this->aTipoiva->isModified()) {
-					$affectedRows += $this->aTipoiva->save($con);
-				}
-				$this->setTipoiva($this->aTipoiva);
-			}
-
 			if ($this->aProvincia !== null) {
 				if ($this->aProvincia->isModified()) {
 					$affectedRows += $this->aProvincia->save($con);
 				}
 				$this->setProvincia($this->aProvincia);
+			}
+
+			if ($this->aTipoiva !== null) {
+				if ($this->aTipoiva->isModified()) {
+					$affectedRows += $this->aTipoiva->save($con);
+				}
+				$this->setTipoiva($this->aTipoiva);
 			}
 
 
@@ -455,15 +455,15 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 
 
 												
-			if ($this->aTipoiva !== null) {
-				if (!$this->aTipoiva->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aTipoiva->getValidationFailures());
-				}
-			}
-
 			if ($this->aProvincia !== null) {
 				if (!$this->aProvincia->validate($columns)) {
 					$failureMap = array_merge($failureMap, $this->aProvincia->getValidationFailures());
+				}
+			}
+
+			if ($this->aTipoiva !== null) {
+				if (!$this->aTipoiva->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aTipoiva->getValidationFailures());
 				}
 			}
 
@@ -722,36 +722,6 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 	}
 
 	
-	public function setTipoiva($v)
-	{
-
-
-		if ($v === null) {
-			$this->setFkTipoivaId('0');
-		} else {
-			$this->setFkTipoivaId($v->getId());
-		}
-
-
-		$this->aTipoiva = $v;
-	}
-
-
-	
-	public function getTipoiva($con = null)
-	{
-				include_once 'lib/model/om/BaseTipoivaPeer.php';
-
-		if ($this->aTipoiva === null && ($this->fk_tipoiva_id !== null)) {
-
-			$this->aTipoiva = TipoivaPeer::retrieveByPK($this->fk_tipoiva_id, $con);
-
-			
-		}
-		return $this->aTipoiva;
-	}
-
-	
 	public function setProvincia($v)
 	{
 
@@ -779,6 +749,36 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 			
 		}
 		return $this->aProvincia;
+	}
+
+	
+	public function setTipoiva($v)
+	{
+
+
+		if ($v === null) {
+			$this->setFkTipoivaId('0');
+		} else {
+			$this->setFkTipoivaId($v->getId());
+		}
+
+
+		$this->aTipoiva = $v;
+	}
+
+
+	
+	public function getTipoiva($con = null)
+	{
+				include_once 'lib/model/om/BaseTipoivaPeer.php';
+
+		if ($this->aTipoiva === null && ($this->fk_tipoiva_id !== null)) {
+
+			$this->aTipoiva = TipoivaPeer::retrieveByPK($this->fk_tipoiva_id, $con);
+
+			
+		}
+		return $this->aTipoiva;
 	}
 
 	
@@ -853,6 +853,41 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 
 
 	
+	public function getAlumnosJoinProvincia($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseAlumnoPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collAlumnos === null) {
+			if ($this->isNew()) {
+				$this->collAlumnos = array();
+			} else {
+
+				$criteria->add(AlumnoPeer::FK_CUENTA_ID, $this->getId());
+
+				$this->collAlumnos = AlumnoPeer::doSelectJoinProvincia($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(AlumnoPeer::FK_CUENTA_ID, $this->getId());
+
+			if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
+				$this->collAlumnos = AlumnoPeer::doSelectJoinProvincia($criteria, $con);
+			}
+		}
+		$this->lastAlumnoCriteria = $criteria;
+
+		return $this->collAlumnos;
+	}
+
+
+	
 	public function getAlumnosJoinTipodocumento($criteria = null, $con = null)
 	{
 				include_once 'lib/model/om/BaseAlumnoPeer.php';
@@ -914,41 +949,6 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 
 			if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
 				$this->collAlumnos = AlumnoPeer::doSelectJoinEstablecimiento($criteria, $con);
-			}
-		}
-		$this->lastAlumnoCriteria = $criteria;
-
-		return $this->collAlumnos;
-	}
-
-
-	
-	public function getAlumnosJoinProvincia($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseAlumnoPeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collAlumnos === null) {
-			if ($this->isNew()) {
-				$this->collAlumnos = array();
-			} else {
-
-				$criteria->add(AlumnoPeer::FK_CUENTA_ID, $this->getId());
-
-				$this->collAlumnos = AlumnoPeer::doSelectJoinProvincia($criteria, $con);
-			}
-		} else {
-									
-			$criteria->add(AlumnoPeer::FK_CUENTA_ID, $this->getId());
-
-			if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
-				$this->collAlumnos = AlumnoPeer::doSelectJoinProvincia($criteria, $con);
 			}
 		}
 		$this->lastAlumnoCriteria = $criteria;

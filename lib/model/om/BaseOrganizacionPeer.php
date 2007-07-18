@@ -224,34 +224,6 @@ abstract class BaseOrganizacionPeer {
 	}
 
 	
-	public static function doCountJoinTipoiva(Criteria $criteria, $distinct = false, $con = null)
-	{
-				$criteria = clone $criteria;
-
-				$criteria->clearSelectColumns()->clearOrderByColumns();
-		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(OrganizacionPeer::COUNT_DISTINCT);
-		} else {
-			$criteria->addSelectColumn(OrganizacionPeer::COUNT);
-		}
-
-				foreach($criteria->getGroupByColumns() as $column)
-		{
-			$criteria->addSelectColumn($column);
-		}
-
-		$criteria->addJoin(OrganizacionPeer::FK_TIPOIVA_ID, TipoivaPeer::ID);
-
-		$rs = OrganizacionPeer::doSelectRS($criteria, $con);
-		if ($rs->next()) {
-			return $rs->getInt(1);
-		} else {
-						return 0;
-		}
-	}
-
-
-	
 	public static function doCountJoinProvincia(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
@@ -280,49 +252,30 @@ abstract class BaseOrganizacionPeer {
 
 
 	
-	public static function doSelectJoinTipoiva(Criteria $c, $con = null)
+	public static function doCountJoinTipoiva(Criteria $criteria, $distinct = false, $con = null)
 	{
-		$c = clone $c;
+				$criteria = clone $criteria;
 
-				if ($c->getDbName() == Propel::getDefaultDB()) {
-			$c->setDbName(self::DATABASE_NAME);
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(OrganizacionPeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(OrganizacionPeer::COUNT);
 		}
 
-		OrganizacionPeer::addSelectColumns($c);
-		$startcol = (OrganizacionPeer::NUM_COLUMNS - OrganizacionPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-		TipoivaPeer::addSelectColumns($c);
-
-		$c->addJoin(OrganizacionPeer::FK_TIPOIVA_ID, TipoivaPeer::ID);
-		$rs = BasePeer::doSelect($c, $con);
-		$results = array();
-
-		while($rs->next()) {
-
-			$omClass = OrganizacionPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj1 = new $cls();
-			$obj1->hydrate($rs);
-
-			$omClass = TipoivaPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj2 = new $cls();
-			$obj2->hydrate($rs, $startcol);
-
-			$newObject = true;
-			foreach($results as $temp_obj1) {
-				$temp_obj2 = $temp_obj1->getTipoiva(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
-					$newObject = false;
-										$temp_obj2->addOrganizacion($obj1); 					break;
-				}
-			}
-			if ($newObject) {
-				$obj2->initOrganizacions();
-				$obj2->addOrganizacion($obj1); 			}
-			$results[] = $obj1;
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
 		}
-		return $results;
+
+		$criteria->addJoin(OrganizacionPeer::FK_TIPOIVA_ID, TipoivaPeer::ID);
+
+		$rs = OrganizacionPeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
 	}
 
 
@@ -374,6 +327,53 @@ abstract class BaseOrganizacionPeer {
 
 
 	
+	public static function doSelectJoinTipoiva(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+				if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		OrganizacionPeer::addSelectColumns($c);
+		$startcol = (OrganizacionPeer::NUM_COLUMNS - OrganizacionPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+		TipoivaPeer::addSelectColumns($c);
+
+		$c->addJoin(OrganizacionPeer::FK_TIPOIVA_ID, TipoivaPeer::ID);
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = OrganizacionPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = TipoivaPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj2 = new $cls();
+			$obj2->hydrate($rs, $startcol);
+
+			$newObject = true;
+			foreach($results as $temp_obj1) {
+				$temp_obj2 = $temp_obj1->getTipoiva(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+										$temp_obj2->addOrganizacion($obj1); 					break;
+				}
+			}
+			if ($newObject) {
+				$obj2->initOrganizacions();
+				$obj2->addOrganizacion($obj1); 			}
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	
 	public static function doCountJoinAll(Criteria $criteria, $distinct = false, $con = null)
 	{
 		$criteria = clone $criteria;
@@ -390,9 +390,9 @@ abstract class BaseOrganizacionPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(OrganizacionPeer::FK_TIPOIVA_ID, TipoivaPeer::ID);
-
 		$criteria->addJoin(OrganizacionPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+
+		$criteria->addJoin(OrganizacionPeer::FK_TIPOIVA_ID, TipoivaPeer::ID);
 
 		$rs = OrganizacionPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -415,15 +415,15 @@ abstract class BaseOrganizacionPeer {
 		OrganizacionPeer::addSelectColumns($c);
 		$startcol2 = (OrganizacionPeer::NUM_COLUMNS - OrganizacionPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
-		TipoivaPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + TipoivaPeer::NUM_COLUMNS;
-
 		ProvinciaPeer::addSelectColumns($c);
-		$startcol4 = $startcol3 + ProvinciaPeer::NUM_COLUMNS;
+		$startcol3 = $startcol2 + ProvinciaPeer::NUM_COLUMNS;
 
-		$c->addJoin(OrganizacionPeer::FK_TIPOIVA_ID, TipoivaPeer::ID);
+		TipoivaPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + TipoivaPeer::NUM_COLUMNS;
 
 		$c->addJoin(OrganizacionPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+
+		$c->addJoin(OrganizacionPeer::FK_TIPOIVA_ID, TipoivaPeer::ID);
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
@@ -439,7 +439,7 @@ abstract class BaseOrganizacionPeer {
 
 
 					
-			$omClass = TipoivaPeer::getOMClass();
+			$omClass = ProvinciaPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -449,7 +449,7 @@ abstract class BaseOrganizacionPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getTipoiva(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getProvincia(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addOrganizacion($obj1); 					break;
 				}
@@ -462,7 +462,7 @@ abstract class BaseOrganizacionPeer {
 
 
 					
-			$omClass = ProvinciaPeer::getOMClass();
+			$omClass = TipoivaPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -472,7 +472,7 @@ abstract class BaseOrganizacionPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getProvincia(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+				$temp_obj3 = $temp_obj1->getTipoiva(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj3->addOrganizacion($obj1); 					break;
 				}
@@ -486,34 +486,6 @@ abstract class BaseOrganizacionPeer {
 			$results[] = $obj1;
 		}
 		return $results;
-	}
-
-
-	
-	public static function doCountJoinAllExceptTipoiva(Criteria $criteria, $distinct = false, $con = null)
-	{
-				$criteria = clone $criteria;
-
-				$criteria->clearSelectColumns()->clearOrderByColumns();
-		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(OrganizacionPeer::COUNT_DISTINCT);
-		} else {
-			$criteria->addSelectColumn(OrganizacionPeer::COUNT);
-		}
-
-				foreach($criteria->getGroupByColumns() as $column)
-		{
-			$criteria->addSelectColumn($column);
-		}
-
-		$criteria->addJoin(OrganizacionPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
-
-		$rs = OrganizacionPeer::doSelectRS($criteria, $con);
-		if ($rs->next()) {
-			return $rs->getInt(1);
-		} else {
-						return 0;
-		}
 	}
 
 
@@ -546,59 +518,30 @@ abstract class BaseOrganizacionPeer {
 
 
 	
-	public static function doSelectJoinAllExceptTipoiva(Criteria $c, $con = null)
+	public static function doCountJoinAllExceptTipoiva(Criteria $criteria, $distinct = false, $con = null)
 	{
-		$c = clone $c;
+				$criteria = clone $criteria;
 
-								if ($c->getDbName() == Propel::getDefaultDB()) {
-			$c->setDbName(self::DATABASE_NAME);
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(OrganizacionPeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(OrganizacionPeer::COUNT);
 		}
 
-		OrganizacionPeer::addSelectColumns($c);
-		$startcol2 = (OrganizacionPeer::NUM_COLUMNS - OrganizacionPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-
-		ProvinciaPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + ProvinciaPeer::NUM_COLUMNS;
-
-		$c->addJoin(OrganizacionPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
-
-
-		$rs = BasePeer::doSelect($c, $con);
-		$results = array();
-
-		while($rs->next()) {
-
-			$omClass = OrganizacionPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj1 = new $cls();
-			$obj1->hydrate($rs);
-
-			$omClass = ProvinciaPeer::getOMClass();
-
-
-			$cls = Propel::import($omClass);
-			$obj2  = new $cls();
-			$obj2->hydrate($rs, $startcol2);
-
-			$newObject = true;
-			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
-				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getProvincia(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
-					$newObject = false;
-					$temp_obj2->addOrganizacion($obj1);
-					break;
-				}
-			}
-
-			if ($newObject) {
-				$obj2->initOrganizacions();
-				$obj2->addOrganizacion($obj1);
-			}
-
-			$results[] = $obj1;
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
 		}
-		return $results;
+
+		$criteria->addJoin(OrganizacionPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+
+		$rs = OrganizacionPeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
 	}
 
 
@@ -642,6 +585,63 @@ abstract class BaseOrganizacionPeer {
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
 				$temp_obj2 = $temp_obj1->getTipoiva(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj2->addOrganizacion($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj2->initOrganizacions();
+				$obj2->addOrganizacion($obj1);
+			}
+
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	
+	public static function doSelectJoinAllExceptTipoiva(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+								if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		OrganizacionPeer::addSelectColumns($c);
+		$startcol2 = (OrganizacionPeer::NUM_COLUMNS - OrganizacionPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+
+		ProvinciaPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + ProvinciaPeer::NUM_COLUMNS;
+
+		$c->addJoin(OrganizacionPeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+
+
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = OrganizacionPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = ProvinciaPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj2  = new $cls();
+			$obj2->hydrate($rs, $startcol2);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj2 = $temp_obj1->getProvincia(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addOrganizacion($obj1);
 					break;

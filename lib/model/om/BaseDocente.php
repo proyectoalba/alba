@@ -13,11 +13,11 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 
 
 	
-	protected $apellido = '';
+	protected $apellido = 'null';
 
 
 	
-	protected $nombre = '';
+	protected $nombre = 'null';
 
 
 	
@@ -33,43 +33,43 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 
 
 	
-	protected $nro_documento = '';
+	protected $nro_documento = 'null';
 
 
 	
-	protected $direccion = '';
+	protected $direccion = 'null';
 
 
 	
-	protected $ciudad = '';
+	protected $ciudad = 'null';
 
 
 	
-	protected $codigo_postal = '';
+	protected $codigo_postal = 'null';
 
 
 	
-	protected $email = '';
+	protected $email = 'null';
 
 
 	
-	protected $telefono = '';
+	protected $telefono = 'null';
 
 
 	
-	protected $telefono_movil = '';
+	protected $telefono_movil = 'null';
 
 
 	
-	protected $titulo = '';
+	protected $titulo = 'null';
 
 
 	
-	protected $libreta_sanitaria = true;
+	protected $libreta_sanitaria = false;
 
 
 	
-	protected $psicofisico = true;
+	protected $psicofisico = false;
 
 
 	
@@ -278,7 +278,7 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->apellido !== $v || $v === '') {
+		if ($this->apellido !== $v || $v === 'null') {
 			$this->apellido = $v;
 			$this->modifiedColumns[] = DocentePeer::APELLIDO;
 		}
@@ -292,7 +292,7 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->nombre !== $v || $v === '') {
+		if ($this->nombre !== $v || $v === 'null') {
 			$this->nombre = $v;
 			$this->modifiedColumns[] = DocentePeer::NOMBRE;
 		}
@@ -355,7 +355,7 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->nro_documento !== $v || $v === '') {
+		if ($this->nro_documento !== $v || $v === 'null') {
 			$this->nro_documento = $v;
 			$this->modifiedColumns[] = DocentePeer::NRO_DOCUMENTO;
 		}
@@ -369,7 +369,7 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->direccion !== $v || $v === '') {
+		if ($this->direccion !== $v || $v === 'null') {
 			$this->direccion = $v;
 			$this->modifiedColumns[] = DocentePeer::DIRECCION;
 		}
@@ -383,7 +383,7 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->ciudad !== $v || $v === '') {
+		if ($this->ciudad !== $v || $v === 'null') {
 			$this->ciudad = $v;
 			$this->modifiedColumns[] = DocentePeer::CIUDAD;
 		}
@@ -397,7 +397,7 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->codigo_postal !== $v || $v === '') {
+		if ($this->codigo_postal !== $v || $v === 'null') {
 			$this->codigo_postal = $v;
 			$this->modifiedColumns[] = DocentePeer::CODIGO_POSTAL;
 		}
@@ -411,7 +411,7 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->email !== $v || $v === '') {
+		if ($this->email !== $v || $v === 'null') {
 			$this->email = $v;
 			$this->modifiedColumns[] = DocentePeer::EMAIL;
 		}
@@ -425,7 +425,7 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->telefono !== $v || $v === '') {
+		if ($this->telefono !== $v || $v === 'null') {
 			$this->telefono = $v;
 			$this->modifiedColumns[] = DocentePeer::TELEFONO;
 		}
@@ -439,7 +439,7 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->telefono_movil !== $v || $v === '') {
+		if ($this->telefono_movil !== $v || $v === 'null') {
 			$this->telefono_movil = $v;
 			$this->modifiedColumns[] = DocentePeer::TELEFONO_MOVIL;
 		}
@@ -453,7 +453,7 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->titulo !== $v || $v === '') {
+		if ($this->titulo !== $v || $v === 'null') {
 			$this->titulo = $v;
 			$this->modifiedColumns[] = DocentePeer::TITULO;
 		}
@@ -463,7 +463,7 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 	public function setLibretaSanitaria($v)
 	{
 
-		if ($this->libreta_sanitaria !== $v || $v === true) {
+		if ($this->libreta_sanitaria !== $v || $v === false) {
 			$this->libreta_sanitaria = $v;
 			$this->modifiedColumns[] = DocentePeer::LIBRETA_SANITARIA;
 		}
@@ -473,7 +473,7 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 	public function setPsicofisico($v)
 	{
 
-		if ($this->psicofisico !== $v || $v === true) {
+		if ($this->psicofisico !== $v || $v === false) {
 			$this->psicofisico = $v;
 			$this->modifiedColumns[] = DocentePeer::PSICOFISICO;
 		}
@@ -1285,41 +1285,6 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 
 
 	
-	public function getRelDivisionActividadDocentesJoinRepeticion($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseRelDivisionActividadDocentePeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collRelDivisionActividadDocentes === null) {
-			if ($this->isNew()) {
-				$this->collRelDivisionActividadDocentes = array();
-			} else {
-
-				$criteria->add(RelDivisionActividadDocentePeer::FK_DOCENTE_ID, $this->getId());
-
-				$this->collRelDivisionActividadDocentes = RelDivisionActividadDocentePeer::doSelectJoinRepeticion($criteria, $con);
-			}
-		} else {
-									
-			$criteria->add(RelDivisionActividadDocentePeer::FK_DOCENTE_ID, $this->getId());
-
-			if (!isset($this->lastRelDivisionActividadDocenteCriteria) || !$this->lastRelDivisionActividadDocenteCriteria->equals($criteria)) {
-				$this->collRelDivisionActividadDocentes = RelDivisionActividadDocentePeer::doSelectJoinRepeticion($criteria, $con);
-			}
-		}
-		$this->lastRelDivisionActividadDocenteCriteria = $criteria;
-
-		return $this->collRelDivisionActividadDocentes;
-	}
-
-
-	
 	public function getRelDivisionActividadDocentesJoinEvento($criteria = null, $con = null)
 	{
 				include_once 'lib/model/om/BaseRelDivisionActividadDocentePeer.php';
@@ -1346,6 +1311,41 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 
 			if (!isset($this->lastRelDivisionActividadDocenteCriteria) || !$this->lastRelDivisionActividadDocenteCriteria->equals($criteria)) {
 				$this->collRelDivisionActividadDocentes = RelDivisionActividadDocentePeer::doSelectJoinEvento($criteria, $con);
+			}
+		}
+		$this->lastRelDivisionActividadDocenteCriteria = $criteria;
+
+		return $this->collRelDivisionActividadDocentes;
+	}
+
+
+	
+	public function getRelDivisionActividadDocentesJoinRepeticion($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseRelDivisionActividadDocentePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collRelDivisionActividadDocentes === null) {
+			if ($this->isNew()) {
+				$this->collRelDivisionActividadDocentes = array();
+			} else {
+
+				$criteria->add(RelDivisionActividadDocentePeer::FK_DOCENTE_ID, $this->getId());
+
+				$this->collRelDivisionActividadDocentes = RelDivisionActividadDocentePeer::doSelectJoinRepeticion($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(RelDivisionActividadDocentePeer::FK_DOCENTE_ID, $this->getId());
+
+			if (!isset($this->lastRelDivisionActividadDocenteCriteria) || !$this->lastRelDivisionActividadDocenteCriteria->equals($criteria)) {
+				$this->collRelDivisionActividadDocentes = RelDivisionActividadDocentePeer::doSelectJoinRepeticion($criteria, $con);
 			}
 		}
 		$this->lastRelDivisionActividadDocenteCriteria = $criteria;

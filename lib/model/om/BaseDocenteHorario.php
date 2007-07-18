@@ -16,10 +16,10 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 	protected $fk_evento_id;
 
 	
-	protected $aEvento;
+	protected $aDocente;
 
 	
-	protected $aDocente;
+	protected $aEvento;
 
 	
 	protected $alreadyInSave = false;
@@ -148,18 +148,18 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 
 
 												
-			if ($this->aEvento !== null) {
-				if ($this->aEvento->isModified()) {
-					$affectedRows += $this->aEvento->save($con);
-				}
-				$this->setEvento($this->aEvento);
-			}
-
 			if ($this->aDocente !== null) {
 				if ($this->aDocente->isModified()) {
 					$affectedRows += $this->aDocente->save($con);
 				}
 				$this->setDocente($this->aDocente);
+			}
+
+			if ($this->aEvento !== null) {
+				if ($this->aEvento->isModified()) {
+					$affectedRows += $this->aEvento->save($con);
+				}
+				$this->setEvento($this->aEvento);
 			}
 
 
@@ -210,15 +210,15 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 
 
 												
-			if ($this->aEvento !== null) {
-				if (!$this->aEvento->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aEvento->getValidationFailures());
-				}
-			}
-
 			if ($this->aDocente !== null) {
 				if (!$this->aDocente->validate($columns)) {
 					$failureMap = array_merge($failureMap, $this->aDocente->getValidationFailures());
+				}
+			}
+
+			if ($this->aEvento !== null) {
+				if (!$this->aEvento->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aEvento->getValidationFailures());
 				}
 			}
 
@@ -370,36 +370,6 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 	}
 
 	
-	public function setEvento($v)
-	{
-
-
-		if ($v === null) {
-			$this->setFkEventoId(NULL);
-		} else {
-			$this->setFkEventoId($v->getId());
-		}
-
-
-		$this->aEvento = $v;
-	}
-
-
-	
-	public function getEvento($con = null)
-	{
-				include_once 'lib/model/om/BaseEventoPeer.php';
-
-		if ($this->aEvento === null && ($this->fk_evento_id !== null)) {
-
-			$this->aEvento = EventoPeer::retrieveByPK($this->fk_evento_id, $con);
-
-			
-		}
-		return $this->aEvento;
-	}
-
-	
 	public function setDocente($v)
 	{
 
@@ -427,6 +397,36 @@ abstract class BaseDocenteHorario extends BaseObject  implements Persistent {
 			
 		}
 		return $this->aDocente;
+	}
+
+	
+	public function setEvento($v)
+	{
+
+
+		if ($v === null) {
+			$this->setFkEventoId(NULL);
+		} else {
+			$this->setFkEventoId($v->getId());
+		}
+
+
+		$this->aEvento = $v;
+	}
+
+
+	
+	public function getEvento($con = null)
+	{
+				include_once 'lib/model/om/BaseEventoPeer.php';
+
+		if ($this->aEvento === null && ($this->fk_evento_id !== null)) {
+
+			$this->aEvento = EventoPeer::retrieveByPK($this->fk_evento_id, $con);
+
+			
+		}
+		return $this->aEvento;
 	}
 
 } 

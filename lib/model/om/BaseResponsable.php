@@ -13,23 +13,23 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 
 
 	
-	protected $nombre = '';
+	protected $nombre = 'null';
 
 
 	
-	protected $apellido = '';
+	protected $apellido = 'null';
 
 
 	
-	protected $direccion = '';
+	protected $direccion = 'null';
 
 
 	
-	protected $ciudad = '';
+	protected $ciudad = 'null';
 
 
 	
-	protected $codigo_postal = '';
+	protected $codigo_postal = 'null';
 
 
 	
@@ -37,15 +37,15 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 
 
 	
-	protected $telefono = '';
+	protected $telefono = 'null';
 
 
 	
-	protected $telefono_movil = '';
+	protected $telefono_movil = 'null';
 
 
 	
-	protected $nro_documento = '';
+	protected $nro_documento = 'null';
 
 
 	
@@ -53,19 +53,19 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 
 
 	
-	protected $sexo = '';
+	protected $sexo = 'null';
 
 
 	
-	protected $email = '';
+	protected $email = 'null';
 
 
 	
-	protected $observacion = '';
+	protected $observacion = 'null';
 
 
 	
-	protected $autorizacion_retiro = true;
+	protected $autorizacion_retiro = false;
 
 
 	
@@ -76,13 +76,13 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 	protected $fk_rolresponsable_id = 1;
 
 	
-	protected $aCuenta;
-
-	
 	protected $aProvincia;
 
 	
 	protected $aTipodocumento;
+
+	
+	protected $aCuenta;
 
 	
 	protected $aRolResponsable;
@@ -240,7 +240,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->nombre !== $v || $v === '') {
+		if ($this->nombre !== $v || $v === 'null') {
 			$this->nombre = $v;
 			$this->modifiedColumns[] = ResponsablePeer::NOMBRE;
 		}
@@ -254,7 +254,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->apellido !== $v || $v === '') {
+		if ($this->apellido !== $v || $v === 'null') {
 			$this->apellido = $v;
 			$this->modifiedColumns[] = ResponsablePeer::APELLIDO;
 		}
@@ -268,7 +268,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->direccion !== $v || $v === '') {
+		if ($this->direccion !== $v || $v === 'null') {
 			$this->direccion = $v;
 			$this->modifiedColumns[] = ResponsablePeer::DIRECCION;
 		}
@@ -282,7 +282,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->ciudad !== $v || $v === '') {
+		if ($this->ciudad !== $v || $v === 'null') {
 			$this->ciudad = $v;
 			$this->modifiedColumns[] = ResponsablePeer::CIUDAD;
 		}
@@ -296,7 +296,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->codigo_postal !== $v || $v === '') {
+		if ($this->codigo_postal !== $v || $v === 'null') {
 			$this->codigo_postal = $v;
 			$this->modifiedColumns[] = ResponsablePeer::CODIGO_POSTAL;
 		}
@@ -328,7 +328,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->telefono !== $v || $v === '') {
+		if ($this->telefono !== $v || $v === 'null') {
 			$this->telefono = $v;
 			$this->modifiedColumns[] = ResponsablePeer::TELEFONO;
 		}
@@ -342,7 +342,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->telefono_movil !== $v || $v === '') {
+		if ($this->telefono_movil !== $v || $v === 'null') {
 			$this->telefono_movil = $v;
 			$this->modifiedColumns[] = ResponsablePeer::TELEFONO_MOVIL;
 		}
@@ -356,7 +356,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->nro_documento !== $v || $v === '') {
+		if ($this->nro_documento !== $v || $v === 'null') {
 			$this->nro_documento = $v;
 			$this->modifiedColumns[] = ResponsablePeer::NRO_DOCUMENTO;
 		}
@@ -388,7 +388,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->sexo !== $v || $v === '') {
+		if ($this->sexo !== $v || $v === 'null') {
 			$this->sexo = $v;
 			$this->modifiedColumns[] = ResponsablePeer::SEXO;
 		}
@@ -402,7 +402,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->email !== $v || $v === '') {
+		if ($this->email !== $v || $v === 'null') {
 			$this->email = $v;
 			$this->modifiedColumns[] = ResponsablePeer::EMAIL;
 		}
@@ -416,7 +416,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->observacion !== $v || $v === '') {
+		if ($this->observacion !== $v || $v === 'null') {
 			$this->observacion = $v;
 			$this->modifiedColumns[] = ResponsablePeer::OBSERVACION;
 		}
@@ -426,7 +426,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 	public function setAutorizacionRetiro($v)
 	{
 
-		if ($this->autorizacion_retiro !== $v || $v === true) {
+		if ($this->autorizacion_retiro !== $v || $v === false) {
 			$this->autorizacion_retiro = $v;
 			$this->modifiedColumns[] = ResponsablePeer::AUTORIZACION_RETIRO;
 		}
@@ -569,13 +569,6 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 
 
 												
-			if ($this->aCuenta !== null) {
-				if ($this->aCuenta->isModified()) {
-					$affectedRows += $this->aCuenta->save($con);
-				}
-				$this->setCuenta($this->aCuenta);
-			}
-
 			if ($this->aProvincia !== null) {
 				if ($this->aProvincia->isModified()) {
 					$affectedRows += $this->aProvincia->save($con);
@@ -588,6 +581,13 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 					$affectedRows += $this->aTipodocumento->save($con);
 				}
 				$this->setTipodocumento($this->aTipodocumento);
+			}
+
+			if ($this->aCuenta !== null) {
+				if ($this->aCuenta->isModified()) {
+					$affectedRows += $this->aCuenta->save($con);
+				}
+				$this->setCuenta($this->aCuenta);
 			}
 
 			if ($this->aRolResponsable !== null) {
@@ -654,12 +654,6 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 
 
 												
-			if ($this->aCuenta !== null) {
-				if (!$this->aCuenta->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aCuenta->getValidationFailures());
-				}
-			}
-
 			if ($this->aProvincia !== null) {
 				if (!$this->aProvincia->validate($columns)) {
 					$failureMap = array_merge($failureMap, $this->aProvincia->getValidationFailures());
@@ -669,6 +663,12 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			if ($this->aTipodocumento !== null) {
 				if (!$this->aTipodocumento->validate($columns)) {
 					$failureMap = array_merge($failureMap, $this->aTipodocumento->getValidationFailures());
+				}
+			}
+
+			if ($this->aCuenta !== null) {
+				if (!$this->aCuenta->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aCuenta->getValidationFailures());
 				}
 			}
 
@@ -998,36 +998,6 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 	}
 
 	
-	public function setCuenta($v)
-	{
-
-
-		if ($v === null) {
-			$this->setFkCuentaId('0');
-		} else {
-			$this->setFkCuentaId($v->getId());
-		}
-
-
-		$this->aCuenta = $v;
-	}
-
-
-	
-	public function getCuenta($con = null)
-	{
-				include_once 'lib/model/om/BaseCuentaPeer.php';
-
-		if ($this->aCuenta === null && ($this->fk_cuenta_id !== null)) {
-
-			$this->aCuenta = CuentaPeer::retrieveByPK($this->fk_cuenta_id, $con);
-
-			
-		}
-		return $this->aCuenta;
-	}
-
-	
 	public function setProvincia($v)
 	{
 
@@ -1085,6 +1055,36 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			
 		}
 		return $this->aTipodocumento;
+	}
+
+	
+	public function setCuenta($v)
+	{
+
+
+		if ($v === null) {
+			$this->setFkCuentaId('0');
+		} else {
+			$this->setFkCuentaId($v->getId());
+		}
+
+
+		$this->aCuenta = $v;
+	}
+
+
+	
+	public function getCuenta($con = null)
+	{
+				include_once 'lib/model/om/BaseCuentaPeer.php';
+
+		if ($this->aCuenta === null && ($this->fk_cuenta_id !== null)) {
+
+			$this->aCuenta = CuentaPeer::retrieveByPK($this->fk_cuenta_id, $con);
+
+			
+		}
+		return $this->aCuenta;
 	}
 
 	

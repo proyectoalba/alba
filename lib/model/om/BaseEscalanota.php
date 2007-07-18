@@ -29,7 +29,7 @@ abstract class BaseEscalanota extends BaseObject  implements Persistent {
 
 
 	
-	protected $aprobado = true;
+	protected $aprobado = false;
 
 	
 	protected $aEstablecimiento;
@@ -178,7 +178,7 @@ abstract class BaseEscalanota extends BaseObject  implements Persistent {
 	public function setAprobado($v)
 	{
 
-		if ($this->aprobado !== $v || $v === true) {
+		if ($this->aprobado !== $v || $v === false) {
 			$this->aprobado = $v;
 			$this->modifiedColumns[] = EscalanotaPeer::APROBADO;
 		}

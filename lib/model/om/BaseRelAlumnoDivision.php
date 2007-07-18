@@ -20,10 +20,10 @@ abstract class BaseRelAlumnoDivision extends BaseObject  implements Persistent {
 	protected $fk_alumno_id = 0;
 
 	
-	protected $aAlumno;
+	protected $aDivision;
 
 	
-	protected $aDivision;
+	protected $aAlumno;
 
 	
 	protected $alreadyInSave = false;
@@ -175,18 +175,18 @@ abstract class BaseRelAlumnoDivision extends BaseObject  implements Persistent {
 
 
 												
-			if ($this->aAlumno !== null) {
-				if ($this->aAlumno->isModified()) {
-					$affectedRows += $this->aAlumno->save($con);
-				}
-				$this->setAlumno($this->aAlumno);
-			}
-
 			if ($this->aDivision !== null) {
 				if ($this->aDivision->isModified()) {
 					$affectedRows += $this->aDivision->save($con);
 				}
 				$this->setDivision($this->aDivision);
+			}
+
+			if ($this->aAlumno !== null) {
+				if ($this->aAlumno->isModified()) {
+					$affectedRows += $this->aAlumno->save($con);
+				}
+				$this->setAlumno($this->aAlumno);
 			}
 
 
@@ -238,15 +238,15 @@ abstract class BaseRelAlumnoDivision extends BaseObject  implements Persistent {
 
 
 												
-			if ($this->aAlumno !== null) {
-				if (!$this->aAlumno->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aAlumno->getValidationFailures());
-				}
-			}
-
 			if ($this->aDivision !== null) {
 				if (!$this->aDivision->validate($columns)) {
 					$failureMap = array_merge($failureMap, $this->aDivision->getValidationFailures());
+				}
+			}
+
+			if ($this->aAlumno !== null) {
+				if (!$this->aAlumno->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aAlumno->getValidationFailures());
 				}
 			}
 
@@ -399,36 +399,6 @@ abstract class BaseRelAlumnoDivision extends BaseObject  implements Persistent {
 	}
 
 	
-	public function setAlumno($v)
-	{
-
-
-		if ($v === null) {
-			$this->setFkAlumnoId('0');
-		} else {
-			$this->setFkAlumnoId($v->getId());
-		}
-
-
-		$this->aAlumno = $v;
-	}
-
-
-	
-	public function getAlumno($con = null)
-	{
-				include_once 'lib/model/om/BaseAlumnoPeer.php';
-
-		if ($this->aAlumno === null && ($this->fk_alumno_id !== null)) {
-
-			$this->aAlumno = AlumnoPeer::retrieveByPK($this->fk_alumno_id, $con);
-
-			
-		}
-		return $this->aAlumno;
-	}
-
-	
 	public function setDivision($v)
 	{
 
@@ -456,6 +426,36 @@ abstract class BaseRelAlumnoDivision extends BaseObject  implements Persistent {
 			
 		}
 		return $this->aDivision;
+	}
+
+	
+	public function setAlumno($v)
+	{
+
+
+		if ($v === null) {
+			$this->setFkAlumnoId('0');
+		} else {
+			$this->setFkAlumnoId($v->getId());
+		}
+
+
+		$this->aAlumno = $v;
+	}
+
+
+	
+	public function getAlumno($con = null)
+	{
+				include_once 'lib/model/om/BaseAlumnoPeer.php';
+
+		if ($this->aAlumno === null && ($this->fk_alumno_id !== null)) {
+
+			$this->aAlumno = AlumnoPeer::retrieveByPK($this->fk_alumno_id, $con);
+
+			
+		}
+		return $this->aAlumno;
 	}
 
 } 

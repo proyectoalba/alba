@@ -13,7 +13,7 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 
 
 	
-	protected $nombre = '';
+	protected $nombre = 'null';
 
 
 	
@@ -21,15 +21,15 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 
 
 	
-	protected $direccion = '';
+	protected $direccion = 'null';
 
 
 	
-	protected $ciudad = '';
+	protected $ciudad = 'null';
 
 
 	
-	protected $codigo_postal = '';
+	protected $codigo_postal = 'null';
 
 
 	
@@ -57,7 +57,7 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 
 
 	
-	protected $principal = true;
+	protected $principal = false;
 
 	
 	protected $aProvincia;
@@ -196,7 +196,7 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->nombre !== $v || $v === '') {
+		if ($this->nombre !== $v || $v === 'null') {
 			$this->nombre = $v;
 			$this->modifiedColumns[] = LocacionPeer::NOMBRE;
 		}
@@ -224,7 +224,7 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->direccion !== $v || $v === '') {
+		if ($this->direccion !== $v || $v === 'null') {
 			$this->direccion = $v;
 			$this->modifiedColumns[] = LocacionPeer::DIRECCION;
 		}
@@ -238,7 +238,7 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->ciudad !== $v || $v === '') {
+		if ($this->ciudad !== $v || $v === 'null') {
 			$this->ciudad = $v;
 			$this->modifiedColumns[] = LocacionPeer::CIUDAD;
 		}
@@ -252,7 +252,7 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->codigo_postal !== $v || $v === '') {
+		if ($this->codigo_postal !== $v || $v === 'null') {
 			$this->codigo_postal = $v;
 			$this->modifiedColumns[] = LocacionPeer::CODIGO_POSTAL;
 		}
@@ -354,7 +354,7 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 	public function setPrincipal($v)
 	{
 
-		if ($this->principal !== $v || $v === true) {
+		if ($this->principal !== $v || $v === false) {
 			$this->principal = $v;
 			$this->modifiedColumns[] = LocacionPeer::PRINCIPAL;
 		}

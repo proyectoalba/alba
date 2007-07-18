@@ -199,7 +199,7 @@ abstract class BaseEstablecimientoPeer {
 	}
 
 	
-	public static function doCountJoinNiveltipo(Criteria $criteria, $distinct = false, $con = null)
+	public static function doCountJoinDistritoescolar(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
 
@@ -215,7 +215,7 @@ abstract class BaseEstablecimientoPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(EstablecimientoPeer::FK_NIVELTIPO_ID, NiveltipoPeer::ID);
+		$criteria->addJoin(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID, DistritoescolarPeer::ID);
 
 		$rs = EstablecimientoPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -255,7 +255,7 @@ abstract class BaseEstablecimientoPeer {
 
 
 	
-	public static function doCountJoinDistritoescolar(Criteria $criteria, $distinct = false, $con = null)
+	public static function doCountJoinNiveltipo(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
 
@@ -271,7 +271,7 @@ abstract class BaseEstablecimientoPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID, DistritoescolarPeer::ID);
+		$criteria->addJoin(EstablecimientoPeer::FK_NIVELTIPO_ID, NiveltipoPeer::ID);
 
 		$rs = EstablecimientoPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -283,7 +283,7 @@ abstract class BaseEstablecimientoPeer {
 
 
 	
-	public static function doSelectJoinNiveltipo(Criteria $c, $con = null)
+	public static function doSelectJoinDistritoescolar(Criteria $c, $con = null)
 	{
 		$c = clone $c;
 
@@ -293,9 +293,9 @@ abstract class BaseEstablecimientoPeer {
 
 		EstablecimientoPeer::addSelectColumns($c);
 		$startcol = (EstablecimientoPeer::NUM_COLUMNS - EstablecimientoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-		NiveltipoPeer::addSelectColumns($c);
+		DistritoescolarPeer::addSelectColumns($c);
 
-		$c->addJoin(EstablecimientoPeer::FK_NIVELTIPO_ID, NiveltipoPeer::ID);
+		$c->addJoin(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID, DistritoescolarPeer::ID);
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
 
@@ -307,7 +307,7 @@ abstract class BaseEstablecimientoPeer {
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-			$omClass = NiveltipoPeer::getOMClass();
+			$omClass = DistritoescolarPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
@@ -315,7 +315,7 @@ abstract class BaseEstablecimientoPeer {
 
 			$newObject = true;
 			foreach($results as $temp_obj1) {
-				$temp_obj2 = $temp_obj1->getNiveltipo(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getDistritoescolar(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 										$temp_obj2->addEstablecimiento($obj1); 					break;
 				}
@@ -377,7 +377,7 @@ abstract class BaseEstablecimientoPeer {
 
 
 	
-	public static function doSelectJoinDistritoescolar(Criteria $c, $con = null)
+	public static function doSelectJoinNiveltipo(Criteria $c, $con = null)
 	{
 		$c = clone $c;
 
@@ -387,9 +387,9 @@ abstract class BaseEstablecimientoPeer {
 
 		EstablecimientoPeer::addSelectColumns($c);
 		$startcol = (EstablecimientoPeer::NUM_COLUMNS - EstablecimientoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-		DistritoescolarPeer::addSelectColumns($c);
+		NiveltipoPeer::addSelectColumns($c);
 
-		$c->addJoin(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID, DistritoescolarPeer::ID);
+		$c->addJoin(EstablecimientoPeer::FK_NIVELTIPO_ID, NiveltipoPeer::ID);
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
 
@@ -401,7 +401,7 @@ abstract class BaseEstablecimientoPeer {
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-			$omClass = DistritoescolarPeer::getOMClass();
+			$omClass = NiveltipoPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
@@ -409,7 +409,7 @@ abstract class BaseEstablecimientoPeer {
 
 			$newObject = true;
 			foreach($results as $temp_obj1) {
-				$temp_obj2 = $temp_obj1->getDistritoescolar(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getNiveltipo(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 										$temp_obj2->addEstablecimiento($obj1); 					break;
 				}
@@ -440,11 +440,11 @@ abstract class BaseEstablecimientoPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(EstablecimientoPeer::FK_NIVELTIPO_ID, NiveltipoPeer::ID);
+		$criteria->addJoin(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID, DistritoescolarPeer::ID);
 
 		$criteria->addJoin(EstablecimientoPeer::FK_ORGANIZACION_ID, OrganizacionPeer::ID);
 
-		$criteria->addJoin(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID, DistritoescolarPeer::ID);
+		$criteria->addJoin(EstablecimientoPeer::FK_NIVELTIPO_ID, NiveltipoPeer::ID);
 
 		$rs = EstablecimientoPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -467,20 +467,20 @@ abstract class BaseEstablecimientoPeer {
 		EstablecimientoPeer::addSelectColumns($c);
 		$startcol2 = (EstablecimientoPeer::NUM_COLUMNS - EstablecimientoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
-		NiveltipoPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + NiveltipoPeer::NUM_COLUMNS;
+		DistritoescolarPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + DistritoescolarPeer::NUM_COLUMNS;
 
 		OrganizacionPeer::addSelectColumns($c);
 		$startcol4 = $startcol3 + OrganizacionPeer::NUM_COLUMNS;
 
-		DistritoescolarPeer::addSelectColumns($c);
-		$startcol5 = $startcol4 + DistritoescolarPeer::NUM_COLUMNS;
+		NiveltipoPeer::addSelectColumns($c);
+		$startcol5 = $startcol4 + NiveltipoPeer::NUM_COLUMNS;
 
-		$c->addJoin(EstablecimientoPeer::FK_NIVELTIPO_ID, NiveltipoPeer::ID);
+		$c->addJoin(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID, DistritoescolarPeer::ID);
 
 		$c->addJoin(EstablecimientoPeer::FK_ORGANIZACION_ID, OrganizacionPeer::ID);
 
-		$c->addJoin(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID, DistritoescolarPeer::ID);
+		$c->addJoin(EstablecimientoPeer::FK_NIVELTIPO_ID, NiveltipoPeer::ID);
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
@@ -496,7 +496,7 @@ abstract class BaseEstablecimientoPeer {
 
 
 					
-			$omClass = NiveltipoPeer::getOMClass();
+			$omClass = DistritoescolarPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -506,7 +506,7 @@ abstract class BaseEstablecimientoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getNiveltipo(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getDistritoescolar(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addEstablecimiento($obj1); 					break;
 				}
@@ -542,7 +542,7 @@ abstract class BaseEstablecimientoPeer {
 
 
 					
-			$omClass = DistritoescolarPeer::getOMClass();
+			$omClass = NiveltipoPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -552,7 +552,7 @@ abstract class BaseEstablecimientoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj4 = $temp_obj1->getDistritoescolar(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
+				$temp_obj4 = $temp_obj1->getNiveltipo(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj4->addEstablecimiento($obj1); 					break;
 				}
@@ -570,7 +570,7 @@ abstract class BaseEstablecimientoPeer {
 
 
 	
-	public static function doCountJoinAllExceptNiveltipo(Criteria $criteria, $distinct = false, $con = null)
+	public static function doCountJoinAllExceptDistritoescolar(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
 
@@ -588,7 +588,7 @@ abstract class BaseEstablecimientoPeer {
 
 		$criteria->addJoin(EstablecimientoPeer::FK_ORGANIZACION_ID, OrganizacionPeer::ID);
 
-		$criteria->addJoin(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID, DistritoescolarPeer::ID);
+		$criteria->addJoin(EstablecimientoPeer::FK_NIVELTIPO_ID, NiveltipoPeer::ID);
 
 		$rs = EstablecimientoPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -616,9 +616,9 @@ abstract class BaseEstablecimientoPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(EstablecimientoPeer::FK_NIVELTIPO_ID, NiveltipoPeer::ID);
-
 		$criteria->addJoin(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID, DistritoescolarPeer::ID);
+
+		$criteria->addJoin(EstablecimientoPeer::FK_NIVELTIPO_ID, NiveltipoPeer::ID);
 
 		$rs = EstablecimientoPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -630,7 +630,7 @@ abstract class BaseEstablecimientoPeer {
 
 
 	
-	public static function doCountJoinAllExceptDistritoescolar(Criteria $criteria, $distinct = false, $con = null)
+	public static function doCountJoinAllExceptNiveltipo(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
 
@@ -646,7 +646,7 @@ abstract class BaseEstablecimientoPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(EstablecimientoPeer::FK_NIVELTIPO_ID, NiveltipoPeer::ID);
+		$criteria->addJoin(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID, DistritoescolarPeer::ID);
 
 		$criteria->addJoin(EstablecimientoPeer::FK_ORGANIZACION_ID, OrganizacionPeer::ID);
 
@@ -660,7 +660,7 @@ abstract class BaseEstablecimientoPeer {
 
 
 	
-	public static function doSelectJoinAllExceptNiveltipo(Criteria $c, $con = null)
+	public static function doSelectJoinAllExceptDistritoescolar(Criteria $c, $con = null)
 	{
 		$c = clone $c;
 
@@ -674,12 +674,12 @@ abstract class BaseEstablecimientoPeer {
 		OrganizacionPeer::addSelectColumns($c);
 		$startcol3 = $startcol2 + OrganizacionPeer::NUM_COLUMNS;
 
-		DistritoescolarPeer::addSelectColumns($c);
-		$startcol4 = $startcol3 + DistritoescolarPeer::NUM_COLUMNS;
+		NiveltipoPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + NiveltipoPeer::NUM_COLUMNS;
 
 		$c->addJoin(EstablecimientoPeer::FK_ORGANIZACION_ID, OrganizacionPeer::ID);
 
-		$c->addJoin(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID, DistritoescolarPeer::ID);
+		$c->addJoin(EstablecimientoPeer::FK_NIVELTIPO_ID, NiveltipoPeer::ID);
 
 
 		$rs = BasePeer::doSelect($c, $con);
@@ -715,7 +715,7 @@ abstract class BaseEstablecimientoPeer {
 				$obj2->addEstablecimiento($obj1);
 			}
 
-			$omClass = DistritoescolarPeer::getOMClass();
+			$omClass = NiveltipoPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -725,7 +725,7 @@ abstract class BaseEstablecimientoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getDistritoescolar(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+				$temp_obj3 = $temp_obj1->getNiveltipo(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj3->addEstablecimiento($obj1);
 					break;
@@ -755,15 +755,15 @@ abstract class BaseEstablecimientoPeer {
 		EstablecimientoPeer::addSelectColumns($c);
 		$startcol2 = (EstablecimientoPeer::NUM_COLUMNS - EstablecimientoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
-		NiveltipoPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + NiveltipoPeer::NUM_COLUMNS;
-
 		DistritoescolarPeer::addSelectColumns($c);
-		$startcol4 = $startcol3 + DistritoescolarPeer::NUM_COLUMNS;
+		$startcol3 = $startcol2 + DistritoescolarPeer::NUM_COLUMNS;
 
-		$c->addJoin(EstablecimientoPeer::FK_NIVELTIPO_ID, NiveltipoPeer::ID);
+		NiveltipoPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + NiveltipoPeer::NUM_COLUMNS;
 
 		$c->addJoin(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID, DistritoescolarPeer::ID);
+
+		$c->addJoin(EstablecimientoPeer::FK_NIVELTIPO_ID, NiveltipoPeer::ID);
 
 
 		$rs = BasePeer::doSelect($c, $con);
@@ -777,7 +777,7 @@ abstract class BaseEstablecimientoPeer {
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-			$omClass = NiveltipoPeer::getOMClass();
+			$omClass = DistritoescolarPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -787,7 +787,7 @@ abstract class BaseEstablecimientoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getNiveltipo(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getDistritoescolar(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addEstablecimiento($obj1);
 					break;
@@ -799,7 +799,7 @@ abstract class BaseEstablecimientoPeer {
 				$obj2->addEstablecimiento($obj1);
 			}
 
-			$omClass = DistritoescolarPeer::getOMClass();
+			$omClass = NiveltipoPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -809,7 +809,7 @@ abstract class BaseEstablecimientoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getDistritoescolar(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+				$temp_obj3 = $temp_obj1->getNiveltipo(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj3->addEstablecimiento($obj1);
 					break;
@@ -828,7 +828,7 @@ abstract class BaseEstablecimientoPeer {
 
 
 	
-	public static function doSelectJoinAllExceptDistritoescolar(Criteria $c, $con = null)
+	public static function doSelectJoinAllExceptNiveltipo(Criteria $c, $con = null)
 	{
 		$c = clone $c;
 
@@ -839,13 +839,13 @@ abstract class BaseEstablecimientoPeer {
 		EstablecimientoPeer::addSelectColumns($c);
 		$startcol2 = (EstablecimientoPeer::NUM_COLUMNS - EstablecimientoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
-		NiveltipoPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + NiveltipoPeer::NUM_COLUMNS;
+		DistritoescolarPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + DistritoescolarPeer::NUM_COLUMNS;
 
 		OrganizacionPeer::addSelectColumns($c);
 		$startcol4 = $startcol3 + OrganizacionPeer::NUM_COLUMNS;
 
-		$c->addJoin(EstablecimientoPeer::FK_NIVELTIPO_ID, NiveltipoPeer::ID);
+		$c->addJoin(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID, DistritoescolarPeer::ID);
 
 		$c->addJoin(EstablecimientoPeer::FK_ORGANIZACION_ID, OrganizacionPeer::ID);
 
@@ -861,7 +861,7 @@ abstract class BaseEstablecimientoPeer {
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-			$omClass = NiveltipoPeer::getOMClass();
+			$omClass = DistritoescolarPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -871,7 +871,7 @@ abstract class BaseEstablecimientoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getNiveltipo(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getDistritoescolar(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addEstablecimiento($obj1);
 					break;

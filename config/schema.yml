@@ -1,0 +1,1918 @@
+---
+alba: 
+  _attributes: 
+    package: lib.model
+  locacion: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    descripcion: 
+      type: VARCHAR
+      size: 255
+    direccion: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    ciudad: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    codigo_postal: 
+      type: VARCHAR
+      size: 20
+      required: false
+      default: 
+    fk_provincia_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: provincia
+      foreignReference: id
+    fk_tipolocacion_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: tipolocacion
+      foreignReference: id
+    telefono: 
+      type: VARCHAR
+      size: 20
+    fax: 
+      type: VARCHAR
+      size: 20
+    encargado: 
+      type: VARCHAR
+      size: 128
+    encargado_telefono: 
+      type: VARCHAR
+      size: 20
+    principal: 
+      type: BOOLEAN
+      required: true
+      default: false
+  modulo: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    titulo: 
+      type: VARCHAR
+      size: 128
+    descripcion: 
+      type: VARCHAR
+      size: 255
+    activo: 
+      type: BOOLEAN
+      required: true
+      default: true
+  espacio: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    m2: 
+      type: FLOAT
+    capacidad: 
+      type: VARCHAR
+      size: 255
+    descripcion: 
+      type: VARCHAR
+      size: 255
+    estado: 
+      type: VARCHAR
+      size: 255
+    fk_tipoespacio_id: 
+      type: INTEGER
+      size: 11
+      foreignTable: tipoespacio
+      foreignReference: id
+    fk_locacion_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: locacion
+      foreignReference: id
+  tipoespacio: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    descripcion: 
+      type: VARCHAR
+      size: 255
+      required: false
+      default: 
+  tipolocacion: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    descripcion: 
+      type: VARCHAR
+      size: 255
+      required: false
+      default: 
+  distritoescolar: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    direccion: 
+      type: VARCHAR
+      size: 128
+    telefono: 
+      type: VARCHAR
+      size: 20
+    ciudad: 
+      type: VARCHAR
+      size: 128
+  establecimiento: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    descripcion: 
+      type: VARCHAR
+      size: 255
+    fk_distritoescolar_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: distritoescolar
+      foreignReference: id
+    fk_organizacion_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: organizacion
+      foreignReference: id
+    fk_niveltipo_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: niveltipo
+      foreignReference: id
+  niveltipo: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    descripcion: 
+      type: VARCHAR
+      size: 255
+  organizacion: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    descripcion: 
+      type: VARCHAR
+      size: 255
+    razon_social: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    cuit: 
+      type: VARCHAR
+      size: 20
+      required: true
+      default: 
+    direccion: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    ciudad: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    codigo_postal: 
+      type: VARCHAR
+      size: 20
+      required: true
+      default: 
+    telefono: 
+      type: VARCHAR
+      size: 20
+      required: false
+      default: 
+    fk_provincia_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: provincia
+      foreignReference: id
+    fk_tipoiva_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: tipoiva
+      foreignReference: id
+  pais: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre_largo: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    nombre_corto: 
+      type: VARCHAR
+      size: 32
+      required: true
+      default: 
+    orden: 
+      type: INTEGER
+      required: false
+      default: 0
+  permiso: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    descripcion: 
+      type: VARCHAR
+      size: 255
+    fk_modulo_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: modulo
+      foreignReference: id
+    credencial: 
+      type: VARCHAR
+      size: 32
+  preferencia: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    valor_por_defecto: 
+      type: VARCHAR
+      size: 128
+    activo: 
+      type: BOOLEAN
+      required: true
+      default: true
+  rel_establecimiento_locacion: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_establecimiento_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: establecimiento
+      foreignReference: id
+    fk_locacion_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: locacion
+      foreignReference: id
+  rel_rol_permiso: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_rol_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: rol
+      foreignReference: id
+    fk_permiso_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: permiso
+      foreignReference: id
+  rel_usuario_permiso: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_usuario_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: usuario
+      foreignReference: id
+    fk_permiso_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: permiso
+      foreignReference: id
+      onDelete: CASCADE
+  rel_usuario_preferencia: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_usuario_id: 
+      type: INTEGER
+      required: true
+      default: 0
+    fk_preferencia_id: 
+      type: INTEGER
+      required: true
+      default: 0
+  rol: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    descripcion: 
+      type: VARCHAR
+      size: 255
+      default: 
+    activo: 
+      type: BOOLEAN
+      required: true
+      default: true
+  usuario: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    usuario: 
+      type: VARCHAR
+      size: 32
+      required: true
+      default: 
+    clave: 
+      type: VARCHAR
+      size: 48
+      required: true
+      default: 
+    correo_publico: 
+      type: BOOLEAN
+      required: false
+      default: true
+    activo: 
+      type: BOOLEAN
+      required: true
+      default: true
+    fecha_creado: 
+      type: TIMESTAMP
+      required: true
+    fecha_actualizado: 
+      type: TIMESTAMP
+      required: true
+    seguridad_pregunta: 
+      type: VARCHAR
+      size: 128
+    seguridad_respuesta: 
+      type: VARCHAR
+      size: 128
+    email: 
+      type: VARCHAR
+      size: 128
+    fk_establecimiento_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: establecimiento
+      foreignReference: id
+    borrado: 
+      type: BOOLEAN
+      required: true
+      default: false
+  tipoiva: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: false
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    descripcion: 
+      type: VARCHAR
+      size: 255
+      required: false
+      default: 
+    orden: 
+      type: INTEGER
+      required: false
+      default: 0
+  provincia: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre_corto: 
+      type: VARCHAR
+      size: 32
+      required: true
+      default: 
+    nombre_largo: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    fk_pais_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: pais
+      foreignReference: id
+    orden: 
+      type: INTEGER
+      required: false
+      default: 0
+  cuenta: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    razon_social: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    cuit: 
+      type: VARCHAR
+      size: 20
+      required: true
+      default: 
+    direccion: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    ciudad: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    codigo_postal: 
+      type: VARCHAR
+      size: 20
+      required: true
+      default: 
+    telefono: 
+      type: VARCHAR
+      size: 20
+      required: false
+      default: 
+    fk_provincia_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: provincia
+      foreignReference: id
+    fk_tipoiva_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: tipoiva
+      foreignReference: id
+  alumno: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    apellido: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    fecha_nacimiento: 
+      type: TIMESTAMP
+      required: true
+    direccion: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    ciudad: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    codigo_postal: 
+      type: VARCHAR
+      size: 20
+      required: true
+      default: 
+    fk_provincia_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: provincia
+      foreignReference: id
+    telefono: 
+      type: VARCHAR
+      size: 20
+      required: false
+      default: 
+    lugar_nacimiento: 
+      type: VARCHAR
+      size: 128
+      required: false
+      default: 
+    fk_tipodocumento_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: tipodocumento
+      foreignReference: id
+    nro_documento: 
+      type: varchar
+      size: 16
+      required: true
+      default: 
+    sexo: 
+      type: CHAR
+      size: 1
+      required: true
+      default: 
+    email: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    distancia_escuela: 
+      type: INTEGER
+      required: false
+      default: 0
+    hermanos_escuela: 
+      type: boolean
+      required: true
+      default: 0
+    hijo_maestro_escuela: 
+      type: boolean
+      required: true
+      default: 0
+    fk_establecimiento_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: establecimiento
+      foreignReference: id
+    fk_cuenta_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: cuenta
+      foreignReference: id
+    certificado_medico: 
+      type: boolean
+      required: true
+      default: 0
+    activo: 
+      type: boolean
+      required: true
+      default: true
+    fk_conceptobaja_id: 
+      type: INTEGER
+      required: false
+      foreignTable: conceptobaja
+      foreignReference: id
+    fk_pais_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: pais
+      foreignReference: id
+  responsable: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    apellido: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    direccion: 
+      type: VARCHAR
+      size: 128
+      required: false
+      default: 
+    ciudad: 
+      type: VARCHAR
+      size: 128
+      required: false
+      default: 
+    codigo_postal: 
+      type: VARCHAR
+      size: 20
+      required: false
+      default: 
+    fk_provincia_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: provincia
+      foreignReference: id
+    telefono: 
+      type: VARCHAR
+      size: 20
+      required: false
+      default: 
+    telefono_movil: 
+      type: VARCHAR
+      size: 20
+      required: false
+      default: 
+    nro_documento: 
+      type: VARCHAR
+      size: 20
+      required: true
+      default: 
+    fk_tipodocumento_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: tipodocumento
+      foreignReference: id
+    sexo: 
+      type: CHAR
+      size: 1
+      required: true
+      default: 
+    email: 
+      type: VARCHAR
+      size: 128
+      required: false
+      default: 
+    observacion: 
+      type: VARCHAR
+      size: 255
+      required: false
+      default: 
+    autorizacion_retiro: 
+      type: boolean
+      required: true
+      default: false
+    fk_cuenta_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: cuenta
+      foreignReference: id
+    fk_rolresponsable_id: 
+      type: INTEGER
+      required: true
+      default: 1
+      foreignTable: rol_responsable
+      foreignReference: id
+  ciclolectivo: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_establecimiento_id: 
+      type: integer
+      size: 11
+      required: true
+      foreignTable: establecimiento
+      foreignReference: id
+    fecha_inicio: 
+      type: TIMESTAMP
+      required: true
+    fecha_fin: 
+      type: TIMESTAMP
+      required: true
+    descripcion: 
+      type: varchar
+      size: 255
+      required: true
+      default: 
+    actual: 
+      type: boolean
+      required: true
+      default: false
+  turnos: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_ciclolectivo_id: 
+      type: integer
+      size: 11
+      required: true
+      foreignTable: ciclolectivo
+      foreignReference: id
+    hora_inicio: 
+      type: time
+      required: true
+    hora_fin: 
+      type: time
+      required: true
+    descripcion: 
+      type: varchar
+      size: 255
+      required: true
+      default: 
+  periodo: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_ciclolectivo_id: 
+      type: integer
+      size: 11
+      required: true
+      foreignTable: ciclolectivo
+      foreignReference: id
+    fecha_inicio: 
+      type: TIMESTAMP
+      required: true
+    fecha_fin: 
+      type: TIMESTAMP
+      required: true
+    descripcion: 
+      type: varchar
+      size: 255
+      required: true
+      default: 
+  conceptobaja: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: varchar
+      size: 128
+      required: true
+    descripcion: 
+      type: varchar
+      size: 255
+      required: false
+      default: 
+  tipodocente: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: varchar
+      size: 128
+      required: true
+    descripcion: 
+      type: varchar
+      size: 255
+      required: false
+      default: 
+  cargobaja: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: varchar
+      size: 128
+      required: true
+    descripcion: 
+      type: varchar
+      size: 255
+      required: false
+      default: 
+  calendariovacunacion: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: varchar
+      size: 128
+      required: true
+    descripcion: 
+      type: varchar
+      size: 255
+      required: false
+    periodo: 
+      type: varchar
+      size: 128
+      required: false
+    observacion: 
+      type: varchar
+      size: 255
+      required: false
+      default: 
+  rel_calendariovacunacion_alumno: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_alumno_id: 
+      type: integer
+      size: 11
+      required: true
+      foreignTable: alumno
+      foreignReference: id
+    fk_calendariovacunacion_id: 
+      type: integer
+      size: 11
+      required: true
+      foreignTable: calendariovacunacion
+      foreignReference: id
+    observacion: 
+      type: varchar
+      size: 255
+      required: false
+    comprobante: 
+      type: boolean
+      required: true
+      default: false
+    fecha: 
+      type: TIMESTAMP
+      required: false
+  legajopedagogico: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_alumno_id: 
+      type: integer
+      size: 11
+      required: true
+      foreignTable: alumno
+      foreignReference: id
+    titulo: 
+      type: varchar
+      size: 255
+      required: true
+    resumen: 
+      type: blob
+      required: true
+    texto: 
+      type: blob
+      required: true
+    fecha: 
+      type: timestamp
+      required: true
+    fk_usuario_id: 
+      type: integer
+      size: 11
+      required: true
+      foreignTable: usuario
+      foreignReference: id
+    fk_legajocategoria_id: 
+      type: integer
+      size: 11
+      required: true
+      foreignTable: legajocategoria
+      foreignReference: id
+  legajocategoria: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    descripcion: 
+      type: varchar
+      size: 255
+      required: true
+  legajoadjunto: 
+    _attributes: 
+      idMethod: native
+    fk_legajopedagogico_id: 
+      type: integer
+      size: 11
+      required: true
+      foreignTable: legajopedagogico
+      foreignReference: id
+    fk_adjunto_id: 
+      type: integer
+      size: 11
+      required: true
+      foreignTable: adjunto
+      foreignReference: id
+  adjunto: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    descripcion: 
+      type: varchar
+      size: 255
+      required: false
+    titulo: 
+      type: varchar
+      size: 255
+      required: false
+    nombre_archivo: 
+      type: varchar
+      size: 255
+      required: true
+    tipo_archivo: 
+      type: varchar
+      size: 64
+      required: true
+    ruta: 
+      type: varchar
+      size: 255
+      required: true
+    fecha: 
+      type: timestamp
+      required: true
+  asistencia: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_alumno_id: 
+      type: integer
+      size: 11
+      required: true
+      foreignTable: alumno
+      foreignReference: id
+    fk_tipoasistencia_id: 
+      type: integer
+      size: 11
+      required: true
+      foreignTable: tipoasistencia
+      foreignReference: id
+    fecha: 
+      type: timestamp
+      required: true
+  concepto: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_establecimiento_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: establecimiento
+      foreignReference: id
+    nombre: 
+      type: varchar
+      size: 128
+      required: true
+    descripcion: 
+      type: varchar
+      size: 255
+      required: false
+  escalanota: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_establecimiento_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: establecimiento
+      foreignReference: id
+    nombre: 
+      type: varchar
+      size: 128
+      required: true
+    descripcion: 
+      type: varchar
+      size: 255
+      required: false
+    orden: 
+      type: integer
+      size: 11
+      required: true
+    aprobado: 
+      type: boolean
+      required: true
+      default: false
+  boletin_conceptual: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_escalanota_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: escalanota
+      foreignReference: id
+    fk_alumno_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: alumno
+      foreignReference: id
+    fk_concepto_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: concepto
+      foreignReference: id
+    fk_periodo_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: periodo
+      foreignReference: id
+    observacion: 
+      type: blob
+      required: true
+    fecha: 
+      type: timestamp
+      required: true
+  boletin_actividades: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_escalanota_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: escalanota
+      foreignReference: id
+    fk_alumno_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: alumno
+      foreignReference: id
+    fk_actividad_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: actividad
+      foreignReference: id
+    fk_periodo_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: periodo
+      foreignReference: id
+    observacion: 
+      type: blob
+      required: true
+    fecha: 
+      type: timestamp
+      required: true
+  examen: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_escalanota_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: escalanota
+      foreignReference: id
+    fk_alumno_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: alumno
+      foreignReference: id
+    fk_actividad_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: actividad
+      foreignReference: id
+    fk_periodo_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: periodo
+      foreignReference: id
+    nombre: 
+      type: varchar
+      size: 255
+      default: 
+      required: true
+    observacion: 
+      type: blob
+      required: true
+    fecha: 
+      type: timestamp
+      required: true
+  anio: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_establecimiento_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: establecimiento
+      foreignReference: id
+    descripcion: 
+      type: varchar
+      size: 255
+      required: true
+      default: 
+  division: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_anio_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: anio
+      foreignReference: id
+    descripcion: 
+      type: varchar
+      size: 255
+      required: true
+      default: 
+    fk_turnos_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: turnos
+      foreignReference: id
+    orden: 
+      type: INTEGER
+      required: false
+      default: 0
+  repeticion: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    descripcion: 
+      type: varchar
+      size: 255
+      required: true
+      default: 
+    orden: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+  actividad: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_establecimiento_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: establecimiento
+      foreignReference: id
+    nombre: 
+      type: varchar
+      size: 128
+      required: true
+      default: 
+    descripcion: 
+      type: varchar
+      size: 255
+      required: false
+  rel_anio_actividad: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_anio_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: anio
+      foreignReference: id
+    fk_actividad_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: actividad
+      foreignReference: id
+    horas: 
+      type: decimal
+      size: 10,2
+      required: true
+      default: 0
+  rel_alumno_division: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_division_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: division
+      foreignReference: id
+    fk_alumno_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: alumno
+      foreignReference: id
+  rel_division_actividad_docente: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_division_id: 
+      type: integer
+      size: 11
+      required: false
+      default: 0
+      foreignTable: division
+      foreignReference: id
+    fk_actividad_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: actividad
+      foreignReference: id
+    fk_docente_id: 
+      type: integer
+      size: 11
+      required: false
+      default: 0
+      foreignTable: docente
+      foreignReference: id
+    fk_evento_id: 
+      type: integer
+      size: 11
+      required: false
+      default: 0
+      foreignTable: evento
+      foreignReference: id
+    fk_repeticion_id: 
+      type: integer
+      size: 11
+      required: false
+      default: 0
+      foreignTable: repeticion
+      foreignReference: id
+    fecha_inicio: 
+      type: timestamp
+      required: true
+    fecha_fin: 
+      type: timestamp
+      required: true
+    hora_inicio: 
+      type: time
+      required: true
+    hora_fin: 
+      type: time
+      required: true
+  docente: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    apellido: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    sexo: 
+      type: CHAR
+      size: 1
+      required: false
+      default: U
+    fecha_nacimiento: 
+      type: TIMESTAMP
+      required: true
+    fk_tipodocumento_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: tipodocumento
+      foreignReference: id
+    nro_documento: 
+      type: varchar
+      size: 16
+      required: true
+      default: 
+    direccion: 
+      type: varchar
+      size: 128
+      required: false
+      default: 
+    ciudad: 
+      type: varchar
+      size: 128
+      required: false
+      default: 
+    codigo_postal: 
+      type: varchar
+      size: 20
+      required: false
+      default: 
+    email: 
+      type: varchar
+      size: 255
+      required: false
+      default: 
+    telefono: 
+      type: varchar
+      size: 20
+      required: false
+      default: 
+    telefono_movil: 
+      type: varchar
+      size: 20
+      required: false
+      default: 
+    titulo: 
+      type: varchar
+      size: 128
+      required: true
+      default: 
+    libreta_sanitaria: 
+      type: boolean
+      required: false
+      default: false
+    psicofisico: 
+      type: boolean
+      required: false
+      default: false
+    activo: 
+      type: boolean
+      required: false
+      default: true
+    fk_provincia_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: provincia
+      foreignReference: id
+  rel_docente_establecimiento: 
+    _attributes: 
+      idMethod: native
+    fk_establecimiento_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: establecimiento
+      foreignReference: id
+    fk_docente_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: docente
+      foreignReference: id
+  tipodocumento: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    descripcion: 
+      type: VARCHAR
+      size: 255
+      required: false
+      default: 
+    orden: 
+      type: integer
+      size: 11
+      required: false
+      default: 0
+  rel_actividad_docente: 
+    _attributes: 
+      idMethod: native
+    fk_actividad_id: 
+      type: integer
+      size: 11
+      required: true
+      primaryKey: true
+      foreignTable: actividad
+      foreignReference: id
+    fk_docente_id: 
+      type: integer
+      size: 11
+      required: true
+      primaryKey: true
+      foreignTable: docente
+      foreignReference: id
+  docente_horario: 
+    _attributes: 
+      idMethod: native
+    fk_docente_id: 
+      type: integer
+      size: 11
+      required: true
+      primaryKey: true
+      foreignTable: docente
+      foreignReference: id
+    fk_evento_id: 
+      type: integer
+      size: 11
+      required: true
+      primaryKey: true
+      foreignTable: evento
+      foreignReference: id
+  feriado: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: varchar
+      size: 128
+      required: true
+    fecha: 
+      type: timestamp
+      required: true
+    repeticion_anual: 
+      type: BOOLEAN
+      default: false
+      required: false
+    inamovible: 
+      type: BOOLEAN
+      default: false
+      required: false
+    fk_ciclolectivo_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: ciclolectivo
+      foreignReference: id
+  horarioescolar: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    dia: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+    hora_inicio: 
+      type: TIME
+      required: true
+    hora_fin: 
+      type: TIME
+      required: true
+    nombre: 
+      type: varchar
+      size: 128
+      required: true
+    descripcion: 
+      type: varchar
+      size: 255
+      required: false
+    fk_establecimiento_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: establecimiento
+      foreignReference: id
+    fk_turnos_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: turnos
+      foreignReference: id
+    fk_horarioescolartipo_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: horarioescolartipo
+      foreignReference: id
+  horarioescolartipo: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    descripcion: 
+      type: VARCHAR
+      size: 255
+      required: false
+  tipoasistencia: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 10
+      required: true
+    descripcion: 
+      type: VARCHAR
+      size: 255
+      required: false
+      default: 
+    valor: 
+      type: DECIMAL
+      size: 4,2
+      required: true
+      default: 1
+    grupo: 
+      type: VARCHAR
+      size: 30
+      required: false
+      default: 
+    defecto: 
+      type: BOOLEAN
+      required: true
+      default: 0
+  rol_responsable: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: 
+    descripcion: 
+      type: VARCHAR
+      size: 255
+      default: 
+    activo: 
+      type: BOOLEAN
+      required: true
+      default: true
+  evento: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    titulo: 
+      type: VARCHAR
+      size: 128
+      required: true
+    fecha_inicio: 
+      type: TIMESTAMP
+      required: true
+    fecha_fin: 
+      type: TIMESTAMP
+      required: true
+    tipo: 
+      type: INTEGER
+      required: true
+      default: 0
+    frecuencia: 
+      type: INTEGER
+      required: true
+      default: 0
+    frecuencia_intervalo: 
+      type: INTEGER
+      required: true
+      default: 0
+    recurrencia_fin: 
+      type: VARCHAR
+      size: 16
+      required: false
+      default: 
+    recurrencia_dias: 
+      type: INTEGER
+      required: true
+      default: 0
+    estado: 
+      type: INTEGER
+      required: true
+      default: 0
+  rel_rolresponsable_responsable: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_rolresponsable_id: 
+      type: INTEGER
+      size: 11
+      required: true
+      default: 0
+      foreignTable: rol_responsable
+      foreignReference: id
+    fk_responsable_id: 
+      type: INTEGER
+      size: 11
+      required: true
+      default: 0
+      foreignTable: responsable
+      foreignReference: id
+    fk_alumno_id: 
+      type: INTEGER
+      size: 11
+      required: true
+      default: 0
+      foreignTable: alumno
+      foreignReference: id
+    descripcion: 
+      type: VARCHAR
+      size: 255
+      default: 

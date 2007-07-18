@@ -51,16 +51,16 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 	protected $aDivision;
 
 	
-	protected $aDocente;
-
-	
 	protected $aActividad;
 
 	
-	protected $aRepeticion;
+	protected $aDocente;
 
 	
 	protected $aEvento;
+
+	
+	protected $aRepeticion;
 
 	
 	protected $alreadyInSave = false;
@@ -464,13 +464,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 				$this->setDivision($this->aDivision);
 			}
 
-			if ($this->aDocente !== null) {
-				if ($this->aDocente->isModified()) {
-					$affectedRows += $this->aDocente->save($con);
-				}
-				$this->setDocente($this->aDocente);
-			}
-
 			if ($this->aActividad !== null) {
 				if ($this->aActividad->isModified()) {
 					$affectedRows += $this->aActividad->save($con);
@@ -478,11 +471,11 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 				$this->setActividad($this->aActividad);
 			}
 
-			if ($this->aRepeticion !== null) {
-				if ($this->aRepeticion->isModified()) {
-					$affectedRows += $this->aRepeticion->save($con);
+			if ($this->aDocente !== null) {
+				if ($this->aDocente->isModified()) {
+					$affectedRows += $this->aDocente->save($con);
 				}
-				$this->setRepeticion($this->aRepeticion);
+				$this->setDocente($this->aDocente);
 			}
 
 			if ($this->aEvento !== null) {
@@ -490,6 +483,13 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 					$affectedRows += $this->aEvento->save($con);
 				}
 				$this->setEvento($this->aEvento);
+			}
+
+			if ($this->aRepeticion !== null) {
+				if ($this->aRepeticion->isModified()) {
+					$affectedRows += $this->aRepeticion->save($con);
+				}
+				$this->setRepeticion($this->aRepeticion);
 			}
 
 
@@ -547,27 +547,27 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 				}
 			}
 
-			if ($this->aDocente !== null) {
-				if (!$this->aDocente->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aDocente->getValidationFailures());
-				}
-			}
-
 			if ($this->aActividad !== null) {
 				if (!$this->aActividad->validate($columns)) {
 					$failureMap = array_merge($failureMap, $this->aActividad->getValidationFailures());
 				}
 			}
 
-			if ($this->aRepeticion !== null) {
-				if (!$this->aRepeticion->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aRepeticion->getValidationFailures());
+			if ($this->aDocente !== null) {
+				if (!$this->aDocente->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aDocente->getValidationFailures());
 				}
 			}
 
 			if ($this->aEvento !== null) {
 				if (!$this->aEvento->validate($columns)) {
 					$failureMap = array_merge($failureMap, $this->aEvento->getValidationFailures());
+				}
+			}
+
+			if ($this->aRepeticion !== null) {
+				if (!$this->aRepeticion->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aRepeticion->getValidationFailures());
 				}
 			}
 
@@ -827,36 +827,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 	}
 
 	
-	public function setDocente($v)
-	{
-
-
-		if ($v === null) {
-			$this->setFkDocenteId('0');
-		} else {
-			$this->setFkDocenteId($v->getId());
-		}
-
-
-		$this->aDocente = $v;
-	}
-
-
-	
-	public function getDocente($con = null)
-	{
-				include_once 'lib/model/om/BaseDocentePeer.php';
-
-		if ($this->aDocente === null && ($this->fk_docente_id !== null)) {
-
-			$this->aDocente = DocentePeer::retrieveByPK($this->fk_docente_id, $con);
-
-			
-		}
-		return $this->aDocente;
-	}
-
-	
 	public function setActividad($v)
 	{
 
@@ -887,33 +857,33 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 	}
 
 	
-	public function setRepeticion($v)
+	public function setDocente($v)
 	{
 
 
 		if ($v === null) {
-			$this->setFkRepeticionId('0');
+			$this->setFkDocenteId('0');
 		} else {
-			$this->setFkRepeticionId($v->getId());
+			$this->setFkDocenteId($v->getId());
 		}
 
 
-		$this->aRepeticion = $v;
+		$this->aDocente = $v;
 	}
 
 
 	
-	public function getRepeticion($con = null)
+	public function getDocente($con = null)
 	{
-				include_once 'lib/model/om/BaseRepeticionPeer.php';
+				include_once 'lib/model/om/BaseDocentePeer.php';
 
-		if ($this->aRepeticion === null && ($this->fk_repeticion_id !== null)) {
+		if ($this->aDocente === null && ($this->fk_docente_id !== null)) {
 
-			$this->aRepeticion = RepeticionPeer::retrieveByPK($this->fk_repeticion_id, $con);
+			$this->aDocente = DocentePeer::retrieveByPK($this->fk_docente_id, $con);
 
 			
 		}
-		return $this->aRepeticion;
+		return $this->aDocente;
 	}
 
 	
@@ -944,6 +914,36 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 			
 		}
 		return $this->aEvento;
+	}
+
+	
+	public function setRepeticion($v)
+	{
+
+
+		if ($v === null) {
+			$this->setFkRepeticionId('0');
+		} else {
+			$this->setFkRepeticionId($v->getId());
+		}
+
+
+		$this->aRepeticion = $v;
+	}
+
+
+	
+	public function getRepeticion($con = null)
+	{
+				include_once 'lib/model/om/BaseRepeticionPeer.php';
+
+		if ($this->aRepeticion === null && ($this->fk_repeticion_id !== null)) {
+
+			$this->aRepeticion = RepeticionPeer::retrieveByPK($this->fk_repeticion_id, $con);
+
+			
+		}
+		return $this->aRepeticion;
 	}
 
 } 

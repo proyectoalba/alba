@@ -15,11 +15,15 @@ abstract class BaseRelDocenteEstablecimiento extends BaseObject  implements Pers
 	
 	protected $fk_docente_id = 0;
 
+
 	
-	protected $aDocente;
+	protected $id;
 
 	
 	protected $aEstablecimiento;
+
+	
+	protected $aDocente;
 
 	
 	protected $alreadyInSave = false;
@@ -39,6 +43,13 @@ abstract class BaseRelDocenteEstablecimiento extends BaseObject  implements Pers
 	{
 
 		return $this->fk_docente_id;
+	}
+
+	
+	public function getId()
+	{
+
+		return $this->id;
 	}
 
 	
@@ -78,6 +89,20 @@ abstract class BaseRelDocenteEstablecimiento extends BaseObject  implements Pers
 
 	} 
 	
+	public function setId($v)
+	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
+		if ($this->id !== $v) {
+			$this->id = $v;
+			$this->modifiedColumns[] = RelDocenteEstablecimientoPeer::ID;
+		}
+
+	} 
+	
 	public function hydrate(ResultSet $rs, $startcol = 1)
 	{
 		try {
@@ -86,11 +111,13 @@ abstract class BaseRelDocenteEstablecimiento extends BaseObject  implements Pers
 
 			$this->fk_docente_id = $rs->getInt($startcol + 1);
 
+			$this->id = $rs->getInt($startcol + 2);
+
 			$this->resetModified();
 
 			$this->setNew(false);
 
-						return $startcol + 2; 
+						return $startcol + 3; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating RelDocenteEstablecimiento object", $e);
 		}
@@ -148,13 +175,6 @@ abstract class BaseRelDocenteEstablecimiento extends BaseObject  implements Pers
 
 
 												
-			if ($this->aDocente !== null) {
-				if ($this->aDocente->isModified()) {
-					$affectedRows += $this->aDocente->save($con);
-				}
-				$this->setDocente($this->aDocente);
-			}
-
 			if ($this->aEstablecimiento !== null) {
 				if ($this->aEstablecimiento->isModified()) {
 					$affectedRows += $this->aEstablecimiento->save($con);
@@ -162,11 +182,19 @@ abstract class BaseRelDocenteEstablecimiento extends BaseObject  implements Pers
 				$this->setEstablecimiento($this->aEstablecimiento);
 			}
 
+			if ($this->aDocente !== null) {
+				if ($this->aDocente->isModified()) {
+					$affectedRows += $this->aDocente->save($con);
+				}
+				$this->setDocente($this->aDocente);
+			}
+
 
 						if ($this->isModified()) {
 				if ($this->isNew()) {
 					$pk = RelDocenteEstablecimientoPeer::doInsert($this, $con);
 					$affectedRows += 1; 										 										 
+					$this->setId($pk);  
 					$this->setNew(false);
 				} else {
 					$affectedRows += RelDocenteEstablecimientoPeer::doUpdate($this, $con);
@@ -210,15 +238,15 @@ abstract class BaseRelDocenteEstablecimiento extends BaseObject  implements Pers
 
 
 												
-			if ($this->aDocente !== null) {
-				if (!$this->aDocente->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aDocente->getValidationFailures());
-				}
-			}
-
 			if ($this->aEstablecimiento !== null) {
 				if (!$this->aEstablecimiento->validate($columns)) {
 					$failureMap = array_merge($failureMap, $this->aEstablecimiento->getValidationFailures());
+				}
+			}
+
+			if ($this->aDocente !== null) {
+				if (!$this->aDocente->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aDocente->getValidationFailures());
 				}
 			}
 
@@ -252,6 +280,9 @@ abstract class BaseRelDocenteEstablecimiento extends BaseObject  implements Pers
 			case 1:
 				return $this->getFkDocenteId();
 				break;
+			case 2:
+				return $this->getId();
+				break;
 			default:
 				return null;
 				break;
@@ -264,6 +295,7 @@ abstract class BaseRelDocenteEstablecimiento extends BaseObject  implements Pers
 		$result = array(
 			$keys[0] => $this->getFkEstablecimientoId(),
 			$keys[1] => $this->getFkDocenteId(),
+			$keys[2] => $this->getId(),
 		);
 		return $result;
 	}
@@ -285,6 +317,9 @@ abstract class BaseRelDocenteEstablecimiento extends BaseObject  implements Pers
 			case 1:
 				$this->setFkDocenteId($value);
 				break;
+			case 2:
+				$this->setId($value);
+				break;
 		} 	}
 
 	
@@ -294,6 +329,7 @@ abstract class BaseRelDocenteEstablecimiento extends BaseObject  implements Pers
 
 		if (array_key_exists($keys[0], $arr)) $this->setFkEstablecimientoId($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setFkDocenteId($arr[$keys[1]]);
+		if (array_key_exists($keys[2], $arr)) $this->setId($arr[$keys[2]]);
 	}
 
 	
@@ -303,6 +339,7 @@ abstract class BaseRelDocenteEstablecimiento extends BaseObject  implements Pers
 
 		if ($this->isColumnModified(RelDocenteEstablecimientoPeer::FK_ESTABLECIMIENTO_ID)) $criteria->add(RelDocenteEstablecimientoPeer::FK_ESTABLECIMIENTO_ID, $this->fk_establecimiento_id);
 		if ($this->isColumnModified(RelDocenteEstablecimientoPeer::FK_DOCENTE_ID)) $criteria->add(RelDocenteEstablecimientoPeer::FK_DOCENTE_ID, $this->fk_docente_id);
+		if ($this->isColumnModified(RelDocenteEstablecimientoPeer::ID)) $criteria->add(RelDocenteEstablecimientoPeer::ID, $this->id);
 
 		return $criteria;
 	}
@@ -312,6 +349,7 @@ abstract class BaseRelDocenteEstablecimiento extends BaseObject  implements Pers
 	{
 		$criteria = new Criteria(RelDocenteEstablecimientoPeer::DATABASE_NAME);
 
+		$criteria->add(RelDocenteEstablecimientoPeer::ID, $this->id);
 
 		return $criteria;
 	}
@@ -319,13 +357,14 @@ abstract class BaseRelDocenteEstablecimiento extends BaseObject  implements Pers
 	
 	public function getPrimaryKey()
 	{
-		return null;
+		return $this->getId();
 	}
 
 	
-	 public function setPrimaryKey($pk)
-	 {
-		 	 }
+	public function setPrimaryKey($key)
+	{
+		$this->setId($key);
+	}
 
 	
 	public function copyInto($copyObj, $deepCopy = false)
@@ -338,6 +377,7 @@ abstract class BaseRelDocenteEstablecimiento extends BaseObject  implements Pers
 
 		$copyObj->setNew(true);
 
+		$copyObj->setId(NULL); 
 	}
 
 	
@@ -356,36 +396,6 @@ abstract class BaseRelDocenteEstablecimiento extends BaseObject  implements Pers
 			self::$peer = new RelDocenteEstablecimientoPeer();
 		}
 		return self::$peer;
-	}
-
-	
-	public function setDocente($v)
-	{
-
-
-		if ($v === null) {
-			$this->setFkDocenteId('0');
-		} else {
-			$this->setFkDocenteId($v->getId());
-		}
-
-
-		$this->aDocente = $v;
-	}
-
-
-	
-	public function getDocente($con = null)
-	{
-				include_once 'lib/model/om/BaseDocentePeer.php';
-
-		if ($this->aDocente === null && ($this->fk_docente_id !== null)) {
-
-			$this->aDocente = DocentePeer::retrieveByPK($this->fk_docente_id, $con);
-
-			
-		}
-		return $this->aDocente;
 	}
 
 	
@@ -416,6 +426,36 @@ abstract class BaseRelDocenteEstablecimiento extends BaseObject  implements Pers
 			
 		}
 		return $this->aEstablecimiento;
+	}
+
+	
+	public function setDocente($v)
+	{
+
+
+		if ($v === null) {
+			$this->setFkDocenteId('0');
+		} else {
+			$this->setFkDocenteId($v->getId());
+		}
+
+
+		$this->aDocente = $v;
+	}
+
+
+	
+	public function getDocente($con = null)
+	{
+				include_once 'lib/model/om/BaseDocentePeer.php';
+
+		if ($this->aDocente === null && ($this->fk_docente_id !== null)) {
+
+			$this->aDocente = DocentePeer::retrieveByPK($this->fk_docente_id, $con);
+
+			
+		}
+		return $this->aDocente;
 	}
 
 } 

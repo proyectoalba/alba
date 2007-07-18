@@ -13,7 +13,7 @@ abstract class BaseLegajoadjuntoPeer {
 	const CLASS_DEFAULT = 'lib.model.Legajoadjunto';
 
 	
-	const NUM_COLUMNS = 2;
+	const NUM_COLUMNS = 3;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -26,23 +26,26 @@ abstract class BaseLegajoadjuntoPeer {
 	const FK_ADJUNTO_ID = 'legajoadjunto.FK_ADJUNTO_ID';
 
 	
+	const ID = 'legajoadjunto.ID';
+
+	
 	private static $phpNameMap = null;
 
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('FkLegajopedagogicoId', 'FkAdjuntoId', ),
-		BasePeer::TYPE_COLNAME => array (LegajoadjuntoPeer::FK_LEGAJOPEDAGOGICO_ID, LegajoadjuntoPeer::FK_ADJUNTO_ID, ),
-		BasePeer::TYPE_FIELDNAME => array ('fk_legajopedagogico_id', 'fk_adjunto_id', ),
-		BasePeer::TYPE_NUM => array (0, 1, )
+		BasePeer::TYPE_PHPNAME => array ('FkLegajopedagogicoId', 'FkAdjuntoId', 'Id', ),
+		BasePeer::TYPE_COLNAME => array (LegajoadjuntoPeer::FK_LEGAJOPEDAGOGICO_ID, LegajoadjuntoPeer::FK_ADJUNTO_ID, LegajoadjuntoPeer::ID, ),
+		BasePeer::TYPE_FIELDNAME => array ('fk_legajopedagogico_id', 'fk_adjunto_id', 'id', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('FkLegajopedagogicoId' => 0, 'FkAdjuntoId' => 1, ),
-		BasePeer::TYPE_COLNAME => array (LegajoadjuntoPeer::FK_LEGAJOPEDAGOGICO_ID => 0, LegajoadjuntoPeer::FK_ADJUNTO_ID => 1, ),
-		BasePeer::TYPE_FIELDNAME => array ('fk_legajopedagogico_id' => 0, 'fk_adjunto_id' => 1, ),
-		BasePeer::TYPE_NUM => array (0, 1, )
+		BasePeer::TYPE_PHPNAME => array ('FkLegajopedagogicoId' => 0, 'FkAdjuntoId' => 1, 'Id' => 2, ),
+		BasePeer::TYPE_COLNAME => array (LegajoadjuntoPeer::FK_LEGAJOPEDAGOGICO_ID => 0, LegajoadjuntoPeer::FK_ADJUNTO_ID => 1, LegajoadjuntoPeer::ID => 2, ),
+		BasePeer::TYPE_FIELDNAME => array ('fk_legajopedagogico_id' => 0, 'fk_adjunto_id' => 1, 'id' => 2, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, )
 	);
 
 	
@@ -100,10 +103,12 @@ abstract class BaseLegajoadjuntoPeer {
 
 		$criteria->addSelectColumn(LegajoadjuntoPeer::FK_ADJUNTO_ID);
 
+		$criteria->addSelectColumn(LegajoadjuntoPeer::ID);
+
 	}
 
-	const COUNT = 'COUNT(*)';
-	const COUNT_DISTINCT = 'COUNT(DISTINCT *)';
+	const COUNT = 'COUNT(legajoadjunto.ID)';
+	const COUNT_DISTINCT = 'COUNT(DISTINCT legajoadjunto.ID)';
 
 	
 	public static function doCount(Criteria $criteria, $distinct = false, $con = null)
@@ -179,34 +184,6 @@ abstract class BaseLegajoadjuntoPeer {
 	}
 
 	
-	public static function doCountJoinAdjunto(Criteria $criteria, $distinct = false, $con = null)
-	{
-				$criteria = clone $criteria;
-
-				$criteria->clearSelectColumns()->clearOrderByColumns();
-		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(LegajoadjuntoPeer::COUNT_DISTINCT);
-		} else {
-			$criteria->addSelectColumn(LegajoadjuntoPeer::COUNT);
-		}
-
-				foreach($criteria->getGroupByColumns() as $column)
-		{
-			$criteria->addSelectColumn($column);
-		}
-
-		$criteria->addJoin(LegajoadjuntoPeer::FK_ADJUNTO_ID, AdjuntoPeer::ID);
-
-		$rs = LegajoadjuntoPeer::doSelectRS($criteria, $con);
-		if ($rs->next()) {
-			return $rs->getInt(1);
-		} else {
-						return 0;
-		}
-	}
-
-
-	
 	public static function doCountJoinLegajopedagogico(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
@@ -235,49 +212,30 @@ abstract class BaseLegajoadjuntoPeer {
 
 
 	
-	public static function doSelectJoinAdjunto(Criteria $c, $con = null)
+	public static function doCountJoinAdjunto(Criteria $criteria, $distinct = false, $con = null)
 	{
-		$c = clone $c;
+				$criteria = clone $criteria;
 
-				if ($c->getDbName() == Propel::getDefaultDB()) {
-			$c->setDbName(self::DATABASE_NAME);
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(LegajoadjuntoPeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(LegajoadjuntoPeer::COUNT);
 		}
 
-		LegajoadjuntoPeer::addSelectColumns($c);
-		$startcol = (LegajoadjuntoPeer::NUM_COLUMNS - LegajoadjuntoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-		AdjuntoPeer::addSelectColumns($c);
-
-		$c->addJoin(LegajoadjuntoPeer::FK_ADJUNTO_ID, AdjuntoPeer::ID);
-		$rs = BasePeer::doSelect($c, $con);
-		$results = array();
-
-		while($rs->next()) {
-
-			$omClass = LegajoadjuntoPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj1 = new $cls();
-			$obj1->hydrate($rs);
-
-			$omClass = AdjuntoPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj2 = new $cls();
-			$obj2->hydrate($rs, $startcol);
-
-			$newObject = true;
-			foreach($results as $temp_obj1) {
-				$temp_obj2 = $temp_obj1->getAdjunto(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
-					$newObject = false;
-										$temp_obj2->addLegajoadjunto($obj1); 					break;
-				}
-			}
-			if ($newObject) {
-				$obj2->initLegajoadjuntos();
-				$obj2->addLegajoadjunto($obj1); 			}
-			$results[] = $obj1;
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
 		}
-		return $results;
+
+		$criteria->addJoin(LegajoadjuntoPeer::FK_ADJUNTO_ID, AdjuntoPeer::ID);
+
+		$rs = LegajoadjuntoPeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
 	}
 
 
@@ -329,6 +287,53 @@ abstract class BaseLegajoadjuntoPeer {
 
 
 	
+	public static function doSelectJoinAdjunto(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+				if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		LegajoadjuntoPeer::addSelectColumns($c);
+		$startcol = (LegajoadjuntoPeer::NUM_COLUMNS - LegajoadjuntoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+		AdjuntoPeer::addSelectColumns($c);
+
+		$c->addJoin(LegajoadjuntoPeer::FK_ADJUNTO_ID, AdjuntoPeer::ID);
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = LegajoadjuntoPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = AdjuntoPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj2 = new $cls();
+			$obj2->hydrate($rs, $startcol);
+
+			$newObject = true;
+			foreach($results as $temp_obj1) {
+				$temp_obj2 = $temp_obj1->getAdjunto(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+										$temp_obj2->addLegajoadjunto($obj1); 					break;
+				}
+			}
+			if ($newObject) {
+				$obj2->initLegajoadjuntos();
+				$obj2->addLegajoadjunto($obj1); 			}
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	
 	public static function doCountJoinAll(Criteria $criteria, $distinct = false, $con = null)
 	{
 		$criteria = clone $criteria;
@@ -345,9 +350,9 @@ abstract class BaseLegajoadjuntoPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(LegajoadjuntoPeer::FK_ADJUNTO_ID, AdjuntoPeer::ID);
-
 		$criteria->addJoin(LegajoadjuntoPeer::FK_LEGAJOPEDAGOGICO_ID, LegajopedagogicoPeer::ID);
+
+		$criteria->addJoin(LegajoadjuntoPeer::FK_ADJUNTO_ID, AdjuntoPeer::ID);
 
 		$rs = LegajoadjuntoPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -370,15 +375,15 @@ abstract class BaseLegajoadjuntoPeer {
 		LegajoadjuntoPeer::addSelectColumns($c);
 		$startcol2 = (LegajoadjuntoPeer::NUM_COLUMNS - LegajoadjuntoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
-		AdjuntoPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + AdjuntoPeer::NUM_COLUMNS;
-
 		LegajopedagogicoPeer::addSelectColumns($c);
-		$startcol4 = $startcol3 + LegajopedagogicoPeer::NUM_COLUMNS;
+		$startcol3 = $startcol2 + LegajopedagogicoPeer::NUM_COLUMNS;
 
-		$c->addJoin(LegajoadjuntoPeer::FK_ADJUNTO_ID, AdjuntoPeer::ID);
+		AdjuntoPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + AdjuntoPeer::NUM_COLUMNS;
 
 		$c->addJoin(LegajoadjuntoPeer::FK_LEGAJOPEDAGOGICO_ID, LegajopedagogicoPeer::ID);
+
+		$c->addJoin(LegajoadjuntoPeer::FK_ADJUNTO_ID, AdjuntoPeer::ID);
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
@@ -394,7 +399,7 @@ abstract class BaseLegajoadjuntoPeer {
 
 
 					
-			$omClass = AdjuntoPeer::getOMClass();
+			$omClass = LegajopedagogicoPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -404,7 +409,7 @@ abstract class BaseLegajoadjuntoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getAdjunto(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getLegajopedagogico(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addLegajoadjunto($obj1); 					break;
 				}
@@ -417,7 +422,7 @@ abstract class BaseLegajoadjuntoPeer {
 
 
 					
-			$omClass = LegajopedagogicoPeer::getOMClass();
+			$omClass = AdjuntoPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -427,7 +432,7 @@ abstract class BaseLegajoadjuntoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getLegajopedagogico(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+				$temp_obj3 = $temp_obj1->getAdjunto(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj3->addLegajoadjunto($obj1); 					break;
 				}
@@ -441,34 +446,6 @@ abstract class BaseLegajoadjuntoPeer {
 			$results[] = $obj1;
 		}
 		return $results;
-	}
-
-
-	
-	public static function doCountJoinAllExceptAdjunto(Criteria $criteria, $distinct = false, $con = null)
-	{
-				$criteria = clone $criteria;
-
-				$criteria->clearSelectColumns()->clearOrderByColumns();
-		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(LegajoadjuntoPeer::COUNT_DISTINCT);
-		} else {
-			$criteria->addSelectColumn(LegajoadjuntoPeer::COUNT);
-		}
-
-				foreach($criteria->getGroupByColumns() as $column)
-		{
-			$criteria->addSelectColumn($column);
-		}
-
-		$criteria->addJoin(LegajoadjuntoPeer::FK_LEGAJOPEDAGOGICO_ID, LegajopedagogicoPeer::ID);
-
-		$rs = LegajoadjuntoPeer::doSelectRS($criteria, $con);
-		if ($rs->next()) {
-			return $rs->getInt(1);
-		} else {
-						return 0;
-		}
 	}
 
 
@@ -501,59 +478,30 @@ abstract class BaseLegajoadjuntoPeer {
 
 
 	
-	public static function doSelectJoinAllExceptAdjunto(Criteria $c, $con = null)
+	public static function doCountJoinAllExceptAdjunto(Criteria $criteria, $distinct = false, $con = null)
 	{
-		$c = clone $c;
+				$criteria = clone $criteria;
 
-								if ($c->getDbName() == Propel::getDefaultDB()) {
-			$c->setDbName(self::DATABASE_NAME);
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(LegajoadjuntoPeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(LegajoadjuntoPeer::COUNT);
 		}
 
-		LegajoadjuntoPeer::addSelectColumns($c);
-		$startcol2 = (LegajoadjuntoPeer::NUM_COLUMNS - LegajoadjuntoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-
-		LegajopedagogicoPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + LegajopedagogicoPeer::NUM_COLUMNS;
-
-		$c->addJoin(LegajoadjuntoPeer::FK_LEGAJOPEDAGOGICO_ID, LegajopedagogicoPeer::ID);
-
-
-		$rs = BasePeer::doSelect($c, $con);
-		$results = array();
-
-		while($rs->next()) {
-
-			$omClass = LegajoadjuntoPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj1 = new $cls();
-			$obj1->hydrate($rs);
-
-			$omClass = LegajopedagogicoPeer::getOMClass();
-
-
-			$cls = Propel::import($omClass);
-			$obj2  = new $cls();
-			$obj2->hydrate($rs, $startcol2);
-
-			$newObject = true;
-			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
-				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getLegajopedagogico(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
-					$newObject = false;
-					$temp_obj2->addLegajoadjunto($obj1);
-					break;
-				}
-			}
-
-			if ($newObject) {
-				$obj2->initLegajoadjuntos();
-				$obj2->addLegajoadjunto($obj1);
-			}
-
-			$results[] = $obj1;
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
 		}
-		return $results;
+
+		$criteria->addJoin(LegajoadjuntoPeer::FK_LEGAJOPEDAGOGICO_ID, LegajopedagogicoPeer::ID);
+
+		$rs = LegajoadjuntoPeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
 	}
 
 
@@ -613,6 +561,63 @@ abstract class BaseLegajoadjuntoPeer {
 		return $results;
 	}
 
+
+	
+	public static function doSelectJoinAllExceptAdjunto(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+								if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		LegajoadjuntoPeer::addSelectColumns($c);
+		$startcol2 = (LegajoadjuntoPeer::NUM_COLUMNS - LegajoadjuntoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+
+		LegajopedagogicoPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + LegajopedagogicoPeer::NUM_COLUMNS;
+
+		$c->addJoin(LegajoadjuntoPeer::FK_LEGAJOPEDAGOGICO_ID, LegajopedagogicoPeer::ID);
+
+
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = LegajoadjuntoPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = LegajopedagogicoPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj2  = new $cls();
+			$obj2->hydrate($rs, $startcol2);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj2 = $temp_obj1->getLegajopedagogico(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj2->addLegajoadjunto($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj2->initLegajoadjuntos();
+				$obj2->addLegajoadjunto($obj1);
+			}
+
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
 	
 	public static function getTableMap()
 	{
@@ -636,6 +641,7 @@ abstract class BaseLegajoadjuntoPeer {
 			$criteria = clone $values; 		} else {
 			$criteria = $values->buildCriteria(); 		}
 
+		$criteria->remove(LegajoadjuntoPeer::ID); 
 
 				$criteria->setDbName(self::DATABASE_NAME);
 
@@ -662,6 +668,9 @@ abstract class BaseLegajoadjuntoPeer {
 
 		if ($values instanceof Criteria) {
 			$criteria = clone $values; 
+			$comparison = $criteria->getComparison(LegajoadjuntoPeer::ID);
+			$selectCriteria->add(LegajoadjuntoPeer::ID, $criteria->remove(LegajoadjuntoPeer::ID), $comparison);
+
 		} else { 			$criteria = $values->buildCriteria(); 			$selectCriteria = $values->buildPkeyCriteria(); 		}
 
 				$criteria->setDbName(self::DATABASE_NAME);
@@ -696,19 +705,10 @@ abstract class BaseLegajoadjuntoPeer {
 		if ($values instanceof Criteria) {
 			$criteria = clone $values; 		} elseif ($values instanceof Legajoadjunto) {
 
-			$criteria = $values->buildCriteria();
+			$criteria = $values->buildPkeyCriteria();
 		} else {
 						$criteria = new Criteria(self::DATABASE_NAME);
-												if(count($values) == count($values, COUNT_RECURSIVE))
-			{
-								$values = array($values);
-			}
-			$vals = array();
-			foreach($values as $value)
-			{
-
-			}
-
+			$criteria->add(LegajoadjuntoPeer::ID, (array) $values, Criteria::IN);
 		}
 
 				$criteria->setDbName(self::DATABASE_NAME);
@@ -759,6 +759,41 @@ abstract class BaseLegajoadjuntoPeer {
     }
 
     return $res;
+	}
+
+	
+	public static function retrieveByPK($pk, $con = null)
+	{
+		if ($con === null) {
+			$con = Propel::getConnection(self::DATABASE_NAME);
+		}
+
+		$criteria = new Criteria(LegajoadjuntoPeer::DATABASE_NAME);
+
+		$criteria->add(LegajoadjuntoPeer::ID, $pk);
+
+
+		$v = LegajoadjuntoPeer::doSelect($criteria, $con);
+
+		return !empty($v) > 0 ? $v[0] : null;
+	}
+
+	
+	public static function retrieveByPKs($pks, $con = null)
+	{
+		if ($con === null) {
+			$con = Propel::getConnection(self::DATABASE_NAME);
+		}
+
+		$objs = null;
+		if (empty($pks)) {
+			$objs = array();
+		} else {
+			$criteria = new Criteria();
+			$criteria->add(LegajoadjuntoPeer::ID, $pks, Criteria::IN);
+			$objs = LegajoadjuntoPeer::doSelect($criteria, $con);
+		}
+		return $objs;
 	}
 
 } 

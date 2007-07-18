@@ -16,10 +16,10 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	protected $fk_docente_id;
 
 	
-	protected $aDocente;
+	protected $aActividad;
 
 	
-	protected $aActividad;
+	protected $aDocente;
 
 	
 	protected $alreadyInSave = false;
@@ -148,18 +148,18 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 
 
 												
-			if ($this->aDocente !== null) {
-				if ($this->aDocente->isModified()) {
-					$affectedRows += $this->aDocente->save($con);
-				}
-				$this->setDocente($this->aDocente);
-			}
-
 			if ($this->aActividad !== null) {
 				if ($this->aActividad->isModified()) {
 					$affectedRows += $this->aActividad->save($con);
 				}
 				$this->setActividad($this->aActividad);
+			}
+
+			if ($this->aDocente !== null) {
+				if ($this->aDocente->isModified()) {
+					$affectedRows += $this->aDocente->save($con);
+				}
+				$this->setDocente($this->aDocente);
 			}
 
 
@@ -210,15 +210,15 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 
 
 												
-			if ($this->aDocente !== null) {
-				if (!$this->aDocente->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aDocente->getValidationFailures());
-				}
-			}
-
 			if ($this->aActividad !== null) {
 				if (!$this->aActividad->validate($columns)) {
 					$failureMap = array_merge($failureMap, $this->aActividad->getValidationFailures());
+				}
+			}
+
+			if ($this->aDocente !== null) {
+				if (!$this->aDocente->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aDocente->getValidationFailures());
 				}
 			}
 
@@ -370,36 +370,6 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	}
 
 	
-	public function setDocente($v)
-	{
-
-
-		if ($v === null) {
-			$this->setFkDocenteId(NULL);
-		} else {
-			$this->setFkDocenteId($v->getId());
-		}
-
-
-		$this->aDocente = $v;
-	}
-
-
-	
-	public function getDocente($con = null)
-	{
-				include_once 'lib/model/om/BaseDocentePeer.php';
-
-		if ($this->aDocente === null && ($this->fk_docente_id !== null)) {
-
-			$this->aDocente = DocentePeer::retrieveByPK($this->fk_docente_id, $con);
-
-			
-		}
-		return $this->aDocente;
-	}
-
-	
 	public function setActividad($v)
 	{
 
@@ -427,6 +397,36 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 			
 		}
 		return $this->aActividad;
+	}
+
+	
+	public function setDocente($v)
+	{
+
+
+		if ($v === null) {
+			$this->setFkDocenteId(NULL);
+		} else {
+			$this->setFkDocenteId($v->getId());
+		}
+
+
+		$this->aDocente = $v;
+	}
+
+
+	
+	public function getDocente($con = null)
+	{
+				include_once 'lib/model/om/BaseDocentePeer.php';
+
+		if ($this->aDocente === null && ($this->fk_docente_id !== null)) {
+
+			$this->aDocente = DocentePeer::retrieveByPK($this->fk_docente_id, $con);
+
+			
+		}
+		return $this->aDocente;
 	}
 
 } 

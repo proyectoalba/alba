@@ -15,11 +15,15 @@ abstract class BaseLegajoadjunto extends BaseObject  implements Persistent {
 	
 	protected $fk_adjunto_id;
 
+
 	
-	protected $aAdjunto;
+	protected $id;
 
 	
 	protected $aLegajopedagogico;
+
+	
+	protected $aAdjunto;
 
 	
 	protected $alreadyInSave = false;
@@ -39,6 +43,13 @@ abstract class BaseLegajoadjunto extends BaseObject  implements Persistent {
 	{
 
 		return $this->fk_adjunto_id;
+	}
+
+	
+	public function getId()
+	{
+
+		return $this->id;
 	}
 
 	
@@ -78,6 +89,20 @@ abstract class BaseLegajoadjunto extends BaseObject  implements Persistent {
 
 	} 
 	
+	public function setId($v)
+	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
+		if ($this->id !== $v) {
+			$this->id = $v;
+			$this->modifiedColumns[] = LegajoadjuntoPeer::ID;
+		}
+
+	} 
+	
 	public function hydrate(ResultSet $rs, $startcol = 1)
 	{
 		try {
@@ -86,11 +111,13 @@ abstract class BaseLegajoadjunto extends BaseObject  implements Persistent {
 
 			$this->fk_adjunto_id = $rs->getInt($startcol + 1);
 
+			$this->id = $rs->getInt($startcol + 2);
+
 			$this->resetModified();
 
 			$this->setNew(false);
 
-						return $startcol + 2; 
+						return $startcol + 3; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Legajoadjunto object", $e);
 		}
@@ -148,13 +175,6 @@ abstract class BaseLegajoadjunto extends BaseObject  implements Persistent {
 
 
 												
-			if ($this->aAdjunto !== null) {
-				if ($this->aAdjunto->isModified()) {
-					$affectedRows += $this->aAdjunto->save($con);
-				}
-				$this->setAdjunto($this->aAdjunto);
-			}
-
 			if ($this->aLegajopedagogico !== null) {
 				if ($this->aLegajopedagogico->isModified()) {
 					$affectedRows += $this->aLegajopedagogico->save($con);
@@ -162,11 +182,19 @@ abstract class BaseLegajoadjunto extends BaseObject  implements Persistent {
 				$this->setLegajopedagogico($this->aLegajopedagogico);
 			}
 
+			if ($this->aAdjunto !== null) {
+				if ($this->aAdjunto->isModified()) {
+					$affectedRows += $this->aAdjunto->save($con);
+				}
+				$this->setAdjunto($this->aAdjunto);
+			}
+
 
 						if ($this->isModified()) {
 				if ($this->isNew()) {
 					$pk = LegajoadjuntoPeer::doInsert($this, $con);
 					$affectedRows += 1; 										 										 
+					$this->setId($pk);  
 					$this->setNew(false);
 				} else {
 					$affectedRows += LegajoadjuntoPeer::doUpdate($this, $con);
@@ -210,15 +238,15 @@ abstract class BaseLegajoadjunto extends BaseObject  implements Persistent {
 
 
 												
-			if ($this->aAdjunto !== null) {
-				if (!$this->aAdjunto->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aAdjunto->getValidationFailures());
-				}
-			}
-
 			if ($this->aLegajopedagogico !== null) {
 				if (!$this->aLegajopedagogico->validate($columns)) {
 					$failureMap = array_merge($failureMap, $this->aLegajopedagogico->getValidationFailures());
+				}
+			}
+
+			if ($this->aAdjunto !== null) {
+				if (!$this->aAdjunto->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aAdjunto->getValidationFailures());
 				}
 			}
 
@@ -252,6 +280,9 @@ abstract class BaseLegajoadjunto extends BaseObject  implements Persistent {
 			case 1:
 				return $this->getFkAdjuntoId();
 				break;
+			case 2:
+				return $this->getId();
+				break;
 			default:
 				return null;
 				break;
@@ -264,6 +295,7 @@ abstract class BaseLegajoadjunto extends BaseObject  implements Persistent {
 		$result = array(
 			$keys[0] => $this->getFkLegajopedagogicoId(),
 			$keys[1] => $this->getFkAdjuntoId(),
+			$keys[2] => $this->getId(),
 		);
 		return $result;
 	}
@@ -285,6 +317,9 @@ abstract class BaseLegajoadjunto extends BaseObject  implements Persistent {
 			case 1:
 				$this->setFkAdjuntoId($value);
 				break;
+			case 2:
+				$this->setId($value);
+				break;
 		} 	}
 
 	
@@ -294,6 +329,7 @@ abstract class BaseLegajoadjunto extends BaseObject  implements Persistent {
 
 		if (array_key_exists($keys[0], $arr)) $this->setFkLegajopedagogicoId($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setFkAdjuntoId($arr[$keys[1]]);
+		if (array_key_exists($keys[2], $arr)) $this->setId($arr[$keys[2]]);
 	}
 
 	
@@ -303,6 +339,7 @@ abstract class BaseLegajoadjunto extends BaseObject  implements Persistent {
 
 		if ($this->isColumnModified(LegajoadjuntoPeer::FK_LEGAJOPEDAGOGICO_ID)) $criteria->add(LegajoadjuntoPeer::FK_LEGAJOPEDAGOGICO_ID, $this->fk_legajopedagogico_id);
 		if ($this->isColumnModified(LegajoadjuntoPeer::FK_ADJUNTO_ID)) $criteria->add(LegajoadjuntoPeer::FK_ADJUNTO_ID, $this->fk_adjunto_id);
+		if ($this->isColumnModified(LegajoadjuntoPeer::ID)) $criteria->add(LegajoadjuntoPeer::ID, $this->id);
 
 		return $criteria;
 	}
@@ -312,6 +349,7 @@ abstract class BaseLegajoadjunto extends BaseObject  implements Persistent {
 	{
 		$criteria = new Criteria(LegajoadjuntoPeer::DATABASE_NAME);
 
+		$criteria->add(LegajoadjuntoPeer::ID, $this->id);
 
 		return $criteria;
 	}
@@ -319,13 +357,14 @@ abstract class BaseLegajoadjunto extends BaseObject  implements Persistent {
 	
 	public function getPrimaryKey()
 	{
-		return null;
+		return $this->getId();
 	}
 
 	
-	 public function setPrimaryKey($pk)
-	 {
-		 	 }
+	public function setPrimaryKey($key)
+	{
+		$this->setId($key);
+	}
 
 	
 	public function copyInto($copyObj, $deepCopy = false)
@@ -338,6 +377,7 @@ abstract class BaseLegajoadjunto extends BaseObject  implements Persistent {
 
 		$copyObj->setNew(true);
 
+		$copyObj->setId(NULL); 
 	}
 
 	
@@ -356,36 +396,6 @@ abstract class BaseLegajoadjunto extends BaseObject  implements Persistent {
 			self::$peer = new LegajoadjuntoPeer();
 		}
 		return self::$peer;
-	}
-
-	
-	public function setAdjunto($v)
-	{
-
-
-		if ($v === null) {
-			$this->setFkAdjuntoId(NULL);
-		} else {
-			$this->setFkAdjuntoId($v->getId());
-		}
-
-
-		$this->aAdjunto = $v;
-	}
-
-
-	
-	public function getAdjunto($con = null)
-	{
-				include_once 'lib/model/om/BaseAdjuntoPeer.php';
-
-		if ($this->aAdjunto === null && ($this->fk_adjunto_id !== null)) {
-
-			$this->aAdjunto = AdjuntoPeer::retrieveByPK($this->fk_adjunto_id, $con);
-
-			
-		}
-		return $this->aAdjunto;
 	}
 
 	
@@ -416,6 +426,36 @@ abstract class BaseLegajoadjunto extends BaseObject  implements Persistent {
 			
 		}
 		return $this->aLegajopedagogico;
+	}
+
+	
+	public function setAdjunto($v)
+	{
+
+
+		if ($v === null) {
+			$this->setFkAdjuntoId(NULL);
+		} else {
+			$this->setFkAdjuntoId($v->getId());
+		}
+
+
+		$this->aAdjunto = $v;
+	}
+
+
+	
+	public function getAdjunto($con = null)
+	{
+				include_once 'lib/model/om/BaseAdjuntoPeer.php';
+
+		if ($this->aAdjunto === null && ($this->fk_adjunto_id !== null)) {
+
+			$this->aAdjunto = AdjuntoPeer::retrieveByPK($this->fk_adjunto_id, $con);
+
+			
+		}
+		return $this->aAdjunto;
 	}
 
 } 

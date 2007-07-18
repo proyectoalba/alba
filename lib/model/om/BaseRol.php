@@ -13,11 +13,11 @@ abstract class BaseRol extends BaseObject  implements Persistent {
 
 
 	
-	protected $nombre = '';
+	protected $nombre = 'null';
 
 
 	
-	protected $descripcion = '';
+	protected $descripcion = 'null';
 
 
 	
@@ -85,7 +85,7 @@ abstract class BaseRol extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->nombre !== $v || $v === '') {
+		if ($this->nombre !== $v || $v === 'null') {
 			$this->nombre = $v;
 			$this->modifiedColumns[] = RolPeer::NOMBRE;
 		}
@@ -99,7 +99,7 @@ abstract class BaseRol extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->descripcion !== $v || $v === '') {
+		if ($this->descripcion !== $v || $v === 'null') {
 			$this->descripcion = $v;
 			$this->modifiedColumns[] = RolPeer::DESCRIPCION;
 		}

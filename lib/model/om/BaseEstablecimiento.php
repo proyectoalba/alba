@@ -13,7 +13,7 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 
 
 	
-	protected $nombre = '';
+	protected $nombre = 'null';
 
 
 	
@@ -32,13 +32,13 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 	protected $fk_niveltipo_id = 0;
 
 	
-	protected $aNiveltipo;
+	protected $aDistritoescolar;
 
 	
 	protected $aOrganizacion;
 
 	
-	protected $aDistritoescolar;
+	protected $aNiveltipo;
 
 	
 	protected $collRelEstablecimientoLocacions;
@@ -170,7 +170,7 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->nombre !== $v || $v === '') {
+		if ($this->nombre !== $v || $v === 'null') {
 			$this->nombre = $v;
 			$this->modifiedColumns[] = EstablecimientoPeer::NOMBRE;
 		}
@@ -323,11 +323,11 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 
 
 												
-			if ($this->aNiveltipo !== null) {
-				if ($this->aNiveltipo->isModified()) {
-					$affectedRows += $this->aNiveltipo->save($con);
+			if ($this->aDistritoescolar !== null) {
+				if ($this->aDistritoescolar->isModified()) {
+					$affectedRows += $this->aDistritoescolar->save($con);
 				}
-				$this->setNiveltipo($this->aNiveltipo);
+				$this->setDistritoescolar($this->aDistritoescolar);
 			}
 
 			if ($this->aOrganizacion !== null) {
@@ -337,11 +337,11 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 				$this->setOrganizacion($this->aOrganizacion);
 			}
 
-			if ($this->aDistritoescolar !== null) {
-				if ($this->aDistritoescolar->isModified()) {
-					$affectedRows += $this->aDistritoescolar->save($con);
+			if ($this->aNiveltipo !== null) {
+				if ($this->aNiveltipo->isModified()) {
+					$affectedRows += $this->aNiveltipo->save($con);
 				}
-				$this->setDistritoescolar($this->aDistritoescolar);
+				$this->setNiveltipo($this->aNiveltipo);
 			}
 
 
@@ -473,9 +473,9 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 
 
 												
-			if ($this->aNiveltipo !== null) {
-				if (!$this->aNiveltipo->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aNiveltipo->getValidationFailures());
+			if ($this->aDistritoescolar !== null) {
+				if (!$this->aDistritoescolar->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aDistritoescolar->getValidationFailures());
 				}
 			}
 
@@ -485,9 +485,9 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 				}
 			}
 
-			if ($this->aDistritoescolar !== null) {
-				if (!$this->aDistritoescolar->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aDistritoescolar->getValidationFailures());
+			if ($this->aNiveltipo !== null) {
+				if (!$this->aNiveltipo->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aNiveltipo->getValidationFailures());
 				}
 			}
 
@@ -798,33 +798,33 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 	}
 
 	
-	public function setNiveltipo($v)
+	public function setDistritoescolar($v)
 	{
 
 
 		if ($v === null) {
-			$this->setFkNiveltipoId('0');
+			$this->setFkDistritoescolarId('0');
 		} else {
-			$this->setFkNiveltipoId($v->getId());
+			$this->setFkDistritoescolarId($v->getId());
 		}
 
 
-		$this->aNiveltipo = $v;
+		$this->aDistritoescolar = $v;
 	}
 
 
 	
-	public function getNiveltipo($con = null)
+	public function getDistritoescolar($con = null)
 	{
-				include_once 'lib/model/om/BaseNiveltipoPeer.php';
+				include_once 'lib/model/om/BaseDistritoescolarPeer.php';
 
-		if ($this->aNiveltipo === null && ($this->fk_niveltipo_id !== null)) {
+		if ($this->aDistritoescolar === null && ($this->fk_distritoescolar_id !== null)) {
 
-			$this->aNiveltipo = NiveltipoPeer::retrieveByPK($this->fk_niveltipo_id, $con);
+			$this->aDistritoescolar = DistritoescolarPeer::retrieveByPK($this->fk_distritoescolar_id, $con);
 
 			
 		}
-		return $this->aNiveltipo;
+		return $this->aDistritoescolar;
 	}
 
 	
@@ -858,33 +858,33 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 	}
 
 	
-	public function setDistritoescolar($v)
+	public function setNiveltipo($v)
 	{
 
 
 		if ($v === null) {
-			$this->setFkDistritoescolarId('0');
+			$this->setFkNiveltipoId('0');
 		} else {
-			$this->setFkDistritoescolarId($v->getId());
+			$this->setFkNiveltipoId($v->getId());
 		}
 
 
-		$this->aDistritoescolar = $v;
+		$this->aNiveltipo = $v;
 	}
 
 
 	
-	public function getDistritoescolar($con = null)
+	public function getNiveltipo($con = null)
 	{
-				include_once 'lib/model/om/BaseDistritoescolarPeer.php';
+				include_once 'lib/model/om/BaseNiveltipoPeer.php';
 
-		if ($this->aDistritoescolar === null && ($this->fk_distritoescolar_id !== null)) {
+		if ($this->aNiveltipo === null && ($this->fk_niveltipo_id !== null)) {
 
-			$this->aDistritoescolar = DistritoescolarPeer::retrieveByPK($this->fk_distritoescolar_id, $con);
+			$this->aNiveltipo = NiveltipoPeer::retrieveByPK($this->fk_niveltipo_id, $con);
 
 			
 		}
-		return $this->aDistritoescolar;
+		return $this->aNiveltipo;
 	}
 
 	
@@ -1134,6 +1134,41 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 
 
 	
+	public function getAlumnosJoinProvincia($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseAlumnoPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collAlumnos === null) {
+			if ($this->isNew()) {
+				$this->collAlumnos = array();
+			} else {
+
+				$criteria->add(AlumnoPeer::FK_ESTABLECIMIENTO_ID, $this->getId());
+
+				$this->collAlumnos = AlumnoPeer::doSelectJoinProvincia($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(AlumnoPeer::FK_ESTABLECIMIENTO_ID, $this->getId());
+
+			if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
+				$this->collAlumnos = AlumnoPeer::doSelectJoinProvincia($criteria, $con);
+			}
+		}
+		$this->lastAlumnoCriteria = $criteria;
+
+		return $this->collAlumnos;
+	}
+
+
+	
 	public function getAlumnosJoinTipodocumento($criteria = null, $con = null)
 	{
 				include_once 'lib/model/om/BaseAlumnoPeer.php';
@@ -1195,41 +1230,6 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 
 			if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
 				$this->collAlumnos = AlumnoPeer::doSelectJoinCuenta($criteria, $con);
-			}
-		}
-		$this->lastAlumnoCriteria = $criteria;
-
-		return $this->collAlumnos;
-	}
-
-
-	
-	public function getAlumnosJoinProvincia($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseAlumnoPeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collAlumnos === null) {
-			if ($this->isNew()) {
-				$this->collAlumnos = array();
-			} else {
-
-				$criteria->add(AlumnoPeer::FK_ESTABLECIMIENTO_ID, $this->getId());
-
-				$this->collAlumnos = AlumnoPeer::doSelectJoinProvincia($criteria, $con);
-			}
-		} else {
-									
-			$criteria->add(AlumnoPeer::FK_ESTABLECIMIENTO_ID, $this->getId());
-
-			if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
-				$this->collAlumnos = AlumnoPeer::doSelectJoinProvincia($criteria, $con);
 			}
 		}
 		$this->lastAlumnoCriteria = $criteria;
@@ -1834,41 +1834,6 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 
 
 	
-	public function getHorarioescolarsJoinHorarioescolartipo($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseHorarioescolarPeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collHorarioescolars === null) {
-			if ($this->isNew()) {
-				$this->collHorarioescolars = array();
-			} else {
-
-				$criteria->add(HorarioescolarPeer::FK_ESTABLECIMIENTO_ID, $this->getId());
-
-				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinHorarioescolartipo($criteria, $con);
-			}
-		} else {
-									
-			$criteria->add(HorarioescolarPeer::FK_ESTABLECIMIENTO_ID, $this->getId());
-
-			if (!isset($this->lastHorarioescolarCriteria) || !$this->lastHorarioescolarCriteria->equals($criteria)) {
-				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinHorarioescolartipo($criteria, $con);
-			}
-		}
-		$this->lastHorarioescolarCriteria = $criteria;
-
-		return $this->collHorarioescolars;
-	}
-
-
-	
 	public function getHorarioescolarsJoinTurnos($criteria = null, $con = null)
 	{
 				include_once 'lib/model/om/BaseHorarioescolarPeer.php';
@@ -1895,6 +1860,41 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 
 			if (!isset($this->lastHorarioescolarCriteria) || !$this->lastHorarioescolarCriteria->equals($criteria)) {
 				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinTurnos($criteria, $con);
+			}
+		}
+		$this->lastHorarioescolarCriteria = $criteria;
+
+		return $this->collHorarioescolars;
+	}
+
+
+	
+	public function getHorarioescolarsJoinHorarioescolartipo($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseHorarioescolarPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collHorarioescolars === null) {
+			if ($this->isNew()) {
+				$this->collHorarioescolars = array();
+			} else {
+
+				$criteria->add(HorarioescolarPeer::FK_ESTABLECIMIENTO_ID, $this->getId());
+
+				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinHorarioescolartipo($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(HorarioescolarPeer::FK_ESTABLECIMIENTO_ID, $this->getId());
+
+			if (!isset($this->lastHorarioescolarCriteria) || !$this->lastHorarioescolarCriteria->equals($criteria)) {
+				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinHorarioescolartipo($criteria, $con);
 			}
 		}
 		$this->lastHorarioescolarCriteria = $criteria;

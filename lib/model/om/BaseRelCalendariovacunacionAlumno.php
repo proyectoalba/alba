@@ -25,17 +25,17 @@ abstract class BaseRelCalendariovacunacionAlumno extends BaseObject  implements 
 
 
 	
-	protected $comprobante = true;
+	protected $comprobante = false;
 
 
 	
 	protected $fecha;
 
 	
-	protected $aCalendariovacunacion;
+	protected $aAlumno;
 
 	
-	protected $aAlumno;
+	protected $aCalendariovacunacion;
 
 	
 	protected $alreadyInSave = false;
@@ -168,7 +168,7 @@ abstract class BaseRelCalendariovacunacionAlumno extends BaseObject  implements 
 	public function setComprobante($v)
 	{
 
-		if ($this->comprobante !== $v || $v === true) {
+		if ($this->comprobante !== $v || $v === false) {
 			$this->comprobante = $v;
 			$this->modifiedColumns[] = RelCalendariovacunacionAlumnoPeer::COMPROBANTE;
 		}
@@ -270,18 +270,18 @@ abstract class BaseRelCalendariovacunacionAlumno extends BaseObject  implements 
 
 
 												
-			if ($this->aCalendariovacunacion !== null) {
-				if ($this->aCalendariovacunacion->isModified()) {
-					$affectedRows += $this->aCalendariovacunacion->save($con);
-				}
-				$this->setCalendariovacunacion($this->aCalendariovacunacion);
-			}
-
 			if ($this->aAlumno !== null) {
 				if ($this->aAlumno->isModified()) {
 					$affectedRows += $this->aAlumno->save($con);
 				}
 				$this->setAlumno($this->aAlumno);
+			}
+
+			if ($this->aCalendariovacunacion !== null) {
+				if ($this->aCalendariovacunacion->isModified()) {
+					$affectedRows += $this->aCalendariovacunacion->save($con);
+				}
+				$this->setCalendariovacunacion($this->aCalendariovacunacion);
 			}
 
 
@@ -333,15 +333,15 @@ abstract class BaseRelCalendariovacunacionAlumno extends BaseObject  implements 
 
 
 												
-			if ($this->aCalendariovacunacion !== null) {
-				if (!$this->aCalendariovacunacion->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aCalendariovacunacion->getValidationFailures());
-				}
-			}
-
 			if ($this->aAlumno !== null) {
 				if (!$this->aAlumno->validate($columns)) {
 					$failureMap = array_merge($failureMap, $this->aAlumno->getValidationFailures());
+				}
+			}
+
+			if ($this->aCalendariovacunacion !== null) {
+				if (!$this->aCalendariovacunacion->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aCalendariovacunacion->getValidationFailures());
 				}
 			}
 
@@ -527,36 +527,6 @@ abstract class BaseRelCalendariovacunacionAlumno extends BaseObject  implements 
 	}
 
 	
-	public function setCalendariovacunacion($v)
-	{
-
-
-		if ($v === null) {
-			$this->setFkCalendariovacunacionId(NULL);
-		} else {
-			$this->setFkCalendariovacunacionId($v->getId());
-		}
-
-
-		$this->aCalendariovacunacion = $v;
-	}
-
-
-	
-	public function getCalendariovacunacion($con = null)
-	{
-				include_once 'lib/model/om/BaseCalendariovacunacionPeer.php';
-
-		if ($this->aCalendariovacunacion === null && ($this->fk_calendariovacunacion_id !== null)) {
-
-			$this->aCalendariovacunacion = CalendariovacunacionPeer::retrieveByPK($this->fk_calendariovacunacion_id, $con);
-
-			
-		}
-		return $this->aCalendariovacunacion;
-	}
-
-	
 	public function setAlumno($v)
 	{
 
@@ -584,6 +554,36 @@ abstract class BaseRelCalendariovacunacionAlumno extends BaseObject  implements 
 			
 		}
 		return $this->aAlumno;
+	}
+
+	
+	public function setCalendariovacunacion($v)
+	{
+
+
+		if ($v === null) {
+			$this->setFkCalendariovacunacionId(NULL);
+		} else {
+			$this->setFkCalendariovacunacionId($v->getId());
+		}
+
+
+		$this->aCalendariovacunacion = $v;
+	}
+
+
+	
+	public function getCalendariovacunacion($con = null)
+	{
+				include_once 'lib/model/om/BaseCalendariovacunacionPeer.php';
+
+		if ($this->aCalendariovacunacion === null && ($this->fk_calendariovacunacion_id !== null)) {
+
+			$this->aCalendariovacunacion = CalendariovacunacionPeer::retrieveByPK($this->fk_calendariovacunacion_id, $con);
+
+			
+		}
+		return $this->aCalendariovacunacion;
 	}
 
 } 

@@ -25,7 +25,7 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 
 
 	
-	protected $descripcion = '';
+	protected $descripcion = 'null';
 
 	
 	protected $aCiclolectivo;
@@ -187,7 +187,7 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->descripcion !== $v || $v === '') {
+		if ($this->descripcion !== $v || $v === 'null') {
 			$this->descripcion = $v;
 			$this->modifiedColumns[] = TurnosPeer::DESCRIPCION;
 		}
@@ -754,41 +754,6 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 
 
 	
-	public function getHorarioescolarsJoinHorarioescolartipo($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseHorarioescolarPeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collHorarioescolars === null) {
-			if ($this->isNew()) {
-				$this->collHorarioescolars = array();
-			} else {
-
-				$criteria->add(HorarioescolarPeer::FK_TURNOS_ID, $this->getId());
-
-				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinHorarioescolartipo($criteria, $con);
-			}
-		} else {
-									
-			$criteria->add(HorarioescolarPeer::FK_TURNOS_ID, $this->getId());
-
-			if (!isset($this->lastHorarioescolarCriteria) || !$this->lastHorarioescolarCriteria->equals($criteria)) {
-				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinHorarioescolartipo($criteria, $con);
-			}
-		}
-		$this->lastHorarioescolarCriteria = $criteria;
-
-		return $this->collHorarioescolars;
-	}
-
-
-	
 	public function getHorarioescolarsJoinEstablecimiento($criteria = null, $con = null)
 	{
 				include_once 'lib/model/om/BaseHorarioescolarPeer.php';
@@ -815,6 +780,41 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 
 			if (!isset($this->lastHorarioescolarCriteria) || !$this->lastHorarioescolarCriteria->equals($criteria)) {
 				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinEstablecimiento($criteria, $con);
+			}
+		}
+		$this->lastHorarioescolarCriteria = $criteria;
+
+		return $this->collHorarioescolars;
+	}
+
+
+	
+	public function getHorarioescolarsJoinHorarioescolartipo($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseHorarioescolarPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collHorarioescolars === null) {
+			if ($this->isNew()) {
+				$this->collHorarioescolars = array();
+			} else {
+
+				$criteria->add(HorarioescolarPeer::FK_TURNOS_ID, $this->getId());
+
+				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinHorarioescolartipo($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(HorarioescolarPeer::FK_TURNOS_ID, $this->getId());
+
+			if (!isset($this->lastHorarioescolarCriteria) || !$this->lastHorarioescolarCriteria->equals($criteria)) {
+				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinHorarioescolartipo($criteria, $con);
 			}
 		}
 		$this->lastHorarioescolarCriteria = $criteria;

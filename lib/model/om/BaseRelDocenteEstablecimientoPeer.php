@@ -13,7 +13,7 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 	const CLASS_DEFAULT = 'lib.model.RelDocenteEstablecimiento';
 
 	
-	const NUM_COLUMNS = 2;
+	const NUM_COLUMNS = 3;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -26,23 +26,26 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 	const FK_DOCENTE_ID = 'rel_docente_establecimiento.FK_DOCENTE_ID';
 
 	
+	const ID = 'rel_docente_establecimiento.ID';
+
+	
 	private static $phpNameMap = null;
 
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('FkEstablecimientoId', 'FkDocenteId', ),
-		BasePeer::TYPE_COLNAME => array (RelDocenteEstablecimientoPeer::FK_ESTABLECIMIENTO_ID, RelDocenteEstablecimientoPeer::FK_DOCENTE_ID, ),
-		BasePeer::TYPE_FIELDNAME => array ('fk_establecimiento_id', 'fk_docente_id', ),
-		BasePeer::TYPE_NUM => array (0, 1, )
+		BasePeer::TYPE_PHPNAME => array ('FkEstablecimientoId', 'FkDocenteId', 'Id', ),
+		BasePeer::TYPE_COLNAME => array (RelDocenteEstablecimientoPeer::FK_ESTABLECIMIENTO_ID, RelDocenteEstablecimientoPeer::FK_DOCENTE_ID, RelDocenteEstablecimientoPeer::ID, ),
+		BasePeer::TYPE_FIELDNAME => array ('fk_establecimiento_id', 'fk_docente_id', 'id', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('FkEstablecimientoId' => 0, 'FkDocenteId' => 1, ),
-		BasePeer::TYPE_COLNAME => array (RelDocenteEstablecimientoPeer::FK_ESTABLECIMIENTO_ID => 0, RelDocenteEstablecimientoPeer::FK_DOCENTE_ID => 1, ),
-		BasePeer::TYPE_FIELDNAME => array ('fk_establecimiento_id' => 0, 'fk_docente_id' => 1, ),
-		BasePeer::TYPE_NUM => array (0, 1, )
+		BasePeer::TYPE_PHPNAME => array ('FkEstablecimientoId' => 0, 'FkDocenteId' => 1, 'Id' => 2, ),
+		BasePeer::TYPE_COLNAME => array (RelDocenteEstablecimientoPeer::FK_ESTABLECIMIENTO_ID => 0, RelDocenteEstablecimientoPeer::FK_DOCENTE_ID => 1, RelDocenteEstablecimientoPeer::ID => 2, ),
+		BasePeer::TYPE_FIELDNAME => array ('fk_establecimiento_id' => 0, 'fk_docente_id' => 1, 'id' => 2, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, )
 	);
 
 	
@@ -100,10 +103,12 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 
 		$criteria->addSelectColumn(RelDocenteEstablecimientoPeer::FK_DOCENTE_ID);
 
+		$criteria->addSelectColumn(RelDocenteEstablecimientoPeer::ID);
+
 	}
 
-	const COUNT = 'COUNT(*)';
-	const COUNT_DISTINCT = 'COUNT(DISTINCT *)';
+	const COUNT = 'COUNT(rel_docente_establecimiento.ID)';
+	const COUNT_DISTINCT = 'COUNT(DISTINCT rel_docente_establecimiento.ID)';
 
 	
 	public static function doCount(Criteria $criteria, $distinct = false, $con = null)
@@ -179,34 +184,6 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 	}
 
 	
-	public static function doCountJoinDocente(Criteria $criteria, $distinct = false, $con = null)
-	{
-				$criteria = clone $criteria;
-
-				$criteria->clearSelectColumns()->clearOrderByColumns();
-		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(RelDocenteEstablecimientoPeer::COUNT_DISTINCT);
-		} else {
-			$criteria->addSelectColumn(RelDocenteEstablecimientoPeer::COUNT);
-		}
-
-				foreach($criteria->getGroupByColumns() as $column)
-		{
-			$criteria->addSelectColumn($column);
-		}
-
-		$criteria->addJoin(RelDocenteEstablecimientoPeer::FK_DOCENTE_ID, DocentePeer::ID);
-
-		$rs = RelDocenteEstablecimientoPeer::doSelectRS($criteria, $con);
-		if ($rs->next()) {
-			return $rs->getInt(1);
-		} else {
-						return 0;
-		}
-	}
-
-
-	
 	public static function doCountJoinEstablecimiento(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
@@ -235,49 +212,30 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 
 
 	
-	public static function doSelectJoinDocente(Criteria $c, $con = null)
+	public static function doCountJoinDocente(Criteria $criteria, $distinct = false, $con = null)
 	{
-		$c = clone $c;
+				$criteria = clone $criteria;
 
-				if ($c->getDbName() == Propel::getDefaultDB()) {
-			$c->setDbName(self::DATABASE_NAME);
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(RelDocenteEstablecimientoPeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(RelDocenteEstablecimientoPeer::COUNT);
 		}
 
-		RelDocenteEstablecimientoPeer::addSelectColumns($c);
-		$startcol = (RelDocenteEstablecimientoPeer::NUM_COLUMNS - RelDocenteEstablecimientoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-		DocentePeer::addSelectColumns($c);
-
-		$c->addJoin(RelDocenteEstablecimientoPeer::FK_DOCENTE_ID, DocentePeer::ID);
-		$rs = BasePeer::doSelect($c, $con);
-		$results = array();
-
-		while($rs->next()) {
-
-			$omClass = RelDocenteEstablecimientoPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj1 = new $cls();
-			$obj1->hydrate($rs);
-
-			$omClass = DocentePeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj2 = new $cls();
-			$obj2->hydrate($rs, $startcol);
-
-			$newObject = true;
-			foreach($results as $temp_obj1) {
-				$temp_obj2 = $temp_obj1->getDocente(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
-					$newObject = false;
-										$temp_obj2->addRelDocenteEstablecimiento($obj1); 					break;
-				}
-			}
-			if ($newObject) {
-				$obj2->initRelDocenteEstablecimientos();
-				$obj2->addRelDocenteEstablecimiento($obj1); 			}
-			$results[] = $obj1;
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
 		}
-		return $results;
+
+		$criteria->addJoin(RelDocenteEstablecimientoPeer::FK_DOCENTE_ID, DocentePeer::ID);
+
+		$rs = RelDocenteEstablecimientoPeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
 	}
 
 
@@ -329,6 +287,53 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 
 
 	
+	public static function doSelectJoinDocente(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+				if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		RelDocenteEstablecimientoPeer::addSelectColumns($c);
+		$startcol = (RelDocenteEstablecimientoPeer::NUM_COLUMNS - RelDocenteEstablecimientoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+		DocentePeer::addSelectColumns($c);
+
+		$c->addJoin(RelDocenteEstablecimientoPeer::FK_DOCENTE_ID, DocentePeer::ID);
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = RelDocenteEstablecimientoPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = DocentePeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj2 = new $cls();
+			$obj2->hydrate($rs, $startcol);
+
+			$newObject = true;
+			foreach($results as $temp_obj1) {
+				$temp_obj2 = $temp_obj1->getDocente(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+										$temp_obj2->addRelDocenteEstablecimiento($obj1); 					break;
+				}
+			}
+			if ($newObject) {
+				$obj2->initRelDocenteEstablecimientos();
+				$obj2->addRelDocenteEstablecimiento($obj1); 			}
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	
 	public static function doCountJoinAll(Criteria $criteria, $distinct = false, $con = null)
 	{
 		$criteria = clone $criteria;
@@ -345,9 +350,9 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(RelDocenteEstablecimientoPeer::FK_DOCENTE_ID, DocentePeer::ID);
-
 		$criteria->addJoin(RelDocenteEstablecimientoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
+
+		$criteria->addJoin(RelDocenteEstablecimientoPeer::FK_DOCENTE_ID, DocentePeer::ID);
 
 		$rs = RelDocenteEstablecimientoPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -370,15 +375,15 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 		RelDocenteEstablecimientoPeer::addSelectColumns($c);
 		$startcol2 = (RelDocenteEstablecimientoPeer::NUM_COLUMNS - RelDocenteEstablecimientoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
-		DocentePeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + DocentePeer::NUM_COLUMNS;
-
 		EstablecimientoPeer::addSelectColumns($c);
-		$startcol4 = $startcol3 + EstablecimientoPeer::NUM_COLUMNS;
+		$startcol3 = $startcol2 + EstablecimientoPeer::NUM_COLUMNS;
 
-		$c->addJoin(RelDocenteEstablecimientoPeer::FK_DOCENTE_ID, DocentePeer::ID);
+		DocentePeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + DocentePeer::NUM_COLUMNS;
 
 		$c->addJoin(RelDocenteEstablecimientoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
+
+		$c->addJoin(RelDocenteEstablecimientoPeer::FK_DOCENTE_ID, DocentePeer::ID);
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
@@ -394,7 +399,7 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 
 
 					
-			$omClass = DocentePeer::getOMClass();
+			$omClass = EstablecimientoPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -404,7 +409,7 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getDocente(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getEstablecimiento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addRelDocenteEstablecimiento($obj1); 					break;
 				}
@@ -417,7 +422,7 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 
 
 					
-			$omClass = EstablecimientoPeer::getOMClass();
+			$omClass = DocentePeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -427,7 +432,7 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getEstablecimiento(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+				$temp_obj3 = $temp_obj1->getDocente(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj3->addRelDocenteEstablecimiento($obj1); 					break;
 				}
@@ -441,34 +446,6 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 			$results[] = $obj1;
 		}
 		return $results;
-	}
-
-
-	
-	public static function doCountJoinAllExceptDocente(Criteria $criteria, $distinct = false, $con = null)
-	{
-				$criteria = clone $criteria;
-
-				$criteria->clearSelectColumns()->clearOrderByColumns();
-		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(RelDocenteEstablecimientoPeer::COUNT_DISTINCT);
-		} else {
-			$criteria->addSelectColumn(RelDocenteEstablecimientoPeer::COUNT);
-		}
-
-				foreach($criteria->getGroupByColumns() as $column)
-		{
-			$criteria->addSelectColumn($column);
-		}
-
-		$criteria->addJoin(RelDocenteEstablecimientoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
-
-		$rs = RelDocenteEstablecimientoPeer::doSelectRS($criteria, $con);
-		if ($rs->next()) {
-			return $rs->getInt(1);
-		} else {
-						return 0;
-		}
 	}
 
 
@@ -501,59 +478,30 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 
 
 	
-	public static function doSelectJoinAllExceptDocente(Criteria $c, $con = null)
+	public static function doCountJoinAllExceptDocente(Criteria $criteria, $distinct = false, $con = null)
 	{
-		$c = clone $c;
+				$criteria = clone $criteria;
 
-								if ($c->getDbName() == Propel::getDefaultDB()) {
-			$c->setDbName(self::DATABASE_NAME);
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(RelDocenteEstablecimientoPeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(RelDocenteEstablecimientoPeer::COUNT);
 		}
 
-		RelDocenteEstablecimientoPeer::addSelectColumns($c);
-		$startcol2 = (RelDocenteEstablecimientoPeer::NUM_COLUMNS - RelDocenteEstablecimientoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-
-		EstablecimientoPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + EstablecimientoPeer::NUM_COLUMNS;
-
-		$c->addJoin(RelDocenteEstablecimientoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
-
-
-		$rs = BasePeer::doSelect($c, $con);
-		$results = array();
-
-		while($rs->next()) {
-
-			$omClass = RelDocenteEstablecimientoPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj1 = new $cls();
-			$obj1->hydrate($rs);
-
-			$omClass = EstablecimientoPeer::getOMClass();
-
-
-			$cls = Propel::import($omClass);
-			$obj2  = new $cls();
-			$obj2->hydrate($rs, $startcol2);
-
-			$newObject = true;
-			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
-				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getEstablecimiento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
-					$newObject = false;
-					$temp_obj2->addRelDocenteEstablecimiento($obj1);
-					break;
-				}
-			}
-
-			if ($newObject) {
-				$obj2->initRelDocenteEstablecimientos();
-				$obj2->addRelDocenteEstablecimiento($obj1);
-			}
-
-			$results[] = $obj1;
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
 		}
-		return $results;
+
+		$criteria->addJoin(RelDocenteEstablecimientoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
+
+		$rs = RelDocenteEstablecimientoPeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
 	}
 
 
@@ -613,6 +561,63 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 		return $results;
 	}
 
+
+	
+	public static function doSelectJoinAllExceptDocente(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+								if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		RelDocenteEstablecimientoPeer::addSelectColumns($c);
+		$startcol2 = (RelDocenteEstablecimientoPeer::NUM_COLUMNS - RelDocenteEstablecimientoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+
+		EstablecimientoPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + EstablecimientoPeer::NUM_COLUMNS;
+
+		$c->addJoin(RelDocenteEstablecimientoPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
+
+
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = RelDocenteEstablecimientoPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = EstablecimientoPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj2  = new $cls();
+			$obj2->hydrate($rs, $startcol2);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj2 = $temp_obj1->getEstablecimiento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj2->addRelDocenteEstablecimiento($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj2->initRelDocenteEstablecimientos();
+				$obj2->addRelDocenteEstablecimiento($obj1);
+			}
+
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
 	
 	public static function getTableMap()
 	{
@@ -636,6 +641,7 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 			$criteria = clone $values; 		} else {
 			$criteria = $values->buildCriteria(); 		}
 
+		$criteria->remove(RelDocenteEstablecimientoPeer::ID); 
 
 				$criteria->setDbName(self::DATABASE_NAME);
 
@@ -662,6 +668,9 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 
 		if ($values instanceof Criteria) {
 			$criteria = clone $values; 
+			$comparison = $criteria->getComparison(RelDocenteEstablecimientoPeer::ID);
+			$selectCriteria->add(RelDocenteEstablecimientoPeer::ID, $criteria->remove(RelDocenteEstablecimientoPeer::ID), $comparison);
+
 		} else { 			$criteria = $values->buildCriteria(); 			$selectCriteria = $values->buildPkeyCriteria(); 		}
 
 				$criteria->setDbName(self::DATABASE_NAME);
@@ -696,19 +705,10 @@ abstract class BaseRelDocenteEstablecimientoPeer {
 		if ($values instanceof Criteria) {
 			$criteria = clone $values; 		} elseif ($values instanceof RelDocenteEstablecimiento) {
 
-			$criteria = $values->buildCriteria();
+			$criteria = $values->buildPkeyCriteria();
 		} else {
 						$criteria = new Criteria(self::DATABASE_NAME);
-												if(count($values) == count($values, COUNT_RECURSIVE))
-			{
-								$values = array($values);
-			}
-			$vals = array();
-			foreach($values as $value)
-			{
-
-			}
-
+			$criteria->add(RelDocenteEstablecimientoPeer::ID, (array) $values, Criteria::IN);
 		}
 
 				$criteria->setDbName(self::DATABASE_NAME);
@@ -759,6 +759,41 @@ abstract class BaseRelDocenteEstablecimientoPeer {
     }
 
     return $res;
+	}
+
+	
+	public static function retrieveByPK($pk, $con = null)
+	{
+		if ($con === null) {
+			$con = Propel::getConnection(self::DATABASE_NAME);
+		}
+
+		$criteria = new Criteria(RelDocenteEstablecimientoPeer::DATABASE_NAME);
+
+		$criteria->add(RelDocenteEstablecimientoPeer::ID, $pk);
+
+
+		$v = RelDocenteEstablecimientoPeer::doSelect($criteria, $con);
+
+		return !empty($v) > 0 ? $v[0] : null;
+	}
+
+	
+	public static function retrieveByPKs($pks, $con = null)
+	{
+		if ($con === null) {
+			$con = Propel::getConnection(self::DATABASE_NAME);
+		}
+
+		$objs = null;
+		if (empty($pks)) {
+			$objs = array();
+		} else {
+			$criteria = new Criteria();
+			$criteria->add(RelDocenteEstablecimientoPeer::ID, $pks, Criteria::IN);
+			$objs = RelDocenteEstablecimientoPeer::doSelect($criteria, $con);
+		}
+		return $objs;
 	}
 
 } 

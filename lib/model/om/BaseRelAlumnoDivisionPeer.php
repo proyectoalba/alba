@@ -184,34 +184,6 @@ abstract class BaseRelAlumnoDivisionPeer {
 	}
 
 	
-	public static function doCountJoinAlumno(Criteria $criteria, $distinct = false, $con = null)
-	{
-				$criteria = clone $criteria;
-
-				$criteria->clearSelectColumns()->clearOrderByColumns();
-		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(RelAlumnoDivisionPeer::COUNT_DISTINCT);
-		} else {
-			$criteria->addSelectColumn(RelAlumnoDivisionPeer::COUNT);
-		}
-
-				foreach($criteria->getGroupByColumns() as $column)
-		{
-			$criteria->addSelectColumn($column);
-		}
-
-		$criteria->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
-
-		$rs = RelAlumnoDivisionPeer::doSelectRS($criteria, $con);
-		if ($rs->next()) {
-			return $rs->getInt(1);
-		} else {
-						return 0;
-		}
-	}
-
-
-	
 	public static function doCountJoinDivision(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
@@ -240,49 +212,30 @@ abstract class BaseRelAlumnoDivisionPeer {
 
 
 	
-	public static function doSelectJoinAlumno(Criteria $c, $con = null)
+	public static function doCountJoinAlumno(Criteria $criteria, $distinct = false, $con = null)
 	{
-		$c = clone $c;
+				$criteria = clone $criteria;
 
-				if ($c->getDbName() == Propel::getDefaultDB()) {
-			$c->setDbName(self::DATABASE_NAME);
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(RelAlumnoDivisionPeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(RelAlumnoDivisionPeer::COUNT);
 		}
 
-		RelAlumnoDivisionPeer::addSelectColumns($c);
-		$startcol = (RelAlumnoDivisionPeer::NUM_COLUMNS - RelAlumnoDivisionPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-		AlumnoPeer::addSelectColumns($c);
-
-		$c->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
-		$rs = BasePeer::doSelect($c, $con);
-		$results = array();
-
-		while($rs->next()) {
-
-			$omClass = RelAlumnoDivisionPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj1 = new $cls();
-			$obj1->hydrate($rs);
-
-			$omClass = AlumnoPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj2 = new $cls();
-			$obj2->hydrate($rs, $startcol);
-
-			$newObject = true;
-			foreach($results as $temp_obj1) {
-				$temp_obj2 = $temp_obj1->getAlumno(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
-					$newObject = false;
-										$temp_obj2->addRelAlumnoDivision($obj1); 					break;
-				}
-			}
-			if ($newObject) {
-				$obj2->initRelAlumnoDivisions();
-				$obj2->addRelAlumnoDivision($obj1); 			}
-			$results[] = $obj1;
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
 		}
-		return $results;
+
+		$criteria->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
+
+		$rs = RelAlumnoDivisionPeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
 	}
 
 
@@ -334,6 +287,53 @@ abstract class BaseRelAlumnoDivisionPeer {
 
 
 	
+	public static function doSelectJoinAlumno(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+				if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		RelAlumnoDivisionPeer::addSelectColumns($c);
+		$startcol = (RelAlumnoDivisionPeer::NUM_COLUMNS - RelAlumnoDivisionPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+		AlumnoPeer::addSelectColumns($c);
+
+		$c->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = RelAlumnoDivisionPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = AlumnoPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj2 = new $cls();
+			$obj2->hydrate($rs, $startcol);
+
+			$newObject = true;
+			foreach($results as $temp_obj1) {
+				$temp_obj2 = $temp_obj1->getAlumno(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+										$temp_obj2->addRelAlumnoDivision($obj1); 					break;
+				}
+			}
+			if ($newObject) {
+				$obj2->initRelAlumnoDivisions();
+				$obj2->addRelAlumnoDivision($obj1); 			}
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	
 	public static function doCountJoinAll(Criteria $criteria, $distinct = false, $con = null)
 	{
 		$criteria = clone $criteria;
@@ -350,9 +350,9 @@ abstract class BaseRelAlumnoDivisionPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
-
 		$criteria->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID);
+
+		$criteria->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
 
 		$rs = RelAlumnoDivisionPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -375,15 +375,15 @@ abstract class BaseRelAlumnoDivisionPeer {
 		RelAlumnoDivisionPeer::addSelectColumns($c);
 		$startcol2 = (RelAlumnoDivisionPeer::NUM_COLUMNS - RelAlumnoDivisionPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
-		AlumnoPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + AlumnoPeer::NUM_COLUMNS;
-
 		DivisionPeer::addSelectColumns($c);
-		$startcol4 = $startcol3 + DivisionPeer::NUM_COLUMNS;
+		$startcol3 = $startcol2 + DivisionPeer::NUM_COLUMNS;
 
-		$c->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
+		AlumnoPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + AlumnoPeer::NUM_COLUMNS;
 
 		$c->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID);
+
+		$c->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
@@ -399,7 +399,7 @@ abstract class BaseRelAlumnoDivisionPeer {
 
 
 					
-			$omClass = AlumnoPeer::getOMClass();
+			$omClass = DivisionPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -409,7 +409,7 @@ abstract class BaseRelAlumnoDivisionPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getAlumno(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getDivision(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addRelAlumnoDivision($obj1); 					break;
 				}
@@ -422,7 +422,7 @@ abstract class BaseRelAlumnoDivisionPeer {
 
 
 					
-			$omClass = DivisionPeer::getOMClass();
+			$omClass = AlumnoPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -432,7 +432,7 @@ abstract class BaseRelAlumnoDivisionPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getDivision(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+				$temp_obj3 = $temp_obj1->getAlumno(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj3->addRelAlumnoDivision($obj1); 					break;
 				}
@@ -446,34 +446,6 @@ abstract class BaseRelAlumnoDivisionPeer {
 			$results[] = $obj1;
 		}
 		return $results;
-	}
-
-
-	
-	public static function doCountJoinAllExceptAlumno(Criteria $criteria, $distinct = false, $con = null)
-	{
-				$criteria = clone $criteria;
-
-				$criteria->clearSelectColumns()->clearOrderByColumns();
-		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(RelAlumnoDivisionPeer::COUNT_DISTINCT);
-		} else {
-			$criteria->addSelectColumn(RelAlumnoDivisionPeer::COUNT);
-		}
-
-				foreach($criteria->getGroupByColumns() as $column)
-		{
-			$criteria->addSelectColumn($column);
-		}
-
-		$criteria->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID);
-
-		$rs = RelAlumnoDivisionPeer::doSelectRS($criteria, $con);
-		if ($rs->next()) {
-			return $rs->getInt(1);
-		} else {
-						return 0;
-		}
 	}
 
 
@@ -506,59 +478,30 @@ abstract class BaseRelAlumnoDivisionPeer {
 
 
 	
-	public static function doSelectJoinAllExceptAlumno(Criteria $c, $con = null)
+	public static function doCountJoinAllExceptAlumno(Criteria $criteria, $distinct = false, $con = null)
 	{
-		$c = clone $c;
+				$criteria = clone $criteria;
 
-								if ($c->getDbName() == Propel::getDefaultDB()) {
-			$c->setDbName(self::DATABASE_NAME);
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(RelAlumnoDivisionPeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(RelAlumnoDivisionPeer::COUNT);
 		}
 
-		RelAlumnoDivisionPeer::addSelectColumns($c);
-		$startcol2 = (RelAlumnoDivisionPeer::NUM_COLUMNS - RelAlumnoDivisionPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-
-		DivisionPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + DivisionPeer::NUM_COLUMNS;
-
-		$c->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID);
-
-
-		$rs = BasePeer::doSelect($c, $con);
-		$results = array();
-
-		while($rs->next()) {
-
-			$omClass = RelAlumnoDivisionPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj1 = new $cls();
-			$obj1->hydrate($rs);
-
-			$omClass = DivisionPeer::getOMClass();
-
-
-			$cls = Propel::import($omClass);
-			$obj2  = new $cls();
-			$obj2->hydrate($rs, $startcol2);
-
-			$newObject = true;
-			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
-				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getDivision(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
-					$newObject = false;
-					$temp_obj2->addRelAlumnoDivision($obj1);
-					break;
-				}
-			}
-
-			if ($newObject) {
-				$obj2->initRelAlumnoDivisions();
-				$obj2->addRelAlumnoDivision($obj1);
-			}
-
-			$results[] = $obj1;
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
 		}
-		return $results;
+
+		$criteria->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID);
+
+		$rs = RelAlumnoDivisionPeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
 	}
 
 
@@ -602,6 +545,63 @@ abstract class BaseRelAlumnoDivisionPeer {
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
 				$temp_obj2 = $temp_obj1->getAlumno(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj2->addRelAlumnoDivision($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj2->initRelAlumnoDivisions();
+				$obj2->addRelAlumnoDivision($obj1);
+			}
+
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	
+	public static function doSelectJoinAllExceptAlumno(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+								if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		RelAlumnoDivisionPeer::addSelectColumns($c);
+		$startcol2 = (RelAlumnoDivisionPeer::NUM_COLUMNS - RelAlumnoDivisionPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+
+		DivisionPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + DivisionPeer::NUM_COLUMNS;
+
+		$c->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID);
+
+
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = RelAlumnoDivisionPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = DivisionPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj2  = new $cls();
+			$obj2->hydrate($rs, $startcol2);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj2 = $temp_obj1->getDivision(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addRelAlumnoDivision($obj1);
 					break;

@@ -189,34 +189,6 @@ abstract class BaseRelAnioActividadPeer {
 	}
 
 	
-	public static function doCountJoinActividad(Criteria $criteria, $distinct = false, $con = null)
-	{
-				$criteria = clone $criteria;
-
-				$criteria->clearSelectColumns()->clearOrderByColumns();
-		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(RelAnioActividadPeer::COUNT_DISTINCT);
-		} else {
-			$criteria->addSelectColumn(RelAnioActividadPeer::COUNT);
-		}
-
-				foreach($criteria->getGroupByColumns() as $column)
-		{
-			$criteria->addSelectColumn($column);
-		}
-
-		$criteria->addJoin(RelAnioActividadPeer::FK_ACTIVIDAD_ID, ActividadPeer::ID);
-
-		$rs = RelAnioActividadPeer::doSelectRS($criteria, $con);
-		if ($rs->next()) {
-			return $rs->getInt(1);
-		} else {
-						return 0;
-		}
-	}
-
-
-	
 	public static function doCountJoinAnio(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
@@ -245,49 +217,30 @@ abstract class BaseRelAnioActividadPeer {
 
 
 	
-	public static function doSelectJoinActividad(Criteria $c, $con = null)
+	public static function doCountJoinActividad(Criteria $criteria, $distinct = false, $con = null)
 	{
-		$c = clone $c;
+				$criteria = clone $criteria;
 
-				if ($c->getDbName() == Propel::getDefaultDB()) {
-			$c->setDbName(self::DATABASE_NAME);
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(RelAnioActividadPeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(RelAnioActividadPeer::COUNT);
 		}
 
-		RelAnioActividadPeer::addSelectColumns($c);
-		$startcol = (RelAnioActividadPeer::NUM_COLUMNS - RelAnioActividadPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-		ActividadPeer::addSelectColumns($c);
-
-		$c->addJoin(RelAnioActividadPeer::FK_ACTIVIDAD_ID, ActividadPeer::ID);
-		$rs = BasePeer::doSelect($c, $con);
-		$results = array();
-
-		while($rs->next()) {
-
-			$omClass = RelAnioActividadPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj1 = new $cls();
-			$obj1->hydrate($rs);
-
-			$omClass = ActividadPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj2 = new $cls();
-			$obj2->hydrate($rs, $startcol);
-
-			$newObject = true;
-			foreach($results as $temp_obj1) {
-				$temp_obj2 = $temp_obj1->getActividad(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
-					$newObject = false;
-										$temp_obj2->addRelAnioActividad($obj1); 					break;
-				}
-			}
-			if ($newObject) {
-				$obj2->initRelAnioActividads();
-				$obj2->addRelAnioActividad($obj1); 			}
-			$results[] = $obj1;
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
 		}
-		return $results;
+
+		$criteria->addJoin(RelAnioActividadPeer::FK_ACTIVIDAD_ID, ActividadPeer::ID);
+
+		$rs = RelAnioActividadPeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
 	}
 
 
@@ -339,6 +292,53 @@ abstract class BaseRelAnioActividadPeer {
 
 
 	
+	public static function doSelectJoinActividad(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+				if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		RelAnioActividadPeer::addSelectColumns($c);
+		$startcol = (RelAnioActividadPeer::NUM_COLUMNS - RelAnioActividadPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+		ActividadPeer::addSelectColumns($c);
+
+		$c->addJoin(RelAnioActividadPeer::FK_ACTIVIDAD_ID, ActividadPeer::ID);
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = RelAnioActividadPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = ActividadPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj2 = new $cls();
+			$obj2->hydrate($rs, $startcol);
+
+			$newObject = true;
+			foreach($results as $temp_obj1) {
+				$temp_obj2 = $temp_obj1->getActividad(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+										$temp_obj2->addRelAnioActividad($obj1); 					break;
+				}
+			}
+			if ($newObject) {
+				$obj2->initRelAnioActividads();
+				$obj2->addRelAnioActividad($obj1); 			}
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	
 	public static function doCountJoinAll(Criteria $criteria, $distinct = false, $con = null)
 	{
 		$criteria = clone $criteria;
@@ -355,9 +355,9 @@ abstract class BaseRelAnioActividadPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(RelAnioActividadPeer::FK_ACTIVIDAD_ID, ActividadPeer::ID);
-
 		$criteria->addJoin(RelAnioActividadPeer::FK_ANIO_ID, AnioPeer::ID);
+
+		$criteria->addJoin(RelAnioActividadPeer::FK_ACTIVIDAD_ID, ActividadPeer::ID);
 
 		$rs = RelAnioActividadPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -380,15 +380,15 @@ abstract class BaseRelAnioActividadPeer {
 		RelAnioActividadPeer::addSelectColumns($c);
 		$startcol2 = (RelAnioActividadPeer::NUM_COLUMNS - RelAnioActividadPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
-		ActividadPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + ActividadPeer::NUM_COLUMNS;
-
 		AnioPeer::addSelectColumns($c);
-		$startcol4 = $startcol3 + AnioPeer::NUM_COLUMNS;
+		$startcol3 = $startcol2 + AnioPeer::NUM_COLUMNS;
 
-		$c->addJoin(RelAnioActividadPeer::FK_ACTIVIDAD_ID, ActividadPeer::ID);
+		ActividadPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + ActividadPeer::NUM_COLUMNS;
 
 		$c->addJoin(RelAnioActividadPeer::FK_ANIO_ID, AnioPeer::ID);
+
+		$c->addJoin(RelAnioActividadPeer::FK_ACTIVIDAD_ID, ActividadPeer::ID);
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
@@ -404,7 +404,7 @@ abstract class BaseRelAnioActividadPeer {
 
 
 					
-			$omClass = ActividadPeer::getOMClass();
+			$omClass = AnioPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -414,7 +414,7 @@ abstract class BaseRelAnioActividadPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getActividad(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getAnio(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addRelAnioActividad($obj1); 					break;
 				}
@@ -427,7 +427,7 @@ abstract class BaseRelAnioActividadPeer {
 
 
 					
-			$omClass = AnioPeer::getOMClass();
+			$omClass = ActividadPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -437,7 +437,7 @@ abstract class BaseRelAnioActividadPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getAnio(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+				$temp_obj3 = $temp_obj1->getActividad(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj3->addRelAnioActividad($obj1); 					break;
 				}
@@ -451,34 +451,6 @@ abstract class BaseRelAnioActividadPeer {
 			$results[] = $obj1;
 		}
 		return $results;
-	}
-
-
-	
-	public static function doCountJoinAllExceptActividad(Criteria $criteria, $distinct = false, $con = null)
-	{
-				$criteria = clone $criteria;
-
-				$criteria->clearSelectColumns()->clearOrderByColumns();
-		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(RelAnioActividadPeer::COUNT_DISTINCT);
-		} else {
-			$criteria->addSelectColumn(RelAnioActividadPeer::COUNT);
-		}
-
-				foreach($criteria->getGroupByColumns() as $column)
-		{
-			$criteria->addSelectColumn($column);
-		}
-
-		$criteria->addJoin(RelAnioActividadPeer::FK_ANIO_ID, AnioPeer::ID);
-
-		$rs = RelAnioActividadPeer::doSelectRS($criteria, $con);
-		if ($rs->next()) {
-			return $rs->getInt(1);
-		} else {
-						return 0;
-		}
 	}
 
 
@@ -511,59 +483,30 @@ abstract class BaseRelAnioActividadPeer {
 
 
 	
-	public static function doSelectJoinAllExceptActividad(Criteria $c, $con = null)
+	public static function doCountJoinAllExceptActividad(Criteria $criteria, $distinct = false, $con = null)
 	{
-		$c = clone $c;
+				$criteria = clone $criteria;
 
-								if ($c->getDbName() == Propel::getDefaultDB()) {
-			$c->setDbName(self::DATABASE_NAME);
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(RelAnioActividadPeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(RelAnioActividadPeer::COUNT);
 		}
 
-		RelAnioActividadPeer::addSelectColumns($c);
-		$startcol2 = (RelAnioActividadPeer::NUM_COLUMNS - RelAnioActividadPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-
-		AnioPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + AnioPeer::NUM_COLUMNS;
-
-		$c->addJoin(RelAnioActividadPeer::FK_ANIO_ID, AnioPeer::ID);
-
-
-		$rs = BasePeer::doSelect($c, $con);
-		$results = array();
-
-		while($rs->next()) {
-
-			$omClass = RelAnioActividadPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj1 = new $cls();
-			$obj1->hydrate($rs);
-
-			$omClass = AnioPeer::getOMClass();
-
-
-			$cls = Propel::import($omClass);
-			$obj2  = new $cls();
-			$obj2->hydrate($rs, $startcol2);
-
-			$newObject = true;
-			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
-				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getAnio(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
-					$newObject = false;
-					$temp_obj2->addRelAnioActividad($obj1);
-					break;
-				}
-			}
-
-			if ($newObject) {
-				$obj2->initRelAnioActividads();
-				$obj2->addRelAnioActividad($obj1);
-			}
-
-			$results[] = $obj1;
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
 		}
-		return $results;
+
+		$criteria->addJoin(RelAnioActividadPeer::FK_ANIO_ID, AnioPeer::ID);
+
+		$rs = RelAnioActividadPeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
 	}
 
 
@@ -607,6 +550,63 @@ abstract class BaseRelAnioActividadPeer {
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
 				$temp_obj2 = $temp_obj1->getActividad(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj2->addRelAnioActividad($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj2->initRelAnioActividads();
+				$obj2->addRelAnioActividad($obj1);
+			}
+
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	
+	public static function doSelectJoinAllExceptActividad(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+								if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		RelAnioActividadPeer::addSelectColumns($c);
+		$startcol2 = (RelAnioActividadPeer::NUM_COLUMNS - RelAnioActividadPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+
+		AnioPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + AnioPeer::NUM_COLUMNS;
+
+		$c->addJoin(RelAnioActividadPeer::FK_ANIO_ID, AnioPeer::ID);
+
+
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = RelAnioActividadPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = AnioPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj2  = new $cls();
+			$obj2->hydrate($rs, $startcol2);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj2 = $temp_obj1->getAnio(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addRelAnioActividad($obj1);
 					break;
