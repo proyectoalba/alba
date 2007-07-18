@@ -1240,18 +1240,13 @@ DROP TABLE IF EXISTS `docente_horario`;
 
 CREATE TABLE `docente_horario`
 (
-	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
-	`fk_docente_id` INTEGER(11) default 0 NOT NULL,
-	`fk_repeticion_id` INTEGER(11) default 0 NOT NULL,
-	`hora_inicio` TIME  NOT NULL,
-	`hora_fin` TIME  NOT NULL,
-	`dia` INTEGER(11) default 0 NOT NULL,
-	PRIMARY KEY (`id`),
-	INDEX `docente_horario_FI_1` (`fk_repeticion_id`),
+	`fk_docente_id` INTEGER(11)  NOT NULL,
+	`fk_evento_id` INTEGER(11)  NOT NULL,
+	PRIMARY KEY (`fk_docente_id`,`fk_evento_id`),
+	INDEX `docente_horario_FI_1` (`fk_evento_id`),
 	CONSTRAINT `docente_horario_FK_1`
-		FOREIGN KEY (`fk_repeticion_id`)
-		REFERENCES `repeticion` (`id`),
-	INDEX `docente_horario_FI_2` (`fk_docente_id`),
+		FOREIGN KEY (`fk_evento_id`)
+		REFERENCES `evento` (`id`),
 	CONSTRAINT `docente_horario_FK_2`
 		FOREIGN KEY (`fk_docente_id`)
 		REFERENCES `docente` (`id`)
