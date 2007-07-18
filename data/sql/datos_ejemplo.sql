@@ -2498,12 +2498,12 @@ INSERT INTO `docente` (`id`, `apellido`, `nombre`, `fk_tipodocumento_id`, `nro_d
 -- Volcar la base de datos para la tabla `docente_horario`
 -- 
 
-INSERT INTO `docente_horario` (`id`, `fk_docente_id`, `fk_repeticion_id`, `hora_inicio`, `hora_fin`, `dia`) VALUES (1, 1, 1, '07:30:00', '12:10:00', 1);
-INSERT INTO `docente_horario` (`id`, `fk_docente_id`, `fk_repeticion_id`, `hora_inicio`, `hora_fin`, `dia`) VALUES (2, 2, 1, '07:30:00', '12:10:00', 1);
-INSERT INTO `docente_horario` (`id`, `fk_docente_id`, `fk_repeticion_id`, `hora_inicio`, `hora_fin`, `dia`) VALUES (3, 3, 1, '07:30:00', '12:10:00', 1);
-INSERT INTO `docente_horario` (`id`, `fk_docente_id`, `fk_repeticion_id`, `hora_inicio`, `hora_fin`, `dia`) VALUES (4, 4, 1, '09:00:00', '11:00:00', 1);
-INSERT INTO `docente_horario` (`id`, `fk_docente_id`, `fk_repeticion_id`, `hora_inicio`, `hora_fin`, `dia`) VALUES (5, 4, 1, '08:00:00', '11:45:00', 3);
-INSERT INTO `docente_horario` (`id`, `fk_docente_id`, `fk_repeticion_id`, `hora_inicio`, `hora_fin`, `dia`) VALUES (6, 4, 1, '08:00:00', '00:00:00', 5);
+INSERT INTO `docente_horario` (`fk_docente_id`, `fk_evento_id` ) VALUES (1, 1);
+INSERT INTO `docente_horario` (`fk_docente_id`, `fk_evento_id` ) VALUES (2, 2);
+INSERT INTO `docente_horario` (`fk_docente_id`, `fk_evento_id` ) VALUES (3, 3);
+INSERT INTO `docente_horario` (`fk_docente_id`, `fk_evento_id` ) VALUES (4, 4);
+INSERT INTO `docente_horario` (`fk_docente_id`, `fk_evento_id` ) VALUES (5, 5);
+INSERT INTO `docente_horario` (`fk_docente_id`, `fk_evento_id` ) VALUES (6, 6);
 
 -- 
 -- Volcar la base de datos para la tabla `escalanota`
@@ -3341,6 +3341,18 @@ INSERT INTO `usuario` (`id`, `usuario`, `clave`, `correo_publico`, `email`, `act
 INSERT INTO `usuario` (`id`, `usuario`, `clave`, `correo_publico`, `email`, `activo`, `fecha_creado`, `fecha_actualizado`, `seguridad_pregunta`, `seguridad_respuesta`, `fk_establecimiento_id`, `borrado`) VALUES (3, 'Directora ', '3d591289c636292b8bf34ed929e666ef', 1, 'directora@escuela.org', 1, '2007-01-29 00:00:00', '2007-01-29 14:29:13', 'Cómo se llama mi abuela? ', 'margarita', 1, 0);
 INSERT INTO `usuario` (`id`, `usuario`, `clave`, `correo_publico`, `email`, `activo`, `fecha_creado`, `fecha_actualizado`, `seguridad_pregunta`, `seguridad_respuesta`, `fk_establecimiento_id`, `borrado`) VALUES (4, 'Carla Herrera', 'c893bad68927b457dbed39460e6afd62', 1, 'carla.herrera@gmail.com', 1, '2007-02-19 00:00:00', '2007-02-19 11:26:54', 'Cómo se llama mi novio?', 'Martiniano', 1, 0);
 
+
+INSERT INTO `evento` (`id`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`, `titulo`) VALUES (1, '2007-03-05 07:30:00', '2007-03-05 12:15:00', 1, 5, 1, '2007-12-14 00:00', 62, 1, '');
+
+INSERT INTO `evento` (`id`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`, `titulo`) VALUES (2, '2007-03-05 07:30:00', '2007-03-05 12:15:00', 1, 5, 1, '2007-12-14 00:00', 62, 1, '');
+
+INSERT INTO `evento` (`id`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`, `titulo`) VALUES (3, '2007-03-05 07:30:00', '2007-03-05 12:15:00', 1, 5, 1, '2007-12-14 00:00', 62, 1, '');
+
+INSERT INTO `evento` (`id`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`, `titulo`) VALUES (4, '2007-03-05 07:30:00', '2007-03-05 12:15:00', 1, 5, 1, '2007-12-14 00:00', 62, 1, '');
+
+INSERT INTO `evento` (`id`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`, `titulo`) VALUES (5, '2007-03-05 07:30:00', '2007-03-05 12:15:00', 1, 5, 1, '2007-12-14 00:00', 62, 1, '');
+
+INSERT INTO `evento` (`id`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`, `titulo`) VALUES (6, '2007-03-05 07:30:00', '2007-03-05 12:15:00', 1, 5, 1, '2007-12-14 00:00', 62, 1, '');
 
 SET FOREIGN_KEY_CHECKS = 1;
 
