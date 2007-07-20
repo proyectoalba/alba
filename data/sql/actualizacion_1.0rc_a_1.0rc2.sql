@@ -76,3 +76,4 @@ ALTER TABLE `horarioescolar` ADD INDEX `fk_evento_FI_1` ( `fk_evento_id` );
 
  
 SET FOREIGN_KEY_CHECKS = 1;
+    

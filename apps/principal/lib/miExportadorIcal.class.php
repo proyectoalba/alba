@@ -41,41 +41,36 @@ class miExportadorIcal extends sfWebRequest {
             $v = new vcalendar();
             $v->setConfig('DIRECTORY',sfConfig::get('app_alba_tmpdir')); //sfConfig::get('app_alba_tmpdir');
 
-            foreach ($aObj as $rel_division_actividad_docente) {
-                if($rel_division_actividad_docente->getEvento()) {
+            foreach ($aObj as $link_evento) {
+                if($link_evento->getEvento()) {
                     $e = new vevent();
-                    $e->setProperty( 'DESCRIPTION', 'Horas de maestro/profesor' );
-                    $e->setProperty('SUMMARY', $rel_division_actividad_docente->getDivision()."-".$rel_division_actividad_docente->getActividad()."-".$rel_division_actividad_docente->getDocente());
+                    $e->setProperty( 'DESCRIPTION', '' );
+                    $e->setProperty('SUMMARY', $link_evento->getEvento()->getTitulo());
                     $e->setProperty('class', 'PUBLIC');
-                    $aFechaInicio = getdate(strtotime($rel_division_actividad_docente->getEvento()->getFechaInicio()));
+                    $aFechaInicio = getdate(strtotime($link_evento->getEvento()->getFechaInicio()));
                     $e->setProperty('dtstart', $aFechaInicio['year'], $aFechaInicio['mon'],$aFechaInicio['mday'], $aFechaInicio['hours'], $aFechaInicio['minutes'], 0);
-                    $aFechaFin = getdate(strtotime($rel_division_actividad_docente->getEvento()->getFechaFin()));
+                    $aFechaFin = getdate(strtotime($link_evento->getEvento()->getFechaFin()));
                     $e->setProperty('dtend', $aFechaFin['year'], $aFechaFin['mon'],$aFechaFin['mday'], $aFechaFin['hours'], $aFechaFin['minutes'], 0);
 
-//                 $segundos = strtotime($rel_division_actividad_docente->getEvento()->getFechaFin())-strtotime($rel_division_actividad_docente->getEvento()->getFechaInicio());
-//                 $horas = floor($segundos / 3600);
-//                 $minutos = floor(($segundos - ($horas * 3600)) / 60);
-//                 $segundos = $segundos - ($horas * 60) - ($minutos * 60);
-//                 $e->setProperty('DURATION', '','', $horas, $minutos);
                     $e->setProperty('dtstamp', gmdate('Ymd\THi00\Z'));
 
-                    if($rel_division_actividad_docente->getEvento()->getFrecuencia()) {
-                        $freq = $this->aFreq[$rel_division_actividad_docente->getEvento()->getFrecuencia()];
-                        $interval = $rel_division_actividad_docente->getEvento()->getFrecuenciaIntervalo();
+                    if($link_evento->getEvento()->getFrecuencia()) {
+                        $freq = $this->aFreq[$link_evento->getEvento()->getFrecuencia()];
+                        $interval = $link_evento->getEvento()->getFrecuenciaIntervalo();
 
                         $aRrule = array();
                         $aRrule['FREQ'] = $freq;
                         $aRrule['INTERVAL'] = $interval;
 
                         if($freq == "WEEKLY") {
-                            $aRrule['BYDAY'] = array_chunk(explode ( ",", $rel_division_actividad_docente->getEvento()->getRecurrenciaDiasIcal()),1);
+                            $aRrule['BYDAY'] = array_chunk(explode ( ",", $link_evento->getEvento()->getRecurrenciaDiasIcal()),1);
                         }
 
-                        if($rel_division_actividad_docente->getEvento()->getRecurrenciaFin() != "") {
-                            if(is_numeric($rel_division_actividad_docente->getEvento()->getRecurrenciaFin())) {
-                                $aRrule['COUNT'] = $rel_division_actividad_docente->getEvento()->getRecurrenciaFin();
+                        if($link_evento->getEvento()->getRecurrenciaFin() != "") {
+                            if(is_numeric($link_evento->getEvento()->getRecurrenciaFin())) {
+                                $aRrule['COUNT'] = $link_evento->getEvento()->getRecurrenciaFin();
                             } else {
-                                $aRrule['UNTIL'] = gmdate('Ymd\THi00\Z',strtotime($rel_division_actividad_docente->getEvento()->getRecurrenciaFin()));
+                                $aRrule['UNTIL'] = gmdate('Ymd\THi00\Z',strtotime($link_evento->getEvento()->getRecurrenciaFin()));
                             }
                         }
                         $e->setProperty( 'rrule' , $aRrule);
