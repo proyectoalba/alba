@@ -34,15 +34,11 @@ class HorarioescolarMapBuilder {
 
 		$tMap->addPrimaryKey('ID', 'Id', 'int', CreoleTypes::INTEGER, true, 11);
 
-		$tMap->addColumn('DIA', 'Dia', 'int', CreoleTypes::INTEGER, true, 11);
-
-		$tMap->addColumn('HORA_INICIO', 'HoraInicio', 'int', CreoleTypes::TIME, true, null);
-
-		$tMap->addColumn('HORA_FIN', 'HoraFin', 'int', CreoleTypes::TIME, true, null);
-
 		$tMap->addColumn('NOMBRE', 'Nombre', 'string', CreoleTypes::VARCHAR, true, 128);
 
 		$tMap->addColumn('DESCRIPCION', 'Descripcion', 'string', CreoleTypes::VARCHAR, false, 255);
+
+		$tMap->addForeignKey('FK_EVENTO_ID', 'FkEventoId', 'int', CreoleTypes::INTEGER, 'evento', 'ID', true, null);
 
 		$tMap->addForeignKey('FK_ESTABLECIMIENTO_ID', 'FkEstablecimientoId', 'int', CreoleTypes::INTEGER, 'establecimiento', 'ID', true, null);
 

@@ -57,7 +57,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 
 
 	
-	protected $sexo = 'null';
+	protected $sexo;
 
 
 	
@@ -534,7 +534,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->sexo !== $v || $v === 'null') {
+		if ($this->sexo !== $v) {
 			$this->sexo = $v;
 			$this->modifiedColumns[] = AlumnoPeer::SEXO;
 		}

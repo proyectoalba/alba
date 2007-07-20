@@ -38,11 +38,40 @@ class horarioescolarActions extends autohorarioescolarActions
         $this->vista = $this->getRequestParameter('vista');
     }
  
-  protected function updateHorarioescolarFromRequest(){
-    $horarioescolar = $this->getRequestParameter('horarioescolar');
 
-    $horarioescolar['hora_inicio'] = $this->_add_zeros($horarioescolar['hora_inicio']['hour'],2).":".$this->_add_zeros($horarioescolar['hora_inicio']['minute'],2)." ".$horarioescolar['hora_inicio']['ampm'];
-    $horarioescolar['hora_fin']= $this->_add_zeros($horarioescolar['hora_fin']['hour'],2).":".$this->_add_zeros($horarioescolar['hora_fin']['minute'],2)." ".$horarioescolar['hora_fin']['ampm'];
+    public function executeEdit()  {
+        $evento_generico = new miEvento();
+        $this->horarioescolar = $this->getHorarioescolarOrCreate();
+        $this->evento = $evento_generico->getEventoOrCreate($this->horarioescolar->getFkEventoId());
+        if ($this->getRequest()->getMethod() == sfRequest::POST) {
+            $this->evento = $evento_generico->updateEventoFromRequest($this->evento, $this->getRequestParameter('evento'), $this->getUser()->getCulture());
+            $this->evento->save();
+            $this->forward404Unless($this->evento);
+            $this->updateHorarioescolarFromRequest($this->evento->getId());
+            $this->saveHorarioescolar($this->horarioescolar);
+            $this->setFlash('notice', 'Your modifications have been saved');
+            if ($this->getRequestParameter('save_and_add')) {
+                return $this->redirect('horarioescolar/create');
+            } else if ($this->getRequestParameter('save_and_list')) {
+                return $this->redirect('horarioescolar/list');
+            } else {
+                return $this->redirect('horarioescolar/edit?id='.$this->horarioescolar->getId());
+            }
+        } else {
+            $this->labels = $this->getLabels();
+        }
+    }
+
+
+
+    protected function updateHorarioescolarFromRequest($fk_evento_id = '') {
+        $horarioescolar = $this->getRequestParameter('horarioescolar');
+
+    if ($fk_evento_id) {
+            $this->horarioescolar->setFkEventoId($fk_evento_id);
+    } else {
+            $this->horarioescolar->setFkEventoId(null);
+    }
 
     if (isset($horarioescolar['nombre']))
     {
@@ -51,18 +80,6 @@ class horarioescolarActions extends autohorarioescolarActions
     if (isset($horarioescolar['descripcion']))
     {
       $this->horarioescolar->setDescripcion($horarioescolar['descripcion']);
-    }
-    if (isset($horarioescolar['dia']))
-    {
-      $this->horarioescolar->setDia($horarioescolar['dia']);
-    }
-    if (isset($horarioescolar['hora_inicio']))
-    {
-      $this->horarioescolar->setHoraInicio($horarioescolar['hora_inicio']);
-    }
-    if (isset($horarioescolar['hora_fin']))
-    {
-      $this->horarioescolar->setHoraFin($horarioescolar['hora_fin']);
     }
     if (isset($horarioescolar['fk_horarioescolartipo_id']))
     {
@@ -76,8 +93,6 @@ class horarioescolarActions extends autohorarioescolarActions
     {
       $this->horarioescolar->setFkTurnosId($horarioescolar['fk_turnos_id']);
     }
-
-
   }
 
 
@@ -132,7 +147,7 @@ class horarioescolarActions extends autohorarioescolarActions
         $ciclolectivos = CiclolectivoPeer::doSelect($criteria);
         $optionsCiclolectivo = array();
         foreach ($ciclolectivos as $ciclolectivo) {
-            $optionsCiclolectivo[$ciclolectivo->getId()] = $ciclolectivo->getDescripcion();
+            $optionsCiclolectivo[$ciclolectivo->getId()]    = $ciclolectivo->getDescripcion();
         }
         asort($optionsCiclolectivo);
 
@@ -247,6 +262,15 @@ class horarioescolarActions extends autohorarioescolarActions
 
     }
 
-   
+  protected function getLabels()
+  {
+    return array(
+      'horarioescolar{nombre}' => 'Nombre:',
+      'horarioescolar{descripcion}' => 'Descripcion:',
+      'horarioescolar{fk_horarioescolartipo_id}' => 'Tipo Horario Escolar:',
+      'horarioescolar{fk_turnos_id}' => 'Turno:',
+      'horarioescolar{fk_evento_id}' => 'Evento:',
+    );
+  }
 }
 ?>

@@ -674,7 +674,7 @@ alba:
       type: CHAR
       size: 1
       required: true
-      default: 
+#     default: 
     email: 
       type: VARCHAR
       size: 128
@@ -787,7 +787,7 @@ alba:
       type: CHAR
       size: 1
       required: true
-      default: 
+#      default: 
     email: 
       type: VARCHAR
       size: 128
@@ -1547,8 +1547,8 @@ alba:
     sexo: 
       type: CHAR
       size: 1
-      required: false
-      default: U
+      required: true
+#      default: U
     fecha_nacimiento: 
       type: TIMESTAMP
       required: true
@@ -1732,17 +1732,6 @@ alba:
       required: true
       autoIncrement: true
       primaryKey: true
-    dia: 
-      type: integer
-      size: 11
-      required: true
-      default: 0
-    hora_inicio: 
-      type: TIME
-      required: true
-    hora_fin: 
-      type: TIME
-      required: true
     nombre: 
       type: varchar
       size: 128
@@ -1751,6 +1740,12 @@ alba:
       type: varchar
       size: 255
       required: false
+    fk_evento_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: evento
+      foreignReference: id
     fk_establecimiento_id: 
       type: INTEGER
       required: true

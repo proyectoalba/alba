@@ -60,6 +60,12 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 	protected $lastDocenteHorarioCriteria = null;
 
 	
+	protected $collHorarioescolars;
+
+	
+	protected $lastHorarioescolarCriteria = null;
+
+	
 	protected $alreadyInSave = false;
 
 	
@@ -424,6 +430,14 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 				}
 			}
 
+			if ($this->collHorarioescolars !== null) {
+				foreach($this->collHorarioescolars as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
 			$this->alreadyInSave = false;
 		}
 		return $affectedRows;
@@ -475,6 +489,14 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 
 				if ($this->collDocenteHorarios !== null) {
 					foreach($this->collDocenteHorarios as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
+
+				if ($this->collHorarioescolars !== null) {
+					foreach($this->collHorarioescolars as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -686,6 +708,10 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 
 			foreach($this->getDocenteHorarios() as $relObj) {
 				$copyObj->addDocenteHorario($relObj->copy($deepCopy));
+			}
+
+			foreach($this->getHorarioescolars() as $relObj) {
+				$copyObj->addHorarioescolar($relObj->copy($deepCopy));
 			}
 
 		} 
@@ -1026,6 +1052,181 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 		$this->lastDocenteHorarioCriteria = $criteria;
 
 		return $this->collDocenteHorarios;
+	}
+
+	
+	public function initHorarioescolars()
+	{
+		if ($this->collHorarioescolars === null) {
+			$this->collHorarioescolars = array();
+		}
+	}
+
+	
+	public function getHorarioescolars($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseHorarioescolarPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collHorarioescolars === null) {
+			if ($this->isNew()) {
+			   $this->collHorarioescolars = array();
+			} else {
+
+				$criteria->add(HorarioescolarPeer::FK_EVENTO_ID, $this->getId());
+
+				HorarioescolarPeer::addSelectColumns($criteria);
+				$this->collHorarioescolars = HorarioescolarPeer::doSelect($criteria, $con);
+			}
+		} else {
+						if (!$this->isNew()) {
+												
+
+				$criteria->add(HorarioescolarPeer::FK_EVENTO_ID, $this->getId());
+
+				HorarioescolarPeer::addSelectColumns($criteria);
+				if (!isset($this->lastHorarioescolarCriteria) || !$this->lastHorarioescolarCriteria->equals($criteria)) {
+					$this->collHorarioescolars = HorarioescolarPeer::doSelect($criteria, $con);
+				}
+			}
+		}
+		$this->lastHorarioescolarCriteria = $criteria;
+		return $this->collHorarioescolars;
+	}
+
+	
+	public function countHorarioescolars($criteria = null, $distinct = false, $con = null)
+	{
+				include_once 'lib/model/om/BaseHorarioescolarPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		$criteria->add(HorarioescolarPeer::FK_EVENTO_ID, $this->getId());
+
+		return HorarioescolarPeer::doCount($criteria, $distinct, $con);
+	}
+
+	
+	public function addHorarioescolar(Horarioescolar $l)
+	{
+		$this->collHorarioescolars[] = $l;
+		$l->setEvento($this);
+	}
+
+
+	
+	public function getHorarioescolarsJoinEstablecimiento($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseHorarioescolarPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collHorarioescolars === null) {
+			if ($this->isNew()) {
+				$this->collHorarioescolars = array();
+			} else {
+
+				$criteria->add(HorarioescolarPeer::FK_EVENTO_ID, $this->getId());
+
+				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinEstablecimiento($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(HorarioescolarPeer::FK_EVENTO_ID, $this->getId());
+
+			if (!isset($this->lastHorarioescolarCriteria) || !$this->lastHorarioescolarCriteria->equals($criteria)) {
+				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinEstablecimiento($criteria, $con);
+			}
+		}
+		$this->lastHorarioescolarCriteria = $criteria;
+
+		return $this->collHorarioescolars;
+	}
+
+
+	
+	public function getHorarioescolarsJoinTurnos($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseHorarioescolarPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collHorarioescolars === null) {
+			if ($this->isNew()) {
+				$this->collHorarioescolars = array();
+			} else {
+
+				$criteria->add(HorarioescolarPeer::FK_EVENTO_ID, $this->getId());
+
+				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinTurnos($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(HorarioescolarPeer::FK_EVENTO_ID, $this->getId());
+
+			if (!isset($this->lastHorarioescolarCriteria) || !$this->lastHorarioescolarCriteria->equals($criteria)) {
+				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinTurnos($criteria, $con);
+			}
+		}
+		$this->lastHorarioescolarCriteria = $criteria;
+
+		return $this->collHorarioescolars;
+	}
+
+
+	
+	public function getHorarioescolarsJoinHorarioescolartipo($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseHorarioescolarPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collHorarioescolars === null) {
+			if ($this->isNew()) {
+				$this->collHorarioescolars = array();
+			} else {
+
+				$criteria->add(HorarioescolarPeer::FK_EVENTO_ID, $this->getId());
+
+				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinHorarioescolartipo($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(HorarioescolarPeer::FK_EVENTO_ID, $this->getId());
+
+			if (!isset($this->lastHorarioescolarCriteria) || !$this->lastHorarioescolarCriteria->equals($criteria)) {
+				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinHorarioescolartipo($criteria, $con);
+			}
+		}
+		$this->lastHorarioescolarCriteria = $criteria;
+
+		return $this->collHorarioescolars;
 	}
 
 } 

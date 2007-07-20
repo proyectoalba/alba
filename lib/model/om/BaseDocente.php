@@ -21,7 +21,7 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 
 
 	
-	protected $sexo = 'U';
+	protected $sexo;
 
 
 	
@@ -306,7 +306,7 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->sexo !== $v || $v === 'U') {
+		if ($this->sexo !== $v) {
 			$this->sexo = $v;
 			$this->modifiedColumns[] = DocentePeer::SEXO;
 		}

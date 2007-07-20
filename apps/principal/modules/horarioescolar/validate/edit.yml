@@ -1,8 +1,5 @@
 methods:
   post:       
-    - "horarioescolar{hora_inicio}"
-    - "horarioescolar{hora_fin}"
-    - "horarioescolar{dia}"
     - "horarioescolar{nombre}"   
     - "horarioescolar{descripcion}"
     - "horarioescolar{fk_turnos_id}"
@@ -12,21 +9,6 @@ fillin:
     enabled:       on
       
 names:
-    horarioescolar{hora_inicio}:
-        required:     Yes
-        required_msg: El campo hora inicio es obligatorio
-        validators: horaInicio
-
-    horarioescolar{hora_fin}:
-        required:     Yes
-        required_msg: El campo hora fin  es obligatorio
-        validators: horaFin
-
-    horarioescolar{dia}:
-        required:     Yes
-        required_msg: El campo dia fin  es obligatorio
-        validators: validarNumero
-
     horarioescolar{descripcion}:
         required:     No
         validators: caracteresMaximos255

@@ -13,7 +13,7 @@ abstract class BaseHorarioescolarPeer {
 	const CLASS_DEFAULT = 'lib.model.Horarioescolar';
 
 	
-	const NUM_COLUMNS = 9;
+	const NUM_COLUMNS = 7;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -23,19 +23,13 @@ abstract class BaseHorarioescolarPeer {
 	const ID = 'horarioescolar.ID';
 
 	
-	const DIA = 'horarioescolar.DIA';
-
-	
-	const HORA_INICIO = 'horarioescolar.HORA_INICIO';
-
-	
-	const HORA_FIN = 'horarioescolar.HORA_FIN';
-
-	
 	const NOMBRE = 'horarioescolar.NOMBRE';
 
 	
 	const DESCRIPCION = 'horarioescolar.DESCRIPCION';
+
+	
+	const FK_EVENTO_ID = 'horarioescolar.FK_EVENTO_ID';
 
 	
 	const FK_ESTABLECIMIENTO_ID = 'horarioescolar.FK_ESTABLECIMIENTO_ID';
@@ -52,18 +46,18 @@ abstract class BaseHorarioescolarPeer {
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'Dia', 'HoraInicio', 'HoraFin', 'Nombre', 'Descripcion', 'FkEstablecimientoId', 'FkTurnosId', 'FkHorarioescolartipoId', ),
-		BasePeer::TYPE_COLNAME => array (HorarioescolarPeer::ID, HorarioescolarPeer::DIA, HorarioescolarPeer::HORA_INICIO, HorarioescolarPeer::HORA_FIN, HorarioescolarPeer::NOMBRE, HorarioescolarPeer::DESCRIPCION, HorarioescolarPeer::FK_ESTABLECIMIENTO_ID, HorarioescolarPeer::FK_TURNOS_ID, HorarioescolarPeer::FK_HORARIOESCOLARTIPO_ID, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'dia', 'hora_inicio', 'hora_fin', 'nombre', 'descripcion', 'fk_establecimiento_id', 'fk_turnos_id', 'fk_horarioescolartipo_id', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Descripcion', 'FkEventoId', 'FkEstablecimientoId', 'FkTurnosId', 'FkHorarioescolartipoId', ),
+		BasePeer::TYPE_COLNAME => array (HorarioescolarPeer::ID, HorarioescolarPeer::NOMBRE, HorarioescolarPeer::DESCRIPCION, HorarioescolarPeer::FK_EVENTO_ID, HorarioescolarPeer::FK_ESTABLECIMIENTO_ID, HorarioescolarPeer::FK_TURNOS_ID, HorarioescolarPeer::FK_HORARIOESCOLARTIPO_ID, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'descripcion', 'fk_evento_id', 'fk_establecimiento_id', 'fk_turnos_id', 'fk_horarioescolartipo_id', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Dia' => 1, 'HoraInicio' => 2, 'HoraFin' => 3, 'Nombre' => 4, 'Descripcion' => 5, 'FkEstablecimientoId' => 6, 'FkTurnosId' => 7, 'FkHorarioescolartipoId' => 8, ),
-		BasePeer::TYPE_COLNAME => array (HorarioescolarPeer::ID => 0, HorarioescolarPeer::DIA => 1, HorarioescolarPeer::HORA_INICIO => 2, HorarioescolarPeer::HORA_FIN => 3, HorarioescolarPeer::NOMBRE => 4, HorarioescolarPeer::DESCRIPCION => 5, HorarioescolarPeer::FK_ESTABLECIMIENTO_ID => 6, HorarioescolarPeer::FK_TURNOS_ID => 7, HorarioescolarPeer::FK_HORARIOESCOLARTIPO_ID => 8, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'dia' => 1, 'hora_inicio' => 2, 'hora_fin' => 3, 'nombre' => 4, 'descripcion' => 5, 'fk_establecimiento_id' => 6, 'fk_turnos_id' => 7, 'fk_horarioescolartipo_id' => 8, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Descripcion' => 2, 'FkEventoId' => 3, 'FkEstablecimientoId' => 4, 'FkTurnosId' => 5, 'FkHorarioescolartipoId' => 6, ),
+		BasePeer::TYPE_COLNAME => array (HorarioescolarPeer::ID => 0, HorarioescolarPeer::NOMBRE => 1, HorarioescolarPeer::DESCRIPCION => 2, HorarioescolarPeer::FK_EVENTO_ID => 3, HorarioescolarPeer::FK_ESTABLECIMIENTO_ID => 4, HorarioescolarPeer::FK_TURNOS_ID => 5, HorarioescolarPeer::FK_HORARIOESCOLARTIPO_ID => 6, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'descripcion' => 2, 'fk_evento_id' => 3, 'fk_establecimiento_id' => 4, 'fk_turnos_id' => 5, 'fk_horarioescolartipo_id' => 6, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, )
 	);
 
 	
@@ -119,15 +113,11 @@ abstract class BaseHorarioescolarPeer {
 
 		$criteria->addSelectColumn(HorarioescolarPeer::ID);
 
-		$criteria->addSelectColumn(HorarioescolarPeer::DIA);
-
-		$criteria->addSelectColumn(HorarioescolarPeer::HORA_INICIO);
-
-		$criteria->addSelectColumn(HorarioescolarPeer::HORA_FIN);
-
 		$criteria->addSelectColumn(HorarioescolarPeer::NOMBRE);
 
 		$criteria->addSelectColumn(HorarioescolarPeer::DESCRIPCION);
+
+		$criteria->addSelectColumn(HorarioescolarPeer::FK_EVENTO_ID);
 
 		$criteria->addSelectColumn(HorarioescolarPeer::FK_ESTABLECIMIENTO_ID);
 
@@ -214,6 +204,34 @@ abstract class BaseHorarioescolarPeer {
 	}
 
 	
+	public static function doCountJoinEvento(Criteria $criteria, $distinct = false, $con = null)
+	{
+				$criteria = clone $criteria;
+
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(HorarioescolarPeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(HorarioescolarPeer::COUNT);
+		}
+
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
+		}
+
+		$criteria->addJoin(HorarioescolarPeer::FK_EVENTO_ID, EventoPeer::ID);
+
+		$rs = HorarioescolarPeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
+	}
+
+
+	
 	public static function doCountJoinEstablecimiento(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
@@ -294,6 +312,53 @@ abstract class BaseHorarioescolarPeer {
 		} else {
 						return 0;
 		}
+	}
+
+
+	
+	public static function doSelectJoinEvento(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+				if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		HorarioescolarPeer::addSelectColumns($c);
+		$startcol = (HorarioescolarPeer::NUM_COLUMNS - HorarioescolarPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+		EventoPeer::addSelectColumns($c);
+
+		$c->addJoin(HorarioescolarPeer::FK_EVENTO_ID, EventoPeer::ID);
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = HorarioescolarPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = EventoPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj2 = new $cls();
+			$obj2->hydrate($rs, $startcol);
+
+			$newObject = true;
+			foreach($results as $temp_obj1) {
+				$temp_obj2 = $temp_obj1->getEvento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+										$temp_obj2->addHorarioescolar($obj1); 					break;
+				}
+			}
+			if ($newObject) {
+				$obj2->initHorarioescolars();
+				$obj2->addHorarioescolar($obj1); 			}
+			$results[] = $obj1;
+		}
+		return $results;
 	}
 
 
@@ -455,6 +520,8 @@ abstract class BaseHorarioescolarPeer {
 			$criteria->addSelectColumn($column);
 		}
 
+		$criteria->addJoin(HorarioescolarPeer::FK_EVENTO_ID, EventoPeer::ID);
+
 		$criteria->addJoin(HorarioescolarPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
 
 		$criteria->addJoin(HorarioescolarPeer::FK_TURNOS_ID, TurnosPeer::ID);
@@ -482,14 +549,19 @@ abstract class BaseHorarioescolarPeer {
 		HorarioescolarPeer::addSelectColumns($c);
 		$startcol2 = (HorarioescolarPeer::NUM_COLUMNS - HorarioescolarPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
+		EventoPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + EventoPeer::NUM_COLUMNS;
+
 		EstablecimientoPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + EstablecimientoPeer::NUM_COLUMNS;
+		$startcol4 = $startcol3 + EstablecimientoPeer::NUM_COLUMNS;
 
 		TurnosPeer::addSelectColumns($c);
-		$startcol4 = $startcol3 + TurnosPeer::NUM_COLUMNS;
+		$startcol5 = $startcol4 + TurnosPeer::NUM_COLUMNS;
 
 		HorarioescolartipoPeer::addSelectColumns($c);
-		$startcol5 = $startcol4 + HorarioescolartipoPeer::NUM_COLUMNS;
+		$startcol6 = $startcol5 + HorarioescolartipoPeer::NUM_COLUMNS;
+
+		$c->addJoin(HorarioescolarPeer::FK_EVENTO_ID, EventoPeer::ID);
 
 		$c->addJoin(HorarioescolarPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
 
@@ -511,7 +583,7 @@ abstract class BaseHorarioescolarPeer {
 
 
 					
-			$omClass = EstablecimientoPeer::getOMClass();
+			$omClass = EventoPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -521,7 +593,7 @@ abstract class BaseHorarioescolarPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getEstablecimiento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getEvento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addHorarioescolar($obj1); 					break;
 				}
@@ -534,7 +606,7 @@ abstract class BaseHorarioescolarPeer {
 
 
 					
-			$omClass = TurnosPeer::getOMClass();
+			$omClass = EstablecimientoPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -544,7 +616,7 @@ abstract class BaseHorarioescolarPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getTurnos(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+				$temp_obj3 = $temp_obj1->getEstablecimiento(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj3->addHorarioescolar($obj1); 					break;
 				}
@@ -557,7 +629,7 @@ abstract class BaseHorarioescolarPeer {
 
 
 					
-			$omClass = HorarioescolartipoPeer::getOMClass();
+			$omClass = TurnosPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -567,7 +639,7 @@ abstract class BaseHorarioescolarPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj4 = $temp_obj1->getHorarioescolartipo(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
+				$temp_obj4 = $temp_obj1->getTurnos(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj4->addHorarioescolar($obj1); 					break;
 				}
@@ -578,9 +650,64 @@ abstract class BaseHorarioescolarPeer {
 				$obj4->addHorarioescolar($obj1);
 			}
 
+
+					
+			$omClass = HorarioescolartipoPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj5 = new $cls();
+			$obj5->hydrate($rs, $startcol5);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj5 = $temp_obj1->getHorarioescolartipo(); 				if ($temp_obj5->getPrimaryKey() === $obj5->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj5->addHorarioescolar($obj1); 					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj5->initHorarioescolars();
+				$obj5->addHorarioescolar($obj1);
+			}
+
 			$results[] = $obj1;
 		}
 		return $results;
+	}
+
+
+	
+	public static function doCountJoinAllExceptEvento(Criteria $criteria, $distinct = false, $con = null)
+	{
+				$criteria = clone $criteria;
+
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(HorarioescolarPeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(HorarioescolarPeer::COUNT);
+		}
+
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
+		}
+
+		$criteria->addJoin(HorarioescolarPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
+
+		$criteria->addJoin(HorarioescolarPeer::FK_TURNOS_ID, TurnosPeer::ID);
+
+		$criteria->addJoin(HorarioescolarPeer::FK_HORARIOESCOLARTIPO_ID, HorarioescolartipoPeer::ID);
+
+		$rs = HorarioescolarPeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
 	}
 
 
@@ -600,6 +727,8 @@ abstract class BaseHorarioescolarPeer {
 		{
 			$criteria->addSelectColumn($column);
 		}
+
+		$criteria->addJoin(HorarioescolarPeer::FK_EVENTO_ID, EventoPeer::ID);
 
 		$criteria->addJoin(HorarioescolarPeer::FK_TURNOS_ID, TurnosPeer::ID);
 
@@ -631,6 +760,8 @@ abstract class BaseHorarioescolarPeer {
 			$criteria->addSelectColumn($column);
 		}
 
+		$criteria->addJoin(HorarioescolarPeer::FK_EVENTO_ID, EventoPeer::ID);
+
 		$criteria->addJoin(HorarioescolarPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
 
 		$criteria->addJoin(HorarioescolarPeer::FK_HORARIOESCOLARTIPO_ID, HorarioescolartipoPeer::ID);
@@ -661,6 +792,8 @@ abstract class BaseHorarioescolarPeer {
 			$criteria->addSelectColumn($column);
 		}
 
+		$criteria->addJoin(HorarioescolarPeer::FK_EVENTO_ID, EventoPeer::ID);
+
 		$criteria->addJoin(HorarioescolarPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
 
 		$criteria->addJoin(HorarioescolarPeer::FK_TURNOS_ID, TurnosPeer::ID);
@@ -675,175 +808,7 @@ abstract class BaseHorarioescolarPeer {
 
 
 	
-	public static function doSelectJoinAllExceptEstablecimiento(Criteria $c, $con = null)
-	{
-		$c = clone $c;
-
-								if ($c->getDbName() == Propel::getDefaultDB()) {
-			$c->setDbName(self::DATABASE_NAME);
-		}
-
-		HorarioescolarPeer::addSelectColumns($c);
-		$startcol2 = (HorarioescolarPeer::NUM_COLUMNS - HorarioescolarPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-
-		TurnosPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + TurnosPeer::NUM_COLUMNS;
-
-		HorarioescolartipoPeer::addSelectColumns($c);
-		$startcol4 = $startcol3 + HorarioescolartipoPeer::NUM_COLUMNS;
-
-		$c->addJoin(HorarioescolarPeer::FK_TURNOS_ID, TurnosPeer::ID);
-
-		$c->addJoin(HorarioescolarPeer::FK_HORARIOESCOLARTIPO_ID, HorarioescolartipoPeer::ID);
-
-
-		$rs = BasePeer::doSelect($c, $con);
-		$results = array();
-
-		while($rs->next()) {
-
-			$omClass = HorarioescolarPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj1 = new $cls();
-			$obj1->hydrate($rs);
-
-			$omClass = TurnosPeer::getOMClass();
-
-
-			$cls = Propel::import($omClass);
-			$obj2  = new $cls();
-			$obj2->hydrate($rs, $startcol2);
-
-			$newObject = true;
-			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
-				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getTurnos(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
-					$newObject = false;
-					$temp_obj2->addHorarioescolar($obj1);
-					break;
-				}
-			}
-
-			if ($newObject) {
-				$obj2->initHorarioescolars();
-				$obj2->addHorarioescolar($obj1);
-			}
-
-			$omClass = HorarioescolartipoPeer::getOMClass();
-
-
-			$cls = Propel::import($omClass);
-			$obj3  = new $cls();
-			$obj3->hydrate($rs, $startcol3);
-
-			$newObject = true;
-			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
-				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getHorarioescolartipo(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
-					$newObject = false;
-					$temp_obj3->addHorarioescolar($obj1);
-					break;
-				}
-			}
-
-			if ($newObject) {
-				$obj3->initHorarioescolars();
-				$obj3->addHorarioescolar($obj1);
-			}
-
-			$results[] = $obj1;
-		}
-		return $results;
-	}
-
-
-	
-	public static function doSelectJoinAllExceptTurnos(Criteria $c, $con = null)
-	{
-		$c = clone $c;
-
-								if ($c->getDbName() == Propel::getDefaultDB()) {
-			$c->setDbName(self::DATABASE_NAME);
-		}
-
-		HorarioescolarPeer::addSelectColumns($c);
-		$startcol2 = (HorarioescolarPeer::NUM_COLUMNS - HorarioescolarPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-
-		EstablecimientoPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + EstablecimientoPeer::NUM_COLUMNS;
-
-		HorarioescolartipoPeer::addSelectColumns($c);
-		$startcol4 = $startcol3 + HorarioescolartipoPeer::NUM_COLUMNS;
-
-		$c->addJoin(HorarioescolarPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
-
-		$c->addJoin(HorarioescolarPeer::FK_HORARIOESCOLARTIPO_ID, HorarioescolartipoPeer::ID);
-
-
-		$rs = BasePeer::doSelect($c, $con);
-		$results = array();
-
-		while($rs->next()) {
-
-			$omClass = HorarioescolarPeer::getOMClass();
-
-			$cls = Propel::import($omClass);
-			$obj1 = new $cls();
-			$obj1->hydrate($rs);
-
-			$omClass = EstablecimientoPeer::getOMClass();
-
-
-			$cls = Propel::import($omClass);
-			$obj2  = new $cls();
-			$obj2->hydrate($rs, $startcol2);
-
-			$newObject = true;
-			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
-				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getEstablecimiento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
-					$newObject = false;
-					$temp_obj2->addHorarioescolar($obj1);
-					break;
-				}
-			}
-
-			if ($newObject) {
-				$obj2->initHorarioescolars();
-				$obj2->addHorarioescolar($obj1);
-			}
-
-			$omClass = HorarioescolartipoPeer::getOMClass();
-
-
-			$cls = Propel::import($omClass);
-			$obj3  = new $cls();
-			$obj3->hydrate($rs, $startcol3);
-
-			$newObject = true;
-			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
-				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getHorarioescolartipo(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
-					$newObject = false;
-					$temp_obj3->addHorarioescolar($obj1);
-					break;
-				}
-			}
-
-			if ($newObject) {
-				$obj3->initHorarioescolars();
-				$obj3->addHorarioescolar($obj1);
-			}
-
-			$results[] = $obj1;
-		}
-		return $results;
-	}
-
-
-	
-	public static function doSelectJoinAllExceptHorarioescolartipo(Criteria $c, $con = null)
+	public static function doSelectJoinAllExceptEvento(Criteria $c, $con = null)
 	{
 		$c = clone $c;
 
@@ -860,9 +825,14 @@ abstract class BaseHorarioescolarPeer {
 		TurnosPeer::addSelectColumns($c);
 		$startcol4 = $startcol3 + TurnosPeer::NUM_COLUMNS;
 
+		HorarioescolartipoPeer::addSelectColumns($c);
+		$startcol5 = $startcol4 + HorarioescolartipoPeer::NUM_COLUMNS;
+
 		$c->addJoin(HorarioescolarPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
 
 		$c->addJoin(HorarioescolarPeer::FK_TURNOS_ID, TurnosPeer::ID);
+
+		$c->addJoin(HorarioescolarPeer::FK_HORARIOESCOLARTIPO_ID, HorarioescolartipoPeer::ID);
 
 
 		$rs = BasePeer::doSelect($c, $con);
@@ -918,6 +888,361 @@ abstract class BaseHorarioescolarPeer {
 			if ($newObject) {
 				$obj3->initHorarioescolars();
 				$obj3->addHorarioescolar($obj1);
+			}
+
+			$omClass = HorarioescolartipoPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj4  = new $cls();
+			$obj4->hydrate($rs, $startcol4);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj4 = $temp_obj1->getHorarioescolartipo(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj4->addHorarioescolar($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj4->initHorarioescolars();
+				$obj4->addHorarioescolar($obj1);
+			}
+
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	
+	public static function doSelectJoinAllExceptEstablecimiento(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+								if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		HorarioescolarPeer::addSelectColumns($c);
+		$startcol2 = (HorarioescolarPeer::NUM_COLUMNS - HorarioescolarPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+
+		EventoPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + EventoPeer::NUM_COLUMNS;
+
+		TurnosPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + TurnosPeer::NUM_COLUMNS;
+
+		HorarioescolartipoPeer::addSelectColumns($c);
+		$startcol5 = $startcol4 + HorarioescolartipoPeer::NUM_COLUMNS;
+
+		$c->addJoin(HorarioescolarPeer::FK_EVENTO_ID, EventoPeer::ID);
+
+		$c->addJoin(HorarioescolarPeer::FK_TURNOS_ID, TurnosPeer::ID);
+
+		$c->addJoin(HorarioescolarPeer::FK_HORARIOESCOLARTIPO_ID, HorarioescolartipoPeer::ID);
+
+
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = HorarioescolarPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = EventoPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj2  = new $cls();
+			$obj2->hydrate($rs, $startcol2);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj2 = $temp_obj1->getEvento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj2->addHorarioescolar($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj2->initHorarioescolars();
+				$obj2->addHorarioescolar($obj1);
+			}
+
+			$omClass = TurnosPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj3  = new $cls();
+			$obj3->hydrate($rs, $startcol3);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj3 = $temp_obj1->getTurnos(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj3->addHorarioescolar($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj3->initHorarioescolars();
+				$obj3->addHorarioescolar($obj1);
+			}
+
+			$omClass = HorarioescolartipoPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj4  = new $cls();
+			$obj4->hydrate($rs, $startcol4);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj4 = $temp_obj1->getHorarioescolartipo(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj4->addHorarioescolar($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj4->initHorarioescolars();
+				$obj4->addHorarioescolar($obj1);
+			}
+
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	
+	public static function doSelectJoinAllExceptTurnos(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+								if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		HorarioescolarPeer::addSelectColumns($c);
+		$startcol2 = (HorarioescolarPeer::NUM_COLUMNS - HorarioescolarPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+
+		EventoPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + EventoPeer::NUM_COLUMNS;
+
+		EstablecimientoPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + EstablecimientoPeer::NUM_COLUMNS;
+
+		HorarioescolartipoPeer::addSelectColumns($c);
+		$startcol5 = $startcol4 + HorarioescolartipoPeer::NUM_COLUMNS;
+
+		$c->addJoin(HorarioescolarPeer::FK_EVENTO_ID, EventoPeer::ID);
+
+		$c->addJoin(HorarioescolarPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
+
+		$c->addJoin(HorarioescolarPeer::FK_HORARIOESCOLARTIPO_ID, HorarioescolartipoPeer::ID);
+
+
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = HorarioescolarPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = EventoPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj2  = new $cls();
+			$obj2->hydrate($rs, $startcol2);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj2 = $temp_obj1->getEvento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj2->addHorarioescolar($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj2->initHorarioescolars();
+				$obj2->addHorarioescolar($obj1);
+			}
+
+			$omClass = EstablecimientoPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj3  = new $cls();
+			$obj3->hydrate($rs, $startcol3);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj3 = $temp_obj1->getEstablecimiento(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj3->addHorarioescolar($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj3->initHorarioescolars();
+				$obj3->addHorarioescolar($obj1);
+			}
+
+			$omClass = HorarioescolartipoPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj4  = new $cls();
+			$obj4->hydrate($rs, $startcol4);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj4 = $temp_obj1->getHorarioescolartipo(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj4->addHorarioescolar($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj4->initHorarioescolars();
+				$obj4->addHorarioescolar($obj1);
+			}
+
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	
+	public static function doSelectJoinAllExceptHorarioescolartipo(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+								if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		HorarioescolarPeer::addSelectColumns($c);
+		$startcol2 = (HorarioescolarPeer::NUM_COLUMNS - HorarioescolarPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+
+		EventoPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + EventoPeer::NUM_COLUMNS;
+
+		EstablecimientoPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + EstablecimientoPeer::NUM_COLUMNS;
+
+		TurnosPeer::addSelectColumns($c);
+		$startcol5 = $startcol4 + TurnosPeer::NUM_COLUMNS;
+
+		$c->addJoin(HorarioescolarPeer::FK_EVENTO_ID, EventoPeer::ID);
+
+		$c->addJoin(HorarioescolarPeer::FK_ESTABLECIMIENTO_ID, EstablecimientoPeer::ID);
+
+		$c->addJoin(HorarioescolarPeer::FK_TURNOS_ID, TurnosPeer::ID);
+
+
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = HorarioescolarPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = EventoPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj2  = new $cls();
+			$obj2->hydrate($rs, $startcol2);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj2 = $temp_obj1->getEvento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj2->addHorarioescolar($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj2->initHorarioescolars();
+				$obj2->addHorarioescolar($obj1);
+			}
+
+			$omClass = EstablecimientoPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj3  = new $cls();
+			$obj3->hydrate($rs, $startcol3);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj3 = $temp_obj1->getEstablecimiento(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj3->addHorarioescolar($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj3->initHorarioescolars();
+				$obj3->addHorarioescolar($obj1);
+			}
+
+			$omClass = TurnosPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj4  = new $cls();
+			$obj4->hydrate($rs, $startcol4);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj4 = $temp_obj1->getTurnos(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj4->addHorarioescolar($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj4->initHorarioescolars();
+				$obj4->addHorarioescolar($obj1);
 			}
 
 			$results[] = $obj1;

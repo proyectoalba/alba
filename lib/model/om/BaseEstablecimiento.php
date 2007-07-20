@@ -1834,6 +1834,41 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 
 
 	
+	public function getHorarioescolarsJoinEvento($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseHorarioescolarPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collHorarioescolars === null) {
+			if ($this->isNew()) {
+				$this->collHorarioescolars = array();
+			} else {
+
+				$criteria->add(HorarioescolarPeer::FK_ESTABLECIMIENTO_ID, $this->getId());
+
+				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinEvento($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(HorarioescolarPeer::FK_ESTABLECIMIENTO_ID, $this->getId());
+
+			if (!isset($this->lastHorarioescolarCriteria) || !$this->lastHorarioescolarCriteria->equals($criteria)) {
+				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinEvento($criteria, $con);
+			}
+		}
+		$this->lastHorarioescolarCriteria = $criteria;
+
+		return $this->collHorarioescolars;
+	}
+
+
+	
 	public function getHorarioescolarsJoinTurnos($criteria = null, $con = null)
 	{
 				include_once 'lib/model/om/BaseHorarioescolarPeer.php';

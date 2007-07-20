@@ -38,7 +38,7 @@ class DocenteMapBuilder {
 
 		$tMap->addColumn('NOMBRE', 'Nombre', 'string', CreoleTypes::VARCHAR, true, 128);
 
-		$tMap->addColumn('SEXO', 'Sexo', 'string', CreoleTypes::CHAR, false, 1);
+		$tMap->addColumn('SEXO', 'Sexo', 'string', CreoleTypes::CHAR, true, 1);
 
 		$tMap->addColumn('FECHA_NACIMIENTO', 'FechaNacimiento', 'int', CreoleTypes::TIMESTAMP, true, null);
 

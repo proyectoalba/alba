@@ -53,7 +53,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 
 
 	
-	protected $sexo = 'null';
+	protected $sexo;
 
 
 	
@@ -388,7 +388,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->sexo !== $v || $v === 'null') {
+		if ($this->sexo !== $v) {
 			$this->sexo = $v;
 			$this->modifiedColumns[] = ResponsablePeer::SEXO;
 		}
