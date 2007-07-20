@@ -2573,24 +2573,25 @@ INSERT INTO `feriado` (`id`, `fecha`, `nombre`, `repeticion_anual`, `inamovible`
 -- Volcar la base de datos para la tabla `horarioescolar`
 -- 
 
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `dia`, `hora_inicio`, `hora_fin`, `fk_horarioescolartipo_id`, `fk_establecimiento_id`, `fk_turnos_id`) VALUES (1, 'Primera hora', 'Primera hora de clase.', 8, '07:30:00', '08:10:00', 1, 1, 4);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `dia`, `hora_inicio`, `hora_fin`, `fk_horarioescolartipo_id`, `fk_establecimiento_id`, `fk_turnos_id`) VALUES (2, 'Segunda hora.', 'Segunda hora de clases.', 8, '08:10:00', '08:50:00', 1, 1, 4);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `dia`, `hora_inicio`, `hora_fin`, `fk_horarioescolartipo_id`, `fk_establecimiento_id`, `fk_turnos_id`) VALUES (3, 'Primer recreo.', 'Primer recreo: duración 20 minutos.', 8, '08:50:00', '09:10:00', 2, 1, 4);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `dia`, `hora_inicio`, `hora_fin`, `fk_horarioescolartipo_id`, `fk_establecimiento_id`, `fk_turnos_id`) VALUES (4, 'Tercera hora.', 'Tercera hora de clases.', 8, '09:10:00', '09:50:00', 1, 1, 4);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `dia`, `hora_inicio`, `hora_fin`, `fk_horarioescolartipo_id`, `fk_establecimiento_id`, `fk_turnos_id`) VALUES (5, 'Cuarta hora.', 'Cuarta hora de clases.', 8, '09:50:00', '10:30:00', 1, 1, 4);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `dia`, `hora_inicio`, `hora_fin`, `fk_horarioescolartipo_id`, `fk_establecimiento_id`, `fk_turnos_id`) VALUES (6, 'Segundo recreo.', 'Segundo recreo: duración  10 minutos.', 8, '10:30:00', '10:40:00', 2, 1, 4);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `dia`, `hora_inicio`, `hora_fin`, `fk_horarioescolartipo_id`, `fk_establecimiento_id`, `fk_turnos_id`) VALUES (7, 'Quinta hora. ', 'Quinta hora de clases.', 8, '10:40:00', '11:20:00', 2, 1, 4);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `dia`, `hora_inicio`, `hora_fin`, `fk_horarioescolartipo_id`, `fk_establecimiento_id`, `fk_turnos_id`) VALUES (8, 'Tercer recreo.', 'Tercer recreo: duración 10 minutos.', 8, '11:20:00', '11:30:00', 2, 1, 4);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `dia`, `hora_inicio`, `hora_fin`, `fk_horarioescolartipo_id`, `fk_establecimiento_id`, `fk_turnos_id`) VALUES (9, 'Sexta hora. ', 'Sexta hora de clases.', 8, '11:30:00', '12:10:00', 1, 1, 4);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `dia`, `hora_inicio`, `hora_fin`, `fk_horarioescolartipo_id`, `fk_establecimiento_id`, `fk_turnos_id`) VALUES (10, 'Primera hora.', 'Primera hora de clase.', 8, '12:30:00', '13:10:00', 1, 1, 5);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `dia`, `hora_inicio`, `hora_fin`, `fk_horarioescolartipo_id`, `fk_establecimiento_id`, `fk_turnos_id`) VALUES (11, 'Segunda hora.', 'Segunda hora de clases.', 8, '13:10:00', '13:50:00', 1, 1, 5);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `dia`, `hora_inicio`, `hora_fin`, `fk_horarioescolartipo_id`, `fk_establecimiento_id`, `fk_turnos_id`) VALUES (12, 'Primer recreo.', 'Primer recreo: duración 20 minutos.', 8, '13:50:00', '14:10:00', 2, 1, 5);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `dia`, `hora_inicio`, `hora_fin`, `fk_horarioescolartipo_id`, `fk_establecimiento_id`, `fk_turnos_id`) VALUES (13, 'Tercera hora.', 'Tercera hora de clases.', 8, '14:10:00', '14:50:00', 1, 1, 5);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `dia`, `hora_inicio`, `hora_fin`, `fk_horarioescolartipo_id`, `fk_establecimiento_id`, `fk_turnos_id`) VALUES (14, 'Cuarta hora.', 'Cuarta hora de clases.', 8, '14:50:00', '15:30:00', 1, 1, 5);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `dia`, `hora_inicio`, `hora_fin`, `fk_horarioescolartipo_id`, `fk_establecimiento_id`, `fk_turnos_id`) VALUES (15, 'Segundo recreo.', 'Segundo recreo: duración  10 minutos.', 8, '15:40:00', '15:50:00', 2, 1, 5);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `dia`, `hora_inicio`, `hora_fin`, `fk_horarioescolartipo_id`, `fk_establecimiento_id`, `fk_turnos_id`) VALUES (16, 'Quinta hora. ', 'Quinta hora de clases.', 8, '15:40:00', '16:20:00', 1, 1, 5);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `dia`, `hora_inicio`, `hora_fin`, `fk_horarioescolartipo_id`, `fk_establecimiento_id`, `fk_turnos_id`) VALUES (17, 'Tercer recreo.', 'Tercer recreo: duración 10 minutos.', 8, '16:20:00', '16:30:00', 2, 1, 5);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `dia`, `hora_inicio`, `hora_fin`, `fk_horarioescolartipo_id`, `fk_establecimiento_id`, `fk_turnos_id`) VALUES (18, 'Sexta hora. ', 'Sexta hora de clases.', 8, '16:30:00', '17:10:00', 1, 1, 5);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (1, 'Primera hora', 'Primera hora de clase.', 1, 4, 1, 7);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (2, 'Segunda hora.', 'Segunda hora de clases.', 1, 4, 1, 8);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (3, 'Primer recreo.', 'Primer recreo: duración 20 minutos.', 1, 4, 2, 9);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (4, 'Tercera hora.', 'Tercera hora de clases.', 1, 4, 1, 10);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (5, 'Cuarta hora.', 'Cuarta hora de clases.', 1, 4, 1, 11);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (6, 'Segundo recreo.', 'Segundo recreo: duración  10 minutos.', 1, 4, 2, 12);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (7, 'Quinta hora. ', 'Quinta hora de clases.', 1, 4, 2, 13);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (8, 'Tercer recreo.', 'Tercer recreo: duración 10 minutos.', 1, 4, 2, 14);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (9, 'Sexta hora. ', 'Sexta hora de clases.', 1, 4, 1, 15);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (10, 'Primera hora.', 'Primera hora de clase.', 1, 5, 1, 16);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (11, 'Segunda hora.', 'Segunda hora de clases.', 1, 5, 1, 17);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (12, 'Primer recreo.', 'Primer recreo: duración 20 minutos.', 1, 5, 2, 18);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (13, 'Tercera hora.', 'Tercera hora de clases.', 1, 5, 1, 19);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (14, 'Cuarta hora.', 'Cuarta hora de clases.', 1, 5, 1, 20);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (15, 'Segundo recreo.', 'Segundo recreo: duración  10 minutos.', 1, 5, 2, 21);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (16, 'Quinta hora. ', 'Quinta hora de clases.', 1, 5, 1, 22);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (17, 'Tercer recreo.', 'Tercer recreo: duración 10 minutos.', 1, 5, 2, 23);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (18, 'Sexta hora. ', 'Sexta hora de clases.', 1, 5, 1, 24);
+
 
 -- 
 -- Volcar la base de datos para la tabla `horarioescolartipo`
@@ -3342,6 +3343,10 @@ INSERT INTO `usuario` (`id`, `usuario`, `clave`, `correo_publico`, `email`, `act
 INSERT INTO `usuario` (`id`, `usuario`, `clave`, `correo_publico`, `email`, `activo`, `fecha_creado`, `fecha_actualizado`, `seguridad_pregunta`, `seguridad_respuesta`, `fk_establecimiento_id`, `borrado`) VALUES (4, 'Carla Herrera', 'c893bad68927b457dbed39460e6afd62', 1, 'carla.herrera@gmail.com', 1, '2007-02-19 00:00:00', '2007-02-19 11:26:54', 'Cómo se llama mi novio?', 'Martiniano', 1, 0);
 
 
+-- 
+-- Volcar la base de datos para la tabla `evento`
+-- 
+
 INSERT INTO `evento` (`id`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`, `titulo`) VALUES (1, '2007-03-05 07:30:00', '2007-03-05 12:15:00', 1, 5, 1, '2007-12-14 00:00', 62, 1, '');
 
 INSERT INTO `evento` (`id`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`, `titulo`) VALUES (2, '2007-03-05 07:30:00', '2007-03-05 12:15:00', 1, 5, 1, '2007-12-14 00:00', 62, 1, '');
@@ -3353,6 +3358,47 @@ INSERT INTO `evento` (`id`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `
 INSERT INTO `evento` (`id`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`, `titulo`) VALUES (5, '2007-03-05 07:30:00', '2007-03-05 12:15:00', 1, 5, 1, '2007-12-14 00:00', 62, 1, '');
 
 INSERT INTO `evento` (`id`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`, `titulo`) VALUES (6, '2007-03-05 07:30:00', '2007-03-05 12:15:00', 1, 5, 1, '2007-12-14 00:00', 62, 1, '');
+
+
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (7, '', '2007-03-05 07:30:00', '2007-03-05 08:10:00', 1, 5, 1, '2007-12-14 00:00', 62, 1);
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (8, '', '2007-03-05 08:10:00', '2007-03-05 08:50:00', 1, 5, 1, '2007-12-14 00:00', 62, 1);
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (9, '', '2007-03-05 08:50:00', '2007-03-05 09:10:00', 1, 5, 1, '2007-12-14 00:00', 62, 1);
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (10, '', '2007-03-05 09:10:00', '2007-03-05 09:50:00', 1, 5, 1, '2007-12-14 00:00', 62, 1);
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (11, '', '2007-03-05 09:50:00', '2007-03-05 10:30:00', 1, 5, 1, '2007-12-14 00:00', 62, 1);
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (12, '', '2007-03-05 10:30:00', '2007-03-05 10:40:00', 1, 5, 1, '2007-12-14 00:00', 62, 1);
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (13, '', '2007-03-05 10:40:00', '2007-03-05 11:20:00', 1, 5, 1, '2007-12-14 00:00', 62, 1);
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (14, '', '2007-03-05 11:20:00', '2007-03-05 11:30:00', 1, 5, 1, '2007-12-14 00:00', 62, 1);
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (15, '', '2007-03-05 11:30:00', '2007-03-05 12:10:00', 1, 5, 1, '2007-12-14 00:00', 62, 1);
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (16, '', '2007-03-05 12:30:00', '2007-03-05 13:10:00', 1, 5, 1, '2007-12-14 00:00', 62, 1);
+
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (17, '', '2007-03-05 13:10:00', '2007-03-05 13:50:00', 1, 5, 1, '2007-12-14 00:00', 62, 1);
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (18, '', '2007-03-05 13:50:00', '2007-03-05 14:10:00', 1, 5, 1, '2007-12-14 00:00', 62, 1);
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (19, '', '2007-03-05 14:10:00', '2007-03-05 14:50:00', 1, 5, 1, '2007-12-14 00:00', 62, 1);
+
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (20, '', '2007-03-05 14:50:00', '2007-03-05 15:30:00', 1, 5, 1, '2007-12-14 00:00', 62, 1);
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (21, '', '2007-03-05 15:30:00', '2007-03-05 15:40:00', 1, 5, 1, '2007-12-14 00:00', 62, 1);
+
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (22, '', '2007-03-05 15:40:00', '2007-03-05 16:20:00', 1, 5, 1, '2007-12-14 00:00', 62, 1);
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (23, '', '2007-03-05 16:20:00', '2007-03-05 16:30:00', 1, 5, 1, '2007-12-14 00:00', 62, 1);
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (24, '', '2007-03-05 16:30:00', '2007-03-05 17:10:00', 1, 5, 1, '2007-12-14 00:00', 62, 1);
 
 SET FOREIGN_KEY_CHECKS = 1;
 
