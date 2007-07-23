@@ -1,4 +1,5 @@
 <?php use_helper('Object')?>
+<div id="sf_admin_container">
 <?php if (count($cicloslectivos) != 0) :?>
     <?php echo form_tag('ciclolectivo/actual')?>
 
@@ -12,3 +13,4 @@
         
     </form>
 <?php endif;?>
+</div>
