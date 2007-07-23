@@ -124,7 +124,7 @@
                 <th id="sf_admin_list_th_sf_actions">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
 
            <?php foreach ($aTipoasistencias as $idx => $Tipoasistencia){ ?>
-                <th id="sf_admin_list_th_sf_actions"><?php echo $idx ?></th>
+                <th id="sf_admin_list_th_sf_actions" title="<?php echo $Tipoasistencia[1]?>"><?php echo $idx ?></th>
             <?}?>
       </tr>
      </thead>
