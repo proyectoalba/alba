@@ -133,7 +133,7 @@
                                                 $newColspan = floor($nbrGridCols / ($event['event_overlap']+1));
                         ?>
 
-<td rowspan="<?php echo $rowspan?>" width="<?php echo floor(460/($event['event_overlap']+1))?>" colspan="<?php echo floor($nbrGridCols / ($event['event_overlap']+1)) ?>" align="left" valign="top" class="eventbg2_1">
+<td rowspan="<?php echo $rowspan?>" width="<?php echo floor(460/($event['event_overlap']+1))?>" colspan="<?php echo $newColspan ?>" align="left" valign="top" class="eventbg2_1">
     <div class="eventfont">
         <div class="eventbg_1"><b><?php echo date("H:i A", $event['start_unixtime'])?></b> - <?php echo date("H:i A", $event['end_unixtime'])?></div>
         <div class="padd"> <!-- style="width:<?php echo floor(460/($event['event_overlap']+1))?>px"> -->
