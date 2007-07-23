@@ -68,6 +68,7 @@
 		  <td align="center" valign="top" colspan="3">
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <?php 
+                            $salta = 0; //si el evento pasa hacia otra franja horaria de la grafica
                             $date_ymd = date("Ymd", $date);
                             for($i = 0, $max = count($aTime); $i < $max; $i += 4) { 
                                 $time_idx0 = date("Hi",$aTime[$i]);
@@ -101,6 +102,9 @@
                         </tr>
                         <?php 
                                 } else {
+
+
+                                    $find = 0; // si se encontro algun evento
                                     for($j=0;$j<4;$j++) {
                                         if($j!=0) { 
                         ?>
@@ -110,38 +114,42 @@
                             <tr>
                                 <td rowspan="4" align="center" valign="top" width="60" class="timeborder"><?php echo date("H:i A",$aTime[$i])?></td>
                                 <td bgcolor="#a1a5a9" width="1" height="15"></td>
-                        <?php           }
+                        <?php        
+
+                                       }
                                         $var_time_idx = "time_idx".$j;
                                         if(array_key_exists($$var_time_idx, $aEvent[$date_ymd])) {
+                                            $find = 1;
                                             $k=0;
                                             foreach($aEvent[$date_ymd][$$var_time_idx] as $event) {
                                                 $k++;
-                                                $rowspan = ceil(($event['event_length'] / 60 ) / 15); // en el array esta en seg lo divido 60 y obtengo min luego divido 15 min (que es una linea de rowspan y obtengo cantidad de lineas hacia abajo a rellenar
+                                                $rowspan = round(($event['event_length'] / 60 ) / 15); // en el array esta en seg lo divido 60 y obtengo min luego divido 15 min (que es una linea de rowspan y obtengo cantidad de lineas hacia abajo a rellenar
+
+                                                // evalua si pasa o no el rowspan hacia otra hora
+                                                if( (4-round(substr($$var_time_idx,2,2)/15)) < $rowspan) {
+//                                                     echo $$var_time_idx."    ".(4-round(substr($$var_time_idx,2,2)/15))." < $rowspan<br>";
+//                                                     $salta = 1;
+                                                }
+                                                $newColspan = floor($nbrGridCols / ($event['event_overlap']+1));
                         ?>
 
 <td rowspan="<?php echo $rowspan?>" width="<?php echo floor(460/($event['event_overlap']+1))?>" colspan="<?php echo floor($nbrGridCols / ($event['event_overlap']+1)) ?>" align="left" valign="top" class="eventbg2_1">
     <div class="eventfont">
         <div class="eventbg_1"><b><?php echo date("H:i A", $event['start_unixtime'])?></b> - <?php echo date("H:i A", $event['end_unixtime'])?></div>
-        <div class="padd" style="width:<?php echo floor(460/($event['event_overlap']+1))?>px">
+        <div class="padd"> <!-- style="width:<?php echo floor(460/($event['event_overlap']+1))?>px"> -->
         <a class="ps" title="<?php echo $event['event_text']?>" href="#" onclick="openEventWindow(0); return false;"><?php echo $event['event_text']?></a>
         </div>
     </div>
 </td>
                         <?php               }
-                                        } 
-
-                                        if($j==0) {
-                        ?>
-                          <!--              <td colspan="<?php echo $nbrGridCols?>"  class="dayborder">&nbsp;</td>-->
-                                </tr>
-                        <?php
                                         } else {
-                        ?>
-                            <!--<td colspan="<?php echo $nbrGridCols?>"  class="dayborder<?php echo ($j%2==0)?'':'2'?>">&nbsp;</td>-->  
-                                </tr>
-                        <? 
+//                                             if($find == 0 AND $salta == 0) { 
+                                                if(!isset($newColspan)) $newColspan = $nbrGridCols;
+                                                ?><td colspan="<?php echo $newColspan?>" class="<?php echo ($j%2==0)?" dayborder":"dayborder2"?>">&nbsp;</td>
+                        <?php
                                         }
-                                    }
+                        ?></tr><?php
+                                }
                              } ?>
                         <?php } ?>
                     </table>

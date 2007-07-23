@@ -107,6 +107,13 @@ class horarioescolarActions extends autohorarioescolarActions
     }
 
 
+    public function executeExportToIcal() {
+        $this->executeList();
+        include("miExportadorIcal.class.php");
+        $e  = new miExportadorIcal();
+        $e->exportar($this->pager->getResults());
+    }
+
 
     public function executeVerCalendario() {
         $this->executeList();
@@ -132,15 +139,14 @@ class horarioescolarActions extends autohorarioescolarActions
 
 
     
-  protected function getLabels()
-  {
-    return array(
-      'horarioescolar{nombre}' => 'Nombre:',
-      'horarioescolar{descripcion}' => 'Descripcion:',
-      'horarioescolar{fk_horarioescolartipo_id}' => 'Tipo Horario Escolar:',
-      'horarioescolar{fk_turnos_id}' => 'Turno:',
-      'horarioescolar{fk_evento_id}' => 'Evento:',
-    );
-  }
+    protected function getLabels() {
+        return array(
+        'horarioescolar{nombre}' => 'Nombre:',
+        'horarioescolar{descripcion}' => 'Descripcion:',
+        'horarioescolar{fk_horarioescolartipo_id}' => 'Tipo Horario Escolar:',
+        'horarioescolar{fk_turnos_id}' => 'Turno:',
+        'horarioescolar{fk_evento_id}' => 'Evento:',
+        );
+    }
 }
 ?>
