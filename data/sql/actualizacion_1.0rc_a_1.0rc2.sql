@@ -74,6 +74,7 @@ ALTER TABLE `horarioescolar` DROP `dia` , DROP `hora_inicio` , DROP `hora_fin` ;
 ALTER TABLE `horarioescolar` ADD `fk_evento_id` INT NOT NULL ;
 ALTER TABLE `horarioescolar` ADD INDEX `fk_evento_FI_1` ( `fk_evento_id` );
 
- 
+ALTER TABLE `rel_division_actividad_docente` DROP `fk_repeticion_id` , DROP `fecha_inicio`, DROP `fecha_fin`, DROP `hora_inicio`, DROP `hora_fin`;
+
 SET FOREIGN_KEY_CHECKS = 1;
     

@@ -2981,17 +2981,24 @@ INSERT INTO `rel_calendariovacunacion_alumno` (`id`, `fk_alumno_id`, `fk_calenda
 INSERT INTO `rel_calendariovacunacion_alumno` (`id`, `fk_alumno_id`, `fk_calendariovacunacion_id`, `observacion`, `comprobante`, `fecha`) VALUES (4, 1, 3, '', 1, '2006-12-07 00:00:00');
 
 -- 
--- Volcar la base de datos para la tabla `rel_division_actividad_docente`
+-- Volcar la base de datos para la tabla `ivision_actividad_docente`
 -- 
 
-INSERT INTO `rel_division_actividad_docente` (`id`, `fk_division_id`, `fk_actividad_id`, `fk_repeticion_id`, `fecha_inicio`, `fecha_fin`, `hora_inicio`, `hora_fin`) VALUES (1, 8, 7, 1, '2006-09-11 00:00:00', '2006-09-11 00:00:00', '07:30:00', '08:10:00');
-INSERT INTO `rel_division_actividad_docente` (`id`, `fk_division_id`, `fk_actividad_id`, `fk_repeticion_id`, `fecha_inicio`, `fecha_fin`, `hora_inicio`, `hora_fin`) VALUES (2, 8, 7, 1, '2006-09-11 00:00:00', '2006-09-11 00:00:00', '08:10:00', '08:50:00');
-INSERT INTO `rel_division_actividad_docente` (`id`, `fk_division_id`, `fk_actividad_id`, `fk_repeticion_id`, `fecha_inicio`, `fecha_fin`, `hora_inicio`, `hora_fin`) VALUES (3, 8, 7, 1, '2006-09-12 00:00:00', '2006-09-12 00:00:00', '07:30:00', '08:10:00');
-INSERT INTO `rel_division_actividad_docente` (`id`, `fk_division_id`, `fk_actividad_id`, `fk_repeticion_id`, `fecha_inicio`, `fecha_fin`, `hora_inicio`, `hora_fin`) VALUES (4, 8, 7, 1, '2006-09-12 00:00:00', '2006-09-12 00:00:00', '08:10:00', '08:50:00');
-INSERT INTO `rel_division_actividad_docente` (`id`, `fk_division_id`, `fk_actividad_id`, `fk_repeticion_id`, `fecha_inicio`, `fecha_fin`, `hora_inicio`, `hora_fin`) VALUES (5, 8, 7, 1, '2006-09-13 00:00:00', '2006-09-13 00:00:00', '09:50:00', '10:30:00');
-INSERT INTO `rel_division_actividad_docente` (`id`, `fk_division_id`, `fk_actividad_id`, `fk_repeticion_id`, `fecha_inicio`, `fecha_fin`, `hora_inicio`, `hora_fin`) VALUES (6, 8, 7, 1, '2006-09-13 00:00:00', '2006-09-13 00:00:00', '10:40:00', '11:20:00');
-INSERT INTO `rel_division_actividad_docente` (`id`, `fk_division_id`, `fk_actividad_id`, `fk_repeticion_id`, `fecha_inicio`, `fecha_fin`, `hora_inicio`, `hora_fin`) VALUES (7, 8, 7, 1, '2006-09-14 00:00:00', '2006-09-14 00:00:00', '09:50:00', '10:30:00');
-INSERT INTO `rel_division_actividad_docente` (`id`, `fk_division_id`, `fk_actividad_id`, `fk_repeticion_id`, `fecha_inicio`, `fecha_fin`, `hora_inicio`, `hora_fin`) VALUES (8, 8, 7, 1, '2006-09-14 00:00:00', '2006-09-14 00:00:00', '10:40:00', '11:20:00');
+INSERT INTO `rel_division_actividad_docente` (`id`, `fk_division_id`, `fk_actividad_id`, `fk_docente_id`, `fk_evento_id`) VALUES (1, 8, 7, 3, 25);
+
+INSERT INTO `rel_division_actividad_docente` (`id`, `fk_division_id`, `fk_actividad_id`, `fk_docente_id`, `fk_evento_id`) VALUES (2, 8, 7, 3, 26);
+
+INSERT INTO `rel_division_actividad_docente` (`id`, `fk_division_id`, `fk_actividad_id`, `fk_docente_id`, `fk_evento_id`) VALUES (3, 10, 8, 4, 27);
+
+INSERT INTO `rel_division_actividad_docente` (`id`, `fk_division_id`, `fk_actividad_id`, `fk_docente_id`, `fk_evento_id`) VALUES (4, 10, 8, 4, 28);
+
+INSERT INTO `rel_division_actividad_docente` (`id`, `fk_division_id`, `fk_actividad_id`, `fk_docente_id`, `fk_evento_id`) VALUES (5, 12, 9, 5, 29);
+
+INSERT INTO `rel_division_actividad_docente` (`id`, `fk_division_id`, `fk_actividad_id`, `fk_docente_id`, `fk_evento_id`) VALUES (6, 12, 9, 5, 30);
+
+INSERT INTO `rel_division_actividad_docente` (`id`, `fk_division_id`, `fk_actividad_id`, `fk_docente_id`, `fk_evento_id`) VALUES (7, 14, 10, 6, 31);
+
+INSERT INTO `rel_division_actividad_docente` (`id`, `fk_division_id`, `fk_actividad_id`, `fk_docente_id`, `fk_evento_id`) VALUES (8, 14, 10, 6, 32);
 
 -- 
 -- Volcar la base de datos para la tabla `rel_docente_establecimiento`
@@ -3360,7 +3367,6 @@ INSERT INTO `evento` (`id`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `
 INSERT INTO `evento` (`id`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`, `titulo`) VALUES (6, '2007-03-05 07:30:00', '2007-03-05 12:15:00', 1, 5, 1, '2007-12-14 00:00', 62, 1, '');
 
 
-
 INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (7, '', '2007-03-05 07:30:00', '2007-03-05 08:10:00', 1, 5, 1, '2007-12-14 00:00', 62, 1);
 
 INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (8, '', '2007-03-05 08:10:00', '2007-03-05 08:50:00', 1, 5, 1, '2007-12-14 00:00', 62, 1);
@@ -3399,6 +3405,26 @@ INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frec
 INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (23, '', '2007-03-05 16:20:00', '2007-03-05 16:30:00', 1, 5, 1, '2007-12-14 00:00', 62, 1);
 
 INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (24, '', '2007-03-05 16:30:00', '2007-03-05 17:10:00', 1, 5, 1, '2007-12-14 00:00', 62, 1);
+
+
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (25, '', '2007-03-05 07:30:00', '2007-03-05 08:10:00', 1, 5, 1, '2007-12-14 00:00', 6, 1);
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (26, '', '2007-03-05 14:50:00', '2007-03-05 15:30:00', 1, 5, 1, '2007-12-14 00:00', 6, 1);
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (27, '', '2007-03-05 07:30:00', '2007-03-05 08:10:00', 1, 5, 1, '2007-12-14 00:00', 6, 1);
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (28, '', '2007-03-05 14:50:00', '2007-03-05 15:30:00', 1, 5, 1, '2007-12-14 00:00', 6, 1);
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (29, '', '2007-03-05 07:30:00', '2007-03-05 08:10:00', 1, 5, 1, '2007-12-14 00:00', 6, 1);
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (30, '', '2007-03-05 14:50:00', '2007-03-05 15:30:00', 1, 5, 1, '2007-12-14 00:00', 6, 1);
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (31, '', '2007-03-05 07:30:00', '2007-03-05 08:10:00', 1, 5, 1, '2007-12-14 00:00', 6, 1);
+
+INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (32, '', '2007-03-05 14:50:00', '2007-03-05 15:30:00', 1, 5, 1, '2007-12-14 00:00', 6, 1);
+
+
 
 SET FOREIGN_KEY_CHECKS = 1;
 
