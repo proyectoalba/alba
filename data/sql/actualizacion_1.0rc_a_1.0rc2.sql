@@ -76,5 +76,15 @@ ALTER TABLE `horarioescolar` ADD INDEX `fk_evento_FI_1` ( `fk_evento_id` );
 
 ALTER TABLE `rel_division_actividad_docente` DROP `fk_repeticion_id` , DROP `fecha_inicio`, DROP `fecha_fin`, DROP `hora_inicio`, DROP `hora_fin`;
 
+ALTER TABLE rel_division_actividad_docente DROP FOREIGN KEY `fk_evento_id`;
+ALTER TABLE horarioescolar DROP FOREIGN KEY `fk_evento_id`;
+ALTER TABLE docente_horario DROP FOREIGN KEY `fk_evento_id`;
+  
+ALTER TABLE `rel_division_actividad_docente` ADD CONSTRAINT `rel_division_actividad_docente_FK_4`                FOREIGN KEY (`fk_evento_id`) REFERENCES `evento` (`id`) ON DELETE CASCADE;
+
+ALTER TABLE `horarioescolar` ADD CONSTRAINT `horarioescolar_FK_1` FOREIGN KEY (`fk_evento_id`) REFERENCES `evento` (`id`) ON DELETE CASCADE;
+
+ALTER TABLE `docente_horario` ADD CONSTRAINT `docente_horario_FK_2` FOREIGN KEY (`fk_evento_id`) REFERENCES `evento` (`id`) ON DELETE CASCADE;
+
 SET FOREIGN_KEY_CHECKS = 1;
     

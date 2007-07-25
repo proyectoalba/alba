@@ -1507,25 +1507,7 @@ alba:
       default: 0
       foreignTable: evento
       foreignReference: id
-    fk_repeticion_id: 
-      type: integer
-      size: 11
-      required: false
-      default: 0
-      foreignTable: repeticion
-      foreignReference: id
-    fecha_inicio: 
-      type: timestamp
-      required: true
-    fecha_fin: 
-      type: timestamp
-      required: true
-    hora_inicio: 
-      type: time
-      required: true
-    hora_fin: 
-      type: time
-      required: true
+      onDelete: cascade
   docente: 
     _attributes: 
       idMethod: native
@@ -1692,6 +1674,7 @@ alba:
       primaryKey: true
       foreignTable: evento
       foreignReference: id
+      onDelete: cascade
   feriado: 
     _attributes: 
       idMethod: native
@@ -1746,6 +1729,7 @@ alba:
       default: 0
       foreignTable: evento
       foreignReference: id
+      onDelete: cascade
     fk_establecimiento_id: 
       type: INTEGER
       required: true

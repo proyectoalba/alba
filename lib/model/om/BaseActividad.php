@@ -1211,41 +1211,6 @@ abstract class BaseActividad extends BaseObject  implements Persistent {
 		return $this->collRelDivisionActividadDocentes;
 	}
 
-
-	
-	public function getRelDivisionActividadDocentesJoinRepeticion($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseRelDivisionActividadDocentePeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collRelDivisionActividadDocentes === null) {
-			if ($this->isNew()) {
-				$this->collRelDivisionActividadDocentes = array();
-			} else {
-
-				$criteria->add(RelDivisionActividadDocentePeer::FK_ACTIVIDAD_ID, $this->getId());
-
-				$this->collRelDivisionActividadDocentes = RelDivisionActividadDocentePeer::doSelectJoinRepeticion($criteria, $con);
-			}
-		} else {
-									
-			$criteria->add(RelDivisionActividadDocentePeer::FK_ACTIVIDAD_ID, $this->getId());
-
-			if (!isset($this->lastRelDivisionActividadDocenteCriteria) || !$this->lastRelDivisionActividadDocenteCriteria->equals($criteria)) {
-				$this->collRelDivisionActividadDocentes = RelDivisionActividadDocentePeer::doSelectJoinRepeticion($criteria, $con);
-			}
-		}
-		$this->lastRelDivisionActividadDocenteCriteria = $criteria;
-
-		return $this->collRelDivisionActividadDocentes;
-	}
-
 	
 	public function initRelActividadDocentes()
 	{

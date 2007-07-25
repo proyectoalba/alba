@@ -1109,11 +1109,6 @@ CREATE TABLE `rel_division_actividad_docente`
 	`fk_actividad_id` INTEGER(11) default 0 NOT NULL,
 	`fk_docente_id` INTEGER(11) default 0,
 	`fk_evento_id` INTEGER(11) default 0,
-	`fk_repeticion_id` INTEGER(11) default 0,
-	`fecha_inicio` DATETIME  NOT NULL,
-	`fecha_fin` DATETIME  NOT NULL,
-	`hora_inicio` TIME  NOT NULL,
-	`hora_fin` TIME  NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `rel_division_actividad_docente_FI_1` (`fk_division_id`),
 	CONSTRAINT `rel_division_actividad_docente_FK_1`
@@ -1130,11 +1125,8 @@ CREATE TABLE `rel_division_actividad_docente`
 	INDEX `rel_division_actividad_docente_FI_4` (`fk_evento_id`),
 	CONSTRAINT `rel_division_actividad_docente_FK_4`
 		FOREIGN KEY (`fk_evento_id`)
-		REFERENCES `evento` (`id`),
-	INDEX `rel_division_actividad_docente_FI_5` (`fk_repeticion_id`),
-	CONSTRAINT `rel_division_actividad_docente_FK_5`
-		FOREIGN KEY (`fk_repeticion_id`)
-		REFERENCES `repeticion` (`id`)
+		REFERENCES `evento` (`id`)
+		ON DELETE CASCADE
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
@@ -1254,6 +1246,7 @@ CREATE TABLE `docente_horario`
 	CONSTRAINT `docente_horario_FK_2`
 		FOREIGN KEY (`fk_evento_id`)
 		REFERENCES `evento` (`id`)
+		ON DELETE CASCADE
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
@@ -1298,7 +1291,8 @@ CREATE TABLE `horarioescolar`
 	INDEX `horarioescolar_FI_1` (`fk_evento_id`),
 	CONSTRAINT `horarioescolar_FK_1`
 		FOREIGN KEY (`fk_evento_id`)
-		REFERENCES `evento` (`id`),
+		REFERENCES `evento` (`id`)
+		ON DELETE CASCADE,
 	INDEX `horarioescolar_FI_2` (`fk_establecimiento_id`),
 	CONSTRAINT `horarioescolar_FK_2`
 		FOREIGN KEY (`fk_establecimiento_id`)

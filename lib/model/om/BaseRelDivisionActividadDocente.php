@@ -27,26 +27,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 	
 	protected $fk_evento_id = 0;
 
-
-	
-	protected $fk_repeticion_id = 0;
-
-
-	
-	protected $fecha_inicio;
-
-
-	
-	protected $fecha_fin;
-
-
-	
-	protected $hora_inicio;
-
-
-	
-	protected $hora_fin;
-
 	
 	protected $aDivision;
 
@@ -58,9 +38,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 
 	
 	protected $aEvento;
-
-	
-	protected $aRepeticion;
 
 	
 	protected $alreadyInSave = false;
@@ -101,101 +78,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 	{
 
 		return $this->fk_evento_id;
-	}
-
-	
-	public function getFkRepeticionId()
-	{
-
-		return $this->fk_repeticion_id;
-	}
-
-	
-	public function getFechaInicio($format = 'Y-m-d H:i:s')
-	{
-
-		if ($this->fecha_inicio === null || $this->fecha_inicio === '') {
-			return null;
-		} elseif (!is_int($this->fecha_inicio)) {
-						$ts = strtotime($this->fecha_inicio);
-			if ($ts === -1 || $ts === false) { 				throw new PropelException("Unable to parse value of [fecha_inicio] as date/time value: " . var_export($this->fecha_inicio, true));
-			}
-		} else {
-			$ts = $this->fecha_inicio;
-		}
-		if ($format === null) {
-			return $ts;
-		} elseif (strpos($format, '%') !== false) {
-			return strftime($format, $ts);
-		} else {
-			return date($format, $ts);
-		}
-	}
-
-	
-	public function getFechaFin($format = 'Y-m-d H:i:s')
-	{
-
-		if ($this->fecha_fin === null || $this->fecha_fin === '') {
-			return null;
-		} elseif (!is_int($this->fecha_fin)) {
-						$ts = strtotime($this->fecha_fin);
-			if ($ts === -1 || $ts === false) { 				throw new PropelException("Unable to parse value of [fecha_fin] as date/time value: " . var_export($this->fecha_fin, true));
-			}
-		} else {
-			$ts = $this->fecha_fin;
-		}
-		if ($format === null) {
-			return $ts;
-		} elseif (strpos($format, '%') !== false) {
-			return strftime($format, $ts);
-		} else {
-			return date($format, $ts);
-		}
-	}
-
-	
-	public function getHoraInicio($format = 'H:i:s')
-	{
-
-		if ($this->hora_inicio === null || $this->hora_inicio === '') {
-			return null;
-		} elseif (!is_int($this->hora_inicio)) {
-						$ts = strtotime($this->hora_inicio);
-			if ($ts === -1 || $ts === false) { 				throw new PropelException("Unable to parse value of [hora_inicio] as date/time value: " . var_export($this->hora_inicio, true));
-			}
-		} else {
-			$ts = $this->hora_inicio;
-		}
-		if ($format === null) {
-			return $ts;
-		} elseif (strpos($format, '%') !== false) {
-			return strftime($format, $ts);
-		} else {
-			return date($format, $ts);
-		}
-	}
-
-	
-	public function getHoraFin($format = 'H:i:s')
-	{
-
-		if ($this->hora_fin === null || $this->hora_fin === '') {
-			return null;
-		} elseif (!is_int($this->hora_fin)) {
-						$ts = strtotime($this->hora_fin);
-			if ($ts === -1 || $ts === false) { 				throw new PropelException("Unable to parse value of [hora_fin] as date/time value: " . var_export($this->hora_fin, true));
-			}
-		} else {
-			$ts = $this->hora_fin;
-		}
-		if ($format === null) {
-			return $ts;
-		} elseif (strpos($format, '%') !== false) {
-			return strftime($format, $ts);
-		} else {
-			return date($format, $ts);
-		}
 	}
 
 	
@@ -285,92 +167,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 
 	} 
 	
-	public function setFkRepeticionId($v)
-	{
-
-						if ($v !== null && !is_int($v) && is_numeric($v)) {
-			$v = (int) $v;
-		}
-
-		if ($this->fk_repeticion_id !== $v || $v === 0) {
-			$this->fk_repeticion_id = $v;
-			$this->modifiedColumns[] = RelDivisionActividadDocentePeer::FK_REPETICION_ID;
-		}
-
-		if ($this->aRepeticion !== null && $this->aRepeticion->getId() !== $v) {
-			$this->aRepeticion = null;
-		}
-
-	} 
-	
-	public function setFechaInicio($v)
-	{
-
-		if ($v !== null && !is_int($v)) {
-			$ts = strtotime($v);
-			if ($ts === -1 || $ts === false) { 				throw new PropelException("Unable to parse date/time value for [fecha_inicio] from input: " . var_export($v, true));
-			}
-		} else {
-			$ts = $v;
-		}
-		if ($this->fecha_inicio !== $ts) {
-			$this->fecha_inicio = $ts;
-			$this->modifiedColumns[] = RelDivisionActividadDocentePeer::FECHA_INICIO;
-		}
-
-	} 
-	
-	public function setFechaFin($v)
-	{
-
-		if ($v !== null && !is_int($v)) {
-			$ts = strtotime($v);
-			if ($ts === -1 || $ts === false) { 				throw new PropelException("Unable to parse date/time value for [fecha_fin] from input: " . var_export($v, true));
-			}
-		} else {
-			$ts = $v;
-		}
-		if ($this->fecha_fin !== $ts) {
-			$this->fecha_fin = $ts;
-			$this->modifiedColumns[] = RelDivisionActividadDocentePeer::FECHA_FIN;
-		}
-
-	} 
-	
-	public function setHoraInicio($v)
-	{
-
-		if ($v !== null && !is_int($v)) {
-			$ts = strtotime($v);
-			if ($ts === -1 || $ts === false) { 				throw new PropelException("Unable to parse date/time value for [hora_inicio] from input: " . var_export($v, true));
-			}
-		} else {
-			$ts = $v;
-		}
-		if ($this->hora_inicio !== $ts) {
-			$this->hora_inicio = $ts;
-			$this->modifiedColumns[] = RelDivisionActividadDocentePeer::HORA_INICIO;
-		}
-
-	} 
-	
-	public function setHoraFin($v)
-	{
-
-		if ($v !== null && !is_int($v)) {
-			$ts = strtotime($v);
-			if ($ts === -1 || $ts === false) { 				throw new PropelException("Unable to parse date/time value for [hora_fin] from input: " . var_export($v, true));
-			}
-		} else {
-			$ts = $v;
-		}
-		if ($this->hora_fin !== $ts) {
-			$this->hora_fin = $ts;
-			$this->modifiedColumns[] = RelDivisionActividadDocentePeer::HORA_FIN;
-		}
-
-	} 
-	
 	public function hydrate(ResultSet $rs, $startcol = 1)
 	{
 		try {
@@ -385,21 +181,11 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 
 			$this->fk_evento_id = $rs->getInt($startcol + 4);
 
-			$this->fk_repeticion_id = $rs->getInt($startcol + 5);
-
-			$this->fecha_inicio = $rs->getTimestamp($startcol + 6, null);
-
-			$this->fecha_fin = $rs->getTimestamp($startcol + 7, null);
-
-			$this->hora_inicio = $rs->getTime($startcol + 8, null);
-
-			$this->hora_fin = $rs->getTime($startcol + 9, null);
-
 			$this->resetModified();
 
 			$this->setNew(false);
 
-						return $startcol + 10; 
+						return $startcol + 5; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating RelDivisionActividadDocente object", $e);
 		}
@@ -485,13 +271,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 				$this->setEvento($this->aEvento);
 			}
 
-			if ($this->aRepeticion !== null) {
-				if ($this->aRepeticion->isModified()) {
-					$affectedRows += $this->aRepeticion->save($con);
-				}
-				$this->setRepeticion($this->aRepeticion);
-			}
-
 
 						if ($this->isModified()) {
 				if ($this->isNew()) {
@@ -565,12 +344,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 				}
 			}
 
-			if ($this->aRepeticion !== null) {
-				if (!$this->aRepeticion->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aRepeticion->getValidationFailures());
-				}
-			}
-
 
 			if (($retval = RelDivisionActividadDocentePeer::doValidate($this, $columns)) !== true) {
 				$failureMap = array_merge($failureMap, $retval);
@@ -610,21 +383,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 			case 4:
 				return $this->getFkEventoId();
 				break;
-			case 5:
-				return $this->getFkRepeticionId();
-				break;
-			case 6:
-				return $this->getFechaInicio();
-				break;
-			case 7:
-				return $this->getFechaFin();
-				break;
-			case 8:
-				return $this->getHoraInicio();
-				break;
-			case 9:
-				return $this->getHoraFin();
-				break;
 			default:
 				return null;
 				break;
@@ -640,11 +398,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 			$keys[2] => $this->getFkActividadId(),
 			$keys[3] => $this->getFkDocenteId(),
 			$keys[4] => $this->getFkEventoId(),
-			$keys[5] => $this->getFkRepeticionId(),
-			$keys[6] => $this->getFechaInicio(),
-			$keys[7] => $this->getFechaFin(),
-			$keys[8] => $this->getHoraInicio(),
-			$keys[9] => $this->getHoraFin(),
 		);
 		return $result;
 	}
@@ -675,21 +428,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 			case 4:
 				$this->setFkEventoId($value);
 				break;
-			case 5:
-				$this->setFkRepeticionId($value);
-				break;
-			case 6:
-				$this->setFechaInicio($value);
-				break;
-			case 7:
-				$this->setFechaFin($value);
-				break;
-			case 8:
-				$this->setHoraInicio($value);
-				break;
-			case 9:
-				$this->setHoraFin($value);
-				break;
 		} 	}
 
 	
@@ -702,11 +440,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 		if (array_key_exists($keys[2], $arr)) $this->setFkActividadId($arr[$keys[2]]);
 		if (array_key_exists($keys[3], $arr)) $this->setFkDocenteId($arr[$keys[3]]);
 		if (array_key_exists($keys[4], $arr)) $this->setFkEventoId($arr[$keys[4]]);
-		if (array_key_exists($keys[5], $arr)) $this->setFkRepeticionId($arr[$keys[5]]);
-		if (array_key_exists($keys[6], $arr)) $this->setFechaInicio($arr[$keys[6]]);
-		if (array_key_exists($keys[7], $arr)) $this->setFechaFin($arr[$keys[7]]);
-		if (array_key_exists($keys[8], $arr)) $this->setHoraInicio($arr[$keys[8]]);
-		if (array_key_exists($keys[9], $arr)) $this->setHoraFin($arr[$keys[9]]);
 	}
 
 	
@@ -719,11 +452,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 		if ($this->isColumnModified(RelDivisionActividadDocentePeer::FK_ACTIVIDAD_ID)) $criteria->add(RelDivisionActividadDocentePeer::FK_ACTIVIDAD_ID, $this->fk_actividad_id);
 		if ($this->isColumnModified(RelDivisionActividadDocentePeer::FK_DOCENTE_ID)) $criteria->add(RelDivisionActividadDocentePeer::FK_DOCENTE_ID, $this->fk_docente_id);
 		if ($this->isColumnModified(RelDivisionActividadDocentePeer::FK_EVENTO_ID)) $criteria->add(RelDivisionActividadDocentePeer::FK_EVENTO_ID, $this->fk_evento_id);
-		if ($this->isColumnModified(RelDivisionActividadDocentePeer::FK_REPETICION_ID)) $criteria->add(RelDivisionActividadDocentePeer::FK_REPETICION_ID, $this->fk_repeticion_id);
-		if ($this->isColumnModified(RelDivisionActividadDocentePeer::FECHA_INICIO)) $criteria->add(RelDivisionActividadDocentePeer::FECHA_INICIO, $this->fecha_inicio);
-		if ($this->isColumnModified(RelDivisionActividadDocentePeer::FECHA_FIN)) $criteria->add(RelDivisionActividadDocentePeer::FECHA_FIN, $this->fecha_fin);
-		if ($this->isColumnModified(RelDivisionActividadDocentePeer::HORA_INICIO)) $criteria->add(RelDivisionActividadDocentePeer::HORA_INICIO, $this->hora_inicio);
-		if ($this->isColumnModified(RelDivisionActividadDocentePeer::HORA_FIN)) $criteria->add(RelDivisionActividadDocentePeer::HORA_FIN, $this->hora_fin);
 
 		return $criteria;
 	}
@@ -761,16 +489,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 		$copyObj->setFkDocenteId($this->fk_docente_id);
 
 		$copyObj->setFkEventoId($this->fk_evento_id);
-
-		$copyObj->setFkRepeticionId($this->fk_repeticion_id);
-
-		$copyObj->setFechaInicio($this->fecha_inicio);
-
-		$copyObj->setFechaFin($this->fecha_fin);
-
-		$copyObj->setHoraInicio($this->hora_inicio);
-
-		$copyObj->setHoraFin($this->hora_fin);
 
 
 		$copyObj->setNew(true);
@@ -914,36 +632,6 @@ abstract class BaseRelDivisionActividadDocente extends BaseObject  implements Pe
 			
 		}
 		return $this->aEvento;
-	}
-
-	
-	public function setRepeticion($v)
-	{
-
-
-		if ($v === null) {
-			$this->setFkRepeticionId('0');
-		} else {
-			$this->setFkRepeticionId($v->getId());
-		}
-
-
-		$this->aRepeticion = $v;
-	}
-
-
-	
-	public function getRepeticion($con = null)
-	{
-				include_once 'lib/model/om/BaseRepeticionPeer.php';
-
-		if ($this->aRepeticion === null && ($this->fk_repeticion_id !== null)) {
-
-			$this->aRepeticion = RepeticionPeer::retrieveByPK($this->fk_repeticion_id, $con);
-
-			
-		}
-		return $this->aRepeticion;
 	}
 
 } 
