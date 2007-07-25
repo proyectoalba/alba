@@ -85,8 +85,9 @@ class feriadoActions extends autoferiadoActions
     else                                                                                            
     {                                                                                               
       // add javascripts                                                                            
-      $this->getResponse()->addJavascript(sfConfig::get('sf_prototype_web_dir').'/js/prototype');                            
+      $this->getResponse()->addJavascript(sfConfig::get('sf_prototype_web_dir').'/js/prototype');                         
       $this->getResponse()->addJavascript(sfConfig::get('sf_admin_web_dir').'/js/collapse');                              
+      $this->labels = $this->getLabels();
     }                                                                                               
   }                                                                                                 
            
@@ -100,7 +101,7 @@ class feriadoActions extends autoferiadoActions
         $feriado->save();
     }
 
-
+             
 }
 
 ?>
