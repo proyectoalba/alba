@@ -16,4 +16,32 @@ require_once 'lib/model/om/BaseDocenteHorario.php';
  */	
 class DocenteHorario extends BaseDocenteHorario {
 
+    public function delete($con = null)
+    {
+        if ($this->isDeleted()) {
+            throw new PropelException("This object has already been deleted.");
+        }
+
+        if ($con === null) {
+            $con = Propel::getConnection(DocenteHorarioPeer::DATABASE_NAME);
+        }
+
+        try {
+            $con->begin();
+
+            $evento = EventoPeer::retrieveByPk($this->getFkEventoId());
+            $evento->delete();
+
+            DocenteHorarioPeer::doDelete($this, $con);
+            $this->setDeleted(true);
+
+            $con->commit();
+        } catch (PropelException $e) {
+            $con->rollback();
+            throw $e;
+        }
+    }
+
+
+
 } // DocenteHorario

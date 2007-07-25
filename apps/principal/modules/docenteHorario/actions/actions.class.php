@@ -73,11 +73,14 @@ class DocenteHorarioActions extends sfActions
   }
 
     public function executeDeleteHorario ()  {
-        $this->docenteHorario = DocenteHorarioPeer::retrieveByPk( array( $this->getRequestParameter('docente_id'), $this->getRequestParameter('evento_id')));
+//         $this->docenteHorario = DocenteHorarioPeer::retrieveByPk( array( $this->getRequestParameter('idDocente'), $this->getRequestParameter('idEvento')));
+        $c = new Criteria();
+        $c->add(DocenteHorarioPeer::FK_DOCENTE_ID, $this->getRequestParameter('idDocente'));
+        $c->add(DocenteHorarioPeer::FK_EVENTO_ID, $this->getRequestParameter('idEvento'));
+        $this->docenteHorario = DocenteHorarioPeer::doSelectOne($c);
         $this->forward404Unless($this->docenteHorario);
         $idDocente = $this->docenteHorario->getFkDocenteId();
         $link = 'docenteHorario/list?idDocente='.$idDocente;
-        $this->docenteHorario->delete();
         try {
             $this->docenteHorario->delete();
         }
@@ -85,7 +88,6 @@ class DocenteHorarioActions extends sfActions
             $this->getRequest()->setError('delete', 'Could not delete the selected Docente Horario. Make sure it does not have any associated items.');
             return $this->redirect($link);
         }
-
         return $this->redirect($link);
     }
 

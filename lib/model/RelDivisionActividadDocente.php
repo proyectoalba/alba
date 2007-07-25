@@ -16,4 +16,32 @@ require_once 'lib/model/om/BaseRelDivisionActividadDocente.php';
  */	
 class RelDivisionActividadDocente extends BaseRelDivisionActividadDocente {
 
+
+    public function delete($con = null)
+    {
+        if ($this->isDeleted()) {
+            throw new PropelException("This object has already been deleted.");
+        }
+
+        if ($con === null) {
+            $con = Propel::getConnection(RelDivisionActividadDocentePeer::DATABASE_NAME);
+        }
+
+        try {
+            $con->begin();
+
+            $evento = EventoPeer::retrieveByPk($this->getFkEventoId());
+            $evento->delete();
+
+            RelDivisionActividadDocentePeer::doDelete($this, $con);
+            $this->setDeleted(true);
+
+            $con->commit();
+        } catch (PropelException $e) {
+            $con->rollback();
+            throw $e;
+        }
+    }
+
+
 } // RelDivisionActividadDocente
