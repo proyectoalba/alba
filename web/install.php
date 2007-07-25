@@ -38,48 +38,30 @@
     define("MEMORY_LIMIT_REQUIRED", "16");
     define("MYSQL_REQUIRED_VERSION","4.1.0");
 
-    define("INSTALL_DIR", getcwd().DIRECTORY_SEPARATOR);
-    
-    chdir("alba".DIRECTORY_SEPARATOR);    
-    define("ALBA_PATH", getcwd().DIRECTORY_SEPARATOR);
+    define("INSTALL_DIR", realpath(dirname(__FILE__) . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR). DIRECTORY_SEPARATOR);
+    define("DEBUG_LOG",INSTALL_DIR."log".DIRECTORY_SEPARATOR."install.log");
+    define("ALBA_WEB",INSTALL_DIR."web" . DIRECTORY_SEPARATOR);
+    define("ALBA_CONFIG", INSTALL_DIR."config".DIRECTORY_SEPARATOR);
 
-    define("INSTALL_COMPLETE_DIR",ALBA_PATH."log");
-    define("INSTALL_COMPLETE_FILE",INSTALL_COMPLETE_DIR.DIRECTORY_SEPARATOR."instalacion_completa");
-    define("DEBUG_LOG",INSTALL_COMPLETE_DIR.DIRECTORY_SEPARATOR."install.log");
-    //define("DEBUG_LOG","install.log"); 
-    define("ALBA_WEB",ALBA_PATH."web".DIRECTORY_SEPARATOR);
-    define("CONFIG_PATH", ALBA_PATH."config".DIRECTORY_SEPARATOR);
-
-    define("APACHE_CONFIG_DIST", CONFIG_PATH."apache.conf.dist");
-    define("DATABASE_CONFIG_DIST", CONFIG_PATH."databases.yml.dist");
-    define("PROPEL_CONFIG_DIST", CONFIG_PATH."propel.ini.dist");
+    define("APACHE_CONFIG_DIST", ALBA_CONFIG."apache.conf.dist");
+    define("DATABASE_CONFIG_DIST", ALBA_CONFIG."databases.yml.dist");
+    define("PROPEL_CONFIG_DIST", ALBA_CONFIG."propel.ini.dist");
     define("HTACCESS_DIST", ALBA_WEB.".htaccess.dist");
-    define("SCHEMA_DIST", CONFIG_PATH."schema.xml.dist");
 
-    define("APACHE_CONFIG", CONFIG_PATH."apache.conf");
-    define("DATABASE_CONFIG", CONFIG_PATH."databases.yml");
-    define("PROPEL_CONFIG", CONFIG_PATH."propel.ini");
+    define("DATABASE_CONFIG", ALBA_CONFIG."databases.yml");
+    define("PROPEL_CONFIG", ALBA_CONFIG."propel.ini");
     define("HTACCESS", ALBA_WEB.".htaccess");
-    define("SCHEMA", CONFIG_PATH."schema.xml");
+    define("SCHEMA", ALBA_CONFIG."schema.xml");
 
-    define("SYMFONY_DIR","symfony-1.0.0");
  
     define("IMG_OK", "<img src='installer/images/save.png'>");
     define("IMG_NOT_OK", "<img src='installer/images/delete.png'>");
     
-    define("SQL_CREATE_DB", ALBA_PATH."data".DIRECTORY_SEPARATOR."sql".DIRECTORY_SEPARATOR."create-db.sql");
-    define("SQL_CREATE", ALBA_PATH."data".DIRECTORY_SEPARATOR."sql".DIRECTORY_SEPARATOR."schema.sql");
-    define("SQL_INSERT_INICIAL", ALBA_PATH."data".DIRECTORY_SEPARATOR."sql".DIRECTORY_SEPARATOR."datos_desde_cero.sql");
-    define("SQL_INSERT_EJEMPLO", ALBA_PATH."data".DIRECTORY_SEPARATOR."sql".DIRECTORY_SEPARATOR."datos_ejemplo.sql");
+    define("SQL_CREATE_DB", INSTALL_DIR."data".DIRECTORY_SEPARATOR."sql".DIRECTORY_SEPARATOR."create-db.sql");
+    define("SQL_CREATE", INSTALL_DIR."data".DIRECTORY_SEPARATOR."sql".DIRECTORY_SEPARATOR."schema.sql");
+    define("SQL_INSERT_INICIAL", INSTALL_DIR."data".DIRECTORY_SEPARATOR."sql".DIRECTORY_SEPARATOR."datos_desde_cero.sql");
+    define("SQL_INSERT_EJEMPLO", INSTALL_DIR."data".DIRECTORY_SEPARATOR."sql".DIRECTORY_SEPARATOR."datos_ejemplo.sql");
             
-    define("CURRENT_WEB_DIR",dirname($_SERVER["PHP_SELF"])."/");
-    define("SYMFONY_WEB_DIR", "public_html");
-
-    define("SERVER","http://" . $_SERVER['SERVER_NAME'].CURRENT_WEB_DIR);
-    define("SYMFONY_WINDOWS_WEB_DIR","alba/web"); // directorio directo del web en alba
-    define("REDIRECT_URL",(OS_WINDOWS)?SERVER.SYMFONY_WINDOWS_WEB_DIR."/index.php":SERVER.SYMFONY_WEB_DIR."/");
-
-
     if(!file_exists(INSTALL_COMPLETE_FILE)) {
         
         $fp = fopen(DEBUG_LOG, "at" );
