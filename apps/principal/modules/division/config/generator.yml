@@ -17,6 +17,8 @@ generator:
                     
     list:
         title: Listado de Divisiones
+        fields:
+            fk_anioorden_id: { name: A&ntilde;o }
         display: [ anio, descripcion, turnos, orden ]
         object_actions:
             _edit:      -
