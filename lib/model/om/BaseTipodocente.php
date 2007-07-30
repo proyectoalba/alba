@@ -17,7 +17,7 @@ abstract class BaseTipodocente extends BaseObject  implements Persistent {
 
 
 	
-	protected $descripcion = 'null';
+	protected $descripcion;
 
 	
 	protected $alreadyInSave = false;
@@ -82,7 +82,7 @@ abstract class BaseTipodocente extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->descripcion !== $v || $v === 'null') {
+		if ($this->descripcion !== $v) {
 			$this->descripcion = $v;
 			$this->modifiedColumns[] = TipodocentePeer::DESCRIPCION;
 		}

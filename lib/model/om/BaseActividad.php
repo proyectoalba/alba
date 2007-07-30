@@ -17,7 +17,7 @@ abstract class BaseActividad extends BaseObject  implements Persistent {
 
 
 	
-	protected $nombre = 'null';
+	protected $nombre;
 
 
 	
@@ -130,7 +130,7 @@ abstract class BaseActividad extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->nombre !== $v || $v === 'null') {
+		if ($this->nombre !== $v) {
 			$this->nombre = $v;
 			$this->modifiedColumns[] = ActividadPeer::NOMBRE;
 		}

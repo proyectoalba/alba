@@ -25,7 +25,7 @@ abstract class BaseCalendariovacunacion extends BaseObject  implements Persisten
 
 
 	
-	protected $observacion = 'null';
+	protected $observacion;
 
 	
 	protected $collRelCalendariovacunacionAlumnos;
@@ -138,7 +138,7 @@ abstract class BaseCalendariovacunacion extends BaseObject  implements Persisten
 			$v = (string) $v; 
 		}
 
-		if ($this->observacion !== $v || $v === 'null') {
+		if ($this->observacion !== $v) {
 			$this->observacion = $v;
 			$this->modifiedColumns[] = CalendariovacunacionPeer::OBSERVACION;
 		}

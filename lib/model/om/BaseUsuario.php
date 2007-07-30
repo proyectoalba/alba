@@ -13,11 +13,11 @@ abstract class BaseUsuario extends BaseObject  implements Persistent {
 
 
 	
-	protected $usuario = 'null';
+	protected $usuario;
 
 
 	
-	protected $clave = 'null';
+	protected $clave;
 
 
 	
@@ -212,7 +212,7 @@ abstract class BaseUsuario extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->usuario !== $v || $v === 'null') {
+		if ($this->usuario !== $v) {
 			$this->usuario = $v;
 			$this->modifiedColumns[] = UsuarioPeer::USUARIO;
 		}
@@ -226,7 +226,7 @@ abstract class BaseUsuario extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->clave !== $v || $v === 'null') {
+		if ($this->clave !== $v) {
 			$this->clave = $v;
 			$this->modifiedColumns[] = UsuarioPeer::CLAVE;
 		}

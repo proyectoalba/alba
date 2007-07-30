@@ -17,7 +17,7 @@ abstract class BaseConceptobaja extends BaseObject  implements Persistent {
 
 
 	
-	protected $descripcion = 'null';
+	protected $descripcion;
 
 	
 	protected $collAlumnos;
@@ -88,7 +88,7 @@ abstract class BaseConceptobaja extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->descripcion !== $v || $v === 'null') {
+		if ($this->descripcion !== $v) {
 			$this->descripcion = $v;
 			$this->modifiedColumns[] = ConceptobajaPeer::DESCRIPCION;
 		}

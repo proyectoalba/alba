@@ -17,7 +17,7 @@ abstract class BaseTipoasistencia extends BaseObject  implements Persistent {
 
 
 	
-	protected $descripcion = 'null';
+	protected $descripcion;
 
 
 	
@@ -25,7 +25,7 @@ abstract class BaseTipoasistencia extends BaseObject  implements Persistent {
 
 
 	
-	protected $grupo = 'null';
+	protected $grupo;
 
 
 	
@@ -121,7 +121,7 @@ abstract class BaseTipoasistencia extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->descripcion !== $v || $v === 'null') {
+		if ($this->descripcion !== $v) {
 			$this->descripcion = $v;
 			$this->modifiedColumns[] = TipoasistenciaPeer::DESCRIPCION;
 		}
@@ -145,7 +145,7 @@ abstract class BaseTipoasistencia extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->grupo !== $v || $v === 'null') {
+		if ($this->grupo !== $v) {
 			$this->grupo = $v;
 			$this->modifiedColumns[] = TipoasistenciaPeer::GRUPO;
 		}

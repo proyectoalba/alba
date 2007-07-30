@@ -13,31 +13,31 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 
 
 	
-	protected $nombre = 'null';
+	protected $nombre;
 
 
 	
-	protected $razon_social = 'null';
+	protected $razon_social;
 
 
 	
-	protected $cuit = 'null';
+	protected $cuit;
 
 
 	
-	protected $direccion = 'null';
+	protected $direccion;
 
 
 	
-	protected $ciudad = 'null';
+	protected $ciudad;
 
 
 	
-	protected $codigo_postal = 'null';
+	protected $codigo_postal;
 
 
 	
-	protected $telefono = 'null';
+	protected $telefono;
 
 
 	
@@ -163,7 +163,7 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->nombre !== $v || $v === 'null') {
+		if ($this->nombre !== $v) {
 			$this->nombre = $v;
 			$this->modifiedColumns[] = CuentaPeer::NOMBRE;
 		}
@@ -177,7 +177,7 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->razon_social !== $v || $v === 'null') {
+		if ($this->razon_social !== $v) {
 			$this->razon_social = $v;
 			$this->modifiedColumns[] = CuentaPeer::RAZON_SOCIAL;
 		}
@@ -191,7 +191,7 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->cuit !== $v || $v === 'null') {
+		if ($this->cuit !== $v) {
 			$this->cuit = $v;
 			$this->modifiedColumns[] = CuentaPeer::CUIT;
 		}
@@ -205,7 +205,7 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->direccion !== $v || $v === 'null') {
+		if ($this->direccion !== $v) {
 			$this->direccion = $v;
 			$this->modifiedColumns[] = CuentaPeer::DIRECCION;
 		}
@@ -219,7 +219,7 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->ciudad !== $v || $v === 'null') {
+		if ($this->ciudad !== $v) {
 			$this->ciudad = $v;
 			$this->modifiedColumns[] = CuentaPeer::CIUDAD;
 		}
@@ -233,7 +233,7 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->codigo_postal !== $v || $v === 'null') {
+		if ($this->codigo_postal !== $v) {
 			$this->codigo_postal = $v;
 			$this->modifiedColumns[] = CuentaPeer::CODIGO_POSTAL;
 		}
@@ -247,7 +247,7 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->telefono !== $v || $v === 'null') {
+		if ($this->telefono !== $v) {
 			$this->telefono = $v;
 			$this->modifiedColumns[] = CuentaPeer::TELEFONO;
 		}

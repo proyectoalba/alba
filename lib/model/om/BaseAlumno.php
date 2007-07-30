@@ -13,11 +13,11 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 
 
 	
-	protected $nombre = 'null';
+	protected $nombre;
 
 
 	
-	protected $apellido = 'null';
+	protected $apellido;
 
 
 	
@@ -25,15 +25,15 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 
 
 	
-	protected $direccion = 'null';
+	protected $direccion;
 
 
 	
-	protected $ciudad = 'null';
+	protected $ciudad;
 
 
 	
-	protected $codigo_postal = 'null';
+	protected $codigo_postal;
 
 
 	
@@ -41,11 +41,11 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 
 
 	
-	protected $telefono = 'null';
+	protected $telefono;
 
 
 	
-	protected $lugar_nacimiento = 'null';
+	protected $lugar_nacimiento;
 
 
 	
@@ -53,7 +53,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 
 
 	
-	protected $nro_documento = 'null';
+	protected $nro_documento;
 
 
 	
@@ -61,7 +61,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 
 
 	
-	protected $email = 'null';
+	protected $email;
 
 
 	
@@ -369,7 +369,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->nombre !== $v || $v === 'null') {
+		if ($this->nombre !== $v) {
 			$this->nombre = $v;
 			$this->modifiedColumns[] = AlumnoPeer::NOMBRE;
 		}
@@ -383,7 +383,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->apellido !== $v || $v === 'null') {
+		if ($this->apellido !== $v) {
 			$this->apellido = $v;
 			$this->modifiedColumns[] = AlumnoPeer::APELLIDO;
 		}
@@ -414,7 +414,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->direccion !== $v || $v === 'null') {
+		if ($this->direccion !== $v) {
 			$this->direccion = $v;
 			$this->modifiedColumns[] = AlumnoPeer::DIRECCION;
 		}
@@ -428,7 +428,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->ciudad !== $v || $v === 'null') {
+		if ($this->ciudad !== $v) {
 			$this->ciudad = $v;
 			$this->modifiedColumns[] = AlumnoPeer::CIUDAD;
 		}
@@ -442,7 +442,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->codigo_postal !== $v || $v === 'null') {
+		if ($this->codigo_postal !== $v) {
 			$this->codigo_postal = $v;
 			$this->modifiedColumns[] = AlumnoPeer::CODIGO_POSTAL;
 		}
@@ -474,7 +474,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->telefono !== $v || $v === 'null') {
+		if ($this->telefono !== $v) {
 			$this->telefono = $v;
 			$this->modifiedColumns[] = AlumnoPeer::TELEFONO;
 		}
@@ -488,7 +488,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->lugar_nacimiento !== $v || $v === 'null') {
+		if ($this->lugar_nacimiento !== $v) {
 			$this->lugar_nacimiento = $v;
 			$this->modifiedColumns[] = AlumnoPeer::LUGAR_NACIMIENTO;
 		}
@@ -520,7 +520,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->nro_documento !== $v || $v === 'null') {
+		if ($this->nro_documento !== $v) {
 			$this->nro_documento = $v;
 			$this->modifiedColumns[] = AlumnoPeer::NRO_DOCUMENTO;
 		}
@@ -548,7 +548,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->email !== $v || $v === 'null') {
+		if ($this->email !== $v) {
 			$this->email = $v;
 			$this->modifiedColumns[] = AlumnoPeer::EMAIL;
 		}

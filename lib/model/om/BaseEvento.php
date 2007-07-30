@@ -37,7 +37,7 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 
 
 	
-	protected $recurrencia_fin = 'null';
+	protected $recurrencia_fin;
 
 
 	
@@ -283,7 +283,7 @@ abstract class BaseEvento extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->recurrencia_fin !== $v || $v === 'null') {
+		if ($this->recurrencia_fin !== $v) {
 			$this->recurrencia_fin = $v;
 			$this->modifiedColumns[] = EventoPeer::RECURRENCIA_FIN;
 		}

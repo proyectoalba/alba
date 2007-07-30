@@ -25,7 +25,7 @@ abstract class BaseRelRolresponsableResponsable extends BaseObject  implements P
 
 
 	
-	protected $descripcion = 'null';
+	protected $descripcion;
 
 	
 	protected $aRolResponsable;
@@ -153,7 +153,7 @@ abstract class BaseRelRolresponsableResponsable extends BaseObject  implements P
 			$v = (string) $v; 
 		}
 
-		if ($this->descripcion !== $v || $v === 'null') {
+		if ($this->descripcion !== $v) {
 			$this->descripcion = $v;
 			$this->modifiedColumns[] = RelRolresponsableResponsablePeer::DESCRIPCION;
 		}

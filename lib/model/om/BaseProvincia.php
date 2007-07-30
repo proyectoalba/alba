@@ -13,11 +13,11 @@ abstract class BaseProvincia extends BaseObject  implements Persistent {
 
 
 	
-	protected $nombre_corto = 'null';
+	protected $nombre_corto;
 
 
 	
-	protected $nombre_largo = 'null';
+	protected $nombre_largo;
 
 
 	
@@ -129,7 +129,7 @@ abstract class BaseProvincia extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->nombre_corto !== $v || $v === 'null') {
+		if ($this->nombre_corto !== $v) {
 			$this->nombre_corto = $v;
 			$this->modifiedColumns[] = ProvinciaPeer::NOMBRE_CORTO;
 		}
@@ -143,7 +143,7 @@ abstract class BaseProvincia extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->nombre_largo !== $v || $v === 'null') {
+		if ($this->nombre_largo !== $v) {
 			$this->nombre_largo = $v;
 			$this->modifiedColumns[] = ProvinciaPeer::NOMBRE_LARGO;
 		}

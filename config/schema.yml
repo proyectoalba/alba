@@ -14,7 +14,6 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     descripcion: 
       type: VARCHAR
       size: 255
@@ -22,17 +21,14 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     ciudad: 
       type: VARCHAR
       size: 128
       required: true
-      default: 
     codigo_postal: 
       type: VARCHAR
       size: 20
       required: false
-      default: 
     fk_provincia_id: 
       type: INTEGER
       required: true
@@ -73,7 +69,6 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     titulo: 
       type: VARCHAR
       size: 128
@@ -96,7 +91,6 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     m2: 
       type: FLOAT
     capacidad: 
@@ -131,12 +125,10 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     descripcion: 
       type: VARCHAR
       size: 255
       required: false
-      default: 
   tipolocacion: 
     _attributes: 
       idMethod: native
@@ -149,12 +141,10 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     descripcion: 
       type: VARCHAR
       size: 255
       required: false
-      default: 
   distritoescolar: 
     _attributes: 
       idMethod: native
@@ -167,7 +157,6 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     direccion: 
       type: VARCHAR
       size: 128
@@ -189,7 +178,6 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     descripcion: 
       type: VARCHAR
       size: 255
@@ -223,7 +211,6 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     descripcion: 
       type: VARCHAR
       size: 255
@@ -239,7 +226,6 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     descripcion: 
       type: VARCHAR
       size: 255
@@ -247,32 +233,26 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     cuit: 
       type: VARCHAR
       size: 20
       required: true
-      default: 
     direccion: 
       type: VARCHAR
       size: 128
       required: true
-      default: 
     ciudad: 
       type: VARCHAR
       size: 128
       required: true
-      default: 
     codigo_postal: 
       type: VARCHAR
       size: 20
       required: true
-      default: 
     telefono: 
       type: VARCHAR
       size: 20
       required: false
-      default: 
     fk_provincia_id: 
       type: INTEGER
       required: true
@@ -297,12 +277,10 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     nombre_corto: 
       type: VARCHAR
       size: 32
       required: true
-      default: 
     orden: 
       type: INTEGER
       required: false
@@ -319,7 +297,6 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     descripcion: 
       type: VARCHAR
       size: 255
@@ -344,7 +321,6 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     valor_por_defecto: 
       type: VARCHAR
       size: 128
@@ -441,11 +417,9 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     descripcion: 
       type: VARCHAR
       size: 255
-      default: 
     activo: 
       type: BOOLEAN
       required: true
@@ -462,12 +436,10 @@ alba:
       type: VARCHAR
       size: 32
       required: true
-      default: 
     clave: 
       type: VARCHAR
       size: 48
       required: true
-      default: 
     correo_publico: 
       type: BOOLEAN
       required: false
@@ -513,12 +485,10 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     descripcion: 
       type: VARCHAR
       size: 255
       required: false
-      default: 
     orden: 
       type: INTEGER
       required: false
@@ -535,12 +505,10 @@ alba:
       type: VARCHAR
       size: 32
       required: true
-      default: 
     nombre_largo: 
       type: VARCHAR
       size: 128
       required: true
-      default: 
     fk_pais_id: 
       type: INTEGER
       required: true
@@ -563,37 +531,30 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     razon_social: 
       type: VARCHAR
       size: 128
       required: true
-      default: 
     cuit: 
       type: VARCHAR
       size: 20
       required: true
-      default: 
     direccion: 
       type: VARCHAR
       size: 128
       required: true
-      default: 
     ciudad: 
       type: VARCHAR
       size: 128
       required: true
-      default: 
     codigo_postal: 
       type: VARCHAR
       size: 20
       required: true
-      default: 
     telefono: 
       type: VARCHAR
       size: 20
       required: false
-      default: 
     fk_provincia_id: 
       type: INTEGER
       required: true
@@ -618,12 +579,10 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     apellido: 
       type: VARCHAR
       size: 128
       required: true
-      default: 
     fecha_nacimiento: 
       type: TIMESTAMP
       required: true
@@ -631,17 +590,14 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     ciudad: 
       type: VARCHAR
       size: 128
       required: true
-      default: 
     codigo_postal: 
       type: VARCHAR
       size: 20
       required: true
-      default: 
     fk_provincia_id: 
       type: INTEGER
       required: true
@@ -652,12 +608,10 @@ alba:
       type: VARCHAR
       size: 20
       required: false
-      default: 
     lugar_nacimiento: 
       type: VARCHAR
       size: 128
       required: false
-      default: 
     fk_tipodocumento_id: 
       type: integer
       size: 11
@@ -669,17 +623,14 @@ alba:
       type: varchar
       size: 16
       required: true
-      default: 
     sexo: 
       type: CHAR
       size: 1
       required: true
-#     default: 
     email: 
       type: VARCHAR
       size: 128
       required: true
-      default: 
     distancia_escuela: 
       type: INTEGER
       required: false
@@ -735,27 +686,22 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     apellido: 
       type: VARCHAR
       size: 128
       required: true
-      default: 
     direccion: 
       type: VARCHAR
       size: 128
       required: false
-      default: 
     ciudad: 
       type: VARCHAR
       size: 128
       required: false
-      default: 
     codigo_postal: 
       type: VARCHAR
       size: 20
       required: false
-      default: 
     fk_provincia_id: 
       type: INTEGER
       required: true
@@ -766,17 +712,14 @@ alba:
       type: VARCHAR
       size: 20
       required: false
-      default: 
     telefono_movil: 
       type: VARCHAR
       size: 20
       required: false
-      default: 
     nro_documento: 
       type: VARCHAR
       size: 20
       required: true
-      default: 
     fk_tipodocumento_id: 
       type: INTEGER
       required: true
@@ -787,17 +730,14 @@ alba:
       type: CHAR
       size: 1
       required: true
-#      default: 
     email: 
       type: VARCHAR
       size: 128
       required: false
-      default: 
     observacion: 
       type: VARCHAR
       size: 255
       required: false
-      default: 
     autorizacion_retiro: 
       type: boolean
       required: true
@@ -839,7 +779,6 @@ alba:
       type: varchar
       size: 255
       required: true
-      default: 
     actual: 
       type: boolean
       required: true
@@ -869,7 +808,6 @@ alba:
       type: varchar
       size: 255
       required: true
-      default: 
   periodo: 
     _attributes: 
       idMethod: native
@@ -895,7 +833,6 @@ alba:
       type: varchar
       size: 255
       required: true
-      default: 
   conceptobaja: 
     _attributes: 
       idMethod: native
@@ -913,7 +850,6 @@ alba:
       type: varchar
       size: 255
       required: false
-      default: 
   tipodocente: 
     _attributes: 
       idMethod: native
@@ -931,7 +867,6 @@ alba:
       type: varchar
       size: 255
       required: false
-      default: 
   cargobaja: 
     _attributes: 
       idMethod: native
@@ -949,7 +884,6 @@ alba:
       type: varchar
       size: 255
       required: false
-      default: 
   calendariovacunacion: 
     _attributes: 
       idMethod: native
@@ -975,7 +909,6 @@ alba:
       type: varchar
       size: 255
       required: false
-      default: 
   rel_calendariovacunacion_alumno: 
     _attributes: 
       idMethod: native
@@ -1314,7 +1247,6 @@ alba:
     nombre: 
       type: varchar
       size: 255
-      default: 
       required: true
     observacion: 
       type: blob
@@ -1342,7 +1274,6 @@ alba:
       type: varchar
       size: 255
       required: true
-      default: 
   division: 
     _attributes: 
       idMethod: native
@@ -1363,7 +1294,6 @@ alba:
       type: varchar
       size: 255
       required: true
-      default: 
     fk_turnos_id: 
       type: integer
       size: 11
@@ -1388,7 +1318,6 @@ alba:
       type: varchar
       size: 255
       required: true
-      default: 
     orden: 
       type: integer
       size: 11
@@ -1414,7 +1343,6 @@ alba:
       type: varchar
       size: 128
       required: true
-      default: 
     descripcion: 
       type: varchar
       size: 255
@@ -1520,12 +1448,10 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     nombre: 
       type: VARCHAR
       size: 128
       required: true
-      default: 
     sexo: 
       type: CHAR
       size: 1
@@ -1545,42 +1471,34 @@ alba:
       type: varchar
       size: 16
       required: true
-      default: 
     direccion: 
       type: varchar
       size: 128
       required: false
-      default: 
     ciudad: 
       type: varchar
       size: 128
       required: false
-      default: 
     codigo_postal: 
       type: varchar
       size: 20
       required: false
-      default: 
     email: 
       type: varchar
       size: 255
       required: false
-      default: 
     telefono: 
       type: varchar
       size: 20
       required: false
-      default: 
     telefono_movil: 
       type: varchar
       size: 20
       required: false
-      default: 
     titulo: 
       type: varchar
       size: 128
       required: true
-      default: 
     libreta_sanitaria: 
       type: boolean
       required: false
@@ -1629,12 +1547,10 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     descripcion: 
       type: VARCHAR
       size: 255
       required: false
-      default: 
     orden: 
       type: integer
       size: 11
@@ -1760,7 +1676,6 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     descripcion: 
       type: VARCHAR
       size: 255
@@ -1782,7 +1697,6 @@ alba:
       type: VARCHAR
       size: 255
       required: false
-      default: 
     valor: 
       type: DECIMAL
       size: 4,2
@@ -1792,7 +1706,6 @@ alba:
       type: VARCHAR
       size: 30
       required: false
-      default: 
     defecto: 
       type: BOOLEAN
       required: true
@@ -1809,11 +1722,9 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-      default: 
     descripcion: 
       type: VARCHAR
       size: 255
-      default: 
     activo: 
       type: BOOLEAN
       required: true
@@ -1852,7 +1763,6 @@ alba:
       type: VARCHAR
       size: 16
       required: false
-      default: 
     recurrencia_dias: 
       type: INTEGER
       required: true
@@ -1894,4 +1804,3 @@ alba:
     descripcion: 
       type: VARCHAR
       size: 255
-      default: 

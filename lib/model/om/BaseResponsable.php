@@ -13,23 +13,23 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 
 
 	
-	protected $nombre = 'null';
+	protected $nombre;
 
 
 	
-	protected $apellido = 'null';
+	protected $apellido;
 
 
 	
-	protected $direccion = 'null';
+	protected $direccion;
 
 
 	
-	protected $ciudad = 'null';
+	protected $ciudad;
 
 
 	
-	protected $codigo_postal = 'null';
+	protected $codigo_postal;
 
 
 	
@@ -37,15 +37,15 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 
 
 	
-	protected $telefono = 'null';
+	protected $telefono;
 
 
 	
-	protected $telefono_movil = 'null';
+	protected $telefono_movil;
 
 
 	
-	protected $nro_documento = 'null';
+	protected $nro_documento;
 
 
 	
@@ -57,11 +57,11 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 
 
 	
-	protected $email = 'null';
+	protected $email;
 
 
 	
-	protected $observacion = 'null';
+	protected $observacion;
 
 
 	
@@ -240,7 +240,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->nombre !== $v || $v === 'null') {
+		if ($this->nombre !== $v) {
 			$this->nombre = $v;
 			$this->modifiedColumns[] = ResponsablePeer::NOMBRE;
 		}
@@ -254,7 +254,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->apellido !== $v || $v === 'null') {
+		if ($this->apellido !== $v) {
 			$this->apellido = $v;
 			$this->modifiedColumns[] = ResponsablePeer::APELLIDO;
 		}
@@ -268,7 +268,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->direccion !== $v || $v === 'null') {
+		if ($this->direccion !== $v) {
 			$this->direccion = $v;
 			$this->modifiedColumns[] = ResponsablePeer::DIRECCION;
 		}
@@ -282,7 +282,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->ciudad !== $v || $v === 'null') {
+		if ($this->ciudad !== $v) {
 			$this->ciudad = $v;
 			$this->modifiedColumns[] = ResponsablePeer::CIUDAD;
 		}
@@ -296,7 +296,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->codigo_postal !== $v || $v === 'null') {
+		if ($this->codigo_postal !== $v) {
 			$this->codigo_postal = $v;
 			$this->modifiedColumns[] = ResponsablePeer::CODIGO_POSTAL;
 		}
@@ -328,7 +328,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->telefono !== $v || $v === 'null') {
+		if ($this->telefono !== $v) {
 			$this->telefono = $v;
 			$this->modifiedColumns[] = ResponsablePeer::TELEFONO;
 		}
@@ -342,7 +342,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->telefono_movil !== $v || $v === 'null') {
+		if ($this->telefono_movil !== $v) {
 			$this->telefono_movil = $v;
 			$this->modifiedColumns[] = ResponsablePeer::TELEFONO_MOVIL;
 		}
@@ -356,7 +356,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->nro_documento !== $v || $v === 'null') {
+		if ($this->nro_documento !== $v) {
 			$this->nro_documento = $v;
 			$this->modifiedColumns[] = ResponsablePeer::NRO_DOCUMENTO;
 		}
@@ -402,7 +402,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->email !== $v || $v === 'null') {
+		if ($this->email !== $v) {
 			$this->email = $v;
 			$this->modifiedColumns[] = ResponsablePeer::EMAIL;
 		}
@@ -416,7 +416,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->observacion !== $v || $v === 'null') {
+		if ($this->observacion !== $v) {
 			$this->observacion = $v;
 			$this->modifiedColumns[] = ResponsablePeer::OBSERVACION;
 		}

@@ -13,7 +13,7 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 
 
 	
-	protected $nombre = 'null';
+	protected $nombre;
 
 
 	
@@ -21,15 +21,15 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 
 
 	
-	protected $direccion = 'null';
+	protected $direccion;
 
 
 	
-	protected $ciudad = 'null';
+	protected $ciudad;
 
 
 	
-	protected $codigo_postal = 'null';
+	protected $codigo_postal;
 
 
 	
@@ -196,7 +196,7 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->nombre !== $v || $v === 'null') {
+		if ($this->nombre !== $v) {
 			$this->nombre = $v;
 			$this->modifiedColumns[] = LocacionPeer::NOMBRE;
 		}
@@ -224,7 +224,7 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->direccion !== $v || $v === 'null') {
+		if ($this->direccion !== $v) {
 			$this->direccion = $v;
 			$this->modifiedColumns[] = LocacionPeer::DIRECCION;
 		}
@@ -238,7 +238,7 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->ciudad !== $v || $v === 'null') {
+		if ($this->ciudad !== $v) {
 			$this->ciudad = $v;
 			$this->modifiedColumns[] = LocacionPeer::CIUDAD;
 		}
@@ -252,7 +252,7 @@ abstract class BaseLocacion extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->codigo_postal !== $v || $v === 'null') {
+		if ($this->codigo_postal !== $v) {
 			$this->codigo_postal = $v;
 			$this->modifiedColumns[] = LocacionPeer::CODIGO_POSTAL;
 		}
