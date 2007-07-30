@@ -86,8 +86,9 @@
                                             </tr>
 <?php
 //  print_R($aEvent);
-    
+    $entreHoras = array();
     $aTimeIdx = array();
+    $ult_guardo = -1;
     for($i = 0, $max = count($aTime); $i < $max; $i += 4) { // each time iteration (60 minutes)
         $aTimeIdx[0] = date("Hi",$aTime[$i]);
         $aTimeIdx[1] = date("Hi",$aTime[($i+1)]);
@@ -95,7 +96,10 @@
         $aTimeIdx[3] = date("Hi",$aTime[($i+3)]);
         $find = 0;
         $cant = 0;
+
+        $k_ant = -1;    
         for($k=0;$k<4;$k++) {
+            $cant_k=0;
             echo "<tr>\n"; 
             $j=0;
             
@@ -108,6 +112,7 @@
                 if(array_key_exists($each_date, $aEvent) AND  array_key_exists($aTimeIdx[$k], $aEvent[$each_date])) { 
                     $cant++;
                     $find = 1;
+                    $kk = $k;
                     if($j == 0 AND $k == 0) {
                         echo '<td colspan="4" rowspan="4" align="center" valign="top" width="60" class="timeborder">'.date("H:i A",$aTime[$i]).'</td><td bgcolor="#a1a5a9" width="1" height="15"></td>';
                     } else {
@@ -115,7 +120,6 @@
                             echo '<td bgcolor="#a1a5a9" width="1" height="15"></td>'."\n";
                         }
                     }
-
                     foreach($aEvent[$each_date][$aTimeIdx[$k]] as $event) {
                         $width = ceil(80 / ($event['event_overlap']+1));
                         $rowspan = ceil(($event['event_length'] / 60 ) / 15); ?>
@@ -127,9 +131,11 @@
                                                     </div>
                                                </td>
 <?
-                        if($event['event_overlap']>1) {
-                        //     echo "<td colspan='".($event['event_overlap']+1)."'  class='weekborder'>&nbsp;</td>";
+                        $ocupados = 4-round(substr($aTimeIdx[$k],2,2)/15);
+                        if( $ocupados < $rowspan) {
+                                  $entreHoras["$i"][]=$rowspan-$ocupados;
                         }
+
                     }
                 } else {
                     if($j == 0 AND $k == 0) { // first time 
@@ -141,17 +147,39 @@
                         }
                     }
 
-                    if($k > 0 AND $find == 1 AND $j == 6) { // only write 6 td if event was find 
-                    } else {
-                        if($k > 0 AND $find == 1) {
-                            if($cant <= $j+1) { 
-                                echo '<td width="'.$width.'" colspan="1"  class="weekborder">&nbsp;</td>'."\n";
+                    $nn = 0;
+                    if(isset($entreHoras)) {
+                        foreach($entreHoras as $indice  => $contenido ) {
+                            if($indice != $i) {
+                                $max_contenido = count($contenido);
+                                for($pp=0;$pp<$max_contenido;$pp++) {       
+                                    if($contenido[$pp]>0 AND $cant_k < $max_contenido) {
+                                        $entreHoras["$indice"][$pp]--;
+                                        $nn=1;
+                                        $cant_k++;
+                                        break 2;
+                                    } 
+                                }
                             }
-                        } else {
-                           echo '<td width="'.$width.'" colspan="'.$nbrGridCols[$week['day']].'"  class="weekborder">&nbsp;</td>'."\n";
                         }
                     }
 
+
+                    if($nn == 0) {
+                        if($k > 0 AND $find == 1 AND $j == 6) { // only write 6 td if event was find 
+                            if($k == $kk) {
+                                echo '<td width="'.$width.'" colspan="1"  class="weekborder">&nbsp;</td>'."\n";
+                            }
+                        } else {
+                            if($k > 0 AND $find == 1) {
+                                 if($cant <= $j+1) { 
+                                    echo '<td width="'.$width.'" colspan="1"  class="weekborder">&nbsp;</td>'."\n";
+                                }
+                            } else {
+                                echo '<td width="'.$width.'" colspan="'.$nbrGridCols[$week['day']].'"  class="weekborder">&nbsp;</td>'."\n";
+                            }
+                        }
+                    }
                 }
                 $j++;
             }
