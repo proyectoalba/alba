@@ -54,8 +54,8 @@
     define("SCHEMA", ALBA_CONFIG."schema.yml");
 
  
-    define("IMG_OK", "<img src='installer/images/save.png'>");
-    define("IMG_NOT_OK", "<img src='installer/images/delete.png'>");
+    define("IMG_OK", "<img src='images/installer/save.png'>");
+    define("IMG_NOT_OK", "<img src='images/installer/delete.png'>");
     
     define("SQL_CREATE_DB", INSTALL_DIR."data".DIRECTORY_SEPARATOR."sql".DIRECTORY_SEPARATOR."create-db.sql");
     define("SQL_CREATE", INSTALL_DIR."data".DIRECTORY_SEPARATOR."sql".DIRECTORY_SEPARATOR."lib.model.schema.sql");
