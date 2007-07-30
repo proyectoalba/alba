@@ -51,14 +51,14 @@
     define("DATABASE_CONFIG", ALBA_CONFIG."databases.yml");
     define("PROPEL_CONFIG", ALBA_CONFIG."propel.ini");
     define("HTACCESS", ALBA_WEB.".htaccess");
-    define("SCHEMA", ALBA_CONFIG."schema.xml");
+    define("SCHEMA", ALBA_CONFIG."schema.yml");
 
  
     define("IMG_OK", "<img src='installer/images/save.png'>");
     define("IMG_NOT_OK", "<img src='installer/images/delete.png'>");
     
     define("SQL_CREATE_DB", INSTALL_DIR."data".DIRECTORY_SEPARATOR."sql".DIRECTORY_SEPARATOR."create-db.sql");
-    define("SQL_CREATE", INSTALL_DIR."data".DIRECTORY_SEPARATOR."sql".DIRECTORY_SEPARATOR."schema.sql");
+    define("SQL_CREATE", INSTALL_DIR."data".DIRECTORY_SEPARATOR."sql".DIRECTORY_SEPARATOR."lib.model.schema.sql");
     define("SQL_INSERT_INICIAL", INSTALL_DIR."data".DIRECTORY_SEPARATOR."sql".DIRECTORY_SEPARATOR."datos_desde_cero.sql");
     define("SQL_INSERT_EJEMPLO", INSTALL_DIR."data".DIRECTORY_SEPARATOR."sql".DIRECTORY_SEPARATOR."datos_ejemplo.sql");
             

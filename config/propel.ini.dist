@@ -1,4 +1,4 @@
-propel.targetPackage       = lib.model
+propel.targetPackage       = alba
 propel.project             = alba
 propel.database            = mysql
 propel.database.createUrl  = mysql://USERDB:PASSDB@SERVER/
