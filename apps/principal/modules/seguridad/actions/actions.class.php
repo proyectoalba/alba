@@ -84,12 +84,22 @@ class seguridadActions extends sfActions
                     /* asigno las credenciales */                                                  
                     $cperm = new Criteria();                                                       
                     $cperm->add(RelUsuarioPermisoPeer::FK_USUARIO_ID, $user->getId());             
+                    $cperm->addAscendingOrderBycolumn(PermisoPeer::CREDENCIAL);
                     $usuarioPermisos = RelUsuarioPermisoPeer::doSelectJoinPermiso($cperm);         
                     foreach ($usuarioPermisos as $usuarioPermiso) {                                
                         $this->getUser()->addCredential($usuarioPermiso->getPermiso()->getCredencial());
                         $message = "{Credenciales} " . $usuarioPermiso->getPermiso()->getCredencial();
                         $this->debugMessage($message);                    
-                    }                                                                              
+                    }                               
+                    // quitando credenciales para la demo
+                    if(SF_ENVIRONMENT =='demo'){
+                        $this->logMessage('{DEMO} quitando credenciales');
+                        $this->getUser()->removeCredential('usuario');
+                        $this->getUser()->removeCredential('permiso');
+                        $this->getUser()->removeCredential('modulo');
+                        $this->getUser()->removeCredential('rol');
+                    
+                    }                                               
                     $this->debugMessage('Login ok');
                     return $this->redirect($this->getRequestParameter('referer', '@homepage'));
                 }
@@ -116,7 +126,7 @@ class seguridadActions extends sfActions
         $this->debugMessage("Logout");
         $this->getUser()->clearCredentials();
         $this->getUser()->setAuthenticated(false);
-        $this->redirect('default/index');
+        $this->redirect('default');
     }
     /* pagina de ingreso del usuario */
     public function executeEnviarclave() {
