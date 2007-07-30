@@ -143,6 +143,13 @@ if(!isset($vista)){
                         </ul>
                     </div>
                     <?php endif;?>
+                    <?php if ($sf_user->isAuthenticated() && SF_ENVIRONMENT =='demo'):?>
+                    <div class="form-errors">
+                        <ul>
+                            <li>El sistema est&aacute; funcionando en modo Demostraci&oacute;n.</li>
+                        </ul>
+                    </div>
+                    <?php endif;?>
                     <br/>
                     <div id="content"><?php echo $content ?></div>
                 </td>
