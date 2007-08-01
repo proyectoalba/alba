@@ -2663,7 +2663,7 @@ INSERT INTO `modulo` (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES 
 INSERT INTO `modulo` (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES (29, 'Rol', '', '', 1);
 INSERT INTO `modulo` (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES (30, 'Seguridad', '', '', 1);
 INSERT INTO `modulo` (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES (31, 'Tipoiva', '', '', 1);
-INSERT INTO `modulo` (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES (32, 'Turnos', '', '', 1);
+INSERT INTO `modulo` (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES (32, 'Turno', '', '', 1);
 INSERT INTO `modulo` (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES (33, 'Default', '', '', 1);
 INSERT INTO `modulo` (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES (34, 'Tipolocacion', '', '', 1);
 INSERT INTO `modulo` (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES (35, 'Espacios', '', '', 1);
