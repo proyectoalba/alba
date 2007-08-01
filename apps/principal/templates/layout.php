@@ -1,19 +1,9 @@
-<?php
-
-if(!isset($vista)){
-     $vista="";
-}
-?><?php if($vista == "noMuestraMenu"):
-    echo $content;
-    else: ?>
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2000/REC-xhtml1-200000126/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
-
     <?php echo include_http_metas() ?>
     <?php echo include_metas() ?>
     <?php echo include_title() ?>
-
     <link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot() . '/js/jsmenu/themes/'.sfConfig::get("app_alba_menutheme").'/theme.css' ?>"/>
     <link rel="shortcut icon" href="/favicon.ico" />
 
@@ -47,19 +37,11 @@ if(!isset($vista)){
         background-image: url(<?=sfContext::getInstance()->getRequest()->getRelativeUrlRoot()."/images/gui/fder.png"?>);
     }
     </style>
-
-    <?php if($vista == "imprimir") :?>
-        <link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/css/impresion.css" />
-    <? endif;?>
     <?php if (!$sf_user->isAuthenticated()):?>
         <link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/css/login.css">
     <?php endif;?>
     </head>
     <body>
-
-<?php if($vista == "imprimir") :?>
-<?php    echo $content; ?>
-<?php else: ?>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
             <tr valign="top"> 
                 <td colspan="2" class="fmedio">
@@ -68,7 +50,6 @@ if(!isset($vista)){
                         <td class="fmedio"><?=image_tag("gui/index_1x1.png", array ( 'width' => '758' , 'heigth' => '77' ) )?></td>
                         <td class="fmedio" align="right"><!-- datos del usuario -->
                             <?php if($sf_user->isAuthenticated() == true): ?>
-
                             <table class="user-info">
                                 <tr>
                                     <td nowrap="nowrap">Bienvenido, <a href="#" onmouseover="this.T_BGCOLOR='#d3e3f6';this.T_SHADOWWIDTH=3;this.T_FONTCOLOR='blue';this.T_BORDERWIDTH=2;this.T_BORDERCOLOR='#000000'; return escape('Organizaci&oacute;n: <?echo $sf_user->getAttribute("organizacion_nombre")?> ' )"><?php echo $sf_user->getAttribute('usuario')?></a>
@@ -91,7 +72,6 @@ if(!isset($vista)){
                                     ?>
                                     </td>
                                 </tr>
-                                
                             </table>
                             <?php else: ?>
                                 Bienvenido, An&oacute;nimo
@@ -100,24 +80,17 @@ if(!isset($vista)){
                     </tr>
                 </table>
                 </td>
-                
                 <td><?php echo image_tag("gui/index_1x2.png", array ( 'width' => '17' , 'heigth' => '77' ) )?></td>
             </tr>
-
             <tr valign="top"> 
                 <td class="fizq-menu" width="1%">&nbsp;</td>
-                <td colspan="1" class="fmenu"><?   
+                <td colspan="1" class="fmenu"><?php
                     if($sf_user->isAuthenticated() == true)  {
                         include("menu.php");
                     }
                     ?>
                     <div id="menu" align="right">
-                    <?php  $uri = sfRouting::getInstance()->getCurrentInternalUri();
-                        $vista_var = "vista=imprimir";
-                        $separador = (strstr($uri,'?'))?'&':'?';
-                        $vista_var = $separador.$vista_var;
-                        echo link_to(image_tag(sfContext::getInstance()->getRequest()->getRelativeUrlRoot().'/images/small/print.png'),$uri.$vista_var,'popup=true');
-                    ?>
+                    <a href ="javascript:window.print()"><?php echo image_tag('small/print.png',array('title'=>'Imprimir','alt'=>'print.png','border'=>0))?></a>
                     </div>
                 </td>
                 <td><?php echo image_tag("gui/index_2x2.png", array ( 'width' => '17' , 'heigth' => '35' ) )?></td>
@@ -130,7 +103,6 @@ if(!isset($vista)){
                         if($sf_user->isAuthenticated() != true)  {
                             if ($sf_params->get('module') != 'seguridad' && $sf_params->get('action') !='login') {
                                include_partial('seguridad/login', array('sf_params' => $sf_params, 'error_inicio_sesion' => @$error_inicio_sesion));
-
                             }
                         }
                     ?>
@@ -161,8 +133,6 @@ if(!isset($vista)){
                 <td><?php echo image_tag("gui/index3_5x3.png", array ( 'width' => '17' , 'heigth' => '20' ) )?></td>
             </tr>
         </table>
-    <?php endif; ?>
     </body>
 <?php echo javascript_include_tag('varios/wz_tooltip.js'); ?>
     </html>
-<? endif; ?>
