@@ -2,10 +2,10 @@
 
 
 
-class TurnosMapBuilder {
+class TurnoMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.TurnosMapBuilder';
+	const CLASS_NAME = 'lib.model.map.TurnoMapBuilder';
 
 	
 	private $dbMap;
@@ -27,8 +27,8 @@ class TurnosMapBuilder {
 	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
 
-		$tMap = $this->dbMap->addTable('turnos');
-		$tMap->setPhpName('Turnos');
+		$tMap = $this->dbMap->addTable('turno');
+		$tMap->setPhpName('Turno');
 
 		$tMap->setUseIdGenerator(true);
 

@@ -1,7 +1,7 @@
 <?php
 
 
-abstract class BaseTurnos extends BaseObject  implements Persistent {
+abstract class BaseTurno extends BaseObject  implements Persistent {
 
 
 	
@@ -25,7 +25,7 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 
 
 	
-	protected $descripcion;
+	protected $descripcion = 'null';
 
 	
 	protected $aCiclolectivo;
@@ -123,7 +123,7 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 
 		if ($this->id !== $v) {
 			$this->id = $v;
-			$this->modifiedColumns[] = TurnosPeer::ID;
+			$this->modifiedColumns[] = TurnoPeer::ID;
 		}
 
 	} 
@@ -137,7 +137,7 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 
 		if ($this->fk_ciclolectivo_id !== $v) {
 			$this->fk_ciclolectivo_id = $v;
-			$this->modifiedColumns[] = TurnosPeer::FK_CICLOLECTIVO_ID;
+			$this->modifiedColumns[] = TurnoPeer::FK_CICLOLECTIVO_ID;
 		}
 
 		if ($this->aCiclolectivo !== null && $this->aCiclolectivo->getId() !== $v) {
@@ -158,7 +158,7 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 		}
 		if ($this->hora_inicio !== $ts) {
 			$this->hora_inicio = $ts;
-			$this->modifiedColumns[] = TurnosPeer::HORA_INICIO;
+			$this->modifiedColumns[] = TurnoPeer::HORA_INICIO;
 		}
 
 	} 
@@ -175,7 +175,7 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 		}
 		if ($this->hora_fin !== $ts) {
 			$this->hora_fin = $ts;
-			$this->modifiedColumns[] = TurnosPeer::HORA_FIN;
+			$this->modifiedColumns[] = TurnoPeer::HORA_FIN;
 		}
 
 	} 
@@ -187,9 +187,9 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 			$v = (string) $v; 
 		}
 
-		if ($this->descripcion !== $v) {
+		if ($this->descripcion !== $v || $v === 'null') {
 			$this->descripcion = $v;
-			$this->modifiedColumns[] = TurnosPeer::DESCRIPCION;
+			$this->modifiedColumns[] = TurnoPeer::DESCRIPCION;
 		}
 
 	} 
@@ -214,7 +214,7 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 
 						return $startcol + 5; 
 		} catch (Exception $e) {
-			throw new PropelException("Error populating Turnos object", $e);
+			throw new PropelException("Error populating Turno object", $e);
 		}
 	}
 
@@ -226,12 +226,12 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(TurnosPeer::DATABASE_NAME);
+			$con = Propel::getConnection(TurnoPeer::DATABASE_NAME);
 		}
 
 		try {
 			$con->begin();
-			TurnosPeer::doDelete($this, $con);
+			TurnoPeer::doDelete($this, $con);
 			$this->setDeleted(true);
 			$con->commit();
 		} catch (PropelException $e) {
@@ -248,7 +248,7 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(TurnosPeer::DATABASE_NAME);
+			$con = Propel::getConnection(TurnoPeer::DATABASE_NAME);
 		}
 
 		try {
@@ -280,12 +280,12 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 
 						if ($this->isModified()) {
 				if ($this->isNew()) {
-					$pk = TurnosPeer::doInsert($this, $con);
+					$pk = TurnoPeer::doInsert($this, $con);
 					$affectedRows += 1; 										 										 
 					$this->setId($pk);  
 					$this->setNew(false);
 				} else {
-					$affectedRows += TurnosPeer::doUpdate($this, $con);
+					$affectedRows += TurnoPeer::doUpdate($this, $con);
 				}
 				$this->resetModified(); 			}
 
@@ -349,7 +349,7 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 			}
 
 
-			if (($retval = TurnosPeer::doValidate($this, $columns)) !== true) {
+			if (($retval = TurnoPeer::doValidate($this, $columns)) !== true) {
 				$failureMap = array_merge($failureMap, $retval);
 			}
 
@@ -380,7 +380,7 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 	
 	public function getByName($name, $type = BasePeer::TYPE_PHPNAME)
 	{
-		$pos = TurnosPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
+		$pos = TurnoPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
 		return $this->getByPosition($pos);
 	}
 
@@ -411,7 +411,7 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 	
 	public function toArray($keyType = BasePeer::TYPE_PHPNAME)
 	{
-		$keys = TurnosPeer::getFieldNames($keyType);
+		$keys = TurnoPeer::getFieldNames($keyType);
 		$result = array(
 			$keys[0] => $this->getId(),
 			$keys[1] => $this->getFkCiclolectivoId(),
@@ -425,7 +425,7 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 	
 	public function setByName($name, $value, $type = BasePeer::TYPE_PHPNAME)
 	{
-		$pos = TurnosPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
+		$pos = TurnoPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
 		return $this->setByPosition($pos, $value);
 	}
 
@@ -453,7 +453,7 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 	
 	public function fromArray($arr, $keyType = BasePeer::TYPE_PHPNAME)
 	{
-		$keys = TurnosPeer::getFieldNames($keyType);
+		$keys = TurnoPeer::getFieldNames($keyType);
 
 		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setFkCiclolectivoId($arr[$keys[1]]);
@@ -465,13 +465,13 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 	
 	public function buildCriteria()
 	{
-		$criteria = new Criteria(TurnosPeer::DATABASE_NAME);
+		$criteria = new Criteria(TurnoPeer::DATABASE_NAME);
 
-		if ($this->isColumnModified(TurnosPeer::ID)) $criteria->add(TurnosPeer::ID, $this->id);
-		if ($this->isColumnModified(TurnosPeer::FK_CICLOLECTIVO_ID)) $criteria->add(TurnosPeer::FK_CICLOLECTIVO_ID, $this->fk_ciclolectivo_id);
-		if ($this->isColumnModified(TurnosPeer::HORA_INICIO)) $criteria->add(TurnosPeer::HORA_INICIO, $this->hora_inicio);
-		if ($this->isColumnModified(TurnosPeer::HORA_FIN)) $criteria->add(TurnosPeer::HORA_FIN, $this->hora_fin);
-		if ($this->isColumnModified(TurnosPeer::DESCRIPCION)) $criteria->add(TurnosPeer::DESCRIPCION, $this->descripcion);
+		if ($this->isColumnModified(TurnoPeer::ID)) $criteria->add(TurnoPeer::ID, $this->id);
+		if ($this->isColumnModified(TurnoPeer::FK_CICLOLECTIVO_ID)) $criteria->add(TurnoPeer::FK_CICLOLECTIVO_ID, $this->fk_ciclolectivo_id);
+		if ($this->isColumnModified(TurnoPeer::HORA_INICIO)) $criteria->add(TurnoPeer::HORA_INICIO, $this->hora_inicio);
+		if ($this->isColumnModified(TurnoPeer::HORA_FIN)) $criteria->add(TurnoPeer::HORA_FIN, $this->hora_fin);
+		if ($this->isColumnModified(TurnoPeer::DESCRIPCION)) $criteria->add(TurnoPeer::DESCRIPCION, $this->descripcion);
 
 		return $criteria;
 	}
@@ -479,9 +479,9 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 	
 	public function buildPkeyCriteria()
 	{
-		$criteria = new Criteria(TurnosPeer::DATABASE_NAME);
+		$criteria = new Criteria(TurnoPeer::DATABASE_NAME);
 
-		$criteria->add(TurnosPeer::ID, $this->id);
+		$criteria->add(TurnoPeer::ID, $this->id);
 
 		return $criteria;
 	}
@@ -542,7 +542,7 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 	public function getPeer()
 	{
 		if (self::$peer === null) {
-			self::$peer = new TurnosPeer();
+			self::$peer = new TurnoPeer();
 		}
 		return self::$peer;
 	}
@@ -602,7 +602,7 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 			   $this->collDivisions = array();
 			} else {
 
-				$criteria->add(DivisionPeer::FK_TURNOS_ID, $this->getId());
+				$criteria->add(DivisionPeer::FK_TURNO_ID, $this->getId());
 
 				DivisionPeer::addSelectColumns($criteria);
 				$this->collDivisions = DivisionPeer::doSelect($criteria, $con);
@@ -611,7 +611,7 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 						if (!$this->isNew()) {
 												
 
-				$criteria->add(DivisionPeer::FK_TURNOS_ID, $this->getId());
+				$criteria->add(DivisionPeer::FK_TURNO_ID, $this->getId());
 
 				DivisionPeer::addSelectColumns($criteria);
 				if (!isset($this->lastDivisionCriteria) || !$this->lastDivisionCriteria->equals($criteria)) {
@@ -635,7 +635,7 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 			$criteria = clone $criteria;
 		}
 
-		$criteria->add(DivisionPeer::FK_TURNOS_ID, $this->getId());
+		$criteria->add(DivisionPeer::FK_TURNO_ID, $this->getId());
 
 		return DivisionPeer::doCount($criteria, $distinct, $con);
 	}
@@ -644,7 +644,7 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 	public function addDivision(Division $l)
 	{
 		$this->collDivisions[] = $l;
-		$l->setTurnos($this);
+		$l->setTurno($this);
 	}
 
 
@@ -665,13 +665,13 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 				$this->collDivisions = array();
 			} else {
 
-				$criteria->add(DivisionPeer::FK_TURNOS_ID, $this->getId());
+				$criteria->add(DivisionPeer::FK_TURNO_ID, $this->getId());
 
 				$this->collDivisions = DivisionPeer::doSelectJoinAnio($criteria, $con);
 			}
 		} else {
 									
-			$criteria->add(DivisionPeer::FK_TURNOS_ID, $this->getId());
+			$criteria->add(DivisionPeer::FK_TURNO_ID, $this->getId());
 
 			if (!isset($this->lastDivisionCriteria) || !$this->lastDivisionCriteria->equals($criteria)) {
 				$this->collDivisions = DivisionPeer::doSelectJoinAnio($criteria, $con);
@@ -707,7 +707,7 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 			   $this->collHorarioescolars = array();
 			} else {
 
-				$criteria->add(HorarioescolarPeer::FK_TURNOS_ID, $this->getId());
+				$criteria->add(HorarioescolarPeer::FK_TURNO_ID, $this->getId());
 
 				HorarioescolarPeer::addSelectColumns($criteria);
 				$this->collHorarioescolars = HorarioescolarPeer::doSelect($criteria, $con);
@@ -716,7 +716,7 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 						if (!$this->isNew()) {
 												
 
-				$criteria->add(HorarioescolarPeer::FK_TURNOS_ID, $this->getId());
+				$criteria->add(HorarioescolarPeer::FK_TURNO_ID, $this->getId());
 
 				HorarioescolarPeer::addSelectColumns($criteria);
 				if (!isset($this->lastHorarioescolarCriteria) || !$this->lastHorarioescolarCriteria->equals($criteria)) {
@@ -740,7 +740,7 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 			$criteria = clone $criteria;
 		}
 
-		$criteria->add(HorarioescolarPeer::FK_TURNOS_ID, $this->getId());
+		$criteria->add(HorarioescolarPeer::FK_TURNO_ID, $this->getId());
 
 		return HorarioescolarPeer::doCount($criteria, $distinct, $con);
 	}
@@ -749,7 +749,7 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 	public function addHorarioescolar(Horarioescolar $l)
 	{
 		$this->collHorarioescolars[] = $l;
-		$l->setTurnos($this);
+		$l->setTurno($this);
 	}
 
 
@@ -770,13 +770,13 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 				$this->collHorarioescolars = array();
 			} else {
 
-				$criteria->add(HorarioescolarPeer::FK_TURNOS_ID, $this->getId());
+				$criteria->add(HorarioescolarPeer::FK_TURNO_ID, $this->getId());
 
 				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinEvento($criteria, $con);
 			}
 		} else {
 									
-			$criteria->add(HorarioescolarPeer::FK_TURNOS_ID, $this->getId());
+			$criteria->add(HorarioescolarPeer::FK_TURNO_ID, $this->getId());
 
 			if (!isset($this->lastHorarioescolarCriteria) || !$this->lastHorarioescolarCriteria->equals($criteria)) {
 				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinEvento($criteria, $con);
@@ -805,13 +805,13 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 				$this->collHorarioescolars = array();
 			} else {
 
-				$criteria->add(HorarioescolarPeer::FK_TURNOS_ID, $this->getId());
+				$criteria->add(HorarioescolarPeer::FK_TURNO_ID, $this->getId());
 
 				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinEstablecimiento($criteria, $con);
 			}
 		} else {
 									
-			$criteria->add(HorarioescolarPeer::FK_TURNOS_ID, $this->getId());
+			$criteria->add(HorarioescolarPeer::FK_TURNO_ID, $this->getId());
 
 			if (!isset($this->lastHorarioescolarCriteria) || !$this->lastHorarioescolarCriteria->equals($criteria)) {
 				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinEstablecimiento($criteria, $con);
@@ -840,13 +840,13 @@ abstract class BaseTurnos extends BaseObject  implements Persistent {
 				$this->collHorarioescolars = array();
 			} else {
 
-				$criteria->add(HorarioescolarPeer::FK_TURNOS_ID, $this->getId());
+				$criteria->add(HorarioescolarPeer::FK_TURNO_ID, $this->getId());
 
 				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinHorarioescolartipo($criteria, $con);
 			}
 		} else {
 									
-			$criteria->add(HorarioescolarPeer::FK_TURNOS_ID, $this->getId());
+			$criteria->add(HorarioescolarPeer::FK_TURNO_ID, $this->getId());
 
 			if (!isset($this->lastHorarioescolarCriteria) || !$this->lastHorarioescolarCriteria->equals($criteria)) {
 				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinHorarioescolartipo($criteria, $con);

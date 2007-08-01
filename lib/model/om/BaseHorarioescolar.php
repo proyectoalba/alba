@@ -29,7 +29,7 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 
 
 	
-	protected $fk_turnos_id = 0;
+	protected $fk_turno_id = 0;
 
 
 	
@@ -42,7 +42,7 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 	protected $aEstablecimiento;
 
 	
-	protected $aTurnos;
+	protected $aTurno;
 
 	
 	protected $aHorarioescolartipo;
@@ -89,10 +89,10 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 	}
 
 	
-	public function getFkTurnosId()
+	public function getFkTurnoId()
 	{
 
-		return $this->fk_turnos_id;
+		return $this->fk_turno_id;
 	}
 
 	
@@ -181,20 +181,20 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 
 	} 
 	
-	public function setFkTurnosId($v)
+	public function setFkTurnoId($v)
 	{
 
 						if ($v !== null && !is_int($v) && is_numeric($v)) {
 			$v = (int) $v;
 		}
 
-		if ($this->fk_turnos_id !== $v || $v === 0) {
-			$this->fk_turnos_id = $v;
-			$this->modifiedColumns[] = HorarioescolarPeer::FK_TURNOS_ID;
+		if ($this->fk_turno_id !== $v || $v === 0) {
+			$this->fk_turno_id = $v;
+			$this->modifiedColumns[] = HorarioescolarPeer::FK_TURNO_ID;
 		}
 
-		if ($this->aTurnos !== null && $this->aTurnos->getId() !== $v) {
-			$this->aTurnos = null;
+		if ($this->aTurno !== null && $this->aTurno->getId() !== $v) {
+			$this->aTurno = null;
 		}
 
 	} 
@@ -231,7 +231,7 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 
 			$this->fk_establecimiento_id = $rs->getInt($startcol + 4);
 
-			$this->fk_turnos_id = $rs->getInt($startcol + 5);
+			$this->fk_turno_id = $rs->getInt($startcol + 5);
 
 			$this->fk_horarioescolartipo_id = $rs->getInt($startcol + 6);
 
@@ -311,11 +311,11 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 				$this->setEstablecimiento($this->aEstablecimiento);
 			}
 
-			if ($this->aTurnos !== null) {
-				if ($this->aTurnos->isModified()) {
-					$affectedRows += $this->aTurnos->save($con);
+			if ($this->aTurno !== null) {
+				if ($this->aTurno->isModified()) {
+					$affectedRows += $this->aTurno->save($con);
 				}
-				$this->setTurnos($this->aTurnos);
+				$this->setTurno($this->aTurno);
 			}
 
 			if ($this->aHorarioescolartipo !== null) {
@@ -386,9 +386,9 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 				}
 			}
 
-			if ($this->aTurnos !== null) {
-				if (!$this->aTurnos->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aTurnos->getValidationFailures());
+			if ($this->aTurno !== null) {
+				if (!$this->aTurno->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aTurno->getValidationFailures());
 				}
 			}
 
@@ -438,7 +438,7 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 				return $this->getFkEstablecimientoId();
 				break;
 			case 5:
-				return $this->getFkTurnosId();
+				return $this->getFkTurnoId();
 				break;
 			case 6:
 				return $this->getFkHorarioescolartipoId();
@@ -458,7 +458,7 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 			$keys[2] => $this->getDescripcion(),
 			$keys[3] => $this->getFkEventoId(),
 			$keys[4] => $this->getFkEstablecimientoId(),
-			$keys[5] => $this->getFkTurnosId(),
+			$keys[5] => $this->getFkTurnoId(),
 			$keys[6] => $this->getFkHorarioescolartipoId(),
 		);
 		return $result;
@@ -491,7 +491,7 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 				$this->setFkEstablecimientoId($value);
 				break;
 			case 5:
-				$this->setFkTurnosId($value);
+				$this->setFkTurnoId($value);
 				break;
 			case 6:
 				$this->setFkHorarioescolartipoId($value);
@@ -508,7 +508,7 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[2], $arr)) $this->setDescripcion($arr[$keys[2]]);
 		if (array_key_exists($keys[3], $arr)) $this->setFkEventoId($arr[$keys[3]]);
 		if (array_key_exists($keys[4], $arr)) $this->setFkEstablecimientoId($arr[$keys[4]]);
-		if (array_key_exists($keys[5], $arr)) $this->setFkTurnosId($arr[$keys[5]]);
+		if (array_key_exists($keys[5], $arr)) $this->setFkTurnoId($arr[$keys[5]]);
 		if (array_key_exists($keys[6], $arr)) $this->setFkHorarioescolartipoId($arr[$keys[6]]);
 	}
 
@@ -522,7 +522,7 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(HorarioescolarPeer::DESCRIPCION)) $criteria->add(HorarioescolarPeer::DESCRIPCION, $this->descripcion);
 		if ($this->isColumnModified(HorarioescolarPeer::FK_EVENTO_ID)) $criteria->add(HorarioescolarPeer::FK_EVENTO_ID, $this->fk_evento_id);
 		if ($this->isColumnModified(HorarioescolarPeer::FK_ESTABLECIMIENTO_ID)) $criteria->add(HorarioescolarPeer::FK_ESTABLECIMIENTO_ID, $this->fk_establecimiento_id);
-		if ($this->isColumnModified(HorarioescolarPeer::FK_TURNOS_ID)) $criteria->add(HorarioescolarPeer::FK_TURNOS_ID, $this->fk_turnos_id);
+		if ($this->isColumnModified(HorarioescolarPeer::FK_TURNO_ID)) $criteria->add(HorarioescolarPeer::FK_TURNO_ID, $this->fk_turno_id);
 		if ($this->isColumnModified(HorarioescolarPeer::FK_HORARIOESCOLARTIPO_ID)) $criteria->add(HorarioescolarPeer::FK_HORARIOESCOLARTIPO_ID, $this->fk_horarioescolartipo_id);
 
 		return $criteria;
@@ -562,7 +562,7 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 
 		$copyObj->setFkEstablecimientoId($this->fk_establecimiento_id);
 
-		$copyObj->setFkTurnosId($this->fk_turnos_id);
+		$copyObj->setFkTurnoId($this->fk_turno_id);
 
 		$copyObj->setFkHorarioescolartipoId($this->fk_horarioescolartipo_id);
 
@@ -651,33 +651,33 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 	}
 
 	
-	public function setTurnos($v)
+	public function setTurno($v)
 	{
 
 
 		if ($v === null) {
-			$this->setFkTurnosId('0');
+			$this->setFkTurnoId('0');
 		} else {
-			$this->setFkTurnosId($v->getId());
+			$this->setFkTurnoId($v->getId());
 		}
 
 
-		$this->aTurnos = $v;
+		$this->aTurno = $v;
 	}
 
 
 	
-	public function getTurnos($con = null)
+	public function getTurno($con = null)
 	{
-				include_once 'lib/model/om/BaseTurnosPeer.php';
+				include_once 'lib/model/om/BaseTurnoPeer.php';
 
-		if ($this->aTurnos === null && ($this->fk_turnos_id !== null)) {
+		if ($this->aTurno === null && ($this->fk_turno_id !== null)) {
 
-			$this->aTurnos = TurnosPeer::retrieveByPK($this->fk_turnos_id, $con);
+			$this->aTurno = TurnoPeer::retrieveByPK($this->fk_turno_id, $con);
 
 			
 		}
-		return $this->aTurnos;
+		return $this->aTurno;
 	}
 
 	

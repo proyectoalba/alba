@@ -1,16 +1,16 @@
 <?php
 
 
-abstract class BaseTurnosPeer {
+abstract class BaseTurnoPeer {
 
 	
 	const DATABASE_NAME = 'alba';
 
 	
-	const TABLE_NAME = 'turnos';
+	const TABLE_NAME = 'turno';
 
 	
-	const CLASS_DEFAULT = 'lib.model.Turnos';
+	const CLASS_DEFAULT = 'lib.model.Turno';
 
 	
 	const NUM_COLUMNS = 5;
@@ -20,19 +20,19 @@ abstract class BaseTurnosPeer {
 
 
 	
-	const ID = 'turnos.ID';
+	const ID = 'turno.ID';
 
 	
-	const FK_CICLOLECTIVO_ID = 'turnos.FK_CICLOLECTIVO_ID';
+	const FK_CICLOLECTIVO_ID = 'turno.FK_CICLOLECTIVO_ID';
 
 	
-	const HORA_INICIO = 'turnos.HORA_INICIO';
+	const HORA_INICIO = 'turno.HORA_INICIO';
 
 	
-	const HORA_FIN = 'turnos.HORA_FIN';
+	const HORA_FIN = 'turno.HORA_FIN';
 
 	
-	const DESCRIPCION = 'turnos.DESCRIPCION';
+	const DESCRIPCION = 'turno.DESCRIPCION';
 
 	
 	private static $phpNameMap = null;
@@ -41,7 +41,7 @@ abstract class BaseTurnosPeer {
 	
 	private static $fieldNames = array (
 		BasePeer::TYPE_PHPNAME => array ('Id', 'FkCiclolectivoId', 'HoraInicio', 'HoraFin', 'Descripcion', ),
-		BasePeer::TYPE_COLNAME => array (TurnosPeer::ID, TurnosPeer::FK_CICLOLECTIVO_ID, TurnosPeer::HORA_INICIO, TurnosPeer::HORA_FIN, TurnosPeer::DESCRIPCION, ),
+		BasePeer::TYPE_COLNAME => array (TurnoPeer::ID, TurnoPeer::FK_CICLOLECTIVO_ID, TurnoPeer::HORA_INICIO, TurnoPeer::HORA_FIN, TurnoPeer::DESCRIPCION, ),
 		BasePeer::TYPE_FIELDNAME => array ('id', 'fk_ciclolectivo_id', 'hora_inicio', 'hora_fin', 'descripcion', ),
 		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
 	);
@@ -49,7 +49,7 @@ abstract class BaseTurnosPeer {
 	
 	private static $fieldKeys = array (
 		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'FkCiclolectivoId' => 1, 'HoraInicio' => 2, 'HoraFin' => 3, 'Descripcion' => 4, ),
-		BasePeer::TYPE_COLNAME => array (TurnosPeer::ID => 0, TurnosPeer::FK_CICLOLECTIVO_ID => 1, TurnosPeer::HORA_INICIO => 2, TurnosPeer::HORA_FIN => 3, TurnosPeer::DESCRIPCION => 4, ),
+		BasePeer::TYPE_COLNAME => array (TurnoPeer::ID => 0, TurnoPeer::FK_CICLOLECTIVO_ID => 1, TurnoPeer::HORA_INICIO => 2, TurnoPeer::HORA_FIN => 3, TurnoPeer::DESCRIPCION => 4, ),
 		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'fk_ciclolectivo_id' => 1, 'hora_inicio' => 2, 'hora_fin' => 3, 'descripcion' => 4, ),
 		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
 	);
@@ -57,14 +57,14 @@ abstract class BaseTurnosPeer {
 	
 	public static function getMapBuilder()
 	{
-		include_once 'lib/model/map/TurnosMapBuilder.php';
-		return BasePeer::getMapBuilder('lib.model.map.TurnosMapBuilder');
+		include_once 'lib/model/map/TurnoMapBuilder.php';
+		return BasePeer::getMapBuilder('lib.model.map.TurnoMapBuilder');
 	}
 	
 	public static function getPhpNameMap()
 	{
 		if (self::$phpNameMap === null) {
-			$map = TurnosPeer::getTableMap();
+			$map = TurnoPeer::getTableMap();
 			$columns = $map->getColumns();
 			$nameMap = array();
 			foreach ($columns as $column) {
@@ -98,27 +98,27 @@ abstract class BaseTurnosPeer {
 	
 	public static function alias($alias, $column)
 	{
-		return str_replace(TurnosPeer::TABLE_NAME.'.', $alias.'.', $column);
+		return str_replace(TurnoPeer::TABLE_NAME.'.', $alias.'.', $column);
 	}
 
 	
 	public static function addSelectColumns(Criteria $criteria)
 	{
 
-		$criteria->addSelectColumn(TurnosPeer::ID);
+		$criteria->addSelectColumn(TurnoPeer::ID);
 
-		$criteria->addSelectColumn(TurnosPeer::FK_CICLOLECTIVO_ID);
+		$criteria->addSelectColumn(TurnoPeer::FK_CICLOLECTIVO_ID);
 
-		$criteria->addSelectColumn(TurnosPeer::HORA_INICIO);
+		$criteria->addSelectColumn(TurnoPeer::HORA_INICIO);
 
-		$criteria->addSelectColumn(TurnosPeer::HORA_FIN);
+		$criteria->addSelectColumn(TurnoPeer::HORA_FIN);
 
-		$criteria->addSelectColumn(TurnosPeer::DESCRIPCION);
+		$criteria->addSelectColumn(TurnoPeer::DESCRIPCION);
 
 	}
 
-	const COUNT = 'COUNT(turnos.ID)';
-	const COUNT_DISTINCT = 'COUNT(DISTINCT turnos.ID)';
+	const COUNT = 'COUNT(turno.ID)';
+	const COUNT_DISTINCT = 'COUNT(DISTINCT turno.ID)';
 
 	
 	public static function doCount(Criteria $criteria, $distinct = false, $con = null)
@@ -127,9 +127,9 @@ abstract class BaseTurnosPeer {
 
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(TurnosPeer::COUNT_DISTINCT);
+			$criteria->addSelectColumn(TurnoPeer::COUNT_DISTINCT);
 		} else {
-			$criteria->addSelectColumn(TurnosPeer::COUNT);
+			$criteria->addSelectColumn(TurnoPeer::COUNT);
 		}
 
 				foreach($criteria->getGroupByColumns() as $column)
@@ -137,7 +137,7 @@ abstract class BaseTurnosPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$rs = TurnosPeer::doSelectRS($criteria, $con);
+		$rs = TurnoPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
 			return $rs->getInt(1);
 		} else {
@@ -149,7 +149,7 @@ abstract class BaseTurnosPeer {
 	{
 		$critcopy = clone $criteria;
 		$critcopy->setLimit(1);
-		$objects = TurnosPeer::doSelect($critcopy, $con);
+		$objects = TurnoPeer::doSelect($critcopy, $con);
 		if ($objects) {
 			return $objects[0];
 		}
@@ -158,7 +158,7 @@ abstract class BaseTurnosPeer {
 	
 	public static function doSelect(Criteria $criteria, $con = null)
 	{
-		return TurnosPeer::populateObjects(TurnosPeer::doSelectRS($criteria, $con));
+		return TurnoPeer::populateObjects(TurnoPeer::doSelectRS($criteria, $con));
 	}
 	
 	public static function doSelectRS(Criteria $criteria, $con = null)
@@ -169,7 +169,7 @@ abstract class BaseTurnosPeer {
 
 		if (!$criteria->getSelectColumns()) {
 			$criteria = clone $criteria;
-			TurnosPeer::addSelectColumns($criteria);
+			TurnoPeer::addSelectColumns($criteria);
 		}
 
 				$criteria->setDbName(self::DATABASE_NAME);
@@ -181,7 +181,7 @@ abstract class BaseTurnosPeer {
 	{
 		$results = array();
 	
-				$cls = TurnosPeer::getOMClass();
+				$cls = TurnoPeer::getOMClass();
 		$cls = Propel::import($cls);
 				while($rs->next()) {
 		
@@ -200,9 +200,9 @@ abstract class BaseTurnosPeer {
 
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(TurnosPeer::COUNT_DISTINCT);
+			$criteria->addSelectColumn(TurnoPeer::COUNT_DISTINCT);
 		} else {
-			$criteria->addSelectColumn(TurnosPeer::COUNT);
+			$criteria->addSelectColumn(TurnoPeer::COUNT);
 		}
 
 				foreach($criteria->getGroupByColumns() as $column)
@@ -210,9 +210,9 @@ abstract class BaseTurnosPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(TurnosPeer::FK_CICLOLECTIVO_ID, CiclolectivoPeer::ID);
+		$criteria->addJoin(TurnoPeer::FK_CICLOLECTIVO_ID, CiclolectivoPeer::ID);
 
-		$rs = TurnosPeer::doSelectRS($criteria, $con);
+		$rs = TurnoPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
 			return $rs->getInt(1);
 		} else {
@@ -230,17 +230,17 @@ abstract class BaseTurnosPeer {
 			$c->setDbName(self::DATABASE_NAME);
 		}
 
-		TurnosPeer::addSelectColumns($c);
-		$startcol = (TurnosPeer::NUM_COLUMNS - TurnosPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+		TurnoPeer::addSelectColumns($c);
+		$startcol = (TurnoPeer::NUM_COLUMNS - TurnoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 		CiclolectivoPeer::addSelectColumns($c);
 
-		$c->addJoin(TurnosPeer::FK_CICLOLECTIVO_ID, CiclolectivoPeer::ID);
+		$c->addJoin(TurnoPeer::FK_CICLOLECTIVO_ID, CiclolectivoPeer::ID);
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
 
 		while($rs->next()) {
 
-			$omClass = TurnosPeer::getOMClass();
+			$omClass = TurnoPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
@@ -256,12 +256,12 @@ abstract class BaseTurnosPeer {
 			foreach($results as $temp_obj1) {
 				$temp_obj2 = $temp_obj1->getCiclolectivo(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
-										$temp_obj2->addTurnos($obj1); 					break;
+										$temp_obj2->addTurno($obj1); 					break;
 				}
 			}
 			if ($newObject) {
-				$obj2->initTurnoss();
-				$obj2->addTurnos($obj1); 			}
+				$obj2->initTurnos();
+				$obj2->addTurno($obj1); 			}
 			$results[] = $obj1;
 		}
 		return $results;
@@ -275,9 +275,9 @@ abstract class BaseTurnosPeer {
 
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(TurnosPeer::COUNT_DISTINCT);
+			$criteria->addSelectColumn(TurnoPeer::COUNT_DISTINCT);
 		} else {
-			$criteria->addSelectColumn(TurnosPeer::COUNT);
+			$criteria->addSelectColumn(TurnoPeer::COUNT);
 		}
 
 				foreach($criteria->getGroupByColumns() as $column)
@@ -285,9 +285,9 @@ abstract class BaseTurnosPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(TurnosPeer::FK_CICLOLECTIVO_ID, CiclolectivoPeer::ID);
+		$criteria->addJoin(TurnoPeer::FK_CICLOLECTIVO_ID, CiclolectivoPeer::ID);
 
-		$rs = TurnosPeer::doSelectRS($criteria, $con);
+		$rs = TurnoPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
 			return $rs->getInt(1);
 		} else {
@@ -305,20 +305,20 @@ abstract class BaseTurnosPeer {
 			$c->setDbName(self::DATABASE_NAME);
 		}
 
-		TurnosPeer::addSelectColumns($c);
-		$startcol2 = (TurnosPeer::NUM_COLUMNS - TurnosPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+		TurnoPeer::addSelectColumns($c);
+		$startcol2 = (TurnoPeer::NUM_COLUMNS - TurnoPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
 		CiclolectivoPeer::addSelectColumns($c);
 		$startcol3 = $startcol2 + CiclolectivoPeer::NUM_COLUMNS;
 
-		$c->addJoin(TurnosPeer::FK_CICLOLECTIVO_ID, CiclolectivoPeer::ID);
+		$c->addJoin(TurnoPeer::FK_CICLOLECTIVO_ID, CiclolectivoPeer::ID);
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
 
 		while($rs->next()) {
 
-			$omClass = TurnosPeer::getOMClass();
+			$omClass = TurnoPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -339,13 +339,13 @@ abstract class BaseTurnosPeer {
 				$temp_obj1 = $results[$j];
 				$temp_obj2 = $temp_obj1->getCiclolectivo(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
-					$temp_obj2->addTurnos($obj1); 					break;
+					$temp_obj2->addTurno($obj1); 					break;
 				}
 			}
 
 			if ($newObject) {
-				$obj2->initTurnoss();
-				$obj2->addTurnos($obj1);
+				$obj2->initTurnos();
+				$obj2->addTurno($obj1);
 			}
 
 			$results[] = $obj1;
@@ -362,7 +362,7 @@ abstract class BaseTurnosPeer {
 	
 	public static function getOMClass()
 	{
-		return TurnosPeer::CLASS_DEFAULT;
+		return TurnoPeer::CLASS_DEFAULT;
 	}
 
 	
@@ -376,7 +376,7 @@ abstract class BaseTurnosPeer {
 			$criteria = clone $values; 		} else {
 			$criteria = $values->buildCriteria(); 		}
 
-		$criteria->remove(TurnosPeer::ID); 
+		$criteria->remove(TurnoPeer::ID); 
 
 				$criteria->setDbName(self::DATABASE_NAME);
 
@@ -403,8 +403,8 @@ abstract class BaseTurnosPeer {
 
 		if ($values instanceof Criteria) {
 			$criteria = clone $values; 
-			$comparison = $criteria->getComparison(TurnosPeer::ID);
-			$selectCriteria->add(TurnosPeer::ID, $criteria->remove(TurnosPeer::ID), $comparison);
+			$comparison = $criteria->getComparison(TurnoPeer::ID);
+			$selectCriteria->add(TurnoPeer::ID, $criteria->remove(TurnoPeer::ID), $comparison);
 
 		} else { 			$criteria = $values->buildCriteria(); 			$selectCriteria = $values->buildPkeyCriteria(); 		}
 
@@ -421,7 +421,7 @@ abstract class BaseTurnosPeer {
 		}
 		$affectedRows = 0; 		try {
 									$con->begin();
-			$affectedRows += BasePeer::doDeleteAll(TurnosPeer::TABLE_NAME, $con);
+			$affectedRows += BasePeer::doDeleteAll(TurnoPeer::TABLE_NAME, $con);
 			$con->commit();
 			return $affectedRows;
 		} catch (PropelException $e) {
@@ -434,16 +434,16 @@ abstract class BaseTurnosPeer {
 	 public static function doDelete($values, $con = null)
 	 {
 		if ($con === null) {
-			$con = Propel::getConnection(TurnosPeer::DATABASE_NAME);
+			$con = Propel::getConnection(TurnoPeer::DATABASE_NAME);
 		}
 
 		if ($values instanceof Criteria) {
-			$criteria = clone $values; 		} elseif ($values instanceof Turnos) {
+			$criteria = clone $values; 		} elseif ($values instanceof Turno) {
 
 			$criteria = $values->buildPkeyCriteria();
 		} else {
 						$criteria = new Criteria(self::DATABASE_NAME);
-			$criteria->add(TurnosPeer::ID, (array) $values, Criteria::IN);
+			$criteria->add(TurnoPeer::ID, (array) $values, Criteria::IN);
 		}
 
 				$criteria->setDbName(self::DATABASE_NAME);
@@ -462,13 +462,13 @@ abstract class BaseTurnosPeer {
 	}
 
 	
-	public static function doValidate(Turnos $obj, $cols = null)
+	public static function doValidate(Turno $obj, $cols = null)
 	{
 		$columns = array();
 
 		if ($cols) {
-			$dbMap = Propel::getDatabaseMap(TurnosPeer::DATABASE_NAME);
-			$tableMap = $dbMap->getTable(TurnosPeer::TABLE_NAME);
+			$dbMap = Propel::getDatabaseMap(TurnoPeer::DATABASE_NAME);
+			$tableMap = $dbMap->getTable(TurnoPeer::TABLE_NAME);
 
 			if (! is_array($cols)) {
 				$cols = array($cols);
@@ -484,11 +484,11 @@ abstract class BaseTurnosPeer {
 
 		}
 
-		$res =  BasePeer::doValidate(TurnosPeer::DATABASE_NAME, TurnosPeer::TABLE_NAME, $columns);
+		$res =  BasePeer::doValidate(TurnoPeer::DATABASE_NAME, TurnoPeer::TABLE_NAME, $columns);
     if ($res !== true) {
         $request = sfContext::getInstance()->getRequest();
         foreach ($res as $failed) {
-            $col = TurnosPeer::translateFieldname($failed->getColumn(), BasePeer::TYPE_COLNAME, BasePeer::TYPE_PHPNAME);
+            $col = TurnoPeer::translateFieldname($failed->getColumn(), BasePeer::TYPE_COLNAME, BasePeer::TYPE_PHPNAME);
             $request->setError($col, $failed->getMessage());
         }
     }
@@ -503,12 +503,12 @@ abstract class BaseTurnosPeer {
 			$con = Propel::getConnection(self::DATABASE_NAME);
 		}
 
-		$criteria = new Criteria(TurnosPeer::DATABASE_NAME);
+		$criteria = new Criteria(TurnoPeer::DATABASE_NAME);
 
-		$criteria->add(TurnosPeer::ID, $pk);
+		$criteria->add(TurnoPeer::ID, $pk);
 
 
-		$v = TurnosPeer::doSelect($criteria, $con);
+		$v = TurnoPeer::doSelect($criteria, $con);
 
 		return !empty($v) > 0 ? $v[0] : null;
 	}
@@ -525,8 +525,8 @@ abstract class BaseTurnosPeer {
 			$objs = array();
 		} else {
 			$criteria = new Criteria();
-			$criteria->add(TurnosPeer::ID, $pks, Criteria::IN);
-			$objs = TurnosPeer::doSelect($criteria, $con);
+			$criteria->add(TurnoPeer::ID, $pks, Criteria::IN);
+			$objs = TurnoPeer::doSelect($criteria, $con);
 		}
 		return $objs;
 	}
@@ -534,11 +534,11 @@ abstract class BaseTurnosPeer {
 } 
 if (Propel::isInit()) {
 			try {
-		BaseTurnosPeer::getMapBuilder();
+		BaseTurnoPeer::getMapBuilder();
 	} catch (Exception $e) {
 		Propel::log('Could not initialize Peer: ' . $e->getMessage(), Propel::LOG_ERR);
 	}
 } else {
-			require_once 'lib/model/map/TurnosMapBuilder.php';
-	Propel::registerMapBuilder('lib.model.map.TurnosMapBuilder');
+			require_once 'lib/model/map/TurnoMapBuilder.php';
+	Propel::registerMapBuilder('lib.model.map.TurnoMapBuilder');
 }

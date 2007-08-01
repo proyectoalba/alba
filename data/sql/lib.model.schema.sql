@@ -580,13 +580,13 @@ CREATE TABLE `ciclolectivo`
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
-#-- turnos
+#-- turno
 #-----------------------------------------------------------------------------
 
-DROP TABLE IF EXISTS `turnos`;
+DROP TABLE IF EXISTS `turno`;
 
 
-CREATE TABLE `turnos`
+CREATE TABLE `turno`
 (
 	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
 	`fk_ciclolectivo_id` INTEGER(11)  NOT NULL,
@@ -594,8 +594,8 @@ CREATE TABLE `turnos`
 	`hora_fin` TIME  NOT NULL,
 	`descripcion` VARCHAR(255)  NOT NULL,
 	PRIMARY KEY (`id`),
-	INDEX `turnos_FI_1` (`fk_ciclolectivo_id`),
-	CONSTRAINT `turnos_FK_1`
+	INDEX `turno_FI_1` (`fk_ciclolectivo_id`),
+	CONSTRAINT `turno_FK_1`
 		FOREIGN KEY (`fk_ciclolectivo_id`)
 		REFERENCES `ciclolectivo` (`id`)
 )Type=InnoDB;
@@ -1000,17 +1000,17 @@ CREATE TABLE `division`
 	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
 	`fk_anio_id` INTEGER(11) default 0 NOT NULL,
 	`descripcion` VARCHAR(255)  NOT NULL,
-	`fk_turnos_id` INTEGER(11) default 0 NOT NULL,
+	`fk_turno_id` INTEGER(11) default 0 NOT NULL,
 	`orden` INTEGER default 0,
 	PRIMARY KEY (`id`),
 	INDEX `division_FI_1` (`fk_anio_id`),
 	CONSTRAINT `division_FK_1`
 		FOREIGN KEY (`fk_anio_id`)
 		REFERENCES `anio` (`id`),
-	INDEX `division_FI_2` (`fk_turnos_id`),
+	INDEX `division_FI_2` (`fk_turno_id`),
 	CONSTRAINT `division_FK_2`
-		FOREIGN KEY (`fk_turnos_id`)
-		REFERENCES `turnos` (`id`)
+		FOREIGN KEY (`fk_turno_id`)
+		REFERENCES `turno` (`id`)
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
@@ -1285,7 +1285,7 @@ CREATE TABLE `horarioescolar`
 	`descripcion` VARCHAR(255),
 	`fk_evento_id` INTEGER default 0 NOT NULL,
 	`fk_establecimiento_id` INTEGER default 0 NOT NULL,
-	`fk_turnos_id` INTEGER default 0 NOT NULL,
+	`fk_turno_id` INTEGER default 0 NOT NULL,
 	`fk_horarioescolartipo_id` INTEGER default 0 NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `horarioescolar_FI_1` (`fk_evento_id`),
@@ -1297,10 +1297,10 @@ CREATE TABLE `horarioescolar`
 	CONSTRAINT `horarioescolar_FK_2`
 		FOREIGN KEY (`fk_establecimiento_id`)
 		REFERENCES `establecimiento` (`id`),
-	INDEX `horarioescolar_FI_3` (`fk_turnos_id`),
+	INDEX `horarioescolar_FI_3` (`fk_turno_id`),
 	CONSTRAINT `horarioescolar_FK_3`
-		FOREIGN KEY (`fk_turnos_id`)
-		REFERENCES `turnos` (`id`),
+		FOREIGN KEY (`fk_turno_id`)
+		REFERENCES `turno` (`id`),
 	INDEX `horarioescolar_FI_4` (`fk_horarioescolartipo_id`),
 	CONSTRAINT `horarioescolar_FK_4`
 		FOREIGN KEY (`fk_horarioescolartipo_id`)

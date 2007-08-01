@@ -783,7 +783,7 @@ alba:
       type: boolean
       required: true
       default: false
-  turnos: 
+  turno: 
     _attributes: 
       idMethod: native
     id: 
@@ -1294,12 +1294,12 @@ alba:
       type: varchar
       size: 255
       required: true
-    fk_turnos_id: 
+    fk_turno_id: 
       type: integer
       size: 11
       required: true
       default: 0
-      foreignTable: turnos
+      foreignTable: turno
       foreignReference: id
     orden: 
       type: INTEGER
@@ -1652,11 +1652,11 @@ alba:
       default: 0
       foreignTable: establecimiento
       foreignReference: id
-    fk_turnos_id: 
+    fk_turno_id: 
       type: INTEGER
       required: true
       default: 0
-      foreignTable: turnos
+      foreignTable: turno
       foreignReference: id
     fk_horarioescolartipo_id: 
       type: INTEGER

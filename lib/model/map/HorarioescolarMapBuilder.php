@@ -42,7 +42,7 @@ class HorarioescolarMapBuilder {
 
 		$tMap->addForeignKey('FK_ESTABLECIMIENTO_ID', 'FkEstablecimientoId', 'int', CreoleTypes::INTEGER, 'establecimiento', 'ID', true, null);
 
-		$tMap->addForeignKey('FK_TURNOS_ID', 'FkTurnosId', 'int', CreoleTypes::INTEGER, 'turnos', 'ID', true, null);
+		$tMap->addForeignKey('FK_TURNO_ID', 'FkTurnoId', 'int', CreoleTypes::INTEGER, 'turno', 'ID', true, null);
 
 		$tMap->addForeignKey('FK_HORARIOESCOLARTIPO_ID', 'FkHorarioescolartipoId', 'int', CreoleTypes::INTEGER, 'horarioescolartipo', 'ID', true, null);
 

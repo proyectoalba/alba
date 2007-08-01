@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CONFIGURACIONDB="../../config/databases.yml"
-SCHEMA="ib.model.schema.sql"
+SCHEMA="lib.model.schema.sql"
 EJEMPLO="datos_ejemplo.sql"
 DSNARCHIVO=`cat ../../config/databases.yml | grep dsn: | tr -d " "`
 DSN=${DSNARCHIVO#dsn:*}

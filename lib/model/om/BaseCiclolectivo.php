@@ -35,10 +35,10 @@ abstract class BaseCiclolectivo extends BaseObject  implements Persistent {
 	protected $aEstablecimiento;
 
 	
-	protected $collTurnoss;
+	protected $collTurnos;
 
 	
-	protected $lastTurnosCriteria = null;
+	protected $lastTurnoCriteria = null;
 
 	
 	protected $collPeriodos;
@@ -318,8 +318,8 @@ abstract class BaseCiclolectivo extends BaseObject  implements Persistent {
 				}
 				$this->resetModified(); 			}
 
-			if ($this->collTurnoss !== null) {
-				foreach($this->collTurnoss as $referrerFK) {
+			if ($this->collTurnos !== null) {
+				foreach($this->collTurnos as $referrerFK) {
 					if (!$referrerFK->isDeleted()) {
 						$affectedRows += $referrerFK->save($con);
 					}
@@ -391,8 +391,8 @@ abstract class BaseCiclolectivo extends BaseObject  implements Persistent {
 			}
 
 
-				if ($this->collTurnoss !== null) {
-					foreach($this->collTurnoss as $referrerFK) {
+				if ($this->collTurnos !== null) {
+					foreach($this->collTurnos as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -570,8 +570,8 @@ abstract class BaseCiclolectivo extends BaseObject  implements Persistent {
 		if ($deepCopy) {
 									$copyObj->setNew(false);
 
-			foreach($this->getTurnoss() as $relObj) {
-				$copyObj->addTurnos($relObj->copy($deepCopy));
+			foreach($this->getTurnos() as $relObj) {
+				$copyObj->addTurno($relObj->copy($deepCopy));
 			}
 
 			foreach($this->getPeriodos() as $relObj) {
@@ -638,17 +638,17 @@ abstract class BaseCiclolectivo extends BaseObject  implements Persistent {
 	}
 
 	
-	public function initTurnoss()
+	public function initTurnos()
 	{
-		if ($this->collTurnoss === null) {
-			$this->collTurnoss = array();
+		if ($this->collTurnos === null) {
+			$this->collTurnos = array();
 		}
 	}
 
 	
-	public function getTurnoss($criteria = null, $con = null)
+	public function getTurnos($criteria = null, $con = null)
 	{
-				include_once 'lib/model/om/BaseTurnosPeer.php';
+				include_once 'lib/model/om/BaseTurnoPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -657,36 +657,36 @@ abstract class BaseCiclolectivo extends BaseObject  implements Persistent {
 			$criteria = clone $criteria;
 		}
 
-		if ($this->collTurnoss === null) {
+		if ($this->collTurnos === null) {
 			if ($this->isNew()) {
-			   $this->collTurnoss = array();
+			   $this->collTurnos = array();
 			} else {
 
-				$criteria->add(TurnosPeer::FK_CICLOLECTIVO_ID, $this->getId());
+				$criteria->add(TurnoPeer::FK_CICLOLECTIVO_ID, $this->getId());
 
-				TurnosPeer::addSelectColumns($criteria);
-				$this->collTurnoss = TurnosPeer::doSelect($criteria, $con);
+				TurnoPeer::addSelectColumns($criteria);
+				$this->collTurnos = TurnoPeer::doSelect($criteria, $con);
 			}
 		} else {
 						if (!$this->isNew()) {
 												
 
-				$criteria->add(TurnosPeer::FK_CICLOLECTIVO_ID, $this->getId());
+				$criteria->add(TurnoPeer::FK_CICLOLECTIVO_ID, $this->getId());
 
-				TurnosPeer::addSelectColumns($criteria);
-				if (!isset($this->lastTurnosCriteria) || !$this->lastTurnosCriteria->equals($criteria)) {
-					$this->collTurnoss = TurnosPeer::doSelect($criteria, $con);
+				TurnoPeer::addSelectColumns($criteria);
+				if (!isset($this->lastTurnoCriteria) || !$this->lastTurnoCriteria->equals($criteria)) {
+					$this->collTurnos = TurnoPeer::doSelect($criteria, $con);
 				}
 			}
 		}
-		$this->lastTurnosCriteria = $criteria;
-		return $this->collTurnoss;
+		$this->lastTurnoCriteria = $criteria;
+		return $this->collTurnos;
 	}
 
 	
-	public function countTurnoss($criteria = null, $distinct = false, $con = null)
+	public function countTurnos($criteria = null, $distinct = false, $con = null)
 	{
-				include_once 'lib/model/om/BaseTurnosPeer.php';
+				include_once 'lib/model/om/BaseTurnoPeer.php';
 		if ($criteria === null) {
 			$criteria = new Criteria();
 		}
@@ -695,15 +695,15 @@ abstract class BaseCiclolectivo extends BaseObject  implements Persistent {
 			$criteria = clone $criteria;
 		}
 
-		$criteria->add(TurnosPeer::FK_CICLOLECTIVO_ID, $this->getId());
+		$criteria->add(TurnoPeer::FK_CICLOLECTIVO_ID, $this->getId());
 
-		return TurnosPeer::doCount($criteria, $distinct, $con);
+		return TurnoPeer::doCount($criteria, $distinct, $con);
 	}
 
 	
-	public function addTurnos(Turnos $l)
+	public function addTurno(Turno $l)
 	{
-		$this->collTurnoss[] = $l;
+		$this->collTurnos[] = $l;
 		$l->setCiclolectivo($this);
 	}
 

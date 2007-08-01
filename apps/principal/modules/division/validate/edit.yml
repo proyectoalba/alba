@@ -2,7 +2,7 @@ methods:
   post:       
     - "division{descripcion}"    
     - "division{fk_anio_id}"
-    - "division{fk_turnos_id}"  
+    - "division{fk_turno_id}"  
     
 fillin:
     enabled:       on
@@ -13,7 +13,7 @@ names:
         required_msg: El campo descripci&oacute;n es obligatorio
         validators: caracteresMaximos255
 
-    division{fk_turnos_id}:
+    division{fk_turno_id}:
         required:     Yes
         required_msg: El campo Turnos es obligatorio
 

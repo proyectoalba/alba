@@ -3,7 +3,7 @@
     $c->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $sf_user->getAttribute('fk_establecimiento_id'));    
     $c->add(TurnosPeer::FK_CICLOLECTIVO_ID, $sf_user->getAttribute('fk_ciclolectivo_id'));
     $c->addJoin(AnioPeer::ID,DivisionPeer::FK_ANIO_ID);
-    $c->addJoin(TurnosPeer::ID,DivisionPeer::FK_TURNOS_ID);
+    $c->addJoin(TurnoPeer::ID,DivisionPeer::FK_TURNO_ID);
     
     //$c->addAscendingOrderByColumn(AlumnoPeer::APELLIDO);
     //$c->addAscendingOrderByColumn(AlumnoPeer::NOMBRE);

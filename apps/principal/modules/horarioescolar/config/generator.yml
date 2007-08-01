@@ -13,12 +13,12 @@ generator:
         fk_horarioescolartipo_id: { name: Tipo Horario Escolar }
         dia_mostrar: { name: Día} 
         fk_establecimiento_id: { name: Establecimiento}
-        fk_turnos_id: { name: Turno}
+        fk_turno_id: { name: Turno}
         turnos_list: { name: Turno}
         
     edit:
         title: Modificar Horario Escolar
-        display: [nombre, descripcion, _dia, _hora_inicio, _hora_fin, fk_horarioescolartipo_id, _fk_turnos_id ]
+        display: [nombre, descripcion, _dia, _hora_inicio, _hora_fin, fk_horarioescolartipo_id, _fk_turno_id ]
                                                          
     list:
         display: [=nombre, descripcion, _dia_mostrar , hora_inicio, hora_fin, _fk_horarioescolartipo_id, _fk_establecimiento_id, _turnos_list ]

@@ -1,6 +1,6 @@
 <?php 
-    if ($horarioescolar->getTurnos()) {
-        echo $horarioescolar->getTurnos()->getDescripcion();
+    if ($horarioescolar->getTurno()) {
+        echo $horarioescolar->getTurno()->getDescripcion();
     }
 ?>
         

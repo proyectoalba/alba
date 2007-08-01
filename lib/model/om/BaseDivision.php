@@ -21,7 +21,7 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 
 
 	
-	protected $fk_turnos_id = 0;
+	protected $fk_turno_id = 0;
 
 
 	
@@ -31,7 +31,7 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 	protected $aAnio;
 
 	
-	protected $aTurnos;
+	protected $aTurno;
 
 	
 	protected $collRelAlumnoDivisions;
@@ -73,10 +73,10 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 	}
 
 	
-	public function getFkTurnosId()
+	public function getFkTurnoId()
 	{
 
-		return $this->fk_turnos_id;
+		return $this->fk_turno_id;
 	}
 
 	
@@ -133,20 +133,20 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 
 	} 
 	
-	public function setFkTurnosId($v)
+	public function setFkTurnoId($v)
 	{
 
 						if ($v !== null && !is_int($v) && is_numeric($v)) {
 			$v = (int) $v;
 		}
 
-		if ($this->fk_turnos_id !== $v || $v === 0) {
-			$this->fk_turnos_id = $v;
-			$this->modifiedColumns[] = DivisionPeer::FK_TURNOS_ID;
+		if ($this->fk_turno_id !== $v || $v === 0) {
+			$this->fk_turno_id = $v;
+			$this->modifiedColumns[] = DivisionPeer::FK_TURNO_ID;
 		}
 
-		if ($this->aTurnos !== null && $this->aTurnos->getId() !== $v) {
-			$this->aTurnos = null;
+		if ($this->aTurno !== null && $this->aTurno->getId() !== $v) {
+			$this->aTurno = null;
 		}
 
 	} 
@@ -175,7 +175,7 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 
 			$this->descripcion = $rs->getString($startcol + 2);
 
-			$this->fk_turnos_id = $rs->getInt($startcol + 3);
+			$this->fk_turno_id = $rs->getInt($startcol + 3);
 
 			$this->orden = $rs->getInt($startcol + 4);
 
@@ -248,11 +248,11 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 				$this->setAnio($this->aAnio);
 			}
 
-			if ($this->aTurnos !== null) {
-				if ($this->aTurnos->isModified()) {
-					$affectedRows += $this->aTurnos->save($con);
+			if ($this->aTurno !== null) {
+				if ($this->aTurno->isModified()) {
+					$affectedRows += $this->aTurno->save($con);
 				}
-				$this->setTurnos($this->aTurnos);
+				$this->setTurno($this->aTurno);
 			}
 
 
@@ -326,9 +326,9 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 				}
 			}
 
-			if ($this->aTurnos !== null) {
-				if (!$this->aTurnos->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aTurnos->getValidationFailures());
+			if ($this->aTurno !== null) {
+				if (!$this->aTurno->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aTurno->getValidationFailures());
 				}
 			}
 
@@ -382,7 +382,7 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 				return $this->getDescripcion();
 				break;
 			case 3:
-				return $this->getFkTurnosId();
+				return $this->getFkTurnoId();
 				break;
 			case 4:
 				return $this->getOrden();
@@ -400,7 +400,7 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 			$keys[0] => $this->getId(),
 			$keys[1] => $this->getFkAnioId(),
 			$keys[2] => $this->getDescripcion(),
-			$keys[3] => $this->getFkTurnosId(),
+			$keys[3] => $this->getFkTurnoId(),
 			$keys[4] => $this->getOrden(),
 		);
 		return $result;
@@ -427,7 +427,7 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 				$this->setDescripcion($value);
 				break;
 			case 3:
-				$this->setFkTurnosId($value);
+				$this->setFkTurnoId($value);
 				break;
 			case 4:
 				$this->setOrden($value);
@@ -442,7 +442,7 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setFkAnioId($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setDescripcion($arr[$keys[2]]);
-		if (array_key_exists($keys[3], $arr)) $this->setFkTurnosId($arr[$keys[3]]);
+		if (array_key_exists($keys[3], $arr)) $this->setFkTurnoId($arr[$keys[3]]);
 		if (array_key_exists($keys[4], $arr)) $this->setOrden($arr[$keys[4]]);
 	}
 
@@ -454,7 +454,7 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(DivisionPeer::ID)) $criteria->add(DivisionPeer::ID, $this->id);
 		if ($this->isColumnModified(DivisionPeer::FK_ANIO_ID)) $criteria->add(DivisionPeer::FK_ANIO_ID, $this->fk_anio_id);
 		if ($this->isColumnModified(DivisionPeer::DESCRIPCION)) $criteria->add(DivisionPeer::DESCRIPCION, $this->descripcion);
-		if ($this->isColumnModified(DivisionPeer::FK_TURNOS_ID)) $criteria->add(DivisionPeer::FK_TURNOS_ID, $this->fk_turnos_id);
+		if ($this->isColumnModified(DivisionPeer::FK_TURNO_ID)) $criteria->add(DivisionPeer::FK_TURNO_ID, $this->fk_turno_id);
 		if ($this->isColumnModified(DivisionPeer::ORDEN)) $criteria->add(DivisionPeer::ORDEN, $this->orden);
 
 		return $criteria;
@@ -490,7 +490,7 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 
 		$copyObj->setDescripcion($this->descripcion);
 
-		$copyObj->setFkTurnosId($this->fk_turnos_id);
+		$copyObj->setFkTurnoId($this->fk_turno_id);
 
 		$copyObj->setOrden($this->orden);
 
@@ -562,33 +562,33 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 	}
 
 	
-	public function setTurnos($v)
+	public function setTurno($v)
 	{
 
 
 		if ($v === null) {
-			$this->setFkTurnosId('0');
+			$this->setFkTurnoId('0');
 		} else {
-			$this->setFkTurnosId($v->getId());
+			$this->setFkTurnoId($v->getId());
 		}
 
 
-		$this->aTurnos = $v;
+		$this->aTurno = $v;
 	}
 
 
 	
-	public function getTurnos($con = null)
+	public function getTurno($con = null)
 	{
-				include_once 'lib/model/om/BaseTurnosPeer.php';
+				include_once 'lib/model/om/BaseTurnoPeer.php';
 
-		if ($this->aTurnos === null && ($this->fk_turnos_id !== null)) {
+		if ($this->aTurno === null && ($this->fk_turno_id !== null)) {
 
-			$this->aTurnos = TurnosPeer::retrieveByPK($this->fk_turnos_id, $con);
+			$this->aTurno = TurnoPeer::retrieveByPK($this->fk_turno_id, $con);
 
 			
 		}
-		return $this->aTurnos;
+		return $this->aTurno;
 	}
 
 	

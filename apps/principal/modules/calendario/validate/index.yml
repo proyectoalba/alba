@@ -1,7 +1,7 @@
 methods:
-  post:  [ turnos_id ]
+  post:  [ turno_id ]
 
 names:
-    turnos_id:
+    turno_id:
         required:     Yes
         required_msg: El campo turno es obligatorio

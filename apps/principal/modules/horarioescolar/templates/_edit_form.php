@@ -62,13 +62,13 @@
 </div>
 
 <div class="form-row">
-  <?php echo label_for('horarioescolar[fk_turnos_id]', __($labels['horarioescolar{fk_turnos_id}']), 'class="required" ') ?>
-  <div class="content<?php if ($sf_request->hasError('horarioescolar{fk_turnos_id}')): ?> form-error<?php endif; ?>">
-  <?php if ($sf_request->hasError('horarioescolar{fk_turnos_id}')): ?>
-    <?php echo form_error('horarioescolar{fk_turnos_id}', array('class' => 'form-error-msg')) ?>
+  <?php echo label_for('horarioescolar[fk_turno_id]', __($labels['horarioescolar{fk_turno_id}']), 'class="required" ') ?>
+  <div class="content<?php if ($sf_request->hasError('horarioescolar{fk_turno_id}')): ?> form-error<?php endif; ?>">
+  <?php if ($sf_request->hasError('horarioescolar{fk_turno_id}')): ?>
+    <?php echo form_error('horarioescolar{fk_turno_id}', array('class' => 'form-error-msg')) ?>
   <?php endif; ?>
 
-  <?php $value = get_partial('fk_turnos_id', array('type' => 'edit', 'horarioescolar' => $horarioescolar)); echo $value ? $value : '&nbsp;' ?>
+  <?php $value = get_partial('fk_turno_id', array('type' => 'edit', 'horarioescolar' => $horarioescolar)); echo $value ? $value : '&nbsp;' ?>
     </div>
 </div>
 

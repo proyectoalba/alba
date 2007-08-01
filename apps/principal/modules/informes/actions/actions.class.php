@@ -218,7 +218,7 @@ class InformesActions extends sfActions
         $alumno = AlumnoPeer::retrieveByPK($alumno_id);
         $division = DivisionPeer::retrieveByPK($division_id);
         $establecimiento = EstablecimientoPeer::retrieveByPK($establecimiento_id);
-        $turnos = TurnosPeer::retrieveByPK($division->getFkTurnosId());
+        $turnos = TurnoPeer::retrieveByPK($division->getFkTurnoId());
 
         $criteria = new Criteria();
         $criteria->add(RelEstablecimientoLocacionPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);

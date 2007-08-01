@@ -2454,20 +2454,20 @@ INSERT INTO `distritoescolar` (`id`, `nombre`, `direccion`, `telefono`, `ciudad`
 -- Volcar la base de datos para la tabla `division`
 -- 
 
-INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turnos_id`, `orden`) VALUES (8, 1, 'A', 4, 0);
-INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turnos_id`, `orden`) VALUES (9, 1, 'B', 5, 0);
-INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turnos_id`, `orden`) VALUES (10, 2, 'A', 4, 0);
-INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turnos_id`, `orden`) VALUES (11, 2, 'B', 5, 0);
-INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turnos_id`, `orden`) VALUES (12, 3, 'A', 4, 0);
-INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turnos_id`, `orden`) VALUES (13, 3, 'B', 5, 0);
-INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turnos_id`, `orden`) VALUES (14, 4, 'A', 4, 0);
-INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turnos_id`, `orden`) VALUES (15, 4, 'B', 5, 0);
-INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turnos_id`, `orden`) VALUES (16, 5, 'A', 4, 0);
-INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turnos_id`, `orden`) VALUES (17, 5, 'B', 5, 0);
-INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turnos_id`, `orden`) VALUES (18, 6, 'A', 4, 0);
-INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turnos_id`, `orden`) VALUES (19, 6, 'B', 5, 0);
-INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turnos_id`, `orden`) VALUES (20, 7, 'A', 4, 0);
-INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turnos_id`, `orden`) VALUES (21, 7, 'B', 5, 0);
+INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turno_id`, `orden`) VALUES (8, 1, 'A', 4, 0);
+INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turno_id`, `orden`) VALUES (9, 1, 'B', 5, 0);
+INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turno_id`, `orden`) VALUES (10, 2, 'A', 4, 0);
+INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turno_id`, `orden`) VALUES (11, 2, 'B', 5, 0);
+INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turno_id`, `orden`) VALUES (12, 3, 'A', 4, 0);
+INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turno_id`, `orden`) VALUES (13, 3, 'B', 5, 0);
+INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turno_id`, `orden`) VALUES (14, 4, 'A', 4, 0);
+INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turno_id`, `orden`) VALUES (15, 4, 'B', 5, 0);
+INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turno_id`, `orden`) VALUES (16, 5, 'A', 4, 0);
+INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turno_id`, `orden`) VALUES (17, 5, 'B', 5, 0);
+INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turno_id`, `orden`) VALUES (18, 6, 'A', 4, 0);
+INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turno_id`, `orden`) VALUES (19, 6, 'B', 5, 0);
+INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turno_id`, `orden`) VALUES (20, 7, 'A', 4, 0);
+INSERT INTO `division` (`id`, `fk_anio_id`, `descripcion`, `fk_turno_id`, `orden`) VALUES (21, 7, 'B', 5, 0);
 
 -- 
 -- Volcar la base de datos para la tabla `docente`
@@ -2573,24 +2573,24 @@ INSERT INTO `feriado` (`id`, `fecha`, `nombre`, `repeticion_anual`, `inamovible`
 -- Volcar la base de datos para la tabla `horarioescolar`
 -- 
 
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (1, 'Primera hora', 'Primera hora de clase.', 1, 4, 1, 7);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (2, 'Segunda hora.', 'Segunda hora de clases.', 1, 4, 1, 8);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (3, 'Primer recreo.', 'Primer recreo: duración 20 minutos.', 1, 4, 2, 9);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (4, 'Tercera hora.', 'Tercera hora de clases.', 1, 4, 1, 10);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (5, 'Cuarta hora.', 'Cuarta hora de clases.', 1, 4, 1, 11);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (6, 'Segundo recreo.', 'Segundo recreo: duración  10 minutos.', 1, 4, 2, 12);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (7, 'Quinta hora. ', 'Quinta hora de clases.', 1, 4, 2, 13);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (8, 'Tercer recreo.', 'Tercer recreo: duración 10 minutos.', 1, 4, 2, 14);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (9, 'Sexta hora. ', 'Sexta hora de clases.', 1, 4, 1, 15);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (10, 'Primera hora.', 'Primera hora de clase.', 1, 5, 1, 16);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (11, 'Segunda hora.', 'Segunda hora de clases.', 1, 5, 1, 17);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (12, 'Primer recreo.', 'Primer recreo: duración 20 minutos.', 1, 5, 2, 18);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (13, 'Tercera hora.', 'Tercera hora de clases.', 1, 5, 1, 19);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (14, 'Cuarta hora.', 'Cuarta hora de clases.', 1, 5, 1, 20);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (15, 'Segundo recreo.', 'Segundo recreo: duración  10 minutos.', 1, 5, 2, 21);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (16, 'Quinta hora. ', 'Quinta hora de clases.', 1, 5, 1, 22);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (17, 'Tercer recreo.', 'Tercer recreo: duración 10 minutos.', 1, 5, 2, 23);
-INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turnos_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (18, 'Sexta hora. ', 'Sexta hora de clases.', 1, 5, 1, 24);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turno_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (1, 'Primera hora', 'Primera hora de clase.', 1, 4, 1, 7);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turno_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (2, 'Segunda hora.', 'Segunda hora de clases.', 1, 4, 1, 8);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turno_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (3, 'Primer recreo.', 'Primer recreo: duración 20 minutos.', 1, 4, 2, 9);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turno_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (4, 'Tercera hora.', 'Tercera hora de clases.', 1, 4, 1, 10);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turno_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (5, 'Cuarta hora.', 'Cuarta hora de clases.', 1, 4, 1, 11);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turno_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (6, 'Segundo recreo.', 'Segundo recreo: duración  10 minutos.', 1, 4, 2, 12);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turno_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (7, 'Quinta hora. ', 'Quinta hora de clases.', 1, 4, 2, 13);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turno_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (8, 'Tercer recreo.', 'Tercer recreo: duración 10 minutos.', 1, 4, 2, 14);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turno_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (9, 'Sexta hora. ', 'Sexta hora de clases.', 1, 4, 1, 15);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turno_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (10, 'Primera hora.', 'Primera hora de clase.', 1, 5, 1, 16);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turno_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (11, 'Segunda hora.', 'Segunda hora de clases.', 1, 5, 1, 17);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turno_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (12, 'Primer recreo.', 'Primer recreo: duración 20 minutos.', 1, 5, 2, 18);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turno_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (13, 'Tercera hora.', 'Tercera hora de clases.', 1, 5, 1, 19);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turno_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (14, 'Cuarta hora.', 'Cuarta hora de clases.', 1, 5, 1, 20);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turno_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (15, 'Segundo recreo.', 'Segundo recreo: duración  10 minutos.', 1, 5, 2, 21);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turno_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (16, 'Quinta hora. ', 'Quinta hora de clases.', 1, 5, 1, 22);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turno_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (17, 'Tercer recreo.', 'Tercer recreo: duración 10 minutos.', 1, 5, 2, 23);
+INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento_id`, `fk_turno_id`, `fk_horarioescolartipo_id`, `fk_evento_id`) VALUES (18, 'Sexta hora. ', 'Sexta hora de clases.', 1, 5, 1, 24);
 
 
 -- 
@@ -2750,7 +2750,7 @@ INSERT INTO `permiso` (`id`, `nombre`, `descripcion`, `credencial`, `fk_modulo_i
 INSERT INTO `permiso` (`id`, `nombre`, `descripcion`, `credencial`, `fk_modulo_id`) VALUES (32, 'responsable', '', 'responsable', 28);
 INSERT INTO `permiso` (`id`, `nombre`, `descripcion`, `credencial`, `fk_modulo_id`) VALUES (33, 'rol', '', 'rol', 29);
 INSERT INTO `permiso` (`id`, `nombre`, `descripcion`, `credencial`, `fk_modulo_id`) VALUES (34, 'tipoiva', '', 'tipoiva', 31);
-INSERT INTO `permiso` (`id`, `nombre`, `descripcion`, `credencial`, `fk_modulo_id`) VALUES (35, 'turnos', '', 'turnos', 32);
+INSERT INTO `permiso` (`id`, `nombre`, `descripcion`, `credencial`, `fk_modulo_id`) VALUES (35, 'turno', '', 'turno', 32);
 INSERT INTO `permiso` (`id`, `nombre`, `descripcion`, `credencial`, `fk_modulo_id`) VALUES (36, 'tipolocacion', '', 'tipolocacion', 34);
 INSERT INTO `permiso` (`id`, `nombre`, `descripcion`, `credencial`, `fk_modulo_id`) VALUES (37, 'tipoespacio', '', 'tipoespacio', 36);
 INSERT INTO `permiso` (`id`, `nombre`, `descripcion`, `credencial`, `fk_modulo_id`) VALUES (38, 'espacio', '', 'espacio', 35);
@@ -3333,12 +3333,12 @@ INSERT INTO `tipolocacion` (`id`, `nombre`, `descripcion`) VALUES (1, 'Sede. ', 
 INSERT INTO `tipolocacion` (`id`, `nombre`, `descripcion`) VALUES (2, 'Anexo.', 'Unidades complementarias a la sede.');
 
 -- 
--- Volcar la base de datos para la tabla `turnos`
+-- Volcar la base de datos para la tabla `turno`
 -- 
 
-INSERT INTO `turnos` (`id`, `fk_ciclolectivo_id`, `hora_inicio`, `hora_fin`, `descripcion`) VALUES (4, 1, '07:30:00', '12:15:00', 'Mañana');
-INSERT INTO `turnos` (`id`, `fk_ciclolectivo_id`, `hora_inicio`, `hora_fin`, `descripcion`) VALUES (5, 1, '12:30:00', '17:10:00', 'Tarde');
-INSERT INTO `turnos` (`id`, `fk_ciclolectivo_id`, `hora_inicio`, `hora_fin`, `descripcion`) VALUES (6, 1, '17:10:00', '21:00:00', 'Fuera de horario escolar.');
+INSERT INTO `turno` (`id`, `fk_ciclolectivo_id`, `hora_inicio`, `hora_fin`, `descripcion`) VALUES (4, 1, '07:30:00', '12:15:00', 'Mañana');
+INSERT INTO `turno` (`id`, `fk_ciclolectivo_id`, `hora_inicio`, `hora_fin`, `descripcion`) VALUES (5, 1, '12:30:00', '17:10:00', 'Tarde');
+INSERT INTO `turno` (`id`, `fk_ciclolectivo_id`, `hora_inicio`, `hora_fin`, `descripcion`) VALUES (6, 1, '17:10:00', '21:00:00', 'Fuera de horario escolar.');
 
 -- 
 -- Volcar la base de datos para la tabla `usuario`

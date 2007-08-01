@@ -537,7 +537,7 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 
 
 	
-	public function getDivisionsJoinTurnos($criteria = null, $con = null)
+	public function getDivisionsJoinTurno($criteria = null, $con = null)
 	{
 				include_once 'lib/model/om/BaseDivisionPeer.php';
 		if ($criteria === null) {
@@ -555,14 +555,14 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 
 				$criteria->add(DivisionPeer::FK_ANIO_ID, $this->getId());
 
-				$this->collDivisions = DivisionPeer::doSelectJoinTurnos($criteria, $con);
+				$this->collDivisions = DivisionPeer::doSelectJoinTurno($criteria, $con);
 			}
 		} else {
 									
 			$criteria->add(DivisionPeer::FK_ANIO_ID, $this->getId());
 
 			if (!isset($this->lastDivisionCriteria) || !$this->lastDivisionCriteria->equals($criteria)) {
-				$this->collDivisions = DivisionPeer::doSelectJoinTurnos($criteria, $con);
+				$this->collDivisions = DivisionPeer::doSelectJoinTurno($criteria, $con);
 			}
 		}
 		$this->lastDivisionCriteria = $criteria;

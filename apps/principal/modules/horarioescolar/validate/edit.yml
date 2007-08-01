@@ -2,7 +2,7 @@ methods:
   post:       
     - "horarioescolar{nombre}"   
     - "horarioescolar{descripcion}"
-    - "horarioescolar{fk_turnos_id}"
+    - "horarioescolar{fk_turno_id}"
     - "horarioescolar{fk_horarioescolartipo_id}"
     
 fillin:
@@ -18,7 +18,7 @@ names:
         required_msg: El campo nombre  es obligatorio
         validators: caracteresMaximos128
 
-    horarioescolar{fk_turnos_id}:
+    horarioescolar{fk_turno_id}:
         required:     Yes
         required_msg: El campo turnos es obligatorio
 

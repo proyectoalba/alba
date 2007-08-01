@@ -29,7 +29,7 @@ abstract class BaseDivisionPeer {
 	const DESCRIPCION = 'division.DESCRIPCION';
 
 	
-	const FK_TURNOS_ID = 'division.FK_TURNOS_ID';
+	const FK_TURNO_ID = 'division.FK_TURNO_ID';
 
 	
 	const ORDEN = 'division.ORDEN';
@@ -40,17 +40,17 @@ abstract class BaseDivisionPeer {
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'FkAnioId', 'Descripcion', 'FkTurnosId', 'Orden', ),
-		BasePeer::TYPE_COLNAME => array (DivisionPeer::ID, DivisionPeer::FK_ANIO_ID, DivisionPeer::DESCRIPCION, DivisionPeer::FK_TURNOS_ID, DivisionPeer::ORDEN, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'fk_anio_id', 'descripcion', 'fk_turnos_id', 'orden', ),
+		BasePeer::TYPE_PHPNAME => array ('Id', 'FkAnioId', 'Descripcion', 'FkTurnoId', 'Orden', ),
+		BasePeer::TYPE_COLNAME => array (DivisionPeer::ID, DivisionPeer::FK_ANIO_ID, DivisionPeer::DESCRIPCION, DivisionPeer::FK_TURNO_ID, DivisionPeer::ORDEN, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'fk_anio_id', 'descripcion', 'fk_turno_id', 'orden', ),
 		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'FkAnioId' => 1, 'Descripcion' => 2, 'FkTurnosId' => 3, 'Orden' => 4, ),
-		BasePeer::TYPE_COLNAME => array (DivisionPeer::ID => 0, DivisionPeer::FK_ANIO_ID => 1, DivisionPeer::DESCRIPCION => 2, DivisionPeer::FK_TURNOS_ID => 3, DivisionPeer::ORDEN => 4, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'fk_anio_id' => 1, 'descripcion' => 2, 'fk_turnos_id' => 3, 'orden' => 4, ),
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'FkAnioId' => 1, 'Descripcion' => 2, 'FkTurnoId' => 3, 'Orden' => 4, ),
+		BasePeer::TYPE_COLNAME => array (DivisionPeer::ID => 0, DivisionPeer::FK_ANIO_ID => 1, DivisionPeer::DESCRIPCION => 2, DivisionPeer::FK_TURNO_ID => 3, DivisionPeer::ORDEN => 4, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'fk_anio_id' => 1, 'descripcion' => 2, 'fk_turno_id' => 3, 'orden' => 4, ),
 		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
 	);
 
@@ -111,7 +111,7 @@ abstract class BaseDivisionPeer {
 
 		$criteria->addSelectColumn(DivisionPeer::DESCRIPCION);
 
-		$criteria->addSelectColumn(DivisionPeer::FK_TURNOS_ID);
+		$criteria->addSelectColumn(DivisionPeer::FK_TURNO_ID);
 
 		$criteria->addSelectColumn(DivisionPeer::ORDEN);
 
@@ -222,7 +222,7 @@ abstract class BaseDivisionPeer {
 
 
 	
-	public static function doCountJoinTurnos(Criteria $criteria, $distinct = false, $con = null)
+	public static function doCountJoinTurno(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
 
@@ -238,7 +238,7 @@ abstract class BaseDivisionPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(DivisionPeer::FK_TURNOS_ID, TurnosPeer::ID);
+		$criteria->addJoin(DivisionPeer::FK_TURNO_ID, TurnoPeer::ID);
 
 		$rs = DivisionPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -297,7 +297,7 @@ abstract class BaseDivisionPeer {
 
 
 	
-	public static function doSelectJoinTurnos(Criteria $c, $con = null)
+	public static function doSelectJoinTurno(Criteria $c, $con = null)
 	{
 		$c = clone $c;
 
@@ -307,9 +307,9 @@ abstract class BaseDivisionPeer {
 
 		DivisionPeer::addSelectColumns($c);
 		$startcol = (DivisionPeer::NUM_COLUMNS - DivisionPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-		TurnosPeer::addSelectColumns($c);
+		TurnoPeer::addSelectColumns($c);
 
-		$c->addJoin(DivisionPeer::FK_TURNOS_ID, TurnosPeer::ID);
+		$c->addJoin(DivisionPeer::FK_TURNO_ID, TurnoPeer::ID);
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
 
@@ -321,7 +321,7 @@ abstract class BaseDivisionPeer {
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-			$omClass = TurnosPeer::getOMClass();
+			$omClass = TurnoPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
@@ -329,7 +329,7 @@ abstract class BaseDivisionPeer {
 
 			$newObject = true;
 			foreach($results as $temp_obj1) {
-				$temp_obj2 = $temp_obj1->getTurnos(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getTurno(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 										$temp_obj2->addDivision($obj1); 					break;
 				}
@@ -362,7 +362,7 @@ abstract class BaseDivisionPeer {
 
 		$criteria->addJoin(DivisionPeer::FK_ANIO_ID, AnioPeer::ID);
 
-		$criteria->addJoin(DivisionPeer::FK_TURNOS_ID, TurnosPeer::ID);
+		$criteria->addJoin(DivisionPeer::FK_TURNO_ID, TurnoPeer::ID);
 
 		$rs = DivisionPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -388,12 +388,12 @@ abstract class BaseDivisionPeer {
 		AnioPeer::addSelectColumns($c);
 		$startcol3 = $startcol2 + AnioPeer::NUM_COLUMNS;
 
-		TurnosPeer::addSelectColumns($c);
-		$startcol4 = $startcol3 + TurnosPeer::NUM_COLUMNS;
+		TurnoPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + TurnoPeer::NUM_COLUMNS;
 
 		$c->addJoin(DivisionPeer::FK_ANIO_ID, AnioPeer::ID);
 
-		$c->addJoin(DivisionPeer::FK_TURNOS_ID, TurnosPeer::ID);
+		$c->addJoin(DivisionPeer::FK_TURNO_ID, TurnoPeer::ID);
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
@@ -432,7 +432,7 @@ abstract class BaseDivisionPeer {
 
 
 					
-			$omClass = TurnosPeer::getOMClass();
+			$omClass = TurnoPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -442,7 +442,7 @@ abstract class BaseDivisionPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj3 = $temp_obj1->getTurnos(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+				$temp_obj3 = $temp_obj1->getTurno(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj3->addDivision($obj1); 					break;
 				}
@@ -476,7 +476,7 @@ abstract class BaseDivisionPeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(DivisionPeer::FK_TURNOS_ID, TurnosPeer::ID);
+		$criteria->addJoin(DivisionPeer::FK_TURNO_ID, TurnoPeer::ID);
 
 		$rs = DivisionPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -488,7 +488,7 @@ abstract class BaseDivisionPeer {
 
 
 	
-	public static function doCountJoinAllExceptTurnos(Criteria $criteria, $distinct = false, $con = null)
+	public static function doCountJoinAllExceptTurno(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
 
@@ -527,10 +527,10 @@ abstract class BaseDivisionPeer {
 		DivisionPeer::addSelectColumns($c);
 		$startcol2 = (DivisionPeer::NUM_COLUMNS - DivisionPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
-		TurnosPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + TurnosPeer::NUM_COLUMNS;
+		TurnoPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + TurnoPeer::NUM_COLUMNS;
 
-		$c->addJoin(DivisionPeer::FK_TURNOS_ID, TurnosPeer::ID);
+		$c->addJoin(DivisionPeer::FK_TURNO_ID, TurnoPeer::ID);
 
 
 		$rs = BasePeer::doSelect($c, $con);
@@ -544,7 +544,7 @@ abstract class BaseDivisionPeer {
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-			$omClass = TurnosPeer::getOMClass();
+			$omClass = TurnoPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -554,7 +554,7 @@ abstract class BaseDivisionPeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getTurnos(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getTurno(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
 					$temp_obj2->addDivision($obj1);
 					break;
@@ -573,7 +573,7 @@ abstract class BaseDivisionPeer {
 
 
 	
-	public static function doSelectJoinAllExceptTurnos(Criteria $c, $con = null)
+	public static function doSelectJoinAllExceptTurno(Criteria $c, $con = null)
 	{
 		$c = clone $c;
 

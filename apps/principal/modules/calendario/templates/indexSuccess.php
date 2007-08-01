@@ -112,8 +112,8 @@ div.wastebin-active {
                         <input type="hidden" name="ciclolectivo_id" value="<?=$ciclolectivo_id?>">
 
                          <div class="form-row">
-                          <?php echo label_for('turnos_id', __('Turnos:'), 'class="required" ') ?>
-                          <?php echo select_tag('turnos_id', options_for_select($optionsTurnos,$turnos_id),'onChange="javascript:submitForm()"') ?>
+                          <?php echo label_for('turno_id', __('Turnos:'), 'class="required" ') ?>
+                          <?php echo select_tag('turno_id', options_for_select($optionsTurnos,$turno_id),'onChange="javascript:submitForm()"') ?>
                          </div>
 
                         <!--

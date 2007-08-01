@@ -7,19 +7,19 @@ generator:
         anio: { name: A&ntilde;o }
         fk_anio_id: { name: A&ntilde;o }
         division: { name: Divisi&oacute;n }
-        fk_turnos_id: { name: Turnos }
+        fk_turno_id: { name: Turnos }
         descripcion: { name: Descripci&oacute;n }
         orden: { name: Orden }
 
     edit:
         title: Editar Divisi&oacute;n
-        display: [ _fk_anio_id, descripcion, _fk_turnos_id, orden ]
+        display: [ _fk_anio_id, descripcion, _fk_turno_id, orden ]
                     
     list:
         title: Listado de Divisiones
         fields:
             fk_anioorden_id: { name: A&ntilde;o }
-        display: [ anio, descripcion, turnos, orden ]
+        display: [ anio, descripcion, turno, orden ]
         object_actions:
             _edit:      -
             _delete:    -

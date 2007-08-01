@@ -65,8 +65,8 @@ class ciclolectivoActions extends autociclolectivoActions
             $ciclolectivo = CiclolectivoPeer::retrieveByPk($ciclolectivo_id);
         
             $c = new Criteria();
-            $c->add(TurnosPeer::FK_CICLOLECTIVO_ID, $ciclolectivo_id);
-            $aTurnos  = TurnosPeer::doSelect($c);
+            $c->add(TurnoPeer::FK_CICLOLECTIVO_ID, $ciclolectivo_id);
+            $aTurnos  = TurnoPeer::doSelect($c);
         
             $c = new Criteria();
             $c->add(PeriodoPeer::FK_CICLOLECTIVO_ID, $ciclolectivo_id);
@@ -82,7 +82,7 @@ class ciclolectivoActions extends autociclolectivoActions
     }
 
     public function executeDeleteTurno ()  {
-        $this->turnos = TurnosPeer::retrieveByPk($this->getRequestParameter('idTurno'));
+        $this->turnos = TurnoPeer::retrieveByPk($this->getRequestParameter('idTurno'));
         $this->forward404Unless($this->turnos);
         $this->turnos->delete();
         return $this->forward('ciclolectivo','agregarTurnosYPeriodos','id/'.$this->getRequestParameter('id'));                
@@ -128,9 +128,9 @@ class ciclolectivoActions extends autociclolectivoActions
                 if($turnos['descripcion'] AND ($horaInicio != $horaFin) )  {
                 
                     if(isset($turnos['id']) AND is_numeric($turnos['id'])) {
-                        $this->turnos = TurnosPeer::retrieveByPk($turnos['id']);
+                        $this->turnos = TurnoPeer::retrieveByPk($turnos['id']);
                     } else {
-                        $this->turnos = new Turnos();
+                        $this->turnos = new Turno();
                     }
                 
                     if(isset($turnos['descripcion'])) {
@@ -290,7 +290,7 @@ class ciclolectivoActions extends autociclolectivoActions
     function validateDelete() {
         $this->ciclolectivo = CiclolectivoPeer::retrieveByPk($this->getRequestParameter('id'));
         $this->forward404Unless($this->ciclolectivo);
-        if ($this->ciclolectivo->countTurnoss() >0) {
+        if ($this->ciclolectivo->countTurnos() >0) {
             $this->error = "El ciclo lectivo contiene turnos asociados";
             return false;
         }

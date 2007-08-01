@@ -527,7 +527,7 @@ abstract class BaseHorarioescolartipo extends BaseObject  implements Persistent 
 
 
 	
-	public function getHorarioescolarsJoinTurnos($criteria = null, $con = null)
+	public function getHorarioescolarsJoinTurno($criteria = null, $con = null)
 	{
 				include_once 'lib/model/om/BaseHorarioescolarPeer.php';
 		if ($criteria === null) {
@@ -545,14 +545,14 @@ abstract class BaseHorarioescolartipo extends BaseObject  implements Persistent 
 
 				$criteria->add(HorarioescolarPeer::FK_HORARIOESCOLARTIPO_ID, $this->getId());
 
-				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinTurnos($criteria, $con);
+				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinTurno($criteria, $con);
 			}
 		} else {
 									
 			$criteria->add(HorarioescolarPeer::FK_HORARIOESCOLARTIPO_ID, $this->getId());
 
 			if (!isset($this->lastHorarioescolarCriteria) || !$this->lastHorarioescolarCriteria->equals($criteria)) {
-				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinTurnos($criteria, $con);
+				$this->collHorarioescolars = HorarioescolarPeer::doSelectJoinTurno($criteria, $con);
 			}
 		}
 		$this->lastHorarioescolarCriteria = $criteria;

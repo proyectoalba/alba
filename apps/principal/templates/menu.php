@@ -44,7 +44,7 @@
                             <ul>
 	                            <li><span></span><?php echo link_to("Definir Ciclos Lectivos","ciclolectivo")?></li>
 	                            <li><span></span><?php echo link_to("Definir Períodos","ciclolectivo/agregarTurnosYPeriodos")?></li>
-	                            <li><span></span><?php echo link_to("Definir turnos","turnos")?></li>
+	                            <li><span></span><?php echo link_to("Definir turnos","turno")?></li>
 	                            <li><span></span><?php echo link_to("Tipos de intevalos de horario escolar","horarioescolartipo")?></li>
 	                            <li><span></span><?php echo link_to("Definir feriados del a&ntilde;o","feriado")?></li>
 	                            <li><span></span><?php echo link_to("Calendario de vacunas","calendariovacunacion")?></li>

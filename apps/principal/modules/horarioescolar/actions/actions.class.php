@@ -85,9 +85,9 @@ class horarioescolarActions extends autohorarioescolarActions
     {
       $this->horarioescolar->setFkEstablecimientoId($horarioescolar['fk_establecimiento_id']);
     }
-    if (isset($horarioescolar['fk_turnos_id']))
+    if (isset($horarioescolar['fk_turno_id']))
     {
-      $this->horarioescolar->setFkTurnosId($horarioescolar['fk_turnos_id']);
+      $this->horarioescolar->setFkTurnoId($horarioescolar['fk_turno_id']);
     }
   }
 
@@ -140,7 +140,7 @@ class horarioescolarActions extends autohorarioescolarActions
         'horarioescolar{nombre}' => 'Nombre:',
         'horarioescolar{descripcion}' => 'Descripcion:',
         'horarioescolar{fk_horarioescolartipo_id}' => 'Tipo Horario Escolar:',
-        'horarioescolar{fk_turnos_id}' => 'Turno:',
+        'horarioescolar{fk_turno_id}' => 'Turno:',
         'horarioescolar{fk_evento_id}' => 'Evento:',
         );
     }
