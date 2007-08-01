@@ -129,7 +129,7 @@
 	    <li><span></span><a href="#">Informes y Consultas</a>
             <ul>
 	            <li><span></span><?php echo link_to("Constancia Alumno Regular","informes/constanciaAlumnoRegularFormulario",'target=_blank')?></li>
-	            <li><span></span><?php echo link_to("Constancia Egreso 7mo","informes/certificadoPrimariaFormulario/vista/imprimir",'target=_blank')?></li>
+	            <li><span></span><?php echo link_to("Constancia Egreso 7mo","informes/certificadoPrimariaFormulario",'target=_blank')?></li>
 	            <li><span></span><?php echo link_to("Alumnos por divisi&oacute;n","informes/alumnosPorDivisionFormulario",'target=_blank')?></li>
 	            <li><span></span><?php echo link_to("Boletines","informes/boletinFormulario","target=_blank")?></li>
 	            <li><span></span><?php echo link_to("Certificado de Estudios","informes/certificadoEstudiosBusquedaFormulario","target=_blank")?></li>
