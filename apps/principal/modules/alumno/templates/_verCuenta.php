@@ -3,6 +3,6 @@
 <table cellspacing="0" width="30%">
     <tr class="sf_admin_row_1">
         <td><?php echo $cuenta_nombre; ?></td>
-        <td><?php echo link_to_remote('Cambiar', array('update' => 'cuenta', 'url' => 'alumno/cambiarCuenta?vista=noMuestraMenu' )); ?></td>
+        <td><?php echo link_to_remote('Cambiar', array('update' => 'cuenta', 'url' => 'alumno/cambiarCuenta' )); ?></td>
     </tr>
 </table>

@@ -345,7 +345,7 @@
                         <? } ?>
                     </div>
                 </div>
-                <br><?php echo link_to_remote('Nueva Cuenta', array('update' => 'nueva_cuenta', 'url' => 'alumno/nuevaCuenta?vista=noMuestraMenu' )); ?>
+                <br><?php echo link_to_remote('Nueva Cuenta', array('update' => 'nueva_cuenta', 'url' => 'alumno/nuevaCuenta' )); ?>
             </div>
 
         </fieldset>
