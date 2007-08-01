@@ -2,11 +2,9 @@
     if(strlen($txt_cuenta) > 3) {
 ?>
 <?php use_helper('Javascript') ?>
-
 <?php
         $tr_class = true;
         if(count($aCuentas) > 0) {
-
 ?>
     <table cellspacing="0" class="sf_admin_list">
     <thead>
@@ -16,14 +14,14 @@
         </tr>
     </thead>
     <tbody>
-<?
+<?php
             foreach($aCuentas as $cuenta) {
                 $tr_class = ! $tr_class;
                 $numero = ($tr_class)?1:0; 
 ?>
     <tr class="sf_admin_row_<?php echo $numero;?>">
-      <td><?php echo label_for('cuenta', __($cuenta->getNombre()), ''); ?></td>
-      <td><?php echo link_to_remote('Seleccionar', array ( 'update' => 'cuenta', 'url' => 'alumno/seleccionarCuenta?vista=noMuestraMenu&id='.$cuenta->getId()));?></td>
+      <td><?php echo label_for('cuenta',$cuenta->getNombre()) ?></td>
+      <td><?php echo link_to_remote('Seleccionar', array ( 'update' => 'cuenta', 'url' => 'alumno/seleccionarCuenta?id='.$cuenta->getId()));?></td>
     </tr>
 <?php
             }
