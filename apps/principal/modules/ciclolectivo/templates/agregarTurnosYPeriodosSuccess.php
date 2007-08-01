@@ -65,7 +65,7 @@
  ?>
     <td> <?php echo input_date_tag('ciclolectivo[fecha_fin]', $ciclolectivo->getFechaFin() , 'rich=true calendar_button_img=/sf/sf_admin/images/date.png control_name=ciclolectivo[fecha_fin]'); ?></td>
     <td><?php echo ($ciclolectivo->getEstablecimiento())?$ciclolectivo->getEstablecimiento()->getNombre():"";?></td>
-    <?php echo input_hidden_tag('ciclolectivo[id]', $sf_params->get('id')) ?>
+    <?php echo input_hidden_tag('ciclolectivo[id]', $ciclolectivo->getId()) ?>
   </tr>
   </tbody>
 <tfoot>
