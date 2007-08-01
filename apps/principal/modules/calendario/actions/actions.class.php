@@ -186,16 +186,6 @@ class calendarioActions extends sfActions
         return $horarioescolares;
     }
 
-    protected function getTurnos($ciclolectivo_id = 0) {
-        $criteriaT = new Criteria(); 
-        if($ciclolectivo_id) {
-            $criteriaT->add(TurnosPeer::FK_CICLOLECTIVO_ID, $ciclolectivo_id);
-        }
-        $turnos = TurnosPeer::doSelect($criteriaT);
-        return $turnos;
-    }
-
-
     public function handleErrorIndex() {
         $this->redirect('calendario');
     }
