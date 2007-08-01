@@ -19,44 +19,47 @@
 
 
 /**
- * Turnos Acciones
+ * Turno Acciones
  *
  * @package    alba
  * @author     José Luis Di Biase <josx@interorganic.com.ar>
  * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
- * @version    SVN: $Id$
+ * @version    SVN: $Id: actions.class.php 4346 2007-02-28 20:20:23Z ftoledo $
  * @filesource
  * @license GPL
  */
-class turnosActions extends autoturnosActions {
-    
-    function addFiltersCriteria($c) {
-        $c->add(TurnosPeer::FK_CICLOLECTIVO_ID,$this->getUser()->getAttribute('fk_ciclolectivo_id'));
+class turnoActions extends autoturnoActions {
+    public function preExecute() {
+        $this->vista = $this->getRequestParameter('vista');
     }
     
-    function saveTurnos($turno) {
+    function addFiltersCriteria($c) {
+        $c->add(TurnoPeer::FK_CICLOLECTIVO_ID,$this->getUser()->getAttribute('fk_ciclolectivo_id'));
+    }
+    
+    function saveTurno($turno) {
         $turno->setFkCiclolectivoId($this->getUser()->getAttribute('fk_ciclolectivo_id'));
         $turno->save();
     }
 
-    protected function updateTurnosFromRequest()  {
+    protected function updateTurnoFromRequest()  {
     
-        $turnos = $this->getRequestParameter('turnos');
+        $turno = $this->getRequestParameter('turno');
     
-        $turnos['hora_inicio'] = $this->_add_zeros($turnos['hora_inicio']['hour'],2).":".$this->_add_zeros($turnos['hora_inicio']['minute'],2)." ".$turnos['hora_inicio']['ampm'];
-        $turnos['hora_fin']= $this->_add_zeros($turnos['hora_fin']['hour'],2).":".$this->_add_zeros($turnos['hora_fin']['minute'],2)." ".$turnos['hora_fin']['ampm'];
+        $turno['hora_inicio'] = $this->_add_zeros($turno['hora_inicio']['hour'],2).":".$this->_add_zeros($turno['hora_inicio']['minute'],2)." ".$turno['hora_inicio']['ampm'];
+        $turno['hora_fin']= $this->_add_zeros($turno['hora_fin']['hour'],2).":".$this->_add_zeros($turno['hora_fin']['minute'],2)." ".$turno['hora_fin']['ampm'];
 
-        if (isset($turnos['descripcion']))    {
-            $this->turnos->setDescripcion($turnos['descripcion']);
+        if (isset($turno['descripcion']))    {
+            $this->turno->setDescripcion($turno['descripcion']);
         }
     
-        if (isset($turnos['hora_inicio'])) {
-            $this->turnos->setHoraInicio($turnos['hora_inicio']);
+        if (isset($turno['hora_inicio'])) {
+            $this->turno->setHoraInicio($turno['hora_inicio']);
         }
         
-        if (isset($turnos['hora_fin'])) {
-            $this->turnos->setHoraFin($turnos['hora_fin']);
+        if (isset($turno['hora_fin'])) {
+            $this->turno->setHoraFin($turno['hora_fin']);
         }
     }
     function _add_zeros($string, $strlen) {

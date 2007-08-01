@@ -1,25 +1,25 @@
 methods:
     post:       
-        - "turnos{hora_inicio}"
-        - "turnos{hora_fin}"
-        - "turnos{descripcion}"    
+        - "turno{hora_inicio}"
+        - "turno{hora_fin}"
+        - "turno{descripcion}"    
     
 fillin:
     enabled:       on
 
 names:
 
-    turnos{hora_inicio}:
+    turno{hora_inicio}:
         required:     Yes
         required_msg: El campo hora inicio es obligatorio
         validators: horaInicio
 
-    turnos{hora_fin}:
+    turno{hora_fin}:
         required:     Yes
         required_msg: El campo hora fin  es obligatorio
         validators: horaFin
         
-    turnos{descripcion}:
+    turno{descripcion}:
         required:     Yes
         required_msg: El campo descripci&oacute;n es obligatorio
         validators: caracteresMaximos255
@@ -34,7 +34,7 @@ horaInicio:
     class:           albaHorasValidator
     param:
       hora_error:    El campo debe ser una hora
-      compare:       turnos[hora_fin]
+      compare:       turno[hora_fin]
       operator:      <
       compare_error: La hora de inicio debe ser anterior a la hora de fin
                     
@@ -42,6 +42,6 @@ horaFin:
     class:           albaHorasValidator
     param:
         hora_error:    EL campo debe ser una hora
-        compare:       turnos[hora_inicio]
+        compare:       turno[hora_inicio]
         operator:      >
         compare_error: La hora de fin debe ser posterior a la hora de inicio
