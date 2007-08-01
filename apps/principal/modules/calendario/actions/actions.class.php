@@ -32,7 +32,6 @@
 
 class calendarioActions extends sfActions
 {
-
   /**
    * Executes index action
    *
@@ -69,7 +68,6 @@ class calendarioActions extends sfActions
             if(count($aDocente) == 1) {
                 $this->redirect( 'calendario/horarioSegunDocente?id='.$aDocente[0]->getId());
             }
-   
         }
 
         // asignando variables para ser usadas en el template
@@ -77,7 +75,6 @@ class calendarioActions extends sfActions
         $this->txt = $txt;
         $this->aDocente = $aDocente;
     }
-
 
     function getEventos($aRes, $vista) {
         include("miExportadorIcal.class.php");
@@ -96,13 +93,11 @@ class calendarioActions extends sfActions
                 default: $view = 'verPorDia';
             }
         } else {
-            $view = "verPorSemana";
+            $view = $vista;
         }
 
         return array($view, $archivo, $date_component);
     }
-
-
 
 
     public function executeHorarioSegunDocente() {
@@ -125,10 +120,6 @@ class calendarioActions extends sfActions
         $this->docente = $docente;
     }
 
-
-
-
-
     public function executeBusquedaDivision() {
         // inicializando variables
         $aDivision  = array();        
@@ -142,11 +133,10 @@ class calendarioActions extends sfActions
         $criteria = new Criteria();
         $criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
         $divisiones = DivisionPeer::doSelectJoinAnio($criteria);
-
+        
         // asignando variables para ser usadas en el template
         $this->aDivision = $divisiones;
     }
-
 
     public function executeHorarioSegunDivision() {
 
@@ -157,7 +147,6 @@ class calendarioActions extends sfActions
         // trayendo datos necesarios
         $division = DivisionPeer::retrieveByPK($division_id);
         $aHoras  = $this->getHorarioEscolar($establecimiento_id, $division->getFkTurnosId() ,1);
-
 
         $criteria = new Criteria();
         $criteria->add(RelDivisionActividadDocentePeer::FK_DIVISION_ID, $division_id);
@@ -189,6 +178,5 @@ class calendarioActions extends sfActions
     public function handleErrorIndex() {
         $this->redirect('calendario');
     }
-
 }
 ?>
