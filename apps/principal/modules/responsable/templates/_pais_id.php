@@ -15,13 +15,13 @@
     
     echo observe_field('pais_id', array(
         'update'   => 'item_provincia',
-        'url'      => 'responsable/cambiarPais?vista=noMuestraMenu',
+        'url'      => 'responsable/cambiarPais',
         'with'     => "'pais_id=' + value"));
         
         echo javascript_tag(
             remote_function( array(
             'update'  => 'item_provincia',
-            'url'     => 'responsable/cambiarPais?vista=noMuestraMenu&pais_id='. $pais_selected . '&provincia_id=' . $provincia_id,
+            'url'     => 'responsable/cambiarPais?pais_id='. $pais_selected . '&provincia_id=' . $provincia_id,
             ))
          ); 
     
