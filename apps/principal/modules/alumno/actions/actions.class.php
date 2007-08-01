@@ -34,10 +34,6 @@
 class alumnoActions extends autoalumnoActions
 {
 
-    public function preExecute() {
-        $this->vista = $this->getRequestParameter('vista');
-    }
-  
   /**
   * Ver las Asistencias del alumno
   */  

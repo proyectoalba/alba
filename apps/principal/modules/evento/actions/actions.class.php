@@ -33,11 +33,6 @@
 class eventoActions extends sfActions
 {
 
-    public function preExecute() {
-        $this->vista = $this->getRequestParameter('vista');
-    }
-
-
     public function executeIndex() {
         return $this->forward('evento', 'edit');
 //         $this->evento = new Evento();

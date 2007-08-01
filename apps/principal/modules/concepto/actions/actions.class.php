@@ -33,11 +33,6 @@
 class conceptoActions extends autoconceptoActions
 {
 
-    public function preExecute() {
-        $this->vista = $this->getRequestParameter('vista');
-    }
-
-
 }
 
 ?>

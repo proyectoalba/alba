@@ -33,10 +33,6 @@
 class calendarioActions extends sfActions
 {
 
-    public function preExecute() {
-    }
-
-
   /**
    * Executes index action
    *

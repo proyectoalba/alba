@@ -33,10 +33,6 @@
 class anioActions extends autoanioActions
 {
 
-    public function preExecute() {
-        $this->vista = $this->getRequestParameter('vista');
-    }
-
     protected function addFiltersCriteria ($c) {
         $c->add(AnioPeer::FK_ESTABLECIMIENTO_ID,$this->getUser()->getAttribute('fk_establecimiento_id'));
     

@@ -33,7 +33,4 @@
 
 class tipodocenteActions extends autotipodocenteActions
 {
-    public function preExecute() {
-        $this->vista = $this->getRequestParameter('vista');
-    }
 }

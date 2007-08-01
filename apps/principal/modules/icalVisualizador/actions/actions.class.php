@@ -39,8 +39,6 @@ class icalVisualizadorActions extends sfActions
     }
 
     // Falta ver porque genera una columna mas y cuando no empieza en punto no grafica las filas hacia la derecha
-    
-
 
     $this->archivo = "/tmp/pepe.ics";
 

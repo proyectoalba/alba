@@ -32,10 +32,6 @@
  */
 
 class provinciaActions extends autoprovinciaActions {
-    public function preExecute() {
-        $this->vista = $this->getRequestParameter('vista');
-    }
-     
     protected function addSortCriteria ($c) {                                                                                                                          
         if ($sort_column = $this->getUser()->getAttribute('sort', 'nombre_corto', 'sf_admin/provincia/sort')) {                                                                                                                        
             $sort_column = Propel::getDB($c->getDbName())->quoteIdentifier($sort_column);                                          

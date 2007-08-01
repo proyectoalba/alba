@@ -33,9 +33,6 @@
 
 class espaciosActions extends autoespaciosActions
 {
-     public function preExecute() {
-         $this->vista = $this->getRequestParameter('vista');
-     }
 
 }
 

@@ -32,9 +32,6 @@
 
 class actividadActions extends autoactividadActions {
 
-    public function preExecute() {
-        $this->vista = $this->getRequestParameter('vista');
-    }
 
     protected function addFiltersCriteria ($c) {
         $c->add(ActividadPeer::FK_ESTABLECIMIENTO_ID,$this->getUser()->getAttribute('fk_establecimiento_id'));

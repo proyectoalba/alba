@@ -32,7 +32,4 @@
 
 class tipoespacioActions extends autotipoespacioActions
 {
-    public function preExecute() {
-        $this->vista = $this->getRequestParameter('vista');
-    }
 }

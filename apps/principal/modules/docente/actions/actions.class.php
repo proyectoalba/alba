@@ -33,10 +33,6 @@
 
 class docenteActions extends autodocenteActions
 {
-    public function preExecute() {
-        $this->vista = $this->getRequestParameter('vista');
-    }
-
     function executeActividadesPorDocente() {
         $this->id_docente = $this->getRequestParameter('id');
         $this->docente = DocentePeer::RetrieveByPK($this->id_docente);

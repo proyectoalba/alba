@@ -33,9 +33,6 @@
 
 class rolActions extends autorolActions
 {
-    public function preExecute() {
-        $this->vista = $this->getRequestParameter('vista');
-    }
 
     function executeEditPermiso() {
         // estos son los permisos que tiene el rol

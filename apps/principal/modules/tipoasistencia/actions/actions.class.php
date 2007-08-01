@@ -33,7 +33,4 @@
 
 class tipoasistenciaActions extends autotipoasistenciaActions
 {
-    public function preExecute() {
-        $this->vista = $this->getRequestParameter('vista');
-    }
 }

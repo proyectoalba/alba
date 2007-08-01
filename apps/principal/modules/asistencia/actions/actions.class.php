@@ -33,12 +33,6 @@
 class asistenciaActions extends sfActions
 {
 
-    public function preExecute() {
-        $fecha = $this->getRequestParameter('fecha');
-
-
-    }
-
     /**
     * Executes index action
     *
@@ -296,11 +290,8 @@ class asistenciaActions extends sfActions
         $this->anio_hasta = $anio_hasta;
 
         //Verifico si muestro versión para imprimir   
-        if ($this->getRequestParameter('vista')) {
-            $this->vista = $this->getRequestParameter('vista');
-        } else {
-            $this->vista = "";
-        }
+        if ($this->getRequestParameter('vista'))
+            $this->setLayout($this->getRequestParameter('vista'));
   }
   
   /**
@@ -312,7 +303,7 @@ class asistenciaActions extends sfActions
         $d = $this->getRequestParameter('dia');
         $m = $this->getRequestParameter('mes');
         $y = $this->getRequestParameter('ano');
-        return $this->forward('asistencia','index',"vista_id=$vista_id&dia=$d&mes=$m&ano=$y");   
+        return $this->forward('asistencia','index',"vista_id=$vista_id&dia=$d&mes=$m&ano=$y");
     }
   
     public function handleErrorMostrar(){

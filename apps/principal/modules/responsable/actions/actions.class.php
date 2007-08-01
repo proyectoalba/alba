@@ -31,9 +31,6 @@
  */
 
 class responsableActions extends autoresponsableActions {
-    public function preExecute() {
-        $this->vista = $this->getRequestParameter('vista');
-    }
          
     protected function addSortCriteria ($c) { 
         if ($sort_column = $this->getUser()->getAttribute('sort', 'apellido', 'sf_admin/responsable/sort')) {                                                                                                                        

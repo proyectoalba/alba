@@ -33,10 +33,6 @@
 class ciclolectivoActions extends autociclolectivoActions
 {
 
-    public function preExecute() {
-        $this->vista = $this->getRequestParameter('vista');
-    }
-
     public function executeAgregarTurnosYPeriodos() {
 
         $ciclolectivo_id = "";

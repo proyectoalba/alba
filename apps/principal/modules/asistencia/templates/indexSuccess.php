@@ -1,8 +1,4 @@
-<?php use_helper('DateForm');
-      use_helper("I18N");
- ?>
-
-<?
+<?php
 /**
 *    This file is part of Alba.
 *
@@ -34,9 +30,11 @@
 * @license GPL
 */
 ?>                   
+<?php use_helper('DateForm');
+      use_helper("I18N");
+?>
 <div id="sf_admin_container">
 <h1>Asistencias</h1>
-    
     <?php if ($sf_request->hasErrors()): ?>
       <div class="form-errors">
       <h2><?php echo __('There are some errors that prevent the form to validate') ?></h2>
@@ -53,15 +51,12 @@
     <div class="form-row">
         <table cellspacing="1">
             <tr>
-
                 <td>
                     <?php echo label_for('division_id', __('A&ntilde;o/Divisi&oacute;n:'), 'class="required" '); ?>
                 </td>
                 <td>
                     <?php echo select_tag('division_id', options_for_select($optionsDivision, $division_id)); ?>
                 </td>
-
-
                 <td style='padding-left:50px'>
                     <?php echo label_for('fecha', __('Fecha Inicio:'), 'class="required" '); ?>       
                 </td>
@@ -72,17 +67,14 @@
                     <?php echo select_month_tag('mes', $m, 'include_custom=Elija un mes use_short_month=true') ?>
                     <?php echo select_year_tag('ano', $y, 'include_custom=Elija un a&ntilde;o year_end='.$anio_hasta.' year_start='.$anio_desde) ?>
                 </td>
-
                 <td style='padding-left:50px'>
                     <?php echo label_for('vista', __('Vista:'), 'class="required"'); ?>
                 </td>
                 <td>  
                     <?php echo select_tag('vistas', options_for_select($aVistas, $vista_id)); ?>
                 </td>
-
             </tr>
         <table>      
-
         <ul class="sf_admin_actions">
             <li>
             <?php echo submit_tag(__('Mostrar'), array ('name' => 'Mostrar','class' => 'sf_admin_action_save')) ?>
@@ -94,11 +86,8 @@
             <?php echo input_hidden_tag('alumno_id', $alumno_id) ?>
         <? }?>    
      </form>
-
-
 <br>
 <br>
-
 <?php echo form_tag('asistencia/grabar', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true');
       echo input_hidden_tag('division_id', $division_id); 
       echo input_hidden_tag('dia', $d); 
@@ -122,7 +111,6 @@
             <?}?>
  
                 <th id="sf_admin_list_th_sf_actions">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-
            <?php foreach ($aTipoasistencias as $idx => $Tipoasistencia){ ?>
                 <th id="sf_admin_list_th_sf_actions" title="<?php echo $Tipoasistencia[1]?>"><?php echo $idx ?></th>
             <?}?>
@@ -162,10 +150,9 @@
                      }
                  ?>
                  </td>
-
             <?php } ?>
 <td></td>
-<?
+<?php
                foreach ($aTipoasistencias as $idx => $Tipoasistencia){  ?>
                   <td><?php echo isset($totalesAlumnos[$idx])?$totalesAlumnos[$idx]:0; ?></td>
                <?php }?>
@@ -173,8 +160,6 @@
      <?php  } ?>
      </tbody>
     </table>
-
-
      <?php if ( count($aAlumnos) >0 ) {?>      
       <div class="form-row">
         <ul class="sf_admin_actions"><li>   
@@ -187,7 +172,7 @@
             echo input_hidden_tag('mes', "$m"); 
             echo input_hidden_tag('ano', "$y"); 
             echo input_hidden_tag('vistas', $vista_id);
-            echo input_hidden_tag('vista', "noMuestraMenu"); 
+            echo input_hidden_tag('vista', "layout_sinmenu"); 
             if($alumno_id >= 0)
                  echo input_hidden_tag('alumno_id', $alumno_id);
             echo submit_tag(__('Imprimir'), array ('name' => 'Imprimir','class' => 'sf_admin_action_print'));
@@ -196,7 +181,6 @@
         </li></ul>
      </div>
     <?php }?> 
-
         <table cellspacing="1">
             <tr>
     <?php foreach ($aTipoasistencias as $idx => $Tipoasistencia){
@@ -207,8 +191,6 @@
           }
     ?>
             </tr>
-
-
 <?php // Comienza Feriados
     if(count($aFeriadoEfectivo)>0) {
 ?>
@@ -226,17 +208,11 @@
     // Finaliza Feriados
 ?>
         </tr>
-
 <? } else { ?>
 <h2>NO HAY ALUMNOS</h2>
 <? } ?>
-
-
-
-
         </table>
     </div>
-
       <div class="float-right">
           <ul class="sf_admin_actions">
             <li><?php echo button_to('Listado de alumnos','alumno/list',array('class' => 'sf_admin_action_list'))?></li>
@@ -246,8 +222,6 @@
         </ul>
       </div>
     </fieldset>
-
-
 <?php if($bool_gd) { ?>  
     <?php if($bool_tmp) { ?>  
         <?php if($nombre_completo_archivo) { ?>  

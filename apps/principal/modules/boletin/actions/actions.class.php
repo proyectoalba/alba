@@ -33,11 +33,6 @@
 class boletinActions extends sfActions
 {
 
-    public function preExecute() {
-        $this->vista = $this->getRequestParameter('vista');
-    }
-  
-
     public function executeGrabarNotas() {
 
         // inicializando variables

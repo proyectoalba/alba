@@ -36,9 +36,6 @@ class escalanotaActions extends autoescalanotaActions
         $c->add(EscalanotaPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
     }
 
-    public function preExecute() {
-         $this->vista = $this->getRequestParameter('vista');
-     }
 }
 
 ?>

@@ -33,9 +33,6 @@
 
 class usuarioActions extends autousuarioActions
 {
-    public function preExecute() {
-        $this->vista = $this->getRequestParameter('vista');
-    }
     
     function updateUsuarioFromRequest() {                                                                                     
         $usuario = $this->getRequestParameter('usuario');                                   

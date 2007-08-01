@@ -33,10 +33,6 @@
 
 class cuentaActions extends autocuentaActions
 {
-    public function preExecute() {
-        $this->vista = $this->getRequestParameter('vista');
-    }
-
 
   /**
   * Muestra la cuenta, los alumnos y los responsables

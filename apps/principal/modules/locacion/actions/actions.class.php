@@ -33,11 +33,6 @@
 
 class locacionActions extends autolocacionActions
 {
-    public function preExecute() {
-         $this->vista = $this->getRequestParameter('vista');
-    }
-    
-
     // Automaticamente al guardar por primera vez una locacion, además guarda una relación con el establecimeinto actual
     public function saveLocacion($locacion) {
 

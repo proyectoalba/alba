@@ -32,9 +32,4 @@
 
 class calendariovacunacionActions extends autocalendariovacunacionActions
 {
-    public function preExecute() {
-        $this->vista = $this->getRequestParameter('vista');
-    }
-  
-
 }

@@ -33,11 +33,6 @@
 class InformesActions extends sfActions
 {
 
-    public function preExecute() {
-        $this->vista = $this->getRequestParameter('vista');
-    }
-
-
 /**
  *  Informe: Alumnos por Division 
  *

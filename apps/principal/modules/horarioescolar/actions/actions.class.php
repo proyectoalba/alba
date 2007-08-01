@@ -34,10 +34,6 @@
 class horarioescolarActions extends autohorarioescolarActions
 {
     
-    public function preExecute() {
-        $this->vista = $this->getRequestParameter('vista');
-    }
- 
 
     public function executeEdit()  {
         $evento_generico = new miEvento();

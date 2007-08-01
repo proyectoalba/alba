@@ -33,9 +33,4 @@
 
 class conceptobajaActions extends autoconceptobajaActions
 {
-    public function preExecute() {
-        $this->vista = $this->getRequestParameter('vista');
-    }
-
-
 }
