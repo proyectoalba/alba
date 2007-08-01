@@ -21,7 +21,7 @@ generator:
                                                                                                                                      
     edit:
         title: Modificar la Locaci&oacute;n
-        display: [ nombre, fk_tipolocacion_id, descripcion, direccion, ciudad, _fk_provincia_id , _pais_id, codigo_postal, telefono, fax, encargado, encargado_telefono, principal ]
+        display: [ nombre, fk_tipolocacion_id, descripcion, direccion, ciudad, _pais_id, _fk_provincia_id, codigo_postal, telefono, fax, encargado, encargado_telefono, principal ]
 
     list:
         title: Listado de Locaciones
