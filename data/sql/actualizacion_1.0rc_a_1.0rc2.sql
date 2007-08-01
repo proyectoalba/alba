@@ -87,4 +87,23 @@ ALTER TABLE `horarioescolar` ADD CONSTRAINT `horarioescolar_FK_1` FOREIGN KEY (`
 ALTER TABLE `docente_horario` ADD CONSTRAINT `docente_horario_FK_2` FOREIGN KEY (`fk_evento_id`) REFERENCES `evento` (`id`) ON DELETE CASCADE;
 
 SET FOREIGN_KEY_CHECKS = 1;
-    
+
+
+## modificacion del cambio de nombre de turnos a turno
+
+RENAME TABLE `turnos` to `turno`;
+ALTER TABLE `turno` DROP FOREIGN KEY `turnos_FK_1`;
+ALTER TABLE `turno` ADD CONTRAINT `turno_FK_1` FOREING KEY (`fk_ciclolectivo_id`) REFERENCES `cilolectivo` (`id`);
+
+ALTER TABLE DROP FOREINGN KEY `division_FK_2`;
+ALTER TABLE `division` CHANGE `fk_turnos_id` `fk_turno_id` INTEGER(11) default 0 NOT NULL;
+ALTER TABLE ADD CONSTRAINT `division_FK_2`
+		FOREIGN KEY (`fk_turno_id`)
+		REFERENCES `turno` (`id`);
+
+ALTER TABLE `horarioescolar` DROP FOREINGN KEY `horarioescolar_FK_3`;
+ALTER TABLE `horarioescolar` CHANGE `fk_turnos_id` `fk_turno_id` INTEGER default 0 NOT NULL;
+ALTER TABLE `horarioescolar` CONSTRAINT `horarioescolar_FK_3`
+		FOREIGN KEY (`fk_turnos_id`)
+		REFERENCES `turnos` (`id`);
+
