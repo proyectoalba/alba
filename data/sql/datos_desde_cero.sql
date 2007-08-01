@@ -167,7 +167,7 @@ INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (28, 'Respon
 INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (29, 'Rol', '', '', 1);
 INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (30, 'Seguridad', '', '', 1);
 INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (31, 'Tipoiva', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (32, 'Turnos', '', '', 1);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (32, 'Turno', '', '', 1);
 INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (33, 'Default', '', '', 1);
 INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (34, 'Tipolocacion', '', '', 1);
 INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (35, 'Espacios', '', '', 1);
@@ -218,7 +218,7 @@ INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (32, 'responsable', '', 'responsable', 28);
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (33, 'rol', '', 'rol', 29);
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (34, 'tipoiva', '', 'tipoiva', 31);
-INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (35, 'turnos', '', 'turnos', 32);
+INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (35, 'turno', '', 'turno', 32);
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (36, 'tipolocacion', '', 'tipolocacion', 34);
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (37, 'tipoespacio', '', 'tipoespacio', 36);
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (38, 'espacio', '', 'espacio', 35);
