@@ -175,11 +175,11 @@ class calendarioActions extends sfActions
             $criteria->add(HorarioescolarPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
         }
         if($turnos_id) {
-            $criteria->add(HorarioescolarPeer::FK_TURNOS_ID, $turnos_id);
+            $criteria->add(HorarioescolarPeer::FK_TURNO_ID, $turnos_id);
         }
 
         if($orden) {
-            $criteria->addAscendingOrderByColumn(HorarioescolarPeer::FK_TURNOS_ID);
+            $criteria->addAscendingOrderByColumn(HorarioescolarPeer::FK_TURNO_ID);
         } 
 
         $horarioescolares = HorarioescolarPeer::doSelect($criteria);
