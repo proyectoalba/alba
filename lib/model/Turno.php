@@ -9,4 +9,8 @@
  */ 
 class Turno extends BaseTurno
 {
+    public function __toString() {
+        return $this->getDescripcion();
+    }
+
 }
