@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  *    This file is part of Alba.
  * 
@@ -16,6 +16,8 @@
  *    along with Alba; if not, write to the Free Software
  *    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
+
+
 /**
  * instalador
  *
@@ -23,10 +25,28 @@
  * @author     José Luis Di Biase <josx@interorganic.com.ar>
  * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
- * @version    SVN: $Id$
+ * @version    SVN: $Id: instalar.php 4883 2007-07-30 21:41:42Z ftoledo $
  * @filesource
  * @license GPL
  */
-
-header("Location: instalar/instalar.php");
-?>
+ 
+function permisos($dir) {
+    $octalPermiso = substr(sprintf('%o', @fileperms($dir)), -4);
+    return ($octalPermiso == "0777" OR $octalPermiso == "1777");
+}
+        
+$dirs = array(
+    'config', 
+    'cache', 
+    'log', 
+    'web' . DIRECTORY_SEPARATOR . 'tmp',
+    'web' . DIRECTORY_SEPARATOR. 'uploads',
+    'web' . DIRECTORY_SEPARATOR. 'uploads' .DIRECTORY_SEPARATOR. 'assets',
+);
+ 
+?> 
+<ul>
+<?php foeach($dirs as $dir):?>
+    <li>Comprobando permisos en: <?php echo $dir?> <?php permiso($dir) : IMG_OK : IMG_ERROR </li>
+<?php endforeach;?>
+</ul>
