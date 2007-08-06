@@ -32,14 +32,31 @@ session_start();
 
 define ('ALBA_INSTALLER',1);
 
-define ('IMG_OK','<img src="images/ok.png">');
-define ('IMG_ERROR' '<img src="images/error.png>');
+define ('IMG_OK','<img src="images/ok.png" title="Correcto" alt="Correcto">');
+define ('IMG_ERROR', '<img src="images/error.png" title="Incorrecto" alt="Incorrecto">');
 
 
-if (!isset($_SESSION['instalador']['paso']))
+if (!isset($_GET['paso']))
     $paso = 1;
 else
-    $paso = $_SESSION['instalador']['paso'];
+    $paso = $_GET['paso'];
+    
+$error_flag = false;
+$completo = false;
+
+
+function AlbaPath() {
+    return realpath(dirname(__FILE__) .DIRECTORY_SEPARATOR. ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR);
+}
+
+function DebugLog($str) {
+    $log = AlbaPath() . DIRECTORY_SEPARATOR . "log" . DIRECTORY_SEPARATOR . "install.log";
+    $fp = fopen($log,"a+");
+    if ($fp) {
+        fwrite($fp,date('d/m/Y H:i:s') . " $str\n");
+        fclose($fp);
+    }
+}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2000/REC-xhtml1-200000126/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
@@ -54,25 +71,31 @@ else
     <body>
         <div id="cabeza">
         <h1>Instalaci&oacute;n de ALBA</h1>
-        <p>Antes de continuar con la instalacion, es necesario comprobar los permisos
-        de algunos directorios en particular:</p>
         </div>
-        
         <div id="contenido">
             <?php
                 switch ($paso) {
                     case 1:
-                        include ("instalar/paso1.php");
+                        include ("paso1.php");
                         break;
                     case 2:
-                        include ("instalar/paso2.php");
+                        include ("paso2.php");
                         break;
                     case 3:
-                        include ("instalar/paso3.php");
+                        include ("paso3.php");
                         break;
                 }
             ?>
         </div>
+        <br/>
+        <?php if (!$error_flag && !$completo): ?>
+            <div id="siguiente">
+                <form method="get" action="instalar.php">
+                <input type="hidden" name="paso" value="<?php echo $paso?>">
+                <input type="submit" name="btSiguiente" value="Siguiente">
+                </form>
+            </div>
+        <?php endif;?>
     </body>
 </html>
 

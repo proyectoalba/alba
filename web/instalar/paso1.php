@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  *    This file is part of Alba.
  * 
@@ -30,11 +30,6 @@
  * @license GPL
  */
  
-function permisos($dir) {
-    $octalPermiso = substr(sprintf('%o', @fileperms($dir)), -4);
-    return ($octalPermiso == "0777" OR $octalPermiso == "1777");
-}
-        
 $dirs = array(
     'config', 
     'cache', 
@@ -44,9 +39,31 @@ $dirs = array(
     'web' . DIRECTORY_SEPARATOR. 'uploads' .DIRECTORY_SEPARATOR. 'assets',
 );
  
-?> 
-<ul>
-<?php foeach($dirs as $dir):?>
-    <li>Comprobando permisos en: <?php echo $dir?> <?php permiso($dir) : IMG_OK : IMG_ERROR </li>
+$alba_path = AlbaPath();
+?>
+<div id="detalle">
+<p>Antes de continuar con la instalaci&oacute;n, es necesario comprobar los permisos
+de algunos directorios en particular.<br/>
+Por favor, corrija los mismos y vuelva a recargar &eacute;sta p&aacute;gina hasta que todos
+esten correctos. 
+</p>
+</div>
+              
+<p>Directorio base: <?php echo $alba_path?></p> 
+<table>
+<?php foreach($dirs as $dir):?>
+    <?php
+    if (!is_writable($alba_path .DIRECTORY_SEPARATOR . $dir))
+        $error_flag = true;
+    ?>
+    <tr>
+        <td>Comprobando permisos en: <?php echo $dir ?></td>
+        <td><?php echo is_writable($alba_path .DIRECTORY_SEPARATOR . $dir) ? IMG_OK : IMG_ERROR ." (Debe cambiar los permisos)" ?></td>
+    </tr>
 <?php endforeach;?>
-</ul>
+</table>
+
+<?php 
+// ir al siguiente paso
+   $paso = 2;
+?>
