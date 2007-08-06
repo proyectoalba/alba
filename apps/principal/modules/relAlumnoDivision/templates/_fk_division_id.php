@@ -1,7 +1,7 @@
 <?php 
     $c = new Criteria(); 
     $c->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $sf_user->getAttribute('fk_establecimiento_id'));    
-    $c->add(TurnosPeer::FK_CICLOLECTIVO_ID, $sf_user->getAttribute('fk_ciclolectivo_id'));
+    $c->add(TurnoPeer::FK_CICLOLECTIVO_ID, $sf_user->getAttribute('fk_ciclolectivo_id'));
     $c->addJoin(AnioPeer::ID,DivisionPeer::FK_ANIO_ID);
     $c->addJoin(TurnoPeer::ID,DivisionPeer::FK_TURNO_ID);
     
