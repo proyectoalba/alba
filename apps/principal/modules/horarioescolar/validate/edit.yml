@@ -6,6 +6,9 @@ methods:
     - "horarioescolar{fk_horarioescolartipo_id}"
     - "evento{fecha_inicio}"
     - "evento{fecha_fin}"
+    - "evento{hora_inicio}"
+    - "evento{hora_fin}"
+
 
 fillin:
     enabled:       on
@@ -29,12 +32,20 @@ names:
         required_msg: El campo tipo de horario escolar es obligatorio
 
     evento{fecha_inicio}:
-        required:     no
+        required:     No
         validators: firstDay
 
     evento{fecha_fin}:
-        required:     no
+        required:     No
         validators: lastDay
+
+    evento{hora_inicio}:
+        required:     No
+        validators: horaInicio
+
+    evento{hora_fin}:
+        required:     No
+        validators: horaFin
 
 
 

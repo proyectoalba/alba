@@ -208,10 +208,16 @@
 
              <div class="form-row">
               <?php echo label_for('evento[fecha_inicio]', __('Inicio:'), 'class="required" ') ?>
-              <div class="content<?php if ($sf_request->hasError('evento{fecha_inicio}')): ?> form-error<?php endif; ?>">
+              <div class="content<?php if ($sf_request->hasError('evento{fecha_inicio}') OR $sf_request->hasError('evento{hora_inicio}') ): ?> form-error<?php endif; ?>">
               <?php if ($sf_request->hasError('evento{fecha_inicio}')): ?>
                 <?php echo form_error('evento{fecha_inicio}', array('class' => 'form-error-msg')) ?>
               <?php endif; ?>
+              
+               <?php if ($sf_request->hasError('evento{hora_inicio}')): ?>
+                <?php echo form_error('evento{hora_inicio}', array('class' => 'form-error-msg')) ?>
+              <?php endif; ?>
+
+              
 
               <?php echo object_input_date_tag($evento, 'getFechaInicio', array (
               'rich' => true,
@@ -227,10 +233,17 @@
 
              <div class="form-row">
               <?php echo label_for('evento[fecha_fin]', __('Fin:'), 'class="required" ') ?>
-              <div class="content<?php if ($sf_request->hasError('evento{fecha_fin}')): ?> form-error<?php endif; ?>">
+
+              <div class="content<?php if ($sf_request->hasError('evento{fecha_fin}') OR $sf_request->hasError('evento{hora_fin}')): ?> form-error<?php endif; ?>">
+
               <?php if ($sf_request->hasError('evento{fecha_fin}')): ?>
                 <?php echo form_error('evento{fecha_fin}', array('class' => 'form-error-msg')) ?>
               <?php endif; ?>
+
+              <?php if ($sf_request->hasError('evento{hora_fin}')): ?>
+                <?php echo form_error('evento{hora_fin}', array('class' => 'form-error-msg')) ?>
+              <?php endif; ?>
+
 
               <?php echo object_input_date_tag($evento, 'getFechaFin', array (
               'rich' => true,
