@@ -23,8 +23,8 @@
  * relAnioActividad Acciones
  *
  * @package    alba
- * @author     José Luis Di Biase <josx@interorganic.com.ar>
- * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     JosÃ© Luis Di Biase <josx@interorganic.com.ar>
+ * @author     HÃ©ctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
  * @version    SVN: $Id$
  * @filesource
@@ -33,6 +33,31 @@
 
 class relAnioActividadActions extends autorelAnioActividadActions
 {
-}
 
+    protected function getRelAnioActividadOrCreate($id = 'id', $horas = '')  {
+        if (!$this->getRequestParameter($id)) {
+            $rel_anio_actividad = new RelAnioActividad();
+        } else {
+            $rel_anio_actividad = RelAnioActividadPeer::retrieveByPk($this->getRequestParameter($id));
+            $this->forward404Unless($rel_anio_actividad);
+        }
+        return $rel_anio_actividad;
+    }                                     
+    
+    protected function updateRelAnioActividadFromRequest() {
+        $rel_anio_actividad = $this->getRequestParameter('rel_anio_actividad');
+        if (isset($rel_anio_actividad['fk_anio_id'])) {
+            $this->rel_anio_actividad->setFkAnioId($rel_anio_actividad['fk_anio_id'] ? $rel_anio_actividad['fk_anio_id'] : null);
+        }
+
+        if (isset($rel_anio_actividad['fk_actividad_id'])) {
+            $this->rel_anio_actividad->setFkActividadId($rel_anio_actividad['fk_actividad_id'] ? $rel_anio_actividad['fk_actividad_id'] : null);
+        }
+        
+        if (isset($rel_anio_actividad['horas'])) {
+            $this->rel_anio_actividad->setHoras($rel_anio_actividad['horas']);
+        }
+
+    }
+}
 ?>

@@ -11,8 +11,8 @@ generator:
     edit:
         title: Editar Actividades del A&ntilde;o
         fields:
-            fk_anio_id:   { params: include_custom=--Seleccione un Añ--<}
-            fk_actividad_id:   { params: include_custom=>>Seleccione una Actividad<<}
+            fk_anio_id:   { params: include_custom=>>Seleccione un A&ntilde;o<< }
+            fk_actividad_id:   { params: include_custom=>>Seleccione una Actividad<< }
         display: [ fk_anio_id, fk_actividad_id, horas ]
     list:
         title: Listado de Actividades por A&ntilde;o
@@ -20,4 +20,5 @@ generator:
         object_actions:
             _edit:      -
             _delete:    -
-        filters: [ fk_anio_id ]                                                                
+        filters: [ fk_anio_id ]
+
