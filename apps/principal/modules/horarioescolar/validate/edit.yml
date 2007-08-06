@@ -4,7 +4,9 @@ methods:
     - "horarioescolar{descripcion}"
     - "horarioescolar{fk_turno_id}"
     - "horarioescolar{fk_horarioescolartipo_id}"
-    
+    - "evento{fecha_inicio}"
+    - "evento{fecha_fin}"
+
 fillin:
     enabled:       on
       
@@ -25,6 +27,16 @@ names:
     horarioescolar{fk_horarioescolartipo_id}:
         required:     Yes
         required_msg: El campo tipo de horario escolar es obligatorio
+
+    evento{fecha_inicio}:
+        required:     no
+        validators: firstDay
+
+    evento{fecha_fin}:
+        required:     no
+        validators: lastDay
+
+
 
         
 caracteresMaximos255:
@@ -51,7 +63,7 @@ horaInicio:
     class:           albaHorasValidator
     param:
       hora_error:    El campo debe ser una hora
-      compare:       horarioescolar[hora_fin]
+      compare:       evento[hora_fin]
       operator:      <
       compare_error: La hora de inicio debe ser anterior a la hora de fin
                     
@@ -59,6 +71,23 @@ horaFin:
     class:           albaHorasValidator
     param:
         hora_error:    EL campo debe ser una hora
-        compare:       horarioescolar[hora_inicio]
+        compare:       evento[hora_inicio]
         operator:      >
         compare_error: La hora de fin debe ser posterior a la hora de inicio
+
+firstDay:
+    class:           albaDateValidator
+    param:
+      date_error:    El campo debe ser una fecha
+      compare:       evento[fecha_fin]
+      operator:      <=
+      compare_error: La fecha inicio debe ser anterior a la fecha fin
+                    
+lastDay:
+    class:           albaDateValidator
+    param:
+        date_error:    EL campo debe ser una fecha
+        compare:       evento[fecha_inicio]
+        operator:      >=
+        compare_error: La fecha fin debe ser posterior a la fecha inicio
+                                                

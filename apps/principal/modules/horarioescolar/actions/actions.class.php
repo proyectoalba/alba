@@ -142,7 +142,29 @@ class horarioescolarActions extends autohorarioescolarActions
         'horarioescolar{fk_horarioescolartipo_id}' => 'Tipo Horario Escolar:',
         'horarioescolar{fk_turno_id}' => 'Turno:',
         'horarioescolar{fk_evento_id}' => 'Evento:',
+        'evento{fecha_inicio}' => 'Fecha inicio:',
+        'evento{fecha_fin}' => 'Fecha fin:',
+        
+
         );
     }
+    
+    
+    public function handleErrorEdit() {
+        $this->preExecute();
+        $this->horarioescolar = $this->getHorarioescolarOrCreate();
+        $evento_generico = new miEvento();
+        $this->evento = $evento_generico->getEventoOrCreate($this->horarioescolar->getFkEventoId());
+        $this->evento = $evento_generico->updateEventoFromRequest($this->evento, $this->getRequestParameter('evento'), $this->getUser()->getCulture());
+        $this->updateHorarioescolarFromRequest($this->evento->getId());
+//print_R($this->evento);
+        $this->labels = $this->getLabels();
+        return sfView::SUCCESS;
+    }
+                             
+    
+    
+    
+    
 }
 ?>
