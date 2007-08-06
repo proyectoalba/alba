@@ -146,7 +146,7 @@ class calendarioActions extends sfActions
 
         // trayendo datos necesarios
         $division = DivisionPeer::retrieveByPK($division_id);
-        $aHoras  = $this->getHorarioEscolar($establecimiento_id, $division->getFkTurnosId() ,1);
+        $aHoras  = $this->getHorarioEscolar($establecimiento_id, $division->getFkTurnoId() ,1);
 
         $criteria = new Criteria();
         $criteria->add(RelDivisionActividadDocentePeer::FK_DIVISION_ID, $division_id);
@@ -158,13 +158,13 @@ class calendarioActions extends sfActions
         $this->division = $division;
     }
 
-    protected function getHorarioEscolar($establecimiento_id = 0, $turnos_id = 0, $orden = 0) {
+    protected function getHorarioEscolar($establecimiento_id = 0, $turno_id = 0, $orden = 0) {
         $criteria = new Criteria();
         if($establecimiento_id) {
             $criteria->add(HorarioescolarPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
         }
-        if($turnos_id) {
-            $criteria->add(HorarioescolarPeer::FK_TURNO_ID, $turnos_id);
+        if($turno_id) {
+            $criteria->add(HorarioescolarPeer::FK_TURNO_ID, $turno_id);
         }
 
         if($orden) {
