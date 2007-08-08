@@ -97,6 +97,7 @@
 	    <li><span></span><a href="#">Gesti&oacute;n Escolar</a>
             <ul>
 	            <li><span></span><?php echo link_to("Definir Grados/A&ntilde;os","anio")?></li>
+                <li><span></span><?php echo link_to("Definir Orientaciones","orientacion")?></li>
 	            <li><span></span><?php echo link_to("Definir Secciones/Divisiones","division")?></li>
 	            <li><span></span><?php echo link_to("Asignar Alumno a Secci&oacute;n/Divisi&oacute;n","relAlumnoDivision/create")?></li>
 	            <li><span></span><?php echo link_to("Ingresar Materias/Actividades","actividad")?></li>

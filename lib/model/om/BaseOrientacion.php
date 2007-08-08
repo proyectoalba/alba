@@ -1,7 +1,7 @@
 <?php
 
 
-abstract class BaseAnio extends BaseObject  implements Persistent {
+abstract class BaseOrientacion extends BaseObject  implements Persistent {
 
 
 	
@@ -13,26 +13,17 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 
 
 	
-	protected $fk_establecimiento_id = 0;
+	protected $nombre;
 
 
 	
 	protected $descripcion;
 
 	
-	protected $aEstablecimiento;
-
-	
 	protected $collDivisions;
 
 	
 	protected $lastDivisionCriteria = null;
-
-	
-	protected $collRelAnioActividads;
-
-	
-	protected $lastRelAnioActividadCriteria = null;
 
 	
 	protected $alreadyInSave = false;
@@ -48,10 +39,10 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 	}
 
 	
-	public function getFkEstablecimientoId()
+	public function getNombre()
 	{
 
-		return $this->fk_establecimiento_id;
+		return $this->nombre;
 	}
 
 	
@@ -71,25 +62,21 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 
 		if ($this->id !== $v) {
 			$this->id = $v;
-			$this->modifiedColumns[] = AnioPeer::ID;
+			$this->modifiedColumns[] = OrientacionPeer::ID;
 		}
 
 	} 
 	
-	public function setFkEstablecimientoId($v)
+	public function setNombre($v)
 	{
 
-						if ($v !== null && !is_int($v) && is_numeric($v)) {
-			$v = (int) $v;
+						if ($v !== null && !is_string($v)) {
+			$v = (string) $v; 
 		}
 
-		if ($this->fk_establecimiento_id !== $v || $v === 0) {
-			$this->fk_establecimiento_id = $v;
-			$this->modifiedColumns[] = AnioPeer::FK_ESTABLECIMIENTO_ID;
-		}
-
-		if ($this->aEstablecimiento !== null && $this->aEstablecimiento->getId() !== $v) {
-			$this->aEstablecimiento = null;
+		if ($this->nombre !== $v) {
+			$this->nombre = $v;
+			$this->modifiedColumns[] = OrientacionPeer::NOMBRE;
 		}
 
 	} 
@@ -103,7 +90,7 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 
 		if ($this->descripcion !== $v) {
 			$this->descripcion = $v;
-			$this->modifiedColumns[] = AnioPeer::DESCRIPCION;
+			$this->modifiedColumns[] = OrientacionPeer::DESCRIPCION;
 		}
 
 	} 
@@ -114,7 +101,7 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 
 			$this->id = $rs->getInt($startcol + 0);
 
-			$this->fk_establecimiento_id = $rs->getInt($startcol + 1);
+			$this->nombre = $rs->getString($startcol + 1);
 
 			$this->descripcion = $rs->getString($startcol + 2);
 
@@ -124,7 +111,7 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 
 						return $startcol + 3; 
 		} catch (Exception $e) {
-			throw new PropelException("Error populating Anio object", $e);
+			throw new PropelException("Error populating Orientacion object", $e);
 		}
 	}
 
@@ -136,12 +123,12 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(AnioPeer::DATABASE_NAME);
+			$con = Propel::getConnection(OrientacionPeer::DATABASE_NAME);
 		}
 
 		try {
 			$con->begin();
-			AnioPeer::doDelete($this, $con);
+			OrientacionPeer::doDelete($this, $con);
 			$this->setDeleted(true);
 			$con->commit();
 		} catch (PropelException $e) {
@@ -158,7 +145,7 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(AnioPeer::DATABASE_NAME);
+			$con = Propel::getConnection(OrientacionPeer::DATABASE_NAME);
 		}
 
 		try {
@@ -179,36 +166,19 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 			$this->alreadyInSave = true;
 
 
-												
-			if ($this->aEstablecimiento !== null) {
-				if ($this->aEstablecimiento->isModified()) {
-					$affectedRows += $this->aEstablecimiento->save($con);
-				}
-				$this->setEstablecimiento($this->aEstablecimiento);
-			}
-
-
 						if ($this->isModified()) {
 				if ($this->isNew()) {
-					$pk = AnioPeer::doInsert($this, $con);
+					$pk = OrientacionPeer::doInsert($this, $con);
 					$affectedRows += 1; 										 										 
 					$this->setId($pk);  
 					$this->setNew(false);
 				} else {
-					$affectedRows += AnioPeer::doUpdate($this, $con);
+					$affectedRows += OrientacionPeer::doUpdate($this, $con);
 				}
 				$this->resetModified(); 			}
 
 			if ($this->collDivisions !== null) {
 				foreach($this->collDivisions as $referrerFK) {
-					if (!$referrerFK->isDeleted()) {
-						$affectedRows += $referrerFK->save($con);
-					}
-				}
-			}
-
-			if ($this->collRelAnioActividads !== null) {
-				foreach($this->collRelAnioActividads as $referrerFK) {
 					if (!$referrerFK->isDeleted()) {
 						$affectedRows += $referrerFK->save($con);
 					}
@@ -251,29 +221,13 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 			$failureMap = array();
 
 
-												
-			if ($this->aEstablecimiento !== null) {
-				if (!$this->aEstablecimiento->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aEstablecimiento->getValidationFailures());
-				}
-			}
-
-
-			if (($retval = AnioPeer::doValidate($this, $columns)) !== true) {
+			if (($retval = OrientacionPeer::doValidate($this, $columns)) !== true) {
 				$failureMap = array_merge($failureMap, $retval);
 			}
 
 
 				if ($this->collDivisions !== null) {
 					foreach($this->collDivisions as $referrerFK) {
-						if (!$referrerFK->validate($columns)) {
-							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
-						}
-					}
-				}
-
-				if ($this->collRelAnioActividads !== null) {
-					foreach($this->collRelAnioActividads as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -290,7 +244,7 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 	
 	public function getByName($name, $type = BasePeer::TYPE_PHPNAME)
 	{
-		$pos = AnioPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
+		$pos = OrientacionPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
 		return $this->getByPosition($pos);
 	}
 
@@ -302,7 +256,7 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 				return $this->getId();
 				break;
 			case 1:
-				return $this->getFkEstablecimientoId();
+				return $this->getNombre();
 				break;
 			case 2:
 				return $this->getDescripcion();
@@ -315,10 +269,10 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 	
 	public function toArray($keyType = BasePeer::TYPE_PHPNAME)
 	{
-		$keys = AnioPeer::getFieldNames($keyType);
+		$keys = OrientacionPeer::getFieldNames($keyType);
 		$result = array(
 			$keys[0] => $this->getId(),
-			$keys[1] => $this->getFkEstablecimientoId(),
+			$keys[1] => $this->getNombre(),
 			$keys[2] => $this->getDescripcion(),
 		);
 		return $result;
@@ -327,7 +281,7 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 	
 	public function setByName($name, $value, $type = BasePeer::TYPE_PHPNAME)
 	{
-		$pos = AnioPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
+		$pos = OrientacionPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
 		return $this->setByPosition($pos, $value);
 	}
 
@@ -339,7 +293,7 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 				$this->setId($value);
 				break;
 			case 1:
-				$this->setFkEstablecimientoId($value);
+				$this->setNombre($value);
 				break;
 			case 2:
 				$this->setDescripcion($value);
@@ -349,21 +303,21 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 	
 	public function fromArray($arr, $keyType = BasePeer::TYPE_PHPNAME)
 	{
-		$keys = AnioPeer::getFieldNames($keyType);
+		$keys = OrientacionPeer::getFieldNames($keyType);
 
 		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
-		if (array_key_exists($keys[1], $arr)) $this->setFkEstablecimientoId($arr[$keys[1]]);
+		if (array_key_exists($keys[1], $arr)) $this->setNombre($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setDescripcion($arr[$keys[2]]);
 	}
 
 	
 	public function buildCriteria()
 	{
-		$criteria = new Criteria(AnioPeer::DATABASE_NAME);
+		$criteria = new Criteria(OrientacionPeer::DATABASE_NAME);
 
-		if ($this->isColumnModified(AnioPeer::ID)) $criteria->add(AnioPeer::ID, $this->id);
-		if ($this->isColumnModified(AnioPeer::FK_ESTABLECIMIENTO_ID)) $criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $this->fk_establecimiento_id);
-		if ($this->isColumnModified(AnioPeer::DESCRIPCION)) $criteria->add(AnioPeer::DESCRIPCION, $this->descripcion);
+		if ($this->isColumnModified(OrientacionPeer::ID)) $criteria->add(OrientacionPeer::ID, $this->id);
+		if ($this->isColumnModified(OrientacionPeer::NOMBRE)) $criteria->add(OrientacionPeer::NOMBRE, $this->nombre);
+		if ($this->isColumnModified(OrientacionPeer::DESCRIPCION)) $criteria->add(OrientacionPeer::DESCRIPCION, $this->descripcion);
 
 		return $criteria;
 	}
@@ -371,9 +325,9 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 	
 	public function buildPkeyCriteria()
 	{
-		$criteria = new Criteria(AnioPeer::DATABASE_NAME);
+		$criteria = new Criteria(OrientacionPeer::DATABASE_NAME);
 
-		$criteria->add(AnioPeer::ID, $this->id);
+		$criteria->add(OrientacionPeer::ID, $this->id);
 
 		return $criteria;
 	}
@@ -394,7 +348,7 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 	public function copyInto($copyObj, $deepCopy = false)
 	{
 
-		$copyObj->setFkEstablecimientoId($this->fk_establecimiento_id);
+		$copyObj->setNombre($this->nombre);
 
 		$copyObj->setDescripcion($this->descripcion);
 
@@ -404,10 +358,6 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 
 			foreach($this->getDivisions() as $relObj) {
 				$copyObj->addDivision($relObj->copy($deepCopy));
-			}
-
-			foreach($this->getRelAnioActividads() as $relObj) {
-				$copyObj->addRelAnioActividad($relObj->copy($deepCopy));
 			}
 
 		} 
@@ -430,39 +380,9 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 	public function getPeer()
 	{
 		if (self::$peer === null) {
-			self::$peer = new AnioPeer();
+			self::$peer = new OrientacionPeer();
 		}
 		return self::$peer;
-	}
-
-	
-	public function setEstablecimiento($v)
-	{
-
-
-		if ($v === null) {
-			$this->setFkEstablecimientoId('0');
-		} else {
-			$this->setFkEstablecimientoId($v->getId());
-		}
-
-
-		$this->aEstablecimiento = $v;
-	}
-
-
-	
-	public function getEstablecimiento($con = null)
-	{
-				include_once 'lib/model/om/BaseEstablecimientoPeer.php';
-
-		if ($this->aEstablecimiento === null && ($this->fk_establecimiento_id !== null)) {
-
-			$this->aEstablecimiento = EstablecimientoPeer::retrieveByPK($this->fk_establecimiento_id, $con);
-
-			
-		}
-		return $this->aEstablecimiento;
 	}
 
 	
@@ -490,7 +410,7 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 			   $this->collDivisions = array();
 			} else {
 
-				$criteria->add(DivisionPeer::FK_ANIO_ID, $this->getId());
+				$criteria->add(DivisionPeer::FK_ORIENTACION_ID, $this->getId());
 
 				DivisionPeer::addSelectColumns($criteria);
 				$this->collDivisions = DivisionPeer::doSelect($criteria, $con);
@@ -499,7 +419,7 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 						if (!$this->isNew()) {
 												
 
-				$criteria->add(DivisionPeer::FK_ANIO_ID, $this->getId());
+				$criteria->add(DivisionPeer::FK_ORIENTACION_ID, $this->getId());
 
 				DivisionPeer::addSelectColumns($criteria);
 				if (!isset($this->lastDivisionCriteria) || !$this->lastDivisionCriteria->equals($criteria)) {
@@ -523,7 +443,7 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 			$criteria = clone $criteria;
 		}
 
-		$criteria->add(DivisionPeer::FK_ANIO_ID, $this->getId());
+		$criteria->add(DivisionPeer::FK_ORIENTACION_ID, $this->getId());
 
 		return DivisionPeer::doCount($criteria, $distinct, $con);
 	}
@@ -532,7 +452,42 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 	public function addDivision(Division $l)
 	{
 		$this->collDivisions[] = $l;
-		$l->setAnio($this);
+		$l->setOrientacion($this);
+	}
+
+
+	
+	public function getDivisionsJoinAnio($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseDivisionPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collDivisions === null) {
+			if ($this->isNew()) {
+				$this->collDivisions = array();
+			} else {
+
+				$criteria->add(DivisionPeer::FK_ORIENTACION_ID, $this->getId());
+
+				$this->collDivisions = DivisionPeer::doSelectJoinAnio($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(DivisionPeer::FK_ORIENTACION_ID, $this->getId());
+
+			if (!isset($this->lastDivisionCriteria) || !$this->lastDivisionCriteria->equals($criteria)) {
+				$this->collDivisions = DivisionPeer::doSelectJoinAnio($criteria, $con);
+			}
+		}
+		$this->lastDivisionCriteria = $criteria;
+
+		return $this->collDivisions;
 	}
 
 
@@ -553,13 +508,13 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 				$this->collDivisions = array();
 			} else {
 
-				$criteria->add(DivisionPeer::FK_ANIO_ID, $this->getId());
+				$criteria->add(DivisionPeer::FK_ORIENTACION_ID, $this->getId());
 
 				$this->collDivisions = DivisionPeer::doSelectJoinTurno($criteria, $con);
 			}
 		} else {
 									
-			$criteria->add(DivisionPeer::FK_ANIO_ID, $this->getId());
+			$criteria->add(DivisionPeer::FK_ORIENTACION_ID, $this->getId());
 
 			if (!isset($this->lastDivisionCriteria) || !$this->lastDivisionCriteria->equals($criteria)) {
 				$this->collDivisions = DivisionPeer::doSelectJoinTurno($criteria, $con);
@@ -568,146 +523,6 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 		$this->lastDivisionCriteria = $criteria;
 
 		return $this->collDivisions;
-	}
-
-
-	
-	public function getDivisionsJoinOrientacion($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseDivisionPeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collDivisions === null) {
-			if ($this->isNew()) {
-				$this->collDivisions = array();
-			} else {
-
-				$criteria->add(DivisionPeer::FK_ANIO_ID, $this->getId());
-
-				$this->collDivisions = DivisionPeer::doSelectJoinOrientacion($criteria, $con);
-			}
-		} else {
-									
-			$criteria->add(DivisionPeer::FK_ANIO_ID, $this->getId());
-
-			if (!isset($this->lastDivisionCriteria) || !$this->lastDivisionCriteria->equals($criteria)) {
-				$this->collDivisions = DivisionPeer::doSelectJoinOrientacion($criteria, $con);
-			}
-		}
-		$this->lastDivisionCriteria = $criteria;
-
-		return $this->collDivisions;
-	}
-
-	
-	public function initRelAnioActividads()
-	{
-		if ($this->collRelAnioActividads === null) {
-			$this->collRelAnioActividads = array();
-		}
-	}
-
-	
-	public function getRelAnioActividads($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseRelAnioActividadPeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collRelAnioActividads === null) {
-			if ($this->isNew()) {
-			   $this->collRelAnioActividads = array();
-			} else {
-
-				$criteria->add(RelAnioActividadPeer::FK_ANIO_ID, $this->getId());
-
-				RelAnioActividadPeer::addSelectColumns($criteria);
-				$this->collRelAnioActividads = RelAnioActividadPeer::doSelect($criteria, $con);
-			}
-		} else {
-						if (!$this->isNew()) {
-												
-
-				$criteria->add(RelAnioActividadPeer::FK_ANIO_ID, $this->getId());
-
-				RelAnioActividadPeer::addSelectColumns($criteria);
-				if (!isset($this->lastRelAnioActividadCriteria) || !$this->lastRelAnioActividadCriteria->equals($criteria)) {
-					$this->collRelAnioActividads = RelAnioActividadPeer::doSelect($criteria, $con);
-				}
-			}
-		}
-		$this->lastRelAnioActividadCriteria = $criteria;
-		return $this->collRelAnioActividads;
-	}
-
-	
-	public function countRelAnioActividads($criteria = null, $distinct = false, $con = null)
-	{
-				include_once 'lib/model/om/BaseRelAnioActividadPeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		$criteria->add(RelAnioActividadPeer::FK_ANIO_ID, $this->getId());
-
-		return RelAnioActividadPeer::doCount($criteria, $distinct, $con);
-	}
-
-	
-	public function addRelAnioActividad(RelAnioActividad $l)
-	{
-		$this->collRelAnioActividads[] = $l;
-		$l->setAnio($this);
-	}
-
-
-	
-	public function getRelAnioActividadsJoinActividad($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseRelAnioActividadPeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collRelAnioActividads === null) {
-			if ($this->isNew()) {
-				$this->collRelAnioActividads = array();
-			} else {
-
-				$criteria->add(RelAnioActividadPeer::FK_ANIO_ID, $this->getId());
-
-				$this->collRelAnioActividads = RelAnioActividadPeer::doSelectJoinActividad($criteria, $con);
-			}
-		} else {
-									
-			$criteria->add(RelAnioActividadPeer::FK_ANIO_ID, $this->getId());
-
-			if (!isset($this->lastRelAnioActividadCriteria) || !$this->lastRelAnioActividadCriteria->equals($criteria)) {
-				$this->collRelAnioActividads = RelAnioActividadPeer::doSelectJoinActividad($criteria, $con);
-			}
-		}
-		$this->lastRelAnioActividadCriteria = $criteria;
-
-		return $this->collRelAnioActividads;
 	}
 
 } 

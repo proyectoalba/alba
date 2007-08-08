@@ -184,7 +184,7 @@ INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (45, 'Boleti
 INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (46, 'tipodocumento', 'Tipo Documento', 'Tipo Documento', 1);
 INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (47, 'informes', 'informes', 'informes', 1);
 INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (48, 'rolResponsable','Rol Responsables','Roles de los Resposables de Alumos', 1);
-
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (49, 'orientacion','Orientacion','Orientacion de los grados', 1);
 -- 
 -- Volcar la base de datos para la tabla 'permiso'
 -- 
@@ -243,6 +243,7 @@ INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (58, 'tipodocumento', 'tipodocumento', 'tipodocumento', 46);
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (59, 'informes', 'informes', 'informes', 47);
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (60, 'rolResponsable', 'Rol de Responsables', 'rolResponsable', 48);
+INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (61, 'orientacion', 'Orientacion', 'orientacion', 49);
 
 -- 
 -- Volcar la base de datos para la tabla 'rel_usuario_permiso'
@@ -302,6 +303,7 @@ INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (51, 1
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (52, 1, 58);
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (53, 1, 59);
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (54, 1, 60);
+INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (55, 1, 61);
 
 SET FOREIGN_KEY_CHECKS = 1;
 

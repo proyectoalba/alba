@@ -1,0 +1,20 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Orientacion
+    theme:            default
+    fields:
+        nombre:     { name: Nombre , params: size=64}
+        descripcion:  { name: Descripci&oacute;n , params: size=64}
+
+    edit:
+        title: Editar Orientaci&oacute;n
+        display: [ nombre, descripcion ]
+    
+    list:
+        title: Listado de Orientaciones
+        display: [ =nombre, descripcion ]
+
+        object_actions:
+            _edit:      -
+            _delete:    -

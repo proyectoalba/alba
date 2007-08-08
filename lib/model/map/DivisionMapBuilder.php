@@ -40,6 +40,8 @@ class DivisionMapBuilder {
 
 		$tMap->addForeignKey('FK_TURNO_ID', 'FkTurnoId', 'int', CreoleTypes::INTEGER, 'turno', 'ID', true, 11);
 
+		$tMap->addForeignKey('FK_ORIENTACION_ID', 'FkOrientacionId', 'int', CreoleTypes::INTEGER, 'orientacion', 'ID', false, 11);
+
 		$tMap->addColumn('ORDEN', 'Orden', 'int', CreoleTypes::INTEGER, false, null);
 
 	} 

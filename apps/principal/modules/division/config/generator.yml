@@ -10,16 +10,17 @@ generator:
         fk_turno_id: { name: Turnos }
         descripcion: { name: Descripci&oacute;n }
         orden: { name: Orden }
+        fk_orientacion_id: { name: Orientacion }
 
     edit:
         title: Editar Divisi&oacute;n
-        display: [ _fk_anio_id, descripcion, _fk_turno_id, orden ]
+        display: [ _fk_anio_id, descripcion, fk_orientacion_id, _fk_turno_id, orden ]
                     
     list:
         title: Listado de Divisiones
         fields:
             fk_anioorden_id: { name: A&ntilde;o }
-        display: [ anio, descripcion, turno, orden ]
+        display: [ anio, descripcion, orientacion, turno, orden ]
         object_actions:
             _edit:      -
             _delete:    -

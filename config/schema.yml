@@ -473,6 +473,22 @@ alba:
       type: BOOLEAN
       required: true
       default: false
+  orientacion: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+    descripcion: 
+      type: VARCHAR
+      size: 255
+      required: false
   tipoiva: 
     _attributes: 
       idMethod: native
@@ -1300,6 +1316,12 @@ alba:
       required: true
       default: 0
       foreignTable: turno
+      foreignReference: id
+    fk_orientacion_id: 
+      type: integer
+      size: 11
+      required: false
+      foreignTable: orientacion
       foreignReference: id
     orden: 
       type: INTEGER

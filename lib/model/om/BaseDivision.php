@@ -25,6 +25,10 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 
 
 	
+	protected $fk_orientacion_id;
+
+
+	
 	protected $orden = 0;
 
 	
@@ -32,6 +36,9 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 
 	
 	protected $aTurno;
+
+	
+	protected $aOrientacion;
 
 	
 	protected $collRelAlumnoDivisions;
@@ -77,6 +84,13 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 	{
 
 		return $this->fk_turno_id;
+	}
+
+	
+	public function getFkOrientacionId()
+	{
+
+		return $this->fk_orientacion_id;
 	}
 
 	
@@ -151,6 +165,24 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 
 	} 
 	
+	public function setFkOrientacionId($v)
+	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
+		if ($this->fk_orientacion_id !== $v) {
+			$this->fk_orientacion_id = $v;
+			$this->modifiedColumns[] = DivisionPeer::FK_ORIENTACION_ID;
+		}
+
+		if ($this->aOrientacion !== null && $this->aOrientacion->getId() !== $v) {
+			$this->aOrientacion = null;
+		}
+
+	} 
+	
 	public function setOrden($v)
 	{
 
@@ -177,13 +209,15 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 
 			$this->fk_turno_id = $rs->getInt($startcol + 3);
 
-			$this->orden = $rs->getInt($startcol + 4);
+			$this->fk_orientacion_id = $rs->getInt($startcol + 4);
+
+			$this->orden = $rs->getInt($startcol + 5);
 
 			$this->resetModified();
 
 			$this->setNew(false);
 
-						return $startcol + 5; 
+						return $startcol + 6; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Division object", $e);
 		}
@@ -253,6 +287,13 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 					$affectedRows += $this->aTurno->save($con);
 				}
 				$this->setTurno($this->aTurno);
+			}
+
+			if ($this->aOrientacion !== null) {
+				if ($this->aOrientacion->isModified()) {
+					$affectedRows += $this->aOrientacion->save($con);
+				}
+				$this->setOrientacion($this->aOrientacion);
 			}
 
 
@@ -332,6 +373,12 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 				}
 			}
 
+			if ($this->aOrientacion !== null) {
+				if (!$this->aOrientacion->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aOrientacion->getValidationFailures());
+				}
+			}
+
 
 			if (($retval = DivisionPeer::doValidate($this, $columns)) !== true) {
 				$failureMap = array_merge($failureMap, $retval);
@@ -385,6 +432,9 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 				return $this->getFkTurnoId();
 				break;
 			case 4:
+				return $this->getFkOrientacionId();
+				break;
+			case 5:
 				return $this->getOrden();
 				break;
 			default:
@@ -401,7 +451,8 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 			$keys[1] => $this->getFkAnioId(),
 			$keys[2] => $this->getDescripcion(),
 			$keys[3] => $this->getFkTurnoId(),
-			$keys[4] => $this->getOrden(),
+			$keys[4] => $this->getFkOrientacionId(),
+			$keys[5] => $this->getOrden(),
 		);
 		return $result;
 	}
@@ -430,6 +481,9 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 				$this->setFkTurnoId($value);
 				break;
 			case 4:
+				$this->setFkOrientacionId($value);
+				break;
+			case 5:
 				$this->setOrden($value);
 				break;
 		} 	}
@@ -443,7 +497,8 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[1], $arr)) $this->setFkAnioId($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setDescripcion($arr[$keys[2]]);
 		if (array_key_exists($keys[3], $arr)) $this->setFkTurnoId($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setOrden($arr[$keys[4]]);
+		if (array_key_exists($keys[4], $arr)) $this->setFkOrientacionId($arr[$keys[4]]);
+		if (array_key_exists($keys[5], $arr)) $this->setOrden($arr[$keys[5]]);
 	}
 
 	
@@ -455,6 +510,7 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(DivisionPeer::FK_ANIO_ID)) $criteria->add(DivisionPeer::FK_ANIO_ID, $this->fk_anio_id);
 		if ($this->isColumnModified(DivisionPeer::DESCRIPCION)) $criteria->add(DivisionPeer::DESCRIPCION, $this->descripcion);
 		if ($this->isColumnModified(DivisionPeer::FK_TURNO_ID)) $criteria->add(DivisionPeer::FK_TURNO_ID, $this->fk_turno_id);
+		if ($this->isColumnModified(DivisionPeer::FK_ORIENTACION_ID)) $criteria->add(DivisionPeer::FK_ORIENTACION_ID, $this->fk_orientacion_id);
 		if ($this->isColumnModified(DivisionPeer::ORDEN)) $criteria->add(DivisionPeer::ORDEN, $this->orden);
 
 		return $criteria;
@@ -491,6 +547,8 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 		$copyObj->setDescripcion($this->descripcion);
 
 		$copyObj->setFkTurnoId($this->fk_turno_id);
+
+		$copyObj->setFkOrientacionId($this->fk_orientacion_id);
 
 		$copyObj->setOrden($this->orden);
 
@@ -589,6 +647,36 @@ abstract class BaseDivision extends BaseObject  implements Persistent {
 			
 		}
 		return $this->aTurno;
+	}
+
+	
+	public function setOrientacion($v)
+	{
+
+
+		if ($v === null) {
+			$this->setFkOrientacionId(NULL);
+		} else {
+			$this->setFkOrientacionId($v->getId());
+		}
+
+
+		$this->aOrientacion = $v;
+	}
+
+
+	
+	public function getOrientacion($con = null)
+	{
+				include_once 'lib/model/om/BaseOrientacionPeer.php';
+
+		if ($this->aOrientacion === null && ($this->fk_orientacion_id !== null)) {
+
+			$this->aOrientacion = OrientacionPeer::retrieveByPK($this->fk_orientacion_id, $con);
+
+			
+		}
+		return $this->aOrientacion;
 	}
 
 	

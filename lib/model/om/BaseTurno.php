@@ -682,6 +682,41 @@ abstract class BaseTurno extends BaseObject  implements Persistent {
 		return $this->collDivisions;
 	}
 
+
+	
+	public function getDivisionsJoinOrientacion($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseDivisionPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collDivisions === null) {
+			if ($this->isNew()) {
+				$this->collDivisions = array();
+			} else {
+
+				$criteria->add(DivisionPeer::FK_TURNO_ID, $this->getId());
+
+				$this->collDivisions = DivisionPeer::doSelectJoinOrientacion($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(DivisionPeer::FK_TURNO_ID, $this->getId());
+
+			if (!isset($this->lastDivisionCriteria) || !$this->lastDivisionCriteria->equals($criteria)) {
+				$this->collDivisions = DivisionPeer::doSelectJoinOrientacion($criteria, $con);
+			}
+		}
+		$this->lastDivisionCriteria = $criteria;
+
+		return $this->collDivisions;
+	}
+
 	
 	public function initHorarioescolars()
 	{

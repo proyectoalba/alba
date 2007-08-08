@@ -387,6 +387,21 @@ CREATE TABLE `usuario`
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
+#-- orientacion
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `orientacion`;
+
+
+CREATE TABLE `orientacion`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(128)  NOT NULL,
+	`descripcion` VARCHAR(255),
+	PRIMARY KEY (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
 #-- tipoiva
 #-----------------------------------------------------------------------------
 
@@ -1001,6 +1016,7 @@ CREATE TABLE `division`
 	`fk_anio_id` INTEGER(11) default 0 NOT NULL,
 	`descripcion` VARCHAR(255)  NOT NULL,
 	`fk_turno_id` INTEGER(11) default 0 NOT NULL,
+	`fk_orientacion_id` INTEGER(11),
 	`orden` INTEGER default 0,
 	PRIMARY KEY (`id`),
 	INDEX `division_FI_1` (`fk_anio_id`),
@@ -1010,7 +1026,11 @@ CREATE TABLE `division`
 	INDEX `division_FI_2` (`fk_turno_id`),
 	CONSTRAINT `division_FK_2`
 		FOREIGN KEY (`fk_turno_id`)
-		REFERENCES `turno` (`id`)
+		REFERENCES `turno` (`id`),
+	INDEX `division_FI_3` (`fk_orientacion_id`),
+	CONSTRAINT `division_FK_3`
+		FOREIGN KEY (`fk_orientacion_id`)
+		REFERENCES `orientacion` (`id`)
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------

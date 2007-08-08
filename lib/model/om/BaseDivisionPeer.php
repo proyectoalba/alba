@@ -13,7 +13,7 @@ abstract class BaseDivisionPeer {
 	const CLASS_DEFAULT = 'lib.model.Division';
 
 	
-	const NUM_COLUMNS = 5;
+	const NUM_COLUMNS = 6;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -32,6 +32,9 @@ abstract class BaseDivisionPeer {
 	const FK_TURNO_ID = 'division.FK_TURNO_ID';
 
 	
+	const FK_ORIENTACION_ID = 'division.FK_ORIENTACION_ID';
+
+	
 	const ORDEN = 'division.ORDEN';
 
 	
@@ -40,18 +43,18 @@ abstract class BaseDivisionPeer {
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'FkAnioId', 'Descripcion', 'FkTurnoId', 'Orden', ),
-		BasePeer::TYPE_COLNAME => array (DivisionPeer::ID, DivisionPeer::FK_ANIO_ID, DivisionPeer::DESCRIPCION, DivisionPeer::FK_TURNO_ID, DivisionPeer::ORDEN, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'fk_anio_id', 'descripcion', 'fk_turno_id', 'orden', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'FkAnioId', 'Descripcion', 'FkTurnoId', 'FkOrientacionId', 'Orden', ),
+		BasePeer::TYPE_COLNAME => array (DivisionPeer::ID, DivisionPeer::FK_ANIO_ID, DivisionPeer::DESCRIPCION, DivisionPeer::FK_TURNO_ID, DivisionPeer::FK_ORIENTACION_ID, DivisionPeer::ORDEN, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'fk_anio_id', 'descripcion', 'fk_turno_id', 'fk_orientacion_id', 'orden', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'FkAnioId' => 1, 'Descripcion' => 2, 'FkTurnoId' => 3, 'Orden' => 4, ),
-		BasePeer::TYPE_COLNAME => array (DivisionPeer::ID => 0, DivisionPeer::FK_ANIO_ID => 1, DivisionPeer::DESCRIPCION => 2, DivisionPeer::FK_TURNO_ID => 3, DivisionPeer::ORDEN => 4, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'fk_anio_id' => 1, 'descripcion' => 2, 'fk_turno_id' => 3, 'orden' => 4, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'FkAnioId' => 1, 'Descripcion' => 2, 'FkTurnoId' => 3, 'FkOrientacionId' => 4, 'Orden' => 5, ),
+		BasePeer::TYPE_COLNAME => array (DivisionPeer::ID => 0, DivisionPeer::FK_ANIO_ID => 1, DivisionPeer::DESCRIPCION => 2, DivisionPeer::FK_TURNO_ID => 3, DivisionPeer::FK_ORIENTACION_ID => 4, DivisionPeer::ORDEN => 5, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'fk_anio_id' => 1, 'descripcion' => 2, 'fk_turno_id' => 3, 'fk_orientacion_id' => 4, 'orden' => 5, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
 	);
 
 	
@@ -112,6 +115,8 @@ abstract class BaseDivisionPeer {
 		$criteria->addSelectColumn(DivisionPeer::DESCRIPCION);
 
 		$criteria->addSelectColumn(DivisionPeer::FK_TURNO_ID);
+
+		$criteria->addSelectColumn(DivisionPeer::FK_ORIENTACION_ID);
 
 		$criteria->addSelectColumn(DivisionPeer::ORDEN);
 
@@ -250,6 +255,34 @@ abstract class BaseDivisionPeer {
 
 
 	
+	public static function doCountJoinOrientacion(Criteria $criteria, $distinct = false, $con = null)
+	{
+				$criteria = clone $criteria;
+
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(DivisionPeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(DivisionPeer::COUNT);
+		}
+
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
+		}
+
+		$criteria->addJoin(DivisionPeer::FK_ORIENTACION_ID, OrientacionPeer::ID);
+
+		$rs = DivisionPeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
+	}
+
+
+	
 	public static function doSelectJoinAnio(Criteria $c, $con = null)
 	{
 		$c = clone $c;
@@ -344,6 +377,53 @@ abstract class BaseDivisionPeer {
 
 
 	
+	public static function doSelectJoinOrientacion(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+				if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		DivisionPeer::addSelectColumns($c);
+		$startcol = (DivisionPeer::NUM_COLUMNS - DivisionPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+		OrientacionPeer::addSelectColumns($c);
+
+		$c->addJoin(DivisionPeer::FK_ORIENTACION_ID, OrientacionPeer::ID);
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = DivisionPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = OrientacionPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj2 = new $cls();
+			$obj2->hydrate($rs, $startcol);
+
+			$newObject = true;
+			foreach($results as $temp_obj1) {
+				$temp_obj2 = $temp_obj1->getOrientacion(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+										$temp_obj2->addDivision($obj1); 					break;
+				}
+			}
+			if ($newObject) {
+				$obj2->initDivisions();
+				$obj2->addDivision($obj1); 			}
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	
 	public static function doCountJoinAll(Criteria $criteria, $distinct = false, $con = null)
 	{
 		$criteria = clone $criteria;
@@ -363,6 +443,8 @@ abstract class BaseDivisionPeer {
 		$criteria->addJoin(DivisionPeer::FK_ANIO_ID, AnioPeer::ID);
 
 		$criteria->addJoin(DivisionPeer::FK_TURNO_ID, TurnoPeer::ID);
+
+		$criteria->addJoin(DivisionPeer::FK_ORIENTACION_ID, OrientacionPeer::ID);
 
 		$rs = DivisionPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -391,9 +473,14 @@ abstract class BaseDivisionPeer {
 		TurnoPeer::addSelectColumns($c);
 		$startcol4 = $startcol3 + TurnoPeer::NUM_COLUMNS;
 
+		OrientacionPeer::addSelectColumns($c);
+		$startcol5 = $startcol4 + OrientacionPeer::NUM_COLUMNS;
+
 		$c->addJoin(DivisionPeer::FK_ANIO_ID, AnioPeer::ID);
 
 		$c->addJoin(DivisionPeer::FK_TURNO_ID, TurnoPeer::ID);
+
+		$c->addJoin(DivisionPeer::FK_ORIENTACION_ID, OrientacionPeer::ID);
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
@@ -453,6 +540,29 @@ abstract class BaseDivisionPeer {
 				$obj3->addDivision($obj1);
 			}
 
+
+					
+			$omClass = OrientacionPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj4 = new $cls();
+			$obj4->hydrate($rs, $startcol4);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj4 = $temp_obj1->getOrientacion(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj4->addDivision($obj1); 					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj4->initDivisions();
+				$obj4->addDivision($obj1);
+			}
+
 			$results[] = $obj1;
 		}
 		return $results;
@@ -477,6 +587,8 @@ abstract class BaseDivisionPeer {
 		}
 
 		$criteria->addJoin(DivisionPeer::FK_TURNO_ID, TurnoPeer::ID);
+
+		$criteria->addJoin(DivisionPeer::FK_ORIENTACION_ID, OrientacionPeer::ID);
 
 		$rs = DivisionPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -506,6 +618,38 @@ abstract class BaseDivisionPeer {
 
 		$criteria->addJoin(DivisionPeer::FK_ANIO_ID, AnioPeer::ID);
 
+		$criteria->addJoin(DivisionPeer::FK_ORIENTACION_ID, OrientacionPeer::ID);
+
+		$rs = DivisionPeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
+	}
+
+
+	
+	public static function doCountJoinAllExceptOrientacion(Criteria $criteria, $distinct = false, $con = null)
+	{
+				$criteria = clone $criteria;
+
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(DivisionPeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(DivisionPeer::COUNT);
+		}
+
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
+		}
+
+		$criteria->addJoin(DivisionPeer::FK_ANIO_ID, AnioPeer::ID);
+
+		$criteria->addJoin(DivisionPeer::FK_TURNO_ID, TurnoPeer::ID);
+
 		$rs = DivisionPeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
 			return $rs->getInt(1);
@@ -530,7 +674,12 @@ abstract class BaseDivisionPeer {
 		TurnoPeer::addSelectColumns($c);
 		$startcol3 = $startcol2 + TurnoPeer::NUM_COLUMNS;
 
+		OrientacionPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + OrientacionPeer::NUM_COLUMNS;
+
 		$c->addJoin(DivisionPeer::FK_TURNO_ID, TurnoPeer::ID);
+
+		$c->addJoin(DivisionPeer::FK_ORIENTACION_ID, OrientacionPeer::ID);
 
 
 		$rs = BasePeer::doSelect($c, $con);
@@ -566,6 +715,28 @@ abstract class BaseDivisionPeer {
 				$obj2->addDivision($obj1);
 			}
 
+			$omClass = OrientacionPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj3  = new $cls();
+			$obj3->hydrate($rs, $startcol3);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj3 = $temp_obj1->getOrientacion(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj3->addDivision($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj3->initDivisions();
+				$obj3->addDivision($obj1);
+			}
+
 			$results[] = $obj1;
 		}
 		return $results;
@@ -587,7 +758,12 @@ abstract class BaseDivisionPeer {
 		AnioPeer::addSelectColumns($c);
 		$startcol3 = $startcol2 + AnioPeer::NUM_COLUMNS;
 
+		OrientacionPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + OrientacionPeer::NUM_COLUMNS;
+
 		$c->addJoin(DivisionPeer::FK_ANIO_ID, AnioPeer::ID);
+
+		$c->addJoin(DivisionPeer::FK_ORIENTACION_ID, OrientacionPeer::ID);
 
 
 		$rs = BasePeer::doSelect($c, $con);
@@ -621,6 +797,112 @@ abstract class BaseDivisionPeer {
 			if ($newObject) {
 				$obj2->initDivisions();
 				$obj2->addDivision($obj1);
+			}
+
+			$omClass = OrientacionPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj3  = new $cls();
+			$obj3->hydrate($rs, $startcol3);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj3 = $temp_obj1->getOrientacion(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj3->addDivision($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj3->initDivisions();
+				$obj3->addDivision($obj1);
+			}
+
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	
+	public static function doSelectJoinAllExceptOrientacion(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+								if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		DivisionPeer::addSelectColumns($c);
+		$startcol2 = (DivisionPeer::NUM_COLUMNS - DivisionPeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+
+		AnioPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + AnioPeer::NUM_COLUMNS;
+
+		TurnoPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + TurnoPeer::NUM_COLUMNS;
+
+		$c->addJoin(DivisionPeer::FK_ANIO_ID, AnioPeer::ID);
+
+		$c->addJoin(DivisionPeer::FK_TURNO_ID, TurnoPeer::ID);
+
+
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = DivisionPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = AnioPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj2  = new $cls();
+			$obj2->hydrate($rs, $startcol2);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj2 = $temp_obj1->getAnio(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj2->addDivision($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj2->initDivisions();
+				$obj2->addDivision($obj1);
+			}
+
+			$omClass = TurnoPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj3  = new $cls();
+			$obj3->hydrate($rs, $startcol3);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj3 = $temp_obj1->getTurno(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj3->addDivision($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj3->initDivisions();
+				$obj3->addDivision($obj1);
 			}
 
 			$results[] = $obj1;

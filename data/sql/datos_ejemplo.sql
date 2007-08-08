@@ -2653,7 +2653,8 @@ INSERT INTO `modulo` (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES 
 INSERT INTO `modulo` (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES (19, 'Modulo', '', '', 1);
 INSERT INTO `modulo` (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES (20, 'Organizacion', '', '', 1);
 INSERT INTO `modulo` (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES (21, 'Pais', '', '', 1);
-INSERT INTO `modulo` (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES (22, 'Permiso', '', '', 1);
+INSERT INTO `modulo` (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES (22, '
+s', '', '', 1);
 INSERT INTO `modulo` (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES (23, 'Preferencia', '', '', 1);
 INSERT INTO `modulo` (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES (24, 'Provincia', '', '', 1);
 INSERT INTO `modulo` (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES (25, 'RelActividadDocente', '', '', 1);
@@ -2679,7 +2680,7 @@ INSERT INTO `modulo` (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES 
 INSERT INTO `modulo` (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES (45, 'Boletin', 'Boletin', '', 1);
 INSERT INTO `modulo` (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES (46, 'tipodocumento', 'tipodocumento', '', 1);
 INSERT INTO `modulo` (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES (48, 'rolResponsable', 'Rol Responsables', 'Roles de los Resposables de Alumos', 1);
-
+INSERT INTO modulo (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES (49, 'orientacion','Orientacion','Orientacion de los grados', 1);
 -- 
 -- Volcar la base de datos para la tabla `niveltipo`
 -- 
@@ -2775,7 +2776,7 @@ INSERT INTO `permiso` (`id`, `nombre`, `descripcion`, `credencial`, `fk_modulo_i
 INSERT INTO `permiso` (`id`, `nombre`, `descripcion`, `credencial`, `fk_modulo_id`) VALUES (58, 'tipodocumento', 'tipodocumento', 'tipodocumento', 46);
 INSERT INTO `permiso` (`id`, `nombre`, `descripcion`, `credencial`, `fk_modulo_id`) VALUES (59, 'informes', 'informes', 'informes', 47);
 INSERT INTO `permiso` (`id`,`nombre`, `descripcion`, `credencial`, `fk_modulo_id`) VALUES (60, 'rolResponsable', 'Rol de Responsables', 'rolResponsable', 48);
-
+INSERT INTO `permiso` (`id`, `nombre`, `descripcion`, `credencial`, `fk_modulo_id`) VALUES (61, 'orientacion', 'Orientacion', 'orientacion', 49);
 -- 
 -- Volcar la base de datos para la tabla `preferencia`
 -- 
@@ -3145,6 +3146,7 @@ INSERT INTO `rel_usuario_permiso` (`id`, `fk_usuario_id`, `fk_permiso_id`) VALUE
 INSERT INTO `rel_usuario_permiso` (`id`, `fk_usuario_id`, `fk_permiso_id`) VALUES (206, 1, 35);
 INSERT INTO `rel_usuario_permiso` (`id`, `fk_usuario_id`, `fk_permiso_id`) VALUES (207, 1, 1);
 INSERT INTO `rel_usuario_permiso` (`id`, `fk_usuario_id`, `fk_permiso_id`) VALUES (211, 1, 60);
+INSERT INTO `rel_usuario_permiso` (`id`, `fk_usuario_id`, `fk_permiso_id`) VALUES (216, 1, 61);
 
 --Usuario 2
 INSERT INTO `rel_usuario_permiso` (`id`, `fk_usuario_id`, `fk_permiso_id`) VALUES (52, 2, 1);
@@ -3199,6 +3201,7 @@ INSERT INTO `rel_usuario_permiso` (`id`, `fk_usuario_id`, `fk_permiso_id`) VALUE
 INSERT INTO `rel_usuario_permiso` (`id`, `fk_usuario_id`, `fk_permiso_id`) VALUES (101, 2, 56);
 INSERT INTO `rel_usuario_permiso` (`id`, `fk_usuario_id`, `fk_permiso_id`) VALUES (102, 2, 57);
 INSERT INTO `rel_usuario_permiso` (`id`, `fk_usuario_id`, `fk_permiso_id`) VALUES (212, 2, 60);
+INSERT INTO `rel_usuario_permiso` (`id`, `fk_usuario_id`, `fk_permiso_id`) VALUES (215, 2, 61);
 
 --Usuario 3
 INSERT INTO `rel_usuario_permiso` (`id`, `fk_usuario_id`, `fk_permiso_id`) VALUES (213, 3, 60);

@@ -16,7 +16,7 @@ require_once 'lib/model/om/BaseDivision.php';
  */	
 class Division extends BaseDivision {
     public function __toString() {
-        return $this->getAnio()->getDescripcion()." ".$this->getDescripcion();
+        return $this->getAnio()->getDescripcion()." ".$this->getDescripcion().(($this->getOrientacion())?" ".$this-getOrientacion()->getNombre():"");
    }
                  
 } // Division

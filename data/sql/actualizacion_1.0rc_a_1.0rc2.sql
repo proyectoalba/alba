@@ -86,6 +86,20 @@ ALTER TABLE `horarioescolar` ADD CONSTRAINT `horarioescolar_FK_1` FOREIGN KEY (`
 
 ALTER TABLE `docente_horario` ADD CONSTRAINT `docente_horario_FK_2` FOREIGN KEY (`fk_evento_id`) REFERENCES `evento` (`id`) ON DELETE CASCADE;
 
+
+CREATE TABLE `orientacion`
+(
+    `id` INTEGER  NOT NULL AUTO_INCREMENT,
+    `nombre` VARCHAR(128)  NOT NULL,
+    `descripcion` VARCHAR(255),
+    PRIMARY KEY (`id`)
+)Type=InnoDB;
+
+
+
+ALTER TABLE `division` ADD `fk_orientacion_id` INT;
+ALTER TABLE `division` ADD CONSTRAINT `orientacion_FK_4` FOREIGN KEY (`fk_orientacion_id`) REFERENCES `orientacion` (`id`);
+
 SET FOREIGN_KEY_CHECKS = 1;
 
 
