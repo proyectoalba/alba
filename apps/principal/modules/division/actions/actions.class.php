@@ -33,19 +33,9 @@
 
 class divisionActions extends autodivisionActions
 {
-    protected function addFiltersCriteria($c)
-    {
-        $c->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
-        $c->addJoin(DivisionPeer::FK_ANIO_ID,AnioPeer::ID);
-        $c->addAscendingOrderByColumn(AnioPeer::DESCRIPCION);           
-        $c->addAscendingOrderByColumn(DivisionPeer::ORDEN);           
-        $c->addAscendingOrderByColumn(DivisionPeer::DESCRIPCION);           
-    }
-
     public function executeAlumnosPorDivision() {
         $this->redirect('alumno/list?filters%5Bdivision%5D='.$this->getRequestParameter('id').'&filter=filtrar');
     }
-
 
 }
 

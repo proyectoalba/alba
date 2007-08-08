@@ -8,5 +8,6 @@
     foreach ($anios as $anio) {
         $optionsAnios[$anio->getId()] = $anio->getDescripcion();
     }
+
     echo select_tag('anios', options_for_select($optionsAnios, $anio->getId()) ) ;
 ?>
