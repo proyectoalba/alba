@@ -11,7 +11,7 @@
     $optionsDivisiones = array();
     $optionsDivisiones[""] = "";   
     foreach ($divisiones as $division) {
-        $optionsDivisiones[$division->getId()] = $division->getAnio()->getDescripcion(). " / " . $division->getDescripcion();
+        $optionsDivisiones[$division->getId()] = $division->__toString();
     }
     echo select_tag('filters[fk_division_id]', options_for_select($optionsDivisiones)) ;
 ?>

@@ -11,7 +11,7 @@
     $optionsDivisiones = array();
     $optionsDivisiones[""] = "--Seleccione una Divisi&oacute;n--";
     foreach ($divisiones as $division) {
-        $optionsDivisiones[$division->getId()] = $division->getAnio()->getDescripcion(). " / " . $division->getDescripcion();
+        $optionsDivisiones[$division->getId()] = $division->__toString();
     }
     echo select_tag('rel_alumno_division[fk_division_id]', options_for_select($optionsDivisiones, $rel_alumno_division->getFkDivisionId()) ) ;
 ?>
