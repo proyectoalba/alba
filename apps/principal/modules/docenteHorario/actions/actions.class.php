@@ -185,8 +185,28 @@ class DocenteHorarioActions extends sfActions
     return array(
       'docente_horario{fk_docente_id}' => 'Docente:',
       'docente_horario{fk_evento_id}' => 'Evento:',
+      'evento{fecha_inicio}' => 'Fecha inicio:',
+      'evento{fecha_fin}' => 'Fecha fin:',
+      'evento{hora_inicio}' => 'Hora inicio:',
+      'evento{hora_fin}' => 'Hora fin:',      
     );
   }
+
+
+    public function handleErrorEdit() {
+        $this->preExecute();
+        $this->docenteHorario = $this->getDocenteHorarioOrCreate();
+        $this->docente = DocentePeer::retrieveByPk($this->getRequestParameter('docente_horario[fk_docente_id]'));
+        $evento_generico = new miEvento();
+        $this->evento = $evento_generico->getEventoOrCreate($this->docenteHorario->getFkEventoId());
+        $this->evento = $evento_generico->updateEventoFromRequest($this->evento, $this->getRequestParameter('evento'), $this->getUser()->getCulture());
+        $this->updateDocenteHorarioFromRequest($this->evento->getId());
+        $this->labels = $this->getLabels();
+        return sfView::SUCCESS;
+    }
+                                                                     
+
+
 
 }
 

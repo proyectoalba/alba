@@ -144,7 +144,6 @@ class horarioescolarActions extends autohorarioescolarActions
         'horarioescolar{fk_evento_id}' => 'Evento:',
         'evento{fecha_inicio}' => 'Fecha inicio:',
         'evento{fecha_fin}' => 'Fecha fin:',
-      
         'evento{hora_inicio}' => 'Hora inicio:',
         'evento{hora_fin}' => 'Hora fin:',
 
