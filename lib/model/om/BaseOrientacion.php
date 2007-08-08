@@ -26,6 +26,12 @@ abstract class BaseOrientacion extends BaseObject  implements Persistent {
 	protected $lastDivisionCriteria = null;
 
 	
+	protected $collRelAnioActividads;
+
+	
+	protected $lastRelAnioActividadCriteria = null;
+
+	
 	protected $alreadyInSave = false;
 
 	
@@ -185,6 +191,14 @@ abstract class BaseOrientacion extends BaseObject  implements Persistent {
 				}
 			}
 
+			if ($this->collRelAnioActividads !== null) {
+				foreach($this->collRelAnioActividads as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
 			$this->alreadyInSave = false;
 		}
 		return $affectedRows;
@@ -228,6 +242,14 @@ abstract class BaseOrientacion extends BaseObject  implements Persistent {
 
 				if ($this->collDivisions !== null) {
 					foreach($this->collDivisions as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
+
+				if ($this->collRelAnioActividads !== null) {
+					foreach($this->collRelAnioActividads as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -358,6 +380,10 @@ abstract class BaseOrientacion extends BaseObject  implements Persistent {
 
 			foreach($this->getDivisions() as $relObj) {
 				$copyObj->addDivision($relObj->copy($deepCopy));
+			}
+
+			foreach($this->getRelAnioActividads() as $relObj) {
+				$copyObj->addRelAnioActividad($relObj->copy($deepCopy));
 			}
 
 		} 
@@ -523,6 +549,146 @@ abstract class BaseOrientacion extends BaseObject  implements Persistent {
 		$this->lastDivisionCriteria = $criteria;
 
 		return $this->collDivisions;
+	}
+
+	
+	public function initRelAnioActividads()
+	{
+		if ($this->collRelAnioActividads === null) {
+			$this->collRelAnioActividads = array();
+		}
+	}
+
+	
+	public function getRelAnioActividads($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseRelAnioActividadPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collRelAnioActividads === null) {
+			if ($this->isNew()) {
+			   $this->collRelAnioActividads = array();
+			} else {
+
+				$criteria->add(RelAnioActividadPeer::FK_ORIENTACION_ID, $this->getId());
+
+				RelAnioActividadPeer::addSelectColumns($criteria);
+				$this->collRelAnioActividads = RelAnioActividadPeer::doSelect($criteria, $con);
+			}
+		} else {
+						if (!$this->isNew()) {
+												
+
+				$criteria->add(RelAnioActividadPeer::FK_ORIENTACION_ID, $this->getId());
+
+				RelAnioActividadPeer::addSelectColumns($criteria);
+				if (!isset($this->lastRelAnioActividadCriteria) || !$this->lastRelAnioActividadCriteria->equals($criteria)) {
+					$this->collRelAnioActividads = RelAnioActividadPeer::doSelect($criteria, $con);
+				}
+			}
+		}
+		$this->lastRelAnioActividadCriteria = $criteria;
+		return $this->collRelAnioActividads;
+	}
+
+	
+	public function countRelAnioActividads($criteria = null, $distinct = false, $con = null)
+	{
+				include_once 'lib/model/om/BaseRelAnioActividadPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		$criteria->add(RelAnioActividadPeer::FK_ORIENTACION_ID, $this->getId());
+
+		return RelAnioActividadPeer::doCount($criteria, $distinct, $con);
+	}
+
+	
+	public function addRelAnioActividad(RelAnioActividad $l)
+	{
+		$this->collRelAnioActividads[] = $l;
+		$l->setOrientacion($this);
+	}
+
+
+	
+	public function getRelAnioActividadsJoinAnio($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseRelAnioActividadPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collRelAnioActividads === null) {
+			if ($this->isNew()) {
+				$this->collRelAnioActividads = array();
+			} else {
+
+				$criteria->add(RelAnioActividadPeer::FK_ORIENTACION_ID, $this->getId());
+
+				$this->collRelAnioActividads = RelAnioActividadPeer::doSelectJoinAnio($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(RelAnioActividadPeer::FK_ORIENTACION_ID, $this->getId());
+
+			if (!isset($this->lastRelAnioActividadCriteria) || !$this->lastRelAnioActividadCriteria->equals($criteria)) {
+				$this->collRelAnioActividads = RelAnioActividadPeer::doSelectJoinAnio($criteria, $con);
+			}
+		}
+		$this->lastRelAnioActividadCriteria = $criteria;
+
+		return $this->collRelAnioActividads;
+	}
+
+
+	
+	public function getRelAnioActividadsJoinActividad($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseRelAnioActividadPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collRelAnioActividads === null) {
+			if ($this->isNew()) {
+				$this->collRelAnioActividads = array();
+			} else {
+
+				$criteria->add(RelAnioActividadPeer::FK_ORIENTACION_ID, $this->getId());
+
+				$this->collRelAnioActividads = RelAnioActividadPeer::doSelectJoinActividad($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(RelAnioActividadPeer::FK_ORIENTACION_ID, $this->getId());
+
+			if (!isset($this->lastRelAnioActividadCriteria) || !$this->lastRelAnioActividadCriteria->equals($criteria)) {
+				$this->collRelAnioActividads = RelAnioActividadPeer::doSelectJoinActividad($criteria, $con);
+			}
+		}
+		$this->lastRelAnioActividadCriteria = $criteria;
+
+		return $this->collRelAnioActividads;
 	}
 
 } 

@@ -53,7 +53,11 @@ class relAnioActividadActions extends autorelAnioActividadActions
         if (isset($rel_anio_actividad['fk_actividad_id'])) {
             $this->rel_anio_actividad->setFkActividadId($rel_anio_actividad['fk_actividad_id'] ? $rel_anio_actividad['fk_actividad_id'] : null);
         }
-        
+
+        if (isset($rel_anio_actividad['fk_orientacion_id'])) {
+            $this->rel_anio_actividad->setFkOrientacionId($rel_anio_actividad['fk_orientacion_id'] ? $rel_anio_actividad['fk_orientacion_id'] : null);
+        }
+
         if (isset($rel_anio_actividad['horas'])) {
             $this->rel_anio_actividad->setHoras($rel_anio_actividad['horas']);
         }

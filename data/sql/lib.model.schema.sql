@@ -1080,6 +1080,7 @@ CREATE TABLE `rel_anio_actividad`
 	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
 	`fk_anio_id` INTEGER(11) default 0 NOT NULL,
 	`fk_actividad_id` INTEGER(11) default 0 NOT NULL,
+	`fk_orientacion_id` INTEGER(11),
 	`horas` DECIMAL(10,2) default 0 NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `rel_anio_actividad_FI_1` (`fk_anio_id`),
@@ -1089,7 +1090,11 @@ CREATE TABLE `rel_anio_actividad`
 	INDEX `rel_anio_actividad_FI_2` (`fk_actividad_id`),
 	CONSTRAINT `rel_anio_actividad_FK_2`
 		FOREIGN KEY (`fk_actividad_id`)
-		REFERENCES `actividad` (`id`)
+		REFERENCES `actividad` (`id`),
+	INDEX `rel_anio_actividad_FI_3` (`fk_orientacion_id`),
+	CONSTRAINT `rel_anio_actividad_FK_3`
+		FOREIGN KEY (`fk_orientacion_id`)
+		REFERENCES `orientacion` (`id`)
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------

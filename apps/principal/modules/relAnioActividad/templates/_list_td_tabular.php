@@ -4,4 +4,5 @@
 ?>
     <td><?php echo $rel_anio_actividad->getAnio() ?></td>
       <td><?php echo $rel_anio_actividad->getActividad() ?></td>
+      <td><?php echo $rel_anio_actividad->getOrientacion() ?></td>      
       <td><?php echo $rel_anio_actividad->getHoras() ?></td>

@@ -38,6 +38,8 @@ class RelAnioActividadMapBuilder {
 
 		$tMap->addForeignKey('FK_ACTIVIDAD_ID', 'FkActividadId', 'int', CreoleTypes::INTEGER, 'actividad', 'ID', true, 11);
 
+		$tMap->addForeignKey('FK_ORIENTACION_ID', 'FkOrientacionId', 'int', CreoleTypes::INTEGER, 'orientacion', 'ID', false, 11);
+
 		$tMap->addColumn('HORAS', 'Horas', 'double', CreoleTypes::DECIMAL, true, 10,2);
 
 	} 

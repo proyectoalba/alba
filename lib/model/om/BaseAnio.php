@@ -710,4 +710,39 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 		return $this->collRelAnioActividads;
 	}
 
+
+	
+	public function getRelAnioActividadsJoinOrientacion($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseRelAnioActividadPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collRelAnioActividads === null) {
+			if ($this->isNew()) {
+				$this->collRelAnioActividads = array();
+			} else {
+
+				$criteria->add(RelAnioActividadPeer::FK_ANIO_ID, $this->getId());
+
+				$this->collRelAnioActividads = RelAnioActividadPeer::doSelectJoinOrientacion($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(RelAnioActividadPeer::FK_ANIO_ID, $this->getId());
+
+			if (!isset($this->lastRelAnioActividadCriteria) || !$this->lastRelAnioActividadCriteria->equals($criteria)) {
+				$this->collRelAnioActividads = RelAnioActividadPeer::doSelectJoinOrientacion($criteria, $con);
+			}
+		}
+		$this->lastRelAnioActividadCriteria = $criteria;
+
+		return $this->collRelAnioActividads;
+	}
+
 } 

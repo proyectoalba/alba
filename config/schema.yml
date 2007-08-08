@@ -1392,6 +1392,12 @@ alba:
       default: 0
       foreignTable: actividad
       foreignReference: id
+    fk_orientacion_id: 
+      type: integer
+      size: 11
+      required: false
+      foreignTable: orientacion
+      foreignReference: id
     horas: 
       type: decimal
       size: 10,2

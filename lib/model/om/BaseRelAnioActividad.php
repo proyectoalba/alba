@@ -21,6 +21,10 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 
 
 	
+	protected $fk_orientacion_id;
+
+
+	
 	protected $horas = 0;
 
 	
@@ -28,6 +32,9 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 
 	
 	protected $aActividad;
+
+	
+	protected $aOrientacion;
 
 	
 	protected $alreadyInSave = false;
@@ -54,6 +61,13 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 	{
 
 		return $this->fk_actividad_id;
+	}
+
+	
+	public function getFkOrientacionId()
+	{
+
+		return $this->fk_orientacion_id;
 	}
 
 	
@@ -114,6 +128,24 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 
 	} 
 	
+	public function setFkOrientacionId($v)
+	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
+		if ($this->fk_orientacion_id !== $v) {
+			$this->fk_orientacion_id = $v;
+			$this->modifiedColumns[] = RelAnioActividadPeer::FK_ORIENTACION_ID;
+		}
+
+		if ($this->aOrientacion !== null && $this->aOrientacion->getId() !== $v) {
+			$this->aOrientacion = null;
+		}
+
+	} 
+	
 	public function setHoras($v)
 	{
 
@@ -134,13 +166,15 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 
 			$this->fk_actividad_id = $rs->getInt($startcol + 2);
 
-			$this->horas = $rs->getFloat($startcol + 3);
+			$this->fk_orientacion_id = $rs->getInt($startcol + 3);
+
+			$this->horas = $rs->getFloat($startcol + 4);
 
 			$this->resetModified();
 
 			$this->setNew(false);
 
-						return $startcol + 4; 
+						return $startcol + 5; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating RelAnioActividad object", $e);
 		}
@@ -212,6 +246,13 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 				$this->setActividad($this->aActividad);
 			}
 
+			if ($this->aOrientacion !== null) {
+				if ($this->aOrientacion->isModified()) {
+					$affectedRows += $this->aOrientacion->save($con);
+				}
+				$this->setOrientacion($this->aOrientacion);
+			}
+
 
 						if ($this->isModified()) {
 				if ($this->isNew()) {
@@ -273,6 +314,12 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 				}
 			}
 
+			if ($this->aOrientacion !== null) {
+				if (!$this->aOrientacion->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aOrientacion->getValidationFailures());
+				}
+			}
+
 
 			if (($retval = RelAnioActividadPeer::doValidate($this, $columns)) !== true) {
 				$failureMap = array_merge($failureMap, $retval);
@@ -307,6 +354,9 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 				return $this->getFkActividadId();
 				break;
 			case 3:
+				return $this->getFkOrientacionId();
+				break;
+			case 4:
 				return $this->getHoras();
 				break;
 			default:
@@ -322,7 +372,8 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 			$keys[0] => $this->getId(),
 			$keys[1] => $this->getFkAnioId(),
 			$keys[2] => $this->getFkActividadId(),
-			$keys[3] => $this->getHoras(),
+			$keys[3] => $this->getFkOrientacionId(),
+			$keys[4] => $this->getHoras(),
 		);
 		return $result;
 	}
@@ -348,6 +399,9 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 				$this->setFkActividadId($value);
 				break;
 			case 3:
+				$this->setFkOrientacionId($value);
+				break;
+			case 4:
 				$this->setHoras($value);
 				break;
 		} 	}
@@ -360,7 +414,8 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setFkAnioId($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setFkActividadId($arr[$keys[2]]);
-		if (array_key_exists($keys[3], $arr)) $this->setHoras($arr[$keys[3]]);
+		if (array_key_exists($keys[3], $arr)) $this->setFkOrientacionId($arr[$keys[3]]);
+		if (array_key_exists($keys[4], $arr)) $this->setHoras($arr[$keys[4]]);
 	}
 
 	
@@ -371,6 +426,7 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(RelAnioActividadPeer::ID)) $criteria->add(RelAnioActividadPeer::ID, $this->id);
 		if ($this->isColumnModified(RelAnioActividadPeer::FK_ANIO_ID)) $criteria->add(RelAnioActividadPeer::FK_ANIO_ID, $this->fk_anio_id);
 		if ($this->isColumnModified(RelAnioActividadPeer::FK_ACTIVIDAD_ID)) $criteria->add(RelAnioActividadPeer::FK_ACTIVIDAD_ID, $this->fk_actividad_id);
+		if ($this->isColumnModified(RelAnioActividadPeer::FK_ORIENTACION_ID)) $criteria->add(RelAnioActividadPeer::FK_ORIENTACION_ID, $this->fk_orientacion_id);
 		if ($this->isColumnModified(RelAnioActividadPeer::HORAS)) $criteria->add(RelAnioActividadPeer::HORAS, $this->horas);
 
 		return $criteria;
@@ -405,6 +461,8 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 		$copyObj->setFkAnioId($this->fk_anio_id);
 
 		$copyObj->setFkActividadId($this->fk_actividad_id);
+
+		$copyObj->setFkOrientacionId($this->fk_orientacion_id);
 
 		$copyObj->setHoras($this->horas);
 
@@ -490,6 +548,36 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 			
 		}
 		return $this->aActividad;
+	}
+
+	
+	public function setOrientacion($v)
+	{
+
+
+		if ($v === null) {
+			$this->setFkOrientacionId(NULL);
+		} else {
+			$this->setFkOrientacionId($v->getId());
+		}
+
+
+		$this->aOrientacion = $v;
+	}
+
+
+	
+	public function getOrientacion($con = null)
+	{
+				include_once 'lib/model/om/BaseOrientacionPeer.php';
+
+		if ($this->aOrientacion === null && ($this->fk_orientacion_id !== null)) {
+
+			$this->aOrientacion = OrientacionPeer::retrieveByPK($this->fk_orientacion_id, $con);
+
+			
+		}
+		return $this->aOrientacion;
 	}
 
 } 

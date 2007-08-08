@@ -100,6 +100,10 @@ CREATE TABLE `orientacion`
 ALTER TABLE `division` ADD `fk_orientacion_id` INT;
 ALTER TABLE `division` ADD CONSTRAINT `orientacion_FK_4` FOREIGN KEY (`fk_orientacion_id`) REFERENCES `orientacion` (`id`);
 
+ALTER TABLE `rel_anio_actividad` ADD `fk_orientacion_id` INT;
+ALTER TABLE `rel_anio_actividad` ADD CONSTRAINT `orientacion_FK_4` FOREIGN KEY (`fk_orientacion_id`) REFERENCES `orientacion` (`id`);
+
+
 SET FOREIGN_KEY_CHECKS = 1;
 
 

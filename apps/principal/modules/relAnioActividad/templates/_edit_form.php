@@ -43,6 +43,22 @@
     </div>
 </div>
 
+<div class="form-row">
+  <?php echo label_for('rel_anio_actividad[fk_orientacion_id]', __($labels['rel_anio_actividad{fk_orientacion_id}']), 'class="required" ') ?>
+  <div class="content<?php if ($sf_request->hasError('rel_anio_actividad{fk_orientacion_id}')): ?> form-error<?php endif; ?>">
+  <?php if ($sf_request->hasError('rel_anio_actividad{fk_orientacion_id}')): ?>
+    <?php echo form_error('rel_anio_actividad{fk_orientacion_id}', array('class' => 'form-error-msg')) ?>
+  <?php endif; ?>
+
+  <?php $value = object_select_tag($rel_anio_actividad, 'getFkOrientacionId', array (
+  'related_class' => 'Orientacion',
+  'control_name' => 'rel_anio_actividad[fk_orientacion_id]',
+  'include_custom' => '>>Seleccione una Orientacion<<',
+)); echo $value ? $value : '&nbsp;' ?>
+    </div>
+</div>
+
+
 
 <div class="form-row">
   <?php echo label_for('rel_anio_actividad[horas]', __($labels['rel_anio_actividad{horas}']), 'class="required" ') ?>
