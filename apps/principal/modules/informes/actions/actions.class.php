@@ -144,7 +144,6 @@ class InformesActions extends sfActions
         // asignando variables para ser usadas en el template
         $this->optionsDivision = $optionsDivision;
         $this->division_id = $division_id;
-        $this->vista = "imprimir";
     }
     
     public function executeAlumnosPorDivisionListado() {
@@ -169,9 +168,6 @@ class InformesActions extends sfActions
         // asignando variables para ser usadas en el template        
         $this->aAlumno = $alumnos;
         $this->division = $division;
-
-        $this->vista = "imprimir";
-
     }    
 
 /**
@@ -202,9 +198,6 @@ class InformesActions extends sfActions
         $this->division_id = $division_id;
         $this->txt = $txt;
         $this->aAlumno = $aAlumno;
-        $this->vista = "imprimir";
-
-
     }
 
     public function executeConstanciaAlumnoRegularListado() {
@@ -232,7 +225,6 @@ class InformesActions extends sfActions
         $this->establecimiento = $establecimiento;
         $this->turnos = $turnos;
         $this->locacion = $locacion;
-        $this->vista = "imprimir";
     }
 
 /**
@@ -259,7 +251,6 @@ class InformesActions extends sfActions
         // asignando variables para ser usadas en el template
         $this->txt = $txt;
         $this->aAlumno = $aAlumno;
-        $this->vista = "imprimir";
     }
 
     // no valida que realmente ha terminado septimo grado
@@ -276,7 +267,6 @@ class InformesActions extends sfActions
         // asignando variables para ser usadas en el template
         $this->alumno = $alumno;
         $this->establecimiento = $establecimiento;
-        $this->vista = "imprimir";
 
         Misc::use_helper('Misc');
         $aMeses = meses();
@@ -313,12 +303,10 @@ class InformesActions extends sfActions
         $this->division_id = $division_id;
         $this->txt = $txt;
         $this->aAlumno = $aAlumno;
-        $this->vista = "imprimir";
     }
    
 
     public function executeBoletinListado() {
-        $this->vista = 'imprimir';
         $this->forward('boletin','mostrar');
     }
 
@@ -345,7 +333,6 @@ class InformesActions extends sfActions
         // asignando variables para ser usadas en el template
         $this->txt = $txt;
         $this->aAlumno = $aAlumno;
-        $this->vista = "imprimir";
     }
 
     public function executeCertificadoEstudiosFormulario() {
@@ -373,7 +360,6 @@ class InformesActions extends sfActions
         $this->y = $y;        
         $this->anio_hasta = $y;
         $this->alumno = $alumno;
-        $this->vista = "imprimir";
     }
 
     public function executeCertificadoEstudiosListado() {
@@ -389,7 +375,6 @@ class InformesActions extends sfActions
         $this->anio = $anio;
         $this->grado = $grado;
         $this->alumno = $alumno;
-        $this->vista = "imprimir";
     }
 
     public function handleErrorCertificadoEstudiosListado() {
@@ -431,8 +416,6 @@ class InformesActions extends sfActions
         $this->division_id = $division_id;
         $this->txt = $txt;
         $this->aAlumno = $aAlumno;
-        $this->vista = "imprimir";
-
     }
 
     public function executeSolicitudLegajoFormulario() {
@@ -443,7 +426,6 @@ class InformesActions extends sfActions
 
         $this->division_id = $division_id;        
         $this->alumno = $alumno;
-        $this->vista = "imprimir";
     }
 
     public function executeSolicitudLegajoListado() {
@@ -460,7 +442,6 @@ class InformesActions extends sfActions
         $this->alumno = $alumno;
         $this->division = $division;
         $this->escuela = $escuela;
-        $this->vista = "imprimir";
     }
 
     public function handleErrorSolicitudLegajoListado() {

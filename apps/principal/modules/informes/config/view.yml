@@ -1,2 +1,3 @@
 default:
   stylesheets:    [ informes ] 
+  layout:   layout_sinmenu
