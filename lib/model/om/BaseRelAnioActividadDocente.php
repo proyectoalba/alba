@@ -1,7 +1,7 @@
 <?php
 
 
-abstract class BaseRelActividadDocente extends BaseObject  implements Persistent {
+abstract class BaseRelAnioActividadDocente extends BaseObject  implements Persistent {
 
 
 	
@@ -9,14 +9,14 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 
 
 	
-	protected $fk_actividad_id;
+	protected $fk_anio_actividad_id;
 
 
 	
 	protected $fk_docente_id;
 
 	
-	protected $aActividad;
+	protected $aRelAnioActividad;
 
 	
 	protected $aDocente;
@@ -28,10 +28,10 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	protected $alreadyInValidation = false;
 
 	
-	public function getFkActividadId()
+	public function getFkAnioActividadId()
 	{
 
-		return $this->fk_actividad_id;
+		return $this->fk_anio_actividad_id;
 	}
 
 	
@@ -42,20 +42,20 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	}
 
 	
-	public function setFkActividadId($v)
+	public function setFkAnioActividadId($v)
 	{
 
 						if ($v !== null && !is_int($v) && is_numeric($v)) {
 			$v = (int) $v;
 		}
 
-		if ($this->fk_actividad_id !== $v) {
-			$this->fk_actividad_id = $v;
-			$this->modifiedColumns[] = RelActividadDocentePeer::FK_ACTIVIDAD_ID;
+		if ($this->fk_anio_actividad_id !== $v) {
+			$this->fk_anio_actividad_id = $v;
+			$this->modifiedColumns[] = RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID;
 		}
 
-		if ($this->aActividad !== null && $this->aActividad->getId() !== $v) {
-			$this->aActividad = null;
+		if ($this->aRelAnioActividad !== null && $this->aRelAnioActividad->getId() !== $v) {
+			$this->aRelAnioActividad = null;
 		}
 
 	} 
@@ -69,7 +69,7 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 
 		if ($this->fk_docente_id !== $v) {
 			$this->fk_docente_id = $v;
-			$this->modifiedColumns[] = RelActividadDocentePeer::FK_DOCENTE_ID;
+			$this->modifiedColumns[] = RelAnioActividadDocentePeer::FK_DOCENTE_ID;
 		}
 
 		if ($this->aDocente !== null && $this->aDocente->getId() !== $v) {
@@ -82,7 +82,7 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	{
 		try {
 
-			$this->fk_actividad_id = $rs->getInt($startcol + 0);
+			$this->fk_anio_actividad_id = $rs->getInt($startcol + 0);
 
 			$this->fk_docente_id = $rs->getInt($startcol + 1);
 
@@ -92,7 +92,7 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 
 						return $startcol + 2; 
 		} catch (Exception $e) {
-			throw new PropelException("Error populating RelActividadDocente object", $e);
+			throw new PropelException("Error populating RelAnioActividadDocente object", $e);
 		}
 	}
 
@@ -104,12 +104,12 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(RelActividadDocentePeer::DATABASE_NAME);
+			$con = Propel::getConnection(RelAnioActividadDocentePeer::DATABASE_NAME);
 		}
 
 		try {
 			$con->begin();
-			RelActividadDocentePeer::doDelete($this, $con);
+			RelAnioActividadDocentePeer::doDelete($this, $con);
 			$this->setDeleted(true);
 			$con->commit();
 		} catch (PropelException $e) {
@@ -126,7 +126,7 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(RelActividadDocentePeer::DATABASE_NAME);
+			$con = Propel::getConnection(RelAnioActividadDocentePeer::DATABASE_NAME);
 		}
 
 		try {
@@ -148,11 +148,11 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 
 
 												
-			if ($this->aActividad !== null) {
-				if ($this->aActividad->isModified()) {
-					$affectedRows += $this->aActividad->save($con);
+			if ($this->aRelAnioActividad !== null) {
+				if ($this->aRelAnioActividad->isModified()) {
+					$affectedRows += $this->aRelAnioActividad->save($con);
 				}
-				$this->setActividad($this->aActividad);
+				$this->setRelAnioActividad($this->aRelAnioActividad);
 			}
 
 			if ($this->aDocente !== null) {
@@ -165,11 +165,11 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 
 						if ($this->isModified()) {
 				if ($this->isNew()) {
-					$pk = RelActividadDocentePeer::doInsert($this, $con);
+					$pk = RelAnioActividadDocentePeer::doInsert($this, $con);
 					$affectedRows += 1; 										 										 
 					$this->setNew(false);
 				} else {
-					$affectedRows += RelActividadDocentePeer::doUpdate($this, $con);
+					$affectedRows += RelAnioActividadDocentePeer::doUpdate($this, $con);
 				}
 				$this->resetModified(); 			}
 
@@ -210,9 +210,9 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 
 
 												
-			if ($this->aActividad !== null) {
-				if (!$this->aActividad->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aActividad->getValidationFailures());
+			if ($this->aRelAnioActividad !== null) {
+				if (!$this->aRelAnioActividad->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aRelAnioActividad->getValidationFailures());
 				}
 			}
 
@@ -223,7 +223,7 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 			}
 
 
-			if (($retval = RelActividadDocentePeer::doValidate($this, $columns)) !== true) {
+			if (($retval = RelAnioActividadDocentePeer::doValidate($this, $columns)) !== true) {
 				$failureMap = array_merge($failureMap, $retval);
 			}
 
@@ -238,7 +238,7 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	
 	public function getByName($name, $type = BasePeer::TYPE_PHPNAME)
 	{
-		$pos = RelActividadDocentePeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
+		$pos = RelAnioActividadDocentePeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
 		return $this->getByPosition($pos);
 	}
 
@@ -247,7 +247,7 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	{
 		switch($pos) {
 			case 0:
-				return $this->getFkActividadId();
+				return $this->getFkAnioActividadId();
 				break;
 			case 1:
 				return $this->getFkDocenteId();
@@ -260,9 +260,9 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	
 	public function toArray($keyType = BasePeer::TYPE_PHPNAME)
 	{
-		$keys = RelActividadDocentePeer::getFieldNames($keyType);
+		$keys = RelAnioActividadDocentePeer::getFieldNames($keyType);
 		$result = array(
-			$keys[0] => $this->getFkActividadId(),
+			$keys[0] => $this->getFkAnioActividadId(),
 			$keys[1] => $this->getFkDocenteId(),
 		);
 		return $result;
@@ -271,7 +271,7 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	
 	public function setByName($name, $value, $type = BasePeer::TYPE_PHPNAME)
 	{
-		$pos = RelActividadDocentePeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
+		$pos = RelAnioActividadDocentePeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
 		return $this->setByPosition($pos, $value);
 	}
 
@@ -280,7 +280,7 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	{
 		switch($pos) {
 			case 0:
-				$this->setFkActividadId($value);
+				$this->setFkAnioActividadId($value);
 				break;
 			case 1:
 				$this->setFkDocenteId($value);
@@ -290,19 +290,19 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	
 	public function fromArray($arr, $keyType = BasePeer::TYPE_PHPNAME)
 	{
-		$keys = RelActividadDocentePeer::getFieldNames($keyType);
+		$keys = RelAnioActividadDocentePeer::getFieldNames($keyType);
 
-		if (array_key_exists($keys[0], $arr)) $this->setFkActividadId($arr[$keys[0]]);
+		if (array_key_exists($keys[0], $arr)) $this->setFkAnioActividadId($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setFkDocenteId($arr[$keys[1]]);
 	}
 
 	
 	public function buildCriteria()
 	{
-		$criteria = new Criteria(RelActividadDocentePeer::DATABASE_NAME);
+		$criteria = new Criteria(RelAnioActividadDocentePeer::DATABASE_NAME);
 
-		if ($this->isColumnModified(RelActividadDocentePeer::FK_ACTIVIDAD_ID)) $criteria->add(RelActividadDocentePeer::FK_ACTIVIDAD_ID, $this->fk_actividad_id);
-		if ($this->isColumnModified(RelActividadDocentePeer::FK_DOCENTE_ID)) $criteria->add(RelActividadDocentePeer::FK_DOCENTE_ID, $this->fk_docente_id);
+		if ($this->isColumnModified(RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID)) $criteria->add(RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID, $this->fk_anio_actividad_id);
+		if ($this->isColumnModified(RelAnioActividadDocentePeer::FK_DOCENTE_ID)) $criteria->add(RelAnioActividadDocentePeer::FK_DOCENTE_ID, $this->fk_docente_id);
 
 		return $criteria;
 	}
@@ -310,10 +310,10 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	
 	public function buildPkeyCriteria()
 	{
-		$criteria = new Criteria(RelActividadDocentePeer::DATABASE_NAME);
+		$criteria = new Criteria(RelAnioActividadDocentePeer::DATABASE_NAME);
 
-		$criteria->add(RelActividadDocentePeer::FK_ACTIVIDAD_ID, $this->fk_actividad_id);
-		$criteria->add(RelActividadDocentePeer::FK_DOCENTE_ID, $this->fk_docente_id);
+		$criteria->add(RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID, $this->fk_anio_actividad_id);
+		$criteria->add(RelAnioActividadDocentePeer::FK_DOCENTE_ID, $this->fk_docente_id);
 
 		return $criteria;
 	}
@@ -323,7 +323,7 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	{
 		$pks = array();
 
-		$pks[0] = $this->getFkActividadId();
+		$pks[0] = $this->getFkAnioActividadId();
 
 		$pks[1] = $this->getFkDocenteId();
 
@@ -334,7 +334,7 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	public function setPrimaryKey($keys)
 	{
 
-		$this->setFkActividadId($keys[0]);
+		$this->setFkAnioActividadId($keys[0]);
 
 		$this->setFkDocenteId($keys[1]);
 
@@ -347,7 +347,7 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 
 		$copyObj->setNew(true);
 
-		$copyObj->setFkActividadId(NULL); 
+		$copyObj->setFkAnioActividadId(NULL); 
 		$copyObj->setFkDocenteId(NULL); 
 	}
 
@@ -364,39 +364,39 @@ abstract class BaseRelActividadDocente extends BaseObject  implements Persistent
 	public function getPeer()
 	{
 		if (self::$peer === null) {
-			self::$peer = new RelActividadDocentePeer();
+			self::$peer = new RelAnioActividadDocentePeer();
 		}
 		return self::$peer;
 	}
 
 	
-	public function setActividad($v)
+	public function setRelAnioActividad($v)
 	{
 
 
 		if ($v === null) {
-			$this->setFkActividadId(NULL);
+			$this->setFkAnioActividadId(NULL);
 		} else {
-			$this->setFkActividadId($v->getId());
+			$this->setFkAnioActividadId($v->getId());
 		}
 
 
-		$this->aActividad = $v;
+		$this->aRelAnioActividad = $v;
 	}
 
 
 	
-	public function getActividad($con = null)
+	public function getRelAnioActividad($con = null)
 	{
-				include_once 'lib/model/om/BaseActividadPeer.php';
+				include_once 'lib/model/om/BaseRelAnioActividadPeer.php';
 
-		if ($this->aActividad === null && ($this->fk_actividad_id !== null)) {
+		if ($this->aRelAnioActividad === null && ($this->fk_anio_actividad_id !== null)) {
 
-			$this->aActividad = ActividadPeer::retrieveByPK($this->fk_actividad_id, $con);
+			$this->aRelAnioActividad = RelAnioActividadPeer::retrieveByPK($this->fk_anio_actividad_id, $con);
 
 			
 		}
-		return $this->aActividad;
+		return $this->aRelAnioActividad;
 	}
 
 	

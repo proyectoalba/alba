@@ -1,16 +1,16 @@
 <?php
 
 
-abstract class BaseRelActividadDocentePeer {
+abstract class BaseRelAnioActividadDocentePeer {
 
 	
 	const DATABASE_NAME = 'alba';
 
 	
-	const TABLE_NAME = 'rel_actividad_docente';
+	const TABLE_NAME = 'rel_anio_actividad_docente';
 
 	
-	const CLASS_DEFAULT = 'lib.model.RelActividadDocente';
+	const CLASS_DEFAULT = 'lib.model.RelAnioActividadDocente';
 
 	
 	const NUM_COLUMNS = 2;
@@ -20,10 +20,10 @@ abstract class BaseRelActividadDocentePeer {
 
 
 	
-	const FK_ACTIVIDAD_ID = 'rel_actividad_docente.FK_ACTIVIDAD_ID';
+	const FK_ANIO_ACTIVIDAD_ID = 'rel_anio_actividad_docente.FK_ANIO_ACTIVIDAD_ID';
 
 	
-	const FK_DOCENTE_ID = 'rel_actividad_docente.FK_DOCENTE_ID';
+	const FK_DOCENTE_ID = 'rel_anio_actividad_docente.FK_DOCENTE_ID';
 
 	
 	private static $phpNameMap = null;
@@ -31,31 +31,31 @@ abstract class BaseRelActividadDocentePeer {
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('FkActividadId', 'FkDocenteId', ),
-		BasePeer::TYPE_COLNAME => array (RelActividadDocentePeer::FK_ACTIVIDAD_ID, RelActividadDocentePeer::FK_DOCENTE_ID, ),
-		BasePeer::TYPE_FIELDNAME => array ('fk_actividad_id', 'fk_docente_id', ),
+		BasePeer::TYPE_PHPNAME => array ('FkAnioActividadId', 'FkDocenteId', ),
+		BasePeer::TYPE_COLNAME => array (RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID, RelAnioActividadDocentePeer::FK_DOCENTE_ID, ),
+		BasePeer::TYPE_FIELDNAME => array ('fk_anio_actividad_id', 'fk_docente_id', ),
 		BasePeer::TYPE_NUM => array (0, 1, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('FkActividadId' => 0, 'FkDocenteId' => 1, ),
-		BasePeer::TYPE_COLNAME => array (RelActividadDocentePeer::FK_ACTIVIDAD_ID => 0, RelActividadDocentePeer::FK_DOCENTE_ID => 1, ),
-		BasePeer::TYPE_FIELDNAME => array ('fk_actividad_id' => 0, 'fk_docente_id' => 1, ),
+		BasePeer::TYPE_PHPNAME => array ('FkAnioActividadId' => 0, 'FkDocenteId' => 1, ),
+		BasePeer::TYPE_COLNAME => array (RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID => 0, RelAnioActividadDocentePeer::FK_DOCENTE_ID => 1, ),
+		BasePeer::TYPE_FIELDNAME => array ('fk_anio_actividad_id' => 0, 'fk_docente_id' => 1, ),
 		BasePeer::TYPE_NUM => array (0, 1, )
 	);
 
 	
 	public static function getMapBuilder()
 	{
-		include_once 'lib/model/map/RelActividadDocenteMapBuilder.php';
-		return BasePeer::getMapBuilder('lib.model.map.RelActividadDocenteMapBuilder');
+		include_once 'lib/model/map/RelAnioActividadDocenteMapBuilder.php';
+		return BasePeer::getMapBuilder('lib.model.map.RelAnioActividadDocenteMapBuilder');
 	}
 	
 	public static function getPhpNameMap()
 	{
 		if (self::$phpNameMap === null) {
-			$map = RelActividadDocentePeer::getTableMap();
+			$map = RelAnioActividadDocentePeer::getTableMap();
 			$columns = $map->getColumns();
 			$nameMap = array();
 			foreach ($columns as $column) {
@@ -89,21 +89,21 @@ abstract class BaseRelActividadDocentePeer {
 	
 	public static function alias($alias, $column)
 	{
-		return str_replace(RelActividadDocentePeer::TABLE_NAME.'.', $alias.'.', $column);
+		return str_replace(RelAnioActividadDocentePeer::TABLE_NAME.'.', $alias.'.', $column);
 	}
 
 	
 	public static function addSelectColumns(Criteria $criteria)
 	{
 
-		$criteria->addSelectColumn(RelActividadDocentePeer::FK_ACTIVIDAD_ID);
+		$criteria->addSelectColumn(RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID);
 
-		$criteria->addSelectColumn(RelActividadDocentePeer::FK_DOCENTE_ID);
+		$criteria->addSelectColumn(RelAnioActividadDocentePeer::FK_DOCENTE_ID);
 
 	}
 
-	const COUNT = 'COUNT(rel_actividad_docente.FK_ACTIVIDAD_ID)';
-	const COUNT_DISTINCT = 'COUNT(DISTINCT rel_actividad_docente.FK_ACTIVIDAD_ID)';
+	const COUNT = 'COUNT(rel_anio_actividad_docente.FK_ANIO_ACTIVIDAD_ID)';
+	const COUNT_DISTINCT = 'COUNT(DISTINCT rel_anio_actividad_docente.FK_ANIO_ACTIVIDAD_ID)';
 
 	
 	public static function doCount(Criteria $criteria, $distinct = false, $con = null)
@@ -112,9 +112,9 @@ abstract class BaseRelActividadDocentePeer {
 
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(RelActividadDocentePeer::COUNT_DISTINCT);
+			$criteria->addSelectColumn(RelAnioActividadDocentePeer::COUNT_DISTINCT);
 		} else {
-			$criteria->addSelectColumn(RelActividadDocentePeer::COUNT);
+			$criteria->addSelectColumn(RelAnioActividadDocentePeer::COUNT);
 		}
 
 				foreach($criteria->getGroupByColumns() as $column)
@@ -122,7 +122,7 @@ abstract class BaseRelActividadDocentePeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$rs = RelActividadDocentePeer::doSelectRS($criteria, $con);
+		$rs = RelAnioActividadDocentePeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
 			return $rs->getInt(1);
 		} else {
@@ -134,7 +134,7 @@ abstract class BaseRelActividadDocentePeer {
 	{
 		$critcopy = clone $criteria;
 		$critcopy->setLimit(1);
-		$objects = RelActividadDocentePeer::doSelect($critcopy, $con);
+		$objects = RelAnioActividadDocentePeer::doSelect($critcopy, $con);
 		if ($objects) {
 			return $objects[0];
 		}
@@ -143,7 +143,7 @@ abstract class BaseRelActividadDocentePeer {
 	
 	public static function doSelect(Criteria $criteria, $con = null)
 	{
-		return RelActividadDocentePeer::populateObjects(RelActividadDocentePeer::doSelectRS($criteria, $con));
+		return RelAnioActividadDocentePeer::populateObjects(RelAnioActividadDocentePeer::doSelectRS($criteria, $con));
 	}
 	
 	public static function doSelectRS(Criteria $criteria, $con = null)
@@ -154,7 +154,7 @@ abstract class BaseRelActividadDocentePeer {
 
 		if (!$criteria->getSelectColumns()) {
 			$criteria = clone $criteria;
-			RelActividadDocentePeer::addSelectColumns($criteria);
+			RelAnioActividadDocentePeer::addSelectColumns($criteria);
 		}
 
 				$criteria->setDbName(self::DATABASE_NAME);
@@ -166,7 +166,7 @@ abstract class BaseRelActividadDocentePeer {
 	{
 		$results = array();
 	
-				$cls = RelActividadDocentePeer::getOMClass();
+				$cls = RelAnioActividadDocentePeer::getOMClass();
 		$cls = Propel::import($cls);
 				while($rs->next()) {
 		
@@ -179,15 +179,15 @@ abstract class BaseRelActividadDocentePeer {
 	}
 
 	
-	public static function doCountJoinActividad(Criteria $criteria, $distinct = false, $con = null)
+	public static function doCountJoinRelAnioActividad(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
 
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(RelActividadDocentePeer::COUNT_DISTINCT);
+			$criteria->addSelectColumn(RelAnioActividadDocentePeer::COUNT_DISTINCT);
 		} else {
-			$criteria->addSelectColumn(RelActividadDocentePeer::COUNT);
+			$criteria->addSelectColumn(RelAnioActividadDocentePeer::COUNT);
 		}
 
 				foreach($criteria->getGroupByColumns() as $column)
@@ -195,9 +195,9 @@ abstract class BaseRelActividadDocentePeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(RelActividadDocentePeer::FK_ACTIVIDAD_ID, ActividadPeer::ID);
+		$criteria->addJoin(RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID, RelAnioActividadPeer::ID);
 
-		$rs = RelActividadDocentePeer::doSelectRS($criteria, $con);
+		$rs = RelAnioActividadDocentePeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
 			return $rs->getInt(1);
 		} else {
@@ -213,9 +213,9 @@ abstract class BaseRelActividadDocentePeer {
 
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(RelActividadDocentePeer::COUNT_DISTINCT);
+			$criteria->addSelectColumn(RelAnioActividadDocentePeer::COUNT_DISTINCT);
 		} else {
-			$criteria->addSelectColumn(RelActividadDocentePeer::COUNT);
+			$criteria->addSelectColumn(RelAnioActividadDocentePeer::COUNT);
 		}
 
 				foreach($criteria->getGroupByColumns() as $column)
@@ -223,9 +223,9 @@ abstract class BaseRelActividadDocentePeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(RelActividadDocentePeer::FK_DOCENTE_ID, DocentePeer::ID);
+		$criteria->addJoin(RelAnioActividadDocentePeer::FK_DOCENTE_ID, DocentePeer::ID);
 
-		$rs = RelActividadDocentePeer::doSelectRS($criteria, $con);
+		$rs = RelAnioActividadDocentePeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
 			return $rs->getInt(1);
 		} else {
@@ -235,7 +235,7 @@ abstract class BaseRelActividadDocentePeer {
 
 
 	
-	public static function doSelectJoinActividad(Criteria $c, $con = null)
+	public static function doSelectJoinRelAnioActividad(Criteria $c, $con = null)
 	{
 		$c = clone $c;
 
@@ -243,23 +243,23 @@ abstract class BaseRelActividadDocentePeer {
 			$c->setDbName(self::DATABASE_NAME);
 		}
 
-		RelActividadDocentePeer::addSelectColumns($c);
-		$startcol = (RelActividadDocentePeer::NUM_COLUMNS - RelActividadDocentePeer::NUM_LAZY_LOAD_COLUMNS) + 1;
-		ActividadPeer::addSelectColumns($c);
+		RelAnioActividadDocentePeer::addSelectColumns($c);
+		$startcol = (RelAnioActividadDocentePeer::NUM_COLUMNS - RelAnioActividadDocentePeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+		RelAnioActividadPeer::addSelectColumns($c);
 
-		$c->addJoin(RelActividadDocentePeer::FK_ACTIVIDAD_ID, ActividadPeer::ID);
+		$c->addJoin(RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID, RelAnioActividadPeer::ID);
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
 
 		while($rs->next()) {
 
-			$omClass = RelActividadDocentePeer::getOMClass();
+			$omClass = RelAnioActividadDocentePeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-			$omClass = ActividadPeer::getOMClass();
+			$omClass = RelAnioActividadPeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj2 = new $cls();
@@ -267,14 +267,14 @@ abstract class BaseRelActividadDocentePeer {
 
 			$newObject = true;
 			foreach($results as $temp_obj1) {
-				$temp_obj2 = $temp_obj1->getActividad(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getRelAnioActividad(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
-										$temp_obj2->addRelActividadDocente($obj1); 					break;
+										$temp_obj2->addRelAnioActividadDocente($obj1); 					break;
 				}
 			}
 			if ($newObject) {
-				$obj2->initRelActividadDocentes();
-				$obj2->addRelActividadDocente($obj1); 			}
+				$obj2->initRelAnioActividadDocentes();
+				$obj2->addRelAnioActividadDocente($obj1); 			}
 			$results[] = $obj1;
 		}
 		return $results;
@@ -290,17 +290,17 @@ abstract class BaseRelActividadDocentePeer {
 			$c->setDbName(self::DATABASE_NAME);
 		}
 
-		RelActividadDocentePeer::addSelectColumns($c);
-		$startcol = (RelActividadDocentePeer::NUM_COLUMNS - RelActividadDocentePeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+		RelAnioActividadDocentePeer::addSelectColumns($c);
+		$startcol = (RelAnioActividadDocentePeer::NUM_COLUMNS - RelAnioActividadDocentePeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 		DocentePeer::addSelectColumns($c);
 
-		$c->addJoin(RelActividadDocentePeer::FK_DOCENTE_ID, DocentePeer::ID);
+		$c->addJoin(RelAnioActividadDocentePeer::FK_DOCENTE_ID, DocentePeer::ID);
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
 
 		while($rs->next()) {
 
-			$omClass = RelActividadDocentePeer::getOMClass();
+			$omClass = RelAnioActividadDocentePeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
@@ -316,12 +316,12 @@ abstract class BaseRelActividadDocentePeer {
 			foreach($results as $temp_obj1) {
 				$temp_obj2 = $temp_obj1->getDocente(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
-										$temp_obj2->addRelActividadDocente($obj1); 					break;
+										$temp_obj2->addRelAnioActividadDocente($obj1); 					break;
 				}
 			}
 			if ($newObject) {
-				$obj2->initRelActividadDocentes();
-				$obj2->addRelActividadDocente($obj1); 			}
+				$obj2->initRelAnioActividadDocentes();
+				$obj2->addRelAnioActividadDocente($obj1); 			}
 			$results[] = $obj1;
 		}
 		return $results;
@@ -335,9 +335,9 @@ abstract class BaseRelActividadDocentePeer {
 
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(RelActividadDocentePeer::COUNT_DISTINCT);
+			$criteria->addSelectColumn(RelAnioActividadDocentePeer::COUNT_DISTINCT);
 		} else {
-			$criteria->addSelectColumn(RelActividadDocentePeer::COUNT);
+			$criteria->addSelectColumn(RelAnioActividadDocentePeer::COUNT);
 		}
 
 				foreach($criteria->getGroupByColumns() as $column)
@@ -345,11 +345,11 @@ abstract class BaseRelActividadDocentePeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(RelActividadDocentePeer::FK_ACTIVIDAD_ID, ActividadPeer::ID);
+		$criteria->addJoin(RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID, RelAnioActividadPeer::ID);
 
-		$criteria->addJoin(RelActividadDocentePeer::FK_DOCENTE_ID, DocentePeer::ID);
+		$criteria->addJoin(RelAnioActividadDocentePeer::FK_DOCENTE_ID, DocentePeer::ID);
 
-		$rs = RelActividadDocentePeer::doSelectRS($criteria, $con);
+		$rs = RelAnioActividadDocentePeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
 			return $rs->getInt(1);
 		} else {
@@ -367,25 +367,25 @@ abstract class BaseRelActividadDocentePeer {
 			$c->setDbName(self::DATABASE_NAME);
 		}
 
-		RelActividadDocentePeer::addSelectColumns($c);
-		$startcol2 = (RelActividadDocentePeer::NUM_COLUMNS - RelActividadDocentePeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+		RelAnioActividadDocentePeer::addSelectColumns($c);
+		$startcol2 = (RelAnioActividadDocentePeer::NUM_COLUMNS - RelAnioActividadDocentePeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
-		ActividadPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + ActividadPeer::NUM_COLUMNS;
+		RelAnioActividadPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + RelAnioActividadPeer::NUM_COLUMNS;
 
 		DocentePeer::addSelectColumns($c);
 		$startcol4 = $startcol3 + DocentePeer::NUM_COLUMNS;
 
-		$c->addJoin(RelActividadDocentePeer::FK_ACTIVIDAD_ID, ActividadPeer::ID);
+		$c->addJoin(RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID, RelAnioActividadPeer::ID);
 
-		$c->addJoin(RelActividadDocentePeer::FK_DOCENTE_ID, DocentePeer::ID);
+		$c->addJoin(RelAnioActividadDocentePeer::FK_DOCENTE_ID, DocentePeer::ID);
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
 
 		while($rs->next()) {
 
-			$omClass = RelActividadDocentePeer::getOMClass();
+			$omClass = RelAnioActividadDocentePeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -394,7 +394,7 @@ abstract class BaseRelActividadDocentePeer {
 
 
 					
-			$omClass = ActividadPeer::getOMClass();
+			$omClass = RelAnioActividadPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -404,15 +404,15 @@ abstract class BaseRelActividadDocentePeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getActividad(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getRelAnioActividad(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
-					$temp_obj2->addRelActividadDocente($obj1); 					break;
+					$temp_obj2->addRelAnioActividadDocente($obj1); 					break;
 				}
 			}
 
 			if ($newObject) {
-				$obj2->initRelActividadDocentes();
-				$obj2->addRelActividadDocente($obj1);
+				$obj2->initRelAnioActividadDocentes();
+				$obj2->addRelAnioActividadDocente($obj1);
 			}
 
 
@@ -429,13 +429,13 @@ abstract class BaseRelActividadDocentePeer {
 				$temp_obj1 = $results[$j];
 				$temp_obj3 = $temp_obj1->getDocente(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
 					$newObject = false;
-					$temp_obj3->addRelActividadDocente($obj1); 					break;
+					$temp_obj3->addRelAnioActividadDocente($obj1); 					break;
 				}
 			}
 
 			if ($newObject) {
-				$obj3->initRelActividadDocentes();
-				$obj3->addRelActividadDocente($obj1);
+				$obj3->initRelAnioActividadDocentes();
+				$obj3->addRelAnioActividadDocente($obj1);
 			}
 
 			$results[] = $obj1;
@@ -445,15 +445,15 @@ abstract class BaseRelActividadDocentePeer {
 
 
 	
-	public static function doCountJoinAllExceptActividad(Criteria $criteria, $distinct = false, $con = null)
+	public static function doCountJoinAllExceptRelAnioActividad(Criteria $criteria, $distinct = false, $con = null)
 	{
 				$criteria = clone $criteria;
 
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(RelActividadDocentePeer::COUNT_DISTINCT);
+			$criteria->addSelectColumn(RelAnioActividadDocentePeer::COUNT_DISTINCT);
 		} else {
-			$criteria->addSelectColumn(RelActividadDocentePeer::COUNT);
+			$criteria->addSelectColumn(RelAnioActividadDocentePeer::COUNT);
 		}
 
 				foreach($criteria->getGroupByColumns() as $column)
@@ -461,9 +461,9 @@ abstract class BaseRelActividadDocentePeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(RelActividadDocentePeer::FK_DOCENTE_ID, DocentePeer::ID);
+		$criteria->addJoin(RelAnioActividadDocentePeer::FK_DOCENTE_ID, DocentePeer::ID);
 
-		$rs = RelActividadDocentePeer::doSelectRS($criteria, $con);
+		$rs = RelAnioActividadDocentePeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
 			return $rs->getInt(1);
 		} else {
@@ -479,9 +479,9 @@ abstract class BaseRelActividadDocentePeer {
 
 				$criteria->clearSelectColumns()->clearOrderByColumns();
 		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->addSelectColumn(RelActividadDocentePeer::COUNT_DISTINCT);
+			$criteria->addSelectColumn(RelAnioActividadDocentePeer::COUNT_DISTINCT);
 		} else {
-			$criteria->addSelectColumn(RelActividadDocentePeer::COUNT);
+			$criteria->addSelectColumn(RelAnioActividadDocentePeer::COUNT);
 		}
 
 				foreach($criteria->getGroupByColumns() as $column)
@@ -489,9 +489,9 @@ abstract class BaseRelActividadDocentePeer {
 			$criteria->addSelectColumn($column);
 		}
 
-		$criteria->addJoin(RelActividadDocentePeer::FK_ACTIVIDAD_ID, ActividadPeer::ID);
+		$criteria->addJoin(RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID, RelAnioActividadPeer::ID);
 
-		$rs = RelActividadDocentePeer::doSelectRS($criteria, $con);
+		$rs = RelAnioActividadDocentePeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
 			return $rs->getInt(1);
 		} else {
@@ -501,7 +501,7 @@ abstract class BaseRelActividadDocentePeer {
 
 
 	
-	public static function doSelectJoinAllExceptActividad(Criteria $c, $con = null)
+	public static function doSelectJoinAllExceptRelAnioActividad(Criteria $c, $con = null)
 	{
 		$c = clone $c;
 
@@ -509,13 +509,13 @@ abstract class BaseRelActividadDocentePeer {
 			$c->setDbName(self::DATABASE_NAME);
 		}
 
-		RelActividadDocentePeer::addSelectColumns($c);
-		$startcol2 = (RelActividadDocentePeer::NUM_COLUMNS - RelActividadDocentePeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+		RelAnioActividadDocentePeer::addSelectColumns($c);
+		$startcol2 = (RelAnioActividadDocentePeer::NUM_COLUMNS - RelAnioActividadDocentePeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
 		DocentePeer::addSelectColumns($c);
 		$startcol3 = $startcol2 + DocentePeer::NUM_COLUMNS;
 
-		$c->addJoin(RelActividadDocentePeer::FK_DOCENTE_ID, DocentePeer::ID);
+		$c->addJoin(RelAnioActividadDocentePeer::FK_DOCENTE_ID, DocentePeer::ID);
 
 
 		$rs = BasePeer::doSelect($c, $con);
@@ -523,7 +523,7 @@ abstract class BaseRelActividadDocentePeer {
 
 		while($rs->next()) {
 
-			$omClass = RelActividadDocentePeer::getOMClass();
+			$omClass = RelAnioActividadDocentePeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
@@ -541,14 +541,14 @@ abstract class BaseRelActividadDocentePeer {
 				$temp_obj1 = $results[$j];
 				$temp_obj2 = $temp_obj1->getDocente(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
-					$temp_obj2->addRelActividadDocente($obj1);
+					$temp_obj2->addRelAnioActividadDocente($obj1);
 					break;
 				}
 			}
 
 			if ($newObject) {
-				$obj2->initRelActividadDocentes();
-				$obj2->addRelActividadDocente($obj1);
+				$obj2->initRelAnioActividadDocentes();
+				$obj2->addRelAnioActividadDocente($obj1);
 			}
 
 			$results[] = $obj1;
@@ -566,13 +566,13 @@ abstract class BaseRelActividadDocentePeer {
 			$c->setDbName(self::DATABASE_NAME);
 		}
 
-		RelActividadDocentePeer::addSelectColumns($c);
-		$startcol2 = (RelActividadDocentePeer::NUM_COLUMNS - RelActividadDocentePeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+		RelAnioActividadDocentePeer::addSelectColumns($c);
+		$startcol2 = (RelAnioActividadDocentePeer::NUM_COLUMNS - RelAnioActividadDocentePeer::NUM_LAZY_LOAD_COLUMNS) + 1;
 
-		ActividadPeer::addSelectColumns($c);
-		$startcol3 = $startcol2 + ActividadPeer::NUM_COLUMNS;
+		RelAnioActividadPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + RelAnioActividadPeer::NUM_COLUMNS;
 
-		$c->addJoin(RelActividadDocentePeer::FK_ACTIVIDAD_ID, ActividadPeer::ID);
+		$c->addJoin(RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID, RelAnioActividadPeer::ID);
 
 
 		$rs = BasePeer::doSelect($c, $con);
@@ -580,13 +580,13 @@ abstract class BaseRelActividadDocentePeer {
 
 		while($rs->next()) {
 
-			$omClass = RelActividadDocentePeer::getOMClass();
+			$omClass = RelAnioActividadDocentePeer::getOMClass();
 
 			$cls = Propel::import($omClass);
 			$obj1 = new $cls();
 			$obj1->hydrate($rs);
 
-			$omClass = ActividadPeer::getOMClass();
+			$omClass = RelAnioActividadPeer::getOMClass();
 
 
 			$cls = Propel::import($omClass);
@@ -596,16 +596,16 @@ abstract class BaseRelActividadDocentePeer {
 			$newObject = true;
 			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
 				$temp_obj1 = $results[$j];
-				$temp_obj2 = $temp_obj1->getActividad(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+				$temp_obj2 = $temp_obj1->getRelAnioActividad(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
 					$newObject = false;
-					$temp_obj2->addRelActividadDocente($obj1);
+					$temp_obj2->addRelAnioActividadDocente($obj1);
 					break;
 				}
 			}
 
 			if ($newObject) {
-				$obj2->initRelActividadDocentes();
-				$obj2->addRelActividadDocente($obj1);
+				$obj2->initRelAnioActividadDocentes();
+				$obj2->addRelAnioActividadDocente($obj1);
 			}
 
 			$results[] = $obj1;
@@ -622,7 +622,7 @@ abstract class BaseRelActividadDocentePeer {
 	
 	public static function getOMClass()
 	{
-		return RelActividadDocentePeer::CLASS_DEFAULT;
+		return RelAnioActividadDocentePeer::CLASS_DEFAULT;
 	}
 
 	
@@ -662,11 +662,11 @@ abstract class BaseRelActividadDocentePeer {
 
 		if ($values instanceof Criteria) {
 			$criteria = clone $values; 
-			$comparison = $criteria->getComparison(RelActividadDocentePeer::FK_ACTIVIDAD_ID);
-			$selectCriteria->add(RelActividadDocentePeer::FK_ACTIVIDAD_ID, $criteria->remove(RelActividadDocentePeer::FK_ACTIVIDAD_ID), $comparison);
+			$comparison = $criteria->getComparison(RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID);
+			$selectCriteria->add(RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID, $criteria->remove(RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID), $comparison);
 
-			$comparison = $criteria->getComparison(RelActividadDocentePeer::FK_DOCENTE_ID);
-			$selectCriteria->add(RelActividadDocentePeer::FK_DOCENTE_ID, $criteria->remove(RelActividadDocentePeer::FK_DOCENTE_ID), $comparison);
+			$comparison = $criteria->getComparison(RelAnioActividadDocentePeer::FK_DOCENTE_ID);
+			$selectCriteria->add(RelAnioActividadDocentePeer::FK_DOCENTE_ID, $criteria->remove(RelAnioActividadDocentePeer::FK_DOCENTE_ID), $comparison);
 
 		} else { 			$criteria = $values->buildCriteria(); 			$selectCriteria = $values->buildPkeyCriteria(); 		}
 
@@ -683,7 +683,7 @@ abstract class BaseRelActividadDocentePeer {
 		}
 		$affectedRows = 0; 		try {
 									$con->begin();
-			$affectedRows += BasePeer::doDeleteAll(RelActividadDocentePeer::TABLE_NAME, $con);
+			$affectedRows += BasePeer::doDeleteAll(RelAnioActividadDocentePeer::TABLE_NAME, $con);
 			$con->commit();
 			return $affectedRows;
 		} catch (PropelException $e) {
@@ -696,11 +696,11 @@ abstract class BaseRelActividadDocentePeer {
 	 public static function doDelete($values, $con = null)
 	 {
 		if ($con === null) {
-			$con = Propel::getConnection(RelActividadDocentePeer::DATABASE_NAME);
+			$con = Propel::getConnection(RelAnioActividadDocentePeer::DATABASE_NAME);
 		}
 
 		if ($values instanceof Criteria) {
-			$criteria = clone $values; 		} elseif ($values instanceof RelActividadDocente) {
+			$criteria = clone $values; 		} elseif ($values instanceof RelAnioActividadDocente) {
 
 			$criteria = $values->buildPkeyCriteria();
 		} else {
@@ -717,8 +717,8 @@ abstract class BaseRelActividadDocentePeer {
 				$vals[1][] = $value[1];
 			}
 
-			$criteria->add(RelActividadDocentePeer::FK_ACTIVIDAD_ID, $vals[0], Criteria::IN);
-			$criteria->add(RelActividadDocentePeer::FK_DOCENTE_ID, $vals[1], Criteria::IN);
+			$criteria->add(RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID, $vals[0], Criteria::IN);
+			$criteria->add(RelAnioActividadDocentePeer::FK_DOCENTE_ID, $vals[1], Criteria::IN);
 		}
 
 				$criteria->setDbName(self::DATABASE_NAME);
@@ -737,13 +737,13 @@ abstract class BaseRelActividadDocentePeer {
 	}
 
 	
-	public static function doValidate(RelActividadDocente $obj, $cols = null)
+	public static function doValidate(RelAnioActividadDocente $obj, $cols = null)
 	{
 		$columns = array();
 
 		if ($cols) {
-			$dbMap = Propel::getDatabaseMap(RelActividadDocentePeer::DATABASE_NAME);
-			$tableMap = $dbMap->getTable(RelActividadDocentePeer::TABLE_NAME);
+			$dbMap = Propel::getDatabaseMap(RelAnioActividadDocentePeer::DATABASE_NAME);
+			$tableMap = $dbMap->getTable(RelAnioActividadDocentePeer::TABLE_NAME);
 
 			if (! is_array($cols)) {
 				$cols = array($cols);
@@ -759,11 +759,11 @@ abstract class BaseRelActividadDocentePeer {
 
 		}
 
-		$res =  BasePeer::doValidate(RelActividadDocentePeer::DATABASE_NAME, RelActividadDocentePeer::TABLE_NAME, $columns);
+		$res =  BasePeer::doValidate(RelAnioActividadDocentePeer::DATABASE_NAME, RelAnioActividadDocentePeer::TABLE_NAME, $columns);
     if ($res !== true) {
         $request = sfContext::getInstance()->getRequest();
         foreach ($res as $failed) {
-            $col = RelActividadDocentePeer::translateFieldname($failed->getColumn(), BasePeer::TYPE_COLNAME, BasePeer::TYPE_PHPNAME);
+            $col = RelAnioActividadDocentePeer::translateFieldname($failed->getColumn(), BasePeer::TYPE_COLNAME, BasePeer::TYPE_PHPNAME);
             $request->setError($col, $failed->getMessage());
         }
     }
@@ -772,25 +772,25 @@ abstract class BaseRelActividadDocentePeer {
 	}
 
 	
-	public static function retrieveByPK( $fk_actividad_id, $fk_docente_id, $con = null) {
+	public static function retrieveByPK( $fk_anio_actividad_id, $fk_docente_id, $con = null) {
 		if ($con === null) {
 			$con = Propel::getConnection(self::DATABASE_NAME);
 		}
 		$criteria = new Criteria();
-		$criteria->add(RelActividadDocentePeer::FK_ACTIVIDAD_ID, $fk_actividad_id);
-		$criteria->add(RelActividadDocentePeer::FK_DOCENTE_ID, $fk_docente_id);
-		$v = RelActividadDocentePeer::doSelect($criteria, $con);
+		$criteria->add(RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID, $fk_anio_actividad_id);
+		$criteria->add(RelAnioActividadDocentePeer::FK_DOCENTE_ID, $fk_docente_id);
+		$v = RelAnioActividadDocentePeer::doSelect($criteria, $con);
 
 		return !empty($v) ? $v[0] : null;
 	}
 } 
 if (Propel::isInit()) {
 			try {
-		BaseRelActividadDocentePeer::getMapBuilder();
+		BaseRelAnioActividadDocentePeer::getMapBuilder();
 	} catch (Exception $e) {
 		Propel::log('Could not initialize Peer: ' . $e->getMessage(), Propel::LOG_ERR);
 	}
 } else {
-			require_once 'lib/model/map/RelActividadDocenteMapBuilder.php';
-	Propel::registerMapBuilder('lib.model.map.RelActividadDocenteMapBuilder');
+			require_once 'lib/model/map/RelAnioActividadDocenteMapBuilder.php';
+	Propel::registerMapBuilder('lib.model.map.RelAnioActividadDocenteMapBuilder');
 }

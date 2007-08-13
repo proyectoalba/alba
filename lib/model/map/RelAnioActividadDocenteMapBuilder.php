@@ -2,10 +2,10 @@
 
 
 
-class RelActividadDocenteMapBuilder {
+class RelAnioActividadDocenteMapBuilder {
 
 	
-	const CLASS_NAME = 'lib.model.map.RelActividadDocenteMapBuilder';
+	const CLASS_NAME = 'lib.model.map.RelAnioActividadDocenteMapBuilder';
 
 	
 	private $dbMap;
@@ -27,12 +27,12 @@ class RelActividadDocenteMapBuilder {
 	{
 		$this->dbMap = Propel::getDatabaseMap('alba');
 
-		$tMap = $this->dbMap->addTable('rel_actividad_docente');
-		$tMap->setPhpName('RelActividadDocente');
+		$tMap = $this->dbMap->addTable('rel_anio_actividad_docente');
+		$tMap->setPhpName('RelAnioActividadDocente');
 
 		$tMap->setUseIdGenerator(false);
 
-		$tMap->addForeignPrimaryKey('FK_ACTIVIDAD_ID', 'FkActividadId', 'int' , CreoleTypes::INTEGER, 'actividad', 'ID', true, 11);
+		$tMap->addForeignPrimaryKey('FK_ANIO_ACTIVIDAD_ID', 'FkAnioActividadId', 'int' , CreoleTypes::INTEGER, 'rel_anio_actividad', 'ID', true, 11);
 
 		$tMap->addForeignPrimaryKey('FK_DOCENTE_ID', 'FkDocenteId', 'int' , CreoleTypes::INTEGER, 'docente', 'ID', true, 11);
 

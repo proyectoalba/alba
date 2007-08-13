@@ -1584,23 +1584,6 @@ alba:
       size: 11
       required: false
       default: 0
-  rel_actividad_docente: 
-    _attributes: 
-      idMethod: native
-    fk_actividad_id: 
-      type: integer
-      size: 11
-      required: true
-      primaryKey: true
-      foreignTable: actividad
-      foreignReference: id
-    fk_docente_id: 
-      type: integer
-      size: 11
-      required: true
-      primaryKey: true
-      foreignTable: docente
-      foreignReference: id
   docente_horario: 
     _attributes: 
       idMethod: native
@@ -1832,3 +1815,20 @@ alba:
     descripcion: 
       type: VARCHAR
       size: 255
+  rel_anio_actividad_docente: 
+    _attributes: 
+      idMethod: native
+    fk_anio_actividad_id: 
+      type: integer
+      size: 11
+      required: true
+      primaryKey: true
+      foreignTable: rel_anio_actividad
+      foreignReference: id
+    fk_docente_id: 
+      type: integer
+      size: 11
+      required: true
+      primaryKey: true
+      foreignTable: docente
+      foreignReference: id

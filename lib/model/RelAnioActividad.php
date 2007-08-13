@@ -15,5 +15,7 @@ require_once 'lib/model/om/BaseRelAnioActividad.php';
  * @package model
  */	
 class RelAnioActividad extends BaseRelAnioActividad {
-
+    function __toString() {
+        return $this->getAnio()->getDescripcion()." de ".$this->getActividad()->getDescripcion()." ".(($this->getOrientacion())?" de ".$this->getOrientacion()->getNombre():"");
+    }
 } // RelAnioActividad

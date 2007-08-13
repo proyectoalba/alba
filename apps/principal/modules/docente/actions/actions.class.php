@@ -41,8 +41,8 @@ class docenteActions extends autodocenteActions
         }
 
         $c  = New Criteria();
-        $c->Add(RelActividadDocentePeer::FK_DOCENTE_ID,$this->docente->getId());
-        $this->actividades = RelActividadDocentePeer::doSelectJoinActividad($c); 
+        $c->Add(RelAnioActividadDocentePeer::FK_DOCENTE_ID,$this->docente->getId());
+        $this->actividades = RelAnioActividadDocentePeer::doSelect($c); 
     }
 
     function executeHorariosPorDocente() {
@@ -63,15 +63,15 @@ class docenteActions extends autodocenteActions
     
         // Update many-to-many for "actividades"
         $c = new Criteria();
-        $c->add(RelActividadDocentePeer::FK_DOCENTE_ID, $docente->getPrimaryKey());
-        RelActividadDocentePeer::doDelete($c);
+        $c->add(RelAnioActividadDocentePeer::FK_DOCENTE_ID, $docente->getPrimaryKey());
+        RelAnioActividadDocentePeer::doDelete($c);
         $ids = $this->getRequestParameter('associated_actividades');
         if (is_array($ids)) {
             foreach ($ids as $id){
-                $RelActividadDocente = new RelActividadDocente();
-                $RelActividadDocente->setFkDocenteId($docente->getPrimaryKey());
-                $RelActividadDocente->setFkActividadId($id);
-                $RelActividadDocente->save();
+                $RelAnioActividadDocente = new RelAnioActividadDocente();
+                $RelAnioActividadDocente->setFkDocenteId($docente->getPrimaryKey());
+                $RelAnioActividadDocente->setFkAnioActividadId($id);
+                $RelAnioActividadDocente->save();
             }
         }
     }

@@ -104,6 +104,29 @@ ALTER TABLE `rel_anio_actividad` ADD `fk_orientacion_id` INT;
 ALTER TABLE `rel_anio_actividad` ADD CONSTRAINT `orientacion_FK_4` FOREIGN KEY (`fk_orientacion_id`) REFERENCES `orientacion` (`id`);
 
 
+CREATE TABLE `rel_anio_actividad_docente`
+(
+       `fk_anio_actividad_id` INTEGER(11)  NOT NULL,
+       `fk_docente_id` INTEGER(11)  NOT NULL,
+       PRIMARY KEY (`fk_anio_actividad_id`,`fk_docente_id`),
+       CONSTRAINT `rel_anio_actividad_docente_FK_1`
+               FOREIGN KEY (`fk_anio_actividad_id`)
+               REFERENCES `rel_anio_actividad` (`id`),
+       INDEX `rel_anio_actividad_docente_FI_2` (`fk_docente_id`),
+       CONSTRAINT `rel_anio_actividad_docente_FK_2`
+               FOREIGN KEY (`fk_docente_id`)
+               REFERENCES `docente` (`id`)
+)Type=InnoDB;
+
+
+
+INSERT INTO rel_anio_actividad_docente (fk_anio_actividad_id , fk_docente_id)  
+SELECT id, fk_docente_id
+FROM rel_actividad_docente, rel_anio_actividad
+WHERE rel_anio_actividad.fk_actividad_id = rel_actividad_docente.fk_actividad_id;
+
+DROP TABLE `rel_actividad_docente`;
+
 SET FOREIGN_KEY_CHECKS = 1;
 
 

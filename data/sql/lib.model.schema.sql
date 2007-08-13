@@ -1232,27 +1232,6 @@ CREATE TABLE `tipodocumento`
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
-#-- rel_actividad_docente
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `rel_actividad_docente`;
-
-
-CREATE TABLE `rel_actividad_docente`
-(
-	`fk_actividad_id` INTEGER(11)  NOT NULL,
-	`fk_docente_id` INTEGER(11)  NOT NULL,
-	PRIMARY KEY (`fk_actividad_id`,`fk_docente_id`),
-	CONSTRAINT `rel_actividad_docente_FK_1`
-		FOREIGN KEY (`fk_actividad_id`)
-		REFERENCES `actividad` (`id`),
-	INDEX `rel_actividad_docente_FI_2` (`fk_docente_id`),
-	CONSTRAINT `rel_actividad_docente_FK_2`
-		FOREIGN KEY (`fk_docente_id`)
-		REFERENCES `docente` (`id`)
-)Type=InnoDB;
-
-#-----------------------------------------------------------------------------
 #-- docente_horario
 #-----------------------------------------------------------------------------
 
@@ -1430,6 +1409,27 @@ CREATE TABLE `rel_rolresponsable_responsable`
 	CONSTRAINT `rel_rolresponsable_responsable_FK_3`
 		FOREIGN KEY (`fk_alumno_id`)
 		REFERENCES `alumno` (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- rel_anio_actividad_docente
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `rel_anio_actividad_docente`;
+
+
+CREATE TABLE `rel_anio_actividad_docente`
+(
+	`fk_anio_actividad_id` INTEGER(11)  NOT NULL,
+	`fk_docente_id` INTEGER(11)  NOT NULL,
+	PRIMARY KEY (`fk_anio_actividad_id`,`fk_docente_id`),
+	CONSTRAINT `rel_anio_actividad_docente_FK_1`
+		FOREIGN KEY (`fk_anio_actividad_id`)
+		REFERENCES `rel_anio_actividad` (`id`),
+	INDEX `rel_anio_actividad_docente_FI_2` (`fk_docente_id`),
+	CONSTRAINT `rel_anio_actividad_docente_FK_2`
+		FOREIGN KEY (`fk_docente_id`)
+		REFERENCES `docente` (`id`)
 )Type=InnoDB;
 
 # This restores the fkey checks, after having unset them earlier

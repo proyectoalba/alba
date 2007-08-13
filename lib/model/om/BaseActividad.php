@@ -51,12 +51,6 @@ abstract class BaseActividad extends BaseObject  implements Persistent {
 	protected $lastRelDivisionActividadDocenteCriteria = null;
 
 	
-	protected $collRelActividadDocentes;
-
-	
-	protected $lastRelActividadDocenteCriteria = null;
-
-	
 	protected $alreadyInSave = false;
 
 	
@@ -276,14 +270,6 @@ abstract class BaseActividad extends BaseObject  implements Persistent {
 				}
 			}
 
-			if ($this->collRelActividadDocentes !== null) {
-				foreach($this->collRelActividadDocentes as $referrerFK) {
-					if (!$referrerFK->isDeleted()) {
-						$affectedRows += $referrerFK->save($con);
-					}
-				}
-			}
-
 			$this->alreadyInSave = false;
 		}
 		return $affectedRows;
@@ -359,14 +345,6 @@ abstract class BaseActividad extends BaseObject  implements Persistent {
 
 				if ($this->collRelDivisionActividadDocentes !== null) {
 					foreach($this->collRelDivisionActividadDocentes as $referrerFK) {
-						if (!$referrerFK->validate($columns)) {
-							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
-						}
-					}
-				}
-
-				if ($this->collRelActividadDocentes !== null) {
-					foreach($this->collRelActividadDocentes as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -520,10 +498,6 @@ abstract class BaseActividad extends BaseObject  implements Persistent {
 
 			foreach($this->getRelDivisionActividadDocentes() as $relObj) {
 				$copyObj->addRelDivisionActividadDocente($relObj->copy($deepCopy));
-			}
-
-			foreach($this->getRelActividadDocentes() as $relObj) {
-				$copyObj->addRelActividadDocente($relObj->copy($deepCopy));
 			}
 
 		} 
@@ -1244,111 +1218,6 @@ abstract class BaseActividad extends BaseObject  implements Persistent {
 		$this->lastRelDivisionActividadDocenteCriteria = $criteria;
 
 		return $this->collRelDivisionActividadDocentes;
-	}
-
-	
-	public function initRelActividadDocentes()
-	{
-		if ($this->collRelActividadDocentes === null) {
-			$this->collRelActividadDocentes = array();
-		}
-	}
-
-	
-	public function getRelActividadDocentes($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseRelActividadDocentePeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collRelActividadDocentes === null) {
-			if ($this->isNew()) {
-			   $this->collRelActividadDocentes = array();
-			} else {
-
-				$criteria->add(RelActividadDocentePeer::FK_ACTIVIDAD_ID, $this->getId());
-
-				RelActividadDocentePeer::addSelectColumns($criteria);
-				$this->collRelActividadDocentes = RelActividadDocentePeer::doSelect($criteria, $con);
-			}
-		} else {
-						if (!$this->isNew()) {
-												
-
-				$criteria->add(RelActividadDocentePeer::FK_ACTIVIDAD_ID, $this->getId());
-
-				RelActividadDocentePeer::addSelectColumns($criteria);
-				if (!isset($this->lastRelActividadDocenteCriteria) || !$this->lastRelActividadDocenteCriteria->equals($criteria)) {
-					$this->collRelActividadDocentes = RelActividadDocentePeer::doSelect($criteria, $con);
-				}
-			}
-		}
-		$this->lastRelActividadDocenteCriteria = $criteria;
-		return $this->collRelActividadDocentes;
-	}
-
-	
-	public function countRelActividadDocentes($criteria = null, $distinct = false, $con = null)
-	{
-				include_once 'lib/model/om/BaseRelActividadDocentePeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		$criteria->add(RelActividadDocentePeer::FK_ACTIVIDAD_ID, $this->getId());
-
-		return RelActividadDocentePeer::doCount($criteria, $distinct, $con);
-	}
-
-	
-	public function addRelActividadDocente(RelActividadDocente $l)
-	{
-		$this->collRelActividadDocentes[] = $l;
-		$l->setActividad($this);
-	}
-
-
-	
-	public function getRelActividadDocentesJoinDocente($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseRelActividadDocentePeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collRelActividadDocentes === null) {
-			if ($this->isNew()) {
-				$this->collRelActividadDocentes = array();
-			} else {
-
-				$criteria->add(RelActividadDocentePeer::FK_ACTIVIDAD_ID, $this->getId());
-
-				$this->collRelActividadDocentes = RelActividadDocentePeer::doSelectJoinDocente($criteria, $con);
-			}
-		} else {
-									
-			$criteria->add(RelActividadDocentePeer::FK_ACTIVIDAD_ID, $this->getId());
-
-			if (!isset($this->lastRelActividadDocenteCriteria) || !$this->lastRelActividadDocenteCriteria->equals($criteria)) {
-				$this->collRelActividadDocentes = RelActividadDocentePeer::doSelectJoinDocente($criteria, $con);
-			}
-		}
-		$this->lastRelActividadDocenteCriteria = $criteria;
-
-		return $this->collRelActividadDocentes;
 	}
 
 } 

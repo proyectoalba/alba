@@ -27,7 +27,7 @@ generator:
     edit:
         title: Editar Docente
         fields:
-            actividades: { type: admin_double_list, params: through_class=RelActividadDocente }
+            actividades: { type: admin_double_list, params: through_class=RelAnioActividadDocente style=width:260px }
 
         display:       
                  "Informacion general":  [apellido, nombre, fecha_nacimiento, _sexo, fk_tipodocumento_id, nro_documento ]

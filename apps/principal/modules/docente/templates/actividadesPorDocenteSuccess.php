@@ -29,7 +29,10 @@ Apellido y Nombre:
   foreach($actividades as $actividad){
 ?>
   <tr class="sf_admin_row_0">
-    <td><?echo $actividad->getActividad()->getNombre();?></td>
+    <td>
+
+   <?echo $actividad->getRelAnioActividad()->getActividad()->getNombre()." de  ".$actividad->getRelAnioActividad()->getAnio()->getDescripcion()." ".(($actividad->getRelAnioActividad()->getOrientacion())?" de ".$actividad->getRelAnioActividad()->getOrientacion()->getNombre():"");?>
+    </td>
   </tr>
   <?}?>
   </tbody>

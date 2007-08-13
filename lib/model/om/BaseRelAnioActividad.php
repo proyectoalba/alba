@@ -37,6 +37,12 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 	protected $aOrientacion;
 
 	
+	protected $collRelAnioActividadDocentes;
+
+	
+	protected $lastRelAnioActividadDocenteCriteria = null;
+
+	
 	protected $alreadyInSave = false;
 
 	
@@ -265,6 +271,14 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 				}
 				$this->resetModified(); 			}
 
+			if ($this->collRelAnioActividadDocentes !== null) {
+				foreach($this->collRelAnioActividadDocentes as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
 			$this->alreadyInSave = false;
 		}
 		return $affectedRows;
@@ -325,6 +339,14 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 				$failureMap = array_merge($failureMap, $retval);
 			}
 
+
+				if ($this->collRelAnioActividadDocentes !== null) {
+					foreach($this->collRelAnioActividadDocentes as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
 
 
 			$this->alreadyInValidation = false;
@@ -467,6 +489,15 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 		$copyObj->setHoras($this->horas);
 
 
+		if ($deepCopy) {
+									$copyObj->setNew(false);
+
+			foreach($this->getRelAnioActividadDocentes() as $relObj) {
+				$copyObj->addRelAnioActividadDocente($relObj->copy($deepCopy));
+			}
+
+		} 
+
 		$copyObj->setNew(true);
 
 		$copyObj->setId(NULL); 
@@ -578,6 +609,111 @@ abstract class BaseRelAnioActividad extends BaseObject  implements Persistent {
 			
 		}
 		return $this->aOrientacion;
+	}
+
+	
+	public function initRelAnioActividadDocentes()
+	{
+		if ($this->collRelAnioActividadDocentes === null) {
+			$this->collRelAnioActividadDocentes = array();
+		}
+	}
+
+	
+	public function getRelAnioActividadDocentes($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseRelAnioActividadDocentePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collRelAnioActividadDocentes === null) {
+			if ($this->isNew()) {
+			   $this->collRelAnioActividadDocentes = array();
+			} else {
+
+				$criteria->add(RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID, $this->getId());
+
+				RelAnioActividadDocentePeer::addSelectColumns($criteria);
+				$this->collRelAnioActividadDocentes = RelAnioActividadDocentePeer::doSelect($criteria, $con);
+			}
+		} else {
+						if (!$this->isNew()) {
+												
+
+				$criteria->add(RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID, $this->getId());
+
+				RelAnioActividadDocentePeer::addSelectColumns($criteria);
+				if (!isset($this->lastRelAnioActividadDocenteCriteria) || !$this->lastRelAnioActividadDocenteCriteria->equals($criteria)) {
+					$this->collRelAnioActividadDocentes = RelAnioActividadDocentePeer::doSelect($criteria, $con);
+				}
+			}
+		}
+		$this->lastRelAnioActividadDocenteCriteria = $criteria;
+		return $this->collRelAnioActividadDocentes;
+	}
+
+	
+	public function countRelAnioActividadDocentes($criteria = null, $distinct = false, $con = null)
+	{
+				include_once 'lib/model/om/BaseRelAnioActividadDocentePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		$criteria->add(RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID, $this->getId());
+
+		return RelAnioActividadDocentePeer::doCount($criteria, $distinct, $con);
+	}
+
+	
+	public function addRelAnioActividadDocente(RelAnioActividadDocente $l)
+	{
+		$this->collRelAnioActividadDocentes[] = $l;
+		$l->setRelAnioActividad($this);
+	}
+
+
+	
+	public function getRelAnioActividadDocentesJoinDocente($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseRelAnioActividadDocentePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collRelAnioActividadDocentes === null) {
+			if ($this->isNew()) {
+				$this->collRelAnioActividadDocentes = array();
+			} else {
+
+				$criteria->add(RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID, $this->getId());
+
+				$this->collRelAnioActividadDocentes = RelAnioActividadDocentePeer::doSelectJoinDocente($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID, $this->getId());
+
+			if (!isset($this->lastRelAnioActividadDocenteCriteria) || !$this->lastRelAnioActividadDocenteCriteria->equals($criteria)) {
+				$this->collRelAnioActividadDocentes = RelAnioActividadDocentePeer::doSelectJoinDocente($criteria, $con);
+			}
+		}
+		$this->lastRelAnioActividadDocenteCriteria = $criteria;
+
+		return $this->collRelAnioActividadDocentes;
 	}
 
 } 

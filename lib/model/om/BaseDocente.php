@@ -98,16 +98,16 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 	protected $lastRelDocenteEstablecimientoCriteria = null;
 
 	
-	protected $collRelActividadDocentes;
-
-	
-	protected $lastRelActividadDocenteCriteria = null;
-
-	
 	protected $collDocenteHorarios;
 
 	
 	protected $lastDocenteHorarioCriteria = null;
+
+	
+	protected $collRelAnioActividadDocentes;
+
+	
+	protected $lastRelAnioActividadDocenteCriteria = null;
 
 	
 	protected $alreadyInSave = false;
@@ -652,16 +652,16 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 				}
 			}
 
-			if ($this->collRelActividadDocentes !== null) {
-				foreach($this->collRelActividadDocentes as $referrerFK) {
+			if ($this->collDocenteHorarios !== null) {
+				foreach($this->collDocenteHorarios as $referrerFK) {
 					if (!$referrerFK->isDeleted()) {
 						$affectedRows += $referrerFK->save($con);
 					}
 				}
 			}
 
-			if ($this->collDocenteHorarios !== null) {
-				foreach($this->collDocenteHorarios as $referrerFK) {
+			if ($this->collRelAnioActividadDocentes !== null) {
+				foreach($this->collRelAnioActividadDocentes as $referrerFK) {
 					if (!$referrerFK->isDeleted()) {
 						$affectedRows += $referrerFK->save($con);
 					}
@@ -739,16 +739,16 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 					}
 				}
 
-				if ($this->collRelActividadDocentes !== null) {
-					foreach($this->collRelActividadDocentes as $referrerFK) {
+				if ($this->collDocenteHorarios !== null) {
+					foreach($this->collDocenteHorarios as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
 					}
 				}
 
-				if ($this->collDocenteHorarios !== null) {
-					foreach($this->collDocenteHorarios as $referrerFK) {
+				if ($this->collRelAnioActividadDocentes !== null) {
+					foreach($this->collRelAnioActividadDocentes as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -1050,12 +1050,12 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 				$copyObj->addRelDocenteEstablecimiento($relObj->copy($deepCopy));
 			}
 
-			foreach($this->getRelActividadDocentes() as $relObj) {
-				$copyObj->addRelActividadDocente($relObj->copy($deepCopy));
-			}
-
 			foreach($this->getDocenteHorarios() as $relObj) {
 				$copyObj->addDocenteHorario($relObj->copy($deepCopy));
+			}
+
+			foreach($this->getRelAnioActividadDocentes() as $relObj) {
+				$copyObj->addRelAnioActividadDocente($relObj->copy($deepCopy));
 			}
 
 		} 
@@ -1424,111 +1424,6 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 	}
 
 	
-	public function initRelActividadDocentes()
-	{
-		if ($this->collRelActividadDocentes === null) {
-			$this->collRelActividadDocentes = array();
-		}
-	}
-
-	
-	public function getRelActividadDocentes($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseRelActividadDocentePeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collRelActividadDocentes === null) {
-			if ($this->isNew()) {
-			   $this->collRelActividadDocentes = array();
-			} else {
-
-				$criteria->add(RelActividadDocentePeer::FK_DOCENTE_ID, $this->getId());
-
-				RelActividadDocentePeer::addSelectColumns($criteria);
-				$this->collRelActividadDocentes = RelActividadDocentePeer::doSelect($criteria, $con);
-			}
-		} else {
-						if (!$this->isNew()) {
-												
-
-				$criteria->add(RelActividadDocentePeer::FK_DOCENTE_ID, $this->getId());
-
-				RelActividadDocentePeer::addSelectColumns($criteria);
-				if (!isset($this->lastRelActividadDocenteCriteria) || !$this->lastRelActividadDocenteCriteria->equals($criteria)) {
-					$this->collRelActividadDocentes = RelActividadDocentePeer::doSelect($criteria, $con);
-				}
-			}
-		}
-		$this->lastRelActividadDocenteCriteria = $criteria;
-		return $this->collRelActividadDocentes;
-	}
-
-	
-	public function countRelActividadDocentes($criteria = null, $distinct = false, $con = null)
-	{
-				include_once 'lib/model/om/BaseRelActividadDocentePeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		$criteria->add(RelActividadDocentePeer::FK_DOCENTE_ID, $this->getId());
-
-		return RelActividadDocentePeer::doCount($criteria, $distinct, $con);
-	}
-
-	
-	public function addRelActividadDocente(RelActividadDocente $l)
-	{
-		$this->collRelActividadDocentes[] = $l;
-		$l->setDocente($this);
-	}
-
-
-	
-	public function getRelActividadDocentesJoinActividad($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseRelActividadDocentePeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collRelActividadDocentes === null) {
-			if ($this->isNew()) {
-				$this->collRelActividadDocentes = array();
-			} else {
-
-				$criteria->add(RelActividadDocentePeer::FK_DOCENTE_ID, $this->getId());
-
-				$this->collRelActividadDocentes = RelActividadDocentePeer::doSelectJoinActividad($criteria, $con);
-			}
-		} else {
-									
-			$criteria->add(RelActividadDocentePeer::FK_DOCENTE_ID, $this->getId());
-
-			if (!isset($this->lastRelActividadDocenteCriteria) || !$this->lastRelActividadDocenteCriteria->equals($criteria)) {
-				$this->collRelActividadDocentes = RelActividadDocentePeer::doSelectJoinActividad($criteria, $con);
-			}
-		}
-		$this->lastRelActividadDocenteCriteria = $criteria;
-
-		return $this->collRelActividadDocentes;
-	}
-
-	
 	public function initDocenteHorarios()
 	{
 		if ($this->collDocenteHorarios === null) {
@@ -1631,6 +1526,111 @@ abstract class BaseDocente extends BaseObject  implements Persistent {
 		$this->lastDocenteHorarioCriteria = $criteria;
 
 		return $this->collDocenteHorarios;
+	}
+
+	
+	public function initRelAnioActividadDocentes()
+	{
+		if ($this->collRelAnioActividadDocentes === null) {
+			$this->collRelAnioActividadDocentes = array();
+		}
+	}
+
+	
+	public function getRelAnioActividadDocentes($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseRelAnioActividadDocentePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collRelAnioActividadDocentes === null) {
+			if ($this->isNew()) {
+			   $this->collRelAnioActividadDocentes = array();
+			} else {
+
+				$criteria->add(RelAnioActividadDocentePeer::FK_DOCENTE_ID, $this->getId());
+
+				RelAnioActividadDocentePeer::addSelectColumns($criteria);
+				$this->collRelAnioActividadDocentes = RelAnioActividadDocentePeer::doSelect($criteria, $con);
+			}
+		} else {
+						if (!$this->isNew()) {
+												
+
+				$criteria->add(RelAnioActividadDocentePeer::FK_DOCENTE_ID, $this->getId());
+
+				RelAnioActividadDocentePeer::addSelectColumns($criteria);
+				if (!isset($this->lastRelAnioActividadDocenteCriteria) || !$this->lastRelAnioActividadDocenteCriteria->equals($criteria)) {
+					$this->collRelAnioActividadDocentes = RelAnioActividadDocentePeer::doSelect($criteria, $con);
+				}
+			}
+		}
+		$this->lastRelAnioActividadDocenteCriteria = $criteria;
+		return $this->collRelAnioActividadDocentes;
+	}
+
+	
+	public function countRelAnioActividadDocentes($criteria = null, $distinct = false, $con = null)
+	{
+				include_once 'lib/model/om/BaseRelAnioActividadDocentePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		$criteria->add(RelAnioActividadDocentePeer::FK_DOCENTE_ID, $this->getId());
+
+		return RelAnioActividadDocentePeer::doCount($criteria, $distinct, $con);
+	}
+
+	
+	public function addRelAnioActividadDocente(RelAnioActividadDocente $l)
+	{
+		$this->collRelAnioActividadDocentes[] = $l;
+		$l->setDocente($this);
+	}
+
+
+	
+	public function getRelAnioActividadDocentesJoinRelAnioActividad($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseRelAnioActividadDocentePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collRelAnioActividadDocentes === null) {
+			if ($this->isNew()) {
+				$this->collRelAnioActividadDocentes = array();
+			} else {
+
+				$criteria->add(RelAnioActividadDocentePeer::FK_DOCENTE_ID, $this->getId());
+
+				$this->collRelAnioActividadDocentes = RelAnioActividadDocentePeer::doSelectJoinRelAnioActividad($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(RelAnioActividadDocentePeer::FK_DOCENTE_ID, $this->getId());
+
+			if (!isset($this->lastRelAnioActividadDocenteCriteria) || !$this->lastRelAnioActividadDocenteCriteria->equals($criteria)) {
+				$this->collRelAnioActividadDocentes = RelAnioActividadDocentePeer::doSelectJoinRelAnioActividad($criteria, $con);
+			}
+		}
+		$this->lastRelAnioActividadDocenteCriteria = $criteria;
+
+		return $this->collRelAnioActividadDocentes;
 	}
 
 } 
