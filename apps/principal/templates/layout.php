@@ -4,19 +4,20 @@
     <?php echo include_http_metas() ?>
     <?php echo include_metas() ?>
     <?php echo include_title() ?>
-    <link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot() . 'js/jsmenu/themes/'.sfConfig::get("app_alba_menutheme").'/theme.css' ?>"/>
-    <link rel="shortcut icon" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot() ?>favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot() . '/js/jsmenu/themes/'.sfConfig::get("app_alba_menutheme").'/theme.css' ?>"/>
+    <link rel="shortcut icon" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot() ?>/favicon.ico" />
 
-    <link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>css/marco_imagenes.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/css/marco_imagenes.css">
 
     <?php if (!$sf_user->isAuthenticated()):?>
-        <link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>css/login.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/css/login.css">
     <?php endif;?>
     </head>
     <body>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
             <tr valign="top"> 
                 <td colspan="2" class="fmedio">
+            <div id="logo"> 
                 <table cellpadding="0" cellspacing="0" width="100%">
                     <tr>
                         <td class="fmedio"><?=image_tag("gui/index_1x1.png", array ( 'width' => '758' , 'heigth' => '77' ) )?></td>
@@ -51,8 +52,9 @@
                         </td>
                     </tr>
                 </table>
+            </div>
                 </td>
-                <td><?php echo image_tag("gui/index_1x2.png", array ( 'width' => '17' , 'heigth' => '77' ) )?></td>
+                <td id="marco_derecha"><?php echo image_tag("gui/index_1x2.png", array ( 'width' => '17' , 'heigth' => '77' ) )?></td>
             </tr>
             <tr valign="top"> 
                 <td class="fizq-menu" width="1%">&nbsp;</td>
@@ -65,7 +67,7 @@
                     <a href ="javascript:window.print()"><?php echo image_tag('small/print.png',array('title'=>'Imprimir','alt'=>'print.png','border'=>0))?></a>
                     </div>
                 </td>
-                <td><?php echo image_tag("gui/index_2x2.png", array ( 'width' => '17' , 'heigth' => '35' ) )?></td>
+                <td id="marco_derecha"><?php echo image_tag("gui/index_2x2.png", array ( 'width' => '17' , 'heigth' => '35' ) )?></td>
             </tr>
             <tr valign="top"> 
                 <td width="33" class="fizq">&nbsp;</td>
@@ -99,7 +101,7 @@
                 </td>
                 <td width="17" class="fder">&nbsp;</td>
             </tr>
-            <tr valign="top"> 
+            <tr id="marco_pie" valign="top"> 
                 <td><?php echo image_tag("gui/index3_5x1.png", array ( 'width' => '33' , 'heigth' => '22' ) )?></td>
                 <td class="fdown">&nbsp;</td>
                 <td><?php echo image_tag("gui/index3_5x3.png", array ( 'width' => '17' , 'heigth' => '20' ) )?></td>
