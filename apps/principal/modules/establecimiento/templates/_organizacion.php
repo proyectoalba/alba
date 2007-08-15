@@ -1,1 +1,1 @@
-<? echo link_to($establecimiento->getOrganizacion()->getNombre(),'organizacion/edit?id='.$establecimiento->getFkOrganizacionId());?>
+<?php echo link_to($establecimiento->getOrganizacion()->getNombre(),'organizacion/edit?id='.$establecimiento->getFkOrganizacionId());?>

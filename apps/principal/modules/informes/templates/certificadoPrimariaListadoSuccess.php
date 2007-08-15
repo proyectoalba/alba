@@ -1,4 +1,4 @@
-<div style="text-align: center;"><?=image_tag('small/escudo_bsas_chico.jpg')?></div>
+<div style="text-align: center;"><?php echo image_tag('small/escudo_bsas_chico.jpg')?></div>
 <div style="text-align: center;" class="titulo">REP&Uacute;BLICA ARGENTINA<br><br>
 <span style="font-weight: bold;" class="titulo">GOBIERNO DE LA CIUDAD DE BUENOS AIRES</span><br style="font-weight: bold;">
 <span style="font-weight: bold;" class="titulo">SECRETAR&iacute;A DE EDUCACION</span><br>
@@ -8,11 +8,11 @@
 <br>
 <br>
 <div class="texto">
-Certifico que <?=$alumno->getApellido()?>, <?=$alumno->getNombre()?>  quien acredita identidad con <?=$alumno->getTipoDocumento()->getDescripcion()?> <br> N&deg; <?=$alumno->getNroDocumento()?> nacido  <?=($alumno->getLugarNacimiento())?" en ".$alumno->getLugarNacimiento():""?> el <?=date("d",strtotime($alumno->getFechaNacimiento()))?> de <?=$meses[date("n",strtotime($alumno->getFechaNacimiento()))]?> de  <?=date("Y",strtotime($alumno->getFechaNacimiento()))?> aprob&oacute; el s&eacute;ptimo grado, como alumno <br> 
-regular en Escuela <?=strtoupper($establecimiento->getNombre())?>  D.E. <?=$establecimiento->getDistritoescolar()->getNombre()?> en el a&ntilde;o <?=$anio?><br>
+Certifico que <?=$alumno->getApellido()?>, <?=$alumno->getNombre()?>  quien acredita identidad con <?php echo $alumno->getTipoDocumento()->getDescripcion()?> <br> N&deg; <?php echo $alumno->getNroDocumento()?> nacido  <?php echo ($alumno->getLugarNacimiento())?" en ".$alumno->getLugarNacimiento():""?> el <?php echo date("d",strtotime($alumno->getFechaNacimiento()))?> de <?php echo $meses[date("n",strtotime($alumno->getFechaNacimiento()))]?> de  <?php echo date("Y",strtotime($alumno->getFechaNacimiento()))?> aprob&oacute; el s&eacute;ptimo grado, como alumno <br> 
+regular en Escuela <?php echo strtoupper($establecimiento->getNombre())?>  D.E. <?php echo $establecimiento->getDistritoescolar()->getNombre()?> en el a&ntilde;o <?php echo $anio?><br>
 <br>
 Se extiende el presente <span style="font-weight: bold;">CERTIFICADO DE TERMINACI&Oacute;N DE ESTUDIOS PRIMARIOS</span>, <br>
-en Buenos Aires, a los <?=$dia?> d&iacute;as del mes de <?=$mes?> del a&ntilde;o  <?=$anio?> <br>
+en Buenos Aires, a los <?php echo $dia?> d&iacute;as del mes de <?php echo $mes?> del a&ntilde;o  <?php echo $anio?> <br>
 </div>
 <br>
 <br>

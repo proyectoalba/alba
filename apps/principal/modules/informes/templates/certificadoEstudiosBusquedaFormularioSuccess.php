@@ -19,8 +19,8 @@
 </form>
 <?php if (count($aAlumno) > 0) {
     if ($txt) { ?>
-    Usted busc&oacute; -<?=$txt?>-
-    <? } ?>
+    Usted busc&oacute; -<?php echo $txt?>-
+    <?php  } ?>
 <h1>Alumnos</h1>
 <table cellspacing="0" class="sf_admin_list">
   <thead>
@@ -48,7 +48,7 @@
 </table>
 <?php } else {
     if ($txt) { ?>
-        Su b&uacute;squeda por -<?=$txt?>- no ha encontrado alumnos.
+        Su b&uacute;squeda por -<?php echo $txt?>- no ha encontrado alumnos.
     <?php } 
 } 
 ?>

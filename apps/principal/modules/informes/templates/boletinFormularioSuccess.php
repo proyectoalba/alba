@@ -23,7 +23,7 @@
 </form>
 <?php if (count($aAlumno) > 0) {
     if ($txt) { ?>
-    Ustde busc&oacute; -<?=$txt?>-
+    Ustde busc&oacute; -<?php echo $txt?>-
     <?php } ?>
 <h1>Alumnos</h1>
 <table cellspacing="0" class="sf_admin_list">
@@ -40,7 +40,7 @@
     foreach($aAlumno as $alumno){
 ?>
   <tr class="sf_admin_row_0">
-    <td><?echo $alumno->alumno_apellido." ".$alumno->alumno_nombre; ?> ( <?=$alumno->anio_descripcion?> - <?=$alumno->division_nombre?> ) </td>
+    <td><?php echo $alumno->alumno_apellido." ".$alumno->alumno_nombre; ?> ( <?php echo $alumno->anio_descripcion?> - <?php echo $alumno->division_nombre?> ) </td>
     <td>
     <ul class="sf_admin_td_actions">
      <li><?php echo link_to(image_tag(sfConfig::get('sf_admin_web_dir').'/images/edit_icon.png', array('alt' => 'editar', 'title' => 'Editar')) , 'informes?action=boletinListado&alumno_id='.$alumno->alumno_id."&division_id=".$alumno->division_id); ?></li>
@@ -52,7 +52,7 @@
 </table>
 <?php } else {
     if ($txt) { ?>
-        Su b&uacute;squeda por -<?=$txt?>- no ha encontrado alumnos.
+        Su b&uacute;squeda por -<?php echo $txt?>- no ha encontrado alumnos.
     <?php } 
 } 
 ?>

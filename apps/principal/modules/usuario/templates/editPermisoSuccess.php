@@ -16,8 +16,8 @@ Rol:  <?php echo select_tag('rolId', options_for_select($optionsRol, $sf_params-
     echo input_hidden_tag('id', $sf_params->get('id'));
 ?>
 <ul class="sf_admin_actions">
-<li><? echo submit_tag('submit', 'class=sf_admin_action_save value=Grabar');?></li>
-<li><? echo button_to('Listado de usuarios','usuario/list',array('class'=>'sf_admin_action_list'))?></li>
+<li><?php echo submit_tag('submit', 'class=sf_admin_action_save value=Grabar');?></li>
+<li><?php echo button_to('Listado de usuarios','usuario/list',array('class'=>'sf_admin_action_list'))?></li>
 </ul>
 </form>
 <script type="text/javascript">

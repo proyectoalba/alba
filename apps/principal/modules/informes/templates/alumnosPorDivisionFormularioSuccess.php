@@ -11,7 +11,7 @@
 <?php } ?>
 </ul>
 </div>
-<? } ?> 
+<?php } ?> 
 
 <?php echo form_tag('informes/alumnosPorDivisionListado', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
 

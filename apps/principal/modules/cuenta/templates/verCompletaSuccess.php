@@ -8,27 +8,27 @@
 <table align="center" class="sf_admin_list">
     <tr>
         <td>Nombre:</td>
-        <td style="font-size: 15px;font-weight: bold"><?echo $cuenta->getNombre();?></td>
+        <td style="font-size: 15px;font-weight: bold"><?php echo $cuenta->getNombre();?></td>
         <td>Direcci&oacute;n:</td>
-        <td style="font-size: 15px;font-weight: bold"><?echo $cuenta->getDireccion();?></td>
+        <td style="font-size: 15px;font-weight: bold"><?php echo $cuenta->getDireccion();?></td>
     </tr>
     <tr>    
         <td>Raz&oacute;n Social:</td>
-        <td style="font-size: 15px;font-weight: bold"><?echo $cuenta->getRazonSocial();?></td>
+        <td style="font-size: 15px;font-weight: bold"><?php echo $cuenta->getRazonSocial();?></td>
         <td>Ciudad:</td>
-        <td style="font-size: 15px;font-weight: bold"><?echo $cuenta->getCiudad();?></td>
+        <td style="font-size: 15px;font-weight: bold"><?php echo $cuenta->getCiudad();?></td>
     </tr>
     <tr>    
         <td>CUIT:</td>
-        <td style="font-size: 15px;font-weight: bold"><?echo $cuenta->getCuit();?></td>
+        <td style="font-size: 15px;font-weight: bold"><?php echo $cuenta->getCuit();?></td>
         <td>CP:</td>
-        <td style="font-size: 15px;font-weight: bold"><?echo $cuenta->getCodigoPostal();?></td>        
+        <td style="font-size: 15px;font-weight: bold"><?php echo $cuenta->getCodigoPostal();?></td>        
     </tr>
     <tr>    
         <td>Tipo IVA:</td>
-        <td style="font-size: 15px;font-weight: bold"><?echo $cuenta->getTipoIva();?></td>
+        <td style="font-size: 15px;font-weight: bold"><?php echo $cuenta->getTipoIva();?></td>
         <td>Tel&eacute;fono:</td>
-        <td style="font-size: 15px;font-weight: bold"><?echo $cuenta->getTelefono();?></td>
+        <td style="font-size: 15px;font-weight: bold"><?php echo $cuenta->getTelefono();?></td>
     </tr>
 </table>    
 </div>
@@ -52,15 +52,15 @@
   </tr>
   </thead>
   <tbody>
-<?
+<?php
   foreach($aAlumno as $alumno){
 ?>
   <tr class="sf_admin_row_0">
-    <td><?echo $alumno->getApellido();?></td>
-    <td><?echo $alumno->getNombre();?></td>
-    <td><?echo $alumno->getNroDocumento();?></td>
-    <td><?echo $alumno->getSexo();?></td>
-    <td><?echo $alumno->getTelefono();?></td>
+    <td><?php echo $alumno->getApellido();?></td>
+    <td><?php echo $alumno->getNombre();?></td>
+    <td><?php echo $alumno->getNroDocumento();?></td>
+    <td><?php echo $alumno->getSexo();?></td>
+    <td><?php echo $alumno->getTelefono();?></td>
     <td>
       <ul class="sf_admin_td_actions">
         <li>
@@ -84,7 +84,7 @@
       </ul>
     </td>
   </tr>
-  <?}?>
+  <?php } ?>
   </tbody>
 <tfoot>
   <tr>
@@ -125,18 +125,18 @@
   </tr>
   </thead>
   <tbody>
-<?
+<?php
   foreach($aResponsable as $responsable){
 ?>
   <tr class="sf_admin_row_0">
-    <td><?echo $responsable->getApellido();?></td>
-    <td><?echo $responsable->getNombre();?></td>
-    <td><?echo $responsable->getNroDocumento();?></td>
-    <td><?echo $responsable->getDireccion();?></td>
-    <td><?echo $responsable->getCiudad();?></td>
-    <td><?echo $responsable->getRolResponsable();?></td>
-    <td><?echo $responsable->getAutorizacionRetiro() == 1 ? "Si" : "No";?></td>
-    <td><?echo $responsable->getTelefono();?></td>
+    <td><?php echo $responsable->getApellido();?></td>
+    <td><?php echo $responsable->getNombre();?></td>
+    <td><?php echo $responsable->getNroDocumento();?></td>
+    <td><?php echo $responsable->getDireccion();?></td>
+    <td><?php echo $responsable->getCiudad();?></td>
+    <td><?php echo $responsable->getRolResponsable();?></td>
+    <td><?php echo $responsable->getAutorizacionRetiro() == 1 ? "Si" : "No";?></td>
+    <td><?php echo $responsable->getTelefono();?></td>
     <td>
       <ul class="sf_admin_td_actions">
         <li>
@@ -148,7 +148,7 @@
       </ul>
     </td>
   </tr>
-  <?}?>
+  <?php }?>
   </tbody>
 <tfoot>
   <tr>

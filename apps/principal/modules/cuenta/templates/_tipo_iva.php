@@ -1,1 +1,1 @@
-<? echo link_to($cuenta->getTipoIva()->getNombre(),'tipoiva/edit?id='.$cuenta->getFkTipoIvaId());?>
+<?php echo link_to($cuenta->getTipoIva()->getNombre(),'tipoiva/edit?id='.$cuenta->getFkTipoIvaId());?>

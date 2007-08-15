@@ -1,1 +1,1 @@
-<?=$establecimiento->getNivelTipo()->getNombre()?>
+<?php echo $establecimiento->getNivelTipo()->getNombre()?>

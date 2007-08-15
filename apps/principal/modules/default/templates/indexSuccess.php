@@ -12,7 +12,7 @@ El Proyecto Alba, es un proyecto de desarrollo de Software para la realizaci&oac
 <table align="center">
     <tr>
         <td>
-            <?=image_tag("gnu-head-banner.png");?>
+            <?php echo image_tag("gnu-head-banner.png");?>
         </td>
         <td>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -35,7 +35,7 @@ El Proyecto Alba, es un proyecto de desarrollo de Software para la realizaci&oac
 <table align="center">
     <tr>
         <td>
-            <?=image_tag("bug.jpg");?>
+            <?php echo image_tag("bug.jpg");?>
         </td>
         <td>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -64,21 +64,21 @@ El Proyecto Alba, es un proyecto de desarrollo de Software para la realizaci&oac
     <ul>
         <li>Informaci&oacute;n del Sistema
             <ul>
-                <li>PHP: <?echo phpversion()?></li>
+                <li>PHP: <?php echo phpversion()?></li>
             </ul>
         </li>
         <li>Permisos:
             <ul>
-            <? foreach ($sf_user->listCredentials() as $permiso):?>
-            <li><?echo $permiso?></li>
-            <?endforeach;?>
+            <?php foreach ($sf_user->listCredentials() as $permiso):?>
+            <li><?php echo $permiso?></li>
+            <?php endforeach;?>
             </ul>
         </li>
         <li>Establecimientos:
             <ul>
                 <?php $establecimientos = $sf_user->getEstablecimientos()?>
                 <?php foreach ($establecimientos as $establecimiento): ?>
-                    <li><?echo $establecimiento?></li>
+                    <li><?php echo $establecimiento?></li>
                 <?php endforeach; ?>
             </ul>
         </li>

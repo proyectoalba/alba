@@ -31,10 +31,10 @@ Apellido y Nombre:
   <tr class="sf_admin_row_0">
     <td>
 
-   <?echo $actividad->getRelAnioActividad()->getActividad()->getNombre()." de  ".$actividad->getRelAnioActividad()->getAnio()->getDescripcion()." ".(($actividad->getRelAnioActividad()->getOrientacion())?" de ".$actividad->getRelAnioActividad()->getOrientacion()->getNombre():"");?>
+   <?php echo $actividad->getRelAnioActividad()->getActividad()->getNombre()." de  ".$actividad->getRelAnioActividad()->getAnio()->getDescripcion()." ".(($actividad->getRelAnioActividad()->getOrientacion())?" de ".$actividad->getRelAnioActividad()->getOrientacion()->getNombre():"");?>
     </td>
   </tr>
-  <?}?>
+  <?php } ?>
   </tbody>
 <tfoot>
   <tr>

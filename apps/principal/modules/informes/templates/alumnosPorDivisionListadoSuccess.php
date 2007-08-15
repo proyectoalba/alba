@@ -21,14 +21,14 @@
   foreach($aAlumno as $alumno) {
 ?>
   <tr class="sf_admin_row_0">
-    <td><?=$alumno->getApellido();?></td>
-    <td><?=$alumno->getNombre();?></td>
-    <td><?=($alumno->getTipoDocumento())?$alumno->getTipoDocumento()->getNombre():"";?> <?echo $alumno->getNroDocumento();?></td>
-    <td><?=$alumno->getSexo();?></td>
-    <td><?=$alumno->getDireccion();?></td>
-    <td><?=$alumno->getCiudad();?></td>
-    <td><?=($alumno->getProvincia())?$alumno->getProvincia()->getNombreLargo():"";?></td>
-    <td><?=$alumno->getTelefono();?></td>
+    <td><?php echo $alumno->getApellido();?></td>
+    <td><?php echo $alumno->getNombre();?></td>
+    <td><?php echo ($alumno->getTipoDocumento())?$alumno->getTipoDocumento()->getNombre():"";?> <?php echo $alumno->getNroDocumento();?></td>
+    <td><?php echo $alumno->getSexo();?></td>
+    <td><?php echo $alumno->getDireccion();?></td>
+    <td><?php echo $alumno->getCiudad();?></td>
+    <td><?php echo ($alumno->getProvincia())?$alumno->getProvincia()->getNombreLargo():"";?></td>
+    <td><?php echo $alumno->getTelefono();?></td>
 
   </tr>
   <?php }?>

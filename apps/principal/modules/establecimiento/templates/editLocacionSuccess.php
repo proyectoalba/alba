@@ -5,7 +5,7 @@
     </div>
 <?php endif;?>
 <div id="sf_admin_container">
-<h1>Locaciones x Establecimiento "<?=$establecimiento->getNombre()?>"</h1>
+<h1>Locaciones x Establecimiento "<?php echo $establecimiento->getNombre()?>"</h1>
 
 <?php echo form_tag('establecimiento/saveLocacion', 'onSubmit="selectItem()"')?>
 <?php 
