@@ -46,7 +46,7 @@
       </div>
     <?php endif ?>
 
-    <?php echo form_tag('asistencia/mostrar', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
+    <?php echo form_tag('asistencia/index', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
     <fieldset id="sf_fieldset_none" class="">
     <div class="form-row">
         <table cellspacing="1">
@@ -166,7 +166,7 @@
         <?php echo submit_tag(__('Grabar'), array ('name' => 'Grabar','class' => 'sf_admin_action_save')) ?>
         </form>
         <?php 
-            echo form_tag('asistencia/mostrar', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true');
+            echo form_tag('asistencia/listado', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true');
             echo input_hidden_tag('division_id', $division_id); 
             echo input_hidden_tag('dia', "$d"); 
             echo input_hidden_tag('mes', "$m"); 
@@ -175,7 +175,7 @@
             echo input_hidden_tag('vista', "layout_sinmenu"); 
             if($alumno_id >= 0)
                  echo input_hidden_tag('alumno_id', $alumno_id);
-            echo submit_tag(__('Imprimir'), array ('name' => 'Imprimir','class' => 'sf_admin_action_print'));
+            echo submit_tag(__('Listar'), array ('name' => 'Imprimir','class' => 'sf_admin_action_print'));
          ?>
         </form>
         </li></ul>

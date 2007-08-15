@@ -38,7 +38,31 @@ class asistenciaActions extends sfActions
     *
     */
     public function executeIndex() {
+         
+        if ($this->getUser()->getAttribute('fk_ciclolectivo_id') == 0)
+            return $this->redirect('ciclolectivo/sinciclolectivo?m=' . $this->getRequestParameter('module'));
         
+        $this->obtenerDatos(); 
+    }
+
+
+    /**
+    * Executes Listado action
+    *
+    */
+    public function executeListado(){
+    
+        if ($this->getUser()->getAttribute('fk_ciclolectivo_id') == 0)
+            return $this->redirect('ciclolectivo/sinciclolectivo?m=' . $this->getRequestParameter('module'));
+        
+        $this->obtenerDatos(); 
+    }
+
+    /**
+    *  Obtiene los necesarios para ver la asistencias de alumnos
+    *
+    **/
+    protected function obtenerDatos() {   
         Misc::use_helper('Misc');
         
         //Iniciando Variables
@@ -59,56 +83,53 @@ class asistenciaActions extends sfActions
         $nombre_completo_archivo = "";
         $bool_gd = array_search("gd", get_loaded_extensions());
 
-        if ($this->getUser()->getAttribute('fk_ciclolectivo_id') == 0)
-            return $this->redirect('ciclolectivo/sinciclolectivo?m=' . $this->getRequestParameter('module'));
-        
-        // tomando los datos del formulario y completando variable
+        // Tomando los datos del formulario y completando variable
         $ciclolectivo_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');       
         $ciclolectivo = CiclolectivoPeer::retrieveByPK($ciclolectivo_id);
 
         $ciclolectivo_fecha_inicio = strtotime($ciclolectivo->getFechaInicio());
         $ciclolectivo_fecha_fin = strtotime($ciclolectivo->getFechaFin());
 
-        // asigno la fecha de inicio del ciclo lectivo por defecto
+        // Asigno la fecha de inicio del ciclo lectivo por defecto
         $aFechaActual = getdate($ciclolectivo_fecha_inicio);
-        $d = $aFechaActual['mday'];
-        $m = $aFechaActual['mon'];
-        $y = $aFechaActual['year'];
 
-        // tomo el año de la fecha de inicio y de fin del ciclo lectivo
+        // Tomo el año de la fecha de inicio y de fin del ciclo lectivo
         $anio_desde = date("Y",$ciclolectivo_fecha_inicio);
         $anio_hasta = date("Y",$ciclolectivo_fecha_fin);
         
+        if ($this->getRequestParameter('dia')) {
+            $d = $this->getRequestParameter('dia');
+        }
+        else
+            $d = $aFechaActual['mday'];
+        
+        if ($this->getRequestParameter('mes')) {
+            $m = $this->getRequestParameter('mes');
+        }
+        else
+            $m = $aFechaActual['mon'];
+
+        if ($this->getRequestParameter('ano')) {
+            $y = $this->getRequestParameter('ano');
+        }
+        else
+            $y = $aFechaActual['year'];
+
+
         if ($this->getRequestParameter('alumno_id')) {
             $alumno_id = $this->getRequestParameter('alumno_id');   
             $a = AlumnoPeer::retrieveByPK($alumno_id);
             $cuenta_id = $a->getFkCuentaId();
-            
-            //$a->getRelAlumnoDivisions()
         }
-
 
         if ($this->getRequestParameter('vistas')) {
             $vista_id  = $this->getRequestParameter('vistas');              
-        }
-
-        if ($this->getRequestParameter('dia')) {
-            $d = $this->getRequestParameter('dia');
-        }
-
-        if ($this->getRequestParameter('mes')) {
-            $m = $this->getRequestParameter('mes');
-        }
-
-        if ($this->getRequestParameter('ano')) {
-            $y = $this->getRequestParameter('ano');
         }
 
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
 
         $criteria = new Criteria();
         $criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
-        
         
         if ($this->getRequestParameter('alumno_id')){
             $criteria->add(RelAlumnoDivisionPeer::FK_ALUMNO_ID, $alumno_id);
@@ -124,7 +145,7 @@ class asistenciaActions extends sfActions
              $optionsDivision[$division->getId()] = $division->getAnio()->getDescripcion()." ".$division->getDescripcion();        
 
         if ($this->getRequestParameter('division_id')) {
-            $division_id = $this->getRequestParameter('division_id');    
+            $division_id = $this->getRequestParameter('division_id'); 
         } else {
             if (count($optionsDivision) > 0){
                 $aTemp = array_keys($optionsDivision);        
@@ -141,7 +162,7 @@ class asistenciaActions extends sfActions
             $this->getRequest()->setError('Fecha', 'La fecha ingresada es erronea');
             $flag_error = 1;
         } 
-
+        
         if($flag_error == 0) {
             // devuelve un intervalo de dias según vista y fecha seleccionada
             $aIntervalo = diasxintervalo($d, $m, $y, $vista_id);  
@@ -214,7 +235,6 @@ class asistenciaActions extends sfActions
             $aTipoasistencias = $this->getTiposasistencias();
             $aPorcentajeAsistencia = array();
             $flag = 0;
-            $tot = 0;
 
             // cantidad de fechas sin fines de semana
             $cantFechas = 0;
@@ -288,27 +308,8 @@ class asistenciaActions extends sfActions
         $this->division_id = $division_id;
         $this->anio_desde = $anio_desde;
         $this->anio_hasta = $anio_hasta;
-
-        //Verifico si muestro versión para imprimir   
-        if ($this->getRequestParameter('vista'))
-            $this->setLayout($this->getRequestParameter('vista'));
   }
   
-  /**
-  * Accion para mostrar los datos cambiados en el form
-  */
-    function executeMostrar() {
-        $vista_id  = $this->getRequestParameter('vistas');
-        $vista  = $this->getRequestParameter('vista');
-        $d = $this->getRequestParameter('dia');
-        $m = $this->getRequestParameter('mes');
-        $y = $this->getRequestParameter('ano');
-        return $this->forward('asistencia','index',"vista_id=$vista_id&dia=$d&mes=$m&ano=$y");
-    }
-  
-    public function handleErrorMostrar(){
-        $this->forward('asistencia', 'index');
-    }  
   
   /**
   * Graba las asistencias
