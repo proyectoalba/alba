@@ -5,7 +5,7 @@
 </div>
 <br/>
 <div align="center">
-El Proyecto Alba, es un proyecto de desarrollo de Software para la realizaci&oacute;n de un &quot;Sistema Inform&aacute;tico Abierto de Gesti&oacute;n Unificada para Unidades Educacionales&quot;
+El Proyecto Alba, es un proyecto de desarrollo de Software para la realizaci&oacute;n de un<br><b>&quot;Sistema Inform&aacute;tico Abierto de Gesti&oacute;n Unificada para Unidades Educacionales&quot;</b>
 </div>
 <br>
 <br>
