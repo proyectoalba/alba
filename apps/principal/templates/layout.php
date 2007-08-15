@@ -4,13 +4,13 @@
     <?php echo include_http_metas() ?>
     <?php echo include_metas() ?>
     <?php echo include_title() ?>
-    <link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot() . '/js/jsmenu/themes/'.sfConfig::get("app_alba_menutheme").'/theme.css' ?>"/>
-    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot() . 'js/jsmenu/themes/'.sfConfig::get("app_alba_menutheme").'/theme.css' ?>"/>
+    <link rel="shortcut icon" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot() ?>favicon.ico" />
 
-    <link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/css/marco_imagenes.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>css/marco_imagenes.css">
 
     <?php if (!$sf_user->isAuthenticated()):?>
-        <link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/css/login.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>css/login.css">
     <?php endif;?>
     </head>
     <body>
