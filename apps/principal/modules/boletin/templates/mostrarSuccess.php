@@ -47,18 +47,18 @@
     </tr>
     <tr>
 
-      <? foreach($optionsActividad as $actividad) { ?> 
+      <?php foreach($optionsActividad as $actividad) { ?> 
       <td><div class="etiquetas"><?php echo $actividad?></div></td>
-      <? } ?>
+      <?php } ?>
 
-      <? foreach($optionsConcepto as $concepto) { ?> 
+      <?php foreach($optionsConcepto as $concepto) { ?> 
       <td><div class="etiquetas"><?php echo $concepto?></div></td>
-      <? } ?>
+      <?php } ?>
 
-      <? if(count($aAsistencia)>0) { 
+      <?php if(count($aAsistencia)>0) { 
             foreach( current($aAsistencia) as $grupo => $valor) { ?> 
       <td><div class="etiquetas"><?php echo $grupo?></div></td>
-      <?
+      <?php
             }
         } ?>
 
@@ -77,7 +77,7 @@
     <?php } ?>      
     <?php foreach($optionsConcepto as $concepto_id => $concepto) { ?> 
       <td><div style="text-align: center;"><?php echo (array_key_exists($periodo_id, $conceptoAlumno) AND array_key_exists($concepto_id, $conceptoAlumno[$periodo_id]))?$conceptoAlumno[$periodo_id][$concepto_id]:"";?></div></td>
-    <? } ?>      
+    <?php } ?>      
 
 <?php if(count($aAsistencia)>0) { 
        foreach( $aAsistencia[$periodo_id] as $grupo => $valor) { ?> 

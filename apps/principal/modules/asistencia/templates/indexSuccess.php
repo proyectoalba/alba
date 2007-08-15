@@ -82,9 +82,9 @@
         </ul>
       </div>      
      </fieldset>
-        <? if($alumno_id >= 0) {?>
+        <?php if($alumno_id >= 0) {?>
             <?php echo input_hidden_tag('alumno_id', $alumno_id) ?>
-        <? }?>    
+        <?php }?>    
      </form>
 <br>
 <br>
@@ -107,13 +107,13 @@
         <th id="sf_admin_list_th_alumno"> Alumnos / D&iacute;as </th>
         <?php
             for($i=0, $max = count($aIntervalo); $i < $max ;$i++) { ?>
-                <th id="sf_admin_list_th_sf_actions" <?=(date("w",strtotime($aIntervalo[$i])) == 6 || date("w",strtotime($aIntervalo[$i])) == 0)?"style='color:#FF0000'":""?> ><?php echo date("d",strtotime($aIntervalo[$i]))?></th>
-            <?}?>
+                <th id="sf_admin_list_th_sf_actions" <?php echo (date("w",strtotime($aIntervalo[$i])) == 6 || date("w",strtotime($aIntervalo[$i])) == 0)?"style='color:#FF0000'":""?> ><?php echo date("d",strtotime($aIntervalo[$i]))?></th>
+            <?php } ?>
  
                 <th id="sf_admin_list_th_sf_actions">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
            <?php foreach ($aTipoasistencias as $idx => $Tipoasistencia){ ?>
                 <th id="sf_admin_list_th_sf_actions" title="<?php echo $Tipoasistencia[1]?>"><?php echo $idx ?></th>
-            <?}?>
+            <?php } ?>
       </tr>
      </thead>
      <tbody>
@@ -208,17 +208,17 @@
     // Finaliza Feriados
 ?>
         </tr>
-<? } else { ?>
+<?php } else { ?>
 <h2>NO HAY ALUMNOS</h2>
-<? } ?>
+<?php } ?>
         </table>
     </div>
       <div class="float-right">
           <ul class="sf_admin_actions">
             <li><?php echo button_to('Listado de alumnos','alumno/list',array('class' => 'sf_admin_action_list'))?></li>
-<? if($alumno_id >= 0) {?>
+<?php if($alumno_id >= 0) {?>
             <li><?php echo button_to('Ir a Cuenta','cuenta/verCompleta?id=' .$cuenta_id,array('class'=>'sf_admin_action_ir_a'))?></li>
-<? } ?>
+<?php } ?>
         </ul>
       </div>
     </fieldset>
@@ -226,7 +226,7 @@
     <?php if($bool_tmp) { ?>  
         <?php if($nombre_completo_archivo) { ?>  
         <div align="center">
-            <img src="<?=sfContext::getInstance()->getRequest()->getRelativeUrlRoot().'/tmp/'.$nombre_completo_archivo?>">  
+            <img src="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot().'/tmp/'.$nombre_completo_archivo?>">  
         </div>
         <?php } else { ?>
         <?php } ?>

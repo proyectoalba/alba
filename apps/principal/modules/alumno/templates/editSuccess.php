@@ -3,11 +3,11 @@
     function completaDatos() 
     {
         var datosCuenta = new Array()
-        datosCuenta [0] = "<?=$datosCuenta->getDireccion()?>"
-        datosCuenta [1] = "<?=$datosCuenta->getCiudad()?>"
-        datosCuenta [2] = "<?=$datosCuenta->getFkProvinciaId()?>"
-        datosCuenta [3] = "<?=$datosCuenta->getCodigoPostal()?>"
-        datosCuenta [4] = "<?=$datosCuenta->getTelefono()?>"
+        datosCuenta [0] = "<?php echo $datosCuenta->getDireccion()?>"
+        datosCuenta [1] = "<?php echo $datosCuenta->getCiudad()?>"
+        datosCuenta [2] = "<?php echo $datosCuenta->getFkProvinciaId()?>"
+        datosCuenta [3] = "<?php echo $datosCuenta->getCodigoPostal()?>"
+        datosCuenta [4] = "<?php echo $datosCuenta->getTelefono()?>"
         document.getElementsByName("alumno[direccion]")[0].value = datosCuenta[0]
         document.getElementsByName("alumno[ciudad]")[0].value = datosCuenta[1]
         document.getElementsByName("alumno[fk_provincia_id]")[0].value = datosCuenta[2]
@@ -342,7 +342,7 @@
                             <?php echo include_partial('verCuenta', array('cuenta_nombre' => $alumno->getCuenta()->getNombre(), 'cuenta_id' => $alumno->getCuenta()->getId()) ); ?>
                         <?php } else { ?>
                             <?php echo include_partial('buscarCuenta'); ?>  
-                        <? } ?>
+                        <?php } ?>
                     </div>
                 </div>
                 <br><?php echo link_to_remote('Nueva Cuenta', array('update' => 'nueva_cuenta', 'url' => 'alumno/nuevaCuenta' )); ?>

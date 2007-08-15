@@ -61,7 +61,7 @@
                                                                                                      'calendar_button_img'=>sfConfig::get('sf_admin_web_dir').'/images/date.png',
                                                                                                      'control_name'=>'ciclolectivo[fecha_inicio]')) ?>
                                                                                                      </td>
-<? //echo image_tag(sfConfig::get('sf_admin_web_dir').'/images/date.png', array("id" => "trigger_ciclolectivo[fecha_inicio]", "style" => "cursor: pointer", "align" => "absmiddle", "alt" => "date")); 
+<?php //echo image_tag(sfConfig::get('sf_admin_web_dir').'/images/date.png', array("id" => "trigger_ciclolectivo[fecha_inicio]", "style" => "cursor: pointer", "align" => "absmiddle", "alt" => "date")); 
  ?>
     <td> <?php echo input_date_tag('ciclolectivo[fecha_fin]', $ciclolectivo->getFechaFin() , 'rich=true calendar_button_img=/sf/sf_admin/images/date.png control_name=ciclolectivo[fecha_fin]'); ?></td>
     <td><?php echo ($ciclolectivo->getEstablecimiento())?$ciclolectivo->getEstablecimiento()->getNombre():"";?></td>
@@ -93,14 +93,14 @@
   </tr>
   </thead>
   <tbody>
-<?
+<?php
     $i = 0;
 foreach($aTurnos as $turno){
 ?>
   <tr class="sf_admin_row_0">
-    <td><?echo input_tag("turnos[$i][descripcion]",$turno->getDescripcion());?></td>
-    <td><?echo select_time_tag("turnos[$i][hora_inicio]", $turno->getHoraInicio(), array('include_second' => false, '12hour_time' => true));?></td>
-    <td><?echo select_time_tag("turnos[$i][hora_fin]", $turno->getHoraFin(), array('include_second' => false, '12hour_time' => true));?></td>
+    <td><?php echo input_tag("turnos[$i][descripcion]",$turno->getDescripcion());?></td>
+    <td><?php echo select_time_tag("turnos[$i][hora_inicio]", $turno->getHoraInicio(), array('include_second' => false, '12hour_time' => true));?></td>
+    <td><?php echo select_time_tag("turnos[$i][hora_fin]", $turno->getHoraFin(), array('include_second' => false, '12hour_time' => true));?></td>
     <?php echo input_hidden_tag("turnos[$i][id]", $turno->getId()); ?>
     <td>
     <ul class="sf_admin_td_actions">
@@ -108,12 +108,12 @@ foreach($aTurnos as $turno){
     </ul>
     </td>
   </tr>
-  <?$i++; }?>
+  <?php $i++; }?>
   
     <tr class="sf_admin_row_0">
-    <td><?echo input_tag("turnos[$i][descripcion]",'');?></td>
-    <td><?echo select_time_tag("turnos[$i][hora_inicio]",array() , array('include_second' => false, '12hour_time' => true));?></td>
-    <td><?echo select_time_tag("turnos[$i][hora_fin]", array(), array('include_second' => false, '12hour_time' => true));?></td>    
+    <td><?php echo input_tag("turnos[$i][descripcion]",'');?></td>
+    <td><?php echo select_time_tag("turnos[$i][hora_inicio]",array() , array('include_second' => false, '12hour_time' => true));?></td>
+    <td><?php echo select_time_tag("turnos[$i][hora_fin]", array(), array('include_second' => false, '12hour_time' => true));?></td>    
     <td></td>
   </tr>  
   
@@ -146,14 +146,14 @@ foreach($aTurnos as $turno){
   </tr>
   </thead>
   <tbody>
-<?
+<?php
   $i = 0;  
   foreach($aPeriodo as $periodo){
 ?>
   <tr class="sf_admin_row_0">
-    <td><?echo input_tag("periodo[$i][descripcion]",$periodo->getDescripcion());?></td>
-    <td><?echo input_date_tag("periodo[$i][fecha_inicio]",$periodo->getFechaInicio(), "rich=true calendar_button_img=/sf/sf_admin/images/date.png");?></td>
-    <td><?echo input_date_tag("preiodo[$i][fecha_fin]",$periodo->getFechaFin(), "rich=true calendar_button_img=/sf/sf_admin/images/date.png");?></td>
+    <td><?php echo input_tag("periodo[$i][descripcion]",$periodo->getDescripcion());?></td>
+    <td><?php echo input_date_tag("periodo[$i][fecha_inicio]",$periodo->getFechaInicio(), "rich=true calendar_button_img=/sf/sf_admin/images/date.png");?></td>
+    <td><?php echo input_date_tag("preiodo[$i][fecha_fin]",$periodo->getFechaFin(), "rich=true calendar_button_img=/sf/sf_admin/images/date.png");?></td>
     <?php echo input_hidden_tag("periodo[$i][id]", $periodo->getId()); ?>
     <td>
     <ul class="sf_admin_td_actions">
@@ -162,12 +162,12 @@ foreach($aTurnos as $turno){
     </td>
     
   </tr>
- <?$i++; }?>
+ <?php $i++; }?>
   
   <tr class="sf_admin_row_0">
-    <td><?echo input_tag("periodo[$i][descripcion]",'');?></td>
-    <td><?echo input_date_tag("periodo[$i][fecha_inicio]",'',"rich=true calendar_button_img=/sf/sf_admin/images/date.png");?></td>
-    <td><?echo input_date_tag("periodo[$i][fecha_fin]",'',"rich=true calendar_button_img=/sf/sf_admin/images/date.png");?></td>
+    <td><?php echo input_tag("periodo[$i][descripcion]",'');?></td>
+    <td><?php echo input_date_tag("periodo[$i][fecha_inicio]",'',"rich=true calendar_button_img=/sf/sf_admin/images/date.png");?></td>
+    <td><?php echo input_date_tag("periodo[$i][fecha_fin]",'',"rich=true calendar_button_img=/sf/sf_admin/images/date.png");?></td>
     <td></td>
   </tr>  
   

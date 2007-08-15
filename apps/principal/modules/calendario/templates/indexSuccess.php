@@ -72,11 +72,11 @@ div.wastebin-active {
         location.href = url;
      }
 
-<? if(count($optionsDivision)>0) { ?>
+<?php if(count($optionsDivision)>0) { ?>
     function submitForm(){
         document.sf_admin_edit_form.submit();
     }
-<?}?>
+<?php } ?>
 
 </script>
 
@@ -108,8 +108,8 @@ div.wastebin-active {
                           <?php // echo select_tag('ciclolectivo_id', options_for_select($optionsCiclolectivo,$ciclolectivo_id), 'onChange=linkTo(0)') ?>
                          </div>
                         -->
-                        <input type="hidden" name="establecimiento_id" value="<?=$establecimiento_id?>">
-                        <input type="hidden" name="ciclolectivo_id" value="<?=$ciclolectivo_id?>">
+                        <input type="hidden" name="establecimiento_id" value="<?php echo $establecimiento_id?>">
+                        <input type="hidden" name="ciclolectivo_id" value="<?php echo $ciclolectivo_id?>">
 
                          <div class="form-row">
                           <?php echo label_for('turno_id', __('Turnos:'), 'class="required" ') ?>
@@ -124,7 +124,7 @@ div.wastebin-active {
                         </div>
                         -->
                         <input type="hidden" name="time_interval" value="15">
-                        <? if(count($optionsDivision)>0) { ?>
+                        <?php if(count($optionsDivision)>0) { ?>
                          <div class="form-row">
                           <?php echo label_for('division_id', __('Division:'), 'class="required" ') ?>
                           <?php echo select_tag('division_id', options_for_select($optionsDivision, $division_id),'onChange="javascript:submitForm()"') ?>
@@ -135,7 +135,7 @@ div.wastebin-active {
                           <?php echo select_tag('actividad_id', options_for_select($optionsActividad, $actividad_id),'') ?>
                          </div>
 
-                        <?}?>
+                        <?php } ?>
                     </fieldset>
                     <ul class="sf_admin_actions">
                       <li><?php echo submit_tag(__('Mostrar'), array (
@@ -160,7 +160,7 @@ div.wastebin-active {
                 <?php 
                 if(count($horasMaterias)>0) {
                     foreach($horasMaterias as $idx => $oMateria) { ?>
-                <?
+                <?php
                     echo image_tag('horasMaterias'.$idx, array(
                     'id'    => 'horarioMaterias_'.$idx,
                     'alt'   => $oMateria->nombre,
@@ -169,7 +169,7 @@ div.wastebin-active {
                     ));
                     echo "<br>(".$oMateria->cantidad. " Horas)";
                 ?>   
-                <?= draggable_element('horarioMaterias_'.$idx, array('revert' => true)) ?>
+                <?php echo draggable_element('horarioMaterias_'.$idx, array('revert' => true)) ?>
                 <br><br>
                 <?php }
                     }
@@ -192,7 +192,7 @@ var nombre = element.id.substr(0,element.id.indexOf("_"));
 new Ajax.Updater( nombre , 'calendario/remove/name/'+nombre, {asynchronous:true, evalScripts:true, onComplete:function(request, json){Element.hide('indicator')}, onLoading:function(request, json){Element.show('indicator')}, parameters:'id=' + encodeURIComponent(element.id)})}})
 //]]>
 </script>
-<?
+<?php
     foreach($aEvent as $event) {
         echo  drop_receiving_element( "event".$event->id, array(
                                 'update'     => 'eventname'.$event->id,

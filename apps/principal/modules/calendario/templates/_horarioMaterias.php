@@ -8,7 +8,7 @@
                 echo image_tag(sfConfig::get('sf_admin_web_dir').'/images/tick.png', array('class' => 'horarioMaterias-items','id' => $name.'_'.$horarioMaterias_id.'_'.$i, 'style' => 'position:relative'));
                 echo draggable_element($name.'_'.$horarioMaterias_id.'_'.$i, array('revert' => true));
             }
-        ?><span class="title"><?= $horasMaterias[$horarioMaterias_id]->nombre ?></span><?
+        ?><span class="title"><?php echo $horasMaterias[$horarioMaterias_id]->nombre ?></span><?php
         }
     }
 ?>

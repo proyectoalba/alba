@@ -20,12 +20,12 @@
             <div id="logo"> 
                 <table cellpadding="0" cellspacing="0" width="100%">
                     <tr>
-                        <td class="fmedio"><?=image_tag("gui/index_1x1.png", array ( 'width' => '758' , 'heigth' => '77' ) )?></td>
+                        <td class="fmedio"><?php echo image_tag("gui/index_1x1.png", array ( 'width' => '758' , 'heigth' => '77' ) )?></td>
                         <td class="fmedio" align="right"><!-- datos del usuario -->
                             <?php if($sf_user->isAuthenticated() == true): ?>
                             <table class="user-info">
                                 <tr>
-                                    <td nowrap="nowrap">Bienvenido, <a href="#" onmouseover="this.T_BGCOLOR='#d3e3f6';this.T_SHADOWWIDTH=3;this.T_FONTCOLOR='blue';this.T_BORDERWIDTH=2;this.T_BORDERCOLOR='#000000'; return escape('Organizaci&oacute;n: <?echo $sf_user->getAttribute("organizacion_nombre")?> ' )"><?php echo $sf_user->getAttribute('usuario')?></a>
+                                    <td nowrap="nowrap">Bienvenido, <a href="#" onmouseover="this.T_BGCOLOR='#d3e3f6';this.T_SHADOWWIDTH=3;this.T_FONTCOLOR='blue';this.T_BORDERWIDTH=2;this.T_BORDERCOLOR='#000000'; return escape('Organizaci&oacute;n: <?php echo $sf_user->getAttribute("organizacion_nombre")?> ' )"><?php echo $sf_user->getAttribute('usuario')?></a>
                                     <?php if (SF_DEBUG)
                                         echo ' #'. $sf_user->getAttribute('id');
                                     ?>

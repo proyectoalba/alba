@@ -1,9 +1,9 @@
 <h1>Listado de Alumnos 
-<?
+<?php
 if (isset($filters['division']) && $filters['division'] != '' && $filters['division'] != 0) {
     $division = DivisionPeer::retrieveByPk($filters['division']);
-    ?> de <? echo $division->getAnio()->getDescripcion()." ".$division->getDescripcion();?>
-<? }?>
+    ?> de <?php echo $division->getAnio()->getDescripcion()." ".$division->getDescripcion();?>
+<?php }?>
 </h1>
 <?php if ($sf_request->getError('delete')): ?>
 <div class="form-errors">

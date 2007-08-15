@@ -1,7 +1,7 @@
 <script>                                                                                                         
-	var my<?php echo sfConfig::get("app_alba_menutheme")?>Base = "<?echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot() . '/js/jsmenu/themes/' .sfConfig::get("app_alba_menutheme"). '/'?>";
+	var my<?php echo sfConfig::get("app_alba_menutheme")?>Base = "<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot() . '/js/jsmenu/themes/' .sfConfig::get("app_alba_menutheme"). '/'?>";
 </script>                                                                                                        
-<script src="<?echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot() . '/js/jsmenu/themes/'.sfConfig::get("app_alba_menutheme").'/theme.js'?>">
+<script src="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot() . '/js/jsmenu/themes/'.sfConfig::get("app_alba_menutheme").'/theme.js'?>">
 </script>
 
 <div id="menu" align="center">

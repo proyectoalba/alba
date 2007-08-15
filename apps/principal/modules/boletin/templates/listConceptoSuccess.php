@@ -34,52 +34,52 @@
         <?php echo select_tag('concepto_id', options_for_select($optionsConcepto, $concepto_id),"onChange='linkTo(1)'") ?>
     </div>
 
-<? if($division_id) { ?>
+<?php if($division_id) { ?>
     <div class="form-row">
         <?php echo label_for('perido', __('Periodo:')) ?>
         <?php echo select_tag('periodo_id', options_for_select($optionsPeriodo, $periodo_id), "onChange='linkTo(1)'") ?>
     </div>
-<? } ?>
+<?php } ?>
 
 
 
-<? if (count($aAlumno) > 0 && $concepto_id ){ ?>
+<?php if (count($aAlumno) > 0 && $concepto_id ){ ?>
 <h1>Alumnos</h1>
 
 Posibles Notas para calificar: 
-<? foreach ($aPosiblesNotas as $posiblesnotas) { ?>
-<?=$posiblesnotas->getNombre()."&nbsp;";?>
-<? } ?>
+<?php foreach ($aPosiblesNotas as $posiblesnotas) { ?>
+<?php echo $posiblesnotas->getNombre()."&nbsp;";?>
+<?php } ?>
 
 <table cellspacing="0" class="sf_admin_list">
   <thead>
   <tr>
     <th id="sf_admin_list_th_alumno"> Alumno</th>
 
-    <? foreach ($aPeriodo as $periodo) {?>
-    <th id="sf_admin_list_th_sf_actions"><?=$periodo->getDescripcion()?></th>
-    <? } ?>
+    <?php foreach ($aPeriodo as $periodo) {?>
+    <th id="sf_admin_list_th_sf_actions"><?php echo $periodo->getDescripcion()?></th>
+    <?php } ?>
 
 
   </tr>
   </thead>
 
   <tbody>
-<? foreach($aAlumno as $alumno){ ?>
+<?php foreach($aAlumno as $alumno){ ?>
   <tr class="sf_admin_row_0">
-    <td><?echo $alumno->getApellido()." ".$alumno->getNombre(); ?></td>
-    <? foreach ($aPeriodo as $periodo) {?>    
+    <td><?php echo $alumno->getApellido()." ".$alumno->getNombre(); ?></td>
+    <?php foreach ($aPeriodo as $periodo) {?>    
     <td>
-    <? echo input_tag("nota[".$alumno->getId()."][".$periodo->getId()."]", $aNotaAlumno[$alumno->getId()][$periodo->getId()], array('size' => $sizeNota, 'maxlength' => $sizeNota));?><br>   
-    <? echo input_tag("notaObs[".$alumno->getId()."][".$periodo->getId()."]", $aNotaAlumnoObs[$alumno->getId()][$periodo->getId()], array('size' => 30, 'maxlength' => 128 ));?>
+    <?php echo input_tag("nota[".$alumno->getId()."][".$periodo->getId()."]", $aNotaAlumno[$alumno->getId()][$periodo->getId()], array('size' => $sizeNota, 'maxlength' => $sizeNota));?><br>   
+    <?php echo input_tag("notaObs[".$alumno->getId()."][".$periodo->getId()."]", $aNotaAlumnoObs[$alumno->getId()][$periodo->getId()], array('size' => 30, 'maxlength' => 128 ));?>
     </td>
-    <? } ?>
+    <?php } ?>
   </tr>
-  <? } ?>
+  <?php } ?>
   </tbody>
 </table>
 
-<?// } 
+<?php // } 
 if($division_id) { ?>
 
  <ul class="sf_admin_actions">
@@ -88,7 +88,7 @@ if($division_id) { ?>
   'class' => 'sf_admin_action_save',
 )) ?></li>
 </ul>
-<? }
+<?php }
  }
  ?>
 </fieldset>

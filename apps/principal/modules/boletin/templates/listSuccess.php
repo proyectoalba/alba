@@ -30,7 +30,7 @@
         <?php echo select_tag('division_id', options_for_select($optionsDivision, $division_id), "onChange='linkTo(0)'") ?>
     </div>
 
-<? if($division_id) { ?>
+<?php if($division_id) { ?>
     <div class="form-row">
         <?php echo label_for('actividad', __('Actividad:')) ?>
         <?php echo select_tag('actividad_id', options_for_select($optionsActividad, $actividad_id),"onChange='linkTo(1)'") ?>
@@ -42,46 +42,46 @@
         <?php echo select_tag('periodo_id', options_for_select($optionsPeriodo, $periodo_id), "onChange='linkTo(1)'") ?>
     </div>
 
-<? } ?>
+<?php } ?>
 
 
 
-<? if (count($aAlumno) > 0) { ?>
+<?php if (count($aAlumno) > 0) { ?>
 <h1>Alumnos</h1>
 
 Posibles Notas para calificar: 
-<? foreach ($aPosiblesNotas as $posiblesnotas) { ?>
-<?=$posiblesnotas->getNombre()."&nbsp;";?>
-<? } ?>
+<?php foreach ($aPosiblesNotas as $posiblesnotas) { ?>
+<?php echo $posiblesnotas->getNombre()."&nbsp;";?>
+<?php } ?>
 
 <table cellspacing="0" class="sf_admin_list">
   <thead>
   <tr>
     <th id="sf_admin_list_th_alumno"> Alumno</th>
 
-    <? foreach ($aPeriodo as $periodo) {?>
-    <th id="sf_admin_list_th_sf_actions"><?=$periodo->getDescripcion()?></th>
-    <? } ?>
+    <?php foreach ($aPeriodo as $periodo) {?>
+    <th id="sf_admin_list_th_sf_actions"><?php echo $periodo->getDescripcion()?></th>
+    <?php } ?>
 
 
   </tr>
   </thead>
 
   <tbody>
-<? foreach($aAlumno as $alumno){ ?>
+<?php foreach($aAlumno as $alumno){ ?>
   <tr class="sf_admin_row_0">
-    <td><?echo $alumno->getApellido()." ".$alumno->getNombre(); ?></td>
-    <? foreach ($aPeriodo as $periodo) {?>    
+    <td><?php echo $alumno->getApellido()." ".$alumno->getNombre(); ?></td>
+    <?php foreach ($aPeriodo as $periodo) {?>    
     <td>
-    <? echo input_tag("nota[".$alumno->getId()."][".$periodo->getId()."][".""."]", $aNotaAlumno[$alumno->getId()][$periodo->getId()],array('size' => $sizeNota, 'maxlength' => $sizeNota));?>   
+    <?php echo input_tag("nota[".$alumno->getId()."][".$periodo->getId()."][".""."]", $aNotaAlumno[$alumno->getId()][$periodo->getId()],array('size' => $sizeNota, 'maxlength' => $sizeNota));?>   
     </td>
-    <? } ?>
+    <?php } ?>
   </tr>
-  <? } ?>
+  <?php } ?>
   </tbody>
 </table>
 
-<? } 
+<?php } 
 if($division_id AND $actividad_id AND count($aAlumno)>0) { ?>
 
  <ul class="sf_admin_actions">
@@ -90,7 +90,7 @@ if($division_id AND $actividad_id AND count($aAlumno)>0) { ?>
   'class' => 'sf_admin_action_save',
 )) ?></li>
 </ul>
-<? } ?>
+<?php } ?>
 </fieldset>
 </form>
 </div>

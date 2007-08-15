@@ -22,7 +22,7 @@
 <?php if (count($aDocente) > 0) {
     if ($txt) { ?>
     Ustde busco -<?php echo $txt?>-
-    <? } ?>
+    <?php } ?>
 <h1>Docentes</h1>
 <table cellspacing="0" class="sf_admin_list">
   <thead>
