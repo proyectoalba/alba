@@ -2,18 +2,18 @@
 <script>
      function filterCat() {
         var objc = document.getElementById('legajo_categoria_id');
-        var url  = "<?php echo url_for('legajopedagogico/', false);?>/verLegajo/aid/<?=$alumno->getId()?>/cid/"+objc.value;
+        var url  = "<?php echo url_for('legajopedagogico/', false);?>/verLegajo/aid/<?php echo $alumno->getId()?>/cid/"+objc.value;
         location.href = url;
      }
 
     function create() {
         var objc = document.getElementById('legajo_categoria_id');
-        var url  = "<?php echo url_for('legajopedagogico/', false);?>/create/aid/<?=$alumno->getId()?>/cid/"+objc.value;
+        var url  = "<?php echo url_for('legajopedagogico/', false);?>/create/aid/<?php echo $alumno->getId()?>/cid/"+objc.value;
         location.href = url;
     }
 </script>
 <div id="sf_admin_container">
-<h1>Legajo Pedagógico de <?=$alumno->getApellido()." ".$alumno->getNombre()?> </h1>
+<h1>Legajo Pedagógico de <?php echo $alumno->getApellido()." ".$alumno->getNombre()?> </h1>
 <div class="sf_admin_filters">
 <?php echo form_tag('legajopedagogico/verLegajo', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
   <fieldset>
@@ -44,15 +44,15 @@
   </thead>
 
   <tbody>
-<?
+<?php
     $i = 0;
     foreach($aEntradaLegajo as $entradaLegajo){
 ?>
   <tr class="sf_admin_row_0">
-    <td><?=format_date($entradaLegajo->getFecha(), "dd/MM/yy")?></td>
-    <td><?=$entradaLegajo->getTitulo()?></td>
-    <td onMouseOver="this.T_BGCOLOR='#d3e3f6';this.T_SHADOWWIDTH=5;this.T_STICKY=1;this.T_OFFSETX=-20;return escape('<?=htmlentities(str_replace("\n","<br />",$entradaLegajo->getTexto()->getContents()), ENT_QUOTES)?>');"><?=$entradaLegajo->getResumen()?></td>
-    <td><?=(method_exists($entradaLegajo->getLegajocategoria(),"getDescripcion"))?$entradaLegajo->getLegajocategoria()->getDescripcion():"";?></td>
+    <td><?php echo format_date($entradaLegajo->getFecha(), "dd/MM/yy")?></td>
+    <td><?php echo $entradaLegajo->getTitulo()?></td>
+    <td onMouseOver="this.T_BGCOLOR='#d3e3f6';this.T_SHADOWWIDTH=5;this.T_STICKY=1;this.T_OFFSETX=-20;return escape('<?php echo htmlentities(str_replace("\n","<br />",$entradaLegajo->getTexto()->getContents()), ENT_QUOTES)?>');"><?php echo $entradaLegajo->getResumen()?></td>
+    <td><?php echo (method_exists($entradaLegajo->getLegajocategoria(),"getDescripcion"))?$entradaLegajo->getLegajocategoria()->getDescripcion():"";?></td>
 
     <td>
     <ul class="sf_admin_td_actions">
@@ -63,7 +63,7 @@
     </ul>
     </td>
   </tr>
-  <? } ?>
+  <?php } ?>
   </tbody>
 
 <tfoot>
@@ -90,4 +90,4 @@
 </div>
 
 </div>
-<? echo javascript_include_tag('varios/wz_tooltip.js'); ?>
+<?php echo javascript_include_tag('varios/wz_tooltip.js'); ?>

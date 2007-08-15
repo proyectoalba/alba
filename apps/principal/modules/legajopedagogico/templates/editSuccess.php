@@ -114,9 +114,9 @@ if(method_exists($legajopedagogico->getTexto(),'getContents')) {
         <div class="form-row">
         <?php echo label_for('adjunto', __('Agregar un nuevo adjunto:')) ?>
         <?php echo input_file_tag('file') ?>
-        <?  //aqui deberiamos hacer una funcion verAdjunto?id=XX y mandar el mimetype con header y luego el contenido )
+        <?php  //aqui deberiamos hacer una funcion verAdjunto?id=XX y mandar el mimetype con header y luego el contenido )
             foreach ($aFile as $file) { 
-           ?><a href="<?=sfContext::getInstance()->getRequest()->getRelativeUrlRoot()."/".sfConfig::get('sf_upload_dir_name').'/'. $file->ruta?>"><?=$file->nombre_archivo?></a>&nbsp;&nbsp;<?
+           ?><a href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()."/".sfConfig::get('sf_upload_dir_name').'/'. $file->ruta?>"><?php echo $file->nombre_archivo?></a>&nbsp;&nbsp;<?php 
            echo link_to("Borrar", "legajopedagogico?action=borrarAdjunto&id=".$legajopedagogico->getId()."&ajid=".$file->id."&aid=".$alumno_id);
            echo "&nbsp;&nbsp;&nbsp;&nbsp;";
             } 
