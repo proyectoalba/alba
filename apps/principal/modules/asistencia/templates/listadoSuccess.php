@@ -107,11 +107,11 @@
         <th id="sf_admin_list_th_alumno"> Alumnos / D&iacute;as </th>
         <?php
             for($i=0, $max = count($aIntervalo); $i < $max ;$i++) { ?>
-                <th id="sf_admin_list_th_sf_actions" <?php echo (date("w",strtotime($aIntervalo[$i])) == 6 || date("w",strtotime($aIntervalo[$i])) == 0)?"style='color:#FF0000'":""?> ><?php echo date("d",strtotime($aIntervalo[$i]))?></th>
+                <th id="sf_admin_list_th_alumno" <?php echo (date("w",strtotime($aIntervalo[$i])) == 6 || date("w",strtotime($aIntervalo[$i])) == 0)?"style='color:#FF0000'":""?> ><?php echo date("d",strtotime($aIntervalo[$i]))?></th>
             <?php } ?>
-                <th id="sf_admin_list_th_sf_actions">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                <th id="sf_admin_list_th_alumno">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
            <?php foreach ($aTipoasistencias as $idx => $Tipoasistencia){ ?>
-                <th id="sf_admin_list_th_sf_actions" title="<?php echo $Tipoasistencia[1]?>"><?php echo $idx ?></th>
+                <th id="sf_admin_list_th_alumno" title="<?php echo $Tipoasistencia[1]?>"><?php echo $idx ?></th>
             <?php } ?>
       </tr>
      </thead>
