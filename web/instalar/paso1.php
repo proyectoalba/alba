@@ -30,6 +30,8 @@
  * @license GPL
  */
  
+if (!defined('ALBA_INSTALLER')) die();
+ 
 $dirs = array(
     'config', 
     'cache', 

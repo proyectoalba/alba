@@ -30,6 +30,7 @@
  * @license GPL
  */
 
+if (!defined('ALBA_INSTALLER')) die();
 
 /* helpers para comprobaciones */ 
 function check_php() {

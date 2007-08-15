@@ -67,6 +67,8 @@ function DebugLog($str) {
         <meta name="description" content="Proyecto de Gesti&oacute;n Educativa ALBA" />
         <meta name="keywords" content="alba, proyecto, software libre, educacion" />
         <meta name="language" content="es" />
+        
+        <link rel="StyleSheet" type="text/css" href="images/estilos.css">
     </head>
     <body>
         <div id="cabeza">
