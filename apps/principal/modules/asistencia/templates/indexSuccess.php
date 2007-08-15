@@ -232,7 +232,7 @@
     <?php } else { ?>
         <div class="form-errors">
         <ul>
-            <li>No tiene permisos de escritura sobre el directorio tmp. Si quiere ver los gr&aacute;ficos de estad&iacute;sticas necesita aplicarlos.</li>
+            <li>No tiene permisos de escritura sobre el directorio tmp para ver los gr&aacute;ficos de estad&iacute;sticas.</li>
         </ul>
         </div>    
     <?php } ?>
@@ -240,7 +240,7 @@
 <?php } else { ?>
         <div class="form-errors">
         <ul>
-            <li>No tiene Instalado la biblioteca GD. Si quiere ver los gr&aacute;ficos de estad&iacute;sticas necesita instalarla para ello consulte <a href="http://www.php.net/manual/es/ref.image.php">http://www.php.net/manual/es/ref.image.php</a></li>
+            <li>No tiene Instalado la biblioteca GD para ver los gr&aacute;ficos de estad&iacute;sticas. Consulte en: <a href="http://www.php.net/manual/es/ref.image.php">http://www.php.net/manual/es/ref.image.php</a></li>
         </ul>
         </div>
 <?php } ?>
