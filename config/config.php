@@ -1,5 +1,5 @@
 <?php
 
 // symfony directories
-$sf_symfony_lib_dir  = realpath(dirname(__FILE__).'/../../dist/symfony/lib');
-$sf_symfony_data_dir = realpath(dirname(__FILE__).'/../../dist/symfony/data');
+$sf_symfony_lib_dir  = '/home/ftoledo/alba/dist/symfony-1.0.5/lib';
+$sf_symfony_data_dir = '/home/ftoledo/alba/dist/symfony-1.0.5/data';
