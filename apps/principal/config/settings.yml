@@ -1,6 +1,6 @@
 prod:
   .settings:
-    no_script_name:           on
+    no_script_name:           off
     i18n:                   on    
 
 dev:
