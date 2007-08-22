@@ -1499,6 +1499,10 @@ alba:
       type: varchar
       size: 16
       required: true
+    lugar_nacimiento: 
+      type: VARCHAR
+      size: 128
+      required: false
     direccion: 
       type: varchar
       size: 128
@@ -1545,6 +1549,12 @@ alba:
       required: true
       default: 0
       foreignTable: provincia
+      foreignReference: id
+    fk_pais_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: pais
       foreignReference: id
   rel_docente_establecimiento: 
     _attributes: 

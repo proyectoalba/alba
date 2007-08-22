@@ -1485,4 +1485,39 @@ abstract class BaseProvincia extends BaseObject  implements Persistent {
 		return $this->collDocentes;
 	}
 
+
+	
+	public function getDocentesJoinPais($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseDocentePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collDocentes === null) {
+			if ($this->isNew()) {
+				$this->collDocentes = array();
+			} else {
+
+				$criteria->add(DocentePeer::FK_PROVINCIA_ID, $this->getId());
+
+				$this->collDocentes = DocentePeer::doSelectJoinPais($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(DocentePeer::FK_PROVINCIA_ID, $this->getId());
+
+			if (!isset($this->lastDocenteCriteria) || !$this->lastDocenteCriteria->equals($criteria)) {
+				$this->collDocentes = DocentePeer::doSelectJoinPais($criteria, $con);
+			}
+		}
+		$this->lastDocenteCriteria = $criteria;
+
+		return $this->collDocentes;
+	}
+
 } 

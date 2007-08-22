@@ -46,6 +46,8 @@ class DocenteMapBuilder {
 
 		$tMap->addColumn('NRO_DOCUMENTO', 'NroDocumento', 'string', CreoleTypes::VARCHAR, true, 16);
 
+		$tMap->addColumn('LUGAR_NACIMIENTO', 'LugarNacimiento', 'string', CreoleTypes::VARCHAR, false, 128);
+
 		$tMap->addColumn('DIRECCION', 'Direccion', 'string', CreoleTypes::VARCHAR, false, 128);
 
 		$tMap->addColumn('CIUDAD', 'Ciudad', 'string', CreoleTypes::VARCHAR, false, 128);
@@ -67,6 +69,8 @@ class DocenteMapBuilder {
 		$tMap->addColumn('ACTIVO', 'Activo', 'boolean', CreoleTypes::BOOLEAN, false, null);
 
 		$tMap->addForeignKey('FK_PROVINCIA_ID', 'FkProvinciaId', 'int', CreoleTypes::INTEGER, 'provincia', 'ID', true, 11);
+
+		$tMap->addForeignKey('FK_PAIS_ID', 'FkPaisId', 'int', CreoleTypes::INTEGER, 'pais', 'ID', true, null);
 
 	} 
 } 

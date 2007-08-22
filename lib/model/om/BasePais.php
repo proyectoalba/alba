@@ -36,6 +36,12 @@ abstract class BasePais extends BaseObject  implements Persistent {
 	protected $lastAlumnoCriteria = null;
 
 	
+	protected $collDocentes;
+
+	
+	protected $lastDocenteCriteria = null;
+
+	
 	protected $alreadyInSave = false;
 
 	
@@ -226,6 +232,14 @@ abstract class BasePais extends BaseObject  implements Persistent {
 				}
 			}
 
+			if ($this->collDocentes !== null) {
+				foreach($this->collDocentes as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
 			$this->alreadyInSave = false;
 		}
 		return $affectedRows;
@@ -277,6 +291,14 @@ abstract class BasePais extends BaseObject  implements Persistent {
 
 				if ($this->collAlumnos !== null) {
 					foreach($this->collAlumnos as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
+
+				if ($this->collDocentes !== null) {
+					foreach($this->collDocentes as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -422,6 +444,10 @@ abstract class BasePais extends BaseObject  implements Persistent {
 
 			foreach($this->getAlumnos() as $relObj) {
 				$copyObj->addAlumno($relObj->copy($deepCopy));
+			}
+
+			foreach($this->getDocentes() as $relObj) {
+				$copyObj->addDocente($relObj->copy($deepCopy));
 			}
 
 		} 
@@ -762,6 +788,146 @@ abstract class BasePais extends BaseObject  implements Persistent {
 		$this->lastAlumnoCriteria = $criteria;
 
 		return $this->collAlumnos;
+	}
+
+	
+	public function initDocentes()
+	{
+		if ($this->collDocentes === null) {
+			$this->collDocentes = array();
+		}
+	}
+
+	
+	public function getDocentes($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseDocentePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collDocentes === null) {
+			if ($this->isNew()) {
+			   $this->collDocentes = array();
+			} else {
+
+				$criteria->add(DocentePeer::FK_PAIS_ID, $this->getId());
+
+				DocentePeer::addSelectColumns($criteria);
+				$this->collDocentes = DocentePeer::doSelect($criteria, $con);
+			}
+		} else {
+						if (!$this->isNew()) {
+												
+
+				$criteria->add(DocentePeer::FK_PAIS_ID, $this->getId());
+
+				DocentePeer::addSelectColumns($criteria);
+				if (!isset($this->lastDocenteCriteria) || !$this->lastDocenteCriteria->equals($criteria)) {
+					$this->collDocentes = DocentePeer::doSelect($criteria, $con);
+				}
+			}
+		}
+		$this->lastDocenteCriteria = $criteria;
+		return $this->collDocentes;
+	}
+
+	
+	public function countDocentes($criteria = null, $distinct = false, $con = null)
+	{
+				include_once 'lib/model/om/BaseDocentePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		$criteria->add(DocentePeer::FK_PAIS_ID, $this->getId());
+
+		return DocentePeer::doCount($criteria, $distinct, $con);
+	}
+
+	
+	public function addDocente(Docente $l)
+	{
+		$this->collDocentes[] = $l;
+		$l->setPais($this);
+	}
+
+
+	
+	public function getDocentesJoinTipodocumento($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseDocentePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collDocentes === null) {
+			if ($this->isNew()) {
+				$this->collDocentes = array();
+			} else {
+
+				$criteria->add(DocentePeer::FK_PAIS_ID, $this->getId());
+
+				$this->collDocentes = DocentePeer::doSelectJoinTipodocumento($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(DocentePeer::FK_PAIS_ID, $this->getId());
+
+			if (!isset($this->lastDocenteCriteria) || !$this->lastDocenteCriteria->equals($criteria)) {
+				$this->collDocentes = DocentePeer::doSelectJoinTipodocumento($criteria, $con);
+			}
+		}
+		$this->lastDocenteCriteria = $criteria;
+
+		return $this->collDocentes;
+	}
+
+
+	
+	public function getDocentesJoinProvincia($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseDocentePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collDocentes === null) {
+			if ($this->isNew()) {
+				$this->collDocentes = array();
+			} else {
+
+				$criteria->add(DocentePeer::FK_PAIS_ID, $this->getId());
+
+				$this->collDocentes = DocentePeer::doSelectJoinProvincia($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(DocentePeer::FK_PAIS_ID, $this->getId());
+
+			if (!isset($this->lastDocenteCriteria) || !$this->lastDocenteCriteria->equals($criteria)) {
+				$this->collDocentes = DocentePeer::doSelectJoinProvincia($criteria, $con);
+			}
+		}
+		$this->lastDocenteCriteria = $criteria;
+
+		return $this->collDocentes;
 	}
 
 } 

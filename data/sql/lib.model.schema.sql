@@ -1170,6 +1170,7 @@ CREATE TABLE `docente`
 	`fecha_nacimiento` DATETIME  NOT NULL,
 	`fk_tipodocumento_id` INTEGER(11) default 0 NOT NULL,
 	`nro_documento` VARCHAR(16)  NOT NULL,
+	`lugar_nacimiento` VARCHAR(128),
 	`direccion` VARCHAR(128),
 	`ciudad` VARCHAR(128),
 	`codigo_postal` VARCHAR(20),
@@ -1181,6 +1182,7 @@ CREATE TABLE `docente`
 	`psicofisico` INTEGER default 0,
 	`activo` INTEGER default 1,
 	`fk_provincia_id` INTEGER(11) default 0 NOT NULL,
+	`fk_pais_id` INTEGER default 0 NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `docente_FI_1` (`fk_tipodocumento_id`),
 	CONSTRAINT `docente_FK_1`
@@ -1189,7 +1191,11 @@ CREATE TABLE `docente`
 	INDEX `docente_FI_2` (`fk_provincia_id`),
 	CONSTRAINT `docente_FK_2`
 		FOREIGN KEY (`fk_provincia_id`)
-		REFERENCES `provincia` (`id`)
+		REFERENCES `provincia` (`id`),
+	INDEX `docente_FI_3` (`fk_pais_id`),
+	CONSTRAINT `docente_FK_3`
+		FOREIGN KEY (`fk_pais_id`)
+		REFERENCES `pais` (`id`)
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------

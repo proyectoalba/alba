@@ -6,10 +6,10 @@ generator:
 
     fields:
         apellido: { name: Apellido, params: size=64 }
-        nombre: { name: Nombre , params: size=64 }
-        fk_tipodocumento_id: { name: Doc. }
-        tipodocumento: { name: Doc. }
-        nro_documento:  { name: Nro. }
+        nombre: { name: Nombres , params: size=64 }
+        fk_tipodocumento_id: { name: Tipo de Documento }
+        tipodocumento: { name: Tipo de Documento }
+        nro_documento:  { name: Nro. Documento }
         direccion: { name: Direcci&oacute;n , params: size=64 }
         ciudad: { name: Ciudad , params: size=64}
         codigo_postal: { name: CP }
@@ -23,6 +23,8 @@ generator:
         psicofisico: { name: ¿Trajo Examen psicofisico?}
         titulo: { name: Titulo Habilitante , params: size=64}
         activo: { name: Activo}
+        lugar_nacimiento: { name: Lugar de Nacimiento }
+        fk_pais_id: { name: Nacionalidad } 
 
     edit:
         title: Editar Docente
@@ -30,7 +32,7 @@ generator:
             actividades: { type: admin_double_list, params: through_class=RelAnioActividadDocente style=width:260px }
 
         display:       
-                 "Informacion general":  [apellido, nombre, fecha_nacimiento, _sexo, fk_tipodocumento_id, nro_documento ]
+                 "Informacion general":  [ apellido, nombre, _sexo, fk_tipodocumento_id , nro_documento , lugar_nacimiento, fecha_nacimiento, fk_pais_id ]
                  "Donde vive": [direccion, ciudad, _pais_id, _fk_provincia_id, codigo_postal]
                  "Otros": [ email, telefono, telefono_movil, libreta_sanitaria, psicofisico, titulo, activo, actividades ]
                                                          

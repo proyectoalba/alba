@@ -13,7 +13,7 @@ abstract class BaseDocentePeer {
 	const CLASS_DEFAULT = 'lib.model.Docente';
 
 	
-	const NUM_COLUMNS = 18;
+	const NUM_COLUMNS = 20;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -39,6 +39,9 @@ abstract class BaseDocentePeer {
 
 	
 	const NRO_DOCUMENTO = 'docente.NRO_DOCUMENTO';
+
+	
+	const LUGAR_NACIMIENTO = 'docente.LUGAR_NACIMIENTO';
 
 	
 	const DIRECCION = 'docente.DIRECCION';
@@ -74,23 +77,26 @@ abstract class BaseDocentePeer {
 	const FK_PROVINCIA_ID = 'docente.FK_PROVINCIA_ID';
 
 	
+	const FK_PAIS_ID = 'docente.FK_PAIS_ID';
+
+	
 	private static $phpNameMap = null;
 
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'Apellido', 'Nombre', 'Sexo', 'FechaNacimiento', 'FkTipodocumentoId', 'NroDocumento', 'Direccion', 'Ciudad', 'CodigoPostal', 'Email', 'Telefono', 'TelefonoMovil', 'Titulo', 'LibretaSanitaria', 'Psicofisico', 'Activo', 'FkProvinciaId', ),
-		BasePeer::TYPE_COLNAME => array (DocentePeer::ID, DocentePeer::APELLIDO, DocentePeer::NOMBRE, DocentePeer::SEXO, DocentePeer::FECHA_NACIMIENTO, DocentePeer::FK_TIPODOCUMENTO_ID, DocentePeer::NRO_DOCUMENTO, DocentePeer::DIRECCION, DocentePeer::CIUDAD, DocentePeer::CODIGO_POSTAL, DocentePeer::EMAIL, DocentePeer::TELEFONO, DocentePeer::TELEFONO_MOVIL, DocentePeer::TITULO, DocentePeer::LIBRETA_SANITARIA, DocentePeer::PSICOFISICO, DocentePeer::ACTIVO, DocentePeer::FK_PROVINCIA_ID, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'apellido', 'nombre', 'sexo', 'fecha_nacimiento', 'fk_tipodocumento_id', 'nro_documento', 'direccion', 'ciudad', 'codigo_postal', 'email', 'telefono', 'telefono_movil', 'titulo', 'libreta_sanitaria', 'psicofisico', 'activo', 'fk_provincia_id', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Apellido', 'Nombre', 'Sexo', 'FechaNacimiento', 'FkTipodocumentoId', 'NroDocumento', 'LugarNacimiento', 'Direccion', 'Ciudad', 'CodigoPostal', 'Email', 'Telefono', 'TelefonoMovil', 'Titulo', 'LibretaSanitaria', 'Psicofisico', 'Activo', 'FkProvinciaId', 'FkPaisId', ),
+		BasePeer::TYPE_COLNAME => array (DocentePeer::ID, DocentePeer::APELLIDO, DocentePeer::NOMBRE, DocentePeer::SEXO, DocentePeer::FECHA_NACIMIENTO, DocentePeer::FK_TIPODOCUMENTO_ID, DocentePeer::NRO_DOCUMENTO, DocentePeer::LUGAR_NACIMIENTO, DocentePeer::DIRECCION, DocentePeer::CIUDAD, DocentePeer::CODIGO_POSTAL, DocentePeer::EMAIL, DocentePeer::TELEFONO, DocentePeer::TELEFONO_MOVIL, DocentePeer::TITULO, DocentePeer::LIBRETA_SANITARIA, DocentePeer::PSICOFISICO, DocentePeer::ACTIVO, DocentePeer::FK_PROVINCIA_ID, DocentePeer::FK_PAIS_ID, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'apellido', 'nombre', 'sexo', 'fecha_nacimiento', 'fk_tipodocumento_id', 'nro_documento', 'lugar_nacimiento', 'direccion', 'ciudad', 'codigo_postal', 'email', 'telefono', 'telefono_movil', 'titulo', 'libreta_sanitaria', 'psicofisico', 'activo', 'fk_provincia_id', 'fk_pais_id', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Apellido' => 1, 'Nombre' => 2, 'Sexo' => 3, 'FechaNacimiento' => 4, 'FkTipodocumentoId' => 5, 'NroDocumento' => 6, 'Direccion' => 7, 'Ciudad' => 8, 'CodigoPostal' => 9, 'Email' => 10, 'Telefono' => 11, 'TelefonoMovil' => 12, 'Titulo' => 13, 'LibretaSanitaria' => 14, 'Psicofisico' => 15, 'Activo' => 16, 'FkProvinciaId' => 17, ),
-		BasePeer::TYPE_COLNAME => array (DocentePeer::ID => 0, DocentePeer::APELLIDO => 1, DocentePeer::NOMBRE => 2, DocentePeer::SEXO => 3, DocentePeer::FECHA_NACIMIENTO => 4, DocentePeer::FK_TIPODOCUMENTO_ID => 5, DocentePeer::NRO_DOCUMENTO => 6, DocentePeer::DIRECCION => 7, DocentePeer::CIUDAD => 8, DocentePeer::CODIGO_POSTAL => 9, DocentePeer::EMAIL => 10, DocentePeer::TELEFONO => 11, DocentePeer::TELEFONO_MOVIL => 12, DocentePeer::TITULO => 13, DocentePeer::LIBRETA_SANITARIA => 14, DocentePeer::PSICOFISICO => 15, DocentePeer::ACTIVO => 16, DocentePeer::FK_PROVINCIA_ID => 17, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'apellido' => 1, 'nombre' => 2, 'sexo' => 3, 'fecha_nacimiento' => 4, 'fk_tipodocumento_id' => 5, 'nro_documento' => 6, 'direccion' => 7, 'ciudad' => 8, 'codigo_postal' => 9, 'email' => 10, 'telefono' => 11, 'telefono_movil' => 12, 'titulo' => 13, 'libreta_sanitaria' => 14, 'psicofisico' => 15, 'activo' => 16, 'fk_provincia_id' => 17, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Apellido' => 1, 'Nombre' => 2, 'Sexo' => 3, 'FechaNacimiento' => 4, 'FkTipodocumentoId' => 5, 'NroDocumento' => 6, 'LugarNacimiento' => 7, 'Direccion' => 8, 'Ciudad' => 9, 'CodigoPostal' => 10, 'Email' => 11, 'Telefono' => 12, 'TelefonoMovil' => 13, 'Titulo' => 14, 'LibretaSanitaria' => 15, 'Psicofisico' => 16, 'Activo' => 17, 'FkProvinciaId' => 18, 'FkPaisId' => 19, ),
+		BasePeer::TYPE_COLNAME => array (DocentePeer::ID => 0, DocentePeer::APELLIDO => 1, DocentePeer::NOMBRE => 2, DocentePeer::SEXO => 3, DocentePeer::FECHA_NACIMIENTO => 4, DocentePeer::FK_TIPODOCUMENTO_ID => 5, DocentePeer::NRO_DOCUMENTO => 6, DocentePeer::LUGAR_NACIMIENTO => 7, DocentePeer::DIRECCION => 8, DocentePeer::CIUDAD => 9, DocentePeer::CODIGO_POSTAL => 10, DocentePeer::EMAIL => 11, DocentePeer::TELEFONO => 12, DocentePeer::TELEFONO_MOVIL => 13, DocentePeer::TITULO => 14, DocentePeer::LIBRETA_SANITARIA => 15, DocentePeer::PSICOFISICO => 16, DocentePeer::ACTIVO => 17, DocentePeer::FK_PROVINCIA_ID => 18, DocentePeer::FK_PAIS_ID => 19, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'apellido' => 1, 'nombre' => 2, 'sexo' => 3, 'fecha_nacimiento' => 4, 'fk_tipodocumento_id' => 5, 'nro_documento' => 6, 'lugar_nacimiento' => 7, 'direccion' => 8, 'ciudad' => 9, 'codigo_postal' => 10, 'email' => 11, 'telefono' => 12, 'telefono_movil' => 13, 'titulo' => 14, 'libreta_sanitaria' => 15, 'psicofisico' => 16, 'activo' => 17, 'fk_provincia_id' => 18, 'fk_pais_id' => 19, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, )
 	);
 
 	
@@ -158,6 +164,8 @@ abstract class BaseDocentePeer {
 
 		$criteria->addSelectColumn(DocentePeer::NRO_DOCUMENTO);
 
+		$criteria->addSelectColumn(DocentePeer::LUGAR_NACIMIENTO);
+
 		$criteria->addSelectColumn(DocentePeer::DIRECCION);
 
 		$criteria->addSelectColumn(DocentePeer::CIUDAD);
@@ -179,6 +187,8 @@ abstract class BaseDocentePeer {
 		$criteria->addSelectColumn(DocentePeer::ACTIVO);
 
 		$criteria->addSelectColumn(DocentePeer::FK_PROVINCIA_ID);
+
+		$criteria->addSelectColumn(DocentePeer::FK_PAIS_ID);
 
 	}
 
@@ -315,6 +325,34 @@ abstract class BaseDocentePeer {
 
 
 	
+	public static function doCountJoinPais(Criteria $criteria, $distinct = false, $con = null)
+	{
+				$criteria = clone $criteria;
+
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(DocentePeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(DocentePeer::COUNT);
+		}
+
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
+		}
+
+		$criteria->addJoin(DocentePeer::FK_PAIS_ID, PaisPeer::ID);
+
+		$rs = DocentePeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
+	}
+
+
+	
 	public static function doSelectJoinTipodocumento(Criteria $c, $con = null)
 	{
 		$c = clone $c;
@@ -409,6 +447,53 @@ abstract class BaseDocentePeer {
 
 
 	
+	public static function doSelectJoinPais(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+				if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		DocentePeer::addSelectColumns($c);
+		$startcol = (DocentePeer::NUM_COLUMNS - DocentePeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+		PaisPeer::addSelectColumns($c);
+
+		$c->addJoin(DocentePeer::FK_PAIS_ID, PaisPeer::ID);
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = DocentePeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = PaisPeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj2 = new $cls();
+			$obj2->hydrate($rs, $startcol);
+
+			$newObject = true;
+			foreach($results as $temp_obj1) {
+				$temp_obj2 = $temp_obj1->getPais(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+										$temp_obj2->addDocente($obj1); 					break;
+				}
+			}
+			if ($newObject) {
+				$obj2->initDocentes();
+				$obj2->addDocente($obj1); 			}
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	
 	public static function doCountJoinAll(Criteria $criteria, $distinct = false, $con = null)
 	{
 		$criteria = clone $criteria;
@@ -428,6 +513,8 @@ abstract class BaseDocentePeer {
 		$criteria->addJoin(DocentePeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
 
 		$criteria->addJoin(DocentePeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+
+		$criteria->addJoin(DocentePeer::FK_PAIS_ID, PaisPeer::ID);
 
 		$rs = DocentePeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -456,9 +543,14 @@ abstract class BaseDocentePeer {
 		ProvinciaPeer::addSelectColumns($c);
 		$startcol4 = $startcol3 + ProvinciaPeer::NUM_COLUMNS;
 
+		PaisPeer::addSelectColumns($c);
+		$startcol5 = $startcol4 + PaisPeer::NUM_COLUMNS;
+
 		$c->addJoin(DocentePeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
 
 		$c->addJoin(DocentePeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+
+		$c->addJoin(DocentePeer::FK_PAIS_ID, PaisPeer::ID);
 
 		$rs = BasePeer::doSelect($c, $con);
 		$results = array();
@@ -518,6 +610,29 @@ abstract class BaseDocentePeer {
 				$obj3->addDocente($obj1);
 			}
 
+
+					
+			$omClass = PaisPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj4 = new $cls();
+			$obj4->hydrate($rs, $startcol4);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj4 = $temp_obj1->getPais(); 				if ($temp_obj4->getPrimaryKey() === $obj4->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj4->addDocente($obj1); 					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj4->initDocentes();
+				$obj4->addDocente($obj1);
+			}
+
 			$results[] = $obj1;
 		}
 		return $results;
@@ -542,6 +657,8 @@ abstract class BaseDocentePeer {
 		}
 
 		$criteria->addJoin(DocentePeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+
+		$criteria->addJoin(DocentePeer::FK_PAIS_ID, PaisPeer::ID);
 
 		$rs = DocentePeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
@@ -571,6 +688,38 @@ abstract class BaseDocentePeer {
 
 		$criteria->addJoin(DocentePeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
 
+		$criteria->addJoin(DocentePeer::FK_PAIS_ID, PaisPeer::ID);
+
+		$rs = DocentePeer::doSelectRS($criteria, $con);
+		if ($rs->next()) {
+			return $rs->getInt(1);
+		} else {
+						return 0;
+		}
+	}
+
+
+	
+	public static function doCountJoinAllExceptPais(Criteria $criteria, $distinct = false, $con = null)
+	{
+				$criteria = clone $criteria;
+
+				$criteria->clearSelectColumns()->clearOrderByColumns();
+		if ($distinct || in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->addSelectColumn(DocentePeer::COUNT_DISTINCT);
+		} else {
+			$criteria->addSelectColumn(DocentePeer::COUNT);
+		}
+
+				foreach($criteria->getGroupByColumns() as $column)
+		{
+			$criteria->addSelectColumn($column);
+		}
+
+		$criteria->addJoin(DocentePeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
+
+		$criteria->addJoin(DocentePeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+
 		$rs = DocentePeer::doSelectRS($criteria, $con);
 		if ($rs->next()) {
 			return $rs->getInt(1);
@@ -595,7 +744,12 @@ abstract class BaseDocentePeer {
 		ProvinciaPeer::addSelectColumns($c);
 		$startcol3 = $startcol2 + ProvinciaPeer::NUM_COLUMNS;
 
+		PaisPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + PaisPeer::NUM_COLUMNS;
+
 		$c->addJoin(DocentePeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+
+		$c->addJoin(DocentePeer::FK_PAIS_ID, PaisPeer::ID);
 
 
 		$rs = BasePeer::doSelect($c, $con);
@@ -631,6 +785,28 @@ abstract class BaseDocentePeer {
 				$obj2->addDocente($obj1);
 			}
 
+			$omClass = PaisPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj3  = new $cls();
+			$obj3->hydrate($rs, $startcol3);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj3 = $temp_obj1->getPais(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj3->addDocente($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj3->initDocentes();
+				$obj3->addDocente($obj1);
+			}
+
 			$results[] = $obj1;
 		}
 		return $results;
@@ -652,7 +828,12 @@ abstract class BaseDocentePeer {
 		TipodocumentoPeer::addSelectColumns($c);
 		$startcol3 = $startcol2 + TipodocumentoPeer::NUM_COLUMNS;
 
+		PaisPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + PaisPeer::NUM_COLUMNS;
+
 		$c->addJoin(DocentePeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
+
+		$c->addJoin(DocentePeer::FK_PAIS_ID, PaisPeer::ID);
 
 
 		$rs = BasePeer::doSelect($c, $con);
@@ -686,6 +867,112 @@ abstract class BaseDocentePeer {
 			if ($newObject) {
 				$obj2->initDocentes();
 				$obj2->addDocente($obj1);
+			}
+
+			$omClass = PaisPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj3  = new $cls();
+			$obj3->hydrate($rs, $startcol3);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj3 = $temp_obj1->getPais(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj3->addDocente($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj3->initDocentes();
+				$obj3->addDocente($obj1);
+			}
+
+			$results[] = $obj1;
+		}
+		return $results;
+	}
+
+
+	
+	public static function doSelectJoinAllExceptPais(Criteria $c, $con = null)
+	{
+		$c = clone $c;
+
+								if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		DocentePeer::addSelectColumns($c);
+		$startcol2 = (DocentePeer::NUM_COLUMNS - DocentePeer::NUM_LAZY_LOAD_COLUMNS) + 1;
+
+		TipodocumentoPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + TipodocumentoPeer::NUM_COLUMNS;
+
+		ProvinciaPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + ProvinciaPeer::NUM_COLUMNS;
+
+		$c->addJoin(DocentePeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID);
+
+		$c->addJoin(DocentePeer::FK_PROVINCIA_ID, ProvinciaPeer::ID);
+
+
+		$rs = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while($rs->next()) {
+
+			$omClass = DocentePeer::getOMClass();
+
+			$cls = Propel::import($omClass);
+			$obj1 = new $cls();
+			$obj1->hydrate($rs);
+
+			$omClass = TipodocumentoPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj2  = new $cls();
+			$obj2->hydrate($rs, $startcol2);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj2 = $temp_obj1->getTipodocumento(); 				if ($temp_obj2->getPrimaryKey() === $obj2->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj2->addDocente($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj2->initDocentes();
+				$obj2->addDocente($obj1);
+			}
+
+			$omClass = ProvinciaPeer::getOMClass();
+
+
+			$cls = Propel::import($omClass);
+			$obj3  = new $cls();
+			$obj3->hydrate($rs, $startcol3);
+
+			$newObject = true;
+			for ($j=0, $resCount=count($results); $j < $resCount; $j++) {
+				$temp_obj1 = $results[$j];
+				$temp_obj3 = $temp_obj1->getProvincia(); 				if ($temp_obj3->getPrimaryKey() === $obj3->getPrimaryKey()) {
+					$newObject = false;
+					$temp_obj3->addDocente($obj1);
+					break;
+				}
+			}
+
+			if ($newObject) {
+				$obj3->initDocentes();
+				$obj3->addDocente($obj1);
 			}
 
 			$results[] = $obj1;
