@@ -455,7 +455,7 @@ CREATE TABLE `cuenta`
 	`ciudad` VARCHAR(128)  NOT NULL,
 	`codigo_postal` VARCHAR(20)  NOT NULL,
 	`telefono` VARCHAR(20),
-	`fk_provincia_id` INTEGER default 0 NOT NULL,
+	`fk_provincia_id` INTEGER,
 	`fk_tipoiva_id` INTEGER default 0 NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `cuenta_FI_1` (`fk_provincia_id`),

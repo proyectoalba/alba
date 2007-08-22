@@ -1,14 +1,22 @@
 <?php use_helper('Object') ?>
 <?php use_helper('Javascript') ?>
 <?php use_helper('Validation') ?>
-<!--
+
 <style>
-.transOFF { background-color: silver;border:1px solid black; position:relative;bottom:150px; left:360px; width:40% }
-.transON { background-color: silver;opacity:.50;filter: alpha(opacity=50); -moz-opacity: 0.5;border:1px solid black;  position:relative; bottom:150px;  left:360px; width:40%}
+#form {
+background-color: silver;
+border:1px solid gray; 
+position:relative;
+bottom:150px; 
+left:360px; 
+width:50%;
+font-family: "Trebuchet MS", Arial, Verdana, sans-serif;
+}
+
+
 </style>
-<div class="transON" onmouseover="this.className='transOFF'" onmouseout="this.className='transON'">
--->
-<div style="background-color: silver;border:1px solid black; position:relative;bottom:150px; left:360px; width:50%" >
+
+<div id="form">
 <h2>Nueva Cuenta</h2>
 <?php echo form_tag('alumno/grabarCuenta', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
     <table>
@@ -17,7 +25,7 @@
             <td>
                 <?php if ($sf_request->hasError('cuenta{nombre}'))
                             echo form_error('cuenta{nombre}', array('class' => 'form-error-msg'));
-                 echo object_input_tag($cuenta, 'getNombre', array ('size' => 32,'control_name' => 'cuenta[nombre]',)); ?>
+                 echo object_input_tag($cuenta, 'getNombre', array ('size' => 16,'control_name' => 'cuenta[nombre]',)); ?>
             </td>
             <td></td> 
             <td></td>
@@ -25,7 +33,7 @@
             <td>
                 <?php if ($sf_request->hasError('cuenta{razon_social}'))
                          echo form_error('cuenta{razon_social}', array('class' => 'form-error-msg'));
-                echo object_input_tag($cuenta, 'getRazonSocial', array ('size' => 32,'control_name' => 'cuenta[razon_social]',)); ?>
+                echo object_input_tag($cuenta, 'getRazonSocial', array ('size' => 16,'control_name' => 'cuenta[razon_social]',)); ?>
             </td>
         </tr>
         <tr>
@@ -33,7 +41,7 @@
             <td>
                 <?php if ($sf_request->hasError('cuenta{cuit}'))
                          echo form_error('cuenta{cuit}', array('class' => 'form-error-msg'));
-                echo object_input_tag($cuenta, 'getCuit', array ('size' => 32,'control_name' => 'cuenta[cuit]',)); ?>
+                echo object_input_tag($cuenta, 'getCuit', array ('size' => 16,'control_name' => 'cuenta[cuit]',)); ?>
             </td>
             <td></td> 
             <td></td>
@@ -48,12 +56,14 @@
 )) ?>
             </td>
         </tr>
+
+
         <tr>
             <td>Direcci&oacute;n:</td> 
             <td>                
                 <?php if ($sf_request->hasError('cuenta{direccion}'))
                         echo form_error('cuenta{direccion}', array('class' => 'form-error-msg'));
-                echo object_input_tag($cuenta, 'getDireccion', array ('size' => 32,'control_name' => 'cuenta[direccion]',)); ?>
+                echo object_input_tag($cuenta, 'getDireccion', array ('size' => 16,'control_name' => 'cuenta[direccion]',)); ?>
             </td>
             <td></td> 
             <td></td>
@@ -61,11 +71,12 @@
             <td>
                 <?php if ($sf_request->hasError('cuenta{ciudad}'))
                         echo form_error('cuenta{ciudad}', array('class' => 'form-error-msg'));
-                echo object_input_tag($cuenta, 'getCiudad', array ('size' => 32,'control_name' => 'cuenta[ciudad]',));?>
+                echo object_input_tag($cuenta, 'getCiudad', array ('size' => 16,'control_name' => 'cuenta[ciudad]',));?>
             </td>
         </tr>
+
         <tr>
-            <td>Provincia:</td> 
+<!--            <td>Provincia:</td> 
             <td>
                 <?php if ($sf_request->hasError('cuenta{fk_provincia_id}'))
                         echo form_error('cuenta{fk_provincia_id}', array('class' => 'form-error-msg'));?>
@@ -75,18 +86,21 @@
   'peer_method' => 'getEnOrden',
   'control_name' => 'cuenta[fk_provincia_id]',
 )) ?>
-</div>            </td>
+</div>            </td> 
             <td></td>
-            <td></td>
+            <td></td> -->
             <td>CP:</td> 
             <td>
                 <?php if ($sf_request->hasError('cuenta{codigo_postal}'))
                         echo form_error('cuenta{codigo_postal}', array('class' => 'form-error-msg'));
-                echo object_input_tag($cuenta, 'getCodigoPostal', array ('size' => 32,'control_name' => 'cuenta[codigo_postal]',));?>
+                echo object_input_tag($cuenta, 'getCodigoPostal', array ('size' => 16,'control_name' => 'cuenta[codigo_postal]',));?>
             </td>
         </tr>
-    </table>
-    <?php echo submit_to_remote('ajax_submit', 'Grabar', array('update'   => 'nueva_cuenta', 'url' => 'alumno/grabarCuenta?vista=noMuestraMenu',)) ?>
+
+
+    </table><br>
+    <?php echo submit_to_remote('ajax_submit', 'Grabar', array('update'   => 'nueva_cuenta' , 'url' => 'alumno/grabarCuenta?vista=noMuestraMenu','script' => true)) ?>
     <?php echo button_to_function('Cerrar', update_element_function('nueva_cuenta', array('content' => '')));?>
+
 </form>
-</div>
+</div> 

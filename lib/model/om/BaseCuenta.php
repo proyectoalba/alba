@@ -41,7 +41,7 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 
 
 	
-	protected $fk_provincia_id = 0;
+	protected $fk_provincia_id;
 
 
 	
@@ -261,7 +261,7 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 			$v = (int) $v;
 		}
 
-		if ($this->fk_provincia_id !== $v || $v === 0) {
+		if ($this->fk_provincia_id !== $v) {
 			$this->fk_provincia_id = $v;
 			$this->modifiedColumns[] = CuentaPeer::FK_PROVINCIA_ID;
 		}
@@ -727,7 +727,7 @@ abstract class BaseCuenta extends BaseObject  implements Persistent {
 
 
 		if ($v === null) {
-			$this->setFkProvinciaId('0');
+			$this->setFkProvinciaId(NULL);
 		} else {
 			$this->setFkProvinciaId($v->getId());
 		}

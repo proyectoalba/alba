@@ -127,6 +127,9 @@ WHERE rel_anio_actividad.fk_actividad_id = rel_actividad_docente.fk_actividad_id
 
 DROP TABLE `rel_actividad_docente`;
 
+ALTER TABLE `docente` ADD `lugar_nacimiento` VARCHAR(128) NULL;
+ALTER TABLE `docente` ADD CONSTRAINT `pais_FK_4` FOREIGN KEY (`fk_pais_id`) REFERENCES `pais` (`id`);
+
 SET FOREIGN_KEY_CHECKS = 1;
 
 

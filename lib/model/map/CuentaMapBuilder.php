@@ -48,7 +48,7 @@ class CuentaMapBuilder {
 
 		$tMap->addColumn('TELEFONO', 'Telefono', 'string', CreoleTypes::VARCHAR, false, 20);
 
-		$tMap->addForeignKey('FK_PROVINCIA_ID', 'FkProvinciaId', 'int', CreoleTypes::INTEGER, 'provincia', 'ID', true, null);
+		$tMap->addForeignKey('FK_PROVINCIA_ID', 'FkProvinciaId', 'int', CreoleTypes::INTEGER, 'provincia', 'ID', false, null);
 
 		$tMap->addForeignKey('FK_TIPOIVA_ID', 'FkTipoivaId', 'int', CreoleTypes::INTEGER, 'tipoiva', 'ID', true, null);
 

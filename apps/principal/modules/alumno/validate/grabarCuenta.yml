@@ -7,7 +7,7 @@ methods:
     - "cuenta{ciudad}"    
     - "cuenta{fk_tipoiva_id}"    
     - "cuenta{codigo_postal}"        
-    - "cuenta{fk_provincia_id}"       
+#    - "cuenta{fk_provincia_id}"       
     
 fillin:
     enabled:       on
@@ -24,9 +24,13 @@ names:
         validators: caracteresMaximos128
 
     cuenta{cuit}:
-        required:     Yes
-        required_msg: El campo CUIT es obligatorio
-        validators: caracteresMaximos20
+        required:     No
+        validators: validaCuit
+
+    cuenta{fk_tipoiva_id}:
+        required:     No
+        validators: validarNumero                            
+
 
     cuenta{ciudad}:
         required:     Yes
@@ -42,16 +46,11 @@ names:
         required:     Yes
         required_msg: El campo c&oacute;digo postal  es obligatorio
         validators: caracteresMaximos20
-        
-    cuenta{fk_tipoiva_id}:
-        required:     Yes
-        required_msg: El campo Tipo IVA  es obligatorio
-        validators: validarNumero                            
 
-    cuenta{fk_provincia_id}:
-        required:     Yes
-        required_msg: El campo Provincia es obligatorio
-        validators: validarNumero
+#    cuenta{fk_provincia_id}:
+#        required:     Yes
+#        required_msg: El campo Provincia es obligatorio
+#        validators: validarNumero
 
         
 caracteresMaximos128:
@@ -80,3 +79,7 @@ validarNumero:
         min: 0
         min_error: El n&uacute;mero debe ser positivo
 
+validaCuit:
+    class:  albaCUITValidator
+    param:
+        cuit_error: El CUIT ingresado es invalido

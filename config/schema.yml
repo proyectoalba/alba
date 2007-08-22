@@ -573,8 +573,7 @@ alba:
       required: false
     fk_provincia_id: 
       type: INTEGER
-      required: true
-      default: 0
+      required: false
       foreignTable: provincia
       foreignReference: id
     fk_tipoiva_id: 

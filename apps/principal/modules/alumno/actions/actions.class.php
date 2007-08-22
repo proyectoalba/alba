@@ -176,6 +176,7 @@ class alumnoActions extends autoalumnoActions
     public function executeGrabarCuenta() {
         $cuenta = $this->updateCuentaFromRequest();
         $cuenta->save();
+        $this->id = $cuenta->getId();
     }
 
 
@@ -196,6 +197,7 @@ class alumnoActions extends autoalumnoActions
     {
       $cuenta_obj->setCuit($cuenta['cuit']);
     }
+
     if (isset($cuenta['direccion']))
     {
       $cuenta_obj->setDireccion($cuenta['direccion']);
