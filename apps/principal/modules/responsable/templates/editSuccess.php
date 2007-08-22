@@ -5,11 +5,11 @@
 function completaDatos() 
 {
 var datosCuenta = new Array()
-datosCuenta [0] = "<?=$datosCuenta->getDireccion()?>"
-datosCuenta [1] = "<?=$datosCuenta->getCiudad()?>"
-datosCuenta [2] = "<?=$datosCuenta->getFkProvinciaId()?>"
-datosCuenta [3] = "<?=$datosCuenta->getCodigoPostal()?>"
-datosCuenta [4] = "<?=$datosCuenta->getTelefono()?>"
+datosCuenta [0] = "<?php echo $datosCuenta->getDireccion()?>"
+datosCuenta [1] = "<?php echo $datosCuenta->getCiudad()?>"
+datosCuenta [2] = "<?php echo $datosCuenta->getFkProvinciaId()?>"
+datosCuenta [3] = "<?php echo $datosCuenta->getCodigoPostal()?>"
+datosCuenta [4] = "<?php echo $datosCuenta->getTelefono()?>"
 document.getElementsByName("responsable[direccion]")[0].value = datosCuenta[0]
 document.getElementsByName("responsable[ciudad]")[0].value = datosCuenta[1]
 document.getElementsByName("responsable[fk_provincia_id]")[0].value = datosCuenta[2]
@@ -17,7 +17,7 @@ document.getElementsByName("responsable[codigo_postal]")[0].value = datosCuenta[
 document.getElementsByName("responsable[telefono]")[0].value = datosCuenta[4]
 }
 </script>
-<?
+<?php
     }
 ?>
 <?php use_helper('Object', 'Validation', 'ObjectAdmin', 'I18N', 'Date') ?>

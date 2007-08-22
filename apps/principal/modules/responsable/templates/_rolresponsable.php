@@ -1,1 +1,1 @@
-<? echo $responsable->getRolResponsable();?>
+<?php echo $responsable->getRolResponsable();?>

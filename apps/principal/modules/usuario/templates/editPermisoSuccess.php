@@ -6,7 +6,7 @@
     }
 	</script>		
 
-<h1>Permisos por Usuario (<?=$usuario->getUsuario()?>) </h1>
+<h1>Permisos por Usuario (<?php echo $usuario->getUsuario()?>) </h1>
 <br>
 <?php echo form_tag('usuario/savePermiso', 'onSubmit="selectItem()"')?>
 Rol:  <?php echo select_tag('rolId', options_for_select($optionsRol, $sf_params->get('rolId')), 'onChange=linkTo()'); ?><br><br>

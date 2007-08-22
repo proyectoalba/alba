@@ -16,8 +16,8 @@
     //    echo select_tag('rolPermisos[]', objects_for_select($optionsRolPermisos,'getFkPermisoId','getPermiso()->getNombre',''), 'multiple=multiple id="toBox"');
     ?>
     <ul class="sf_admin_actions">
-        <li><? echo submit_tag('submit', 'class=sf_admin_action_save value=Grabar');?></li>
-        <li><? echo button_to('Listado de Roles','rol/list',array('class'=>'sf_admin_action_list'))?></li>
+        <li><?php echo submit_tag('submit', 'class=sf_admin_action_save value=Grabar');?></li>
+        <li><?php echo button_to('Listado de Roles','rol/list',array('class'=>'sf_admin_action_list'))?></li>
     </ul>
     </form>
 

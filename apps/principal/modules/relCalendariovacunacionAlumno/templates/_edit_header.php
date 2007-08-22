@@ -7,6 +7,6 @@
    if ($sf_params->get('action') == "create") {
 ?>
     <h1><?php echo __('Ingresar Calendario de Vacunaci&oacute;n'.$alumno,array()) ?></h1>
-<? } else { ?>
+<?php } else { ?>
     <h1><?php echo __('Editar Calendario de Vacunaci&oacute;n'.$alumno,array()) ?></h1>
-<? } ?>
+<?php } ?>
