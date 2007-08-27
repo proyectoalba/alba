@@ -9,7 +9,7 @@ generator:
         descripcion: { name: Descripci&oacute;n , params: size=64 }
         
     edit:
-        title: Modificar Tipo de Docente
+        title: ""
         display: [nombre, descripcion]
                                                          
     list:

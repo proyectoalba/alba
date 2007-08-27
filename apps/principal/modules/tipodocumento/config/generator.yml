@@ -8,7 +8,7 @@ generator:
         nombre: { name: Nombre , params: size=64 }
         descripcion: { name: Descripci&oacute;n , params: size=64 }
     edit:
-        title: Modificar Tipo de Documento
+        title: ""
         display: [nombre, descripcion, orden]
     list:
         display: [=nombre, descripcion, orden]

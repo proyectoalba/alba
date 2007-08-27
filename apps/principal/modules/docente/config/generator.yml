@@ -27,7 +27,7 @@ generator:
         fk_pais_id: { name: Nacionalidad, type: select_tag, params: peer_method=getEnOrden related_class=Pais   } 
 
     edit:
-        title: Editar Docente
+        title: ""
         fields:
             actividades: { type: admin_double_list, params: through_class=RelAnioActividadDocente style=width:260px }
 

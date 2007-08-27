@@ -19,6 +19,6 @@ generator:
             actions:
                _create: -
       edit:
-            title: Editar un ítem conceptual
+            title: ""
             fields:
                 fk_establecimiento_id:   { params: include_custom=--Seleccione un Establecimiento--}
