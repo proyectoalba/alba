@@ -8,7 +8,7 @@ generator:
         descripcion:  { name: Descripci&oacute;n , params: size=64}
 
     edit:
-        title: Editar Orientaci&oacute;n
+        title: ""
         display: [ nombre, descripcion ]
     
     list:

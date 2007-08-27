@@ -7,7 +7,7 @@ generator:
         descripcion: { name: Descripci&oacute;n , params: size=40 }
     
     edit:
-        title: Editar A&ntilde;os
+        title: " "
         display: [descripcion ]
         actions:
             _delete: -

@@ -13,7 +13,7 @@ generator:
         fk_orientacion_id: { name: Orientacion }
 
     edit:
-        title: Editar Divisi&oacute;n
+        title: ""
         display: [ _fk_anio_id, descripcion, fk_orientacion_id, _fk_turno_id, orden ]
                     
     list:

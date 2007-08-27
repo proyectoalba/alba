@@ -8,7 +8,7 @@ generator:
         descripcion: { name: Descripci&oacute;n , params: size=64}
     
     edit:
-        title: Editar Actividad/Materia
+        title: ""
         display: [ nombre, descripcion ]
         actions:
             _delete: -
