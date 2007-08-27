@@ -7,7 +7,7 @@ generator:
     fields:
         apellido: { name: Apellido, params: size=64 }
         nombre: { name: Nombres , params: size=64 }
-        fk_tipodocumento_id: { name: Tipo de Documento }
+        fk_tipodocumento_id: { name: Tipo de Documento, type: select_tag, params: peer_method=getEnOrden related_class=Tipodocumento }
         tipodocumento: { name: Tipo de Documento }
         nro_documento:  { name: Nro. Documento }
         direccion: { name: Direcci&oacute;n , params: size=64 }
@@ -24,7 +24,7 @@ generator:
         titulo: { name: Titulo Habilitante , params: size=64}
         activo: { name: Activo}
         lugar_nacimiento: { name: Lugar de Nacimiento }
-        fk_pais_id: { name: Nacionalidad } 
+        fk_pais_id: { name: Nacionalidad, type: select_tag, params: peer_method=getEnOrden related_class=Pais   } 
 
     edit:
         title: Editar Docente
