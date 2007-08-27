@@ -20,4 +20,10 @@
  */	
 class TipodocumentoPeer extends BaseTipodocumentoPeer {
 
+   public static function getEnOrden() {
+        $c = new Criteria();
+        $c->addAscendingOrderByColumn(TipodocumentoPeer::ORDEN);
+        return TipodocumentoPeer::populateObjects(TipodocumentoPeer::doSelectRS($c, null));
+    }
+
 } // TipodocumentoPeer

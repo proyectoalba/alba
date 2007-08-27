@@ -96,6 +96,7 @@
 
               <?php echo object_select_tag($alumno, 'getFkTipodocumentoId', array (
               'related_class' => 'Tipodocumento',
+              'peer_method' => 'getEnOrden',
               'control_name' => 'alumno[fk_tipodocumento_id]',
             )) ?>
                 </div>
@@ -154,6 +155,7 @@
 
 <?php $value = object_select_tag($alumno, 'getFkPaisId', array (
   'related_class' => 'Pais',
+  'peer_method' => 'getEnOrden',
     'control_name' => 'alumno[fk_pais_id]',
     )); echo $value ? $value : '&nbsp;' ?>
                 
