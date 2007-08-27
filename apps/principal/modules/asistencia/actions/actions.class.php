@@ -231,7 +231,6 @@ class asistenciaActions extends sfActions
                     @$totales[$alumno['asistencia']]++;
                 }
             }
-
             $aTipoasistencias = $this->getTiposasistencias();
             $aPorcentajeAsistencia = array();
             $flag = 0;
@@ -246,8 +245,8 @@ class asistenciaActions extends sfActions
 
             $dias = $cantFechas*count($idxAlumno);
             foreach($aTipoasistencias as $idx => $Tipoasistencia) {
-                $aPorcentajeAsistencia[$idx] = isset($totales[$idx])?$totales[$idx]:0;
-                @$tot += $totales[$idx];
+                $aPorcentajeAsistencia[$idx] = isset($totales[$idx])?number_format($totales[$idx]*100/$dias,2):number_format(0,2);
+                $tot += isset($totales[$idx])?number_format($totales[$idx],2):number_format(0,2);
                 if($aPorcentajeAsistencia[$idx] != 0) $flag = 1;
             }
 
@@ -277,13 +276,9 @@ class asistenciaActions extends sfActions
                     $nombre_archivo = uniqid();
                     $nombre_completo_archivo = $nombre_archivo.'.png';
                     @$graph->showGraph(sfConfig::get('app_alba_tmpdir').DIRECTORY_SEPARATOR.$nombre_completo_archivo);
-                } else {
-
-                }
+                } 
             }
-        } else {
-            // si pasa por aqui es que no hay fechas creadas en el intervalo
-        }
+        } 
 
         //Asignacion de variables para el template
 
