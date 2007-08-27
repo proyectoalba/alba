@@ -11,7 +11,7 @@
         $provincia_id = 0;
     }
         
-    echo select_tag('pais_id',objects_for_select($paises,'getId','getNombreLargo',$pais_selected));
+    echo select_tag('pais_id',objects_for_select(PaisPeer::getEnOrden(),'getId','getNombreLargo',$pais_selected));
     
     echo observe_field('pais_id', array(
         'update'   => 'item_provincia',

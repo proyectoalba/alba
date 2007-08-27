@@ -104,6 +104,7 @@ document.getElementsByName("responsable[telefono]")[0].value = datosCuenta[4]
 
   <?php echo object_select_tag($responsable, 'getFkTipodocumentoId', array (
   'related_class' => 'Tipodocumento',
+  'peer_method' => 'getEnOrden',
   'control_name' => 'responsable[fk_tipodocumento_id]',
 )) ?>
     </div>
