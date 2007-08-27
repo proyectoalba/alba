@@ -10,7 +10,7 @@ generator:
         horas: { name: Horas Semanales }
         fk_orientacion_id: { name: Orientaci&oacute;n }
     edit:
-        title: Editar Actividades del A&ntilde;o
+        title: ""
         fields:
             fk_anio_id:   { params: include_custom=>>Seleccione un A&ntilde;o<< }
             fk_actividad_id:   { params: include_custom=>>Seleccione una Actividad<< }
