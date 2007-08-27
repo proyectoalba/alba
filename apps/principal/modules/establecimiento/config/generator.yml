@@ -13,7 +13,7 @@ generator:
         distritoescolar : { name: Distrito Escolar}
         
     edit:
-        title: Modificar Establecimiento
+        title: ""
         display: [nombre, descripcion, fk_organizacion_id, fk_niveltipo_id, fk_distritoescolar_id]
                                                          
     list:
