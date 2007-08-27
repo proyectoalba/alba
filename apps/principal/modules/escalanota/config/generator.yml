@@ -19,7 +19,7 @@ generator:
                 _create: -
 
         edit:
-            title: Editar Escala de Nota
+            title: ""
             actions:
                 _delete: -
                 _save: -
