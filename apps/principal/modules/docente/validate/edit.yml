@@ -109,11 +109,12 @@ caracteresMaximos20:
 
 
 validarNumero:
-    class: sfNumberValidator
+    class: albaDocumentoValidator
     param:
-        nan_error: Por favor ingrese un valor n&uacute;merico       
-        min: 0
-        min_error: El n&uacute;mero debe ser positivo
+        documento_error: El Documento ingresado es invalido
+        nombre_campo1: docente
+        nombre_campo2: nro_documento
+                                
 
 validaFecha:
     class:  albaDateValidator

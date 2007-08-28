@@ -112,7 +112,6 @@ class alumnoActions extends autoalumnoActions
       $this->alumno = $this->getAlumnoOrCreate();
 
       $this->updateAlumnoFromRequest();
-
       $this->saveAlumno($this->alumno);
 
       $this->setFlash('notice', 'Your modifications have been saved');
