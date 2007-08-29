@@ -3256,9 +3256,9 @@ INSERT INTO `repeticion` (`id`, `descripcion`, `orden`) VALUES (4, 'Mensual', 4)
 --- Volcar la base de datos para la tabla rol_responsable'
 ---
 
-INSERT INTO `rol_responsable` (`id`, `nombre`, `descripcion`, `activo`) VALUES (1, 'Padre.', 'Padre del alumno',1);
-INSERT INTO `rol_responsable` (`id`, `nombre`, `descripcion`, `activo`) VALUES (2, 'Madre.', 'Madre del alumno',1);
-INSERT INTO `rol_responsable` (`id`, `nombre`, `descripcion`, `activo`) VALUES (3, 'Tío.', 'Tío del alumno',1);
+INSERT INTO `rol_responsable` (`id`, `nombre`, `descripcion`, `activo`) VALUES (1, 'Padre', 'Padre del alumno',1);
+INSERT INTO `rol_responsable` (`id`, `nombre`, `descripcion`, `activo`) VALUES (2, 'Madre', 'Madre del alumno',1);
+INSERT INTO `rol_responsable` (`id`, `nombre`, `descripcion`, `activo`) VALUES (3, 'Tío', 'Tío del alumno',1);
 
 -- 
 -- Volcar la base de datos para la tabla `responsable`

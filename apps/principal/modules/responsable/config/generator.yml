@@ -20,8 +20,10 @@ generator:
             observacion: { name: Observaci&oacute;n, params: size=80}
             autorizacion_retiro: { name: Aut. Retiro }
       list:
+        fields:
+            apellido: { params: size=20 }
         title: Listado de Responsables
-        display: [ cuenta, =apellido, nombre, nro_documento, direccion, ciudad, _provincia, telefono, _rolresponsable, autorizacion_retiro ]
+        display: [ cuenta, =apellido, nombre, nro_documento, telefono_movil, telefono, _rolresponsable, autorizacion_retiro ]
         object_actions:
           _edit: -
           _delete: -
