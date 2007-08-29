@@ -16,7 +16,7 @@ names:
     cuenta{nombre}:
         required:     Yes
         required_msg: El campo nombre es obligatorio
-        validators: caracteresMaximos128
+        validators: caracteresMaximos128, cuentaValidador
 
     cuenta{razon_social}:
         required:     Yes
@@ -79,4 +79,11 @@ validaCuit:
     param:
         cuit_error: El CUIT ingresado es invalido
 
-        
+
+cuentaValidador:
+    class:  albaCuentaValidador
+    param:
+        campo: nombre
+        campo_id: id
+        cuenta_error: La cuenta ya exite
+
