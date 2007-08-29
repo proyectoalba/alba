@@ -12,7 +12,7 @@ generator:
         display: [ nombre, descripcion ]
 	
     list:
-        title: Lista Tipos de Nivel
+        title: Listado de Tipos de Nivel
         sort: nombre
         display: [ =nombre, descripcion ]
 	
