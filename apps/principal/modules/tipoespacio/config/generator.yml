@@ -15,7 +15,7 @@ generator:
         actions:
             _create: -    
     edit:
-        title: Editar Tipos de Espacios
+        title: ""
         actions:
             _delete: -
             _save: -
