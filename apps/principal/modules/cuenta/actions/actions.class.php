@@ -73,6 +73,18 @@ class cuentaActions extends autocuentaActions
         $c->add(ProvinciaPeer::FK_PAIS_ID, $this->pais_id);
         $this->provincias = ProvinciaPeer::getEnOrden($c);
     }
+
+    public function executeAutocompletar() {
+        $txt_cuenta = $this->getRequestParameter('txt_cuenta');
+        $criteria = new Criteria();
+        $criteria->add(CuentaPeer::NOMBRE, "$txt_cuenta%", Criteria::LIKE);
+        $cuentas = CuentaPeer::doSelect($criteria);
+        $this->forward404Unless($cuentas);
+        $this->aCuenta = $cuentas;
+    }
+
+
+
 }
 
 ?>
