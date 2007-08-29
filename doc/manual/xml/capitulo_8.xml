@@ -2,7 +2,7 @@
 <para>
 Esta sección permitirá la gestión de todos los docentes del establecimiento en relación a sus datos personales, las Materias/Actividades y la organización de los Horarios de clase según la carga de Horarios tentativos de los docentes al inicio del Ciclo Lectivo. 
 </para>
-<sect1><titel>Administrar</title>
+<sect1><title>Administrar</title>
 <para>
 La herramienta "Administrar" permite el acceso a todo el listado de docentes. A través de sus botones de acciones permite asimismo: editar el registro, borrar, ir a "Actividades por Docentes" y "Horarios tentativos por docente". Estos dos últimos se detallan a continuación y corresponden a los últimos dos íconos de la barra de acciones. 
 </para>
@@ -22,7 +22,7 @@ Esta herramienta permite visualizar la relación entre un docente y la materia/ac
 </para>
 <para>
 Al ingresar a la Edición de un docente, a través del botón de la barra de acciones, es posible editar también las Actividades asociadas a cada docente.  La metodología consiste en  un sistema de flechas gráficas que permite trasladar del listado de Materias/Actividades no asociadas (de la izquierda) las materias que dicta el Docente al listado de la derecha o de Activdades/Materias Asociadas al Docente.
-<para>
+</para>
 <para>
 <figure><title>Editar las actividades del docente</title>
 <graphic scalefit="1" fileref="img/figura40.png"/>
