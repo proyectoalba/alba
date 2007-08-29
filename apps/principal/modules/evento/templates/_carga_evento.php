@@ -308,8 +308,8 @@
         <div class="form-row">  
             <?php echo radiobutton_tag('evento[recurrencia_fin_tipo][]', '0', $recurrencia_fin_0, array('disabled' => !$activar_repeticion, 'onClick' => 'javascript:deshabilitaRangoFrecuencia()') ) ?>Sin fecha de Finalizaci&oacute;n&nbsp;&nbsp;<br>
         
-            <?php echo radiobutton_tag('evento[recurrencia_fin_tipo][]', '1', $recurrencia_fin_1, array('disabled' => !$activar_repeticion, 'onClick' => 'javascript:HabilitaDeshabilitaRangoFrecuencia(\'evento_recurrencia_fin_repeticion\')') ) ?>Terminar despues: &nbsp;&nbsp;
-            <?php echo input_tag('evento[recurrencia_fin_repeticion]', $recurrencia_fin_repeticion, array('disabled' => !$activar_repeticion, 'maxlength' => 4, 'size' => 4 )) ?>    <br>
+            <?php echo radiobutton_tag('evento[recurrencia_fin_tipo][]', '1', $recurrencia_fin_1, array('disabled' => !$activar_repeticion, 'onClick' => 'javascript:HabilitaDeshabilitaRangoFrecuencia(\'evento_recurrencia_fin_repeticion\')') ) ?>Terminar despu&eacute;s de 
+            <?php echo input_tag('evento[recurrencia_fin_repeticion]', $recurrencia_fin_repeticion, array('disabled' => !$activar_repeticion, 'maxlength' => 4, 'size' => 4 )) ?>veces.<br>
 
             <?php echo radiobutton_tag('evento[recurrencia_fin_tipo][]', '2', $recurrencia_fin_2, array('disabled' => !$activar_repeticion, 'onClick' => 'javascript:HabilitaDeshabilitaRangoFrecuencia(\'evento_recurrencia_fin_fecha\')') ) ?>Terminar el:&nbsp;&nbsp;
             <?php echo input_date_tag('evento[recurrencia_fin_fecha]', $recurrencia_fin_fecha, array ( 'rich' => true, 'calendar_button_img' => sfConfig::get('sf_admin_web_dir').'/images/date.png',
