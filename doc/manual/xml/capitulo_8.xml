@@ -11,7 +11,7 @@ La herramienta "Administrar" permite el acceso a todo el listado de docentes. A 
 <graphic scalefit="1" fileref="img/figura38.png"/>
 </figure>
 </para>
-<sect2><title>Actividades por docentes</titel>
+<sect2><title>Actividades por docentes</title>
 <para>
 Esta herramienta permite visualizar la relación entre un docente y la materia/actividad que dicta. 
 </para>
