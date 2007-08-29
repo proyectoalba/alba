@@ -8,7 +8,7 @@ generator:
             hora_inicio: { name: Hora Inicio }
             hora_fin: { name: Hora Fin }
         edit:
-            title: Turno
+            title: ""
             display: [descripcion, _hora_inicio, _hora_fin ]
         list:
             title: Listado de Turnos

@@ -9,7 +9,7 @@ generator:
         orden: { name: Orden }
 
     edit:
-        title: Editar Tipos de IVA
+        title: ""
         display: [ nombre, descripcion, orden ]
     
     list:

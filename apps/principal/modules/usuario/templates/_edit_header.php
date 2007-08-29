@@ -1,1 +1,1 @@
-<h1><?php echo ($sf_params->get('action') == "create")?"Ingresar Usuario":"Editar Usuario "?></h1>
+<h1><?php echo ($sf_params->get('action') == "create")?"Ingresar Usuario":"Modificar Usuario";?></h1>
