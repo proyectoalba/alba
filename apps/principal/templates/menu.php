@@ -23,6 +23,7 @@
 	                            <li><span></span><?php echo link_to("Definir Distritos Escolares","distritoescolar")?></li>
 	                            <li><span></span><?php echo link_to("Definir Categor&iacute;a de IVA","tipoiva")?></li>
 	                            <li><span></span><?php echo link_to("Tipo Documento","tipodocumento")?></li>
+	                            <li><span></span><?php echo link_to("Tipo Nivel","tiponivel")?></li>
                             </ul>
                         </li>
 	                    <li><span></span><a href="#">Alumnos</a>
@@ -86,6 +87,8 @@
 	                    <li><span></span><?php echo link_to("Concepto","boletin/listConcepto")?></li>
 	                    <li><span></span><?php echo link_to("Notas","boletin/list")?></li>
                     </ul>
+
+
                 </li>
             </ul>
         </li>
