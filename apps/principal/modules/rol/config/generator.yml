@@ -9,7 +9,7 @@ generator:
         activo: {name: Esta activo, type: checkbox_tag}    
 
     edit:
-        title: Editar Rol
+        title: ""
         display: [nombre, descripcion, activo] 
             
     list:

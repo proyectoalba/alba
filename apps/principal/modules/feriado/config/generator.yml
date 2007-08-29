@@ -10,7 +10,7 @@ generator:
         inamovible: { name: Inamovible, type: checkbox_tag }
 
     edit:
-        title: Modificar Feriado
+        title: ""
         display: [ nombre, fecha, repeticion_anual, inamovible ]
                    
 

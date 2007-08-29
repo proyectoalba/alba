@@ -10,7 +10,7 @@ generator:
         nombre_largo: { name: Nombre Largo, params: size=64 }
         orden: { name: Orden, params: size=10 }
     edit:
-        title: Editar Provincia
+        title: ""
         display: [ nombre_corto, nombre_largo, fk_pais_id, orden ]
                     
     list:
