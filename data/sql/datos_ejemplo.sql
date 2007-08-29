@@ -2690,6 +2690,10 @@ INSERT INTO `modulo` (`id`, `nombre`, `titulo`, `descripcion`, `activo`) VALUES 
 INSERT INTO `niveltipo` (`id`, `nombre`, `descripcion`) VALUES (1, 'Jardín', 'Jardín');
 INSERT INTO `niveltipo` (`id`, `nombre`, `descripcion`) VALUES (2, 'Primaria', 'Primaria');
 INSERT INTO `niveltipo` (`id`, `nombre`, `descripcion`) VALUES (3, 'Secundaria', 'Secundaria');
+INSERT INTO `niveltipo` (`id`, `nombre`, `descripcion`) VALUES (4, 'Universitario', 'Universitario');
+INSERT INTO `niveltipo` (`id`, `nombre`, `descripcion`) VALUES (5, 'Terciario', 'Terciario');
+INSERT INTO `niveltipo` (`id`, `nombre`, `descripcion`) VALUES (6, 'Institutos', 'Institutos');
+INSERT INTO `niveltipo` (`id`, `nombre`, `descripcion`) VALUES (7, 'Otros', 'Otros');
 
 -- 
 -- Volcar la base de datos para la tabla `organizacion`
