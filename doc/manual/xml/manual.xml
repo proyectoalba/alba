@@ -12,7 +12,6 @@
 <!ENTITY capitulo_7.xml SYSTEM "capitulo_7.xml">
 <!ENTITY capitulo_8.xml SYSTEM "capitulo_8.xml">
 <!ENTITY capitulo_9.xml SYSTEM "capitulo_9.xml">
-<!ENTITY capitulo_10.xml SYSTEM "capitulo_10.xml">
 ]>
 <book>
 	<title>ALBA - Manual de Usuario</title>
@@ -30,6 +29,5 @@
     &capitulo_7.xml;
     &capitulo_8.xml;
     &capitulo_9.xml;
-    &capitulo_10.xml;
     &indice.xml;   
 </book>
