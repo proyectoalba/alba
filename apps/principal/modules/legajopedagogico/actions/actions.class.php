@@ -46,7 +46,8 @@ class legajopedagogicoActions extends sfActions
 
         // tomando los datos del formulario
         $division_id = $this->getRequestParameter('division_id');
-        $txt = $this->getRequestParameter('txt');
+        $txt_apellido = $this->getRequestParameter('txt_apellido');
+        $txt_nombre = $this->getRequestParameter('txt_nombre');
 
         // llenando el combo de division segun establecimiento
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
@@ -69,30 +70,22 @@ class legajopedagogicoActions extends sfActions
             }
             
         
-            if($txt) {
-                $cton1 = $criteria->getNewCriterion(AlumnoPeer::NOMBRE, "%$txt%", Criteria::LIKE);
-                $cton2 = $criteria->getNewCriterion(AlumnoPeer::APELLIDO, "%$txt%", Criteria::LIKE);
-                $cton1->addOr($cton2);
-                $criteria->add($cton1);
+            if($txt_apellido) {
+                $criteria->add(AlumnoPeer::APELLIDO, "$txt_apellido%", Criteria::LIKE);
             }
 
-//             $criteria->addAsColumn("alumno_id", AlumnoPeer::ID);
-//             $criteria->addAsColumn("alumno_nombre", AlumnoPeer::NOMBRE);
-//             $criteria->addAsColumn("alumno_apellido", AlumnoPeer::APELLIDO);
-//             $criteria->addAsColumn("division_id", DivisionPeer::ID);
-//             $criteria->addAsColumn("division_descripcion", DivisionPeer::DESCRIPCION);
+            if($txt_nombre) {
+                $criteria->add(AlumnoPeer::NOMBRE, "$txt_nombre%", Criteria::LIKE);
+            }
 
             $aAlumno = AlumnoPeer::doSelect($criteria);
-//             foreach($alumnos as $alumno) {
-//                 $aAlumno[] = (object) array( 'alumno_id' => $alumno[0],'alumno_nombre' => $alumno[1], 'alumno_apellido' => $alumno[2] );
-//             }
-    
         }
 
         // asignando variables para ser usadas en el template
         $this->optionsDivision = $optionsDivision;
         $this->division_id = $division_id;
-        $this->txt = $txt;
+        $this->txt_apellido = $txt_apellido;
+        $this->txt_nombre = $txt_nombre;
         $this->aAlumno = $aAlumno;
 
     }
@@ -333,6 +326,28 @@ class legajopedagogicoActions extends sfActions
         return $this->redirect("legajopedagogico?action=edit&aid=".$this->alumno_id."&id=".$this->legajopedagogico_id);
     }
 
+    public function executeAutocompletarApe() {
+        $txt_apellido = $this->getRequestParameter('txt_apellido');
+        $criteria = new Criteria();
+        $criteria->add(AlumnoPeer::APELLIDO, "$txt_apellido%", Criteria::LIKE);
+        $alumnos = AlumnoPeer::doSelect($criteria);
+        $this->forward404Unless($alumnos);
+
+
+        $this->aAlumno = $alumnos;
+    }
+
+
+    public function executeAutocompletarNom() {
+        $txt_nombre = $this->getRequestParameter('txt_nombre');
+        $criteria = new Criteria();
+        $criteria->add(AlumnoPeer::NOMBRE, "$txt_nombre%", Criteria::LIKE);
+        $alumnos = AlumnoPeer::doSelect($criteria);
+        $this->forward404Unless($alumnos);
+        $this->aAlumno = $alumnos;
+    }
 
 
 }
+
+?>

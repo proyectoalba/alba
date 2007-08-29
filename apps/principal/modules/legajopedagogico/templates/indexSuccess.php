@@ -1,15 +1,33 @@
-<?php use_helper("I18N")?>
+<?php use_helper("I18N","Javascript")?>
 <div id="sf_admin_container">
-
+<h1>Buscar Alumnos</h1>
 <?php echo form_tag('legajopedagogico/index', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
 
 <?php //echo object_input_hidden_tag($calendario, 'getId') ?>
 
 <fieldset id="sf_fieldset_none" class="">
     <div class="form-row">
-        <?php echo label_for('Buscar', __('Buscar Alumnos:')) ?>
-        <?php echo input_tag('txt', '') ?>   
+        <?php echo label_for('Buscar', __('Por apellido:')) ?>
+ <?php
+echo input_auto_complete_tag('txt_apellido', '',
+'legajopedagogico/autocompletarApe',
+array('autocomplete' => 'off'),
+array('use_style' => true)
+)
+?>
     </div>
+
+    <div class="form-row">
+        <?php echo label_for('Buscar', __('Por nombre:')) ?>
+ <?php
+echo input_auto_complete_tag('txt_nombre', '',
+'legajopedagogico/autocompletarNom',
+array('autocomplete' => 'off'),
+array('use_style' => true)
+)
+?>
+    </div>
+
 
     <div class="form-row">
         <?php echo label_for('division', __('Division:')) ?>
@@ -28,8 +46,8 @@
 
 
 <?php if (count($aAlumno) > 0) {
-    if ($txt) { ?>
-    Usted busco -<?php echo $txt?>-
+        if ($txt_apellido OR $txt_nombre) { ?>
+    Usted busco -<?php echo (($txt_apellido)?$txt_apellido:"")." ".(($txt_nombre)?$txt_nombre:"") ?>-
     <?php } ?>
 <h1>Alumnos</h1>
 <table cellspacing="0" class="sf_admin_list">
@@ -66,8 +84,8 @@
 </table>
 
 <?php } else {
-    if ($txt) { ?>
-        Su b&uacute;squeda por -<?php echo $txt?>- no ha encontrado alumnos.
+    if ($txt_apellido OR $txt_nombre) { ?>
+        Su b&uacute;squeda por -<?php echo (($txt_apellido)?$txt_apellido:"")." ".(($txt_nombre)?$txt_nombre:"") ?>- no ha encontrado alumnos.
     <?php } 
 } 
 ?>
