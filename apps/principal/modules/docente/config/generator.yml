@@ -38,8 +38,12 @@ generator:
                                                          
                     
     list:
+        fields:
+            apellido: { params: size=20 }
+            nombre: { params: size=20 }
         title: Listado de Docentes
-        display: [ =apellido, nombre, tipodocumento, nro_documento, direccion, ciudad, codigo_postal, provincia, email, telefono, activo ]
+        display: [ =apellido, nombre, tipodocumento, nro_documento, telefono, email, activo ]
+        filters: [ apellido, nombre ]
         object_actions:
             _edit:      -
             _delete:    -
