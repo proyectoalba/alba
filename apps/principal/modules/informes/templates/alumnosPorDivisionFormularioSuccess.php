@@ -1,5 +1,5 @@
 <?php use_helper('I18N') ?>
-
+<div id ="sf_admin_container">
 <h1>Informe: Alumnos por Divis&oacute;n </h1>
 
 <?php if ($sf_request->hasErrors()) {?>
@@ -30,3 +30,4 @@
 </ul>
 
 </form>
+</div>

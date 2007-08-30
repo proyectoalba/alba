@@ -9,9 +9,6 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/css/marco_imagenes.css">
 
-    <?php if (!$sf_user->isAuthenticated()):?>
-        <link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/css/login.css">
-    <?php endif;?>
     </head>
     <body>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
