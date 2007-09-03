@@ -2,3 +2,8 @@ Aqui aparecen todos los parches que no forman parte de los proyectos
 que vamos arreglando. 
 Es necesario parchear las versiones nuevas 
 con estos parches, por ejemplo la del symfony.
+
+Listado:
+
+check_radio_array.patch
+ver situacion en http://trac.symfony-project.com/trac/ticket/1776
