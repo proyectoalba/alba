@@ -2,6 +2,7 @@ methods:
   post:       
     - "concepto{nombre}"
     - "concepto{descripcion}"    
+    - "concepto{fk_establecimiento_id}"        
     
 fillin:
     enabled:       on
@@ -15,7 +16,11 @@ names:
     concepto{descripcion}:
         required:     No
         validators: caracteresMaximos255
-        
+
+    concepto{fk_establecimiento_id}:
+        required:     Yes
+        required_msg: El campo Establecimiento es obligatorio
+                   
         
 caracteresMaximos128:
     class:  sfStringValidator
