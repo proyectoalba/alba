@@ -38,7 +38,7 @@ class TipoasistenciaMapBuilder {
 
 		$tMap->addColumn('DESCRIPCION', 'Descripcion', 'string', CreoleTypes::VARCHAR, false, 255);
 
-		$tMap->addColumn('VALOR', 'Valor', 'double', CreoleTypes::DECIMAL, true, 4,2);
+		$tMap->addColumn('VALOR', 'Valor', 'double', CreoleTypes::DOUBLE, true, null);
 
 		$tMap->addColumn('GRUPO', 'Grupo', 'string', CreoleTypes::VARCHAR, false, 30);
 

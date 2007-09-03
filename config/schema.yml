@@ -1718,8 +1718,7 @@ alba:
       size: 255
       required: false
     valor: 
-      type: DECIMAL
-      size: 4,2
+      type: DOUBLE
       required: true
       default: 1
     grupo: 
