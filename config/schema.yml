@@ -495,7 +495,7 @@ alba:
     id: 
       type: INTEGER
       required: true
-      autoIncrement: false
+      autoIncrement: true
       primaryKey: true
     nombre: 
       type: VARCHAR

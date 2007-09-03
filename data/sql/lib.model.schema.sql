@@ -410,7 +410,7 @@ DROP TABLE IF EXISTS `tipoiva`;
 
 CREATE TABLE `tipoiva`
 (
-	`id` INTEGER  NOT NULL,
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
 	`nombre` VARCHAR(128)  NOT NULL,
 	`descripcion` VARCHAR(255),
 	`orden` INTEGER default 0,

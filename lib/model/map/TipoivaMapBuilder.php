@@ -30,7 +30,7 @@ class TipoivaMapBuilder {
 		$tMap = $this->dbMap->addTable('tipoiva');
 		$tMap->setPhpName('Tipoiva');
 
-		$tMap->setUseIdGenerator(false);
+		$tMap->setUseIdGenerator(true);
 
 		$tMap->addPrimaryKey('ID', 'Id', 'int', CreoleTypes::INTEGER, true, null);
 
