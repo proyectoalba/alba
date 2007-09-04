@@ -1344,7 +1344,7 @@ CREATE TABLE `tipoasistencia`
 	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
 	`nombre` VARCHAR(10)  NOT NULL,
 	`descripcion` VARCHAR(255),
-	`valor` DOUBLE default 1 NOT NULL,
+	`valor` DECIMAL(4,2) default 1 NOT NULL,
 	`grupo` VARCHAR(30),
 	`defecto` INTEGER default 0 NOT NULL,
 	PRIMARY KEY (`id`)
