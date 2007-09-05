@@ -5,7 +5,7 @@ generator:
     theme:            default
     fields:
         nombre: { name : Nombre, params: size=64}
-        fecha:  { params: date_format='dd/MM/yy'}        
+        fecha:  { params: date_format='dd/MM/yy' withtime=false }        
         repeticion_anual: { name: Anual, type: checkbox_tag }
         inamovible: { name: Inamovible, type: checkbox_tag }
 
