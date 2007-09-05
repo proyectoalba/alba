@@ -2,16 +2,16 @@ SET NAMES 'utf8';
 SET FOREIGN_KEY_CHECKS = 0;
  
 
-INSERT INTO `actividad` (`id`, `fk_establecimiento_id`, `nombre`, `descripcion`) VALUES (7, 1, 'Lengua.', 'Lengua.');
-INSERT INTO `actividad` (`id`, `fk_establecimiento_id`, `nombre`, `descripcion`) VALUES (8, 1, 'Matemáticas.', 'Ciencias de la matemática.');
-INSERT INTO `actividad` (`id`, `fk_establecimiento_id`, `nombre`, `descripcion`) VALUES (9, 1, 'Ciencias naturales.', 'Ciencias de la naturaleza.');
-INSERT INTO `actividad` (`id`, `fk_establecimiento_id`, `nombre`, `descripcion`) VALUES (10, 1, 'Estudios sociales.', 'Ciencias de la sociedad.');
-INSERT INTO `actividad` (`id`, `fk_establecimiento_id`, `nombre`, `descripcion`) VALUES (11, 1, 'Actividades Prácticas.', 'Actividades Prácticas. ');
-INSERT INTO `actividad` (`id`, `fk_establecimiento_id`, `nombre`, `descripcion`) VALUES (12, 1, 'Educación Plástica.', 'Educación PlÃ¡stica.');
-INSERT INTO `actividad` (`id`, `fk_establecimiento_id`, `nombre`, `descripcion`) VALUES (13, 1, 'Música.', 'Educación musical.');
-INSERT INTO `actividad` (`id`, `fk_establecimiento_id`, `nombre`, `descripcion`) VALUES (14, 1, 'Educación Física.', 'Gimnansia y educación física. ');
-INSERT INTO `actividad` (`id`, `fk_establecimiento_id`, `nombre`, `descripcion`) VALUES (15, 1, 'Idioma extranjero.', 'Idioma extranjero.');
-INSERT INTO `actividad` (`id`, `fk_establecimiento_id`, `nombre`, `descripcion`) VALUES (16, 1, 'Formación Ética y ciudadana.', 'Formación Ética y cuidadana.');
+INSERT INTO `actividad` (`id`, `fk_establecimiento_id`, `nombre`, `descripcion`) VALUES (7, 1, 'Lengua', 'Lengua.');
+INSERT INTO `actividad` (`id`, `fk_establecimiento_id`, `nombre`, `descripcion`) VALUES (8, 1, 'Matemáticas', 'Ciencias de la matemática.');
+INSERT INTO `actividad` (`id`, `fk_establecimiento_id`, `nombre`, `descripcion`) VALUES (9, 1, 'Ciencias naturales', 'Ciencias de la naturaleza.');
+INSERT INTO `actividad` (`id`, `fk_establecimiento_id`, `nombre`, `descripcion`) VALUES (10, 1, 'Estudios sociales', 'Ciencias de la sociedad.');
+INSERT INTO `actividad` (`id`, `fk_establecimiento_id`, `nombre`, `descripcion`) VALUES (11, 1, 'Actividades Prácticas', 'Actividades Prácticas. ');
+INSERT INTO `actividad` (`id`, `fk_establecimiento_id`, `nombre`, `descripcion`) VALUES (12, 1, 'Educación Plástica', 'Educación PlÃ¡stica.');
+INSERT INTO `actividad` (`id`, `fk_establecimiento_id`, `nombre`, `descripcion`) VALUES (13, 1, 'Música', 'Educación musical.');
+INSERT INTO `actividad` (`id`, `fk_establecimiento_id`, `nombre`, `descripcion`) VALUES (14, 1, 'Educación Física', 'Gimnansia y educación física. ');
+INSERT INTO `actividad` (`id`, `fk_establecimiento_id`, `nombre`, `descripcion`) VALUES (15, 1, 'Idioma extranjero', 'Idioma extranjero.');
+INSERT INTO `actividad` (`id`, `fk_establecimiento_id`, `nombre`, `descripcion`) VALUES (16, 1, 'Formación Ética y ciudadana', 'Formación Ética y cuidadana.');
 
 -- 
 -- Volcar la base de datos para la tabla `adjunto`
@@ -2355,10 +2355,10 @@ INSERT INTO `calendariovacunacion` (`id`, `nombre`, `descripcion`, `periodo`, `o
 -- Volcar la base de datos para la tabla `cargobaja`
 -- 
 
-INSERT INTO `cargobaja` (`id`, `nombre`, `descripcion`) VALUES (1, 'Renuncia.', 'Renuncia formal al cargo.');
-INSERT INTO `cargobaja` (`id`, `nombre`, `descripcion`) VALUES (2, 'Retiro.', 'Renuncia formal al cargo por jubilación.');
-INSERT INTO `cargobaja` (`id`, `nombre`, `descripcion`) VALUES (3, 'Ascenso.', 'Renuncia al cargo por ascenso (ocupa nuevo cargo).');
-INSERT INTO `cargobaja` (`id`, `nombre`, `descripcion`) VALUES (4, 'Fallecimiento.', 'Baja por fallecimiento.');
+INSERT INTO `cargobaja` (`id`, `nombre`, `descripcion`) VALUES (1, 'Renuncia', 'Renuncia formal al cargo.');
+INSERT INTO `cargobaja` (`id`, `nombre`, `descripcion`) VALUES (2, 'Retiro', 'Renuncia formal al cargo por jubilación.');
+INSERT INTO `cargobaja` (`id`, `nombre`, `descripcion`) VALUES (3, 'Ascenso', 'Renuncia al cargo por ascenso (ocupa nuevo cargo).');
+INSERT INTO `cargobaja` (`id`, `nombre`, `descripcion`) VALUES (4, 'Fallecimiento', 'Baja por fallecimiento.');
 
 -- 
 -- Volcar la base de datos para la tabla `ciclolectivo`
@@ -2381,10 +2381,10 @@ INSERT INTO `concepto` (`id`, `fk_establecimiento_id`, `descripcion`, `nombre`) 
 -- Volcar la base de datos para la tabla `conceptobaja`
 -- 
 
-INSERT INTO `conceptobaja` (`id`, `nombre`, `descripcion`) VALUES (1, 'Enfermedad.', 'Pase a escuela domiciliaria.');
-INSERT INTO `conceptobaja` (`id`, `nombre`, `descripcion`) VALUES (2, 'Cambio de escuela.', 'Se dá de baja por cambio de establecimiento.');
-INSERT INTO `conceptobaja` (`id`, `nombre`, `descripcion`) VALUES (3, 'Envío a escuela especial.', 'Se sugiere el envío a escuela especial a los padres.');
-INSERT INTO `conceptobaja` (`id`, `nombre`, `descripcion`) VALUES (4, 'Deserción.', 'Informado como deserción escolar.');
+INSERT INTO `conceptobaja` (`id`, `nombre`, `descripcion`) VALUES (1, 'Enfermedad', 'Pase a escuela domiciliaria.');
+INSERT INTO `conceptobaja` (`id`, `nombre`, `descripcion`) VALUES (2, 'Cambio de escuela', 'Se dá de baja por cambio de establecimiento.');
+INSERT INTO `conceptobaja` (`id`, `nombre`, `descripcion`) VALUES (3, 'Envío a escuela especial', 'Se sugiere el envío a escuela especial a los padres.');
+INSERT INTO `conceptobaja` (`id`, `nombre`, `descripcion`) VALUES (4, 'Deserción', 'Informado como deserción escolar.');
 
 -- 
 -- Volcar la base de datos para la tabla `cuenta`
@@ -2597,9 +2597,9 @@ INSERT INTO `horarioescolar` (`id`, `nombre`, `descripcion`, `fk_establecimiento
 -- Volcar la base de datos para la tabla `horarioescolartipo`
 -- 
 
-INSERT INTO `horarioescolartipo` (`id`, `nombre`, `descripcion`) VALUES (1, 'Hora de clases.', 'Hora cátedra, duración 40 minutos.');
-INSERT INTO `horarioescolartipo` (`id`, `nombre`, `descripcion`) VALUES (2, 'Recreo.', 'Duración diversa. ');
-INSERT INTO `horarioescolartipo` (`id`, `nombre`, `descripcion`) VALUES (3, 'Actividad extracurricular.', 'Actividad fuera de horario escolar y fuera de currícula.');
+INSERT INTO `horarioescolartipo` (`id`, `nombre`, `descripcion`) VALUES (1, 'Hora de clases', 'Hora cátedra, duración 40 minutos.');
+INSERT INTO `horarioescolartipo` (`id`, `nombre`, `descripcion`) VALUES (2, 'Recreo', 'Duración diversa. ');
+INSERT INTO `horarioescolartipo` (`id`, `nombre`, `descripcion`) VALUES (3, 'Actividad extracurricular', 'Actividad fuera de horario escolar y fuera de currícula.');
 
 -- 
 -- Volcar la base de datos para la tabla `legajoadjunto`
@@ -2619,14 +2619,14 @@ INSERT INTO `legajocategoria` (`id`, `descripcion`) VALUES (3, 'Otras observacio
 -- 
 
 INSERT INTO `legajopedagogico` (`id`, `fk_alumno_id`, `titulo`, `resumen`, `texto`, `fecha`, `fk_usuario_id`, `fk_legajocategoria_id`) VALUES (1, 1, 'Primer bimestre', 0x53656775696d69656e746f20646f63656e7465207072696d65722062696d6573747265, 0x4d617269736120657320756e61206e69c3b16120717565207361626520636f6d70617274697220636f6e2073757320616d69676f732e20457320726573706f6e7361626c6520656e20737573207461726561732079207375656c65206179756461722061206c6f732064656dc3a17320636f6e206c61732073757961732e204e6f207469656e652070726f626c6d617320646520636f6d7072656e7369c3b36e206e69206465206c6563747572612e205265636f6e6f6365206c6f73206cc3ad6d69746573207920666163696c69746120656c206f7264656e206465206c6120636c6173652e20, '2007-03-25 00:00:00', 1, 1);
-INSERT INTO `legajopedagogico` (`id`, `fk_alumno_id`, `titulo`, `resumen`, `texto`, `fecha`, `fk_usuario_id`, `fk_legajocategoria_id`) VALUES (2, 31, 'Problema de salud.', 0x496e666f726d616369c3b36e20736f62726520646573636f6d706f73696369c3b36e2064656c20616c756d6e6f20656e20636c6173652e, 0x486f79206c756e6573203132206465206d61727a6f2c20656c20616c756d6e6f207375667269c3b320756e6120737565727465206465206465736d61796f20706f72206d6f7469766f7320646573636f6e6f6369646f732e205365206c6520696e666f726dc3b32061206c6f7320706164726573207920616c20736572766963696f206dc3a96469636f20646520656d657267656e636961732c2073652074726174c3b320646520756e6120646573686964726174616369c3b36e2e200d0a5365207265746972c3b3206120737520646f6d6963696c696f2061636f6d7061c3b161646f20646520737573207061647265732e, '2006-03-12 00:00:00', 1, 3);
+INSERT INTO `legajopedagogico` (`id`, `fk_alumno_id`, `titulo`, `resumen`, `texto`, `fecha`, `fk_usuario_id`, `fk_legajocategoria_id`) VALUES (2, 31, 'Problema de salud', 0x496e666f726d616369c3b36e20736f62726520646573636f6d706f73696369c3b36e2064656c20616c756d6e6f20656e20636c6173652e, 0x486f79206c756e6573203132206465206d61727a6f2c20656c20616c756d6e6f207375667269c3b320756e6120737565727465206465206465736d61796f20706f72206d6f7469766f7320646573636f6e6f6369646f732e205365206c6520696e666f726dc3b32061206c6f7320706164726573207920616c20736572766963696f206dc3a96469636f20646520656d657267656e636961732c2073652074726174c3b320646520756e6120646573686964726174616369c3b36e2e200d0a5365207265746972c3b3206120737520646f6d6963696c696f2061636f6d7061c3b161646f20646520737573207061647265732e, '2006-03-12 00:00:00', 1, 3);
 
 -- 
 -- Volcar la base de datos para la tabla `locacion`
 -- 
 
-INSERT INTO `locacion` (`id`, `nombre`, `descripcion`, `direccion`, `ciudad`, `codigo_postal`, `telefono`, `fax`, `encargado`, `encargado_telefono`, `fk_provincia_id`, `fk_tipolocacion_id`, `principal`) VALUES (1, 'Sede Central. ', '-', 'Piedras 841', 'CABA', '1620', '4300-7070', '', 'Lic. Marcos Avellaneda', '155 654 2255', 1, 1, 0);
-INSERT INTO `locacion` (`id`, `nombre`, `descripcion`, `direccion`, `ciudad`, `codigo_postal`, `telefono`, `fax`, `encargado`, `encargado_telefono`, `fk_provincia_id`, `fk_tipolocacion_id`, `principal`) VALUES (2, 'Gimnasio Club social.', 'Lugar donde se realiza educación física.', 'Campichuelo 150', 'CABA', '1630', '4300-3232', '', 'Jorge López (portero)', '4300-3232', 1, 2, 0);
+INSERT INTO `locacion` (`id`, `nombre`, `descripcion`, `direccion`, `ciudad`, `codigo_postal`, `telefono`, `fax`, `encargado`, `encargado_telefono`, `fk_provincia_id`, `fk_tipolocacion_id`, `principal`) VALUES (1, 'Sede Central ', '-', 'Piedras 841', 'CABA', '1620', '4300-7070', '', 'Lic. Marcos Avellaneda', '155 654 2255', 1, 1, 0);
+INSERT INTO `locacion` (`id`, `nombre`, `descripcion`, `direccion`, `ciudad`, `codigo_postal`, `telefono`, `fax`, `encargado`, `encargado_telefono`, `fk_provincia_id`, `fk_tipolocacion_id`, `principal`) VALUES (2, 'Gimnasio Club social', 'Lugar donde se realiza educación física.', 'Campichuelo 150', 'CABA', '1630', '4300-3232', '', 'Jorge López (portero)', '4300-3232', 1, 2, 0);
 
 -- 
 -- Volcar la base de datos para la tabla `modulo`
@@ -3340,26 +3340,26 @@ INSERT INTO `tipodocumento` (`id`, `descripcion`, `orden`, `nombre`) VALUES (3, 
 -- Volcar la base de datos para la tabla `tipoespacio`
 -- 
 
-INSERT INTO `tipoespacio` (`id`, `nombre`, `descripcion`) VALUES (1, 'Aula de grado/año.', 'Espacio donde se dictan clases formativas.');
-INSERT INTO `tipoespacio` (`id`, `nombre`, `descripcion`) VALUES (2, 'Laboratorio.', 'Espacios de dictado de actividades especiales.');
-INSERT INTO `tipoespacio` (`id`, `nombre`, `descripcion`) VALUES (3, 'Patio cubierto.', 'Espacio cubierto, patio interno. ');
-INSERT INTO `tipoespacio` (`id`, `nombre`, `descripcion`) VALUES (4, 'Patio descubierto.', 'Espacio descubierto, exterior.');
+INSERT INTO `tipoespacio` (`id`, `nombre`, `descripcion`) VALUES (1, 'Aula de grado/año', 'Espacio donde se dictan clases formativas.');
+INSERT INTO `tipoespacio` (`id`, `nombre`, `descripcion`) VALUES (2, 'Laboratorio', 'Espacios de dictado de actividades especiales.');
+INSERT INTO `tipoespacio` (`id`, `nombre`, `descripcion`) VALUES (3, 'Patio cubierto', 'Espacio cubierto, patio interno.');
+INSERT INTO `tipoespacio` (`id`, `nombre`, `descripcion`) VALUES (4, 'Patio descubierto', 'Espacio descubierto, exterior.');
 
 -- 
 -- Volcar la base de datos para la tabla `tipoiva`
 -- 
 
-INSERT INTO `tipoiva` (`id`, `nombre`, `descripcion`) VALUES (1, 'Exento', 'Exento de IVA');
-INSERT INTO `tipoiva` (`id`, `nombre`, `descripcion`) VALUES (2, 'Responsable Inscripto', 'responsable inscripto');
-INSERT INTO `tipoiva` (`id`, `nombre`, `descripcion`) VALUES (3, 'Monotributo', 'monotributo');
-INSERT INTO `tipoiva` (`id`, `nombre`, `descripcion`) VALUES (4, 'Consumidor Final', 'Consumidor Final');
+INSERT INTO `tipoiva` (`id`, `nombre`, `descripcion`) VALUES (1, 'Exento', 'Exento de IVA.');
+INSERT INTO `tipoiva` (`id`, `nombre`, `descripcion`) VALUES (2, 'Responsable Inscripto', 'responsable inscripto.');
+INSERT INTO `tipoiva` (`id`, `nombre`, `descripcion`) VALUES (3, 'Monotributo', 'monotributo.');
+INSERT INTO `tipoiva` (`id`, `nombre`, `descripcion`) VALUES (4, 'Consumidor Final', 'Consumidor Final.');
 
 -- 
 -- Volcar la base de datos para la tabla `tipolocacion`
 -- 
 
-INSERT INTO `tipolocacion` (`id`, `nombre`, `descripcion`) VALUES (1, 'Sede. ', 'Sede central en Ciudad de Buenos Aires.');
-INSERT INTO `tipolocacion` (`id`, `nombre`, `descripcion`) VALUES (2, 'Anexo.', 'Unidades complementarias a la sede.');
+INSERT INTO `tipolocacion` (`id`, `nombre`, `descripcion`) VALUES (1, 'Sede', 'Sede central en Ciudad de Buenos Aires.');
+INSERT INTO `tipolocacion` (`id`, `nombre`, `descripcion`) VALUES (2, 'Anexo', 'Unidades complementarias a la sede.');
 
 -- 
 -- Volcar la base de datos para la tabla `turno`
