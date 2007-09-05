@@ -13,7 +13,7 @@ abstract class BaseBoletinConceptual extends BaseObject  implements Persistent {
 
 
 	
-	protected $fk_escalanota_id = 0;
+	protected $fk_escalanota_id;
 
 
 	
@@ -139,7 +139,7 @@ abstract class BaseBoletinConceptual extends BaseObject  implements Persistent {
 			$v = (int) $v;
 		}
 
-		if ($this->fk_escalanota_id !== $v || $v === 0) {
+		if ($this->fk_escalanota_id !== $v) {
 			$this->fk_escalanota_id = $v;
 			$this->modifiedColumns[] = BoletinConceptualPeer::FK_ESCALANOTA_ID;
 		}
@@ -621,7 +621,7 @@ abstract class BaseBoletinConceptual extends BaseObject  implements Persistent {
 
 
 		if ($v === null) {
-			$this->setFkEscalanotaId('0');
+			$this->setFkEscalanotaId(NULL);
 		} else {
 			$this->setFkEscalanotaId($v->getId());
 		}

@@ -1148,8 +1148,7 @@ alba:
     fk_escalanota_id: 
       type: integer
       size: 11
-      required: true
-      default: 0
+      required: false
       foreignTable: escalanota
       foreignReference: id
     fk_alumno_id: 
@@ -1191,8 +1190,7 @@ alba:
     fk_escalanota_id: 
       type: integer
       size: 11
-      required: true
-      default: 0
+      required: false
       foreignTable: escalanota
       foreignReference: id
     fk_alumno_id: 

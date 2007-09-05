@@ -888,7 +888,7 @@ DROP TABLE IF EXISTS `boletin_conceptual`;
 CREATE TABLE `boletin_conceptual`
 (
 	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
-	`fk_escalanota_id` INTEGER(11) default 0 NOT NULL,
+	`fk_escalanota_id` INTEGER(11),
 	`fk_alumno_id` INTEGER(11) default 0 NOT NULL,
 	`fk_concepto_id` INTEGER(11) default 0 NOT NULL,
 	`fk_periodo_id` INTEGER(11) default 0 NOT NULL,
@@ -923,7 +923,7 @@ DROP TABLE IF EXISTS `boletin_actividades`;
 CREATE TABLE `boletin_actividades`
 (
 	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
-	`fk_escalanota_id` INTEGER(11) default 0 NOT NULL,
+	`fk_escalanota_id` INTEGER(11),
 	`fk_alumno_id` INTEGER(11) default 0 NOT NULL,
 	`fk_actividad_id` INTEGER(11) default 0 NOT NULL,
 	`fk_periodo_id` INTEGER(11) default 0 NOT NULL,
