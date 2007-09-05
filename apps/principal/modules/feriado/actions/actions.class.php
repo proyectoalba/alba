@@ -38,7 +38,7 @@ class feriadoActions extends autoferiadoActions
         return $this->redirect("http://www.mininterior.gov.ar/servicios/feriados.asp");    
     }
 
-
+ 
 /* 
     Sobreescribo la accion del generator porque nefecito que el combo 
     del ciclo lectivo sea dependiente de la session fk_establecimiento_id
