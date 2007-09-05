@@ -144,7 +144,7 @@
 	    <li><span></span><a href="#">Ayuda</a>
             <ul>
 	            <li><span></span><?php echo link_to("Indice...","ayuda")?></li>
-	            <li><span></span><?php echo link_to("Cr&eacute;ditos","default")?></li>
+	            <li><span></span><?php echo link_to("Cr&eacute;ditos","creditos")?></li>
             </ul>
         </li>
 	    <li><span></span><?php echo link_to("Salir","seguridad/logout")?></li>
