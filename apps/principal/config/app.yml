@@ -3,6 +3,6 @@ all:
     theme: on
     
     alba:
-        version: 1.0rc
+        version: 1.0 
         menutheme: ThemeAlba
         tmpdir: tmp
