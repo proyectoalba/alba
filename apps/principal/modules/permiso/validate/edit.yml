@@ -1,0 +1,44 @@
+methods:
+  post:       
+    - "permiso{nombre}"
+    - "permiso{descripcion}"
+    - "permiso{credencial}"
+    
+fillin:
+    enabled:       on
+      
+names:
+    permiso{nombre}:
+        required:     Yes
+        required_msg: El campo nombre es obligatorio
+        validators: caracteresMaximos128
+
+    permiso{descripcion}:
+        required:     No
+        validators: caracteresMaximos255
+
+    permiso{credencial}:
+        required:     yes
+        required_msg: El campo credencial es obligatorio
+        validators: caracteresMaximos32
+
+        
+caracteresMaximos128:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La maxima cantidad de caracteres permitida es de 128
+        
+caracteresMaximos255:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La maxima cantidad de caracteres permitida es de 255
+
+        
+caracteresMaximos32:
+    class:  sfStringValidator
+    param:
+        max: 32
+        max_error: La maxima cantidad de caracteres permitida es de 32
+        
