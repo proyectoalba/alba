@@ -9,8 +9,7 @@ fillin:
       
 names:
     division{descripcion}:
-        required:     Yes
-        required_msg: El campo descripci&oacute;n es obligatorio
+        required:     No
         validators: caracteresMaximos255
 
     division{fk_turno_id}:
