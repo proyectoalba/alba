@@ -7,14 +7,11 @@
         if(flag == 1){
             var objp = document.getElementById('periodo_id');
             url = url + "/periodo_id/"+objp.options[objp.selectedIndex].value;
-        }
         
-        <?php if($division_id) {
-                if($actividad_id){?>
-                    var obja = document.getElementById('actividad_id');
-                    url = url + "/actividad_id/"+obja.options[obja.selectedIndex].value;
-        <?php   }    
-             } ?>
+            var obja = document.getElementById('actividad_id');
+            url = url + "/actividad_id/"+obja.options[obja.selectedIndex].value;
+        }
+
         location.href = url;
      }
 </script>
