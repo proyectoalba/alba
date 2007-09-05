@@ -1399,7 +1399,8 @@ alba:
       foreignReference: id
     horas: 
       type: decimal
-      size: 10,2
+      size: 10
+      scale: 2
       required: true
       default: 0
   rel_alumno_division: 
