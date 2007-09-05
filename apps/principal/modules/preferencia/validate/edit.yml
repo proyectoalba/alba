@@ -1,0 +1,27 @@
+methods:
+  post:       
+    - "preferencia{nombre}"
+    - "preferencia{valor_por_defecto}"
+    
+fillin:
+    enabled:       on
+      
+names:
+    preferencia{nombre}:
+        required:     Yes
+        required_msg: El campo nombre es obligatorio
+        validators: caracteresMaximos128
+
+    preferencia{valor_por_defecto}:
+        required:     Yes
+        required_msg: El valor por defecto es obligatorio
+        validators: caracteresMaximos128
+
+        
+caracteresMaximos128:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La maxima cantidad de caracteres permitida es de 128
+        
+
