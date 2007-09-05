@@ -1,4 +1,4 @@
-all: pdf 
+all: pdf htmls
 
 pdf:
 	mkdir -p out/pdf
@@ -14,9 +14,8 @@ txt:
 	docbook2txt -V charset=utf-8 xml/manual.xml
 	mv manual.txt out/txt/
 htmls:
-	mkdir -p out/htmls
 	docbook2html xml/manual.xml
-	mv *.html out/htmls/
+	mv *.html ../../web/manual/
 
 clean:
 	rm -rf out

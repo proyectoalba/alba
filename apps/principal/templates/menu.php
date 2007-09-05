@@ -143,14 +143,13 @@
         </li>
 	    <li><span></span><a href="#">Ayuda</a>
             <ul>
-	            <li><span></span><?php echo link_to("Indice...","ayuda")?></li>
+	            <li><span></span><?php echo link_to("Indice...", "http://".sfContext::getInstance()->getRequest()->getHost().sfContext::getInstance()->getRequest()->getRelativeUrlRoot()."/manual/index.html", 'target=_blank')?></li>
 	            <li><span></span><?php echo link_to("Cr&eacute;ditos","creditos")?></li>
             </ul>
         </li>
 	    <li><span></span><?php echo link_to("Salir","seguridad/logout")?></li>
     </ul>
 </div>
-
 <SCRIPT LANGUAGE="JavaScript">                                                                                   
 <!--                                                                                                             
 cmDrawFromText ('menu', 'hbr', cm<?php echo sfConfig::get("app_alba_menutheme")?>, '<?php echo sfConfig::get("app_alba_menutheme")?>');                                      
