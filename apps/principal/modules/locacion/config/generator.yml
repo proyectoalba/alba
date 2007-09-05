@@ -24,8 +24,11 @@ generator:
         display: [ nombre, fk_tipolocacion_id, descripcion, direccion, ciudad, _pais_id, _fk_provincia_id, codigo_postal, telefono, fax, encargado, encargado_telefono, principal ]
 
     list:
+        fields:
+            nombre: {name: Nombre, params: size=15}
+        
         title: Listado de Locaciones
-        display: [ =nombre, tipolocacion, direccion, ciudad, provincia, telefono, encargado, encargado_telefono, principal ]
+        display: [ =nombre, tipolocacion, direccion, ciudad, provincia, telefono, principal ]
         object_actions:
             _edit:        -
             _delete:      -
