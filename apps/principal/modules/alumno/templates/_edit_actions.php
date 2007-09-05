@@ -14,7 +14,10 @@
   'name' => 'save_and_add',
   'class' => 'sf_admin_action_save_and_add',
 )) ?></li>
+<?php if($alumno->getFkCuentaId()) { ?>
     <li><?php echo button_to(__('Ir a Cuenta'), 'cuenta/verCompleta?id='.$alumno->getFkCuentaId(), array (
   'class' => 'sf_admin_action_ir_a',
 )) ?></li>
+<?php } ?>
+
 </ul>
