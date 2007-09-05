@@ -21,7 +21,7 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 
 
 	
-	protected $fk_evento_id = 0;
+	protected $fk_evento_id;
 
 
 	
@@ -152,7 +152,7 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 			$v = (int) $v;
 		}
 
-		if ($this->fk_evento_id !== $v || $v === 0) {
+		if ($this->fk_evento_id !== $v) {
 			$this->fk_evento_id = $v;
 			$this->modifiedColumns[] = HorarioescolarPeer::FK_EVENTO_ID;
 		}
@@ -596,7 +596,7 @@ abstract class BaseHorarioescolar extends BaseObject  implements Persistent {
 
 
 		if ($v === null) {
-			$this->setFkEventoId('0');
+			$this->setFkEventoId(NULL);
 		} else {
 			$this->setFkEventoId($v->getId());
 		}

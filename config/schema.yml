@@ -1660,8 +1660,7 @@ alba:
       required: false
     fk_evento_id: 
       type: INTEGER
-      required: true
-      default: 0
+      required: false
       foreignTable: evento
       foreignReference: id
       onDelete: cascade

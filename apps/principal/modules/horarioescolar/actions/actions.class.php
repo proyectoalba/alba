@@ -40,10 +40,15 @@ class horarioescolarActions extends autohorarioescolarActions
         $this->horarioescolar = $this->getHorarioescolarOrCreate();
         $this->evento = $evento_generico->getEventoOrCreate($this->horarioescolar->getFkEventoId());
         if ($this->getRequest()->getMethod() == sfRequest::POST) {
-            $this->evento = $evento_generico->updateEventoFromRequest($this->evento, $this->getRequestParameter('evento'), $this->getUser()->getCulture());
-            $this->evento->save();
-            $this->forward404Unless($this->evento);
-            $this->updateHorarioescolarFromRequest($this->evento->getId());
+            $evento = $this->getRequestParameter('evento');
+            if($evento['fecha_inicio'] AND $evento['fecha_fin']) {
+                $this->evento = $evento_generico->updateEventoFromRequest($this->evento, $this->getRequestParameter('evento'), $this->getUser()->getCulture());
+                $this->evento->save();
+                $this->forward404Unless($this->evento);
+                $this->updateHorarioescolarFromRequest($this->evento->getId());
+            } else {
+                $this->updateHorarioescolarFromRequest($this->evento->getId());
+            }
             $this->saveHorarioescolar($this->horarioescolar);
             $this->setFlash('notice', 'Your modifications have been saved');
             if ($this->getRequestParameter('save_and_add')) {
@@ -59,7 +64,7 @@ class horarioescolarActions extends autohorarioescolarActions
     }
 
 
-
+    
     protected function updateHorarioescolarFromRequest($fk_evento_id = '') {
         $horarioescolar = $this->getRequestParameter('horarioescolar');
 
@@ -162,10 +167,6 @@ class horarioescolarActions extends autohorarioescolarActions
         $this->labels = $this->getLabels();
         return sfView::SUCCESS;
     }
-                             
-    
-    
-    
-    
+
 }
 ?>

@@ -1293,7 +1293,7 @@ CREATE TABLE `horarioescolar`
 	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
 	`nombre` VARCHAR(128)  NOT NULL,
 	`descripcion` VARCHAR(255),
-	`fk_evento_id` INTEGER default 0 NOT NULL,
+	`fk_evento_id` INTEGER,
 	`fk_establecimiento_id` INTEGER default 0 NOT NULL,
 	`fk_turno_id` INTEGER default 0 NOT NULL,
 	`fk_horarioescolartipo_id` INTEGER default 0 NOT NULL,
