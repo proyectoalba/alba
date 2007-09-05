@@ -1,4 +1,4 @@
-<?php use_helper('DateForm','I18N') ?>
+<?php use_helper('DateForm','I18N','Validation') ?>
 
     
     <script>     
@@ -57,13 +57,29 @@
     <?php echo input_tag('ciclolectivo[descripcion]',$ciclolectivo->getDescripcion());?>
     </div>   
     </td>
-    <td> <?php echo input_date_tag('ciclolectivo[fecha_inicio]', $ciclolectivo->getFechaInicio() , array('rich'=>true,
-                                                                                                     'calendar_button_img'=>sfConfig::get('sf_admin_web_dir').'/images/date.png',
-                                                                                                     'control_name'=>'ciclolectivo[fecha_inicio]')) ?>
-                                                                                                     </td>
-<?php //echo image_tag(sfConfig::get('sf_admin_web_dir').'/images/date.png', array("id" => "trigger_ciclolectivo[fecha_inicio]", "style" => "cursor: pointer", "align" => "absmiddle", "alt" => "date")); 
- ?>
-    <td> <?php echo input_date_tag('ciclolectivo[fecha_fin]', $ciclolectivo->getFechaFin() , 'rich=true calendar_button_img=/sf/sf_admin/images/date.png control_name=ciclolectivo[fecha_fin]'); ?></td>
+    <td> 
+
+<div class="content<?php if ($sf_request->hasError('ciclolectivo{fecha_inicio}')): ?> form-error<?php endif; ?>">
+  <?php if ($sf_request->hasError('ciclolectivo{fecha_inicio}')): ?>
+    <?php echo form_error('ciclolectivo{fecha_inicio}', array('class' => 'form-error-msg')) ?>
+  <?php endif; ?>
+
+<?php echo input_date_tag('ciclolectivo[fecha_inicio]', $ciclolectivo->getFechaInicio() , array('rich'=>true, 'calendar_button_img'=>sfConfig::get('sf_admin_web_dir').'/images/date.png', 'control_name'=>'ciclolectivo[fecha_inicio]')) ?>
+</div>
+
+
+    </td>
+     <td> 
+
+<div class="content<?php if ($sf_request->hasError('ciclolectivo{fecha_fin}')): ?> form-error<?php endif; ?>">
+  <?php if ($sf_request->hasError('ciclolectivo{fecha_fin}')): ?>
+    <?php echo form_error('ciclolectivo{fecha_fin}', array('class' => 'form-error-msg')) ?>
+  <?php endif; ?>
+
+
+<?php echo input_date_tag('ciclolectivo[fecha_fin]', $ciclolectivo->getFechaFin() , 'rich=true calendar_button_img=/sf/sf_admin/images/date.png control_name=ciclolectivo[fecha_fin]'); ?>
+</div>
+</td>
     <td><?php echo ($ciclolectivo->getEstablecimiento())?$ciclolectivo->getEstablecimiento()->getNombre():"";?></td>
     <?php echo input_hidden_tag('ciclolectivo[id]', $ciclolectivo->getId()) ?>
   </tr>

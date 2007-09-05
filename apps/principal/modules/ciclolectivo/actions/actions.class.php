@@ -309,6 +309,61 @@ class ciclolectivoActions extends autociclolectivoActions
     public function executeSinciclolectivo() {
         $this->modulo = $this->getRequestParameter('m');
     }    
+
+
+
+  protected function updateCiclolectivoFromRequest()
+  {
+    $ciclolectivo = $this->getRequestParameter('ciclolectivo');
+
+    if (isset($ciclolectivo['descripcion']))
+    {
+      $this->ciclolectivo->setDescripcion($ciclolectivo['descripcion']);
+    }
+    if (isset($ciclolectivo['fecha_inicio']))
+    {
+      if ($ciclolectivo['fecha_inicio'])
+      {
+        try
+        {
+            list($d, $m, $y) = sfI18N::getDateForCulture($ciclolectivo['fecha_inicio'], $this->getUser()->getCulture());
+            $this->ciclolectivo->setFechaInicio("$y-$m-$d");
+        }
+        catch (sfException $e)
+        {
+          // not a date
+        }
+      }
+      else
+      {
+        $this->ciclolectivo->setFechaInicio(null);
+      }
+    }
+    if (isset($ciclolectivo['fecha_fin']))
+    {
+      if ($ciclolectivo['fecha_fin'])
+      {
+        try
+        {
+            list($d, $m, $y) = sfI18N::getDateForCulture($ciclolectivo['fecha_fin'], $this->getUser()->getCulture());
+            $this->ciclolectivo->setFechaFin("$y-$m-$d");
+        }
+        catch (sfException $e)
+        {
+          // not a date
+        }
+      }
+      else
+      {
+        $this->ciclolectivo->setFechaFin(null);
+      }
+    }
+    $this->ciclolectivo->setActual(isset($ciclolectivo['actual']) ? $ciclolectivo['actual'] : 0);
+  }
+
+
+
+
 }
 
 ?>
