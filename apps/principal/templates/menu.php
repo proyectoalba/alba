@@ -59,7 +59,7 @@
                         </li>
                     </ul>
                 </li>
-	            <li><span></span><?php echo link_to("Preferencias Generales","preferencia")?></li>
+<!--	            <li><span></span><?php echo link_to("Preferencias Generales","preferencia")?></li> -->
 	            <li><span></span><a href="#">Seguridad</a>
                     <ul>
 	                    <li><span></span><?php echo link_to("Usuario","usuario")?></li>
