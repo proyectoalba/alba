@@ -1,6 +1,6 @@
 <chapter><title>Gesti&oacute;n Escolar</title>
 <para>
-En esta parte del men&uacute; se agrupan las acciones orientadas espec&iacute;ficamente a la Gesti&oacute;n  Escolar propiamente dicha: la definici&oacute;n de a&ntild;os, orientaciones, divisiones etc.,  as&iacute; como la relaci&oacute;n entre los alumnos y los grupos definidos seg&uacute;n los criterios anteriores. Esta secci&oacute;n relaciona, asimismo, las Actividades/Materias con los diferentes  niveles. 
+En esta parte del men&uacute; se agrupan las acciones orientadas espec&iacute;ficamente a la Gesti&oacute;n  Escolar propiamente dicha: la definici&oacute;n de a&ntilde;os, orientaciones, divisiones etc.,  as&iacute; como la relaci&oacute;n entre los alumnos y los grupos definidos seg&uacute;n los criterios anteriores. Esta secci&oacute;n relaciona, asimismo, las Actividades/Materias con los diferentes  niveles. 
 </para>
 
 <sect1><title>Definir Grados/A&ntilde;os</title>
@@ -33,11 +33,11 @@ A trav&eacute;s de esta secci&oacute;n se definen las Secciones/Divisiones de lo
 </para>
 <para>
 Al dar de alta una nueva Secci&oacute;n o Divisi&oacute;n el sistema solicita indicar tambi&eacute;n: el A&ntilde;o o Grado, una descripci&oacute;n (como A, B) y la orientaci&oacute;n de corresponder (como en el caso de colegios secundarios).  Tambi&eacute;n solicitar&aacute; el turno y el orden. 
+</para>
 <para>
 <figure><title>Alta de divisi&oacute;n.</title>
 <graphic fileref="img/figura45.png"/>
 </figure>
-</para>
 </para>
 </sect1>
 
