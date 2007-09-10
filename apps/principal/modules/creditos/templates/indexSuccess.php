@@ -321,7 +321,10 @@ table.spip tr td {
 <p class="spip"><span class='spip_document_45 spip_documents spip_documents_left'  style='float:left; width:141px;'>
 <?php echo image_tag("creditos/albertux.png"); ?></span>
 <a href="mailto:arivera@proyectoalba.cl">arivera@proyectoalba.cl</a></p>
-
+<p class="spip">Ingeniero en Informática, analista de sistemas y técnico en redes con especialidad en implementación y administración de redes inalámbricas, cableadas estructuradas, hardware asociado. Con conocimientos en programación en diferentes lenguajes. Actualmente, desarrollando y administrando sistemas de gestión para la administración contable de establecimientos educacionales de la Congregación Salesiana Hijas de María Auxiliadora en Chile bajo licencia GPL sobre plataforma Gnu/Linux Debian, miembro del equipos de migración de Software Propietario a Software Libre y próximo a cursar el Magíster en Educación con mención en Gestión Educacional.
+</p>
+<p class="spip">Desde 1998 hacktivista participante de variadas redes y conglomerados ideológicos sociales y exponente en múltiples encuentros comunitarios relacionados al impacto social real de la implementación, utilización y entendimiento del Software Libre en Latinoamérica. Miembro de diferentes agrupaciones de difusión del software y de tecnologías libres.
+</p>
 <p class="spip"><a href="#top" class="spip_in">regresar al listado</a></p>
 
 <hr class="spip" />
