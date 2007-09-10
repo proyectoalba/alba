@@ -1,27 +1,56 @@
 <chapter><title>Gesti&oacute;n Escolar</title>
+<para>
+En esta parte del men&uacute; se agrupan las acciones orientadas espec&iacute;ficamente a la Gesti&oacute;n  Escolar propiamente dicha: la definici&oacute;n de a&ntild;os, orientaciones, divisiones etc.,  as&iacute; como la relaci&oacute;n entre los alumnos y los grupos definidos seg&uacute;n los criterios anteriores. Esta secci&oacute;n relaciona, asimismo, las Actividades/Materias con los diferentes  niveles. 
+</para>
+
 <sect1><title>Definir Grados/A&ntilde;os</title>
 <para>
+Esta secci&oacute;n posibilita la configuraci&oacute;n de los diferentes conjuntos de alumnos agrupados seg&uacute;n la edad y plan de estudios. As&iacute; pues, es posible definir los diferentes  grados y/o  a&ntilde;os   seg&uacute;n los niveles que el establecimiento tenga. La siguiente  figura indica  el formulario para la  creaci&oacute;n  de un nuevo Grado/A&ntilde;o que solicita, &uacute;nicamente, la "Descripci&oacute;n" a modo de nombre.  Cuenta con opciones de edici&oacute;n.
 </para>
+<para>
+<figure><title>Creaci&oacute;n de nuevo Grado/A&ntilde;o</title>
+<graphic fileref="img/figura43.png"/>
+</figure>
+</para>
+
 </sect1>
 
 <sect1><title>Definir Orientaciones</title>
 <para>
+De igual forma que los Grados/A&ntilde;os las orientaciones deben ser difinidas con anterioridad a la carga de los alumnos y se realiza de manera similar.  Como siempre, se puede acceder a la edici&oacute;n de las entradas del listado a trav&eacute;s del bot&oacute;n Editar de la derecha. 
 </para>
+<para>
+<figure><title>Listado de orientaciones.</title>
+<graphic fileref="img/figura44.png"/>
+</figure>
+</para>
+
 </sect1>
 
 <sect1><title>Definir Secciones/Divisiones</title>
 <para>
+A trav&eacute;s de esta secci&oacute;n se definen las Secciones/Divisiones de los diferentes Grados/A&ntilde;os. Este listado tambi&eacute;n cuenta con barra de acciones con botones de edici&oacute;n.
+</para>
+<para>
+Al dar de alta una nueva Secci&oacute;n o Divisi&oacute;n el sistema solicita indicar tambi&eacute;n: el A&ntilde;o o Grado, una descripci&oacute;n (como A, B) y la orientaci&oacute;n de corresponder (como en el caso de colegios secundarios).  Tambi&eacute;n solicitar&aacute; el turno y el orden. 
+<para>
+<figure><title>Alta de divisi&oacute;n.</title>
+<graphic fileref="img/figura45.png"/>
+</figure>
+</para>
 </para>
 </sect1>
 
 <sect1><title>Asignar Alumno a Secci&oacute;n/Divisi&oacute;n</title>
 <para>
 </para>
+
 </sect1>
 
 <sect1><title>Ingresar Materias/Actividades</title>
 <para>
 </para>
+
 </sect1>
 
 <sect1><title>Actividades por Grado/A&ntilde;o</title>
