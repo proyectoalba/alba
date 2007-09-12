@@ -122,7 +122,7 @@ validarNumero:
         nombre_campo2: nro_documento
 
 validaFecha:
-    class:  albaDateValidator
+    class:  sfDateValidator
     param: 
         date_error: El campo debe ser una fecha
     
