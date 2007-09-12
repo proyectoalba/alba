@@ -16,6 +16,7 @@ txt:
 htmls:
 	docbook2html xml/manual.xml
 	mv *.html ../../web/manual/
-
+	svn --force export img/ ../../web/manual/img
+    
 clean:
 	rm -rf out
