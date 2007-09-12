@@ -148,7 +148,7 @@ class asistenciaActions extends sfActions
             $division_id = $this->getRequestParameter('division_id'); 
         } else {
             if (count($optionsDivision) > 0){
-                $aTemp = array_keys($optionsDivision);        
+                $aTemp = array_keys($optionsDivision); 
                 $division_id = $aTemp[0];
             } else {
                 // Ver si se puede hacer desde el validate
