@@ -1,15 +1,23 @@
-<chapter><title>Instalaci&oacute;n del programa</title>
+<chapter>
+<title>Instalaci&oacute;n del programa</title>
+
 <sect1><title>Instalaci&oacute;n en GNU/Linux</title>
+
 <sect2><title>Requerimientos de hardware:</title>
-  <para><emphasis>Los requerimientos del servidor son:</emphasis>
+
+<para><emphasis>Los requerimientos del servidor son:</emphasis></para>
 		<para>Procesador Pentiun III</para>
 		<para>Ram 256</para>
-<para><important>Nota: Los requerimientos de hardware del servidor, son relativos a la cantidad de terminales.</important></para>
-<para><emphasis>Los requerimientos para la terminal son:</emphasis>
+
+<important><para>Nota: Los requerimientos de hardware del servidor, son relativos a la cantidad de terminales.</para></important>
+
+
+<para><emphasis>Los requerimientos para la terminal son:</emphasis></para>
 	<para>Procesador Pentiun II en adelante.</para>
 	<para>Ram 128 en adelante (recomendado)</para>
-	<para>Resoluci�n 800 x 600 m�nima (recomendado 1024 x 768)</para>
+	<para>Resoluci&oacute;n 800 x 600 m&iacute;nima (recomendado 1024 x 768)</para>
 </sect2>
+
 <sect2><title>Requerimientos de software</title>
 <para><emphasis>Los requerimientos de software del servidor son:</emphasis></para>
         <para>Servidor Web</para>
@@ -27,50 +35,57 @@
               <para>Navegador Web</para>
                     <para>Mozilla Firefox (recomendado sobre cualquier sistema operativo)</para>
 </sect2>
-<para><emphasis>Instalaci&oacute;n</emphasis><para>
+
+
+<sect2>
+    <title>Instalaci&oacute;n</title>
     <important>
       <para>Nota: La instalaci&oacute;n que se detalla a continuaci&oacute;n, fue elaborada para servidores con plataforma GNU/Linux. Se prev&eacute; hacerlo funcional en otras plataformas y aplicaciones. Por el momento, este ejemplo est&aacute; elaborado con los requerimientos recomendados.
       </para>
     </important>
-    <para>La instalaci�n puede realizarse de manera <emphasis>manual</emphasis> o <emphasis>autom�tica</emphasis>.
+    <para>La instalaci&oacute;n puede realizarse de manera <emphasis>manual</emphasis> o <emphasis>autom&aacute;tica</emphasis>.
     </para>
-<sect3><title>Instalaci&oacute;n Autom&aacute;tica:</title>
-      <para>El sistema cuenta con un instalador para simplificar el proceso a los usuarios con menos experiencia. Para su utilizaci�n, debe realizar los siguientes pasos:
+
+    
+    <sect3><title>Instalaci&oacute;n Autom&aacute;tica:</title>
+      <para>El sistema cuenta con un instalador para simplificar el proceso a los usuarios con menos experiencia. Para su utilizaci&oacute;n, debe realizar los siguientes pasos:
       </para>
       <para>I)Descargue el instalador desde: </para>
       <para>  http://www.proyectoalba.com.ar/alba-installer/dist/install/alba_loader.txt</para>
       <para>II)Una vez descargado, ren&oacute;mbrelo reemplazando la extensi&oacute;n txt por php. El nombre del archivo descargado ser&aacute; entonces alba_loader.php</para>
       <para>III)Suba este archivo a su servidor (por ftp, sftp, etc).</para>
       <para>IV)Para lanzar la instalaci&oacute;n autom&aacute;tica ejecute: http://su_servidor/su_directorio/alba_loader.php</para>
-      <para>V)El programa de instalaci&oacute;n descargar&aacute; los archivos necesarios, har&aacute; verificaciones sobre la existencia de los programas requeridos y los permisos de escritura. Debe completar informaci&oacute;n sobre: servidor, usuario, contrase�a y nombre de la base de datos.</para>
-      <para>VI)En el momento de visualizar el ingreso al sistema, recuerde que los datos por defecto son: <emphasis>Usuario ?> admin Contrase�a ?> admin</emphasis></para>
+      <para>V)El programa de instalaci&oacute;n descargar&aacute; los archivos necesarios, har&aacute; verificaciones sobre la existencia de los programas requeridos y los permisos de escritura. Debe completar informaci&oacute;n sobre: servidor, usuario, contrase&ntilde;a y nombre de la base de datos.</para>
+      <para>VI)En el momento de visualizar el ingreso al sistema, recuerde que los datos por defecto son: <emphasis>Usuario ?> admin Contrase&ntilde;a ?> admin</emphasis></para>
     </sect3>
-<sect4><title>Instalaci&oacute;n Manual</title>
-  <para>Es posible hacer una instalación manual del sistema. Para ello es necesario seguir los siguientes pasos:</para>
+    
+<sect3><title>Instalaci&oacute;n Manual</title>
+  <para>Es posible hacer una instalaci&oacute;n manual del sistema. Para ello es necesario seguir los siguientes pasos:</para>
   <para>1)Obtenga el c&oacute;digo fuente.</para>
   <para> Puede hacerlo bajando el archivo de una versi&oacute;n liberada o de la que se encuentra en desarrollo por SVN.</para>
   <para>(Desde: http://alba.pressenter.com.ar/cgi-bin/trac.cgi/wiki/ObtenerElCodigo puede hacerlo.)</para>
-  <para>2)Si obtuvo el código de una versión definida, descomprima el archivo descargado en un directorio accesible vía web. Si desacargó la versión del SVN procure hacerlo también en el directorio sugerido:<emphasis>/var/www/educacion/</emphasis></para>
+  <para>2)Si obtuvo el c&oacute;digo de una versi&oacute;n definida, descomprima el archivo descargado en un directorio accesible v&iacute;a web. Si desacarg&oacute; la versi&oacute;n del SVN procure hacerlo tambi&eacute;n en el directorio sugerido:<emphasis>/var/www/educacion/</emphasis></para>
   <para>En caso de tener que descomprimir el archivo recuerde:</para>
-  <para>El archivo alba-1.0X.tar.gz descomprímalo con el siguiente comando:</para>
+  <para>El archivo alba-1.0X.tar.gz descompr&iacute;malo con el siguiente comando:</para>
   <para>tar xvzf alba-1.0X.tar.gz</para>
-  <para>Si descargó el alba-1.0X.tar.bz2 con este otro:</para>
+  <para>Si descarg&oacute; el alba-1.0X.tar.bz2 con este otro:</para>
   <para>tar xvjf alba-1.0X.tar.bz2 </para>
-  <para>Esto creará un nuevo directorio dentro de educacion, a los efectos de este instructivo, siempre llamaremos a este directorio creado "alba". Se obtiene entonces : /var/www/educacion/alba</para>
-  <para>Luego de la descompresión pueden verse dos directorios considerados principales (alba y dist) entre otros.</para>
+  <para>Esto crear&aacute; un nuevo directorio dentro de educacion, a los efectos de este instructivo, siempre llamaremos a este directorio creado "alba". Se obtiene entonces : /var/www/educacion/alba</para>
+  <para>Luego de la descompresi&oacute;n pueden verse dos directorios considerados principales (alba y dist) entre otros.</para>
   <para>ftoledo@ntbkragnarok:/var/www/educacion/alba$ ls -l
   drwxr-xr-x 14 ftoledo ftoledo 4096  2006-06-27 14:21 alba
   drwxr-xr-x 10 ftoledo ftoledo 4096  2006-06-27 14:35 dist
   -rw-r--r-- 10 ftoledo ftoledo 16474 2006-06-27 14:35 index.php
   drwxr-xr-x 10 ftoledo ftoledo 4096  2006-06-27 14:35 installer</para>
-<para>3)Verifique los links simbólicos</para>
+<para>3)Verifique los links simb&oacute;licos</para>
 <para>Un link <emphasis>symfofy</emphasis> que apunte a <emphasis>dist/symfony-0.6.x/data/</emphasis> en el directorio <emphasis>alba/data</emphasis>.</para>
-<para>Este link se visualizará de la siguiente forma:</para>
+<para>Este link se visualizar&aacute; de la siguiente forma:</para>
 <para>ftoledo@ntbkragnarok:/var/www/educacion/alba$ ls -l alba/data
   drwxr-xr-x 3 ftoledo ftoledo 4096 2006-04-07 14:21 model
   drwxr-xr-x 3 ftoledo ftoledo 4096 2006-04-07 14:21 plugins
   drwxr-xr-x 3 ftoledo ftoledo 4096 2006-06-27 14:21 sql
-  lrwxrwxrwx 1 ftoledo ftoledo   30 2006-06-27 14:21 symfony -> ../../dist/symfony-0.6.2/data/</para>
+<!--   lrwxrwxrwx 1 ftoledo ftoledo   30 2006-06-27 14:21 symfony -> ../../dist/symfony-0.6.2/data/ -->
+</para>
 <para>Los links <emphasis>pake, phing y symfony/lib</emphasis> desde el <emphasis>dist</emphasis> respectivamente, en el directorio <emphasis>alba/lib</emphasis> :</para>
 <para>Estos link, se deben visualizar de esta manera:/</para>
 <para>ftoledo@ntbkragnarok:/var/www/educacion/alba$ ls -l alba/lib
@@ -80,21 +95,21 @@
   drwxr-xr-x 3 ftoledo ftoledo 4096 2006-04-07 14:21 plugins
   lrwxrwxrwx 1 ftoledo ftoledo   29 2006-06-27 14:21 symfony -> ../../dist/symfony-0.6.2/lib/</para>
 <para>4)Instale y configure la Base de Datos.</para>
-<para>Debe acceder al directorio /var/www/educacion/alba/data/sql/ para utilizar tres archivos que facilitarán la tarea.</para>
-<para>Para poder realizar los puntos siguientes debe tener los permisos necesarios en el Mysql y conocer el usuario y contraseña de su servidor, caso contrario solicítelo a su administrador.</para>
+<para>Debe acceder al directorio /var/www/educacion/alba/data/sql/ para utilizar tres archivos que facilitar&aacute;n la tarea.</para>
+<para>Para poder realizar los puntos siguientes debe tener los permisos necesarios en el Mysql y conocer el usuario y contraseña de su servidor, caso contrario solic&iacute;telo a su administrador.</para>
 <para>a) Cree la base de datos:</para>
 <para>ftoledo@ntbkragnarok:/var/www/educacion/alba/data/sql$ mysql -u root <quote>< create-db.sql</quote></para>
 <para>b) Cree las tablas:</para>
 <para>ftoledo@ntbkragnarok:/var/www/educacion/alba/data/sql$ mysql -u root alba < schema.sql</para>
-<para>Aquí usted puede seleccionar insertar los datos iniciales o los datos de ejemplo.</para>
+<para>Aqu&iacute; usted puede seleccionar insertar los datos iniciales o los datos de ejemplo.</para>
 <para>c) Inserte los datos:</para>
 <para>Iniciales:ftoledo@ntbkragnarok:/var/www/educacion/alba/data/sql$ mysql -u root alba < datos_desde_cero.sql</para>
 <para>o</para>
 <para>Ejemplo:</para>
 <para>ftoledo@ntbkragnarok:/var/www/educacion/alba/data/sql$ mysql -u root alba < datos_ejemplo.sql</para>
-<para><emphasis>NOTA: Este ejemplo fue desarrollado utilizando el usuario root sin contraseña, en caso de tener una contraseña agregue el parámetro -p.</emphasis></para>
-<para>5) Edite los archivos de configuración de la aplicación:</para>
-<para>Los archivo .dist contienen una configuración predeterminada, que será necesario cambiar. Actualmente visualizará los siguientes archivos:</para>
+<para><emphasis>NOTA: Este ejemplo fue desarrollado utilizando el usuario root sin contraseña, en caso de tener una contraseña agregue el par&aacute;metro -p.</emphasis></para>
+<para>5) Edite los archivos de configuraci&oacute;n de la aplicaci&oacute;n:</para>
+<para>Los archivo .dist contienen una configuraci&oacute;n predeterminada, que ser&aacute; necesario cambiar. Actualmente visualizar&aacute; los siguientes archivos:</para>
 <para>ftoledo@ntbkragnarok:/var/www/educacion/alba$ ls -l alba/config/
   -rw-r--r-- 1 ftoledo ftoledo   290 2006-04-07 14:19 apache.conf.dist
   -rw-r--r-- 1 ftoledo ftoledo     9 2006-04-07 14:19 config.php
@@ -127,8 +142,9 @@
 <para><emphasis>databases.yml</emphasis>: debe contener los datos de conexion a la base</para>
 <para><emphasis>propel.ini</emphasis>: debe contener los paths correctos </para>
 <para>7)Compruebe que en el directorio <emphasis>alba/web</emphasis> exista un link llamado <emphasis>sf</emphasis> apuntando a <emphasis>data/symfony/web/sf/</emphasis></para>
-<para><emphasis>Nota: Si el sistema corre en un directorio diferente del wwwroot (por ejemplo en un directorio de usuario /~ftoledo) se debe agregar un Alias en la configuración de Apache ya que de otra forma /sf no es alcanzable por el servidor web.</emphasis></para>
-<para>El directorio alba/web con el link creado quedará de la siguiente forma:</para>
+<para><emphasis>Nota: Si el sistema corre en un directorio diferente del wwwroot (por ejemplo en un directorio de usuario /~ftoledo) se debe agregar un Alias en la configuraci&oacute;n de Apache ya que de otra forma /sf no es alcanzable por el servidor web.</emphasis></para>
+<para>El directorio alba/web con el link creado quedar&aacute; de la siguiente forma:</para>
+<para>
 <quote>ftoledo@ntbkragnarok:/var/www/educacion/alba$ ls -l -a alba/web/
   drwxr-xr-x  3 ftoledo ftoledo 4096 2006-06-27 14:21 css
   -rw-r--r--  1 ftoledo ftoledo   27 2006-04-07 14:21 error.php
@@ -141,15 +157,19 @@
   lrwxrwxrwx  1 ftoledo ftoledo   23 2006-04-07 14:21 sf -> ../data/symfony/web/sf/
   -rw-r--r--  1 ftoledo ftoledo  391 2006-04-07 14:21 unavailable.html
 drwxr-xr-x  4 ftoledo ftoledo 4096 2006-04-07 14:21 uploads</quote>
-<para>Dé permisos a los usuarios en los siguientes directorios:</para>
+</para>
+<para>D&eacute; permisos a los usuarios en los siguientes directorios:</para>
+<para>
 <quote>ftoledo@ntbkragnarok:/var/www/educacion/alba$ chmod 777 alba/cache
   ftoledo@ntbkragnarok:/var/www/educacion/alba$ chmod 777 alba/log
   ftoledo@ntbkragnarok:/var/www/educacion/alba$ chmod 777 alba/web/uploads
-ftoledo@ntbkragnarok:/var/www/educacion/alba$ chmod 777 alba/web/tmp</quote>
-<para>Cree en el directorio <emphasis>/var/www/educacion/alba</emphasis> un link llamado <emphasis>public_html</emphasis> apuntando a <emphasis>/var/www/educacion/alba/alba/web</emphasis><para>
-<quote>ftoledo@ntbkragnarok:/var/www/educacion/alba$ ln -s /var/www/educacion/alba/alba/web public_html</quote>
-<para>10) Renombre el archivo .htaccess.dist dentro de <emphasis>alba/web</emphasis> quitando la extensión .dist , y edítelo cambiando en la línea 17 <emphasis>REWRITE_PATH</emphasis> por <emphasis>/alba/public_html/index.php</emphasis></para>
+  ftoledo@ntbkragnarok:/var/www/educacion/alba$ chmod 777 alba/web/tmp</quote></para>
+<para>Cree en el directorio <emphasis>/var/www/educacion/alba</emphasis> un link llamado <emphasis>public_html</emphasis> apuntando a <emphasis>/var/www/educacion/alba/alba/web</emphasis></para>
+<para>
+    <quote>ftoledo@ntbkragnarok:/var/www/educacion/alba$ ln -s /var/www/educacion/alba/alba/web public_html</quote></para>
+<para>10) Renombre el archivo .htaccess.dist dentro de <emphasis>alba/web</emphasis> quitando la extensi&oacute;n .dist , y ed&iacute;telo cambiando en la l&iacute;nea 17 <emphasis>REWRITE_PATH</emphasis> por <emphasis>/alba/public_html/index.php</emphasis></para>
 <para>En el archivo original, estos datos figuran de la siguiente manera:</para>
+<para>
 <quote>ftoledo@ntbkragnarok:/var/www/educacion/alba$ cat -n alba/web/.htaccess
   1  Options +FollowSymLinks +ExecCGI
   2
@@ -172,14 +192,18 @@ ftoledo@ntbkragnarok:/var/www/educacion/alba$ chmod 777 alba/web/tmp</quote>
   19
   20  # big crash from our front web controller
   21  ErrorDocument 500 "< h2>Application error< /h2>symfony application failed to start properly"
-</quote>
-<para>11) Por medio del navegador, ingrese al sistema ALBA. En el ejemplo propuesto, el ingreso se realizaría a través de http://su_servidor/alba/public_html/principal_dev.php</para>
+      </quote></para>
+<para>11) Por medio del navegador, ingrese al sistema ALBA. En el ejemplo propuesto, el ingreso se realizar&iacute;a a trav&eacute;s de http://su_servidor/alba/public_html/principal_dev.php</para>
 <para>12)12) En el momento de visualizar el ingreso al sistema, recuerde que los datos por defecto son: <emphasis>Usuario --> admin Contraseña --> admin.</emphasis></para>
-<para><emphasis>NOTA: Para un ambiente de producción se recomienda apuntar la raíz web (wwwroot) al directorio web del symfony (/var/www/educacion/alba/alba/web/). En caso de no contar con el acceso a la configuración de su servidor web, puede aumentar el nivel de seguridad generando un archivo .htaccess para restringir el acceso a otros directorios. Se recuerda a los usuarios, que se trata de una versión beta.</emphasis></para>
-</sect4>
-<sect5><title>Instalación en Windows</title>
-<para><emphasis>Nota: Recordamos que el sistema fue probado en la versión XP.</emphasis></para>
-<para>Requerimientos de hardware:</para>
+<para><emphasis>NOTA: Para un ambiente de producci&oacute;n se recomienda apuntar la ra&iacute;z web (wwwroot) al directorio web del symfony (/var/www/educacion/alba/alba/web/). En caso de no contar con el acceso a la configuraci&oacute;n de su servidor web, puede aumentar el nivel de seguridad generando un archivo .htaccess para restringir el acceso a otros directorios. Se recuerda a los usuarios, que se trata de una versi&oacute;n beta.</emphasis></para>
+</sect3>
+</sect2>
+</sect1>
+
+<sect1><title>Instalaci&oacute;n en Windows</title>
+<para><emphasis>Nota: Recordamos que el sistema fue probado en la versi&oacute;n XP.</emphasis></para>
+
+<sect2><title>Requerimientos de hardware:</title>
 <para>Los requerimientos del servidor son:</para>
 <para>Procesador Pentiun III</para>
 <para>Ram 256 </para>
@@ -187,75 +211,94 @@ ftoledo@ntbkragnarok:/var/www/educacion/alba$ chmod 777 alba/web/tmp</quote>
 <para>Los requerimientos para la terminal son:</para>
 <para>Procesador Pentiun II en adelante </para>
 <para>Ram 128 en adelante (recomendado)</para>
-<para>Resolución 800 x 600 mínima (recomendado 1024 x 768)</para>
-<para>Requerimientos de software.</para>
+<para>Resoluci&oacute;n 800 x 600 m&iacute;nima (recomendado 1024 x 768)</para>
+</sect2>
+
+<sect2>
+<title>Requerimientos de software.</title>
 <para>Los requerimientos del servidor son:</para>
 <para>Sistema operativo Windows (probado en XP) </para>
 <para>Apache 2.x </para>
 <para>PHP 5 </para>
 <para>PHP-GD (recomendado)</para>
 <para>Mysql </para>
-<para>ó</para>
-<para>XAMPP (sugerido en los detalles de instalación). </para>
+<para>&oacute;</para>
+<para>XAMPP (sugerido en los detalles de instalaci&oacute;n). </para>
 <para>Los requerimientos de la terminal son: </para>
 <para>Navegador web (Firefox recomedado, sobre cualquier sistema operativo).</para>
-<para>Para la instalación del ALBA sobre Windows, es necesario realizar la instalación previa del Apache, MySQL y PHP (si es que ya no se encuentra instalado). Para facilitarla, se  propone al usuario la instalación de XAMPP, aplicación que contiene a las últimas tres.</para>
-<sect6><title>La instalación del XAMPP </title>
+<para>Para la instalaci&oacute;n del ALBA sobre Windows, es necesario realizar la instalaci&oacute;n previa del Apache, MySQL y PHP (si es que ya no se encuentra instalado). Para facilitarla, se  propone al usuario la instalaci&oacute;n de XAMPP, aplicaci&oacute;n que contiene a las &uacute;ltimas tres.</para>
+</sect2>
+
+<sect2><title>La instalaci&oacute;n del XAMPP </title>
 <para>Bajar el XAMPP del sitio:  http://sourceforge.net/projects/xampp/</para>
-<para>1) Una vez seleccionada la opción de “Download”, será necesario elegir una versión para windows (XAMPP Windows), ya que existe también para otros sistemas operativos. Entre las que propone el sitio, se sugiere que se elija la versión   xampp-win32-1.5.5-installer.exe (versión con la que fue probado). </para>
-<para>Ejecutando el archivo de instalación del XAMPP (.exe) las pantallas lo guiarán para una instalación exitosa. Si sigue las opciones predeterminadas, esta aplicación se instalará en  c:\Archivos de Programa\</para>
-<para>Nota: En el momento de iniciar la instalación, recuerde estar en un perfil de usuario de Windows con permiso de administrador.</para>
-<para>2) Es necesario habilitar la instalación del Apache y del MySQL como servicio durante el proceso. Para ello, deberá tildar en la opción de Service Section: </para>
+<para>1) Una vez seleccionada la opci&oacute;n de "Download", ser&aacute; necesario elegir una versi&oacute;n para windows (XAMPP Windows), ya que existe tambi&eacute;n para otros sistemas operativos. Entre las que propone el sitio, se sugiere que se elija la versi&oacute;n   xampp-win32-1.5.5-installer.exe (versi&oacute;n con la que fue probado). </para>
+<para>Ejecutando el archivo de instalaci&oacute;n del XAMPP (.exe) las pantallas lo guiar&aacute;n para una instalaci&oacute;n exitosa. Si sigue las opciones predeterminadas, esta aplicaci&oacute;n se instalar&aacute; en  c:\Archivos de Programa\</para>
+<para>Nota: En el momento de iniciar la instalaci&oacute;n, recuerde estar en un perfil de usuario de Windows con permiso de administrador.</para>
+<para>2) Es necesario habilitar la instalaci&oacute;n del Apache y del MySQL como servicio durante el proceso. Para ello, deber&aacute; tildar en la opci&oacute;n de Service Section: </para>
+<para>
 <quote>
 -Install Apache as service
 -Install MySQL as service
 </quote>
-<para>Siga los pasos indicados, hasta finalizar la instalación con éxito.</para>
-<para>3) Finalizada la instalación, será necesario modificar el archivo llamado “httpd.conf” que está ubicado en: c:\Archivos de programa\xampp\apache\conf\httpd.conf. Para modificarlo ábralo en cualquier procesador de texto y borre el numeral (#) que se encuentra al inicio de la línea siguiente:    </para>
+</para>
+<para>Siga los pasos indicados, hasta finalizar la instalaci&oacute;n con &eacute;xito.</para>
+<para>3) Finalizada la instalaci&oacute;n, ser&aacute; necesario modificar el archivo llamado "httpd.conf" que est&aacute; ubicado en: c:\Archivos de programa\xampp\apache\conf\httpd.conf. Para modificarlo &aacute;bralo en cualquier procesador de texto y borre el numeral (#) que se encuentra al inicio de la l&iacute;nea siguiente:    </para>
+<para>
 <quote># LoadModule rewrite_module modulo/mod_rewrite.so </quote>
-<para>La línea modificada quedará entonces: </para>
-<quote>LoadModule rewrite_module modulo/mod_rewrite.so </quote>
+</para>
+<para>La l&iacute;nea modificada quedar&aacute; entonces: </para>
+<para><quote>LoadModule rewrite_module modulo/mod_rewrite.so </quote></para>
 <para>Recuerde guardar los cambios al salir del editor. </para>
-<para>4) Deberá reiniciar al servidor Apache para que los cambios realizados en el archivo editado sean tomados por el XAMPP. Puede hacerlo a través de su panel de control, presionando el botón “Stop” y luego, “Start” correspondiente a ese servicio.</para>
+<para>4) Deber&aacute; reiniciar al servidor Apache para que los cambios realizados en el archivo editado sean tomados por el XAMPP. Puede hacerlo a trav&eacute;s de su panel de control, presionando el bot&oacute;n "Stop" y luego, "Start" correspondiente a ese servicio.</para>
 <important><para>Nota: El panel de Control del XAMPP, puede ubicarlo desplegando la barra de inicio o desde un acceso directo creado en su escritorio.</para></important>
-</sect6>
-<title>La instalación de ALBA</title>
-<para>Una vez instalado el XAMPP, tendrá todo el software necesario para poder comenzar la instalación de ALBA. </para>
-<para>Recuerde reportar los problemas encontrados durante la instalación de ALBA a: http://alba.pressenter.com.ar/cgi-bin/trac.cgi/wiki/ReporteDeErrores  </para>
-<para>1) Cree un directorio en la raíz web, en el cual se instalará el sistema.
-En este caso, sugerimos crear el directorio con nombre “alba”, que deberá ubicarse en el siguiente directorio (siempre que el xampp se haya instalado de la forma predeterminada). </para>
-<quote>C:\Archivos de programa\xampp\htdocs\alba</quote>
+</sect2>
+
+
+<sect2>
+<title>La instalaci&oacute;n de ALBA</title>
+<para>Una vez instalado el XAMPP, tendr&aacute; todo el software necesario para poder comenzar la instalaci&oacute;n de ALBA. </para>
+<para>Recuerde reportar los problemas encontrados durante la instalaci&oacute;n de ALBA a: http://alba.pressenter.com.ar/cgi-bin/trac.cgi/wiki/ReporteDeErrores  </para>
+<para>1) Cree un directorio en la ra&iacute;z web, en el cual se instalar&aacute; el sistema.
+En este caso, sugerimos crear el directorio con nombre "alba", que deber&aacute; ubicarse en el siguiente directorio (siempre que el xampp se haya instalado de la forma predeterminada). </para>
+<para><quote>C:\Archivos de programa\xampp\htdocs\alba</quote></para>
 <para>2) Baje el instalador (loader): </para>
-<quote>http://alba.ourproject.org/alba-installer/dist/install/alba_loader.txt</quote>
-<para>Al ingresar a esta dirección, se desplegará en pantalla el texto del programa de instalación.</para>
+<para>
+<quote>http://alba.ourproject.org/alba-installer/dist/install/alba_loader.txt</quote></para>
+<para>Al ingresar a esta direcci&oacute;n, se desplegar&aacute; en pantalla el texto del programa de instalaci&oacute;n.</para>
 <para>3) Renombre el archivo.</para>
-<para>En la misma pantalla, utilizando desde el menú del navegador “Guardar página como”, guarde el archivo renombrando su extensión txt por php.</para>
-<para>El nombre del archivo descargado será entonces alba_loader.php</para>
+<para>En la misma pantalla, utilizando desde el men&uacute; del navegador "Guardar p&aacute;gina como", guarde el archivo renombrando su extensi&oacute;n txt por php.</para>
+<para>El nombre del archivo descargado ser&aacute; entonces alba_loader.php</para>
 <para>4) Copie el archivo a un directorio accesible por el servidor web.
 En el caso del ejemplo, se trata del directorio:.</para>
-<quote>C:\Archivos de programa\xampp\htdocs\alba</quote>
-<para>5) Ejecute el instalador (loader)  ingresando a través del navegador web a:</para>
-<quote>http://localhost/alba/alba_loader.php</quote>
-<para>6) Dé comienzo a la instalación.</para>
-<para>7) El programa de instalación descargará los archivos necesarios, hará verificaciones sobre la existencia de los programas requeridos y los permisos de escritura. Debe completar información sobre: servidor, usuario, contraseña y nombre de la base de datos.</para>
-</sect5>
-<sect6><title>Ingreso al sistema</title>
-  <para>Una vez instalado, el sistema mostrará la siguiente pantalla de ingreso: </para>
+<para><quote>C:\Archivos de programa\xampp\htdocs\alba</quote></para>
+<para>5) Ejecute el instalador (loader)  ingresando a trav&eacute;s del navegador web a:</para>
+<para><quote>http://localhost/alba/alba_loader.php</quote></para>
+<para>6) D&eacute; comienzo a la instalaci&oacute;n.</para>
+<para>7) El programa de instalaci&oacute;n descargar&aacute; los archivos necesarios, har&aacute; verificaciones sobre la existencia de los programas requeridos y los permisos de escritura. Debe completar informaci&oacute;n sobre: servidor, usuario, contraseña y nombre de la base de datos.</para>
+</sect2>
+</sect1>
+
+<sect1><title>Ingreso al sistema</title>
+  <para>Una vez instalado, el sistema mostrar&aacute; la siguiente pantalla de ingreso: </para>
   <figure><title>ingreso al sistema</title>
   <graphic scalefit="1" fileref="img/figura1.png"/>
 </figure>
-<important><para>IMPORTANTE: Recuerde que al ingresar al sistema por primera vez estará habilitada únicamente la cuenta de administrador --> Usuario: admin y Clave: admin. A partir de allí podrá cambiar la clave y crear los nuevos usuarios (ver Capítulo 5 apartado “Seguridad”).</para></important>
-<para><emphasis>Una pantalla de bienvenida le indicará información sobre ALBA, así como la el detalle de las libertades que definen al Software Libre y posibilidades de contacto.</emphasis></para>
+<important><para>IMPORTANTE: Recuerde que al ingresar al sistema por primera vez estar&aacute; habilitada &uacute;nicamente la cuenta de administrador --> Usuario: admin y Clave: admin. A partir de all&iacute; podr&aacute; cambiar la clave y crear los nuevos usuarios (ver Cap&iacute;tulo 5 apartado "Seguridad").</para></important>
+<para><emphasis>Una pantalla de bienvenida le indicar&aacute; informaci&oacute;n sobre ALBA, as&iacute; como la el detalle de las libertades que definen al Software Libre y posibilidades de contacto.</emphasis></para>
 <figure><title>Bienvenida al sistema</title>
 <graphic scalefit="1" fileref="img/figura2.png"/>
 </figure>
-<para>En el vértice superior derecho de la pantalla, podrá ver el usuario activo (así como el detalle del establecimiento y el ciclo lectivo, si es que ya se encuentran ingresados y el sistema se utilizó con anterioridad). </para>
+<para>En el v&eacute;rtice superior derecho de la pantalla, podr&aacute; ver el usuario activo (as&iacute; como el detalle del establecimiento y el ciclo lectivo, si es que ya se encuentran ingresados y el sistema se utiliz&oacute; con anterioridad). </para>
 <figure><title>Bienvenida al sistema</title>
   <graphic scalefit="1" fileref="img/figura3.png"/>
 </figure>
-<para>Salida del sistema</para>
-<para>La barra horizontal, cuenta con un botón de Salir. </para>
-<para>Es importante <emphasis>haber grabado la información</emphasis> actual antes de optar por salir por medio del menú. Al salir, el sistema mostrará nuevamente la pantalla de ingreso al sistema (como para iniciar una nueva sesión con un usuario del sistema).</para>
-<para>Recuerde que aunque no se encuentre trabajando dentro del sistema, el navegador puede permanecer abierto.</para>
-</sect6>
 </sect1>
+
+<sect1>
+<title>Salida del sistema</title>
+<para>La barra horizontal, cuenta con un bot&oacute;n de Salir. </para>
+<para>Es importante <emphasis>haber grabado la informaci&oacute;n</emphasis> actual antes de optar por salir por medio del men&uacute;. Al salir, el sistema mostrar&aacute; nuevamente la pantalla de ingreso al sistema (como para iniciar una nueva sesi&oacute;n con un usuario del sistema).</para>
+<para>Recuerde que aunque no se encuentre trabajando dentro del sistema, el navegador puede permanecer abierto.</para>
+</sect1>
+
+</chapter>
