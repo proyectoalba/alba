@@ -1,5 +1,10 @@
 <bookinfo>
-    <title>ALBA - Manual de Usuario</title>
+
+    <title>ALBA </title>
+    <subtitle>Software libre de gesti&oacute;n educativa </subtitle>
+    <subtitle>Manual de Usuario</subtitle>
+    <graphic fileref="img/alba.jpg" scale="20" align="center" />
+
     <author><firstname>Equipo de Trabajo</firstname><surname>Proyecto Alba</surname></author>
     <copyright>
         <year>2007</year>
