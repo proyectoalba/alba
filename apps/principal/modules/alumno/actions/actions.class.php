@@ -170,7 +170,7 @@ class alumnoActions extends autoalumnoActions
     public function handleErrorGrabarCuenta() {
         $this->cuenta = $this->updateCuentaFromRequest();
         $this->setTemplate("nuevaCuenta");
-        $this->vista = "noMuestraMenu";
+//         $this->vista = "noMuestraMenu";
         return sfView::SUCCESS;
     }
 
