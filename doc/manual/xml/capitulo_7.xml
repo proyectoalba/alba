@@ -14,7 +14,7 @@ Luego de esta carga, al tratarse de un ingreso de alumno independiente de la cue
 </para>
 <para>
 <figure><title>Buscar cuenta.</title>
-<graphic scale="50" fileref="img/figura27.png"/>
+<graphic fileref="img/figura27.png" scale="70" />
 </figure>
 </para>
 <para>
@@ -38,7 +38,7 @@ Esta opci&oacute;n del men&uacute; ofrece la posibilidad de b&uacute;squeda sobr
 </para>
 <para>
 <figure><title>B&uacute;squeda de alumnos.</title>
-<graphic fileref="img/figura28.png"/>
+<graphic fileref="img/figura28.png" scale="70" />
 </figure>
 </para>
 <para>
@@ -55,7 +55,7 @@ El bot&oacute;n "Ver el legajo" permite llegar a los datos ingresados del legajo
 </para>
 <para>
 <figure><title>Legajo pedag&oacute;gico.</title>
-<graphic fileref="img/figura29.png"/>
+    <graphic fileref="img/figura29.png" scale="40"/>
 </figure>
 </para>
 <para>
@@ -69,7 +69,7 @@ El ingreso de una nueva entrada al legajo le solicitar&aacute; los datos b&aacut
 </para>
 <para>
 <figure><title>Entrada al legajo pedag&oacute;gico.</title>
-<graphic fileref="img/figura30.png"/>
+    <graphic fileref="img/figura30.png" scale="40"/>
 </figure>
 </para>
 </sect2>
@@ -85,7 +85,7 @@ Cabe destacar que para el ingreso de la asistencia de una secci&oacute;n/divisi&
 </para>
 <para>
 <figure><title>Asistencia por alumno.</title>
-<graphic fileref="img/figura31.png"/>
+    <graphic fileref="img/figura31.png" scale="70"/>
 </figure>
 </para>
 <para>
@@ -98,7 +98,7 @@ El  acceso a Vacunas permite elegir un alumno (o una secci&oacute;n/divisi&oacut
 </para>
 <para>
 <figure><title>B&uacute;squeda por alumno.</title>
-<graphic fileref="img/figura32.png"/>
+    <graphic fileref="img/figura32.png" scale="40"/>
 </figure>
 </para>
 <para>
@@ -106,7 +106,7 @@ En el caso de ingresar por divisi&oacute;n ALBA listar&oacute; los alumnos de la
 </para>
 <para>
 <figure><title>Listado de alumnos para acciones.</title>
-<graphic fileref="img/figura33.png"/>
+    <graphic fileref="img/figura33.png" scale="70"/>
 </figure>
 </para>
 <para>
@@ -114,7 +114,7 @@ Al acceder a un alumno en particular ALBA permite visualizar y utilizar todos lo
 </para>
 <para>
 <figure><title>Vacuna por alumno.</title>
-<graphic fileref="img/figura34.png"/>
+    <graphic fileref="img/figura34.png" scale="40"/>
 </figure>
 </para>
 <para>
@@ -151,7 +151,7 @@ Una vez seleccionado ambos aspectos se desplegar&oacute; la opci&oacute;n de def
 </para>
 <para>
 <figure><title>B&uacute;squeda de alumnos para nota de conceptos.</title>
-<graphic fileref="img/figura35.png"/>
+    <graphic fileref="img/figura35.png" scale="70"/>
 </figure>
 </para>
 <para>
@@ -159,7 +159,7 @@ La carga de notas de concepto permite tanto valores ( por ejemplo B, MB, R etc.)
 </para>
 <para>
 <figure><title>Notas del concepto del bolet&iacute;n.</title>
-<graphic fileref="img/figura36.png"/>
+    <graphic fileref="img/figura36.png" scale="70"/>
 </figure>
 </para>
 <para>
@@ -172,7 +172,7 @@ De la misma forma, el ingreso a Bolet&iacute;n Notas permite colocar las calific
 </para>
 <para>
 <figure><title>Notas del bolet&iacute;n.</title>
-<graphic fileref="img/figura37.png"/>
+    <graphic fileref="img/figura37.png" scale="70"/>
 </figure>
 </para>
 <para>

@@ -8,7 +8,7 @@ La siguiente pantalla, detalla a modo de ejemplo, los elementos m&aacute;s usual
 </para>
 <para>
 <figure><title>Elementos de la pantalla principal.</title>
-<graphic fileref="img/figura4.png"/>
+<graphic fileref="img/figura4.png" scale="40" />
 </figure>
 </para>
 
@@ -36,7 +36,7 @@ Al pasar con el mouse sobre &eacute;l, se despliegan todas las opciones que cont
 
 	<para>
 		<figure><title>El men&uacute; desplegable.</title>
-		<graphic fileref="img/figura5.png"/>
+            <graphic fileref="img/figura5.png"  scale="60"/>
 		</figure>
 	</para>
 	</sect2>
@@ -52,7 +52,7 @@ As&iacute; pues el sistema permite: Crear un nuevo registro, Listar los registro
 	</para>
 	<para>
 	<figure><title>Botones de la barra inferior.</title>
-	<graphic fileref="img/figura6.png"/>
+        <graphic fileref="img/figura6.png"  scale="60"/>
 	</figure>
 	</para>
 </sect2>
@@ -65,7 +65,7 @@ Son barras de botones, que funcionan como accesos a determinadas acciones a real
 
 	<para>
 	<figure><title>Barras de acciones.</title> 
-	<graphic fileref="img/figura7.png"/>
+        <graphic fileref="img/figura7.png"  scale="60"/>
 	</figure>
 	</para>
 	<para>
@@ -94,7 +94,7 @@ Diferentes m&oacute;dulos del ALBA utilizan este sistema para mejorar las b&uacu
 
 	<para>
 	<figure><title>Ventanas de filtros.</title> 
-	<graphic fileref="img/figura8.png"/>
+	<graphic fileref="img/figura8.png" scale="60" />
 	</figure>
 	</para>
 

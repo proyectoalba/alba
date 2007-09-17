@@ -9,7 +9,7 @@ Esta secci&oacute;n posibilita la configuraci&oacute;n de los diferentes conjunt
 </para>
 <para>
 <figure><title>Creaci&oacute;n de nuevo Grado/A&ntilde;o</title>
-<graphic fileref="img/figura43.png"/>
+<graphic fileref="img/figura43.png" scale="70"/>
 </figure>
 </para>
 
@@ -21,7 +21,7 @@ De igual forma que los Grados/A&ntilde;os las orientaciones deben ser difinidas 
 </para>
 <para>
 <figure><title>Listado de orientaciones.</title>
-<graphic fileref="img/figura44.png"/>
+    <graphic fileref="img/figura44.png" scale="70"/>
 </figure>
 </para>
 
@@ -36,7 +36,7 @@ Al dar de alta una nueva Secci&oacute;n o Divisi&oacute;n el sistema solicita in
 </para>
 <para>
 <figure><title>Alta de divisi&oacute;n.</title>
-<graphic fileref="img/figura45.png"/>
+    <graphic fileref="img/figura45.png" scale="70"/>
 </figure>
 </para>
 </sect1>

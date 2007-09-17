@@ -38,7 +38,7 @@ Refiere a las configuraciones sobre:
 </para>
 <para>
 <figure><title>Listados de conceptos de baja.</title>
-<graphic fileref="img/figura9.png"/>
+<graphic fileref="img/figura9.png" scale="60" />
 </figure>
 </para>
 
@@ -48,7 +48,7 @@ Refiere a las configuraciones sobre:
 </para>
 <para>
 <figure><title>Listados de tipo de Asistencia.</title>
-<graphic fileref="img/figura10.png"/>
+    <graphic fileref="img/figura10.png" scale="60" />
 </figure>
 </para>
 <para>
@@ -56,7 +56,7 @@ Refiere a las configuraciones sobre:
 </para>
 <para>
 <figure><title>Escala de notas.</title>
-<graphic fileref="img/figura11.png"/>
+    <graphic fileref="img/figura11.png" scale="60"/>
 </figure>
 </para>
 
@@ -65,7 +65,7 @@ Refiere a las configuraciones sobre:
 </para>
 <para>
 <figure><title>Tipos de entrada al legajo pedag&oacute;gica.</title>
-<graphic fileref="img/figura12.png"/>
+    <graphic fileref="img/figura12.png" scale="60"/>
 </figure>
 </para>
 
@@ -74,7 +74,7 @@ Refiere a las configuraciones sobre:
 </para>
 <para>
 <figure><title>Categor&iacute;as del bolet&iacute;n de concepto.</title>
-<graphic fileref="img/figura13.png"/>
+    <graphic fileref="img/figura13.png" scale="60"/>
 </figure>
 </para>
 </sect2>
@@ -88,7 +88,7 @@ Refiere a configuraciones sobre:
 </para>
 <para>
 <figure><title>Tipos de docente.</title>
-<graphic fileref="img/figura14.png"/>
+    <graphic fileref="img/figura14.png" scale="60"/>
 </figure>
 </para>
 <para>
@@ -96,7 +96,7 @@ Refiere a configuraciones sobre:
 </para>
 <para>
 <figure><title>Motivos de baja.</title>
-<graphic fileref="img/figura15.png"/>
+    <graphic fileref="img/figura15.png" scale="60"/>
 </figure>
 </para>
 </sect2>
@@ -110,7 +110,7 @@ Refiere a configuraciones sobre:
 </para>
 <para>
 <figure><title>Ciclos lectivos.</title>
-<graphic fileref="img/figura16.png"/>
+    <graphic fileref="img/figura16.png" scale="60"/>
 </figure>
 </para>
 <para>
@@ -118,7 +118,7 @@ Refiere a configuraciones sobre:
 </para>
 <para>
 <figure><title>Per&iacute;odos.</title>
-<graphic fileref="img/figura17.png"/>
+    <graphic fileref="img/figura17.png" scale="60"/>
 </figure>
 </para>
 <para>
@@ -129,7 +129,7 @@ Refiere a configuraciones sobre:
 </para>
 <para>
 <figure><title>Tipos de intervalo de horario escolar.</title>
-<graphic fileref="img/figura18.png"/>
+    <graphic fileref="img/figura18.png" scale="60"/>
 </figure>
 </para>
 <para>
@@ -140,7 +140,7 @@ Refiere a configuraciones sobre:
 </para>
 <para>
 <figure><title>Calendario de vacunas:</title>
-<graphic fileref="img/figura19.png"/>
+    <graphic fileref="img/figura19.png" scale="40"/>
 </figure>
 </para>
 </sect2>
@@ -154,7 +154,7 @@ Refiere a configuraciones sobre:
 </para>
 <para>
 <figure><title>Tipos de locaciones. </title>
-<graphic fileref="img/figura20.png"/>
+    <graphic fileref="img/figura20.png" scale="60"/>
 </figure>
 </para>
 
@@ -163,7 +163,7 @@ Refiere a configuraciones sobre:
 </para>
 <para>
 <figure><title>Tipos de espacios. </title>
-<graphic fileref="img/figura21.png"/>
+    <graphic fileref="img/figura21.png" scale="60"/>
 </figure>
 </para>
 </sect2>
@@ -195,7 +195,7 @@ Este m&oacute;dulo posee un sistema de flechas que posibilita la selecci&oacute;
 </para>
 <para>
 <figure><title>Tipos de espacios. </title>
-<graphic fileref="img/figura22.png"/>
+    <graphic fileref="img/figura22.png" scale="60"/>
 </figure>
 </para>
 <para>
@@ -213,7 +213,7 @@ A trav&eacute;s de esta herramienta, es posible dar de alta diferentes perfiles 
 </para>
 <para>
 <figure><title>Tipos de espacios. </title>
-<graphic fileref="img/figura23.png"/>
+    <graphic fileref="img/figura23.png" scale="60"/>
 </figure>
 </para>
 </sect2>

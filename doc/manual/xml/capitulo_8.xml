@@ -8,7 +8,7 @@ La herramienta "Administrar" permite el acceso a todo el listado de docentes. A 
 </para>
 <para>
 <figure><title>Listado de docentes.</title>
-<graphic scalefit="1" fileref="img/figura38.png"/>
+    <graphic scalefit="1" fileref="img/figura38.png" scale="70"/>
 </figure>
 </para>
 <sect2><title>Actividades por docentes</title>
@@ -17,7 +17,7 @@ Esta herramienta permite visualizar la relaci&oacute;n entre un docente y la mat
 </para>
 <para>
 <figure><title>Listado de Actividades/Materias por Docente</title>
-<graphic scalefit="1" fileref="img/figura39.png"/>
+    <graphic scalefit="1" fileref="img/figura39.png" scale="70"/>
 </figure>
 </para>
 <para>
@@ -25,7 +25,7 @@ Al ingresar a la Edici&oacute;n de un docente, a trav&eacute;s del bot&oacute;n 
 </para>
 <para>
 <figure><title>Editar las actividades del docente</title>
-<graphic scalefit="1" fileref="img/figura40.png"/>
+    <graphic scalefit="1" fileref="img/figura40.png" scale="70"/>
 </figure>
 </para>
 </sect2>
@@ -35,7 +35,7 @@ A trav&eacute;s del bot&oacute;n "Horarios tentativos por Docente" se visualiza 
 </para>
 <para>
 <figure><title>Horarios tentativos del docente.</title>
-<graphic scalefit="1" fileref="img/figura41.png"/>
+    <graphic scalefit="1" fileref="img/figura41.png" scale="70"/>
 </figure>
 </para>
 <para>
@@ -43,7 +43,7 @@ La disponibilidad expresada en el texto anterior se genera al ingresar los datos
 </para>
 <para>
 <figure><title>Editar horarios tentativos por docente</title>
-<graphic scalefit="1" fileref="img/figura42.png"/>
+    <graphic scalefit="1" fileref="img/figura42.png" scale="55"/>
 </figure>
 </para>
 <para>

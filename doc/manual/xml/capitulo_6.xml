@@ -8,7 +8,7 @@ Desde este men&uacute; es posible crear nuevas cuentas y gestionar las existente
 </para>
 <para>
 <figure><title>Listado de cuentas.</title>
-<graphic fileref="img/figura24.png"/>
+<graphic fileref="img/figura24.png" scale="60" />
 </figure>
 </para>
 <sect2><title>Crear una cuenta nueva.</title>
@@ -31,7 +31,7 @@ El listado de Cuentas, posee barra de acci&oacute;n de edici&oacute;n. Por otro 
 </para>
 <para>
 <figure><title>Edici&oacute;n de cuenta.</title>
-<graphic fileref="img/figura25.png"/>
+<graphic fileref="img/figura25.png" scale="50" />
 </figure>
 </para>
 <para>
@@ -52,7 +52,7 @@ Como todo listado, puede ser ordenado seg&uacute;n diversos criterios y cuenta c
 </para>
 <para>
 <figure><title>Listado de responsables.</title>
-<graphic fileref="img/figura26.png"/>
+<graphic fileref="img/figura26.png" scale="45" />
 </figure>
 </para>
 <para>
