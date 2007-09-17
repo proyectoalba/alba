@@ -281,16 +281,16 @@ En el caso del ejemplo, se trata del directorio:.</para>
 <sect1><title>Ingreso al sistema</title>
   <para>Una vez instalado, el sistema mostrar&aacute; la siguiente pantalla de ingreso: </para>
   <figure><title>ingreso al sistema</title>
-  <graphic scalefit="1" fileref="img/figura1.png"/>
+  <graphic fileref="img/figura1.png" scale="40" />
 </figure>
 <important><para>IMPORTANTE: Recuerde que al ingresar al sistema por primera vez estar&aacute; habilitada &uacute;nicamente la cuenta de administrador --> Usuario: admin y Clave: admin. A partir de all&iacute; podr&aacute; cambiar la clave y crear los nuevos usuarios (ver Cap&iacute;tulo 5 apartado "Seguridad").</para></important>
 <para><emphasis>Una pantalla de bienvenida le indicar&aacute; informaci&oacute;n sobre ALBA, as&iacute; como la el detalle de las libertades que definen al Software Libre y posibilidades de contacto.</emphasis></para>
 <figure><title>Bienvenida al sistema</title>
-<graphic scalefit="1" fileref="img/figura2.png"/>
+<graphic fileref="img/figura2.png" scale="40" />
 </figure>
 <para>En el v&eacute;rtice superior derecho de la pantalla, podr&aacute; ver el usuario activo (as&iacute; como el detalle del establecimiento y el ciclo lectivo, si es que ya se encuentran ingresados y el sistema se utiliz&oacute; con anterioridad). </para>
 <figure><title>Bienvenida al sistema</title>
-  <graphic scalefit="1" fileref="img/figura3.png"/>
+  <graphic fileref="img/figura3.png" scale="40" />
 </figure>
 </sect1>
 
