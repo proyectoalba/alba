@@ -30,17 +30,17 @@
  * @license GPL
  */
 class turnoActions extends autoturnoActions {
-    public function preExecute() {
-        $this->vista = $this->getRequestParameter('vista');
-    }
-    
+
+
     function addFiltersCriteria($c) {
         $c->add(TurnoPeer::FK_CICLOLECTIVO_ID,$this->getUser()->getAttribute('fk_ciclolectivo_id'));
     }
     
     function saveTurno($turno) {
-        $turno->setFkCiclolectivoId($this->getUser()->getAttribute('fk_ciclolectivo_id'));
-        $turno->save();
+        if($this->getUser()->getAttribute('fk_ciclolectivo_id') != 0) {
+            $turno->setFkCiclolectivoId($this->getUser()->getAttribute('fk_ciclolectivo_id'));
+            $turno->save();
+        }
     }
 
     protected function updateTurnoFromRequest()  {
@@ -62,6 +62,7 @@ class turnoActions extends autoturnoActions {
             $this->turno->setHoraFin($turno['hora_fin']);
         }
     }
+
     function _add_zeros($string, $strlen) {
         if ($strlen > strlen($string)) {
             for ($x = strlen($string); $x < $strlen; $x++) {

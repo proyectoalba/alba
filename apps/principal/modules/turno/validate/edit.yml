@@ -24,6 +24,7 @@ names:
         required_msg: El campo descripci&oacute;n es obligatorio
         validators: caracteresMaximos255
 
+
 caracteresMaximos255:
     class:  sfStringValidator
     param:
