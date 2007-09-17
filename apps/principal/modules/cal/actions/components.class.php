@@ -12,7 +12,7 @@
 class calComponents extends sfComponents
 {
 
-	public function  executeVerPorDia() {
+	public function  _phpicalendar($current_view) {
 		$default_cal_alba = $this->archivo;
 // 		print_r( file($this->archivo));
 		$context = sfContext::getInstance();
@@ -31,7 +31,7 @@ class calComponents extends sfComponents
 // 		}
 
 		//datos para construir las urls
-// 		$modulo = $context->getRequest()->getParameter('module');
+		$modulo = $context->getRequest()->getParameter('module');
 		$action = $context->getRequest()->getParameter('action');
 
 
@@ -40,7 +40,7 @@ class calComponents extends sfComponents
 			$getdate = date('Ymd', time() + $second_offset);
 		else 
 			$getdate = $this->date;
-		$current_view = 'day';
+// 		$current_view = 'day';
 		
 // 		header("Content-Type: text/html; charset=$charset");
 		
@@ -82,7 +82,7 @@ class calComponents extends sfComponents
 		
 		//$template = "red";
 		
-		$page = new Page(BASE.'templates/'.$template.'/day.tpl');
+		$page = new Page(BASE.'templates/'.$template."/$current_view.tpl");
 
 	$page->cpath = $cpath;
 
@@ -148,7 +148,7 @@ class calComponents extends sfComponents
 	$page->download_filename = $download_filename;
 
 	$relativeUrlRoot = sfContext::getInstance()->getRequest()->getRelativeUrlRoot();
-	//echo $relativeUrlRoot;
+// 	echo $relativeUrlRoot;die;
 		
 // 		$page->replace_files(array(
 // 		'header'			=> BASE.'templates/'.$template.'/header.tpl',
@@ -165,12 +165,13 @@ class calComponents extends sfComponents
 		'sidebar'           => '',
 		'search_box'        => ''
 		));
+		$prefixUri = sfContext::getInstance()->getRequest()->getUriPrefix();
 		$globals = array(
 		"base"			=> $relativeUrlRoot ."/images/cal",
 		'day_view_action'	=> $action.'/'.$this->verPorDia,
 		'week_view_action'	=> $action.'/'.$this->verPorSemana,
-		'month_view_action'	=> $action.'/'.$this->verPorMes,
-		'year_view_action'	=> $action.'/'.$this->verPorAnio,
+		'month_view_action'	=> $prefixUri.$relativeUrlRoot.'/'.$action.'/'.$this->verPorMes,
+		'year_view_action'	=> $prefixUri.$relativeUrlRoot.'/'.$action.'/'.$this->verPorAnio,
 		'version'			=> $phpicalendar_version,
 		'charset'			=> $charset,
 		'default_path'		=> '',
@@ -247,14 +248,48 @@ class calComponents extends sfComponents
 		$page->nosearch($page);
 		}
 		
-		$page->draw_day($page);
+		switch ($current_view) {
+		case 'month':
+			if ($this_months_events == 'yes') {	
+				$page->monthbottom($page);
+			} else {
+				$page->nomonthbottom($page);
+			}
+			break;
+		case 'day': $page->draw_day($page);
+			break;
+		case 'week': $page->draw_week($page);
+			break;
+		case 'year': break;
+		}
 		$page->tomorrows_events($page);
 		$page->get_vtodo($page);
+// 		$page->tomorrows_events($page);
+// 		$page->get_vtodo($page);
 		$page->draw_subscribe($page);
 		
 		$this->output = $page->output();
 
 	
+	}
+	public function  executeVerPorDia() {
+
+		$this->_phpicalendar('day');
+	}
+
+	public function  executeVerPorSemana() {
+
+		$this->_phpicalendar('week');
+	}
+
+	public function  executeVerPorMes() {
+
+		$this->_phpicalendar('month');
+	}
+
+	public function  executeVerPorAnio() {
+
+		$this->_phpicalendar('year');
 	}
 }
 
