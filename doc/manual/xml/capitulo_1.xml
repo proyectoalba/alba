@@ -443,8 +443,9 @@ En el caso del ejemplo, se trata del directorio:.</para>
   </programlisting>
 </para>
 <para>6) D&eacute; comienzo a la instalaci&oacute;n.</para>
-<para>7) El programa de instalaci&oacute;n descargar&aacute; los archivos necesarios, har&aacute; verificaciones sobre la existencia de los programas requeridos y los permisos de escritura. Debe completar informaci&oacute;n sobre: servidor, usuario, contraseña y nombre de la base de datos.
+<para>7) El programa de instalaci&oacute;n descargar&aacute; los archivos necesarios, har&aacute; verificaciones sobre la existencia de los programas requeridos y los permisos de escritura. Debe completar informaci&oacute;n sobre: servidor, usuario, contrase&ntilde;a y nombre de la base de datos.
 </para>
+<para>8) Complete la informaci&oacute;n: servidor: localhost; usuario: root, contrase&ntilde;a: (ninguna) y nombre de la base de datos: la que desee.</para>
 </sect2>
 </sect1>
 
