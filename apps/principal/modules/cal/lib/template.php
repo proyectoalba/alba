@@ -948,6 +948,7 @@ class Page {
 		$first_of_year 		= $minical_year."0101";
 
 		// Add links in to the month/year views.
+		//@annotation modificacion de los link que produce en la vista de month and year
 		$dateFormat_month_local = str_replace("%B", "<a class=\"ps3\" href=\"month.php?cal=$this->cal&amp;getdate=$first_of_month\">%B</a>", $this->dateFormat_month);
 		$dateFormat_month_local = str_replace("%Y", "<a class=\"ps3\" href=\"year.php?cal=$this->cal&amp;getdate=$first_of_year\">%Y</a>", $dateFormat_month_local);
 

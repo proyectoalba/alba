@@ -17,23 +17,24 @@ include_once(BASE.'default_config.php');
 if (is_file(BASE.'config.inc.php')) include_once(BASE.'config.inc.php');
 include_once(BASE.'sanitize.php');
 
-$cookie_name = 'phpicalendar_'.basename($default_path);
-if (isset($_COOKIE["$cookie_name"]) && !isset($_POST['unset'])) {
-	$phpicalendar = unserialize(stripslashes($_COOKIE[$cookie_name]));
-	if (isset($phpicalendar['cookie_language'])) 	$language 			= $phpicalendar['cookie_language'];
-	if (isset($phpicalendar['cookie_calendar'])) 	$default_cal_check	= $phpicalendar['cookie_calendar'];
-	if (isset($phpicalendar['cookie_cpath'])) 		$default_cpath_check= $phpicalendar['cookie_cpath'];
-	if (isset($phpicalendar['cookie_view'])) 		$default_view 		= $phpicalendar['cookie_view'];
-	if (isset($phpicalendar['cookie_style']) && is_dir(BASE.'templates/'.$phpicalendar['cookie_style'].'/')){ 
-		$template 			= $phpicalendar['cookie_style'];
-	}	
-	if (isset($phpicalendar['cookie_startday'])) 	$week_start_day		= $phpicalendar['cookie_startday'];
-	if (isset($phpicalendar['cookie_time']))		$day_start			= $phpicalendar['cookie_time'];
-}
-#cpath modifies the calendar path based on the url or cookie values.  This allows you to run multiple calendar subsets from a single phpicalendar installation. Operations on cpath are largely hidden from the end user.
-if ($calendar_path == '') {
-	$calendar_path = BASE.'calendars';
-}
+//@annotation esto lo saque porque no tiene sentido en nuestro caso
+// $cookie_name = 'phpicalendar_'.basename($default_path);
+// if (isset($_COOKIE["$cookie_name"]) && !isset($_POST['unset'])) {
+// 	$phpicalendar = unserialize(stripslashes($_COOKIE[$cookie_name]));
+// 	if (isset($phpicalendar['cookie_language'])) 	$language 			= $phpicalendar['cookie_language'];
+// 	if (isset($phpicalendar['cookie_calendar'])) 	$default_cal_check	= $phpicalendar['cookie_calendar'];
+// 	if (isset($phpicalendar['cookie_cpath'])) 		$default_cpath_check= $phpicalendar['cookie_cpath'];
+// 	if (isset($phpicalendar['cookie_view'])) 		$default_view 		= $phpicalendar['cookie_view'];
+// 	if (isset($phpicalendar['cookie_style']) && is_dir(BASE.'templates/'.$phpicalendar['cookie_style'].'/')){ 
+// 		$template 			= $phpicalendar['cookie_style'];
+// 	}	
+// 	if (isset($phpicalendar['cookie_startday'])) 	$week_start_day		= $phpicalendar['cookie_startday'];
+// 	if (isset($phpicalendar['cookie_time']))		$day_start			= $phpicalendar['cookie_time'];
+// }
+// #cpath modifies the calendar path based on the url or cookie values.  This allows you to run multiple calendar subsets from a single phpicalendar installation. Operations on cpath are largely hidden from the end user.
+// if ($calendar_path == '') {
+// 	$calendar_path = BASE.'calendars';
+// }
 
 $cpath = ''; #initialize cpath to prevent later undef warnings.
 if(isset($_REQUEST['cpath'])&& $_REQUEST['cpath'] !=''){
@@ -109,31 +110,32 @@ if (ini_get('max_execution_time') < 60) {
 // Pull the calendars off the GET line if provided. The $cal_filename
 // is always an array, because this makes it easier to deal with below.
 $cal_filenames = array();
-if (isset($_GET['cal'])) {
-	// If the cal value is not an array, split it into an array on
-	// commas.
-	if (!is_array($_GET['cal']))
-		$_GET['cal'] = explode(',', $_GET['cal']);
-	
-	// Grab the calendar filenames off the cal value array.
-	$cal_filenames = $_GET['cal'];
-} else {
-	if (isset($default_cal_check)) {
-		if ($default_cal_check != $ALL_CALENDARS_COMBINED) {
-			$calcheck = $calendar_path.'/'.$default_cal_check.'.ics';
-			$calcheckopen = @fopen($calcheck, "r");
-			if ($calcheckopen == FALSE) {
-				$cal_filenames = explode(',',$default_cal);
-			} else {
-				$cal_filenames[0] = $default_cal_check;
-			}
-		} else {
-			$cal_filenames[0] = $ALL_CALENDARS_COMBINED;
-		}
-	} else {
-		$cal_filenames = explode(',',$default_cal_alba);
-	}
-}
+// if (isset($_GET['cal'])) {
+// 	// If the cal value is not an array, split it into an array on
+// 	// commas.
+// 	if (!is_array($_GET['cal']))
+// 		$_GET['cal'] = explode(',', $_GET['cal']);
+// 	
+// 	// Grab the calendar filenames off the cal value array.
+// 	$cal_filenames = $_GET['cal'];
+// } else {
+// 	if (isset($default_cal_check)) {
+// 		if ($default_cal_check != $ALL_CALENDARS_COMBINED) {
+// 			$calcheck = $calendar_path.'/'.$default_cal_check.'.ics';
+// 			$calcheckopen = @fopen($calcheck, "r");
+// 			if ($calcheckopen == FALSE) {
+// 				$cal_filenames = explode(',',$default_cal);
+// 			} else {
+// 				$cal_filenames[0] = $default_cal_check;
+// 			}
+// 		} else {
+// 			$cal_filenames[0] = $ALL_CALENDARS_COMBINED;
+// 		}
+// 	} else {
+// 		$cal_filenames = explode(',',$default_cal_alba);
+// 	}
+// }
+$cal_filenames = explode(',',$default_cal_alba);
 
 //load cal_filenames if $ALL_CALENDARS_COMBINED
 if ($cal_filenames[0] == $ALL_CALENDARS_COMBINED){
@@ -160,10 +162,11 @@ foreach ($cal_filenames as $cal_filename) {
 	// Otherwise it is a local calendar.
 	else {
 		// Check blacklisted.
-		if (in_array($cal_filename, $blacklisted_cals)  && $cal_filename !='') {
-			exit(error($lang['l_error_restrictedcal'], $cal_filename));
-		}
-		$local_cals[] = urldecode(str_replace(".ics", '', basename($cal_filename)));
+// 		if (in_array($cal_filename, $blacklisted_cals)  && $cal_filename !='') {
+// 			exit(error($lang['l_error_restrictedcal'], $cal_filename));
+// 		}
+// 		$local_cals[] = urldecode(str_replace(".ics", '', basename($cal_filename)));
+		$local_cals[] = urldecode($cal_filename);
 	}
 }
 
@@ -227,11 +230,13 @@ if (count($local_cals) > 0) {
 	$globals['lang'] = $lang;
 	$globals['ALL_CALENDARS_COMBINED'] = $ALL_CALENDARS_COMBINED;
 
-	$local_cals = availableCalendars($username, $password, $local_cals,false, $globals);
+	//@annotation esto no pasaba el chequeo y no es necesario
+	//$local_cals = availableCalendars($username, $password, $local_cals,false, $globals);
 	
 	foreach ($local_cals as $local_cal) {
 		$cal_displaynames[] = str_replace('32', ' ', getCalendarName($local_cal));
 	}
+
 	$cal_filelist = array_merge($cal_filelist, $local_cals);
 	$cals = array_merge($cals, array_map("urlencode", array_map("getCalendarName", $local_cals)));
 	
@@ -255,7 +260,6 @@ if (count($local_cals) > 0) {
 		}
 	}
 }
-
 // We should only allow a download filename and subscribe path if there is
 // only one calendar being displayed.
 if (count($cal_filelist) > 1) {
@@ -278,19 +282,19 @@ function getmicrotime() {
 	return ((float)$usec + (float)$sec); 
 }
 #uncomment for diagnostics
-#echo "after init.inc.ics<pre>";
-#echo "cals";
-#print_r($cals);echo"\n\n";
-#echo "cal_filenames";
-#print_r($cal_filenames);echo"\n\n";
-#echo "web_cals";
-#print_r($web_cals);echo"\n\n";
-#echo "local_cals";
-#print_r($local_cals);echo"\n\n";
-#echo "cal_filelist";
-#print_r($cal_filelist);
-#echo "cal_displaynames";
-#print_r($cal_displaynames);
-#echo "</pre><hr>";
+// echo "after init.inc.ics<pre>";
+// echo "cals";
+// print_r($cals);echo"\n\n";
+// echo "cal_filenames";
+// print_r($cal_filenames);echo"\n\n";
+// echo "web_cals";
+// print_r($web_cals);echo"\n\n";
+// echo "local_cals";
+// print_r($local_cals);echo"\n\n";
+// echo "cal_filelist";
+// print_r($cal_filelist);
+// echo "cal_displaynames";
+// print_r($cal_displaynames);
+// echo "</pre><hr>";
 
 ?>

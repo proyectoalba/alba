@@ -27,80 +27,81 @@ while ($fillTime < $day_end) {
 
 // reading the file if it's allowed
 $parse_file = true;
-if ($save_parsed_cals == 'yes') {	
-	if (sizeof ($cal_filelist) > 1) {
-		$parsedcal = $tmp_dir.'/parsedcal-'.urlencode($cpath.'::'.$cal_filename).'-'.$this_year;
-		if (file_exists($parsedcal)) {
-			$fd = fopen($parsedcal, 'r');
-			$contents = fread($fd, filesize($parsedcal));
-			fclose($fd);
-			$master_array = unserialize($contents);
-			$z=1;
-			$y=0;
-			if (sizeof($master_array['-4']) == (sizeof($cal_filelist))) {
-				foreach ($master_array['-4'] as $temp_array) {
-					$mtime = $master_array['-4'][$z]['mtime'];
-					$fname = $master_array['-4'][$z]['filename'];
-					$wcalc = $master_array['-4'][$z]['webcal'];	
-					if ($wcalc == 'no') $realcal_mtime = filemtime($fname);
-					$webcal_mtime = time() - strtotime($webcal_hours * 3600);
-					if (($mtime == $realcal_mtime) && ($wcalc == 'no')) {
-						$y++;
-					} elseif (($wcalc == 'yes') && ($mtime > $webcal_mtime)) {
-						//echo date('H:i',$mtime). ' > '. date('H:i',$webcal_mtime);
-						$y++;
-					}
-					$z++;
-				}
-				foreach ($master_array['-3'] as $temp_array) {
-					if (isset($temp_array) && $temp_array !='') $caldisplaynames[] = $temp_array;
-				}
 
-				if ($y == sizeof($cal_filelist)) {
-					if ($master_array['-1'] == 'valid cal file') {
-						$parse_file = false;
-						$calendar_name = $master_array['calendar_name'];
-						$calendar_tz = $master_array['calendar_tz'];
-					}
-				}
-			}
-		}
-		if ($parse_file == true) unset($master_array);
-	} else {
-		foreach ($cal_filelist as $filename) {
-			$realcal_mtime = filemtime($filename);
-			$parsedcal = $tmp_dir.'/parsedcal-'.urlencode($cpath.'::'.$cal_filename).'-'.$this_year;
-			if (file_exists($parsedcal)) {
-				$parsedcal_mtime = filemtime($parsedcal);
-				if ($realcal_mtime == $parsedcal_mtime) {
-					$fd = fopen($parsedcal, 'r');
-					$contents = fread($fd, filesize($parsedcal));
-					fclose($fd);
-					$master_array = unserialize($contents);
-					if ($master_array['-1'] == 'valid cal file') {
-						$parse_file = false;
-						$calendar_name = $master_array['calendar_name'];
-						$calendar_tz = $master_array['calendar_tz'];
-					}
-				}
-			}
-		}
-	}
-}
+//@annotation esto lo saque porque no tiene sentido en nuestro caso
+// if ($save_parsed_cals == 'yes') {	
+// 	if (sizeof ($cal_filelist) > 1) {
+// 		$parsedcal = $tmp_dir.'/parsedcal-'.urlencode($cpath.'::'.$cal_filename).'-'.$this_year;
+// 		if (file_exists($parsedcal)) {
+// 			$fd = fopen($parsedcal, 'r');
+// 			$contents = fread($fd, filesize($parsedcal));
+// 			fclose($fd);
+// 			$master_array = unserialize($contents);
+// 			$z=1;
+// 			$y=0;
+// 			if (sizeof($master_array['-4']) == (sizeof($cal_filelist))) {
+// 				foreach ($master_array['-4'] as $temp_array) {
+// 					$mtime = $master_array['-4'][$z]['mtime'];
+// 					$fname = $master_array['-4'][$z]['filename'];
+// 					$wcalc = $master_array['-4'][$z]['webcal'];	
+// 					if ($wcalc == 'no') $realcal_mtime = filemtime($fname);
+// 					$webcal_mtime = time() - strtotime($webcal_hours * 3600);
+// 					if (($mtime == $realcal_mtime) && ($wcalc == 'no')) {
+// 						$y++;
+// 					} elseif (($wcalc == 'yes') && ($mtime > $webcal_mtime)) {
+// 						//echo date('H:i',$mtime). ' > '. date('H:i',$webcal_mtime);
+// 						$y++;
+// 					}
+// 					$z++;
+// 				}
+// 				foreach ($master_array['-3'] as $temp_array) {
+// 					if (isset($temp_array) && $temp_array !='') $caldisplaynames[] = $temp_array;
+// 				}
+// 
+// 				if ($y == sizeof($cal_filelist)) {
+// 					if ($master_array['-1'] == 'valid cal file') {
+// 						$parse_file = false;
+// 						$calendar_name = $master_array['calendar_name'];
+// 						$calendar_tz = $master_array['calendar_tz'];
+// 					}
+// 				}
+// 			}
+// 		}
+// 		if ($parse_file == true) unset($master_array);
+// 	} else {
+// 		foreach ($cal_filelist as $filename) {
+// 			$realcal_mtime = filemtime($filename);
+// 			$parsedcal = $tmp_dir.'/parsedcal-'.urlencode($cpath.'::'.$cal_filename).'-'.$this_year;
+// 			if (file_exists($parsedcal)) {
+// 				$parsedcal_mtime = filemtime($parsedcal);
+// 				if ($realcal_mtime == $parsedcal_mtime) {
+// 					$fd = fopen($parsedcal, 'r');
+// 					$contents = fread($fd, filesize($parsedcal));
+// 					fclose($fd);
+// 					$master_array = unserialize($contents);
+// 					if ($master_array['-1'] == 'valid cal file') {
+// 						$parse_file = false;
+// 						$calendar_name = $master_array['calendar_name'];
+// 						$calendar_tz = $master_array['calendar_tz'];
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
+// }
 
 if ($parse_file) {	
 	$overlap_array = array ();
 	$uid_counter = 0;
 }
 
+// print_r ($cal_filelist); die;
 $calnumber = 1;
 foreach ($cal_filelist as $cal_key=>$filename) {
-	
 	// Find the real name of the calendar.
 	$actual_calname = getCalendarName($filename);
 	
 	if ($parse_file) {	
-		
 		// Let's see if we're doing a webcal
 		$is_webcal = FALSE;
 		if (substr($filename, 0, 7) == 'http://' || substr($filename, 0, 8) == 'https://' || substr($filename, 0, 9) == 'webcal://') {
@@ -1210,13 +1211,13 @@ $template_started = getmicrotime();
 
 //If you want to see the values in the arrays, uncomment below.
 
-//print '<pre>';
-//print_r($master_array);
-//print_r($overlap_array);
-//print_r($day_array);
-//print_r($rrule_array);
-//print_r($recurrence_delete);
-//print_r($cal_displaynames);
-//print_r($cal_filelist);
-//print '</pre>';
+// print '<pre>';
+// print_r($master_array);
+// print_r($overlap_array);
+// print_r($day_array);
+// print_r($rrule_array);
+// print_r($recurrence_delete);
+// print_r($cal_displaynames);
+// print_r($cal_filelist);
+// print '</pre>';
 ?>

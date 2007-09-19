@@ -13,13 +13,17 @@ class calComponents extends sfComponents
 {
 
 	public function  _phpicalendar($current_view) {
-		$default_cal_alba = $this->archivo;
+		$default_cal_alba = $this->archivo; //substr($this->archivo,0, -4);
+// 		$default_cal_alba = BASE.'calendars/'.'Home.ics';
+// 		echo substr($this->archivo,0, -4);
+// 		echo $this->archivo;
 // 		print_r( file($this->archivo));
 		$context = sfContext::getInstance();
 		require_once(BASE.'ical_parser.php');
 		require_once(BASE.'list_functions.php');
 		require_once(BASE.'template.php');
 		$context->getResponse()->addStylesheet ("cal/templates/$template/default", '', array());
+		$context->getResponse()->addJavascript ("cal/event");
 
 // 		if (isset($_GET['jumpto_day'])) {
 // 			$jumpto_day_time = strtotime($_GET['jumpto_day']);
@@ -44,13 +48,80 @@ class calComponents extends sfComponents
 		
 // 		header("Content-Type: text/html; charset=$charset");
 		
-		if ($minical_view == 'current') $minical_view = 'day';
+		if ($minical_view == 'current') $minical_view = $current_view;
+
+		if ($current_view == 'month') { // from month.php
+			ereg ("([0-9]{4})([0-9]{2})([0-9]{2})", $getdate, $day_array2);
+			$this_day 				= $day_array2[3]; 
+			$this_month 			= $day_array2[2];
+			$this_year 				= $day_array2[1];
+			
+			$unix_time 				= strtotime($getdate);
+			$today_today 			= date('Ymd', time() + $second_offset); 
+			$tomorrows_date 		= date('Ymd', strtotime("+1 day",  $unix_time));
+			$yesterdays_date 		= date('Ymd', strtotime("-1 day",  $unix_time));
+			$sidebar_date 			= localizeDate($dateFormat_week_list, $unix_time);
+			
+			// find out next month
+			$next_month_month 		= ($this_month+1 == '13') ? '1' : ($this_month+1);
+			$next_month_day 		= $this_day;
+			$next_month_year 		= ($next_month_month == '1') ? ($this_year+1) : $this_year;
+			while (!checkdate($next_month_month,$next_month_day,$next_month_year)) $next_month_day--;
+			$next_month_time 		= mktime(0,0,0,$next_month_month,$next_month_day,$next_month_year);
+			
+			// find out last month
+			$prev_month_month 		= ($this_month-1 == '0') ? '12' : ($this_month-1);
+			$prev_month_day 		= $this_day;
+			$prev_month_year 		= ($prev_month_month == '12') ? ($this_year-1) : $this_year;
+			while (!checkdate($prev_month_month,$prev_month_day,$prev_month_year)) $prev_month_day--;
+			$prev_month_time 		= mktime(0,0,0,$prev_month_month,$prev_month_day,$prev_month_year);
+			
+			$next_month 			= date("Ymd", $next_month_time);
+			$prev_month 			= date("Ymd", $prev_month_time);
+			$display_date 			= localizeDate ($dateFormat_month, $unix_time);
+			$parse_month 			= date ("Ym", $unix_time);
+			$first_of_month 		= $this_year.$this_month."01";
+			$start_month_day 		= dateOfWeek($first_of_month, $week_start_day);
+			$thisday2 				= localizeDate($dateFormat_week_list, $unix_time);
+			$num_of_events2 			= 0;
+			
+			$list_icals 	= display_ical_list(availableCalendars($username, $password, $ALL_CALENDARS_COMBINED));
+			$list_years 	= list_years();
+			$list_months 	= list_months();
+			$list_weeks 	= list_weeks();
+			$list_jumps 	= list_jumps();
+			$list_calcolors = list_calcolors();
+			$list_icals_pick = display_ical_list(availableCalendars($username, $password, $ALL_CALENDARS_COMBINED), TRUE);
+		} elseif ($current_view == 'year') { // from year.php
+			ereg ("([0-9]{4})([0-9]{2})([0-9]{2})", $getdate, $day_array2);
+			$this_day 	= $day_array2[3]; 
+			$this_month = $day_array2[2];
+			$this_year 	= $day_array2[1];
+			$next_year 	= strtotime ("+1 year", strtotime($getdate));
+			$next_year 	= date ("Ymd", $next_year);
+			$prev_year 	= strtotime ("-1 year", strtotime($getdate));
+			$prev_year 	= date ("Ymd", $prev_year);
+			
+			$sidebar_date 		= localizeDate($dateFormat_day, strtotime($getdate));
+			
+			// For the side months
+			ereg ("([0-9]{4})([0-9]{2})([0-9]{2})", $getdate, $day_array2);
+			$this_day 	= $day_array2[3]; 
+			$this_month = $day_array2[2];
+			$this_year 	= $day_array2[1];
+		}
 		
 		$weekstart 		= 1;
 		$unix_time 		= strtotime($getdate);
 		$today_today 	= date('Ymd', time() + $second_offset);  
 		$next_day		= date('Ymd', strtotime("+1 day",  $unix_time));
 		$prev_day 		= date('Ymd', strtotime("-1 day",  $unix_time));
+
+		//from week.php
+		$next_week 			= date("Ymd", strtotime("+1 week",  $unix_time));
+		$prev_week 			= date("Ymd", strtotime("-1 week",  $unix_time));
+		
+		
 		
 		$globals_local = array();
 		$globals_local['daysofweek_lang'] = $daysofweek_lang;
@@ -160,18 +231,19 @@ class calComponents extends sfComponents
 
 		$page->replace_files(array(
 		'header'			=> '',
-		'event_js'			=> '',
+		'event_js'			=> "",
 		'footer'			=> '',
 		'sidebar'           => '',
-		'search_box'        => ''
+		'search_box'        => '',
+		'calendar_nav'      => '',
 		));
 		$prefixUri = sfContext::getInstance()->getRequest()->getUriPrefix();
 		$globals = array(
 		"base"			=> $relativeUrlRoot ."/images/cal",
 		'day_view_action'	=> $action.'/'.$this->verPorDia,
-		'week_view_action'	=> $action.'/'.$this->verPorSemana,
-		'month_view_action'	=> $prefixUri.$relativeUrlRoot.'/'.$action.'/'.$this->verPorMes,
-		'year_view_action'	=> $prefixUri.$relativeUrlRoot.'/'.$action.'/'.$this->verPorAnio,
+		'week_view_action'	=> $action."/".$this->verPorSemana,
+		'month_view_action'	=> $action.'/'.$this->verPorMes,
+		'year_view_action'	=> $action.'/'.$this->verPorAnio,
 		'version'			=> $phpicalendar_version,
 		'charset'			=> $charset,
 		'default_path'		=> '',
@@ -223,7 +295,18 @@ class calComponents extends sfComponents
 		'l_search'			=> $lang['l_search'],
 		'l_this_site_is'	=> $lang['l_this_site_is']
 		);
-
+		if ($current_view == 'month') {
+			$globals['next_month'] = $next_month;
+			$globals['prev_month'] = $prev_month;
+			$globals['l_this_months'] = $lang['l_this_months'];
+		} elseif ($current_view == 'year') {
+			$globals['next_year'] = $next_year;
+			$globals['prev_year'] = $prev_year;
+			$globals['l_this_year'] = $lang['l_this_year'];
+		} elseif ($current_view == 'week') {
+			$globals['next_week'] = $next_week;
+			$globals['prev_week'] = $prev_week;
+		}
 		//print_r($globals);
 
 		$page->replace_tags($globals);
