@@ -127,15 +127,16 @@ class horarioescolarActions extends autohorarioescolarActions
             $this->date_component = "";
         }
 
-        if($this->getRequestParameter('view')) {
-            switch($this->getRequestParameter('view')) {
-                case 'week': $this->view = 'verPorSemana'; break;
-                case 'day': $this->view = 'verPorDia'; break;
-                default: $this->view = 'verPorDia';
-            }
-        } else {
-            $this->view = "verPorDia";
-        }
+	$this->view = $this->getRequestParameter('view','verPorDia');
+//         if($this->getRequestParameter('view')) {
+//             switch($this->getRequestParameter('view')) {
+//                 case 'week': $this->view = 'verPorSemana'; break;
+//                 case 'day': $this->view = 'verPorDia'; break;
+//                 default: $this->view = 'verPorDia';
+//             }
+//         } else {
+//             $this->view = "verPorDia";
+//         }
     }
 
 
