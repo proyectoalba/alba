@@ -32,27 +32,55 @@
 
 if (!defined('ALBA_INSTALLER')) die();
 
+$cnx_error_flag = false;
+$cnx_error_msg = "";
+$error_flag = true;
+
+$host = "";
+$user = "";
+$pass = "";
+$db = "";
+$creardb = "";
 if (isset($_POST['test_conn']) && $_POST['test_conn']==1) {
     
     $host = $_POST['host'];
     $user = $_POST['user'];
     $pass = $_POST['pass'];
     $db = $_POST['db'];    
-
+    $creardb = (isset($_POST['creardb']) && $_POST['creardb'] == 1);
+    
     $conn = @mysql_connect($host,$user,$pass);
     if (!$conn) {
-        $error_flag = true;
-        $error_msg = "No se puede conectar a la base de datos: <br>" . mysql_error();
+        $cnx_error_flag = true;
+        $cnx_error_msg = "No se puede conectar a la base de datos: <br>" . mysql_error();
+    }
+    else {
+        if ($creardb) {
+            $ret = @mysql_query('CREATE DATABASE ' . $db , $conn);
+            if (!$ret) {
+                $cnx_error_flag = true;
+                $cnx_error_msg = "No se puede crear la base de datos: <br>" . mysql_error();
+                $error_flag = true;
+            }
+        }
+        else {
+            $error_flag = false;
+        }    
+        $_SESSION['albainstall']['host'] = $host;
+        $_SESSION['albainstall']['user'] = $user;        
+        $_SESSION['albainstall']['pass'] = $pass;   
+        $_SESSION['albainstall']['db'] = $db;
+        $_SESSION['albainstall']['creardb'] = $creardb;
     }
 }    
 ?>
 <div id="detalle">
 <p>Detalle de conexi&oacute;n con la base de datos:</p>
 </div>
-<?php if ($error_flag):?>
+<?php if ($cnx_error_flag):?>
 <div class="error">
     <p>Ocurri&oacute; el siguiente error:</p>
-    <p><?php echo $error_msg?></p>
+    <p><?php echo $cnx_error_msg?></p>
 </div>
 <?php endif;?>
 <form name="test_conn" method="post">              
@@ -60,27 +88,27 @@ if (isset($_POST['test_conn']) && $_POST['test_conn']==1) {
 <table>
     <tr>
         <td>Servidor:</td>
-        <td><input type="text" name="host"></td>
+        <td><input type="text" name="host" value="<?php echo $host?>"></td>
     </tr>
     <tr>
         <td>Usuario:</td>
-        <td><input type="text" name="user"></td>
+        <td><input type="text" name="user" value="<?php echo $user?>"></td>
     </tr>
     <tr>
         <td>Clave:</td>
-        <td><input type="text" name="pass"></td>
+        <td><input type="password" name="pass" value="<?php echo $pass?>"></td>
     </tr>
     <tr>
         <td>Base de datos:</td>
-        <td><input type="text" name="db"></td>
+        <td><input type="text" name="db" value="<?php echo $db?>"></td>
     </tr>
     <tr>
         <td>Crear base de datos:<br/><span style="font-size:9px">(debe tener los permisos para poder hacerlo)</style></td>
-        <td><input type="checkbox" name="creardb" value="1"></td>
+        <td><input type="checkbox" name="creardb" value="1" <?php echo $creardb ? "checked" : ""?>></td>
     </tr>   
 </table>
 <br/>
-<input type="submit" name="btTextConn" value="Conectar a la Base de Datos">
+<input type="submit" name="btTextConn" value="Comprobar conexi&oacute;n a la Base de Datos">
 </form>
 <?php 
 // ir al siguiente paso

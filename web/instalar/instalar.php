@@ -86,6 +86,9 @@ function DebugLog($str) {
                     case 3:
                         include ("paso3.php");
                         break;
+                    case 4:
+                        include ("paso4.php");
+                        break;
                 }
             ?>
         </div>
