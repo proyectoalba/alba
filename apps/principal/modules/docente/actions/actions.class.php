@@ -87,6 +87,14 @@ class docenteActions extends autodocenteActions
 
      protected function addFiltersCriteria($c)
      {
+         if(isset($this->filters['apellido']) && $this->filters['apellido'] != '') {
+            $cton1 = $c->getNewCriterion(DocentePeer::APELLIDO, "%".$this->filters['apellido']."%", Criteria::LIKE);
+            $c->add($cton1);
+         }
+         if(isset($this->filters['nombre']) && $this->filters['nombre'] != '') {
+            $cton2 = $c->getNewCriterion(DocentePeer::NOMBRE, "%".$this->filters['nombre']."%", Criteria::LIKE);
+            $c->add($cton2);
+         }
          $c->addJoin(DocentePeer::ID,RelDocenteEstablecimientoPeer::FK_DOCENTE_ID, Criteria::LEFT_JOIN);
          $c->add(RelDocenteEstablecimientoPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
      }
