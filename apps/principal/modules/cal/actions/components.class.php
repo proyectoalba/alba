@@ -218,6 +218,11 @@ class calComponents extends sfComponents
 	$page->subscribe_path = $subscribe_path;
 	$page->download_filename = $download_filename;
 
+// 	foreach ($page as $key => &$var) {
+// 		echo $key .'=> ' .$var;
+// 		echo "<br/>";
+// 	}
+// 	die;
 	$relativeUrlRoot = sfContext::getInstance()->getRequest()->getRelativeUrlRoot();
 // 	echo $relativeUrlRoot;die;
 		

@@ -1,4 +1,10 @@
 <?php
+
+// Josx en este archivo esta el comienzo de los problemas.
+// Yo ya hice algunas modficaciones, en las funciones que reciben "ahora" $master y $overlap_array
+// fijate que estan comentadas la variables globales
+
+
 // function to determine maximum necessary columns per day
 // actually an algorithm to get the smallest multiple for two numbers
 function kgv($a, $b) {
@@ -71,9 +77,9 @@ function find_max_overlap($ol_ranges) {
 }
 
 // Merges overlapping blocks
-function flatten_ol_blocks($event_date, $ol_blocks, $new_block_key) {
+function flatten_ol_blocks($event_date, $ol_blocks, $new_block_key, $master_array) {
 
-	global $master_array;
+// 	global $master_array;
 
 	// Loop block = each other block in the array, the ones we're merging into new block.
 	// New block = the changed block that caused the flatten_ol_blocks call. Everything gets merged into this.
@@ -109,8 +115,9 @@ function flatten_ol_blocks($event_date, $ol_blocks, $new_block_key) {
 }
 
 // Builds $overlap_array structure, and updates event_overlap in $master_array for the given events.
-function checkOverlap($event_date, $event_time, $uid) {
-	global $master_array, $overlap_array;
+function checkOverlap($event_date, $event_time, $uid, $master_array, $overlap_array) {
+// 	global $master_array, $overlap_array;
+	//@annotation las globales se reemplazaron por parametros en las invocaciones de iacl_parser y aca
 	if (!isset($event_date)) return;
 	$event = $master_array[$event_date][$event_time][$uid];
 	// Copy out the array - we replace this at the end.
@@ -162,7 +169,7 @@ function checkOverlap($event_date, $event_time, $uid) {
 						$master_array[$event_date][$max_overlap_event['time']][$max_overlap_event['key']]['event_overlap'] = $loop_ol_block['maxOverlaps'];
 					}
 					$ol_day_array[$loop_block_key] = $loop_ol_block;
-					$ol_day_array = flatten_ol_blocks($event_date, $ol_day_array, $loop_block_key);
+					$ol_day_array = flatten_ol_blocks($event_date, $ol_day_array, $loop_block_key, $master_array);
 					$already_merged_once = true;
 					break;
 				// Handle repeat calls to checkOverlap - semi-bogus since the event shouldn't be created more than once, but this makes sure we don't get an invalid event_overlap.
@@ -208,7 +215,7 @@ function checkOverlap($event_date, $event_time, $uid) {
 						// Make sure we pass in the key of the newly added item above.
 						end($ol_day_array);
 						$last_day_key = key($ol_day_array);
-						$ol_day_array = flatten_ol_blocks($event_date, $ol_day_array, $last_day_key);
+						$ol_day_array = flatten_ol_blocks($event_date, $ol_day_array, $last_day_key, $master_array);
 					}
 				}
 			}
@@ -230,8 +237,9 @@ function checkOverlap($event_date, $event_time, $uid) {
 
 // Remove an event from the overlap data.
 // This could be completely bogus, since overlap array is empty when this gets called in my tests, but I'm leaving it in anyways.
-function removeOverlap($ol_start_date, $ol_start_time, $ol_key) {
-	global $master_array, $overlap_array;
+function removeOverlap($ol_start_date, $ol_start_time, $ol_key, $master_array, $overlap_array) {
+// 	global $master_array, $overlap_array;
+	//@annotation las globales se reemplazaron por parametros en las invocaciones de iacl_parser y aca
 	if (isset($overlap_array[$ol_start_date])) {
 		if (sizeof($overlap_array[$ol_start_date]) > 0) {
 			$ol_end_time = $master_array[$ol_start_date][$ol_start_time][$ol_key]['event_end'];

@@ -219,7 +219,8 @@ foreach ($cal_filelist as $cal_key=>$filename) {
 					if (!isset($status)) $status = $master_array[$old_start_date][$old_start_time][$uid]['status'];
 					if (!isset($attendee)) $attendee = $master_array[$old_start_date][$old_start_time][$uid]['attendee'];
 					if (!isset($url)) $url = $master_array[$old_start_date][$old_start_time][$uid]['url'];
-					removeOverlap($start_date_tmp, $old_start_time, $uid);
+					//reemplazo
+					removeOverlap($start_date_tmp, $old_start_time, $uid, $master_array, $overlap_array);
 					if (isset($master_array[$start_date_tmp][$old_start_time][$uid])) {
 						unset($master_array[$start_date_tmp][$old_start_time][$uid]);  // SJBO added $uid twice here
 						if (sizeof($master_array[$start_date_tmp][$old_start_time]) == 0) {
@@ -359,7 +360,7 @@ foreach ($cal_filelist as $cal_key=>$filename) {
 							if (isset($display_end_tmp)){
 								$master_array[$start_date_tmp][$time_tmp][$uid]['display_end'] = $display_end_tmp;
 							}
-							checkOverlap($start_date_tmp, $time_tmp, $uid);
+							checkOverlap($start_date_tmp, $time_tmp, $uid, $master_array, $overlap_array);
 							$start_tmp = strtotime('+1 day',$start_tmp);
 						}
 						if (!$write_processed) $master_array[$start_date][($hour.$minute)][$uid]['exception'] = true;
@@ -394,7 +395,7 @@ foreach ($cal_filelist as $cal_key=>$filename) {
 							if (isset($display_end_tmp)){
 								$master_array[($start_date)][($hour.$minute)][$uid]['display_end'] = $display_end_tmp;
 							}
-							checkOverlap($start_date, ($hour.$minute), $uid);
+							checkOverlap($start_date, ($hour.$minute), $uid, $master_array, $overlap_array);
 							if (!$write_processed) $master_array[($start_date)][($hour.$minute)][$uid]['exception'] = true;
 						}
 					}
@@ -856,7 +857,7 @@ foreach ($cal_filelist as $cal_key=>$filename) {
 																if (isset($display_end_tmp)){
 																	$master_array[$start_date_tmp][$time_tmp][$uid]['display_end'] = $display_end_tmp;
 																}
-																checkOverlap($start_date_tmp, $time_tmp, $uid);
+																checkOverlap($start_date_tmp, $time_tmp, $uid, $master_array, $overlap_array);
 															}
 															$start_tmp = strtotime('+1 day',$start_tmp);
 														}
@@ -893,7 +894,7 @@ foreach ($cal_filelist as $cal_key=>$filename) {
 															if (isset($display_end_tmp)){
 																$master_array[($recur_data_date)][($hour.$minute)][$uid]['display_end'] = $display_end_tmp;
 															}
-															checkOverlap($recur_data_date, ($hour.$minute), $uid);
+															checkOverlap($recur_data_date, ($hour.$minute), $uid, $master_array, $overlap_array);
 														}
 													}
 												}
