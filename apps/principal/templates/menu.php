@@ -82,7 +82,7 @@
 	            <li><span></span><?php echo link_to("Listar Todos","alumno/list")?></li>
 	            <li><span></span><?php echo link_to("Buscar Alumno para...","legajopedagogico")?></li>
 	            <li><span></span><?php echo link_to("Asistencia por Secci&oacute;n/Divisi&oacute;n","asistencia")?></li>
-	            <li><span></span><a href="#">Boletines</a>
+	            <li><span></span><a href="#">Cargar Boletines</a>
                     <ul>
 	                    <li><span></span><?php echo link_to("Concepto","boletin/listConcepto")?></li>
 	                    <li><span></span><?php echo link_to("Notas","boletin/list")?></li>
