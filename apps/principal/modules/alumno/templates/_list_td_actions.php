@@ -13,5 +13,6 @@
   <li><?php echo link_to(image_tag('jeringa.gif', array('alt' => __('Vacunas'), 'title' => __('Vacunas'))), 'alumno/vacunas?id='.$alumno->getId()) ?></li>
   <li><?php echo link_to(image_tag('small/asistencia.png', array('alt' => __('Asistencia'), 'title' => __('Asistencia'))), 'alumno/asistencia?id='.$alumno->getId()) ?></li>
   <li><?php echo link_to(image_tag('small/legajo.png', array('alt' => __('Legajo'), 'title' => __('Legajo'))), 'alumno/legajo?id='.$alumno->getId()) ?></li>
+  <li><?php echo link_to(image_tag('small/boletin.png',array("title"=>"Boletin")), 'boletin/mostrar?alumno_id='. $alumno->getId(),'target=_blank') ?></li>
 </ul>
 </td>
