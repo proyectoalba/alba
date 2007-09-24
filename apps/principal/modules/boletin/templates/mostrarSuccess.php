@@ -36,7 +36,7 @@
 <br>
 <div align="center">
 <table style="text-align: left; width: 766px; height: 143px; border-collapse: collapse; border: solid;" border="1" cellpadding="2" cellspacing="2">
-<CAPTION><em>BOLETIN DE CALIFICACIONES PERTENECIENTES A: </em>;&nbsp;<b><?php echo $alumno->getNombre()." ".$alumno->getApellido()?></b>&nbsp;&nbsp;&nbsp;&nbsp;<em>GRADO:</em> &nbsp;<b><?php echo ($division->getAnio())?$division->getAnio()->getDescripcion():""?></b>&nbsp;&nbsp;&nbsp;&nbsp;<em>SECCION:</em>&nbsp; <b><?php echo $division->getDescripcion()?></b>&nbsp;&nbsp;&nbsp;&nbsp;<em>TURNO:</em>&nbsp;<b><?php echo ($division->getTurno())?$division->getTurno()->getDescripcion():""?></b><br></CAPTION>
+<CAPTION><em>BOLETIN DE CALIFICACIONES PERTENECIENTES A: </em>&nbsp;<b><?php echo $alumno->getNombre()." ".$alumno->getApellido()?></b>&nbsp;&nbsp;&nbsp;&nbsp;<em>GRADO:</em> &nbsp;<b><?php echo ($division->getAnio())?$division->getAnio()->getDescripcion():""?></b>&nbsp;&nbsp;&nbsp;&nbsp;<em>SECCION:</em>&nbsp; <b><?php echo $division->getDescripcion()?></b>&nbsp;&nbsp;&nbsp;&nbsp;<em>TURNO:</em>&nbsp;<b><?php echo ($division->getTurno())?$division->getTurno()->getDescripcion():""?></b><br></CAPTION>
   <tbody>
     <tr>
       <td colspan="1" rowspan="2"><div class="etiquetas">PERIODO</div></td>
@@ -95,10 +95,8 @@
 </div>
 <br>
 <?php } ?>
-<?php if($vista != 'imprimir') { ?>
 <ul class="sf_admin_actions">
 <li><?php echo button_to('Ir a la cuenta','cuenta?action=verCompleta&id='.$alumno->getFkCuentaId(),array('class'=>'sf_admin_action_list'))?></li>
 </ul>
-<?php } ?>
 </body>
 </html>
