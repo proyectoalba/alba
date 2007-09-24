@@ -218,6 +218,9 @@ class calComponents extends sfComponents
 	$page->subscribe_path = $subscribe_path;
 	$page->download_filename = $download_filename;
 
+
+    $page->globals = $globals_local;
+
 // 	foreach ($page as $key => &$var) {
 // 		echo $key .'=> ' .$var;
 // 		echo "<br/>";

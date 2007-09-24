@@ -68,6 +68,8 @@ class Page {
 	var $subscribe_path;
 	var $download_filename;
 
+    var $globals;
+
 	function draw_subscribe($template_p) {
 		
 		if ($this->cal != $this->ALL_CALENDARS_COMBINED && $this->subscribe_path != '' && $this->download_filename != '') {
@@ -133,7 +135,7 @@ class Page {
 			if ((($regs[1] == $parse_month) && ($this->printview == 'month')) || (($key == $this->getdate) && ($this->printview == 'day')) || ((($key >= $this->week_start) && ($key <= $this->week_end)) && ($this->printview == 'week')) || ((substr($regs[1],0,4) == $parse_year) && ($this->printview == 'year'))) {
 				$events_week++;
 				$dayofmonth = strtotime ($key);
-				$dayofmonth = localizeDate ($this->dateFormat_day, $dayofmonth);
+				$dayofmonth = localizeDate ($this->dateFormat_day, $dayofmonth, $this->globals);
 				$events_tmp = $loop_event;
 				$day_tmp	= $loop_day;
 				$day_events = 0;
@@ -161,7 +163,7 @@ class Page {
 								$event_start 	= date ($this->timeFormat, strtotime ($event_start));
 								$event_end 		= date ($this->timeFormat, strtotime ($event_end));
 								$event_start 	= $event_start .' - '.$event_end;
-								if (date("Ymd", $new_val2['start_unixtime']) != date("Ymd", $new_val2['end_unixtime'])) $event_start .= " ".localizeDate($this->dateFormat_day, $new_val2['end_unixtime']);
+								if (date("Ymd", $new_val2['start_unixtime']) != date("Ymd", $new_val2['end_unixtime'])) $event_start .= " ".localizeDate($this->dateFormat_day, $new_val2['end_unixtime'], $this->globals);
 							}
 						}
 						
@@ -213,7 +215,7 @@ class Page {
 			
 			$events_found++;
 			$dayofmonth = strtotime($val['date']);
-			$dayofmonth = localizeDate ('%A, %B %e %Y', $dayofmonth);
+			$dayofmonth = localizeDate ('%A, %B %e %Y', $dayofmonth, $this->globals);
 			$events_tmp = $loop_event;
 			$recur_tmp	= $loop_recur;
 				
@@ -246,7 +248,7 @@ class Page {
 							$except_tmp	= $loop_except;
 							
 							$except_date = strtotime($except_val['date']);
-							$except_date = localizeDate ('%A, %B %e %Y', $except_date);
+							$except_date = localizeDate ('%A, %B %e %Y', $except_date, $this->globals);
 							$except_tmp = str_replace('{DAYOFMONTH}', $except_date, $except_tmp);
 
 							$except_event_start    	= date ($this->timeFormat, strtotime ($except_val['event_start']));
@@ -374,7 +376,7 @@ class Page {
 			if ($this->current_view == 'day') {
 				$weekday 		= $this->daysofweek_lang[$day_num];
 			} else {
-				$weekday = localizeDate($this->dateFormat_week_list, strtotime($daylink));
+				$weekday = localizeDate($this->dateFormat_week_list, strtotime($daylink), $this->globals);
 			}	
 			
 			if ($daylink == $this->getdate) {
@@ -605,7 +607,7 @@ class Page {
 			if ($this->current_view == 'day') {
 				$weekday 		= $this->daysofweek_lang[$day_num];
 			} else {
-				$weekday = localizeDate($this->dateFormat_week_list, strtotime($daylink));
+				$weekday = localizeDate($this->dateFormat_week_list, strtotime($daylink), $this->globals);
 			}	
 			if ($daylink == $this->getdate) {
 				$row1 = 'rowToday';
@@ -954,7 +956,7 @@ class Page {
 
 		//$start_day 			= strtotime($this->week_start_day);
 		$start_day			= strtotime(dateOfWeek($this->getdate, $this->week_start_day));
-		$month_title 		= localizeDate ($dateFormat_month_local, $fake_getdate_time);
+		$month_title 		= localizeDate ($dateFormat_month_local, $fake_getdate_time, $globalize);
 		$month_date 		= date ('Ymd', $fake_getdate_time);
 
 		if ($type == 'small') {
@@ -1076,7 +1078,7 @@ class Page {
 				foreach ($this->master_array[$m_start] as $cal_time => $event_times) {
 				#	$switch['CAL'] 			= $this->cal;
 				#	$switch['START_DATE'] 	= localizeDate ($this->dateFormat_week_list, $u_start);
-					$start_date 	= localizeDate ($this->dateFormat_week_list, $u_start);
+					$start_date 	= localizeDate ($this->dateFormat_week_list, $u_start, $this->globals);
 					foreach ($event_times as $uid => $val) {
 						if (isset($seen_events[$uid])) continue;
 						$seen_events[$uid] = 1;
