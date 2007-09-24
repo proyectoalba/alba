@@ -471,7 +471,7 @@ class Page {
 					#print "</pre>";
 
 					foreach ($this_time_arr as $eventKey => $loopevent) {
-						$drawEvent = drawEventTimes ($cal_time, $loopevent["event_end"]);
+						$drawEvent = drawEventTimes ($cal_time, $loopevent["event_end"], $this->gridLength);
 						$j = 0;
 						while (isset($event_length[$thisday][$j])) {
 							if ($event_length[$thisday][$j]["state"] == "ended") {
@@ -681,7 +681,7 @@ class Page {
 			// check for eventstart 
 			if (isset($this_time_arr) && sizeof($this_time_arr) > 0) {
 				foreach ($this_time_arr as $eventKey => $loopevent) {
-					$drawEvent = drawEventTimes ($cal_time, $loopevent['event_end']);
+					$drawEvent = drawEventTimes ($cal_time, $loopevent['event_end'], $this->gridLength);
 					$j = 0;
 					while (isset($event_length[$j])) {
 						if ($event_length[$j]['state'] == 'ended') {

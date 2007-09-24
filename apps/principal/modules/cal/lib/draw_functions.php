@@ -1,8 +1,8 @@
 <?php
 // function returns starttime and endtime and event length for drawing into a grid
 
-function drawEventTimes ($start, $end) {
-	global $gridLength;
+function drawEventTimes ($start, $end, $gridLength) {
+// 	global $gridLength;
 	
 	preg_match ('/([0-9]{2})([0-9]{2})/', $start, $time);
 	$sta_h = $time[1];

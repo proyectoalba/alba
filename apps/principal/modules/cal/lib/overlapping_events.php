@@ -1,12 +1,4 @@
 <?php
-
-// Josx en este archivo esta el comienzo de los problemas.
-// Yo ya hice algunas modficaciones, en las funciones que reciben "ahora" $master y $overlap_array
-// fijate que estan comentadas la variables globales
-// Las invocaciones a estas funciones estan en el archivo ical_parser.php y creo que en ningun otro archivo
-// Hay que probar como llegan, es decir con que valores, llegan las variables a la invocacion
-
-
 // function to determine maximum necessary columns per day
 // actually an algorithm to get the smallest multiple for two numbers
 function kgv($a, $b) {
@@ -79,7 +71,7 @@ function find_max_overlap($ol_ranges) {
 }
 
 // Merges overlapping blocks
-function flatten_ol_blocks($event_date, $ol_blocks, $new_block_key, $master_array) {
+function flatten_ol_blocks($event_date, $ol_blocks, $new_block_key, &$master_array) {
 
 // 	global $master_array;
 
@@ -117,14 +109,14 @@ function flatten_ol_blocks($event_date, $ol_blocks, $new_block_key, $master_arra
 }
 
 // Builds $overlap_array structure, and updates event_overlap in $master_array for the given events.
-function checkOverlap($event_date, $event_time, $uid, $master_array, $overlap_array) {
+function checkOverlap($event_date, $event_time, $uid, &$master_array, &$overlap_array, $gridLength) {
 // 	global $master_array, $overlap_array;
 	//@annotation las globales se reemplazaron por parametros en las invocaciones de iacl_parser y aca
 	if (!isset($event_date)) return;
 	$event = $master_array[$event_date][$event_time][$uid];
 	// Copy out the array - we replace this at the end.
 	$ol_day_array = $overlap_array[$event_date];
-	$drawTimes = drawEventTimes($event['event_start'], $event['event_end']);
+	$drawTimes = drawEventTimes($event['event_start'], $event['event_end'], $gridLength);
 
 	// For a given date,
 	// 	- check to see if the event's already in a block, and if so, add it.
@@ -189,7 +181,7 @@ function checkOverlap($event_date, $event_time, $uid, $master_array, $overlap_ar
 			foreach ($time as $loop_event_key => $loop_event) {
 				// Make sure we haven't already dealt with the event, and we're not checking against ourself.
 				if ($loop_event['event_overlap'] == 0 && $loop_event_key != $uid) {
-					$loopDrawTimes = drawEventTimes($loop_event['event_start'], $loop_event['event_end']);
+					$loopDrawTimes = drawEventTimes($loop_event['event_start'], $loop_event['event_end'], $gridLength);
 					if ($loopDrawTimes['draw_start'] < $drawTimes['draw_end'] && $loopDrawTimes['draw_end'] > $drawTimes['draw_start']) {
 						if ($loopDrawTimes['draw_start'] < $drawTimes['draw_start']) {
 							$block_start = $loopDrawTimes['draw_start'];
@@ -239,7 +231,7 @@ function checkOverlap($event_date, $event_time, $uid, $master_array, $overlap_ar
 
 // Remove an event from the overlap data.
 // This could be completely bogus, since overlap array is empty when this gets called in my tests, but I'm leaving it in anyways.
-function removeOverlap($ol_start_date, $ol_start_time, $ol_key, $master_array, $overlap_array) {
+function removeOverlap($ol_start_date, $ol_start_time, $ol_key, &$master_array, &$overlap_array) {
 // 	global $master_array, $overlap_array;
 	//@annotation las globales se reemplazaron por parametros en las invocaciones de iacl_parser y aca
 	if (isset($overlap_array[$ol_start_date])) {
