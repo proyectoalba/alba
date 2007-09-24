@@ -88,5 +88,11 @@ class locacionActions extends autolocacionActions
         $c->add(ProvinciaPeer::FK_PAIS_ID, $this->pais_id);
         $this->provincias = ProvinciaPeer::getEnOrden($c);
     }
+
+    protected function addFiltersCriteria($c){
+        if (isset($this->filters['nombre']) && $this->filters['nombre'] !== ''){
+            $c->add(LocacionPeer::NOMBRE, "%". $this->filters['nombre']."%", Criteria::LIKE);
+        }
+    }
 }
 ?>
