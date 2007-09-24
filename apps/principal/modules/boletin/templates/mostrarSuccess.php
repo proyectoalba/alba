@@ -95,8 +95,5 @@
 </div>
 <br>
 <?php } ?>
-<ul class="sf_admin_actions">
-<li><?php echo button_to('Ir a la cuenta','cuenta?action=verCompleta&id='.$alumno->getFkCuentaId(),array('class'=>'sf_admin_action_list'))?></li>
-</ul>
 </body>
 </html>

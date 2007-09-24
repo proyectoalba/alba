@@ -1,3 +1,5 @@
 default:
   stylesheets:    [..%SF_ADMIN_WEB_DIR%/css/main]
   
+mostrarSuccess:
+  layout:   layout_sinmenu    

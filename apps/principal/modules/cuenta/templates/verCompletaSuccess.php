@@ -79,7 +79,7 @@
             <?php echo link_to(image_tag('small/legajo.png',array("title"=>"Legajos")), 'alumno/Legajo?id='. $alumno->getID()) ?>
         </li>
         <li>
-                <?php echo link_to(image_tag('small/boletin.png',array("title"=>"Boletin")), 'boletin/mostrar?alumno_id='. $alumno->getID()) ?>
+                <?php echo link_to(image_tag('small/boletin.png',array("title"=>"Boletin")), 'boletin/mostrar?alumno_id='. $alumno->getID(),'target=_blank') ?>
         </li>        
       </ul>
     </td>
