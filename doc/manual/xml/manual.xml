@@ -17,7 +17,6 @@
 <!ENTITY capitulo_11.xml SYSTEM "capitulo_11.xml">
 <!ENTITY capitulo_12.xml SYSTEM "capitulo_12.xml">
 <!ENTITY capitulo_13.xml SYSTEM "capitulo_13.xml">
-<!ENTITY capitulo_14.xml SYSTEM "capitulo_14.xml">
 
 ]>
 <book lang="es">
@@ -37,6 +36,5 @@
     &capitulo_11.xml;
     &capitulo_12.xml;
     &capitulo_13.xml;
-    &capitulo_14.xml;
     &indice.xml;   
 </book>
