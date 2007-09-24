@@ -3,6 +3,8 @@
 // Josx en este archivo esta el comienzo de los problemas.
 // Yo ya hice algunas modficaciones, en las funciones que reciben "ahora" $master y $overlap_array
 // fijate que estan comentadas la variables globales
+// Las invocaciones a estas funciones estan en el archivo ical_parser.php y creo que en ningun otro archivo
+// Hay que probar como llegan, es decir con que valores, llegan las variables a la invocacion
 
 
 // function to determine maximum necessary columns per day
