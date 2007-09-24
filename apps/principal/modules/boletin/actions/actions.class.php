@@ -234,7 +234,6 @@ class boletinActions extends sfActions
         foreach($conceptos as $concepto) {
             $optionsConcepto[$concepto->getId()] = $concepto->getNombre();
         }
-        asort($optionsConcepto);
         return $optionsConcepto;
     }
 
@@ -264,9 +263,8 @@ class boletinActions extends sfActions
         $concepto_id = $this->getRequestParameter('concepto_id');
              
         $optionsConcepto [] = "";
-        $optionsConcepto = array_merge($optionsConcepto,$this->getConcepto($establecimiento_id));
+        $optionsConcepto = array_merge($optionsConcepto, $this->getConcepto($establecimiento_id));
 
-        
         $aAlumno = $this->getAlumnos($division_id);
 
         $criteria = new Criteria();
@@ -401,7 +399,6 @@ class boletinActions extends sfActions
                         $conceptoAlumno[$boletinConceptual->getFkPeriodoId()][$boletinConceptual->getFkConceptoId()] = $boletinConceptual->getObservacion()->getContents();
                     }
                 }            
-
                 $criteria = new Criteria();
                 $criteria->add(PeriodoPeer::FK_CICLOLECTIVO_ID, $this->getUser()->getAttribute('fk_ciclolectivo_id'));
                 $aPeriodo = PeriodoPeer::doSelect($criteria);
