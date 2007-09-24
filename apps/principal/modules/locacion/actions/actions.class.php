@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    This file is part of Alba.
  * 
@@ -37,7 +36,6 @@ class locacionActions extends autolocacionActions
     public function saveLocacion($locacion) {
 
         $id = $locacion->getId();
-
         new sfUser(); // nasty hack to load propel
         $con = Propel::getConnection();
         try {
@@ -46,15 +44,10 @@ class locacionActions extends autolocacionActions
 
             if ($locacion->getPrincipal()) {
 
-//                 $c1 = new Criteria();
-//                 $c1->add(RelEstablecimientoLocacionPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
-//                 $c1->addJoin(LocacionPeer::ID, RelEstablecimientoLocacionPeer::FK_LOCACION_ID);
-//                 $c2 = new Criteria();
-//                 $c2->add(LocacionPeer::PRINCIPAL,false);
-//                 BasePeer::doUpdate($c1,$c2,$con);
-
                 // Aparentemente propel no soporta aun joins dentro del update
-                $s = "UPDATE rel_establecimiento_locacion,locacion SET locacion.principal = 0 WHERE locacion.id = rel_establecimiento_locacion.fk_locacion_id AND rel_establecimiento_locacion.fk_establecimiento_id = ".$this->getUser()->getAttribute('fk_establecimiento_id');
+                $s = "UPDATE rel_establecimiento_locacion,locacion SET locacion.principal = 0 ";
+                $s += "WHERE locacion.id = rel_establecimiento_locacion.fk_locacion_id AND ";
+                $s += "rel_establecimiento_locacion.fk_establecimiento_id = ".$this->getUser()->getAttribute('fk_establecimiento_id');
 
                 $stmt = $con->createStatement();
                 $alumnos = $stmt->executeQuery($s);
@@ -67,15 +60,12 @@ class locacionActions extends autolocacionActions
                 $relEstablecimientoLocacion ->setFkLocacionId($locacion->getId());
                 $relEstablecimientoLocacion ->save();
             }
-
             $con->commit();
-
         }
         catch (Exception $e) {
             $con->rollback();
             throw $e;
         }
-
     }
 
     protected function deleteLocacion($locacion) {
@@ -86,13 +76,10 @@ class locacionActions extends autolocacionActions
         $relEstablecimientoLocacion = RelEstablecimientoLocacionPeer::doDelete($criteria);
     }
 
-
     public function executeVerEstablecimiento() {
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
         $this->redirect( 'establecimiento?action=editLocacion&id='.$establecimiento_id);
     }
-
-
 
     public function executeCambiarPais() {
         $this->pais_id = $this->getRequestParameter('pais_id');
@@ -101,6 +88,5 @@ class locacionActions extends autolocacionActions
         $c->add(ProvinciaPeer::FK_PAIS_ID, $this->pais_id);
         $this->provincias = ProvinciaPeer::getEnOrden($c);
     }
-                                              
 }
 ?>
