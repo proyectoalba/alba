@@ -162,7 +162,13 @@ class responsableActions extends autoresponsableActions {
         $c = new Criteria();
         $c->add(ProvinciaPeer::FK_PAIS_ID, $this->pais_id);
         $this->provincias = ProvinciaPeer::getEnOrden($c);
-    }                                      
+    }
+
+  protected function addFiltersCriteria($c){
+        if (isset($this->filters['apellido']) && $this->filters['apellido'] !== ''){
+            $c->add(ResponsablePeer::APELLIDO, "%". $this->filters['apellido']."%", Criteria::LIKE);
+        }
+  }
 }  
 
 ?>
