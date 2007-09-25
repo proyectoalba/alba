@@ -36,26 +36,15 @@ if (!defined('ALBA_INSTALLER')) die();
     $user = $_SESSION['albainstall']['user'];
     $pass = $_SESSION['albainstall']['pass'];
     $db = $_SESSION['albainstall']['db'];
+    $tipo_base = $_SESSION ['albainstall']['tipo_base']; 
  
- 
-    if (isset($_POST['set_tipo_base']) && $_POST['set_tipo_base'] == 1) {
-        if(!isset($_POST['tipo_base'])) {
-            $error_flag= true;
-            $error_msg = "Por favor seleccione un tipo de base de datos";
-        }
-        else {    
-            $_SESSION['albainstall']['tipo_base'] = $_POST['tipo_base'];
-            $completo = false;
-        }
-    }
-    else
-        $completo = true; 
 ?>
 <div id="detalle">
-<p>Selecci&oacute;n de base de datos inicial:</p>
-<p>Ahora ud. podr&aacute; elegir si desea comenzar 
-a utilizar el sistema con una base vac&iacute;a (datos m&iacute;nimos)<br/>
-&oacute; con una base de datos de Ejemplo (datos de prueba).</p>
+<p>Finalizar instalaci&oacute;n:</p>
+<p>Ahora se proceder&aacute; a instalar el sistema. <br/>
+Los datos que se van a utilizar son los siguientes, si desea cambiar
+alguno por favor haga click aqu&iacute;.
+</p>
 </div>
 
 <?php if ($error_flag):?>
@@ -65,28 +54,31 @@ a utilizar el sistema con una base vac&iacute;a (datos m&iacute;nimos)<br/>
 </div>
 <?php endif;?>
 
-
-<div>
-<form name="tipobase" method="post">
-    <input type="hidden" name="set_tipo_base" value="1">
-    <table>
-        <tr>
-            <td>Datos m&iacute;nimos:</td>
-            <td><input type="radio" name="tipo_base" value="minima" <?php echo isset($_POST['tipo_base']) && $_POST['tipo_base'] == 'minima' ? 'checked' : ''?> ></td>
-        </tr>
-        <tr>
-            <td>Datos ejemplo:</td>
-            <td><input type="radio" name="tipo_base" value="ejemplo1" <?php echo isset($_POST['tipo_base']) && $_POST['tipo_base'] == 'ejemplo1' ? 'checked' : ''?>></td>
-        </tr>
-        
-    </table>
-    <br/>
-    <input type="submit" name="btEnviar" value="Seleccionar base de datos" class="boton">
-</form>
-</div>
+<table>
+    <tr>
+        <td>Servidor:</td>
+        <td><?php echo $_SESSION['albainstall']['host']?></td>
+    </tr>
+    <tr>
+        <td>Usuario:</td>
+        <td><?php echo $_SESSION['albainstall']['user']?></td>
+    </tr>
+    <tr>
+        <td>Clave:</td>
+        <td><?php echo str_repeat('X',strlen($_SESSION['albainstall']['pass']))?></td>
+    </tr>
+    <tr>
+        <td>Base de datos:</td>
+        <td><?php echo $_SESSION['albainstall']['db']?></td>
+    </tr>
+    <tr>
+        <td>Modelo de Base:</td>
+        <td><?php echo $_SESSION['albainstall']['tipo_base']?></td>
+    </tr>
+</table>
 
 <?php 
 // ir al siguiente paso
-   $paso = 5;
+   $paso = 6;
    
 ?>

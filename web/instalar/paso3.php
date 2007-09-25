@@ -88,27 +88,27 @@ if (isset($_POST['test_conn']) && $_POST['test_conn']==1) {
 <table>
     <tr>
         <td>Servidor:</td>
-        <td><input type="text" name="host" value="<?php echo $host?>"></td>
+        <td><input type="text" name="host" value="<?php echo $host?>" class="texto"></td>
     </tr>
     <tr>
         <td>Usuario:</td>
-        <td><input type="text" name="user" value="<?php echo $user?>"></td>
+        <td><input type="text" name="user" value="<?php echo $user?>" class="texto"></td>
     </tr>
     <tr>
         <td>Clave:</td>
-        <td><input type="password" name="pass" value="<?php echo $pass?>"></td>
+        <td><input type="password" name="pass" value="<?php echo $pass?>" class="texto"></td>
     </tr>
     <tr>
         <td>Base de datos:</td>
-        <td><input type="text" name="db" value="<?php echo $db?>"></td>
+        <td><input type="text" name="db" value="<?php echo $db?>" class="texto"></td>
     </tr>
     <tr>
         <td>Crear base de datos:<br/><span style="font-size:9px">(debe tener los permisos para poder hacerlo)</style></td>
-        <td><input type="checkbox" name="creardb" value="1" <?php echo $creardb ? "checked" : ""?>></td>
+        <td><input type="checkbox" name="creardb" value="1" <?php echo $creardb ? "checked" : ""?> class="check"></td>
     </tr>   
 </table>
 <br/>
-<input type="submit" name="btTextConn" value="Comprobar conexi&oacute;n a la Base de Datos">
+<input type="submit" name="btTextConn" value="Comprobar conexi&oacute;n a la Base de Datos" class="boton">
 </form>
 <?php 
 // ir al siguiente paso

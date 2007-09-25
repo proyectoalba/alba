@@ -44,11 +44,13 @@ $dirs = array(
 $alba_path = AlbaPath();
 ?>
 <div id="detalle">
+<p>Bienvenidos al Sistema De Gesti&oacute;n para Unidades Educacionales Alba!</p>
 <p>Antes de continuar con la instalaci&oacute;n, es necesario comprobar los permisos
 de algunos directorios en particular.<br/>
 Por favor, corrija los mismos y vuelva a recargar &eacute;sta p&aacute;gina hasta que todos
-esten correctos. 
+est&eacute;n correctos. 
 </p>
+<p>Una vez que los permisos sean los necesarios, puede continuar con la instalaci&oacute;n</p>
 </div>
               
 <p>Directorio base: <?php echo $alba_path?></p> 

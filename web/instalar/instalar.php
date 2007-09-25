@@ -35,6 +35,7 @@ define ('ALBA_INSTALLER',1);
 define ('IMG_OK','<img src="images/ok.png" title="Correcto" alt="Correcto">');
 define ('IMG_ERROR', '<img src="images/error.png" title="Incorrecto" alt="Incorrecto">');
 
+require ("funciones.php");
 
 if (!isset($_GET['paso']))
     $paso = 1;
@@ -45,18 +46,6 @@ $error_flag = false;
 $completo = false;
 
 
-function AlbaPath() {
-    return realpath(dirname(__FILE__) .DIRECTORY_SEPARATOR. ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR);
-}
-
-function DebugLog($str) {
-    $log = AlbaPath() . DIRECTORY_SEPARATOR . "log" . DIRECTORY_SEPARATOR . "install.log";
-    $fp = fopen($log,"a+");
-    if ($fp) {
-        fwrite($fp,date('d/m/Y H:i:s') . " $str\n");
-        fclose($fp);
-    }
-}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2000/REC-xhtml1-200000126/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
@@ -71,6 +60,8 @@ function DebugLog($str) {
         <link rel="StyleSheet" type="text/css" href="images/estilos.css">
     </head>
     <body>
+
+        <img src="images/header.png">
         <div id="cabeza">
         <h1>Instalaci&oacute;n de ALBA</h1>
         </div>
@@ -89,6 +80,15 @@ function DebugLog($str) {
                     case 4:
                         include ("paso4.php");
                         break;
+                    case 5:
+                        include ("paso5.php");
+                        break;
+                    case 6:
+                        include ("paso6.php");
+                        break;
+                    default:
+                        die("Uhmmm, error del instalador =(");
+                        break;
                 }
             ?>
         </div>
@@ -97,7 +97,7 @@ function DebugLog($str) {
             <div id="siguiente">
                 <form method="get" action="instalar.php">
                 <input type="hidden" name="paso" value="<?php echo $paso?>">
-                <input type="submit" name="btSiguiente" value="Siguiente">
+                <input type="submit" name="b" value="Siguiente" class="boton">
                 </form>
             </div>
         <?php endif;?>
