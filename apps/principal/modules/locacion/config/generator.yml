@@ -29,6 +29,7 @@ generator:
         
         title: Listado de Locaciones
         display: [ =nombre, tipolocacion, direccion, ciudad, provincia, telefono, principal ]
+        sort: [ nombre, asc ]
         object_actions:
             _edit:        -
             _delete:      -
