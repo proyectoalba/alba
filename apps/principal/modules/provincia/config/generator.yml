@@ -11,11 +11,11 @@ generator:
         orden: { name: Orden, params: size=10 }
     edit:
         title: ""
-        display: [ nombre_corto, nombre_largo, fk_pais_id, orden ]
+        display: [ nombre_largo, nombre_corto, fk_pais_id, orden ]
                     
     list:
         title: Listado de Provincias
-        display: [ =nombre_corto, nombre_largo, _pais, orden ]
+        display: [ nombre_largo, =nombre_corto, _pais, orden ]
         object_actions:
             _edit:      -
             _delete:    -
