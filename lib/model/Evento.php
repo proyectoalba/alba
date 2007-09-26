@@ -80,7 +80,7 @@ class Evento extends BaseEvento
         switch($this->getFrecuencia()) {
             case '0' : $frecuencia = ""; break;
             case '4' : $frecuencia .= "diaria"; 
-                       $frecuencia_intervalo = " cada " . $this->getFrecuenciaIntervalo() . "d&iacute;as";;
+                       $frecuencia_intervalo = " cada " . $this->getFrecuenciaIntervalo() . (($this->getFrecuenciaIntervalo()==1)?" d&iacute;a":" d&iacute;as");
                        break;
             case '5' : $frecuencia .= "semanal"; 
                        $numero_binario = $this->getRecurrenciaDiasEnBinario(); 
