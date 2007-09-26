@@ -48,17 +48,20 @@ if (isset($_POST['test_conn']) && $_POST['test_conn']==1) {
     $pass = $_POST['pass'];
     $db = $_POST['db'];    
     $creardb = (isset($_POST['creardb']) && $_POST['creardb'] == 1);
-    
+    DebugLog('Probando conexión'); 
     $conn = @mysql_connect($host,$user,$pass);
     if (!$conn) {
         $cnx_error_flag = true;
+        DebugLog('Error al conectar con la base de datos','E');
         $cnx_error_msg = "No se puede conectar a la base de datos: <br>" . mysql_error();
     }
     else {
+        DebugLog('Probando crear base de datos');
         if ($creardb) {
             $ret = @mysql_query('CREATE DATABASE ' . $db , $conn);
             if (!$ret) {
                 $cnx_error_flag = true;
+                DebugLog('No se puede crear la base de datos: ' . mysql_error() ,'E');
                 $cnx_error_msg = "No se puede crear la base de datos: <br>" . mysql_error();
                 $error_flag = true;
             }

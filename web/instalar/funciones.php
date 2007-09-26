@@ -32,12 +32,12 @@ function AlbaPath() {
     return realpath(dirname(__FILE__) .DIRECTORY_SEPARATOR. ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR);
 }
 
-function DebugLog($str) {
+function DebugLog($str,$modo = 'I') {
     date_default_timezone_set('America/Argentina/Buenos_Aires');
     $log = AlbaPath() . DIRECTORY_SEPARATOR . "log" . DIRECTORY_SEPARATOR . "install.log";
     $fp = fopen($log,"a+");
     if ($fp) {
-        fwrite($fp,date('d/m/Y H:i:s') . " $str\n");
+        fwrite($fp,date('d/m/Y H:i:s') . " $modo: $str\n");
         fclose($fp);
     }
 }
@@ -115,7 +115,7 @@ function executeDump($file, $host, $user, $pass, $db) {
 */
 function generate_databases_yml($host,$user,$pass,$db) {
     $yml = AlbaPath() . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "databases.yml";
-    DebugLog ("generate_databases_yml(): generando archivo de cnonexion $yml");
+    DebugLog ("generate_databases_yml(): generando archivo de conexion $yml");
     if ($fp = @fopen ($yml,'w')) {
         fwrite ($fp,"#Archivo generando por el instalador " . date('m/d/Y H:i:s') . "\n");
         fwrite ($fp,"all:\n");

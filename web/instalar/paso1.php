@@ -55,10 +55,14 @@ est&eacute;n correctos.
               
 <p>Directorio base: <?php echo $alba_path?></p> 
 <table>
+<?php DebugLog("Comprobacion de los permisos de los directorios");?>
 <?php foreach($dirs as $dir):?>
     <?php
-    if (!is_writable($alba_path .DIRECTORY_SEPARATOR . $dir))
+    DebugLog("Directorio: $dir");
+    if (!is_writable($alba_path .DIRECTORY_SEPARATOR . $dir)) {
+        DebugLog("El directorio $dir no tiene permisos de escritura",'E');
         $error_flag = true;
+    }
     ?>
     <tr>
         <td>Comprobando permisos en: <?php echo $dir ?></td>

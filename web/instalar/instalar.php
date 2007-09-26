@@ -66,31 +66,42 @@ $completo = false;
         <h1>Instalaci&oacute;n de ALBA</h1>
         </div>
         <div id="contenido">
-            <?php
-                switch ($paso) {
-                    case 1:
-                        include ("paso1.php");
-                        break;
-                    case 2:
-                        include ("paso2.php");
-                        break;
-                    case 3:
-                        include ("paso3.php");
-                        break;
-                    case 4:
-                        include ("paso4.php");
-                        break;
-                    case 5:
-                        include ("paso5.php");
-                        break;
-                    case 6:
-                        include ("paso6.php");
-                        break;
-                    default:
-                        die("Uhmmm, error del instalador =(");
-                        break;
-                }
-            ?>
+            <?php if (file_exists(AlbaPath() . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR .'databases.yml')): ?>
+                <?php $error_flag = true;?>
+                <p>El sistema se encuentra instalado.</p>
+                <p>Si desea volver a iniciar la instalaci&oacute;n, por favor elimine el archivo
+                 de configuracion <b>databases.yml</b> que<br/>
+                se encuentra en el directorio de <b>config</b> de la aplicaci&oacute;n.
+                </p>
+                    
+            <?php else: ?>
+            <?php   
+                    switch ($paso) {
+                        case 1:
+                            include ("paso1.php");
+                            break;
+                        case 2:
+                            include ("paso2.php");
+                            break;
+                        case 3:
+                            include ("paso3.php");
+                            break;
+                        case 4:
+                            include ("paso4.php");
+                            break;
+                        case 5:
+                            include ("paso5.php");
+                            break;
+                        case 6:
+                            include ("paso6.php");
+                            break;
+                        default:
+                            die("Uhmmm, error del instalador =(");
+                            break;
+                    }
+                    
+             ?>
+             <?php endif; ?>
         </div>
         <br/>
         <?php if (!$error_flag && !$completo): ?>

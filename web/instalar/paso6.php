@@ -32,12 +32,13 @@
 
 if (!defined('ALBA_INSTALLER')) die();
 
-    $host = $_SESSION['albainstall']['host'];
-    $user = $_SESSION['albainstall']['user'];
-    $pass = $_SESSION['albainstall']['pass'];
-    $db = $_SESSION['albainstall']['db'];
-    $tipo_base = $_SESSION ['albainstall']['tipo_base']; 
+$host = $_SESSION['albainstall']['host'];
+$user = $_SESSION['albainstall']['user'];
+$pass = $_SESSION['albainstall']['pass'];
+$db = $_SESSION['albainstall']['db'];
+$tipo_base = $_SESSION ['albainstall']['tipo_base']; 
  
+$error_flag = false;    
 ?>
 <div id="detalle">
 <p>Resultado de la instalaci&oacute;n:</p>
@@ -46,13 +47,21 @@ if (!defined('ALBA_INSTALLER')) die();
     <tr>
         <td>Generando archivo de configuraci&oacute;n:</td>
         <td>
-            <?php echo generate_databases_yml($host,$user,$pass,$db) ? IMG_OK : IMG_ERROR?>
+            <?php 
+                $ret = generate_databases_yml($host,$user,$pass,$db);
+                echo $ret ? IMG_OK : IMG_ERROR;
+                if (!$ret) ; $error_flag = true;
+            ?>
         </td>
     </tr>
     <tr>
         <td>Creando esquema de base de datos:</td>
         <td>
-            <?php echo crear_schema('lib.model.schema.sql', $host, $user, $pass, $db) ? IMG_OK : IMG_ERROR?>
+            <?php 
+                $ret = crear_schema('lib.model.schema.sql', $host, $user, $pass, $db);
+                echo $ret ? IMG_OK : IMG_ERROR;
+                if (!$ret) ; $error_flag = true;
+            ?>
         </td>
     </tr>
     <tr>
@@ -66,18 +75,32 @@ if (!defined('ALBA_INSTALLER')) die();
                 else
                     $archivo = "";
             ?>
-            <?php echo crear_base_modelo($archivo,$host,$user,$pass,$db) ? IMG_OK : IMG_ERROR?>
+            <?php 
+                $ret = crear_base_modelo($archivo,$host,$user,$pass,$db);
+                echo $ret ? IMG_OK : IMG_ERROR;
+                if (!$ret) ; $error_flag = true;
+            ?>
         </td>
     </tr>
 </table>
 
 <p>La instalaci&oacute;n ha finalizado!</p>
 
+<?php if ($error_flag):?>
+<div class="error">
+<p>
+Se encontraron errores en la instalación, es posible que debe realizar algun paso<br/>
+de forma manual, por favor revise el registro de la instalaci&oacute;n haciendo click <br/>
+en el siguiente enlace:
+</p>
+<p><a href ="ver_log.php" target="_blank">Ver Registro de Instalaci&oacute;n</a></p>
+</div>
+<?php endif;?>
 <p><a href="../">Ingresar al Sistema de Gesti&oacute;n Educactiva Alba</a></p>
 <p><i>* Recuerde que para ingresar al sistema el nombre de usuario por defecto es <b>admin</b> y la clave es <b>admin</b>.</i></p>
 <?php 
 // ir al siguiente paso
     $completo = true;
-   $paso = 7;
+    $paso = 7;
    
 ?>
