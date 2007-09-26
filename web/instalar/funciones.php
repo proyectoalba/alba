@@ -123,7 +123,7 @@ function generate_databases_yml($host,$user,$pass,$db) {
         fwrite ($fp,"    class: sfPropelDatabase\n");
         fwrite ($fp,"    param:\n");
         if ($pass != "")
-            fwrite ($fp,"      dsn: $user:$pass@$host/$db\n");
+            fwrite ($fp,"      dsn: mysql://$user:$pass@$host/$db\n");
         else
             fwrite ($fp,"      dsn: $user@$host/$db\n");
         fwrite ($fp,"      datasource: alba\n");
