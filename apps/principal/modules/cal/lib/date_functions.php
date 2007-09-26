@@ -103,6 +103,7 @@ function localizeDate($format, $timestamp, $globals=null) {
 	$daysofweekreallyshort_lang = $globals['daysofweekreallyshort_lang'];
 	$monthsofyear_lang = $globals['monthsofyear_lang'];
 	$monthsofyearshort_lang = $globals['monthsofyearshort_lang'];
+    $monthsofyear_lang = $globals['monthsofyear_lang'];
 // 	echo $daysofweek_lang .',' . $daysofweekshort_lang.','. $daysofweekreallyshort_lang.',' .$monthsofyear_lang .','.$monthsofyear_lang.','. $monthsofyearshort_lang;die;
 	$year = date("Y", $timestamp);
 	$month = date("n", $timestamp)-1;

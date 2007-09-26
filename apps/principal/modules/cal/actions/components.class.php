@@ -122,12 +122,12 @@ class calComponents extends sfComponents
 		$prev_week 			= date("Ymd", strtotime("-1 week",  $unix_time));
 		
 		
-		$globals_local = array();
-		$globals_local['daysofweek_lang'] = $daysofweek_lang;
- 		$globals_local['daysofweekshort_lang'] = $daysofweekshort_lang; $globals_local['daysofweekreallyshort_lang'] = $daysofweekreallyshort_lang;
-		$globals_local['monthsofyear_lang'] = $monthsofyear_lang;
-		$globals_local['monthsofyearshort_lang'] = $monthsofyearshort_lang;
-
+// 		$globals_local = array();
+// 		$globals_local['daysofweek_lang'] = $daysofweek_lang;
+//  		$globals_local['daysofweekshort_lang'] = $daysofweekshort_lang; $globals_local['daysofweekreallyshort_lang'] = $daysofweekreallyshort_lang;
+// 		$globals_local['monthsofyear_lang'] = $monthsofyear_lang;
+// 		$globals_local['monthsofyearshort_lang'] = $monthsofyearshort_lang;
+//         $globals_local['monthsofyear_lang'] = $monthsofyear_lang;
 
 		$sidebar_date = localizeDate($dateFormat_week_list, $unix_time, $globals_local);
 		$start_week_time = strtotime(dateOfWeek($getdate, $week_start_day));

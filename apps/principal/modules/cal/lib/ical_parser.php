@@ -463,7 +463,7 @@ foreach ($cal_filelist as $cal_key=>$filename) {
 								$abs_until = $until;
 								ereg ('([0-9]{4})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})', $until, $regs);
 								$until = mktime($regs[4],$regs[5],$regs[6],$regs[2],$regs[3],$regs[1]);
-								$master_array[($start_date)][($hour.$minute)][$uid]['recur'][$key] = localizeDate($dateFormat_week,$until);
+								$master_array[($start_date)][($hour.$minute)][$uid]['recur'][$key] = localizeDate($dateFormat_week, $until, $globals_local);
 								break;
 							case 'INTERVAL':
 								if ($val > 0){
@@ -538,7 +538,13 @@ foreach ($cal_filelist as $cal_key=>$filename) {
 							$end_date_time = $until;
 							$start_range_time_tmp = $start_range_time;
 							$end_range_time_tmp = $end_range_time;
-							
+
+/*
+                            echo date("d m Y", $end_range_time);
+                            echo date("d m Y",$until);
+							echo date("d m Y",$start_range_time_tmp);
+                            echo date("d m Y",$end_range_time_tmp );*/
+
 							// If the $end_range_time is less than the $start_date_time, or $start_range_time is greater
 							// than $end_date_time, we may as well forget the whole thing
 							// It doesn't do us any good to spend time adding data we aren't even looking at
@@ -799,7 +805,6 @@ foreach ($cal_filelist as $cal_key=>$filename) {
 											$recur_data_month = date('m', $recur_data_time);
 											$recur_data_day = date('d', $recur_data_time);
 											$recur_data_date = $recur_data_year.$recur_data_month.$recur_data_day;
-
 											if (($recur_data_time > $start_date_time) && ($recur_data_time <= $end_date_time) && ($count_to != $count) && !in_array($recur_data_date, $except_dates)) {
 												if (isset($allday_start) && $allday_start != '') {
 													$start_time2 = $recur_data_time;
