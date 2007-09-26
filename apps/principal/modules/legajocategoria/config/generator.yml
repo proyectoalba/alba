@@ -8,6 +8,7 @@ generator:
     list:
           title: Tipos de entrada al legajo pedag&oacute;gico
           display: [ descripcion]
+          sort: descripcion
           object_actions:
               _edit: -
               _delete: -

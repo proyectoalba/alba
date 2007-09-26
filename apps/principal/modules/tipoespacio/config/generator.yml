@@ -9,6 +9,7 @@ generator:
     list:
         title: Listado de Tipos de Espacios
         display: [ nombre, descripcion ]
+        sort: nombre
         object_actions:
             _edit: -
             _delete: -

@@ -13,6 +13,7 @@ generator:
     list:
         display: [=nombre, descripcion, orden]
         title: Listado de Tipo de Documento
+        sort: orden
         object_actions:
             _edit:        -
             _delete:      -

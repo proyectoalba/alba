@@ -6,7 +6,7 @@ generator:
     fields:
         id: { name: identificador }
         nombre: { name: Nombre, params: size=64}
-        descripcion: { name: Descripcion, params: size=64 }
+        descripcion: { name: Descripci&oacute;n, params: size=64 }
         
     edit:
         title: Modificar tipos de intervalos de horario escolar
@@ -15,6 +15,7 @@ generator:
     list:
         display: [=nombre, descripcion]
         title: Listado de tipos de intervalos de horario escolar
+        sort: nombre
         object_actions:
             _edit:        -
             _delete:      -
