@@ -102,7 +102,7 @@ class Evento extends BaseEvento
             if(is_numeric($this->getRecurrenciaFin())) {
                 $recurrencia_fin = " luego de " .$this->getRecurrenciaFin(). " veces";
             } else {
-                $recurrencia_fin = " el " .$this->getRecurrenciaFin();
+                $recurrencia_fin = " hasta el " .date( "d-m-Y" , strtotime($this->getRecurrenciaFin()));
             }
         } else {
             $recurrencia_fin = "";
