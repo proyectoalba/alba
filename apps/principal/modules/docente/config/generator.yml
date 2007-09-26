@@ -44,6 +44,7 @@ generator:
         title: Listado de Docentes
         display: [ =apellido, nombre, tipodocumento, nro_documento, telefono, email, activo ]
         filters: [ apellido, nombre ]
+        sort: [ apellido , asc ]
         object_actions:
             _edit:      -
             _delete:    -
