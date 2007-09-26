@@ -42,7 +42,10 @@ class horarioescolarActions extends autohorarioescolarActions
         if ($this->getRequest()->getMethod() == sfRequest::POST) {
             $evento = $this->getRequestParameter('evento');
             if($evento['fecha_inicio'] AND $evento['fecha_fin']) {
-                $this->evento = $evento_generico->updateEventoFromRequest($this->evento, $this->getRequestParameter('evento'), $this->getUser()->getCulture());
+                $e = $this->getRequestParameter('evento');
+                $h = $this->getRequestParameter('horarioescolar');
+                $e['titulo'] = $h["nombre"];
+                $this->evento = $evento_generico->updateEventoFromRequest($this->evento, $e, $this->getUser()->getCulture());
                 $this->evento->save();
                 $this->forward404Unless($this->evento);
                 $this->updateHorarioescolarFromRequest($this->evento->getId());
@@ -63,38 +66,35 @@ class horarioescolarActions extends autohorarioescolarActions
         }
     }
 
-
-    
     protected function updateHorarioescolarFromRequest($fk_evento_id = '') {
         $horarioescolar = $this->getRequestParameter('horarioescolar');
 
-    if ($fk_evento_id) {
+        if ($fk_evento_id) {
             $this->horarioescolar->setFkEventoId($fk_evento_id);
-    } else {
+        } else {
             $this->horarioescolar->setFkEventoId(null);
-    }
+        }
 
-    if (isset($horarioescolar['nombre']))
-    {
-      $this->horarioescolar->setNombre($horarioescolar['nombre']);
+        if (isset($horarioescolar['nombre'])) {
+            $this->horarioescolar->setNombre($horarioescolar['nombre']);
+        }
+
+        if (isset($horarioescolar['descripcion'])) {
+            $this->horarioescolar->setDescripcion($horarioescolar['descripcion']);
+        }
+
+        if (isset($horarioescolar['fk_horarioescolartipo_id'])) {
+            $this->horarioescolar->setFkHorarioescolartipoId($horarioescolar['fk_horarioescolartipo_id']);
+        }
+
+        if (isset($horarioescolar['fk_establecimiento_id'])) {
+            $this->horarioescolar->setFkEstablecimientoId($horarioescolar['fk_establecimiento_id']);
+        }
+
+        if (isset($horarioescolar['fk_turno_id'])) {
+            $this->horarioescolar->setFkTurnoId($horarioescolar['fk_turno_id']);
+        }
     }
-    if (isset($horarioescolar['descripcion']))
-    {
-      $this->horarioescolar->setDescripcion($horarioescolar['descripcion']);
-    }
-    if (isset($horarioescolar['fk_horarioescolartipo_id']))
-    {
-      $this->horarioescolar->setFkHorarioescolartipoId($horarioescolar['fk_horarioescolartipo_id']);
-    }
-    if (isset($horarioescolar['fk_establecimiento_id']))
-    {
-      $this->horarioescolar->setFkEstablecimientoId($horarioescolar['fk_establecimiento_id']);
-    }
-    if (isset($horarioescolar['fk_turno_id']))
-    {
-      $this->horarioescolar->setFkTurnoId($horarioescolar['fk_turno_id']);
-    }
-  }
 
 
     function addFiltersCriteria($c) {

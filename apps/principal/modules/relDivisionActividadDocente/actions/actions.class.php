@@ -32,36 +32,38 @@
  */
 class relDivisionActividadDocenteActions extends autorelDivisionActividadDocenteActions
 {
-  public function executeEdit()
-  {
+    public function executeEdit() {
+        $evento_generico = new miEvento();
 
-    $evento_generico = new miEvento();
+        $this->rel_division_actividad_docente = $this->getRelDivisionActividadDocenteOrCreate();
+        $this->evento = $evento_generico->getEventoOrCreate($this->rel_division_actividad_docente->getFkEventoId());
 
-    $this->rel_division_actividad_docente = $this->getRelDivisionActividadDocenteOrCreate();
-    $this->evento = $evento_generico->getEventoOrCreate($this->rel_division_actividad_docente->getFkEventoId());
-    
-    if ($this->getRequest()->getMethod() == sfRequest::POST) {
+        if ($this->getRequest()->getMethod() == sfRequest::POST) {
+            $e = $this->getRequestParameter('evento');
+            $r = $this->getRequestParameter('rel_division_actividad_docente');
+            $division = DivisionPeer::retrieveByPk($r["fk_division_id"]);
+            $actividad = ActividadPeer::retrieveByPk($r["fk_actividad_id"]);
+            $docente = DocentePeer::retrieveByPk($r["fk_docente_id"]);
+            $e['titulo'] = $division." - ".$actividad->getNombre();
+            $this->evento = $evento_generico->updateEventoFromRequest($this->evento, $e, $this->getUser()->getCulture());
+            $this->evento->save();
+            $this->forward404Unless($this->evento);
 
-      $this->evento = $evento_generico->updateEventoFromRequest($this->evento, $this->getRequestParameter('evento'), $this->getUser()->getCulture());
-      $this->evento->save();
-      $this->forward404Unless($this->evento);
+            $this->updateRelDivisionActividadDocenteFromRequest($this->evento->getId());
+            $this->saveRelDivisionActividadDocente($this->rel_division_actividad_docente);
 
-      $this->updateRelDivisionActividadDocenteFromRequest($this->evento->getId());
-      $this->saveRelDivisionActividadDocente($this->rel_division_actividad_docente);
-     
-      $this->setFlash('notice', 'Your modifications have been saved');
-      if ($this->getRequestParameter('save_and_add')) {
-        return $this->redirect('relDivisionActividadDocente/create');
-      }
-      else if ($this->getRequestParameter('save_and_list')) {
-        return $this->redirect('relDivisionActividadDocente/list');
-      } else {
-        return $this->redirect('relDivisionActividadDocente/edit?id='.$this->rel_division_actividad_docente->getId());
-      }
-    } else {
-      $this->labels = $this->getLabels();
+            $this->setFlash('notice', 'Your modifications have been saved');
+            if ($this->getRequestParameter('save_and_add')) {
+                return $this->redirect('relDivisionActividadDocente/create');
+            } else if ($this->getRequestParameter('save_and_list')) {
+                return $this->redirect('relDivisionActividadDocente/list');
+            } else {
+                return $this->redirect('relDivisionActividadDocente/edit?id='.$this->rel_division_actividad_docente->getId());
+            }
+        } else {
+            $this->labels = $this->getLabels();
+        }
     }
-  }
 
   protected function getLabels()
   {

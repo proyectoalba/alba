@@ -234,7 +234,7 @@ class eventoActions extends sfActions
                             $this->evento->setRecurrenciaFin($value);
                             break; 
             }
-       }
+        }
 
   }
 
