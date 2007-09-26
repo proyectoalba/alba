@@ -79,7 +79,7 @@ class calendarioActions extends sfActions
     function getEventos($aRes, $vista) {
         include("miExportadorIcal.class.php");
         $e  = new miExportadorIcal();
-        $archivo = sfConfig::get('app_alba_tmpdir')."/".$e->exportar($aRes, 0);
+        $archivo = sfConfig::get('sf_root_cache_dir')."/".$e->exportar($aRes, 0);
         if($this->getRequestParameter('date')) {
             $date_component = $this->getRequestParameter('date');
         } else {

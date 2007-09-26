@@ -120,7 +120,7 @@ class horarioescolarActions extends autohorarioescolarActions
         $this->executeList();
         include("miExportadorIcal.class.php");
         $e  = new miExportadorIcal();
-        $this->archivo = sfConfig::get('app_alba_tmpdir')."/".$e->exportar($this->pager->getResults(), 0);
+        $this->archivo = sfConfig::get('sf_root_cache_dir')."/".$e->exportar($this->pager->getResults(), 0);
         if($this->getRequestParameter('date')) {
             $this->date_component = $this->getRequestParameter('date');
         } else {
