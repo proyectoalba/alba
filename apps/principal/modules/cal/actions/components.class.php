@@ -247,6 +247,9 @@ class calComponents extends sfComponents
 // 		'search_box'        => BASE.'templates/'.$template.'/search_box.tpl'
 // 		));
 
+        $url_nueva = sfContext::getInstance()->getRequest()->getUri();
+        $url_nueva = str_replace("/view/".$context->getRequest()->getParameter('view')."/date/".$getdate,"", $url_nueva);
+
 		$page->replace_files(array(
 		'header'			=> '',
 		'event_js'			=> "",
@@ -258,10 +261,10 @@ class calComponents extends sfComponents
 		$prefixUri = sfContext::getInstance()->getRequest()->getUriPrefix();
 		$globals = array(
 		"base"			=> $relativeUrlRoot ."/images/cal",
-		'day_view_action'	=> $action.'/'.$this->verPorDia,
-		'week_view_action'	=> $action."/".$this->verPorSemana,
-		'month_view_action'	=> $action.'/'.$this->verPorMes,
-		'year_view_action'	=> $action.'/'.$this->verPorAnio,
+		'day_view_action'	=> $url_nueva.'/'.$this->verPorDia,
+		'week_view_action'	=> $url_nueva."/".$this->verPorSemana,
+		'month_view_action'	=> $url_nueva.'/'.$this->verPorMes,
+		'year_view_action'	=> $url_nueva.'/'.$this->verPorAnio,
 		'version'			=> $phpicalendar_version,
 		'charset'			=> $charset,
 		'default_path'		=> '',

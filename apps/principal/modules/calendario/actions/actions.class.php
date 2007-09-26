@@ -86,15 +86,7 @@ class calendarioActions extends sfActions
             $date_component = "";
         }
 
-        if($this->getRequestParameter('view')) {
-            switch($this->getRequestParameter('view')) {
-                case 'week': $view = 'verPorSemana'; break;
-                case 'day': $view = 'verPorDia'; break;
-                default: $view = 'verPorDia';
-            }
-        } else {
-            $view = $vista;
-        }
+        $view = $this->getRequestParameter('view', $vista);
 
         return array($view, $archivo, $date_component);
     }
