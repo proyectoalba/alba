@@ -60,7 +60,7 @@ class calComponents extends sfComponents
 			$today_today 			= date('Ymd', time() + $second_offset); 
 			$tomorrows_date 		= date('Ymd', strtotime("+1 day",  $unix_time));
 			$yesterdays_date 		= date('Ymd', strtotime("-1 day",  $unix_time));
-			$sidebar_date 			= localizeDate($dateFormat_week_list, $unix_time);
+			$sidebar_date 			= localizeDate($dateFormat_week_list, $unix_time, $globals_local);
 			
 			// find out next month
 			$next_month_month 		= ($this_month+1 == '13') ? '1' : ($this_month+1);
@@ -78,11 +78,11 @@ class calComponents extends sfComponents
 			
 			$next_month 			= date("Ymd", $next_month_time);
 			$prev_month 			= date("Ymd", $prev_month_time);
-			$display_date 			= localizeDate ($dateFormat_month, $unix_time);
+			$display_date 			= localizeDate ($dateFormat_month, $unix_time, $globals_local);
 			$parse_month 			= date ("Ym", $unix_time);
 			$first_of_month 		= $this_year.$this_month."01";
 			$start_month_day 		= dateOfWeek($first_of_month, $week_start_day);
-			$thisday2 				= localizeDate($dateFormat_week_list, $unix_time);
+			$thisday2 				= localizeDate($dateFormat_week_list, $unix_time, $globals_local);
 			$num_of_events2 			= 0;
 			
 			$list_icals 	= display_ical_list(availableCalendars($username, $password, $ALL_CALENDARS_COMBINED));
@@ -102,7 +102,7 @@ class calComponents extends sfComponents
 			$prev_year 	= strtotime ("-1 year", strtotime($getdate));
 			$prev_year 	= date ("Ymd", $prev_year);
 			
-			$sidebar_date 		= localizeDate($dateFormat_day, strtotime($getdate));
+			$sidebar_date 		= localizeDate($dateFormat_day, strtotime($getdate),$globals_local);
 			
 			// For the side months
 			ereg ("([0-9]{4})([0-9]{2})([0-9]{2})", $getdate, $day_array2);
