@@ -1,11 +1,11 @@
 <?php if ($sf_user->isAuthenticated()): ?>
 <div align="center">
-<h1>&iexcl;Bienvenidos al Sistema de Gesti&oacute;n Educativa ALBA!</h1>
+<h1>&iexcl;Bienvenidos al Sistema Libre de Gesti&oacute;n Educativa ALBA!</h1>
 <h3>Versi&oacute;n <?php echo link_to(sfConfig::get("app_alba_version"),"http://www.proyectoalba.com.ar/",array('title'=> 'Comprobar Versi&oacute;n...')) ?><h3>
 </div>
 <br/>
 <div align="center">
-El Proyecto Alba, es un proyecto de desarrollo de Software para la realizaci&oacute;n de un<br><b>&quot;Sistema Inform&aacute;tico Abierto de Gesti&oacute;n Unificada para Unidades Educacionales&quot;</b>
+El Proyecto Alba, es un proyecto de desarrollo de Software para la realizaci&oacute;n de un<br><b>&quot;Sistema Libre de Gesti&oacute;n Educativa&quot;</b>
 </div>
 <br>
 <br>
