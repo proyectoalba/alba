@@ -14,7 +14,8 @@ generator:
                     
     list:
         title: Listado de Países
-        display: [ =nombre_corto, nombre_largo, orden ]
+        display: [ nombre_largo, =nombre_corto, orden ]
+        sort: [ orden, asc ]
         object_actions:
             _edit:      -
             _delete:    -
