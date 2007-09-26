@@ -14,7 +14,7 @@ generator:
     list:
         title: Listado de Orientaciones
         display: [ =nombre, descripcion ]
-
+        sort: [ nombre, asc ]
         object_actions:
             _edit:      -
             _delete:    -
