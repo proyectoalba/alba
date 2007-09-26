@@ -19,6 +19,7 @@ generator:
     list:
         display: [=nombre, descripcion, _organizacion, _nivel_tipo, _distritoescolar]
         title: Listado de Establecimientos
+        sort: [ nombre, asc ]
         object_actions:
             _edit:        -
             _delete:      -
