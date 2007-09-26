@@ -18,7 +18,7 @@
 <?php endforeach; ?>
 </tbody>
 <tfoot>
-<tr><th colspan="4">
+<tr><th colspan="5">
 <div class="float-right">
 <?php if ($pager->haveToPaginate()): ?>
   <?php echo link_to(image_tag(sfConfig::get('sf_admin_web_dir').'/images/first.png', array('align' => 'absmiddle', 'alt' => __('First'), 'title' => __('First'))), 'relDivisionActividadDocente/list?page=1') ?>
