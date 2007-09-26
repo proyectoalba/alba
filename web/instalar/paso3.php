@@ -32,50 +32,70 @@
 
 if (!defined('ALBA_INSTALLER')) die();
 
-$cnx_error_flag = false;
-$cnx_error_msg = "";
-$error_flag = true;
+$cnx_error_flag = false; //errores de base de datos
+$cnx_error_msg = ""; //errores de base de datos
+$error_flag = false; // error en el paso del instalador
 
 $host = "";
 $user = "";
 $pass = "";
 $db = "";
 $creardb = "";
+
 if (isset($_POST['test_conn']) && $_POST['test_conn']==1) {
-    
+    //obtenidno datos del form
     $host = $_POST['host'];
     $user = $_POST['user'];
     $pass = $_POST['pass'];
     $db = $_POST['db'];    
     $creardb = (isset($_POST['creardb']) && $_POST['creardb'] == 1);
+    
+    //probado conexion
     DebugLog('Probando conexión'); 
     $conn = @mysql_connect($host,$user,$pass);
     if (!$conn) {
+        $error_flag = true;
         $cnx_error_flag = true;
-        DebugLog('Error al conectar con la base de datos','E');
         $cnx_error_msg = "No se puede conectar a la base de datos: <br>" . mysql_error();
+        DebugLog('Error al conectar con la base de datos','E');
     }
     else {
-        DebugLog('Probando crear base de datos');
+        //crear base si es necesario
         if ($creardb) {
+            DebugLog('Probando crear base de datos...');
             $ret = @mysql_query('CREATE DATABASE ' . $db , $conn);
             if (!$ret) {
-                $cnx_error_flag = true;
-                DebugLog('No se puede crear la base de datos: ' . mysql_error() ,'E');
-                $cnx_error_msg = "No se puede crear la base de datos: <br>" . mysql_error();
                 $error_flag = true;
+                $cnx_error_flag = true;
+                $cnx_error_msg = "No se puede crear la base de datos: <br>" . mysql_error();
+                DebugLog('No se puede crear la base de datos: ' . mysql_error() ,'E');
+            }
+            else {
+                DebugLog("Base de datos $db creada correctamente");
             }
         }
         else {
-            $error_flag = false;
-        }    
+            DebugLog("No se creara una base de datos");
+        } 
+        
+        //conectado a la base
+        $ret = @mysql_select_db($db);
+        if (!$ret) {
+            $error_flag = true;
+            $cnx_error_flag = true;
+            $cnx_error_msg = "No es posible utilizar la base $db: " . mysql_error();
+            DebugLog("No es posible conectar a la base de datos $db: " . mysql_error(), 'E');
+        }
+           
         $_SESSION['albainstall']['host'] = $host;
         $_SESSION['albainstall']['user'] = $user;        
         $_SESSION['albainstall']['pass'] = $pass;   
         $_SESSION['albainstall']['db'] = $db;
         $_SESSION['albainstall']['creardb'] = $creardb;
     }
-}    
+}
+else
+    $error_flag = true;    
 ?>
 <div id="detalle">
 <p>Detalle de conexi&oacute;n con la base de datos:</p>
@@ -85,7 +105,7 @@ if (isset($_POST['test_conn']) && $_POST['test_conn']==1) {
     <p>Ocurri&oacute; el siguiente error:</p>
     <p><?php echo $cnx_error_msg?></p>
 </div>
-<?php endif;?>
+<?php endif?>
 <form name="test_conn" method="post">              
 <input type="hidden" name="test_conn" value="1">
 <table>
@@ -113,6 +133,15 @@ if (isset($_POST['test_conn']) && $_POST['test_conn']==1) {
 <br/>
 <input type="submit" name="btTextConn" value="Comprobar conexi&oacute;n a la Base de Datos" class="boton">
 </form>
+
+<?php if (isset($_POST['test_conn']) && $_POST['test_conn']==1): ?>
+    <?php if (!$cnx_error_flag): ?>
+    <div class="ok">
+        <p>La conexi&oacute;n a la base fue existosa.</p>
+    </div>
+    <?php endif;?>
+<?php endif?>
+
 <?php 
 // ir al siguiente paso
    $paso = 4;

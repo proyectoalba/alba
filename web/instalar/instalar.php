@@ -30,6 +30,8 @@
 
 session_start();
 
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+    
 define ('ALBA_INSTALLER',1);
 
 define ('IMG_OK','<img src="images/ok.png" title="Correcto" alt="Correcto">');
@@ -68,6 +70,7 @@ $completo = false;
         <div id="contenido">
             <?php if (file_exists(AlbaPath() . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR .'databases.yml')): ?>
                 <?php $error_flag = true;?>
+                <?php DebugLog("Ya existe un archivo de configuracion - Instalacion Abortada.")?>
                 <p>El sistema se encuentra instalado.</p>
                 <p>Si desea volver a iniciar la instalaci&oacute;n, por favor elimine el archivo
                  de configuracion <b>databases.yml</b> que<br/>
@@ -78,6 +81,7 @@ $completo = false;
             <?php   
                     switch ($paso) {
                         case 1:
+                            DebugLog("====================== INSTALACION ALBA - " .date('d-m-Y H:i:s'). "===================");
                             include ("paso1.php");
                             break;
                         case 2:

@@ -32,42 +32,6 @@
 
 if (!defined('ALBA_INSTALLER')) die();
 
-/* helpers para comprobaciones */ 
-function check_php() {
-    return version_compare(phpversion(),'5.0.0','>=');
-}
-function check_mysql() {
-    return extension_loaded('mysql');
-}
-function check_memorylimit() {
-    $limite = ini_get('memory_limit');
-    return ($limite >= 32);
-}
-function check_magicquotes() {
-    return !get_magic_quotes_gpc();
-}
-function check_gd() {
-    return extension_loaded('gd');
-}
-function check_apache2() {
-    $version = 0;
-    preg_match('!Apache/(.*) !U', apache_get_version(), $version);
-    return version_compare($version[1],'2.0.0','>=');
-
-}
-function check_rewrite() {
-    $modulos = apache_get_modules();
-    if(count($modulos)>0) {
-        $res = array_search('mod_rewrite', $modulos);
-        if($res === false) {
-            return false;
-        } else {
-            return true;
-        }
-    } else {
-        return false;
-    }
-}
 ?>
 <div id="detalle">
 <p>Comprobaci&oacute;n de las versiones de programas instalados:</p>

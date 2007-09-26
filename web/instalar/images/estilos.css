@@ -5,6 +5,9 @@ body {
 div .error {
     color: red;
 }
+div .ok {
+    color: green;
+}
 #contenido { 
     padding-left: 25px;
 

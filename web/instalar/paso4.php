@@ -84,6 +84,13 @@ a utilizar el sistema con una base vac&iacute;a (datos m&iacute;nimos)<br/>
     <input type="submit" name="btEnviar" value="Seleccionar base de datos" class="boton">
 </form>
 </div>
+<?php if (isset($_POST['set_tipo_base']) && $_POST['set_tipo_base'] == 1):?>
+    <?php if (!$error_flag): ?>
+    <div class="ok">
+        <p>Modelo de base seleccionado: <?php echo $_POST['tipo_base']?> </p>
+    </div>
+    <?php endif;?>
+<?php endif;?>
 
 <?php 
 // ir al siguiente paso

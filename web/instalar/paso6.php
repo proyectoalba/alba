@@ -50,7 +50,10 @@ $error_flag = false;
             <?php 
                 $ret = generate_databases_yml($host,$user,$pass,$db);
                 echo $ret ? IMG_OK : IMG_ERROR;
-                if (!$ret) ; $error_flag = true;
+                if (!$ret) {
+                    $error_flag = true;
+                    DebugLog("Error al generar archivo databases.yml","E");
+                }
             ?>
         </td>
     </tr>
@@ -60,7 +63,10 @@ $error_flag = false;
             <?php 
                 $ret = crear_schema('lib.model.schema.sql', $host, $user, $pass, $db);
                 echo $ret ? IMG_OK : IMG_ERROR;
-                if (!$ret) ; $error_flag = true;
+                if (!$ret) {
+                    $error_flag = true;
+                    DebugLog("Error al crear schemad e base de datos","E");
+                }
             ?>
         </td>
     </tr>
@@ -78,7 +84,10 @@ $error_flag = false;
             <?php 
                 $ret = crear_base_modelo($archivo,$host,$user,$pass,$db);
                 echo $ret ? IMG_OK : IMG_ERROR;
-                if (!$ret) ; $error_flag = true;
+                if (!$ret) {
+                    $error_flag = true;
+                    DebugLog("Error al cargar modelo de base de datos: $archivo","E");
+                }
             ?>
         </td>
     </tr>
@@ -98,9 +107,9 @@ en el siguiente enlace:
 <?php endif;?>
 <p><a href="../">Ingresar al Sistema de Gesti&oacute;n Educactiva Alba</a></p>
 <p><i>* Recuerde que para ingresar al sistema el nombre de usuario por defecto es <b>admin</b> y la clave es <b>admin</b>.</i></p>
-<?php 
-// ir al siguiente paso
+<?php
+         
+// finaliznado los pasos 
+    DebugLog  ("============================ FIN INSTALACION ALBA - " .date('d-m-Y H:i:s'). "=======================");
     $completo = true;
-    $paso = 7;
-   
 ?>

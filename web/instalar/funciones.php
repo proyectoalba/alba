@@ -33,7 +33,6 @@ function AlbaPath() {
 }
 
 function DebugLog($str,$modo = 'I') {
-    date_default_timezone_set('America/Argentina/Buenos_Aires');
     $log = AlbaPath() . DIRECTORY_SEPARATOR . "log" . DIRECTORY_SEPARATOR . "install.log";
     $fp = fopen($log,"a+");
     if ($fp) {
@@ -117,7 +116,7 @@ function generate_databases_yml($host,$user,$pass,$db) {
     $yml = AlbaPath() . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "databases.yml";
     DebugLog ("generate_databases_yml(): generando archivo de conexion $yml");
     if ($fp = @fopen ($yml,'w')) {
-        fwrite ($fp,"#Archivo generando por el instalador " . date('m/d/Y H:i:s') . "\n");
+        fwrite ($fp,"# Archivo generado por el instalador de Alba " . date('m/d/Y H:i:s') . "\n");
         fwrite ($fp,"all:\n");
         fwrite ($fp,"  propel:\n");
         fwrite ($fp,"    class: sfPropelDatabase\n");
@@ -151,8 +150,58 @@ function crear_schema ($filesql, $host, $user, $pass, $db) {
 * caga los datos ejemplo/minima
 */
 function crear_base_modelo($filesql, $host, $user, $pass, $db) {
-    DebugLog("crear_base_modelo(): Creado base de datos modelo");
-    return executeDump(AlbaPath() . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'sql'  . DIRECTORY_SEPARATOR .$filesql, $host, $user, $pass, $db);
+    DebugLog("crear_base_modelo(): Creado base de datos modelo: $filesql");
+    if ($filesql == "")
+        return false;
+    else
+        return executeDump(AlbaPath() . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'sql'  . DIRECTORY_SEPARATOR .$filesql, $host, $user, $pass, $db);
     
 }
+
+/**
+* helpers para comprobaciones
+*/ 
+function check_php() {
+    DebugLog ("Comprobando version de php");
+    return version_compare(phpversion(),'5.0.0','>=');
+}
+function check_mysql() {
+    DebugLog("Comprobando extension de mysql");
+    return extension_loaded('mysql');
+}
+function check_memorylimit() {
+    DebugLog("Comprobando limite de moeria de php");
+    $limite = ini_get('memory_limit');
+    return ($limite >= 32);
+}
+function check_magicquotes() {
+    DebugLog("Comprobando magic_quotes");
+    return !get_magic_quotes_gpc();
+}
+function check_gd() {
+    DebugLog("Comprobando extension GD de php");
+    return extension_loaded('gd');
+}
+function check_apache2() {
+    DebugLog("Comprobando version de apache");
+    $version = 0;
+    preg_match('!Apache/(.*) !U', apache_get_version(), $version);
+    return version_compare($version[1],'2.0.0','>=');
+
+}
+function check_rewrite() {
+    DebugLog("Comprobando mod_rewrite");
+    $modulos = apache_get_modules();
+    if(count($modulos)>0) {
+        $res = array_search('mod_rewrite', $modulos);
+        if($res === false) {
+            return false;
+        } else {
+            return true;
+        }
+    } else {
+        return false;
+    }
+}
+
 ?>
