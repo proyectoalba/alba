@@ -9,7 +9,7 @@ generator:
         orden: { name: orden, params: size=10 }
 
     edit:
-        title: Editar País
+        title: ""
         display: [ nombre_corto , nombre_largo, orden ]
                     
     list:
