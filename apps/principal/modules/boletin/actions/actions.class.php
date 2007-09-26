@@ -113,6 +113,7 @@ class boletinActions extends sfActions
         $criteria->add(DivisionPeer::ID, $division_id);
         $criteria->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
         $criteria->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID);
+        $criteria->addAscendingOrderbyColumn(AlumnoPeer::APELLIDO);
         $aAlumno = AlumnoPeer::doSelect($criteria);
         return $aAlumno;
 

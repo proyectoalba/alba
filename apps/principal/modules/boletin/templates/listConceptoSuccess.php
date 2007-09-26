@@ -1,5 +1,4 @@
 <?php use_helper("I18N")?>
-
 <script>
      function linkTo(flag) {
         
@@ -12,7 +11,6 @@
         
         var obja = document.getElementById('concepto_id');
         url = url + "/concepto_id/"+obja.options[obja.selectedIndex].value;
-
         location.href = url;
      }
 </script>
@@ -27,8 +25,6 @@
         <?php echo label_for('division', __('Division:')) ?>
         <?php echo select_tag('division_id', options_for_select($optionsDivision, $division_id), "onChange='linkTo(0)'") ?>
     </div>
-
-
     <div class="form-row">
         <?php echo label_for('concepto', __('Concepto:')) ?>
         <?php echo select_tag('concepto_id', options_for_select($optionsConcepto, $concepto_id),"onChange='linkTo(1)'") ?>
@@ -40,8 +36,6 @@
         <?php echo select_tag('periodo_id', options_for_select($optionsPeriodo, $periodo_id), "onChange='linkTo(1)'") ?>
     </div>
 <?php } ?>
-
-
 
 <?php if (count($aAlumno) > 0 && $concepto_id ){ ?>
 <h1>Alumnos</h1>
@@ -55,12 +49,9 @@ Posibles Notas para calificar:
   <thead>
   <tr>
     <th id="sf_admin_list_th_alumno"> Alumno</th>
-
     <?php foreach ($aPeriodo as $periodo) {?>
     <th id="sf_admin_list_th_sf_actions"><?php echo $periodo->getDescripcion()?></th>
     <?php } ?>
-
-
   </tr>
   </thead>
 
@@ -79,8 +70,7 @@ Posibles Notas para calificar:
   </tbody>
 </table>
 
-<?php // } 
-if($division_id) { ?>
+<?php if($division_id) { ?>
 
  <ul class="sf_admin_actions">
   <li><?php echo submit_tag(__('Grabar'), array (
@@ -94,3 +84,4 @@ if($division_id) { ?>
 </fieldset>
 </form>
 </div>
+
