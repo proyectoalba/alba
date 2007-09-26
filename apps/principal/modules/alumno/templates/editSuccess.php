@@ -45,7 +45,7 @@
         <?php echo object_input_hidden_tag($alumno, 'getId') ?>
 
         <fieldset id="sf_fieldset_informacion_general" class="">
-            <h2><?php echo __('Informacion general') ?></h2>
+            <h2><?php echo __('Informaci&oacute;n general') ?></h2>
 
             <div class="form-row">
               <?php echo label_for('alumno[apellido]', __('Apellido:'), 'class="required" ') ?>
