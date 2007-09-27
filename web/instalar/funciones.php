@@ -124,7 +124,7 @@ function generate_databases_yml($host,$user,$pass,$db) {
         if ($pass != "")
             fwrite ($fp,"      dsn: mysql://$user:$pass@$host/$db\n");
         else
-            fwrite ($fp,"      dsn: $user@$host/$db\n");
+            fwrite ($fp,"      dsn: mysql://$user@$host/$db\n");
         fwrite ($fp,"      datasource: alba\n");
         fwrite ($fp, "\n");
         DebugLog("generate_databases_yml(): archivo yml generado");
