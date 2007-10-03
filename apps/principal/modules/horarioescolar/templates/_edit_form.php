@@ -41,7 +41,7 @@
 </div>
 
 
-<?php include_partial('evento/carga_evento', array('horarioescolar' => $horarioescolar, 'evento' => $evento)) ?>
+<?php include_partial('evento/carga_evento', array('evento' => $evento)); ?>
 
 
 

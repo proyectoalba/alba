@@ -22,7 +22,7 @@
         } else {
             $hora_asociada = true;
         }
-        
+	
         switch($evento->getFrecuencia()) {
             case '0': $activar_repeticion = false; break;
             case '4': $activar_repeticion = true; $seleccion_4 = true; $seleccion_5 = $seleccion_6 = $seleccion_7 = false; $mostrar_div_diaria = ""; break;
@@ -55,6 +55,17 @@
 
 
     }
+	else { //esto es un parche para que funcione el check de hora asociada
+		// esta logica tiene que ir en la logica de un component
+		// y hay que modiicar las incluciones de esto que ahora son 
+		// include_partial a getComponent
+	if ($evento_tmp = $sf_request->getParameter('evento')) {
+		if (isset($evento_tmp['hora_asociada']))
+			$hora_asociada = $evento_tmp['hora_asociada'];
+		if (isset($evento_tmp['activar_repeticion']))
+			$activar_repeticion = $evento_tmp['activar_repeticion'];
+	}
+	}
 ?>
 
 <script type="text/javascript">
