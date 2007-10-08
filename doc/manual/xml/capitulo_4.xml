@@ -1,9 +1,9 @@
 <chapter><title>Usando ALBA por primera vez</title>
 <para>
-Una vez que ALBA est&aacute; instalado, el sistema ya cuenta con informaci&oacute;n precargada para facilitar su uso inicial. Si bien la precarga contempla especialmente escuelas de la Ciudad de Buenos Aires, todas las precargas pueden ser modificadas seg&uacute;n la necesidad del usuario, ya que muchas se ofrecen a modo de ejemplo.
+Al insatalar ALBA por primera vez el sistema ya cuenta con informaci&oacute;n precargada para facilitar su uso inicial. Si bien la precarga contempla especialmente escuelas de la Ciudad de Buenos Aires, todas las precargas pueden ser modificadas seg&uacute;n la necesidad del usuario, ya que muchas se ofrecen a modo de ejemplo.
 </para>
 <para>
-Se presentan en las siguientes secciones, el tipo de informaci&oacute;n precargada as&iacute; como una sugerencia para la carga inicial, la primera vez que se utiliza ALBA.
+En las siguientes secciones se presenta el tipo de informaci&oacute;n precargada as&iacute; como una sugerencia para la carga inicial, la primera vez que se utiliza ALBA.
 </para>
 
 <sect1><title>Informaci&oacute;n precargada</title>
@@ -14,7 +14,7 @@ Existe informaci&oacute;n que se encuentra precargada en el sistema para permiti
 Adem&aacute;s de estos datos, se encuentran precargados algunos generales como son: el Calendario de Vacunaci&oacute;n, los Pa&iacute;ses, las Provincias (de Argentina), los tipos de documento posible, los tipos de IVA as&iacute; como los posibles niveles educativos del establecimiento. 
 </para></sect1>
 
-<sect1><title>Informaci&oacute;n cargada como Ejemplo (Demo).</title>
+<sect1><title>Informaci&oacute;n cargada como Ejemplo (Demo)</title>
 <para>
 Si opt&oacute; por la opci&oacute;n de instalar ALBA integrando los datos del Ejemplo, tambi&eacute;n contar&aacute; como precargados los siguientes datos. 
 </para>
@@ -95,7 +95,7 @@ Si opt&oacute; por la opci&oacute;n de instalar ALBA integrando los datos del Ej
 </sect1>
 
 <sect1><title>Sugerencia para la carga inicial</title>
-<para>Una vez instalado ALBA, ser&aacute; necesario seguir un orden l&oacute;gico para la carga inicial de los datos: </para>
+<para>Una vez instalado ALBA ser&aacute; necesario seguir un orden l&oacute;gico para la carga inicial de los datos: </para>
 
 <para>
 1) cargar la <emphasis>Organizaci&oacute;n y el Establecimiento.</emphasis> 
@@ -121,7 +121,7 @@ Ingresando desde el men&uacute; desplegable a Calendarios y Horarios --> Definir
 </para>
 <important>
 <para>
-IMPORTANTE: Es posible acceder a otros ciclos lectivos cambi&aacute;ndolo directamente del cuadro de estado del v&eacute;rtice superior derecho, sin necesidad de cambiar el predeterminado.
+Es posible acceder a otros ciclos lectivos cambi&aacute;ndolo directamente del cuadro de estado del v&eacute;rtice superior derecho, sin necesidad de cambiar el predeterminado.
 </para>
 </important>
 

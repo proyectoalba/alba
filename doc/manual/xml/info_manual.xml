@@ -1,11 +1,11 @@
 <bookinfo>
 
     <title>ALBA </title>
-    <subtitle>Software libre de gesti&oacute;n educativa </subtitle>
-    <subtitle>Manual de Usuario</subtitle>
+    <subtitle>Sistema Libre de Gesti&oacute;n Educativa </subtitle>
+    <subtitle>Manual del Usuario</subtitle>
     <graphic fileref="img/alba.jpg" scale="20" align="center" />
 
-    <author><firstname>Equipo de Trabajo</firstname><surname>Proyecto Alba</surname></author>
+    <author><firstname>Equipo de Trabajo</firstname><surname> del Proyecto Alba</surname></author>
     <copyright>
         <year>2007</year>
         <holder>Proyecto Alba</holder>
