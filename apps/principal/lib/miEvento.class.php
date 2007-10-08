@@ -157,14 +157,19 @@ class miEvento extends sfWebRequest
                 switch($evento['frecuencia'][0]) { // dia: 4, semana: 5, mes: 6, año: 7
                     case '4':  $evento_obj->setFrecuenciaIntervalo($evento['frecuencia_intervalo_diaria']);
                                break;
-                    case '5':  $evento_obj->setFrecuenciaIntervalo($evento['frecuencia_intervalo_semana']);
-                               $aSemanaBinario = array ( 1, 2, 4, 8, 16, 32, 64 );
-                               $suma_total = 0;
-                               foreach($evento['recurrencia_dias'] as $dia) {
-                                    $suma_total += $aSemanaBinario[$dia];
+                    case '5':  
+                               if(array_key_exists('frecuencia_intervalo_semana' ,$evento)) {
+                                    $evento_obj->setFrecuenciaIntervalo($evento['frecuencia_intervalo_semana']);
+                                    $aSemanaBinario = array ( 1, 2, 4, 8, 16, 32, 64 );
+                                    $suma_total = 0;
+                                    if(array_key_exists('recurrencia_dias', $evento)) {
+                                        foreach($evento['recurrencia_dias'] as $dia) {
+                                            $suma_total += $aSemanaBinario[$dia];
+                                        }
+                                    }
+                                    // guardamos en binario para saber todos los dias de la semana seleccionados
+                                    $evento_obj->setRecurrenciaDias($suma_total); 
                                }
-                                // guardamos en binario para saber todos los dias de la semana seleccionados
-                               $evento_obj->setRecurrenciaDias($suma_total); 
                                break;
                     case '6':  break;
                     case '7':  break;
