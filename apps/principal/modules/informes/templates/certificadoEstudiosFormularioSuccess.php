@@ -1,5 +1,6 @@
 <?php use_helper('I18N'); ?>
 <?php use_helper('DateForm') ?>
+<div id ="sf_admin_container">
 <h1>Informe: Certificado de Estudios para <?php echo $alumno->getApellido().", ".$alumno->getNombre();?></h1>
 <?php if ($sf_request->hasErrors()) {?>
 <div class="form-errors">
@@ -33,5 +34,4 @@
 )) ?></li>
 </ul>
 </form>
-
-
+</div>
