@@ -7,3 +7,6 @@ Listado:
 
 check_radio_array.patch
 ver situacion en http://trac.symfony-project.com/trac/ticket/1776
+
+newMimeTypes.pacth
+ver situacion en http://trac.symfony-project.com/ticket/2362
