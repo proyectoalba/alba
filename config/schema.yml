@@ -1840,3 +1840,53 @@ alba:
       primaryKey: true
       foreignTable: docente
       foreignReference: id
+  informe: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+    descripcion: 
+      type: VARCHAR
+      size: 255
+    fk_adjunto_id: 
+      type: integer
+      size: 11
+      required: true
+      foreignTable: adjunto
+      foreignReference: id
+    fk_tipoinforme_id: 
+      type: integer
+      size: 11
+      required: true
+      foreignTable: tipoinforme
+      foreignReference: id
+    listado: 
+      type: BOOLEAN
+      required: true
+      default: false
+    variables: 
+      type: VARCHAR
+      size: 128
+  tipoinforme: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+    descripcion: 
+      type: VARCHAR
+      size: 255
+      required: false

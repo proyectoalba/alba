@@ -33,12 +33,373 @@
 class InformesActions extends sfActions
 {
 
+  public function executeIndex()
+  {
+    return $this->forward('informes', 'list');
+  }
+
+  public function executeList()
+  {
+    $this->processSort();
+
+    $this->processFilters();
+
+    $this->filters = $this->getUser()->getAttributeHolder()->getAll('sf_admin/informes/filters');
+
+    // pager
+    $this->pager = new sfPropelPager('Informe', 10);
+    $c = new Criteria();
+    $this->addSortCriteria($c);
+//     $this->addFiltersCriteria($c);
+    $this->pager->setCriteria($c);
+    $this->pager->setPage($this->getRequestParameter('page', 1));
+    $this->pager->init();
+  }
+
+  public function executeCreate()
+  {
+    return $this->forward('informes', 'edit');
+  }
+
+  public function executeSave()
+  {
+    return $this->forward('informes', 'edit');
+  }
+
+  public function executeEdit()
+  {
+    $this->informe = $this->getInformeOrCreate();
+
+    if ($this->getRequest()->getMethod() == sfRequest::POST)
+    {
+        $this->updateInformeFromRequest();
+
+        if($this->getRequest()->getFileName('file')) {
+            $mimetype  = $this->getRequest()->getFileType('file');
+            $ext = substr($this->getRequest()->getFileName('file'),strrpos($this->getRequest()->getFileName('file'),'.'));
+            $realFileName = $this->getRequest()->getFileName('file');
+            $uniqueFileName = uniqid(rand()) . $ext;
+            $this->getRequest()->moveFile('file', sfConfig::get('sf_upload_dir').'/'.$uniqueFileName);
+            $adjunto = new Adjunto(); 
+            $adjunto->setFecha(date('Y-m-d'));
+            $adjunto->setNombreArchivo($realFileName);
+            $adjunto->setTipoArchivo($mimetype);     
+            $adjunto->setRuta($uniqueFileName);
+            $adjunto->save();
+            $this->informe->setFkAdjuntoId($adjunto->getId());
+            $this->saveInforme($this->informe);
+        }
+
+
+      $this->setFlash('notice', 'Your modifications have been saved');
+
+      if ($this->getRequestParameter('save_and_add'))
+      {
+        return $this->redirect('informes/create');
+      }
+      else if ($this->getRequestParameter('save_and_list'))
+      {
+        return $this->redirect('informes/list');
+      }
+      else
+      {
+        return $this->redirect('informes/edit?id='.$this->informe->getId());
+      }
+    }
+    else
+    {
+      $this->labels = $this->getLabels();
+    }
+  }
+
+  public function executeDelete()
+  {
+    $this->informe = InformePeer::retrieveByPk($this->getRequestParameter('id'));
+    $this->forward404Unless($this->informe);
+
+    try
+    {
+      unlink(sfConfig::get('sf_upload_dir')."/".$this->informe->getAdjunto()->getRuta());
+      $adjunto_id = $this->informe->getFkAdjuntoId();
+      $this->deleteInforme($this->informe);
+      $adjunto = AdjuntoPeer::retrieveByPk($adjunto_id);
+      $adjunto->delete();
+    }
+    catch (PropelException $e)
+    {
+      $this->getRequest()->setError('delete', 'Could not delete the selected informe. Make sure it does not have any associated items.');
+      return $this->forward('informes', 'list');
+    }
+
+    return $this->redirect('informes/list');
+  }
+
+  public function handleErrorEdit()
+  {
+    $this->preExecute();
+    $this->informe = $this->getInformeOrCreate();
+    $this->updateInformeFromRequest();
+
+    $this->labels = $this->getLabels();
+
+    return sfView::SUCCESS;
+  }
+
+  protected function saveInforme($informe)
+  {
+    $informe->save();
+
+  }
+
+  protected function deleteInforme($informe)
+  {
+    $informe->delete();
+  }
+
+  protected function updateInformeFromRequest()
+  {
+    $informe = $this->getRequestParameter('informe');
+
+    if (isset($informe['variables']))
+    {
+      $this->informe->setVariables($informe['variables']);
+    }
+
+    if (isset($informe['descripcion']))
+    {
+      $this->informe->setDescripcion($informe['descripcion']);
+    }
+
+    if (isset($informe['nombre']))
+    {
+      $this->informe->setNombre($informe['nombre']);
+    }
+
+    $this->informe->setListado(isset($informe['listado']) ? $informe['listado'] : 0);
+
+    if (isset($informe['fk_adjunto_id']))
+    {
+    $this->informe->setFkAdjuntoId($informe['fk_adjunto_id'] ? $informe['fk_adjunto_id'] : null);
+    }
+
+    if (isset($informe['fk_tipoinforme_id']))
+    {
+    $this->informe->setFkTipoinformeId($informe['fk_tipoinforme_id'] ? $informe['fk_tipoinforme_id'] : null);
+    }
+
+  }
+
+  protected function getInformeOrCreate($id = 'id')
+  {
+    if (!$this->getRequestParameter($id))
+    {
+      $informe = new Informe();
+    }
+    else
+    {
+      $informe = InformePeer::retrieveByPk($this->getRequestParameter($id));
+
+      $this->forward404Unless($informe);
+    }
+
+    return $informe;
+  }
+
+  protected function processFilters()
+  {
+    if ($this->getRequest()->hasParameter('filter'))
+    {
+      $filters = $this->getRequestParameter('filters');
+
+      $this->getUser()->getAttributeHolder()->removeNamespace('sf_admin/informes/filters');
+      $this->getUser()->getAttributeHolder()->add($filters, 'sf_admin/informes/filters');
+    }
+  }
+
+  protected function processSort()
+  {
+    if ($this->getRequestParameter('sort'))
+    {
+      $this->getUser()->setAttribute('sort', $this->getRequestParameter('sort'), 'sf_admin/informes/sort');
+      $this->getUser()->setAttribute('type', $this->getRequestParameter('type', 'asc'), 'sf_admin/alumno/sort');
+    }
+
+    if (!$this->getUser()->getAttribute('sort', null, 'sf_admin/informes/sort'))
+    {
+    }
+  }
+
+/*
+  protected function addFiltersCriteria($c)
+  {
+    if (isset($this->filters['nombre_apellido_is_empty']))
+    {
+      $criterion = $c->getNewCriterion(AlumnoPeer::NOMBRE_APELLIDO, '');
+      $criterion->addOr($c->getNewCriterion(AlumnoPeer::NOMBRE_APELLIDO, null, Criteria::ISNULL));
+      $c->add($criterion);
+    }
+    else if (isset($this->filters['nombre_apellido']) && $this->filters['nombre_apellido'] !== '')
+    {
+      $c->add(AlumnoPeer::NOMBRE_APELLIDO, $this->filters['nombre_apellido']);
+    }
+    if (isset($this->filters['division_is_empty']))
+    {
+      $criterion = $c->getNewCriterion(AlumnoPeer::DIVISION, '');
+      $criterion->addOr($c->getNewCriterion(AlumnoPeer::DIVISION, null, Criteria::ISNULL));
+      $c->add($criterion);
+    }
+    else if (isset($this->filters['division']) && $this->filters['division'] !== '')
+    {
+      $c->add(AlumnoPeer::DIVISION, $this->filters['division']);
+    }
+    if (isset($this->filters['nro_documento_is_empty']))
+    {
+      $criterion = $c->getNewCriterion(AlumnoPeer::NRO_DOCUMENTO, '');
+      $criterion->addOr($c->getNewCriterion(AlumnoPeer::NRO_DOCUMENTO, null, Criteria::ISNULL));
+      $c->add($criterion);
+    }
+    else if (isset($this->filters['nro_documento']) && $this->filters['nro_documento'] !== '')
+    {
+      $c->add(AlumnoPeer::NRO_DOCUMENTO, strtr($this->filters['nro_documento'], '*', '%'), Criteria::LIKE);
+    }
+  }
+*/
+  protected function addSortCriteria($c)
+  {
+    if ($sort_column = $this->getUser()->getAttribute('sort', null, 'sf_admin/informes/sort'))
+    {
+      $sort_column = InformePeer::translateFieldName($sort_column, BasePeer::TYPE_FIELDNAME, BasePeer::TYPE_COLNAME);
+      if ($this->getUser()->getAttribute('type', null, 'sf_admin/informes/sort') == 'asc')
+      {
+        $c->addAscendingOrderByColumn($sort_column);
+      }
+      else
+      {
+        $c->addDescendingOrderByColumn($sort_column);
+      }
+    }
+  }
+
+  protected function getLabels()
+  {
+    return array(
+      'informe{descripcion}' => 'Descripci&oacute;n:',
+      'informe{nombre}' => 'Nombre:',
+      'informe{listado}' => '¿Es un Listado?:',
+      'informe{fk_tipoinforme_id}' => 'Tipo de Informe:',
+      'informe{fk_adjunto_id}' => 'Plantilla del informe:',
+      'informe{variables}' => 'Variables:',
+      'file' => 'Plantilla del informe :',
+    );
+  }
+
+    public function executeBorrarAdjunto() {
+        $id = $this->getRequestParameter('id');
+        $this->forward404Unless($id);
+        $informe = InformePeer::retrieveByPk($id);
+        $informe->setFkAdjuntoId();
+        $informe->save();
+        $adjunto = AdjuntoPeer::retrieveByPk($informe->getFkAdjuntoId());
+        unlink(sfConfig::get('sf_upload_dir')."/".$adjunto->getRuta());
+        $adjunto->delete();
+        return $this->redirect("informes?action=edit&id=".$id);
+    }
+
+
+    public function executeMostrar() {
+        $informe = InformePeer::retrieveByPk($this->getRequestParameter('id'));
+        $this->forward404Unless($informe);
+
+        $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
+
+        $aAlumno = $this->_getTodosLosAlumnos($establecimiento_id);
+
+        $datos = $aAlumno[0];
+        $this->reporteTBSOO($informe->getAdjunto()->getRuta(), $informe->getTipoInforme()->getNombre(), $datos);
+
+        return sfview::NONE;
+    }
+
+
+
+    public function executeBusquedaAlumnos() {
+        $informe = InformePeer::retrieveByPk($this->getRequestParameter('id'));
+        $this->forward404Unless($informe);
+
+        // inicializando variables
+        $optionsDivision = array();
+        $aAlumno  = array();        
+
+        // tomando los datos del formulario
+        $division_id = $this->getRequestParameter('division_id');
+        $txt = $this->getRequestParameter('txt');
+
+        // llenando el combo de division segun establecimiento
+        $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
+        $optionsDivision = $this->_getDivisiones($establecimiento_id);
+       
+        if ($this->getRequest()->getMethod() == sfRequest::POST) {
+            $aAlumno = $this->_getAlumnosPorDivision($division_id, $txt);             // buscando alumnos
+        }
+
+        // asignando variables para ser usadas en el template
+        $this->optionsDivision = $optionsDivision;
+        $this->division_id = $division_id;
+        $this->txt = $txt;
+        $this->aAlumno = $aAlumno;
+        $this->titulo = $informe->getNombre();
+        $this->is = $informe=
+    }
+
+
+
+
+    private function reporteTBSOO($archivo, $tipoinforme, $datos) {
+        define('BASE',sfConfig::get('sf_app_module_dir') .'/informes/' .sfConfig::get('sf_app_module_lib_dir_name').'/');
+        require_once(BASE.'tbs_class_php5.php');
+        require_once(BASE.'tbsooo_class.php');
+        $OOo = new clsTinyButStrongOOo;
+        $OOo->noErr = true;
+        $OOo->SetZipBinary('zip');
+        $OOo->SetUnzipBinary('unzip');
+        $OOo->SetProcessDir(sfConfig::get('sf_upload_dir'));
+        $OOo->SetDataCharset('UTF8');
+        $OOo->NewDocFromTpl(sfConfig::get('sf_upload_dir').'/'.$archivo);
+        $OOo->LoadXmlFromDoc('content.xml');
+        $OOo->MergeField($tipoinforme, $datos);
+        $OOo->SaveXmlToDoc();
+        header('Content-type: '.$OOo->GetMimetypeDoc());
+        header('Content-Length: '.filesize($OOo->GetPathnameDoc()));
+        $OOo->FlushDoc();
+        $OOo->RemoveDoc();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  *  Informe: Alumnos por Division 
  *
  */
-
-
     
     private function _getDivisiones($establecimiento_id)  {
         $optionsDivision = array();

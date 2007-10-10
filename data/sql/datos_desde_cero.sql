@@ -309,5 +309,10 @@ INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (54, 1
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (55, 1, 61);
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (56, 1, 62);
 
-SET FOREIGN_KEY_CHECKS = 1;
+-- 
+-- Volcar la base de datos para la tabla `tipoinforme`
+-- 
 
+INSERT INTO `tipoinforme` (`id` ,`nombre` ,`descripcion`) VALUES (1 , 'Alumnos', 'Informes relacionados a los alumnos');
+
+SET FOREIGN_KEY_CHECKS = 1;

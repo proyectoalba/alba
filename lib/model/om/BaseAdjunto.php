@@ -42,6 +42,12 @@ abstract class BaseAdjunto extends BaseObject  implements Persistent {
 	protected $lastLegajoadjuntoCriteria = null;
 
 	
+	protected $collInformes;
+
+	
+	protected $lastInformeCriteria = null;
+
+	
 	protected $alreadyInSave = false;
 
 	
@@ -311,6 +317,14 @@ abstract class BaseAdjunto extends BaseObject  implements Persistent {
 				}
 			}
 
+			if ($this->collInformes !== null) {
+				foreach($this->collInformes as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
 			$this->alreadyInSave = false;
 		}
 		return $affectedRows;
@@ -354,6 +368,14 @@ abstract class BaseAdjunto extends BaseObject  implements Persistent {
 
 				if ($this->collLegajoadjuntos !== null) {
 					foreach($this->collLegajoadjuntos as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
+
+				if ($this->collInformes !== null) {
+					foreach($this->collInformes as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -530,6 +552,10 @@ abstract class BaseAdjunto extends BaseObject  implements Persistent {
 				$copyObj->addLegajoadjunto($relObj->copy($deepCopy));
 			}
 
+			foreach($this->getInformes() as $relObj) {
+				$copyObj->addInforme($relObj->copy($deepCopy));
+			}
+
 		} 
 
 		$copyObj->setNew(true);
@@ -658,6 +684,111 @@ abstract class BaseAdjunto extends BaseObject  implements Persistent {
 		$this->lastLegajoadjuntoCriteria = $criteria;
 
 		return $this->collLegajoadjuntos;
+	}
+
+	
+	public function initInformes()
+	{
+		if ($this->collInformes === null) {
+			$this->collInformes = array();
+		}
+	}
+
+	
+	public function getInformes($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseInformePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collInformes === null) {
+			if ($this->isNew()) {
+			   $this->collInformes = array();
+			} else {
+
+				$criteria->add(InformePeer::FK_ADJUNTO_ID, $this->getId());
+
+				InformePeer::addSelectColumns($criteria);
+				$this->collInformes = InformePeer::doSelect($criteria, $con);
+			}
+		} else {
+						if (!$this->isNew()) {
+												
+
+				$criteria->add(InformePeer::FK_ADJUNTO_ID, $this->getId());
+
+				InformePeer::addSelectColumns($criteria);
+				if (!isset($this->lastInformeCriteria) || !$this->lastInformeCriteria->equals($criteria)) {
+					$this->collInformes = InformePeer::doSelect($criteria, $con);
+				}
+			}
+		}
+		$this->lastInformeCriteria = $criteria;
+		return $this->collInformes;
+	}
+
+	
+	public function countInformes($criteria = null, $distinct = false, $con = null)
+	{
+				include_once 'lib/model/om/BaseInformePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		$criteria->add(InformePeer::FK_ADJUNTO_ID, $this->getId());
+
+		return InformePeer::doCount($criteria, $distinct, $con);
+	}
+
+	
+	public function addInforme(Informe $l)
+	{
+		$this->collInformes[] = $l;
+		$l->setAdjunto($this);
+	}
+
+
+	
+	public function getInformesJoinTipoinforme($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseInformePeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collInformes === null) {
+			if ($this->isNew()) {
+				$this->collInformes = array();
+			} else {
+
+				$criteria->add(InformePeer::FK_ADJUNTO_ID, $this->getId());
+
+				$this->collInformes = InformePeer::doSelectJoinTipoinforme($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(InformePeer::FK_ADJUNTO_ID, $this->getId());
+
+			if (!isset($this->lastInformeCriteria) || !$this->lastInformeCriteria->equals($criteria)) {
+				$this->collInformes = InformePeer::doSelectJoinTipoinforme($criteria, $con);
+			}
+		}
+		$this->lastInformeCriteria = $criteria;
+
+		return $this->collInformes;
 	}
 
 } 

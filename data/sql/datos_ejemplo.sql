@@ -3448,6 +3448,11 @@ INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frec
 INSERT INTO `evento` (`id`, `titulo`, `fecha_inicio`, `fecha_fin`, `tipo`, `frecuencia`, `frecuencia_intervalo`, `recurrencia_fin`, `recurrencia_dias`, `estado`) VALUES (32, 'Cuarto Grado A - Estudios sociales', '2007-03-05 14:50:00', '2007-03-05 15:30:00', 1, 5, 1, '2007-12-14 00:00', 6, 1);
 
 
+-- 
+-- Volcar la base de datos para la tabla `tipoinforme`
+-- 
+
+INSERT INTO `tipoinforme` (`id` ,`nombre` ,`descripcion`) VALUES (1 , 'Alumnos', 'Informes relacionados a los alumnos');
 
 SET FOREIGN_KEY_CHECKS = 1;
 
