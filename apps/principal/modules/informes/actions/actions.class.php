@@ -334,9 +334,17 @@ class InformesActions extends sfActions
                             $alumno = AlumnoPeer::retrieveByPk($this->getRequestParameter('alumno_id'));
                             $aDato['alumno'] = $alumno->toArray();
 
+                            $aDato['tipoDocumento'] = array ( 'Nombre' => ($alumno->getTipoDocumento())?$alumno->getTipoDocumento()->getDescripcion():'');
+
+                            $establecimiento = EstablecimientoPeer::retrieveByPk($establecimiento_id);
+                            $aDato['establecimiento'] = $establecimiento->toArray();
+
+                            $aDato['distritoEscolar'] = array ( 'Nombre' => ($establecimiento->getDistritoescolar())?$establecimiento->getDistritoescolar()->getNombre():'');
+
                             $c = new Criteria();
                             $c->add(RelAlumnoDivisionPeer::FK_ALUMNO_ID, $alumno->getId());
                             $relAlumnoDivision = RelAlumnoDivisionPeer::doSelectOne($c);
+
                             $d = $relAlumnoDivision->getDivision();
                             $division = array( 
                                     'Anio' => ($d->getAnio())?$d->getAnio()->getDescripcion():'' ,
@@ -345,8 +353,11 @@ class InformesActions extends sfActions
                                     'Orientacion' => ($d->getOrientacion())?$d->getOrientacion()->getDescripcion():'' );
 
                             $aDato['division'] = $division;
-                            $aDato['fecha'] = array( 'Hoy' => date("d/m/Y"));
                             $aDato['informe'] = $informe->toArray();
+
+                            $ciclolectivo_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');
+                            $ciclolectivo = CiclolectivoPeer::retrieveByPk($ciclolectivo_id);
+                            $aDato['ciclolectivo'] = $ciclolectivo->toArray();
                             break;
 
             default: $this->forward404();
