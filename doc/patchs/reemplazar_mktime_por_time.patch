@@ -1,0 +1,24 @@
+Index: lib/tbs_class_php5.php
+===================================================================
+--- lib/tbs_class_php5.php	(revision 5219)
++++ lib/tbs_class_php5.php	(working copy)
+@@ -1842,7 +1842,7 @@
+ 	$SubStart = false;
+ 	if (isset($Loc->SubLst[1])) {
+ 		switch ($Loc->SubLst[1]) {
+-		case 'now': $x = mktime(); break;
++		case 'now': $x = time(); break;
+ 		case 'version': $x = $this->Version; break;
+ 		case 'script_name': $x = basename(((isset($_SERVER)) ? $_SERVER['PHP_SELF'] : $GLOBALS['HTTP_SERVER_VARS']['PHP_SELF'] )); break;
+ 		case 'template_name': $x = $this->_LastFile; break;
+@@ -2800,8 +2800,8 @@
+ 				$CheckChr = false;
+ 				if (($Chr===' ') or ($Chr==="\r") or ($Chr==="\n")) {
+ 					if ($Status===1) {
+-						$Status = 2;
+-						$PosNend = $Pos;
++						$Status = 2;
++						$PosNend = $Pos;
+ 					} elseif ($HtmlTag and ($Status===4)) {
+ 						tbs_Locator_PrmCompute($Txt,$Loc,$SubName,$Status,$HtmlTag,$DelimChr,$DelimCnt,$PosName,$PosNend,$PosVal,$Pos);
+ 						$Status = 0;

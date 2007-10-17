@@ -10,3 +10,6 @@ ver situacion en http://trac.symfony-project.com/trac/ticket/1776
 
 newMimeTypes.pacth
 ver situacion en http://trac.symfony-project.com/ticket/2362
+
+reemplazar_mktime_por_time.patch 
+Parche para el tbs (tiny but strong) 3.0

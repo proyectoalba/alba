@@ -1842,7 +1842,7 @@ function meth_Merge_AutoSpe(&$Txt,&$Loc) {
 	$SubStart = false;
 	if (isset($Loc->SubLst[1])) {
 		switch ($Loc->SubLst[1]) {
-		case 'now': $x = mktime(); break;
+		case 'now': $x = time(); break;
 		case 'version': $x = $this->Version; break;
 		case 'script_name': $x = basename(((isset($_SERVER)) ? $_SERVER['PHP_SELF'] : $GLOBALS['HTTP_SERVER_VARS']['PHP_SELF'] )); break;
 		case 'template_name': $x = $this->_LastFile; break;
