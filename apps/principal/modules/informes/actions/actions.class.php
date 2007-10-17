@@ -306,19 +306,41 @@ class InformesActions extends sfActions
     }
 
 
+    public function executeBusqueda() {
+        $informe = InformePeer::retrieveByPk($this->getRequestParameter('id'));
+        $this->forward404Unless($informe);
+        $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
+
+        switch($informe->getTipoInforme()->getNombre()) {
+            case 'alumno': $this->redirect('informes/busquedaAlumnos?id='.$informe->getId()); break;
+            default: $this->redirect('informes/busquedaAlumnos?id='.$informe->getId());
+        }
+    }
+
+
+
     public function executeMostrar() {
         $informe = InformePeer::retrieveByPk($this->getRequestParameter('id'));
         $this->forward404Unless($informe);
-
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
 
-        $aAlumno = $this->_getTodosLosAlumnos($establecimiento_id);
+/*
+        if($informe->getVariables()) {
+        } else {
+*/
+        switch($informe->getTipoInforme()->getNombre()) {
+            case 'alumno': 
+                            $alumno = AlumnoPeer::retrieveByPk($this->getRequestParameter('alumno_id'));
+                            $datos = $alumno->toArray();
+                            break;
 
-        $datos = $aAlumno[0];
+            default: $this->forward404();
+        }
+
         $this->reporteTBSOO($informe->getAdjunto()->getRuta(), $informe->getTipoInforme()->getNombre(), $datos);
-
         return sfview::NONE;
     }
+
 
 
 
@@ -337,7 +359,7 @@ class InformesActions extends sfActions
         // llenando el combo de division segun establecimiento
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
         $optionsDivision = $this->_getDivisiones($establecimiento_id);
-       
+
         if ($this->getRequest()->getMethod() == sfRequest::POST) {
             $aAlumno = $this->_getAlumnosPorDivision($division_id, $txt);             // buscando alumnos
         }
@@ -347,14 +369,15 @@ class InformesActions extends sfActions
         $this->division_id = $division_id;
         $this->txt = $txt;
         $this->aAlumno = $aAlumno;
-        $this->titulo = $informe->getNombre();
-//         $this->is = $informe=
+        $this->informe = $informe;
     }
 
 
 
 
     private function reporteTBSOO($archivo, $tipoinforme, $datos) {
+        // Aquí hay que verificar las variables que están en ODT y verificar si existen 
+        // en los datos que envío.
         define('BASE',sfConfig::get('sf_app_module_dir') .'/informes/' .sfConfig::get('sf_app_module_lib_dir_name').'/');
         require_once(BASE.'tbs_class_php5.php');
         require_once(BASE.'tbsooo_class.php');
