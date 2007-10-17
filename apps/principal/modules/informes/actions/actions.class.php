@@ -321,6 +321,7 @@ class InformesActions extends sfActions
 
     public function executeMostrar() {
         $informe = InformePeer::retrieveByPk($this->getRequestParameter('id'));
+        
         $this->forward404Unless($informe);
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
 
@@ -330,7 +331,7 @@ class InformesActions extends sfActions
 */
         $aDato = array();
         switch($informe->getTipoInforme()->getNombre()) {
-            case 'alumno': 
+            case 'Alumnos': 
                             $alumno = AlumnoPeer::retrieveByPk($this->getRequestParameter('alumno_id'));
                             $aDato['alumno'] = $alumno->toArray();
 
