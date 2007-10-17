@@ -5,6 +5,6 @@
   'post' => true,
   'confirm' => __('Are you sure?'),
 )) ?></li>
-    <li><?php echo link_to(image_tag('/images/small/report_go.png', array('alt' => __('ir al reporte'), 'title' => __('ir al reporte'))), 'informes/mostrar?id='.$informe->getId()) ?></li>
+    <li><?php echo link_to(image_tag('/images/small/report_go.png', array('alt' => __('ir al reporte'), 'title' => __('ir al reporte'))), 'informes/busqueda?id='.$informe->getId()) ?></li>
 </ul>
 </td>

@@ -1,4 +1,4 @@
-<?php use_helper('I18N', 'Date') ?>
+<?php use_helper('I18N', 'Date','Object') ?>
 
 <?php use_stylesheet('/sf/sf_admin/css/main') ?>
 

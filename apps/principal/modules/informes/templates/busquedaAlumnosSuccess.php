@@ -1,6 +1,6 @@
-<?php use_helper('I18N'); ?>
+<?php use_helper('I18N','Form','Object'); ?>
 <div id="sf_admin_container">
-<h1>Informe: <?php echo $titulo ?></h1>
+<h1>Informe: <?php echo $informe->getNombre(); ?></h1>
 <?php echo form_tag('informes/busquedaAlumnos', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
 
 <fieldset id="sf_fieldset_none" class="">
@@ -20,6 +20,7 @@
   'class' => 'sf_admin_action_save',
 )) ?></li>
 </ul>
+<?php echo object_input_hidden_tag($informe, 'getId') ?>
 </form>
 <?php if (count($aAlumno) > 0) {
     if ($txt) { ?>
@@ -43,7 +44,7 @@
     <td><?php echo $alumno->alumno_apellido." ".$alumno->alumno_nombre; ?> ( <?php echo $alumno->anio_descripcion?> - <?php echo $alumno->division_nombre?> ) </td>
     <td>
     <ul class="sf_admin_td_actions">
-     <li><?php echo link_to(image_tag('/images/small/report_go.png', array('alt' => 'editar', 'title' => 'Editar')) , 'informes?action=mostrar&alumno_id='.$alumno->alumno_id); ?></li>
+     <li><?php echo link_to(image_tag('/images/small/report_go.png', array('alt' => 'editar', 'title' => 'Editar')) , 'informes?action=mostrar&alumno_id='.$alumno->alumno_id.'&id='.$informe->getId()); ?></li>
     </ul>
     </td>
   </tr>
