@@ -348,7 +348,7 @@ class InformesActions extends sfActions
         $this->txt = $txt;
         $this->aAlumno = $aAlumno;
         $this->titulo = $informe->getNombre();
-        $this->is = $informe=
+//         $this->is = $informe=
     }
 
 
