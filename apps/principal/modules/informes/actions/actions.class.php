@@ -328,16 +328,31 @@ class InformesActions extends sfActions
         if($informe->getVariables()) {
         } else {
 */
+        $aDato = array();
         switch($informe->getTipoInforme()->getNombre()) {
             case 'alumno': 
                             $alumno = AlumnoPeer::retrieveByPk($this->getRequestParameter('alumno_id'));
-                            $datos = $alumno->toArray();
+                            $aDato['alumno'] = $alumno->toArray();
+
+                            $c = new Criteria();
+                            $c->add(RelAlumnoDivisionPeer::FK_ALUMNO_ID, $alumno->getId());
+                            $relAlumnoDivision = RelAlumnoDivisionPeer::doSelectOne($c);
+                            $d = $relAlumnoDivision->getDivision();
+                            $division = array( 
+                                    'Anio' => ($d->getAnio())?$d->getAnio()->getDescripcion():'' ,
+                                    'Descripcion' => $d->getDescripcion(),
+                                    'Turno' => ($d->getTurno())?$d->getTurno()->getDescripcion():'',
+                                    'Orientacion' => ($d->getOrientacion())?$d->getOrientacion()->getDescripcion():'' );
+
+                            $aDato['division'] = $division;
+                            $aDato['fecha'] = array( 'Hoy' => date("d/m/Y"));
+                            $aDato['informe'] = $informe->toArray();
                             break;
 
             default: $this->forward404();
         }
 
-        $this->reporteTBSOO($informe->getAdjunto()->getRuta(), $informe->getTipoInforme()->getNombre(), $datos);
+        $this->reporteTBSOO($informe->getAdjunto()->getRuta(), $informe->getTipoInforme()->getNombre(), $aDato);
         return sfview::NONE;
     }
 
@@ -375,7 +390,7 @@ class InformesActions extends sfActions
 
 
 
-    private function reporteTBSOO($archivo, $tipoinforme, $datos) {
+    private function reporteTBSOO($archivo, $tipoinforme, $aDato) {
         // Aquí hay que verificar las variables que están en ODT y verificar si existen 
         // en los datos que envío.
         define('BASE',sfConfig::get('sf_app_module_dir') .'/informes/' .sfConfig::get('sf_app_module_lib_dir_name').'/');
@@ -389,7 +404,14 @@ class InformesActions extends sfActions
         $OOo->SetDataCharset('UTF8');
         $OOo->NewDocFromTpl(sfConfig::get('sf_upload_dir').'/'.$archivo);
         $OOo->LoadXmlFromDoc('content.xml');
-        $OOo->MergeField($tipoinforme, $datos);
+
+        if(is_array($aDato)) {
+            foreach($aDato as $idx => $dato) {
+                $OOo->MergeField($idx, $dato);
+//         $OOo->MergeField($tipoinforme, $datos);
+            }
+        }
+
         $OOo->SaveXmlToDoc();
         header('Content-type: '.$OOo->GetMimetypeDoc());
         header('Content-Length: '.filesize($OOo->GetPathnameDoc()));
