@@ -312,7 +312,7 @@ class InformesActions extends sfActions
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
 
         switch($informe->getTipoInforme()->getNombre()) {
-            case 'alumno': $this->redirect('informes/busquedaAlumnos?id='.$informe->getId()); break;
+            case 'Alumnos': $this->redirect('informes/busquedaAlumnos?id='.$informe->getId()); break;
             default: $this->redirect('informes/busquedaAlumnos?id='.$informe->getId());
         }
     }
@@ -321,17 +321,19 @@ class InformesActions extends sfActions
 
     public function executeMostrar() {
         $informe = InformePeer::retrieveByPk($this->getRequestParameter('id'));
-        
+
         $this->forward404Unless($informe);
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
 
-/*
-        if($informe->getVariables()) {
+
+        if(count($informe->getVariables())>0 AND $this->getRequestParameter('v')!= 1) {
+
+            $this->redirect('informes/variables?id='.$informe->getId().'&alumno_id='.$this->getRequestParameter('alumno_id'));
+
         } else {
-*/
-        $aDato = array();
-        switch($informe->getTipoInforme()->getNombre()) {
-            case 'Alumnos': 
+            $aDato = array();
+            switch($informe->getTipoInforme()->getNombre()) {
+                case 'Alumnos': 
                             $alumno = AlumnoPeer::retrieveByPk($this->getRequestParameter('alumno_id'));
                             $aDato['alumno'] = $alumno->toArray();
 
@@ -359,9 +361,18 @@ class InformesActions extends sfActions
                             $ciclolectivo_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');
                             $ciclolectivo = CiclolectivoPeer::retrieveByPk($ciclolectivo_id);
                             $aDato['ciclolectivo'] = $ciclolectivo->toArray();
+
+                            if(count($informe->getVariables())>0) {
+                                $aDato['variable'] = array();
+                                $variables = explode(";",$informe->getVariables());
+                                foreach($variables as $variable) {
+                                    $aDato['variable'] = array_merge( $aDato['variable'], array ( $variable => $this->getRequestParameter($variable)));
+                                }
+                            }
                             break;
 
-            default: $this->forward404();
+                default: $this->forward404();
+            }
         }
 
         $this->reporteTBSOO($informe->getAdjunto()->getRuta(), $informe->getTipoInforme()->getNombre(), $aDato);
@@ -369,6 +380,17 @@ class InformesActions extends sfActions
     }
 
 
+    public function executeVariables() {
+        $informe = InformePeer::retrieveByPk($this->getRequestParameter('id'));
+        $this->forward404Unless($informe);
+
+        $alumno = AlumnoPeer::retrieveByPk($this->getRequestParameter('alumno_id'));
+        $this->forward404Unless($alumno);
+
+        $this->variables = explode(";",$informe->getVariables());
+        $this->alumno = $alumno;
+        $this->informe = $informe;
+    }
 
 
     public function executeBusquedaAlumnos() {
