@@ -1,8 +1,8 @@
 <chapter><title> Cuentas</title>
 <para>
-La secci&oacute;n Cuentas del men&uacute; desplegable, ofrece las herramientas necesarias para organizar la informaci&oacute;n de varios alumnos con un responsable com&uacute;n. Una cuenta puede funcionar como una familia particular, pero tambi&eacute;n puede no ser una familia en sentido estricto. 
+La secci&oacute;n Cuentas del men&uacute; desplegable ofrece las herramientas necesarias para organizar la informaci&oacute;n de varios alumnos con un responsable com&uacute;n. Una cuenta puede funcionar como una familia particular, pero tambi&eacute;n puede no ser una familia en sentido estricto. 
 </para>
-<sect1><title>Administrar.</title>
+<sect1><title>Administrar</title>
 <para>
 Desde este men&uacute; es posible crear nuevas cuentas y gestionar las existentes. 
 </para>
@@ -11,12 +11,12 @@ Desde este men&uacute; es posible crear nuevas cuentas y gestionar las existente
 <graphic fileref="img/figura24.png" scale="60" />
 </figure>
 </para>
-<sect2><title>Crear una cuenta nueva.</title>
+<sect2><title>Crear una cuenta nueva</title>
 <para>
-Para crear una cuenta nueva, se debe utilizar el acceso al pi&eacute; que indica "Nuevo" y completar siguientes  datos: 
+Para crear una cuenta nueva se debe utilizar el acceso al pi&eacute; que indica "Nuevo" y completar siguientes  datos: 
 </para>
 <para>
-<emphasis>Nombre:</emphasis>Una denominaci&oacute;n de la cuenta, que puede expresar (por ejemplo) el apellido de la una familia o el nombre de otra organizaci&oacute;n que nuclea un grupo de alumnos. 
+<emphasis>Nombre:</emphasis> Una denominaci&oacute;n de la cuenta, que puede expresar (por ejemplo) el apellido de una familia o el nombre de otra organizaci&oacute;n que nuclea un grupo de alumnos. 
 </para>
 <para>
 <emphasis>Raz&oacute;n Social, CUIT y tipo de IVA:</emphasis> Si se trata de una persona jur&iacute;dica la que se responsabiliza de los alumnos (especialmente cuando se trata de toma a cargo de valores en unidades educativas privadas). El CUIT posibilita el cobro de futuras transacciones.
@@ -43,12 +43,12 @@ Las listas de alumnos y responsables asociados a la cuenta, tambi&eacute;n posee
 </sect2>
 </sect1>
 
-<sect1><title>Responsables.</title>
+<sect1><title>Responsables</title>
 <para>
-Todos los responsables de las cuentas, constituyen un listado completo que puede ser utilizado (si bien una cuenta puede tener varios responsables) para hacer una comunicaci&oacute;n directa y no redundante con &eacute;stos, sin la intercesi&oacute;n de los alumnos asociados. 
+Todos los responsables de las cuentas constituyen un listado completo que puede ser utilizado (si bien una cuenta puede tener varios responsables) para lograr una comunicaci&oacute;n directa y no redundante con &eacute;stos, sin la intercesi&oacute;n de los alumnos asociados. 
 </para>
 <para>
-Como todo listado, puede ser ordenado seg&uacute;n diversos criterios y cuenta con la herramienta de filtrado para realizar b&uacute;squedas. Tambi&eacute;n tienen opciones de edici&oacute;n y de acceso a la cuenta asociada. 
+Como todo listado, &eacute;ste puede ser ordenado seg&uacute;n diversos criterios y cuenta con la herramienta de filtrado para realizar b&uacute;squedas. Tambi&eacute;n tienen opciones de edici&oacute;n y de acceso a la cuenta asociada.
 </para>
 <para>
 <figure><title>Listado de responsables.</title>

@@ -109,7 +109,7 @@ Dentro de esta secci&oacute;n Administraci&oacute;n --> General --> Configuracio
 
 <important>
 <para>
-IMPORTANTE: Recuerde que si Ud. instal&oacute; una versi&oacute;n con ejemplo, todas las configuraciones previas de esta secci&oacute;n del men&uacute;, cuentan con una precarga inicial que es posible editar a la medida de las necesidades del establecimiento. Es por ello que se sugiere se revise previamente al uso. 
+Recuerde que si Ud. instal&oacute; una versi&oacute;n con ejemplo, todas las configuraciones previas de esta secci&oacute;n del men&uacute;, cuentan con una precarga inicial que es posible editar a la medida de las necesidades del establecimiento. Es por ello que se sugiere se revise previamente al uso. 
 </para>
 </important>
 <para>
@@ -135,7 +135,7 @@ Ingresando desde el men&uacute; desplegable a Calendarios y Horarios --> Horario
 </para>
 
 <para>
-Es necesario incorporar tambi&eacute;n informaci&oacute;n respecto de la gesti&oacute;n escolar: 
+Ser&aacute; necesario incorporar tambi&eacute;n informaci&oacute;n respecto de la gesti&oacute;n escolar: 
 </para>
 
 <para>
@@ -147,7 +147,7 @@ Ingresando desde el men&uacute; desplegable Gesti&oacute;n Escolar --> Definir G
 Ingresando desde el men&uacute; desplegable Gesti&oacute;n Escolar --> Definir Secciones/Divisiones. Como se dijo, las secciones/divisiones junto con los a&ntilde;os/grados, permiten asignar un alumno a un grupo determinado (definido por a&ntilde;o y secci&oacute;n).
 </para>
 <para>
-Por &uacute;ltimo, se ingresa todo lo referente a las cuentas y a los individuos relacionados con &eacute;sta (responsables, alumnos): 
+Por &uacute;ltimo, se debe ingresar todo lo referente a las cuentas y a los individuos relacionados con &eacute;sta (responsables, alumnos): 
 </para>
 <para>
 7) Ingresar las <emphasis>Cuentas.</emphasis> 
@@ -156,16 +156,16 @@ Desde este mismo men&uacute;, tambi&eacute;n es posible a partir del bot&oacute;
 </para>
 <para>
 8) Ingresar los <emphasis>Responsables.</emphasis>
-Desde el men&uacute; desplegable, ingresando a Cuentas --> Responsables, se definen y administran los Responsables. En la carga, se solicitan no solamente los datos administrativos, sino tambi&eacute;n la relaci&oacute;n con la Cuenta y con los Alumnos de la cuenta. 
+Desde el men&uacute; desplegable, ingresando a Cuentas --> Responsables, se definen y administran los Responsables. En la carga se solicitan no solamente los datos administrativos, sino tambi&eacute;n la relaci&oacute;n con la Cuenta y con los Alumnos de la cuenta. 
 </para>
 <para>
 9) Ingresar <emphasis>Alumnos.</emphasis> 
-Desde el men&uacute; desplegable, ingresando a Alumnos --> Ingresar Nuevo, se permite el ingreso de los nuevos alumnos, que relacionados con una cuenta, luego se insertar&oacute;n en un grado/a&ntilde;o y una divisi&oacute;n/secci&oacute;n determinada. 
+Desde el men&uacute; desplegable, ingresando a Alumnos --> Ingresar Nuevo, se permite el ingreso de los nuevos alumnos, que relacionados con una cuenta, luego se insertar&aacute;n en un grado/a&ntilde;o y una divisi&oacute;n/secci&oacute;n determinada. 
 </para>
 
 <important>
 <para>
-IMPORTANTE: recuerde que es posible agregar los responsables y alumnos de la cuenta (incluso duplicando los datos de direcci&oacute;n y tel&eacute;fono) a partir del bot&oacute;n "Agregar alumnos y responsables" accesible ingresando a una cuenta, desde el listado de cuentas.
+ recuerde que es posible agregar los responsables y alumnos de la cuenta (incluso duplicando los datos de direcci&oacute;n y tel&eacute;fono) a partir del bot&oacute;n "Agregar alumnos y responsables" accesible ingresando a una cuenta, desde el listado de cuentas.
 </para>
 </important>
 
@@ -179,10 +179,10 @@ Lo mismo sucede con la gesti&oacute;n de Alumnos en relaci&oacute;n a las Seccio
 
 <sect1><title>Otras configuraciones de ALBA</title>
 <para>
-Otra de las configuraciones iniciales importantes, incluso pueden ser previas a la carga de la informaci&oacute;n sugerida, es la carga de los <emphasis>Usuarios</emphasis> que utilizar&oacute;n el sistema. Ingresando desde el men&uacute; desplegable  Administraci&oacute;n --> Seguridad --> Usuarios.
+Otra de las configuraciones iniciales importantes pueden ser previas a la carga de la informaci&oacute;n sugerida, es la carga de los <emphasis>Usuarios</emphasis> que utilizar&oacute;n el sistema. Ingresando desde el men&uacute; desplegable  Administraci&oacute;n --> Seguridad --> Usuarios.
 </para>
 <para>
-La jerarqu&iacute;a y accesos posibles de los Usuarios al sistema, est&aacute; dada seg&uacute;n los Roles que le sean asignados, y los Permisos con los que cuente.  (Ver Cap. correspondiente).
+La jerarqu&iacute;a y accesos posibles de los Usuarios al sistema, est&aacute; dada seg&uacute;n los Roles que le sean asignados, y los Permisos con los que cuente.  (Ver 5.4 Seguridad).
 </para>
 </sect1>
 </chapter>

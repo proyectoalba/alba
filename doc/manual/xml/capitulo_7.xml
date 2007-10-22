@@ -1,13 +1,13 @@
-<chapter><title>Alumnos.</title>
+<chapter><title>Alumnos</title>
 <para>
-La secci&oacute;n Alumnos del men&uacute; desplegable, ofrece la posibilidad de administrar el listado de alumnos seg&uacute;n divisiones, generando nuevas altas, haciendo b&uacute;squedas para acciones futuras, y gestionando la asistencia y los boletines. 
+La secci&oacute;n Alumnos del men&uacute; desplegable ofrece la posibilidad de administrar el listado de alumnos seg&uacute;n divisiones, generando nuevas altas, haciendo b&uacute;squedas para acciones futuras, y gestionando la asistencia y los boletines. 
 </para>
 <sect1><title>Ingresar Nuevo</title>
 <para>
 Adem&aacute;s de la posibilidad de ingresar un alumno a una cuenta existente (desde los botones de acci&oacute;n de la misma cuenta), existe tambi&eacute;n el ingreso de un alumno de manera independiente. 
 </para>
 <para>
-Esta carga, solicita como datos obligatorios: Apellidos, Nombres, Sexo, Tipo y N&uacute;mero de Documentos, Lugar y Fecha de Nacimiento, Nacionalidad, Email, Direcci&oacute;n; as&iacute; como unas preguntas para resolver las prioridades (situaci&oacute;n que se establece en escuelas especialmente p&uacute;blicas), como el caso de hermanos en la escuela o padres docentes en la escuela. 
+Esta carga solicita como datos obligatorios: Apellidos, Nombres, Sexo, Tipo y N&uacute;mero de Documentos, Lugar y Fecha de Nacimiento, Nacionalidad, Email, Direcci&oacute;n; as&iacute; como unas preguntas para resolver las prioridades (situaci&oacute;n que se establece en escuelas especialmente p&uacute;blicas), como el caso de hermanos en la escuela o padres docentes en la escuela. 
 </para>
 <para>
 Luego de esta carga, al tratarse de un ingreso de alumno independiente de la cuenta, existe un cuadro de b&uacute;squeda sobre el listado de cuentas existentes a partir de cuatro letras del nombre. Tambi&eacute;n permite la creaci&oacute;n de una nueva cuenta desde esta misma pantalla, y luego asociarla (realizando la b&uacute;squeda nuevamente). 
