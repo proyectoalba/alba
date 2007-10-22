@@ -79,7 +79,7 @@ class InformesActions extends sfActions
             $ext = substr($this->getRequest()->getFileName('file'),strrpos($this->getRequest()->getFileName('file'),'.'));
             $realFileName = $this->getRequest()->getFileName('file');
             $uniqueFileName = uniqid(rand()) . $ext;
-            $this->getRequest()->moveFile('file', sfConfig::get('sf_upload_dir').'/'.$uniqueFileName);
+            $this->getRequest()->moveFile('file', sfConfig::get('sf_informe_dir').'/'.$uniqueFileName);
             $adjunto = new Adjunto(); 
             $adjunto->setFecha(date('Y-m-d'));
             $adjunto->setNombreArchivo($realFileName);
@@ -119,7 +119,7 @@ class InformesActions extends sfActions
 
     try
     {
-      unlink(sfConfig::get('sf_upload_dir')."/".$this->informe->getAdjunto()->getRuta());
+      unlink(sfConfig::get('sf_informe_dir')."/".$this->informe->getAdjunto()->getRuta());
       $adjunto_id = $this->informe->getFkAdjuntoId();
       $this->deleteInforme($this->informe);
       $adjunto = AdjuntoPeer::retrieveByPk($adjunto_id);
@@ -300,7 +300,7 @@ class InformesActions extends sfActions
         $informe->setFkAdjuntoId();
         $informe->save();
         $adjunto = AdjuntoPeer::retrieveByPk($informe->getFkAdjuntoId());
-        unlink(sfConfig::get('sf_upload_dir')."/".$adjunto->getRuta());
+        unlink(sfConfig::get('sf_informe_dir')."/".$adjunto->getRuta());
         $adjunto->delete();
         return $this->redirect("informes?action=edit&id=".$id);
     }
@@ -412,9 +412,9 @@ class InformesActions extends sfActions
         $OOo->noErr = true;
         $OOo->SetZipBinary('zip');
         $OOo->SetUnzipBinary('unzip');
-        $OOo->SetProcessDir(sfConfig::get('sf_upload_dir'));
+        $OOo->SetProcessDir(sfConfig::get('sf_informe_dir'));
         $OOo->SetDataCharset('UTF8');
-        $OOo->NewDocFromTpl(sfConfig::get('sf_upload_dir').'/'.$archivo);
+        $OOo->NewDocFromTpl(sfConfig::get('sf_informe_dir').'/'.$archivo);
         $OOo->LoadXmlFromDoc('content.xml');
 
         if(is_array($aDato)) {

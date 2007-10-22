@@ -47,7 +47,7 @@
         <?php echo input_file_tag('file') ?>
         <?php  
            if($informe->getAdjunto()) {
-           ?><a href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()."/".sfConfig::get('sf_upload_dir_name').'/'. $informe->getAdjunto()->getRuta()?>"><?php echo $informe->getAdjunto()->getNombreArchivo()?></a>&nbsp;&nbsp;<?php 
+           ?><a href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()."/".sfConfig::get('sf_upload_dir_name').'/'. sfConfig::get('sf_informe_dir_name').'/'.$informe->getAdjunto()->getRuta()?>"><?php echo $informe->getAdjunto()->getNombreArchivo()?></a>&nbsp;&nbsp;<?php 
 //-           echo link_to("Borrar", "informes?action=borrarAdjunto&id=".$informe->getId());
            echo "&nbsp;&nbsp;&nbsp;&nbsp;";
             } 

@@ -315,4 +315,14 @@ INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (56, 1
 
 INSERT INTO `tipoinforme` (`id` ,`nombre` ,`descripcion`) VALUES (1 , 'Alumnos', 'Informes relacionados a los alumnos');
 
+
+INSERT INTO `adjunto` (`id`, `descripcion`, `titulo`, `nombre_archivo`, `tipo_archivo`, `ruta`, `fecha`) VALUES (1, NULL, NULL, 'constancia_alumno_regular.odt', 'application/vnd.oasis.opendocument.text', 'constancia_alumno_regular.odt', '2007-10-17 00:00:00');
+
+INSERT INTO `adjunto` (`id`, `descripcion`, `titulo`, `nombre_archivo`, `tipo_archivo`, `ruta`, `fecha`) VALUES (2, NULL, NULL, 'certificado_de_terminacion_de_estudios_primarios.odt', 'application/vnd.oasis.opendocument.text', 'certificado_de_terminacion_de_estudios_primarios.odt', '2007-10-17 00:00:00');
+
+INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (1, 'Constancia de Alumno regular', 'Constancia de Alumno regular', 1, 1, 0, '');
+
+INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (2, 'Certificado de terminacion de estudios primarios', 'Certificado de terminacion de estudios primarios', 2, 1, 0, '');
+
+
 SET FOREIGN_KEY_CHECKS = 1;
