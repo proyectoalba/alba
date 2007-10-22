@@ -326,10 +326,8 @@ class InformesActions extends sfActions
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
 
 
-        if(count($informe->getVariables())>0 AND $this->getRequestParameter('v')!= 1) {
-
+        if($informe->getVariables() AND $this->getRequestParameter('v')!= 1) {
             $this->redirect('informes/variables?id='.$informe->getId().'&alumno_id='.$this->getRequestParameter('alumno_id'));
-
         } else {
             $aDato = array();
             switch($informe->getTipoInforme()->getNombre()) {
