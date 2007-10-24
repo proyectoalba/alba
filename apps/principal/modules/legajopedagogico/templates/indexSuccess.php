@@ -75,7 +75,7 @@ array('use_style' => true)
   &nbsp;    
     <li><?php echo link_to(image_tag('jeringa.gif', array('alt' => __('Vacunas'), 'title' => __('Vacunas'))), 'alumno?action=vacunas&id='.$alumno->getId()); ?></li>
   &nbsp;    
-    <li><?php echo link_to(image_tag('small/boletin.png',array("title"=>"Boletin")), 'boletin/mostrar?alumno_id='. $alumno->getId(),'target=_blank') ?></li>        
+    <li><?php echo link_to(image_tag('small/boletin.png',array("title"=>"Ver Bolet&iacute;n")), 'boletin/mostrar?alumno_id='. $alumno->getId(),'target=_blank') ?></li>        
     <li><?php echo link_to(image_tag('next.png', array('alt' => 'Cuenta', 'title' => 'Cuenta')), 'alumno?action=irCuenta&id='.$alumno->getFkCuentaId()); ?></li>
     </ul>
     </td>
