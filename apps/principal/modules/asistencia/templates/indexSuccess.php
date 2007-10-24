@@ -174,7 +174,7 @@
             echo input_hidden_tag('vista', "layout_sinmenu"); 
             if($alumno_id >= 0)
                  echo input_hidden_tag('alumno_id', $alumno_id);
-            echo submit_tag(__('Listar'), array ('name' => 'Imprimir','class' => 'sf_admin_action_print'));
+            echo submit_tag(__('Vista Previa'), array ('name' => 'Imprimir','class' => 'sf_admin_action_print'));
          ?>
         </form>
         </li></ul>
