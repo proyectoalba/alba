@@ -437,10 +437,13 @@ class InformesActions extends sfActions
         $OOo->NewDocFromTpl(sfConfig::get('sf_informe_dir').'/'.$archivo);
         $OOo->LoadXmlFromDoc('content.xml');
 
+        // Saco del template todas las variables del tipo [sssss.rrrrr] y además 
+        // evitando las variables del tbs con ;
+        preg_match_all("/\[([^];]*\.[^];]*)\]/", $OOo->Source, $tplVars);
+
         if(is_array($aDato)) {
             foreach($aDato as $idx => $dato) {
                 $OOo->MergeField($idx, $dato);
-//         $OOo->MergeField($tipoinforme, $datos);
             }
         }
 
