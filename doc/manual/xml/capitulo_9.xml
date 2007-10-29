@@ -1,11 +1,11 @@
 <chapter><title>Gesti&oacute;n Escolar</title>
 <para>
-En esta parte del men&uacute; se agrupan las acciones orientadas espec&iacute;ficamente a la Gesti&oacute;n  Escolar propiamente dicha: la definici&oacute;n de a&ntilde;os, orientaciones, divisiones etc.,  as&iacute; como la relaci&oacute;n entre los alumnos y los grupos definidos seg&uacute;n los criterios anteriores. Esta secci&oacute;n relaciona, asimismo, las Actividades/Materias con los diferentes  niveles. 
+En esta secci&oacute; del men&uacute; se agrupan las acciones orientadas espec&iacute;ficamente a la Gesti&oacute;n  Escolar propiamente dicha: la definici&oacute;n de a&ntilde;os, orientaciones, divisiones etc.,  as&iacute; como la relaci&oacute;n entre los alumnos y los grupos definidos seg&uacute;n los criterios anteriores, y la relaci&acute; de las Actividades/Materias con los diferentes  niveles. 
 </para>
 
 <sect1><title>Definir Grados/A&ntilde;os</title>
 <para>
-Esta secci&oacute;n posibilita la configuraci&oacute;n de los diferentes conjuntos de alumnos agrupados seg&uacute;n la edad y plan de estudios. As&iacute; pues, es posible definir los diferentes  grados y/o  a&ntilde;os   seg&uacute;n los niveles que el establecimiento tenga. La siguiente  figura indica  el formulario para la  creaci&oacute;n  de un nuevo Grado/A&ntilde;o que solicita, &uacute;nicamente, la "Descripci&oacute;n" a modo de nombre.  Cuenta con opciones de edici&oacute;n.
+Esta secci&oacute;n posibilita la configuraci&oacute;n de los diferentes conjuntos de alumnos agrupados seg&uacute;n la edad y plan de estudios. As&iacute; pues, es posible definir los diferentes  grados y/o  a&ntilde;os   seg&uacute;n los niveles que el establecimiento tenga. La siguiente  figura muestra el formulario para la  creaci&oacute;n  de un nuevo Grado/A&ntilde;o que solicita, &uacute;nicamente, la "Descripci&oacute;n" a modo de nombre.  Cuenta con opciones de edici&oacute;n.
 </para>
 <para>
 <figure><title>Creaci&oacute;n de nuevo Grado/A&ntilde;o</title>
@@ -17,7 +17,7 @@ Esta secci&oacute;n posibilita la configuraci&oacute;n de los diferentes conjunt
 
 <sect1><title>Definir Orientaciones</title>
 <para>
-De igual forma que los Grados/A&ntilde;os las orientaciones deben ser difinidas con anterioridad a la carga de los alumnos y se realiza de manera similar.  Como siempre, se puede acceder a la edici&oacute;n de las entradas del listado a trav&eacute;s del bot&oacute;n Editar de la derecha. 
+De igual forma que los Grados/A&ntilde;os las orientaciones deben ser difinidas con anterioridad a la carga de los alumnos y se realiza de manera similar.  Como siempre, se puede acceder a la edici&oacute;n de las entradas del listado a trav&eacute;s del bot&oacute;n Editar de  la barra de acciones.
 </para>
 <para>
 <figure><title>Listado de orientaciones.</title>
@@ -28,10 +28,10 @@ De igual forma que los Grados/A&ntilde;os las orientaciones deben ser difinidas 
 
 <sect1><title>Definir Secciones/Divisiones</title>
 <para>
-A trav&eacute;s de esta secci&oacute;n se definen las Secciones/Divisiones de los diferentes Grados/A&ntilde;os. Este listado tambi&eacute;n cuenta con barra de acciones con botones de edici&oacute;n.
+A trav&eacute;s de este men&uacute; se definen las Secciones/Divisiones de los diferentes Grados/A&ntilde;os. Este listado tambi&eacute;n cuenta con la barra de acciones de botones de edici&oacute;n.
 </para>
 <para>
-Al dar de alta una nueva Secci&oacute;n o Divisi&oacute;n el sistema solicita indicar tambi&eacute;n: el A&ntilde;o o Grado, una descripci&oacute;n (como A, B) y la orientaci&oacute;n de corresponder (como en el caso de colegios secundarios).  Tambi&eacute;n solicitar&aacute; el turno y el orden. 
+Al dar de alta una nueva Secci&oacute;n o Divisi&oacute;n el sistema solicita indicar tambi&eacute;n: el A&ntilde;o o Grado, una descripci&oacute;n (como A, B) y la orientaci&oacute;n de corresponder (como en el caso de colegios secundarios).  Tambi&eacute;n solicitar&aacute; el turno y el orden.  Es importante recordar que el orden definir&aacute; el criterio en que se har&aacute; la visualizaci&oacute;n: mayor n&uacute;mero de orden, m&aacute;s bajo en el listado (si es ascendente). 
 </para>
 <para>
 <figure><title>Alta de divisi&oacute;n.</title>
@@ -44,6 +44,10 @@ Al dar de alta una nueva Secci&oacute;n o Divisi&oacute;n el sistema solicita in
 <para>
 Esta opci&oacute;n permite relacionar un alumno a un a&ntilde;o y divisi&oacute;n determinada.  En el listado de alumnos se despliegan alfab&eacute;ticamente aquellos alumnos (asignados o no). Los ya asignados indicar&aacute;n a qu&eacute; grupo determinado  pertenecen, y los no asignados no mostrar&aacute;n (al lado del nombre) esta relaci&oacute;n.  
 </para>
+<important> 
+<para>Se espera desarrollar mejoras en la forma de asignaci&oacute;n en la pr&oacute;xima versi&oacute;n. 
+</para>
+</important>
 <para>
 <figure><title>Asignar alumno a secci&oacute;n/divisi&oacute;n.</title>
     <graphic fileref="img/figura46.png" scale="70"/>
@@ -70,7 +74,7 @@ A trav&eacute;s del bot&oacute;n inferior "Nuevo" ALBA permitir&aacute; dar de a
 
 <sect1><title>Actividades por Grado/A&ntilde;o</title>
 <para>
-El ingreso inicial a esta secci&oacute;n mostrar&aacute; la lista de las actividades seg&uacute;n el a&ntilde;o, la actividad, la orientacion (si la hubiera) as&iacute; como las horas semanales que se le asignan seg&uacute;n las diferntes curr&iacute;culas. Tambi&eacute;n se visualizar&aacute; un filtro para facilitar las b&uacute;squedas y, por supuesto, la barra de acciones de edici&oacute;n.
+El ingreso inicial a esta secci&oacute;n mostrar&aacute; la lista de las actividades seg&uacute;n el a&ntilde;o, la orientacion (si la hubiera) as&iacute; como las horas semanales que se le asignan seg&uacute;n las diferntes curr&iacute;culas. Tambi&eacute;n se visualizar&aacute; un filtro para facilitar las b&uacute;squedas y, por supuesto, la barra de acciones de edici&oacute;n.
 </para>
 <para>
 <figure><title>Listado de actividades por a&ntilde;o.</title>
