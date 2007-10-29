@@ -37,9 +37,7 @@ class legajopedagogicoActions extends sfActions
    * Executes index action
    *
    */
-    public function executeIndex()
-    {
-        
+    public function executeIndex(){
         // inicializando variables
         $optionsDivision = array();
         $aAlumno  = array();        
@@ -63,13 +61,13 @@ class legajopedagogicoActions extends sfActions
         if ($this->getRequest()->getMethod() == sfRequest::POST) {
             // buscando alumnos
             $criteria = new Criteria();
+            $criteria->add(AlumnoPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
             if($division_id) {
                 $criteria->add(DivisionPeer::ID, $division_id);
                 $criteria->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
                 $criteria->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID);
             }
             
-        
             if($txt_apellido) {
                 $criteria->add(AlumnoPeer::APELLIDO, "$txt_apellido%", Criteria::LIKE);
             }
@@ -87,9 +85,7 @@ class legajopedagogicoActions extends sfActions
         $this->txt_apellido = $txt_apellido;
         $this->txt_nombre = $txt_nombre;
         $this->aAlumno = $aAlumno;
-
     }
-
 
     public function executeVerLegajo() {
         // inicializando variables
@@ -111,19 +107,8 @@ class legajopedagogicoActions extends sfActions
                 $criteria->add(LegajopedagogicoPeer::FK_LEGAJOCATEGORIA_ID, $legajo_categoria_id);
             }
             $aEntradaLegajo= LegajopedagogicoPeer::doSelect($criteria);
-
         }
 
-
-        // lleno en combo de categorias de legajo
-/*        $criteria = new Criteria();
-        $categoriaLegajos = LegajocategoriaPeer::doSelect($criteria);
-        $optionsCategoriaLegajo[]  = "";
-        foreach($categoriaLegajos as $categoriaLegajo) {
-            $optionsCategoriaLegajo[$categoriaLegajo->getId()] = $categoriaLegajo->getDescripcion();
-        }
-        asort($optionsCategoriaLegajo);*/
-        
         // lleno en combo de categorias de legajo
         $optionsCategoriaLegajo = $this->getCategorias();
 
@@ -135,7 +120,6 @@ class legajopedagogicoActions extends sfActions
     }
 
     protected function getCategorias() {
-        
         $optionsCategoriaLegajo = array();
         $criteria = new Criteria();
         $categoriaLegajos = LegajocategoriaPeer::doSelect($criteria);
@@ -147,59 +131,43 @@ class legajopedagogicoActions extends sfActions
         return $optionsCategoriaLegajo;    
     }
 
-
-    public function executeCreate ()
-    {
+    public function executeCreate (){
         return $this->forward('legajopedagogico', 'edit');
     }
 
-    public function executeSave ()
-    {
+    public function executeSave (){
+        $this->legajopedagogico = $this->getLegajopedagogicoOrCreate();
+        $this->updateLegajopedagogicoFromRequest();
+        $this->legajopedagogico->setFkUsuarioId($this->getUser()->getAttribute('id'));   // guardo el usuario que hizo esta entrada
+        $this->saveLegajopedagogico($this->legajopedagogico);
+       
+        // adding a attachment
+        if($this->getRequest()->getFileName('file')) {
+            $mimetype  = $this->getRequest()->getFileType('file');
+            $ext = $this->getRequest()->getFileExtension('file');                        
+            $realFileName = $this->getRequest()->getFileName('file');       
+            $uniqueFileName = uniqid(rand()) . $ext;            
+            $this->getRequest()->moveFile('file', sfConfig::get('sf_upload_dir').'/'.$uniqueFileName);
+            $adjunto = new Adjunto(); 
+            $adjunto->setFecha(date('Y-m-d'));
+            $adjunto->setNombreArchivo($realFileName);
+            $adjunto->setTipoArchivo($mimetype);     
+            $adjunto->setRuta($uniqueFileName);
+            $adjunto->save();
+            $legajoadjunto = new Legajoadjunto();
+            $legajoadjunto->setFkLegajopedagogicoId($this->legajopedagogico->getId());  
+            $legajoadjunto->setFkAdjuntoId($adjunto->getId());  
+            $legajoadjunto->save(); 
+        }
 
-            $this->legajopedagogico = $this->getLegajopedagogicoOrCreate();
-            $this->updateLegajopedagogicoFromRequest();
-            $this->legajopedagogico->setFkUsuarioId($this->getUser()->getAttribute('id'));   // guardo el usuario que hizo esta entrada
-            $this->saveLegajopedagogico($this->legajopedagogico);
-           
-            // adding a attachment
-            if($this->getRequest()->getFileName('file')) {
-                $mimetype  = $this->getRequest()->getFileType('file');
-                $ext = $this->getRequest()->getFileExtension('file');                        
-                $realFileName = $this->getRequest()->getFileName('file');       
-                $uniqueFileName = uniqid(rand()) . $ext;            
-                $this->getRequest()->moveFile('file', sfConfig::get('sf_upload_dir').'/'.$uniqueFileName);
-                $adjunto = new Adjunto(); 
-                $adjunto->setFecha(date('Y-m-d'));
-                $adjunto->setNombreArchivo($realFileName);
-                $adjunto->setTipoArchivo($mimetype);     
-                $adjunto->setRuta($uniqueFileName);
-                $adjunto->save();
-                $legajoadjunto = new Legajoadjunto();
-                $legajoadjunto->setFkLegajopedagogicoId($this->legajopedagogico->getId());  
-                $legajoadjunto->setFkAdjuntoId($adjunto->getId());  
-                $legajoadjunto->save(); 
-            }
-
-            $this->setFlash('notice', 'Your modifications have been saved');
-            if ($this->getRequestParameter('save_and_add')) {
-                return $this->redirect('legajopedagogico/create?aid='.$this->legajopedagogico->getFkAlumnoId().'&cid='.$this->legajopedagogico->getFkLegajocategoriaId());
-            } else  {
-                return $this->redirect('legajopedagogico/edit?aid='.$this->legajopedagogico->getFkAlumnoId().'&cid='.$this->legajopedagogico->getFkLegajocategoriaId().'&id='.$this->legajopedagogico->getId());
-            }
-
-
-
-
-
-
-
+        $this->setFlash('notice', 'Your modifications have been saved');
+        if ($this->getRequestParameter('save_and_add')) {
+            return $this->redirect('legajopedagogico/create?aid='.$this->legajopedagogico->getFkAlumnoId().'&cid='.$this->legajopedagogico->getFkLegajocategoriaId());
+        } else  {
+            return $this->redirect('legajopedagogico/edit?aid='.$this->legajopedagogico->getFkAlumnoId().'&cid='.$this->legajopedagogico->getFkLegajocategoriaId().'&id='.$this->legajopedagogico->getId());
+        }
 
     }
-
-
-    
-
-
 
     public function executeEdit() {
         $this->alumno_id = $this->getRequestParameter('aid');
@@ -207,7 +175,6 @@ class legajopedagogicoActions extends sfActions
         $this->optionsCategoriaLegajo = $this->getCategorias();
         $this->legajopedagogico = $this->getLegajopedagogicoOrCreate();
         $this->alumno = AlumnoPeer::retrieveByPk($this->alumno_id);
-
         $this->aFile = array();
 
         // buscando los adjuntos de la entrada al legajo pedagogico
@@ -226,8 +193,6 @@ class legajopedagogicoActions extends sfActions
         // add javascripts
         $this->getResponse()->addJavascript(sfConfig::get('sf_prototype_web_dir').'/js/prototype');
         $this->getResponse()->addJavascript(sfConfig::get('sf_admin_web_dir').'/js/collapse');
-
-       
     }
 
     public function handleErrorSave() {
@@ -236,8 +201,6 @@ class legajopedagogicoActions extends sfActions
         $this->setTemplate('edit');
         return sfView::SUCCESS;
     }
-
-
 
     protected function saveLegajopedagogico($legajopedagogico) {
         $legajopedagogico->save();
@@ -253,7 +216,6 @@ class legajopedagogicoActions extends sfActions
         if (isset($legajopedagogico['titulo'])) {
             $this->legajopedagogico->setTitulo($legajopedagogico['titulo']);
         }
-
 
         if (isset($legajopedagogico['fecha'])) {
             if ($legajopedagogico['fecha']) {
@@ -279,7 +241,6 @@ class legajopedagogicoActions extends sfActions
         if (isset($legajopedagogico['fk_legajocategoria_id'])) {
             $this->legajopedagogico->setFkLegajocategoriaId($legajopedagogico['fk_legajocategoria_id']);
         }
-
     }
 
     protected function getLegajopedagogicoOrCreate($id = 'id') {
@@ -289,12 +250,10 @@ class legajopedagogicoActions extends sfActions
             $legajopedagogico= LegajopedagogicoPeer::retrieveByPk($this->getRequestParameter($id));
             $this->forward404Unless($legajopedagogico);
         }
-
         return $legajopedagogico;
     }
 
-    public function executeDelete()
-    {
+    public function executeDelete(){
         $alumno_id = $this->getRequestParameter('aid');
         $legajo_categoria_id  = $this->getRequestParameter('cid');
         $this->legajopedagogico = LegajopedagogicoPeer::retrieveByPk($this->getRequestParameter('id'));
@@ -303,11 +262,9 @@ class legajopedagogicoActions extends sfActions
         return $this->redirect("legajopedagogico?action=verLegajo&aid=".$alumno_id."&cid=".$legajo_categoria_id);
     }
 
-    protected function deleteLegajopedagogico($legajopedagogico)
-    {
+    protected function deleteLegajopedagogico($legajopedagogico){
         $legajopedagogico->delete();
     }
-
 
     public function executeBorrarAdjunto() {
         $this->alumno_id = $this->getRequestParameter('aid');
@@ -333,10 +290,8 @@ class legajopedagogicoActions extends sfActions
         $alumnos = AlumnoPeer::doSelect($criteria);
         $this->forward404Unless($alumnos);
 
-
         $this->aAlumno = $alumnos;
     }
-
 
     public function executeAutocompletarNom() {
         $txt_nombre = $this->getRequestParameter('txt_nombre');
@@ -346,8 +301,5 @@ class legajopedagogicoActions extends sfActions
         $this->forward404Unless($alumnos);
         $this->aAlumno = $alumnos;
     }
-
-
 }
-
 ?>

@@ -47,7 +47,7 @@ array('use_style' => true)
 
 <?php if (count($aAlumno) > 0) {
         if ($txt_apellido OR $txt_nombre) { ?>
-    Usted busco -<?php echo (($txt_apellido)?$txt_apellido:"")." ".(($txt_nombre)?$txt_nombre:"") ?>-
+    Usted busc&oacute; -<?php echo (($txt_apellido)?$txt_apellido:"")." ".(($txt_nombre)?$txt_nombre:"") ?>-
     <?php } ?>
 <h1>Alumnos</h1>
 <table cellspacing="0" class="sf_admin_list">
