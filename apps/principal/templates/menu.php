@@ -112,7 +112,7 @@
 	            <li><span></span><?php echo link_to("Ir a Ciclo Lectivo Actual","ciclolectivo/agregarTurnosYPeriodos")?></li>
 	            <li><span></span><a href="#">Horario Escolar</a>
                     <ul>
-	                    <li><span></span><?php echo link_to("Definir horario clases","horarioescolar")?></li>
+	                    <li><span></span><?php echo link_to("Definir horario de clases","horarioescolar")?></li>
 	                    <li><span></span><?php echo link_to("Generar Horario por secci&oacute;n/divisi&oacute;n","relDivisionActividadDocente")?></li>
                     </ul>
                 </li>
