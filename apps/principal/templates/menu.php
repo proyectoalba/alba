@@ -133,7 +133,6 @@
 	    <li><span></span><a href="#">Informes y Consultas</a>
             <ul>
                 <li><span></span><?php echo link_to("Listado de informes","informes")?></li>
-	            <li><span></span><?php echo link_to("Alumnos por divisi&oacute;n","informes/alumnosPorDivisionFormulario",'target=_blank')?></li>
 	            <li><span></span><?php echo link_to("Boletines","informes/boletinFormulario","target=_blank")?></li>
 	            <li><span></span><?php echo link_to("Biblioteca de contenidos","sfMediaLibrary")?></li>
             </ul>

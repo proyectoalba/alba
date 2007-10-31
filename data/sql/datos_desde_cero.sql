@@ -324,12 +324,18 @@ INSERT INTO `adjunto` (`id`, `descripcion`, `titulo`, `nombre_archivo`, `tipo_ar
 
 INSERT INTO `adjunto` (`id`, `descripcion`, `titulo`, `nombre_archivo`, `tipo_archivo`, `ruta`, `fecha`) VALUES (4, NULL, NULL, 'certificado_de_estudios.odt', 'application/vnd.oasis.opendocument.text', 'certificado_de_estudios.odt', '2007-10-17 00:00:00');
 
+INSERT INTO `adjunto` (`id`, `descripcion`, `titulo`, `nombre_archivo`, `tipo_archivo`, `ruta`, `fecha`) VALUES (5, NULL, NULL, 'alumnos_por_division.odt', 'application/vnd.oasis.opendocument.text', 'alumnos_por_division.odt', '2007-10-17 00:00:00');
+
+
 INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (1, 'Constancia de Alumno regular', 'Constancia de Alumno regular', 1, 1, 0, '');
 
-INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (2, 'Certificado de terminacion de estudios primarios', 'Certificado de terminacion de estudios primarios', 2, 1, 0, '');
+INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (2, 'Certificado de finalización de estudios primarios', 'Certificado de finalización de estudios primarios', 2, 1, 0, '');
 
 INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (3, 'Solicitud de Legajo', 'Solicitud de Legajo', 3, 1, 0, 'origen');
 
 INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (4, 'Certificado de Estudios', 'Certificado de Estudios', 4, 1, 0, 'grado;año');
+
+INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (5, 'Alumnos por división', 'Alumnos por división', 5, 1, 1, '');
+
 
 SET FOREIGN_KEY_CHECKS = 1;

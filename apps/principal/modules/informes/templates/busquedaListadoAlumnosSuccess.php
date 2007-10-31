@@ -1,4 +1,4 @@
-<?php use_helper('I18N') ?>
+<?php use_helper('I18N','Form', 'Object') ?>
 <div id ="sf_admin_container">
 <h1>Informe: Alumnos por Divis&oacute;n </h1>
 
@@ -13,7 +13,7 @@
 </div>
 <?php } ?> 
 
-<?php echo form_tag('informes/alumnosPorDivisionListado', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
+<?php echo form_tag('informes/busquedaListadoAlumnos', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
 
 <fieldset id="sf_fieldset_none" class="">
     <div class="form-row">
@@ -22,12 +22,26 @@
     </div>
 </fieldset>
 
+<?php echo object_input_hidden_tag($informe, 'getId') ?>
+
 <ul class="sf_admin_actions">
   <li><?php echo submit_tag(__('Buscar'), array (
   'name' => 'Mostrar',
   'class' => 'sf_admin_action_save',
 )) ?></li>
 </ul>
-
 </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>

@@ -312,7 +312,12 @@ class InformesActions extends sfActions
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
 
         switch($informe->getTipoInforme()->getNombre()) {
-            case 'Alumnos': $this->redirect('informes/busquedaAlumnos?id='.$informe->getId()); break;
+            case 'Alumnos': 
+                if($informe->getListado() != 1) {
+                    $this->redirect('informes/busquedaAlumnos?id='.$informe->getId()); break;
+                } else {
+                    $this->redirect('informes/busquedaListadoAlumnos?id='.$informe->getId()); break;
+                }
             default: $this->redirect('informes/busquedaAlumnos?id='.$informe->getId());
         }
     }
@@ -325,48 +330,74 @@ class InformesActions extends sfActions
         $this->forward404Unless($informe);
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
 
-
         if($informe->getVariables() AND $this->getRequestParameter('v')!= 1) {
             $this->redirect('informes/variables?id='.$informe->getId().'&alumno_id='.$this->getRequestParameter('alumno_id'));
         } else {
             $aDato = array();
             switch($informe->getTipoInforme()->getNombre()) {
                 case 'Alumnos': 
-                            $alumno = AlumnoPeer::retrieveByPk($this->getRequestParameter('alumno_id'));
-                            $aDato['alumno'] = $alumno->toArray();
 
-                            $aDato['tipoDocumento'] = array ( 'Nombre' => ($alumno->getTipoDocumento())?$alumno->getTipoDocumento()->getDescripcion():'');
+                            if($informe->getListado() == 1) {
+                                $division_id = $this->getRequestParameter('division_id');
+                                $d = DivisionPeer::retrieveByPK($division_id);
 
-                            $establecimiento = EstablecimientoPeer::retrieveByPk($establecimiento_id);
-                            $aDato['establecimiento'] = $establecimiento->toArray();
+                                // buscando alumnos
+                                $criteria = new Criteria();
+                                $criteria->add(DivisionPeer::ID, $division_id);
+                                $criteria->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
+                                $criteria->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID);
+                                $criteria->addAscendingOrderByColumn(AlumnoPeer::APELLIDO);
+                                $alumnos = AlumnoPeer::doSelect($criteria);
 
-                            $aDato['distritoEscolar'] = array ( 'Nombre' => ($establecimiento->getDistritoescolar())?$establecimiento->getDistritoescolar()->getNombre():'');
+                                foreach($alumnos as $alumno) {
+                                    $aDato['alumno'][] = $alumno->toArray();
+                                }
 
-                            $c = new Criteria();
-                            $c->add(RelAlumnoDivisionPeer::FK_ALUMNO_ID, $alumno->getId());
-                            $relAlumnoDivision = RelAlumnoDivisionPeer::doSelectOne($c);
+                                $division = array( 
+                                    'Anio' => ($d->getAnio())?$d->getAnio()->getDescripcion():'' ,
+                                    'Descripcion' => $d->getDescripcion(),
+                                    'Turno' => ($d->getTurno())?$d->getTurno()->getDescripcion():'',
+                                    'Orientacion' => ($d->getOrientacion())?$d->getOrientacion()->getDescripcion():'' );
+                                $aDato['division'] = $division;
 
-                            $d = $relAlumnoDivision->getDivision();
-                            $division = array( 
+                            } else {
+                                $alumno = AlumnoPeer::retrieveByPk($this->getRequestParameter('alumno_id'));
+                                $aDato['alumno'] = $alumno->toArray();
+
+                                $aDato['tipoDocumento'] = array ( 'Nombre' => ($alumno->getTipoDocumento())?$alumno->getTipoDocumento()->getDescripcion():'');
+
+                                $establecimiento = EstablecimientoPeer::retrieveByPk($establecimiento_id);
+                                $aDato['establecimiento'] = $establecimiento->toArray();
+
+                                $aDato['distritoEscolar'] = array ( 'Nombre' => ($establecimiento->getDistritoescolar())?$establecimiento->getDistritoescolar()->getNombre():'');
+
+                                $c = new Criteria();
+                                $c->add(RelAlumnoDivisionPeer::FK_ALUMNO_ID, $alumno->getId());
+                                $relAlumnoDivision = RelAlumnoDivisionPeer::doSelectOne($c);
+
+                                $d = $relAlumnoDivision->getDivision();
+                                $division = array( 
                                     'Anio' => ($d->getAnio())?$d->getAnio()->getDescripcion():'' ,
                                     'Descripcion' => $d->getDescripcion(),
                                     'Turno' => ($d->getTurno())?$d->getTurno()->getDescripcion():'',
                                     'Orientacion' => ($d->getOrientacion())?$d->getOrientacion()->getDescripcion():'' );
 
-                            $aDato['division'] = $division;
-                            $aDato['informe'] = $informe->toArray();
+                                $aDato['division'] = $division;
+                                $aDato['informe'] = $informe->toArray();
 
-                            $ciclolectivo_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');
-                            $ciclolectivo = CiclolectivoPeer::retrieveByPk($ciclolectivo_id);
-                            $aDato['ciclolectivo'] = $ciclolectivo->toArray();
+                                $ciclolectivo_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');
+                                $ciclolectivo = CiclolectivoPeer::retrieveByPk($ciclolectivo_id);
+                                $aDato['ciclolectivo'] = $ciclolectivo->toArray();
+                            }
 
-                            if(count($informe->getVariables())>0) {
+                            if($informe->getVariables()) {
                                 $aDato['variable'] = array();
                                 $variables = explode(";",$informe->getVariables());
                                 foreach($variables as $variable) {
                                     $aDato['variable'] = array_merge( $aDato['variable'], array ( $variable => $this->getRequestParameter($variable)));
                                 }
                             }
+
                             break;
 
                 default: $this->forward404();
@@ -387,6 +418,31 @@ class InformesActions extends sfActions
 
         $this->variables = explode(";",$informe->getVariables());
         $this->alumno = $alumno;
+        $this->informe = $informe;
+    }
+
+
+    public function executeBusquedaListadoAlumnos() {
+        $informe = InformePeer::retrieveByPk($this->getRequestParameter('id'));
+        $this->forward404Unless($informe);
+
+        // inicializando variables
+        $optionsDivision = array();
+        
+        // tomando los datos del formulario
+        $division_id = $this->getRequestParameter('division_id');
+
+        // llenando el combo de division segun establecimiento
+        $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
+        $optionsDivision = $this->_getDivisiones($establecimiento_id);
+
+        if ($this->getRequest()->getMethod() == sfRequest::POST) {
+            $this->redirect('informes/mostrar?id='.$informe->getId()."&division_id=".$division_id);
+        }
+
+        // asignando variables para ser usadas en el template
+        $this->optionsDivision = $optionsDivision;
+        $this->division_id = $division_id;
         $this->informe = $informe;
     }
 
@@ -420,8 +476,6 @@ class InformesActions extends sfActions
     }
 
 
-
-
     private function reporteTBSOO($archivo, $tipoinforme, $aDato) {
         // Aquí hay que verificar las variables que están en ODT y verificar si existen 
         // en los datos que envío.
@@ -439,11 +493,27 @@ class InformesActions extends sfActions
 
         // Saco del template todas las variables del tipo [sssss.rrrrr] y además 
         // evitando las variables del tbs con ;
-        preg_match_all("/\[([^];]*\.[^];]*)\]/", $OOo->Source, $tplVars);
+        //preg_match_all("/\[([^];]*\.[^];]*)\]/", $OOo->Source, $tplVars);
+
+        $matches = $result = array();
+        if (preg_match_all("~\[(\w+(?:\.\w+)*)\s*[\];]~", $OOo->Source, $matches)) { // Find tags
+            foreach ($matches[1] as $tag) { // Process each
+                if (sizeof($tag = explode('.', $tag)) > 1) { // Breakdown into components
+                    $tail = array_pop($tag);
+                    eval('$result[\''.implode("']['", $tag)."'][] = '$tail';"); // Add to $result
+                } else {
+                    $result[] = $tag[0]; // Add to $result
+                }
+            }
+        }
 
         if(is_array($aDato)) {
             foreach($aDato as $idx => $dato) {
-                $OOo->MergeField($idx, $dato);
+                if($this->isNotAssocArray($dato)) {
+                    $OOo->MergeBlock($idx, "array", $dato);
+                } else {
+                    $OOo->MergeField($idx, $dato);
+                }
             }
         }
 
@@ -455,11 +525,28 @@ class InformesActions extends sfActions
     }
 
 
+
+/**
+  * @param array $arr
+  * @returns boolean
+  */
+function isNotAssocArray($arr)
+{
+    return (0 !== array_reduce(
+        array_keys($arr),
+        create_function('$a, $b', 'return ($b === $a ? $a + 1 : 0);'),
+        0
+        )
+    );
+}
+
+
+
 /**
  *  Informe: Alumnos por Division 
  *
  */
-    
+
     private function _getDivisiones($establecimiento_id)  {
         $optionsDivision = array();
         $criteria = new Criteria();
@@ -471,7 +558,7 @@ class InformesActions extends sfActions
             $optionsDivision[$division->getId()] = $division->getAnio()->getDescripcion()." ".$division->getDescripcion();
         }
         return $optionsDivision;
-    
+
     }
 
 
@@ -486,7 +573,7 @@ class InformesActions extends sfActions
         $criteria->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
         $criteria->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID);
         $criteria->addJoin(DivisionPeer::FK_ANIO_ID, AnioPeer::ID);
-        
+
         if($txt) {
             $cton1 = $criteria->getNewCriterion(AlumnoPeer::NOMBRE, "%$txt%", Criteria::LIKE);
             $cton2 = $criteria->getNewCriterion(AlumnoPeer::APELLIDO, "%$txt%", Criteria::LIKE);
@@ -518,7 +605,7 @@ class InformesActions extends sfActions
         if($establecimiento_id) {
             $criteria->add(AlumnoPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
         }
-        
+
         if($txt) {
             $cton1 = $criteria->getNewCriterion(AlumnoPeer::NOMBRE, "%$txt%", Criteria::LIKE);
             $cton2 = $criteria->getNewCriterion(AlumnoPeer::APELLIDO, "%$txt%", Criteria::LIKE);
@@ -536,7 +623,7 @@ class InformesActions extends sfActions
         }
 
         return $aAlumno;
-    }   
+    }
 
 
 
@@ -546,39 +633,44 @@ class InformesActions extends sfActions
 */
 
 
-    public function handleErrorAlumnosPorDivisionListado() {
-        $this->forward('informes','alumnosPorDivisionFormulario');
+    public function handleErrorBusquedaListadoAlumnos() {
+        $this->labels = $this->getLabels();
+        $this->informe = InformePeer::retrieveByPk($this->getRequestParameter("id"));
+        $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
+        $this->optionsDivision = $this->_getDivisiones($establecimiento_id);
+        $this->division_id = "";
+        return sfView::SUCCESS;
     }
 
     public function executeAlumnosPorDivisionFormulario() {
         // inicializando variables
         $optionsDivision = array();
-        
+
         // tomando los datos del formulario
         $division_id = $this->getRequestParameter('division_id');
 
         // llenando el combo de division segun establecimiento
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
         $optionsDivision = $this->_getDivisiones($establecimiento_id);
-        
+
         // asignando variables para ser usadas en el template
         $this->optionsDivision = $optionsDivision;
         $this->division_id = $division_id;
 
         $this->setLayout("layout_sinmenu");
     }
-    
+
     public function executeAlumnosPorDivisionListado() {
 
         // inicializando variables
-        $aAlumno  = array();        
+        $aAlumno  = array();
 
         // tomando los datos del formulario
         $division_id = $this->getRequestParameter('division_id');
 
         // buscando division
         $division = DivisionPeer::retrieveByPK($division_id);
-        
+
         // buscando alumnos
         $criteria = new Criteria();
         $criteria->add(DivisionPeer::ID, $division_id);
@@ -587,11 +679,10 @@ class InformesActions extends sfActions
         $criteria->addAscendingOrderByColumn(AlumnoPeer::APELLIDO);
         $alumnos = AlumnoPeer::doSelect($criteria);
 
-        // asignando variables para ser usadas en el template        
+        // asignando variables para ser usadas en el template
         $this->aAlumno = $alumnos;
         $this->division = $division;
-    }    
-
+    }
 
 
 
@@ -603,7 +694,7 @@ class InformesActions extends sfActions
     public function executeBoletinFormulario() {
         // inicializando variables
         $optionsDivision = array();
-        $aAlumno  = array();        
+        $aAlumno  = array();
 
         // tomando los datos del formulario
         $division_id = $this->getRequestParameter('division_id');
@@ -612,7 +703,7 @@ class InformesActions extends sfActions
         // llenando el combo de division segun establecimiento
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
         $optionsDivision = $this->_getDivisiones($establecimiento_id);
-       
+
         if ($this->getRequest()->getMethod() == sfRequest::POST) {
             // buscando alumnos
             $aAlumno = $this->_getAlumnosPorDivision($division_id, $txt);    
@@ -626,7 +717,7 @@ class InformesActions extends sfActions
 
         $this->setLayout("layout_sinmenu");
     }
-   
+
 
     public function executeBoletinListado() {
         $this->forward('boletin','mostrar');
