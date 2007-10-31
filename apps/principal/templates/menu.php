@@ -133,6 +133,14 @@
 	    <li><span></span><a href="#">Informes y Consultas</a>
             <ul>
                 <li><span></span><?php echo link_to("Listado de informes","informes")?></li>
+<?php
+    $informes = InformePeer::doSelect(new Criteria());
+    foreach($informes as $informe) {
+?>
+    <li><span></span><?php echo link_to($informe->getNombre(),"informes/busqueda?id=".$informe->getId()) ?></li>
+<?php
+    }
+?>
 	            <li><span></span><?php echo link_to("Boletines","informes/boletinFormulario","target=_blank")?></li>
 	            <li><span></span><?php echo link_to("Biblioteca de contenidos","sfMediaLibrary")?></li>
             </ul>
@@ -151,4 +159,3 @@
 cmDrawFromText ('menu', 'hbr', cm<?php echo sfConfig::get("app_alba_menutheme")?>, '<?php echo sfConfig::get("app_alba_menutheme")?>');                                      
 -->                                                                                                              
 </SCRIPT> 
-
