@@ -128,7 +128,9 @@ Un criterio muy b&aacute;sico de colores, adem&aacute;s del mensaje textual, inf
 En el caso de m&oacute;dulos relacionados con los calendarios y horarios, el sistema ofrecer diferentes vistas de calendarios a modo de agenda. En esos casos es posible visualizar "eventos" diaria, semanal, mensual y anualmente. Para m&aacute;s informaci&oacute;n sobre el concepto de "evento" puede consultar el Cap&iacute;tulo 3. 
 </para>
 <para>
-Figura 8 bis
+<figure><title>Vistas de calendarios.</title>
+    <graphic fileref="img/figura8bis.png" scale="50"/>
+</figure>
 </para>
 </sect2>
 </sect1>
