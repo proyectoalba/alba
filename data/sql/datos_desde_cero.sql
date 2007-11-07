@@ -329,7 +329,7 @@ INSERT INTO `adjunto` (`id`, `descripcion`, `titulo`, `nombre_archivo`, `tipo_ar
 
 INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (1, 'Constancia de Alumno regular', 'Constancia de Alumno regular', 1, 1, 0, '');
 
-INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (2, 'Certificado de finalización de estudios primarios', 'Certificado de finalización de estudios primarios', 2, 1, 0, '');
+INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (2, 'Certificado fin de estudios primarios', 'Certificado fin de estudios primarios', 2, 1, 0, '');
 
 INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (3, 'Solicitud de Legajo', 'Solicitud de Legajo', 3, 1, 0, 'origen');
 
