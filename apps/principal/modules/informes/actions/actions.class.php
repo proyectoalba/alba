@@ -479,18 +479,30 @@ class InformesActions extends sfActions
 
         // Saco del template todas las variables del tipo [sssss.rrrrr] y además 
         // evitando las variables del tbs con ;
-        //preg_match_all("/\[([^];]*\.[^];]*)\]/", $OOo->Source, $tplVars);
         $matches = $result = array();
-        if (preg_match_all("~\[(\w+(?:\.\w+)*)\s*[\];]~", $OOo->Source, $matches)) { // Find tags
+       if( preg_match_all("/\[([^];]*\.[^]]*)\]/", $OOo->Source, $matches)) {
             foreach ($matches[1] as $tag) { // Process each
                 if (sizeof($tag = explode('.', $tag)) > 1) { // Breakdown into components
                     $tail = array_pop($tag);
-                    eval('$result[\''.implode("']['", $tag)."'][] = '$tail';"); // Add to $result
+                    //salto las variables que tienen frm, habria que integrarlo
+                    // a la expresion regular
+                    if( strpos($tail, "frm=") === false) {
+                    } else {
+                         continue;
+                    }
+                    $pos = strpos($tail, ';block');  // posicion de block
+                    if( $pos === false) { // es un listado
+                    } else {
+                        $tail = substr($tail, 0, $pos);
+                        $result[$tag[0]]['loop'] = 1;
+                   }
+                   eval('$result[\''.implode("']['", $tag)."'][] = '$tail';"); // Add to $result
                 } else {
                     $result[] = $tag[0]; // Add to $result
                 }
             }
         }
+        //en result tengo las variables que deberias rellenar dinamicamente
 
         if(is_array($aDato)) {
             foreach($aDato as $idx => $dato) {
