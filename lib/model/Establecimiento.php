@@ -20,4 +20,20 @@ class Establecimiento extends BaseEstablecimiento {
     return $this->getNombre();
    }
 
+
+    public function toArrayInforme($keyType = BasePeer::TYPE_PHPNAME)
+    {
+        $keys = EstablecimientoPeer::getFieldNames($keyType);
+        $result = array(
+            $keys[0] => $this->getId(),
+            $keys[1] => $this->getNombre(),
+            $keys[2] => $this->getDescripcion(),
+            'DistritoEscolar' => ($this->getDistritoescolar())?$this->getDistritoescolar()->getNombre():'',
+            'Organizacion' => ($this->getOrganizacion())?$this->getOrganizacion()->getNombre():'',
+            'NivelTipo' => ($this->getNiveltipo())?$this->getNiveltipo()->getNombre():'',
+        );
+        return $result;
+    }
+
+
 } // Establecimiento

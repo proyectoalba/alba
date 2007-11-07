@@ -338,8 +338,10 @@ class InformesActions extends sfActions
                 case 'Alumnos': 
 
                             if($informe->getListado() == 1) {
+
                                 $division_id = $this->getRequestParameter('division_id');
                                 $d = DivisionPeer::retrieveByPK($division_id);
+                                $aDato['division'] = $d->toArrayInforme();
 
                                 // buscando alumnos
                                 $criteria = new Criteria();
@@ -350,44 +352,28 @@ class InformesActions extends sfActions
                                 $alumnos = AlumnoPeer::doSelect($criteria);
 
                                 foreach($alumnos as $alumno) {
-                                    $aDato['alumno'][] = $alumno->toArray();
+                                    $aDato['alumno'][] = $alumno->toArrayInforme();
                                 }
-
-                                $division = array( 
-                                    'Anio' => ($d->getAnio())?$d->getAnio()->getDescripcion():'' ,
-                                    'Descripcion' => $d->getDescripcion(),
-                                    'Turno' => ($d->getTurno())?$d->getTurno()->getDescripcion():'',
-                                    'Orientacion' => ($d->getOrientacion())?$d->getOrientacion()->getDescripcion():'' );
-                                $aDato['division'] = $division;
-
                             } else {
-                                $alumno = AlumnoPeer::retrieveByPk($this->getRequestParameter('alumno_id'));
-                                $aDato['alumno'] = $alumno->toArray();
 
-                                $aDato['tipoDocumento'] = array ( 'Nombre' => ($alumno->getTipoDocumento())?$alumno->getTipoDocumento()->getDescripcion():'');
+                                $alumno = AlumnoPeer::retrieveByPk($this->getRequestParameter('alumno_id'));
+                                $aDato['alumno'] = $alumno->toArrayInforme();
 
                                 $establecimiento = EstablecimientoPeer::retrieveByPk($establecimiento_id);
-                                $aDato['establecimiento'] = $establecimiento->toArray();
-
-                                $aDato['distritoEscolar'] = array ( 'Nombre' => ($establecimiento->getDistritoescolar())?$establecimiento->getDistritoescolar()->getNombre():'');
+                                $aDato['establecimiento'] = $establecimiento->toArrayInforme();
 
                                 $c = new Criteria();
                                 $c->add(RelAlumnoDivisionPeer::FK_ALUMNO_ID, $alumno->getId());
                                 $relAlumnoDivision = RelAlumnoDivisionPeer::doSelectOne($c);
-
                                 $d = $relAlumnoDivision->getDivision();
-                                $division = array( 
-                                    'Anio' => ($d->getAnio())?$d->getAnio()->getDescripcion():'' ,
-                                    'Descripcion' => $d->getDescripcion(),
-                                    'Turno' => ($d->getTurno())?$d->getTurno()->getDescripcion():'',
-                                    'Orientacion' => ($d->getOrientacion())?$d->getOrientacion()->getDescripcion():'' );
+                                $aDato['division'] = $d->toArrayInforme();
 
-                                $aDato['division'] = $division;
                                 $aDato['informe'] = $informe->toArray();
 
                                 $ciclolectivo_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');
                                 $ciclolectivo = CiclolectivoPeer::retrieveByPk($ciclolectivo_id);
                                 $aDato['ciclolectivo'] = $ciclolectivo->toArray();
+
                             }
 
                             if($informe->getVariables()) {
@@ -494,7 +480,6 @@ class InformesActions extends sfActions
         // Saco del template todas las variables del tipo [sssss.rrrrr] y además 
         // evitando las variables del tbs con ;
         //preg_match_all("/\[([^];]*\.[^];]*)\]/", $OOo->Source, $tplVars);
-
         $matches = $result = array();
         if (preg_match_all("~\[(\w+(?:\.\w+)*)\s*[\];]~", $OOo->Source, $matches)) { // Find tags
             foreach ($matches[1] as $tag) { // Process each

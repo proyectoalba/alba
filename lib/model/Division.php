@@ -18,5 +18,20 @@ class Division extends BaseDivision {
     public function __toString() {
         return $this->getAnio()->getDescripcion()." ".$this->getDescripcion().(($this->getOrientacion())?" ".$this->getOrientacion()->getNombre():"");
    }
+
+
+    public function toArrayInforme($keyType = BasePeer::TYPE_PHPNAME)
+    {
+        $keys = DivisionPeer::getFieldNames($keyType);
+        $result = array(
+            $keys[0] => $this->getId(),
+            'Año' => ($this->getAnio())?$this->getAnio()->getDescripcion():'' ,
+            $keys[2] => $this->getDescripcion(),
+            'Turno' => ($this->getTurno())?$this->getTurno()->getDescripcion():'' ,
+            'Orientacion' => ($this->getOrientacion())?$this->getOrientacion()->getDescripcion():'',
+            $keys[5] => $this->getOrden(),
+        );
+        return $result;
+    }
                  
 } // Division
