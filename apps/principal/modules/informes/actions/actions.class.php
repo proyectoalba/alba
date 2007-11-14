@@ -463,8 +463,6 @@ class InformesActions extends sfActions
 
 
     private function reporteTBSOO($archivo, $tipoinforme, $aDato) {
-        // Aquí hay que verificar las variables que están en ODT y verificar si existen 
-        // en los datos que envío.
         define('BASE',sfConfig::get('sf_app_module_dir') .'/informes/' .sfConfig::get('sf_app_module_lib_dir_name').'/');
         require_once(BASE.'tbs_class_php5.php');
         require_once(BASE.'tbsooo_class.php');
@@ -486,13 +484,11 @@ class InformesActions extends sfActions
                     $tail = array_pop($tag);
                     //salto las variables que tienen frm, habria que integrarlo
                     // a la expresion regular
-                    if( strpos($tail, "frm=") === false) {
-                    } else {
+                    if(strpos($tail, "frm=") !== false) {
                          continue;
                     }
                     $pos = strpos($tail, ';block');  // posicion de block
-                    if( $pos === false) { // es un listado
-                    } else {
+                    if($pos !== false) { // es un listado
                         $tail = substr($tail, 0, $pos);
                         $result[$tag[0]]['loop'] = 1;
                    }
