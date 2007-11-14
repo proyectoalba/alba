@@ -326,71 +326,14 @@ class InformesActions extends sfActions
 
     public function executeMostrar() {
         $informe = InformePeer::retrieveByPk($this->getRequestParameter('id'));
-
         $this->forward404Unless($informe);
-        $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
 
         if($informe->getVariables() AND $this->getRequestParameter('v')!= 1) {
             $this->redirect('informes/variables?id='.$informe->getId().'&alumno_id='.$this->getRequestParameter('alumno_id'));
         } else {
-            $aDato = array();
-            switch($informe->getTipoInforme()->getNombre()) {
-                case 'Alumnos': 
-
-                            if($informe->getListado() == 1) {
-
-                                $division_id = $this->getRequestParameter('division_id');
-                                $d = DivisionPeer::retrieveByPK($division_id);
-                                $aDato['division'] = $d->toArrayInforme();
-
-                                // buscando alumnos
-                                $criteria = new Criteria();
-                                $criteria->add(DivisionPeer::ID, $division_id);
-                                $criteria->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
-                                $criteria->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID);
-                                $criteria->addAscendingOrderByColumn(AlumnoPeer::APELLIDO);
-                                $alumnos = AlumnoPeer::doSelect($criteria);
-
-                                foreach($alumnos as $alumno) {
-                                    $aDato['alumno'][] = $alumno->toArrayInforme();
-                                }
-                            } else {
-
-                                $alumno = AlumnoPeer::retrieveByPk($this->getRequestParameter('alumno_id'));
-                                $aDato['alumno'] = $alumno->toArrayInforme();
-
-                                $establecimiento = EstablecimientoPeer::retrieveByPk($establecimiento_id);
-                                $aDato['establecimiento'] = $establecimiento->toArrayInforme();
-
-                                $c = new Criteria();
-                                $c->add(RelAlumnoDivisionPeer::FK_ALUMNO_ID, $alumno->getId());
-                                $relAlumnoDivision = RelAlumnoDivisionPeer::doSelectOne($c);
-                                $d = $relAlumnoDivision->getDivision();
-                                $aDato['division'] = $d->toArrayInforme();
-
-                                $aDato['informe'] = $informe->toArray();
-
-                                $ciclolectivo_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');
-                                $ciclolectivo = CiclolectivoPeer::retrieveByPk($ciclolectivo_id);
-                                $aDato['ciclolectivo'] = $ciclolectivo->toArray();
-
-                            }
-
-                            if($informe->getVariables()) {
-                                $aDato['variable'] = array();
-                                $variables = explode(";",$informe->getVariables());
-                                foreach($variables as $variable) {
-                                    $aDato['variable'] = array_merge( $aDato['variable'], array ( $variable => $this->getRequestParameter($variable)));
-                                }
-                            }
-
-                            break;
-
-                default: $this->forward404();
-            }
+            $this->reporteTBSOO($informe);
         }
 
-        $this->reporteTBSOO($informe->getAdjunto()->getRuta(), $informe->getTipoInforme()->getNombre(), $aDato);
         return sfview::NONE;
     }
 
@@ -462,7 +405,7 @@ class InformesActions extends sfActions
     }
 
 
-    private function reporteTBSOO($archivo, $tipoinforme, $aDato) {
+    private function reporteTBSOO($informe) {
         define('BASE',sfConfig::get('sf_app_module_dir') .'/informes/' .sfConfig::get('sf_app_module_lib_dir_name').'/');
         require_once(BASE.'tbs_class_php5.php');
         require_once(BASE.'tbsooo_class.php');
@@ -472,7 +415,7 @@ class InformesActions extends sfActions
         $OOo->SetUnzipBinary('unzip');
         $OOo->SetProcessDir(sfConfig::get('sf_informe_dir'));
         $OOo->SetDataCharset('UTF8');
-        $OOo->NewDocFromTpl(sfConfig::get('sf_informe_dir').'/'.$archivo);
+        $OOo->NewDocFromTpl(sfConfig::get('sf_informe_dir').'/'.$informe->getAdjunto()->getRuta());
         $OOo->LoadXmlFromDoc('content.xml');
 
         // Saco del template todas las variables del tipo [sssss.rrrrr] y además 
@@ -490,16 +433,77 @@ class InformesActions extends sfActions
                     $pos = strpos($tail, ';block');  // posicion de block
                     if($pos !== false) { // es un listado
                         $tail = substr($tail, 0, $pos);
-                        $result[$tag[0]]['loop'] = 1;
+                        $results[$tag[0]]['loop'] = 1;
                    }
-                   eval('$result[\''.implode("']['", $tag)."'][] = '$tail';"); // Add to $result
+                   eval('$results[\''.implode("']['", $tag)."'][] = '$tail';"); // Add to $result
                 } else {
-                    $result[] = $tag[0]; // Add to $result
+                    $results[] = $tag[0]; // Add to $result
                 }
             }
         }
-        //en result tengo las variables que deberias rellenar dinamicamente
 
+        //busco en las variables encontradas en el template y reemplaza contenido
+        $aDato = array();
+        $aDato['informe'] = $informe->toArray();
+        foreach($results as $idx => $result) { //Recorrer las variables
+            switch($idx) { // me fijo que variables debo enviar al template de resultado
+                case 'alumno':
+                    //dependiendo si es una variables de cilcos
+                    if( array_key_exists('loop', $result) AND $result['loop'] == 1) {
+                        $criteria = new Criteria();
+                        if($this->getRequestParameter('division_id')) {
+                            $criteria->add(DivisionPeer::ID, $this->getRequestParameter('division_id'));
+                        }
+                        $criteria->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
+                        $criteria->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID);
+                        $criteria->addAscendingOrderByColumn(AlumnoPeer::APELLIDO);
+                        $alumnos = AlumnoPeer::doSelect($criteria);
+                        foreach($alumnos as $alumno) {
+                            $aDato['alumno'][] = $alumno->toArrayInforme();
+                        }
+                    } else {
+                        $alumno = AlumnoPeer::retrieveByPk($this->getRequestParameter('alumno_id'));
+                        $aDato['alumno'] = $alumno->toArrayInforme();
+                    }
+                    break;
+
+                case 'division': 
+                    if($this->getRequestParameter('division_id')) {
+                        $d = DivisionPeer::retrieveByPK($this->getRequestParameter('division_id'));
+                    } else {
+                        $c = new Criteria();
+                        $c->add(RelAlumnoDivisionPeer::FK_ALUMNO_ID, $this->getRequestParameter('alumno_id'));
+                        $relAlumnoDivision = RelAlumnoDivisionPeer::doSelectOne($c);
+                        $d = $relAlumnoDivision->getDivision();
+                    }
+                    $aDato['division'] = $d->toArrayInforme();
+                    break;
+
+                case 'establecimiento': 
+                    $establecimiento = EstablecimientoPeer::retrieveByPk($this->getUser()->getAttribute('fk_establecimiento_id'));
+                    $aDato['establecimiento'] = $establecimiento->toArrayInforme();
+                    break;
+
+                case 'ciclolectivo': 
+                    $ciclolectivo_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');
+                    $ciclolectivo = CiclolectivoPeer::retrieveByPk($ciclolectivo_id);
+                    $aDato['ciclolectivo'] = $ciclolectivo->toArray();
+                    break;
+
+                default:
+            }
+        }
+
+        // variables adicionales dinamicas de los formulario
+        if($informe->getVariables()) {
+            $aDato['variable'] = array();
+            $variables = explode(";",$informe->getVariables());
+            foreach($variables as $variable) {
+                $aDato['variable'] = array_merge( $aDato['variable'], array ( $variable => $this->getRequestParameter($variable)));
+            }
+        }
+
+        // lleno finalmente de diferente forma si es un array (ciclo) o no (variable comun)
         if(is_array($aDato)) {
             foreach($aDato as $idx => $dato) {
                 if($this->isNotAssocArray($dato)) {
