@@ -420,9 +420,8 @@ class InformesActions extends sfActions
 
         $aVariable = $this->leerTemplate($OOo->Source);
 
-        //busco en las variables encontradas en el template y reemplaza contenido
         $aDato = array();
-        $aDato = $this->llenarVariables($aVariable);
+        $aDato = $this->llenarVariables($aVariable); //busco en las variables encontradas en el template y reemplaza contenido
         $aDato['informe'] = $informe->toArray(); //agregando datos del registro informe
 
         // variables adicionales dinamicas de los formulario
@@ -743,6 +742,10 @@ function isNotAssocArray($arr)
         $this->forward('boletin','mostrar');
     }
 
+
+    public function executeAyuda() {
+        $this->setLayout("layout_sinmenu");
+    }
 
 }
 ?>
