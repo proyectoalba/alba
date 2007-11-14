@@ -418,10 +418,49 @@ class InformesActions extends sfActions
         $OOo->NewDocFromTpl(sfConfig::get('sf_informe_dir').'/'.$informe->getAdjunto()->getRuta());
         $OOo->LoadXmlFromDoc('content.xml');
 
-        // Saco del template todas las variables del tipo [sssss.rrrrr] y además 
+        $aVariable = $this->leerTemplate($OOo->Source);
+
+        //busco en las variables encontradas en el template y reemplaza contenido
+        $aDato = array();
+        $aDato = $this->llenarVariables($aVariable);
+        $aDato['informe'] = $informe->toArray(); //agregando datos del registro informe
+
+        // variables adicionales dinamicas de los formulario
+        if($informe->getVariables()) {
+            $aDato['variable'] = array();
+            $variables = explode(";",$informe->getVariables());
+            foreach($variables as $variable) {
+                $aDato['variable'] = array_merge( $aDato['variable'], array ( $variable => $this->getRequestParameter($variable)));
+            }
+        }
+
+        // lleno finalmente de diferente forma si es un array (ciclo) o no (variable comun)
+        if(is_array($aDato)) {
+            foreach($aDato as $idx => $dato) {
+                if($this->isNotAssocArray($dato)) {
+                    $OOo->MergeBlock($idx, "array", $dato);
+                } else {
+                    $OOo->MergeField($idx, $dato);
+                }
+            }
+        }
+
+        $OOo->SaveXmlToDoc();
+        header('Content-type: '.$OOo->GetMimetypeDoc());
+        header('Content-Length: '.filesize($OOo->GetPathnameDoc()));
+        $OOo->FlushDoc();
+        $OOo->RemoveDoc();
+    }
+
+/**
+  * @param array $fuente
+  * @returns array
+  */
+    private function leerTemplate($fuente) {
+        // Saco del template todas las variables del tipo [sssss.rrrrr], tambien las del ciclo y además 
         // evitando las variables del tbs con ;
-        $matches = $result = array();
-       if( preg_match_all("/\[([^];]*\.[^]]*)\]/", $OOo->Source, $matches)) {
+        $matches = $results = array();
+        if( preg_match_all("/\[([^];]*\.[^]]*)\]/", $fuente, $matches)) {
             foreach ($matches[1] as $tag) { // Process each
                 if (sizeof($tag = explode('.', $tag)) > 1) { // Breakdown into components
                     $tail = array_pop($tag);
@@ -441,11 +480,19 @@ class InformesActions extends sfActions
                 }
             }
         }
+        return $results;
+    }
 
-        //busco en las variables encontradas en el template y reemplaza contenido
+
+
+/**
+  * @param array $aVariable
+  * @returns array
+  */
+
+    private function llenarVariables($aVariable) {
         $aDato = array();
-        $aDato['informe'] = $informe->toArray();
-        foreach($results as $idx => $result) { //Recorrer las variables
+        foreach($aVariable as $idx => $result) { //Recorrer las variables
             switch($idx) { // me fijo que variables debo enviar al template de resultado
                 case 'alumno':
                     //dependiendo si es una variables de cilcos
@@ -493,33 +540,9 @@ class InformesActions extends sfActions
                 default:
             }
         }
-
-        // variables adicionales dinamicas de los formulario
-        if($informe->getVariables()) {
-            $aDato['variable'] = array();
-            $variables = explode(";",$informe->getVariables());
-            foreach($variables as $variable) {
-                $aDato['variable'] = array_merge( $aDato['variable'], array ( $variable => $this->getRequestParameter($variable)));
-            }
-        }
-
-        // lleno finalmente de diferente forma si es un array (ciclo) o no (variable comun)
-        if(is_array($aDato)) {
-            foreach($aDato as $idx => $dato) {
-                if($this->isNotAssocArray($dato)) {
-                    $OOo->MergeBlock($idx, "array", $dato);
-                } else {
-                    $OOo->MergeField($idx, $dato);
-                }
-            }
-        }
-
-        $OOo->SaveXmlToDoc();
-        header('Content-type: '.$OOo->GetMimetypeDoc());
-        header('Content-Length: '.filesize($OOo->GetPathnameDoc()));
-        $OOo->FlushDoc();
-        $OOo->RemoveDoc();
+        return $aDato;
     }
+
 
 
 
