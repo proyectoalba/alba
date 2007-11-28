@@ -1,6 +1,12 @@
 <?php use_helper('I18N'); ?>
 <div id="sf_admin_container">
-<h1>Informe: <?php echo $informe->getNombre(); ?> para <?php echo $alumno->getApellido().", ".$alumno->getNombre();?></h1>
+<h1>Informe: <?php echo $informe->getNombre(); ?> 
+<?php 
+    if(isset($alumno)) {
+        echo $alumno->getApellido().", ".$alumno->getNombre();
+    }
+?>
+</h1>
 
 <?php if ($sf_request->hasErrors()) {?>
 <div class="form-errors">
@@ -30,7 +36,18 @@
     
 </fieldset>
 
-<?php echo input_hidden_tag('alumno_id', $alumno->getId()) ?>
+
+
+<?php 
+    if(isset($alumno)) {
+        echo input_hidden_tag('alumno_id', $alumno->getId());
+    }
+
+    if($sf_params->get('division_id')) {
+        echo input_hidden_tag('division_id', $sf_params->get('division_id'));
+    }
+?>
+
 <?php echo input_hidden_tag('id', $informe->getId()) ?>
 <?php echo input_hidden_tag('v', '1') ?>
 

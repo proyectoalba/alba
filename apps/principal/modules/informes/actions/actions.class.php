@@ -329,7 +329,14 @@ class InformesActions extends sfActions
         $this->forward404Unless($informe);
 
         if($informe->getVariables() AND $this->getRequestParameter('v')!= 1) {
-            $this->redirect('informes/variables?id='.$informe->getId().'&alumno_id='.$this->getRequestParameter('alumno_id'));
+            $url = 'informes/variables?id='.$informe->getId();
+            if($this->getRequestParameter('alumno_id')) {
+                $url .= '&alumno_id='.$this->getRequestParameter('alumno_id');
+            }
+            if($this->getRequestParameter('division_id')) {
+                $url .= '&division_id='.$this->getRequestParameter('division_id');
+            }
+            $this->redirect($url);
         } else {
             $this->reporteTBSOO($informe);
         }
@@ -342,11 +349,13 @@ class InformesActions extends sfActions
         $informe = InformePeer::retrieveByPk($this->getRequestParameter('id'));
         $this->forward404Unless($informe);
 
-        $alumno = AlumnoPeer::retrieveByPk($this->getRequestParameter('alumno_id'));
-        $this->forward404Unless($alumno);
+        if($this->getRequestParameter('alumno_id')) {
+            $alumno = AlumnoPeer::retrieveByPk($this->getRequestParameter('alumno_id'));
+            $this->forward404Unless($alumno);
+            $this->alumno = $alumno;
+        }
 
         $this->variables = explode(";",$informe->getVariables());
-        $this->alumno = $alumno;
         $this->informe = $informe;
     }
 
@@ -519,7 +528,7 @@ class InformesActions extends sfActions
                     } else {
                         $c = new Criteria();
                         $c->add(RelAlumnoDivisionPeer::FK_ALUMNO_ID, $this->getRequestParameter('alumno_id'));
-                        $relAlumnoDivision = RelAlumnoDivisionPeer::doSelectOne($c);
+                            $relAlumnoDivision = RelAlumnoDivisionPeer::doSelectOne($c);
                         $d = $relAlumnoDivision->getDivision();
                     }
                     $aDato['division'] = $d->toArrayInforme();
