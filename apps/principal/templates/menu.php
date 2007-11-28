@@ -73,7 +73,7 @@
 	    <li><span></span><a href="#">Cuentas</a>
             <ul>
 	            <li><span></span><?php echo link_to("Administrar","cuenta")?></li>
-	            <li><span></span><?php echo link_to("Responsables","responsable")?></li>
+	            <li><span></span><?php echo link_to("Listar Responsables","responsable")?></li>
             </ul>
         </li>
 	    <li><span></span><a href="#">Alumnos</a>
@@ -81,7 +81,7 @@
 	            <li><span></span><?php echo link_to("Ingresar Nuevo","alumno/create")?></li>
 	            <li><span></span><?php echo link_to("Listar Todos","alumno/list")?></li>
 	            <li><span></span><?php echo link_to("Buscar Alumno para...","legajopedagogico")?></li>
-	            <li><span></span><?php echo link_to("Asistencia por Secci&oacute;n/Divisi&oacute;n","asistencia")?></li>
+	            <li><span></span><?php echo link_to("Gestionar Asistencias","asistencia")?></li>
 	            <li><span></span><a href="#">Cargar Boletines</a>
                     <ul>
 	                    <li><span></span><?php echo link_to("Concepto","boletin/listConcepto")?></li>
@@ -104,19 +104,19 @@
 	            <li><span></span><?php echo link_to("Definir Secciones/Divisiones","division")?></li>
 	            <li><span></span><?php echo link_to("Asignar Alumno a Secci&oacute;n/Divisi&oacute;n","relAlumnoDivision/create")?></li>
 	            <li><span></span><?php echo link_to("Ingresar Materias/Actividades","actividad")?></li>
-	            <li><span></span><?php echo link_to("Actividades por Grado/A&ntilde;o","relAnioActividad")?></li>
+	            <li><span></span><?php echo link_to("Listar Actividades por Grado/A&ntilde;o","relAnioActividad")?></li>
             </ul>
         </li>
 	    <li><span></span><a href="#">Horarios</a>
             <ul>
 	            <li><span></span><?php echo link_to("Ir a Ciclo Lectivo Actual","ciclolectivo/agregarTurnosYPeriodos")?></li>
-	            <li><span></span><a href="#">Horario Escolar</a>
+	            <li><span></span><a href="#">Gestionar Horario Escolar</a>
                     <ul>
 	                    <li><span></span><?php echo link_to("Definir horario de clases","horarioescolar")?></li>
 	                    <li><span></span><?php echo link_to("Generar Horario por secci&oacute;n/divisi&oacute;n","relDivisionActividadDocente")?></li>
                     </ul>
                 </li>
-	            <li><span></span><a href="#">&iquest; Horario seg&uacute;n...?</a>
+	            <li><span></span><a href="#">Ver Horario seg&uacute;n:</a>
                     <ul>
 	                    <li><span></span><?php echo link_to("...docentes","calendario/busquedaDocente")?></li>
 	                    <li><span></span><?php echo link_to ("...secci&oacute;n/divisi&oacute;n","calendario/busquedaDivision")?></li>
@@ -126,31 +126,38 @@
         </li>
 	    <li><span></span><a href="#">Gesti&oacute;n de Espacios</a>
             <ul>
-	            <li><span></span><?php echo link_to("Listado de Locaciones","locacion")?></li>
-	            <li><span></span><?php echo link_to("Listado de Espacios x Locaci&oacute;n","espacios")?></li>
+	            <li><span></span><?php echo link_to("Listar Locaciones","locacion")?></li>
+	            <li><span></span><?php echo link_to("Listar Espacios x Locaci&oacute;n","espacios")?></li>
             </ul>
         </li>
 	    <li><span></span><a href="#">Informes</a>
             <ul>
-                <li><span></span><?php echo link_to("Listado de informes","informes")?></li>
+                <li><span></span><?php echo link_to("Listar informes","informes")?></li>
 <?php
     $informes = InformePeer::doSelect(new Criteria());
     foreach($informes as $informe) {
 ?>
-    <li><span></span><?php echo link_to($informe->getNombre(),"informes/busqueda?id=".$informe->getId()) ?></li>
+    <li><span></span><?php echo link_to("- ".$informe->getNombre(),"informes/busqueda?id=".$informe->getId()) ?></li>
 <?php
     }
 ?>
 	            <li><span></span><?php echo link_to("Boletines","informes/boletinFormulario","target=_blank")?></li>
-	            <li><span></span><?php echo link_to("Biblioteca de contenidos","sfMediaLibrary")?></li>
             </ul>
         </li>
+
+        <li><span></span><?php echo link_to("Archivos","sfMediaLibrary")?></li>
+
 	    <li><span></span><a href="#">Ayuda</a>
             <ul>
 	            <li><span></span><?php echo link_to("Indice...", "http://".sfContext::getInstance()->getRequest()->getHost().sfContext::getInstance()->getRequest()->getRelativeUrlRoot()."/manual/index.html", 'target=_blank')?></li>
 	            <li><span></span><?php echo link_to("Cr&eacute;ditos","creditos")?></li>
             </ul>
         </li>
+
+
+        
+
+
 	    <li><span></span><?php echo link_to("Salir","seguridad/logout")?></li>
     </ul>
 </div>
