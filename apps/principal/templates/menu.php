@@ -51,7 +51,7 @@
 	                            <li><span></span><?php echo link_to("Calendario de vacunas","calendariovacunacion")?></li>
                             </ul>
                         </li>
-	                    <li><span></span><a href="#">Locaciones y Espacios</a>
+	                    <li><span></span><a href="#">Gesti&oacute;n de Espacios</a>
                             <ul>
 	                            <li><span></span><?php echo link_to("Definir tipos de Locaciones","tipolocacion")?></li>
 	                            <li><span></span><?php echo link_to("Definir tipos de Espacios","tipoespacio")?></li>
@@ -107,7 +107,7 @@
 	            <li><span></span><?php echo link_to("Actividades por Grado/A&ntilde;o","relAnioActividad")?></li>
             </ul>
         </li>
-	    <li><span></span><a href="#">Calendarios y Horarios</a>
+	    <li><span></span><a href="#">Horarios</a>
             <ul>
 	            <li><span></span><?php echo link_to("Ir a Ciclo Lectivo Actual","ciclolectivo/agregarTurnosYPeriodos")?></li>
 	            <li><span></span><a href="#">Horario Escolar</a>
@@ -124,13 +124,13 @@
                 </li>
             </ul>
         </li>
-	    <li><span></span><a href="#">Locaciones y Espacios</a>
+	    <li><span></span><a href="#">Gesti&oacute;n de Espacios</a>
             <ul>
 	            <li><span></span><?php echo link_to("Listado de Locaciones","locacion")?></li>
 	            <li><span></span><?php echo link_to("Listado de Espacios x Locaci&oacute;n","espacios")?></li>
             </ul>
         </li>
-	    <li><span></span><a href="#">Informes y Consultas</a>
+	    <li><span></span><a href="#">Informes</a>
             <ul>
                 <li><span></span><?php echo link_to("Listado de informes","informes")?></li>
 <?php
