@@ -517,8 +517,11 @@ class InformesActions extends sfActions
                             $aDato['alumno'][] = $alumno->toArrayInforme();
                         }
                     } else {
-                        $alumno = AlumnoPeer::retrieveByPk($this->getRequestParameter('alumno_id'));
-                        $aDato['alumno'] = $alumno->toArrayInforme();
+                        if($this->getRequestParameter('alumno_id')) {
+                            $alumno = AlumnoPeer::retrieveByPk($this->getRequestParameter('alumno_id'));
+                            $aDato['alumno'] = $alumno->toArrayInforme();
+                        }
+
                     }
                     break;
 
@@ -535,18 +538,22 @@ class InformesActions extends sfActions
                     break;
 
                 case 'establecimiento': 
-                    $establecimiento = EstablecimientoPeer::retrieveByPk($this->getUser()->getAttribute('fk_establecimiento_id'));
-                    $aDato['establecimiento'] = $establecimiento->toArrayInforme();
+                    if($this->getUser()->getAttribute('fk_establecimiento_id')) {
+                        $establecimiento = EstablecimientoPeer::retrieveByPk($this->getUser()->getAttribute('fk_establecimiento_id'));
+                        $aDato['establecimiento'] = $establecimiento->toArrayInforme();
+                    }
                     break;
 
                 case 'ciclolectivo': 
-                    $ciclolectivo_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');
-                    $ciclolectivo = CiclolectivoPeer::retrieveByPk($ciclolectivo_id);
-                    $aDato['ciclolectivo'] = $ciclolectivo->toArray();
+                    if($this->getUser()->getAttribute('fk_ciclolectivo_id')) {
+                        $ciclolectivo_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');
+                        $ciclolectivo = CiclolectivoPeer::retrieveByPk($ciclolectivo_id);
+                        $aDato['ciclolectivo'] = $ciclolectivo->toArray();
+                    }
                     break;
 
                 case 'locacion':
-                    if( array_key_exists('loop', $result) AND $result['loop'] == 1) {
+                    if( array_key_exists('loop', $result) AND $result['loop'] == 1 AND $this->getUser()->getAttribute('fk_establecimiento_id')) {
                         $c = new Criteria();
                         $c->add(RelEstablecimientoLocacionPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
                         $c->addJoin(RelEstablecimientoLocacionPeer::FK_LOCACION_ID, LocacionPeer::ID);
@@ -562,12 +569,10 @@ class InformesActions extends sfActions
                             $aDato['locacion'] = $locacion->toArray();
                         }
                     }
-// print_R($aDato);
-// die;
                     break;
 
                 case 'espacio': 
-                    if( array_key_exists('loop', $result) AND $result['loop'] == 1) {
+                    if( array_key_exists('loop', $result) AND $result['loop'] == 1 AND $this->getUser()->getAttribute('fk_establecimiento_id')) {
                         $c = new Criteria();
                         $c->add(RelEstablecimientoLocacionPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
                         $c->addJoin(RelEstablecimientoLocacionPeer::FK_LOCACION_ID, LocacionPeer::ID);
@@ -586,6 +591,16 @@ class InformesActions extends sfActions
                             $espacio = EspacioPeer::doSelect($c);
                             $aDato['espacio'] = $espacio->toArray();
                         }
+                    }
+                    break;
+
+                case 'organizacion': 
+                    if($this->getUser()->getAttribute('fk_establecimiento_id')) {
+                        $c = new Criteria();
+                        $c->add(EstablecimientoPeer::ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
+                        $c->addJoin(EstablecimientoPeer::FK_ORGANIZACION_ID, OrganizacionPeer::ID);
+                        $organizacion = OrganizacionPeer::doSelectOne($c);
+                        $aDato['organizacion'] = $organizacion->toArray();
                     }
                     break;
 
