@@ -3465,6 +3465,8 @@ INSERT INTO `adjunto` (`id`, `descripcion`, `titulo`, `nombre_archivo`, `tipo_ar
 
 INSERT INTO `adjunto` (`id`, `descripcion`, `titulo`, `nombre_archivo`, `tipo_archivo`, `ruta`, `fecha`) VALUES (5, NULL, NULL, 'alumnos_por_division.odt', 'application/vnd.oasis.opendocument.text', 'alumnos_por_division.odt', '2007-10-17 00:00:00');
 
+INSERT INTO `adjunto` (`id`, `descripcion`, `titulo`, `nombre_archivo`, `tipo_archivo`, `ruta`, `fecha`) VALUES (6, NULL, NULL, 'locacion.odt', 'application/vnd.oasis.opendocument.text', 'locacion.odt', '2007-10-17 00:00:00');
+
 
 INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (1, 'Constancia de alumno regular', 'Constancia de alumno regular', 1, 1, 0, '');
 
@@ -3475,6 +3477,8 @@ INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoi
 INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (4, 'Certificado de estudios', 'Certificado de estudios', 4, 1, 0, 'grado;año');
 
 INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (5, 'Alumnos por división', 'Alumnos por división', 5, 1, 1, '');
+
+INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (6, 'Locacion', 'Locacion', 6, 1, 1, '');
 
 SET FOREIGN_KEY_CHECKS = 1;
 
