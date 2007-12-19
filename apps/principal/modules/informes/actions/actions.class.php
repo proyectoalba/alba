@@ -604,6 +604,13 @@ class InformesActions extends sfActions
                     }
                     break;
 
+                case 'usuario':
+                    if($this->getUser()->getAttribute('id')) {
+                        $usuario = UsuarioPeer::retrieveByPk($this->getUser()->getAttribute('id'));
+                        $aDato['usuario'] = $usuario->toArray();
+                    }
+                    break;
+
                 default:
             }
         }
