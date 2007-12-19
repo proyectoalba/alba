@@ -607,7 +607,10 @@ class InformesActions extends sfActions
                 case 'usuario':
                     if($this->getUser()->getAttribute('id')) {
                         $usuario = UsuarioPeer::retrieveByPk($this->getUser()->getAttribute('id'));
-                        $aDato['usuario'] = $usuario->toArray();
+                        $aUsuario = $usuario->toArray();
+                        //por seguridad: para no mostrar otros datos del usuario como clave, preguntas, etc
+                        $aDato['usuario'] = array( 'Usuario' => $aUsuario['Usuario'], 'Email' => $aUsuario['Email']);
+
                     }
                     break;
 
