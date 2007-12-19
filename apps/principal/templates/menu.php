@@ -149,7 +149,8 @@
 
 	    <li><span></span><a href="#">Ayuda</a>
             <ul>
-	            <li><span></span><?php echo link_to("Indice...", "http://".sfContext::getInstance()->getRequest()->getHost().sfContext::getInstance()->getRequest()->getRelativeUrlRoot()."/manual/index.html", 'target=_blank')?></li>
+	            <li><span></span><?php echo link_to("Manual", "http://".sfContext::getInstance()->getRequest()->getHost().sfContext::getInstance()->getRequest()->getRelativeUrlRoot()."/manual/index.html", 'target=_blank')?></li>
+                <li><span></span><?php echo link_to("Ayuda v&iacute;a IRC","http://chat.proyectoalba.com.ar")?></li>
 	            <li><span></span><?php echo link_to("Cr&eacute;ditos","creditos")?></li>
             </ul>
         </li>
