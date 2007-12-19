@@ -545,6 +545,50 @@ class InformesActions extends sfActions
                     $aDato['ciclolectivo'] = $ciclolectivo->toArray();
                     break;
 
+                case 'locacion':
+                    if( array_key_exists('loop', $result) AND $result['loop'] == 1) {
+                        $c = new Criteria();
+                        $c->add(RelEstablecimientoLocacionPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
+                        $c->addJoin(RelEstablecimientoLocacionPeer::FK_LOCACION_ID, LocacionPeer::ID);
+                        $locaciones = LocacionPeer::doSelect($c);
+                        foreach($locaciones as $locacion) {
+                            $aDato['locacion'][] = $locacion->toArray();
+                        }
+                    } else {
+                        if($this->getRequestParameter('locacion_id')) {
+                            $c = new Criteria();
+                            $c->add(LocacionPeer::ID, $this->getRequestParameter('locacion_id'));
+                            $locacion = LocacionPeer::doSelect($c);
+                            $aDato['locacion'] = $locacion->toArray();
+                        }
+                    }
+// print_R($aDato);
+// die;
+                    break;
+
+                case 'espacio': 
+                    if( array_key_exists('loop', $result) AND $result['loop'] == 1) {
+                        $c = new Criteria();
+                        $c->add(RelEstablecimientoLocacionPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
+                        $c->addJoin(RelEstablecimientoLocacionPeer::FK_LOCACION_ID, LocacionPeer::ID);
+                        if($this->getRequestParameter('locacion_id')) {
+                            $c->add(LocacionPeer::ID, $this->getRequestParameter('locacion_id'));
+                        }
+                        $c->addJoin(EspacioPeer::FK_LOCACION_ID, LocacionPeer::ID);
+                        $espacios = EspacioPeer::doSelect($c);
+                        foreach($espacios as $espacio) {
+                            $aDato['espacio'][] = $espacio->toArray();
+                        }
+                    } else {
+                        if($this->getRequestParameter('espacio_id')) {
+                            $c = new Criteria();
+                            $c->add(EspacioPeer::ID, $this->getRequestParameter('espacio_id'));
+                            $espacio = EspacioPeer::doSelect($c);
+                            $aDato['espacio'] = $espacio->toArray();
+                        }
+                    }
+                    break;
+
                 default:
             }
         }
