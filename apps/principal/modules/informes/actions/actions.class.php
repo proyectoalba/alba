@@ -504,6 +504,25 @@ class InformesActions extends sfActions
         $aDato = array();
         foreach($aVariable as $idx => $result) { //Recorrer las variables
             switch($idx) { // me fijo que variables debo enviar al template de resultado
+
+                case 'responsable': 
+                    if( array_key_exists('loop', $result) AND $result['loop'] == 1) {
+                        $criteria = new Criteria();
+                        if($this->getRequestParameter('fk_cuenta_id')) {
+                            $criteria->add(ResponsablePeer::FK_CUENTA_ID, $this->getRequestParameter('fk_cuenta_id'));
+                        }
+                        $responsables = ResponsablePeer::doSelect($criteria);
+                        foreach($responsables as $responsable) {
+                            $aDato['responsable'][] = $responsable->toArray();
+                        }
+                    } else {
+                        if($this->getRequestParameter('responsable_id')) {
+                            $responsable = ResponsablePeer::retrieveByPk($this->getRequestParameter('responsable_id'));
+                            $aDato['responsable'] = $responsable->toArray();
+                        }
+                    }
+                    break;
+
                 case 'alumno':
                     //dependiendo si es una variables de cilcos
                     if( array_key_exists('loop', $result) AND $result['loop'] == 1) {
@@ -529,7 +548,6 @@ class InformesActions extends sfActions
                             $alumno = AlumnoPeer::retrieveByPk($this->getRequestParameter('alumno_id'));
                             $aDato['alumno'] = $alumno->toArrayInforme();
                         }
-
                     }
                     break;
 
