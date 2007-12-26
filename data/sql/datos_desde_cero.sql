@@ -349,7 +349,7 @@ INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoi
 
 INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (7, 'Docente', 'Docente', 7, 2, 1, '');
 
-INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (8, 'Docente', 'Docente', 8, 2, 0, '');
+INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (8, 'Organizaci&oacute;n', 'Organizaci&oacute;n', 8, 2, 0, '');
 
 
 SET FOREIGN_KEY_CHECKS = 1;
