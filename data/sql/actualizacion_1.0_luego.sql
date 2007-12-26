@@ -40,5 +40,7 @@ CREATE TABLE `tipoinforme`
     PRIMARY KEY (`id`)
 )Type=InnoDB;
 
+ALTER TABLE anio ADD COLUMN `orden` INTEGER DEFAULT 0; 
+
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
