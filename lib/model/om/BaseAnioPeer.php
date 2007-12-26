@@ -13,7 +13,7 @@ abstract class BaseAnioPeer {
 	const CLASS_DEFAULT = 'lib.model.Anio';
 
 	
-	const NUM_COLUMNS = 3;
+	const NUM_COLUMNS = 4;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -29,23 +29,26 @@ abstract class BaseAnioPeer {
 	const DESCRIPCION = 'anio.DESCRIPCION';
 
 	
+	const ORDEN = 'anio.ORDEN';
+
+	
 	private static $phpNameMap = null;
 
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'FkEstablecimientoId', 'Descripcion', ),
-		BasePeer::TYPE_COLNAME => array (AnioPeer::ID, AnioPeer::FK_ESTABLECIMIENTO_ID, AnioPeer::DESCRIPCION, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'fk_establecimiento_id', 'descripcion', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'FkEstablecimientoId', 'Descripcion', 'Orden', ),
+		BasePeer::TYPE_COLNAME => array (AnioPeer::ID, AnioPeer::FK_ESTABLECIMIENTO_ID, AnioPeer::DESCRIPCION, AnioPeer::ORDEN, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'fk_establecimiento_id', 'descripcion', 'orden', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'FkEstablecimientoId' => 1, 'Descripcion' => 2, ),
-		BasePeer::TYPE_COLNAME => array (AnioPeer::ID => 0, AnioPeer::FK_ESTABLECIMIENTO_ID => 1, AnioPeer::DESCRIPCION => 2, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'fk_establecimiento_id' => 1, 'descripcion' => 2, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'FkEstablecimientoId' => 1, 'Descripcion' => 2, 'Orden' => 3, ),
+		BasePeer::TYPE_COLNAME => array (AnioPeer::ID => 0, AnioPeer::FK_ESTABLECIMIENTO_ID => 1, AnioPeer::DESCRIPCION => 2, AnioPeer::ORDEN => 3, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'fk_establecimiento_id' => 1, 'descripcion' => 2, 'orden' => 3, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
 	);
 
 	
@@ -104,6 +107,8 @@ abstract class BaseAnioPeer {
 		$criteria->addSelectColumn(AnioPeer::FK_ESTABLECIMIENTO_ID);
 
 		$criteria->addSelectColumn(AnioPeer::DESCRIPCION);
+
+		$criteria->addSelectColumn(AnioPeer::ORDEN);
 
 	}
 

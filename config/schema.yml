@@ -1287,6 +1287,10 @@ alba:
       type: varchar
       size: 255
       required: true
+    orden: 
+      type: INTEGER
+      required: false
+      default: 0
   division: 
     _attributes: 
       idMethod: native

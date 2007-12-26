@@ -38,5 +38,7 @@ class AnioMapBuilder {
 
 		$tMap->addColumn('DESCRIPCION', 'Descripcion', 'string', CreoleTypes::VARCHAR, true, 255);
 
+		$tMap->addColumn('ORDEN', 'Orden', 'int', CreoleTypes::INTEGER, false, null);
+
 	} 
 } 

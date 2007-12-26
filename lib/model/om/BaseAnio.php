@@ -19,6 +19,10 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 	
 	protected $descripcion;
 
+
+	
+	protected $orden = 0;
+
 	
 	protected $aEstablecimiento;
 
@@ -59,6 +63,13 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 	{
 
 		return $this->descripcion;
+	}
+
+	
+	public function getOrden()
+	{
+
+		return $this->orden;
 	}
 
 	
@@ -108,6 +119,20 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 
 	} 
 	
+	public function setOrden($v)
+	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
+		if ($this->orden !== $v || $v === 0) {
+			$this->orden = $v;
+			$this->modifiedColumns[] = AnioPeer::ORDEN;
+		}
+
+	} 
+	
 	public function hydrate(ResultSet $rs, $startcol = 1)
 	{
 		try {
@@ -118,11 +143,13 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 
 			$this->descripcion = $rs->getString($startcol + 2);
 
+			$this->orden = $rs->getInt($startcol + 3);
+
 			$this->resetModified();
 
 			$this->setNew(false);
 
-						return $startcol + 3; 
+						return $startcol + 4; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Anio object", $e);
 		}
@@ -307,6 +334,9 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 			case 2:
 				return $this->getDescripcion();
 				break;
+			case 3:
+				return $this->getOrden();
+				break;
 			default:
 				return null;
 				break;
@@ -320,6 +350,7 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 			$keys[0] => $this->getId(),
 			$keys[1] => $this->getFkEstablecimientoId(),
 			$keys[2] => $this->getDescripcion(),
+			$keys[3] => $this->getOrden(),
 		);
 		return $result;
 	}
@@ -344,6 +375,9 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 			case 2:
 				$this->setDescripcion($value);
 				break;
+			case 3:
+				$this->setOrden($value);
+				break;
 		} 	}
 
 	
@@ -354,6 +388,7 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setFkEstablecimientoId($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setDescripcion($arr[$keys[2]]);
+		if (array_key_exists($keys[3], $arr)) $this->setOrden($arr[$keys[3]]);
 	}
 
 	
@@ -364,6 +399,7 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(AnioPeer::ID)) $criteria->add(AnioPeer::ID, $this->id);
 		if ($this->isColumnModified(AnioPeer::FK_ESTABLECIMIENTO_ID)) $criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $this->fk_establecimiento_id);
 		if ($this->isColumnModified(AnioPeer::DESCRIPCION)) $criteria->add(AnioPeer::DESCRIPCION, $this->descripcion);
+		if ($this->isColumnModified(AnioPeer::ORDEN)) $criteria->add(AnioPeer::ORDEN, $this->orden);
 
 		return $criteria;
 	}
@@ -397,6 +433,8 @@ abstract class BaseAnio extends BaseObject  implements Persistent {
 		$copyObj->setFkEstablecimientoId($this->fk_establecimiento_id);
 
 		$copyObj->setDescripcion($this->descripcion);
+
+		$copyObj->setOrden($this->orden);
 
 
 		if ($deepCopy) {
