@@ -256,26 +256,47 @@ class asistenciaActions extends sfActions
                 $aTitulo[] = "No Cargado";
 
                 if($bool_gd) { // Si no tiene cargado la GD no muestra el grafico
-                    include "graph.php";
-                    putenv('GDFONTPATH=' . realpath(sfConfig::get('sf_lib_dir')."/font/"));
-                    $graph = new graph();
-                    $graph->setProp("font","FreeSerifBold.ttf");
-                    $graph->setProp("keyfont","FreeSerifBold.ttf");
-                    $graph->setProp("showkey",true);
-                    $graph->setProp("type","pie");
-                    $graph->setProp("showgrid",false);
-                    $graph->setProp("key", $aTitulo);
-                    $graph->setProp("keywidspc",-50);
-                    $graph->setProp("keyinfo",2);
-                    foreach($aPorcentajeAsistencia as $porcentaje)  {
-                        $graph->addPoint($porcentaje);
-                    }
-                    $graph->addPoint($dias-$tot);
-    
-                    $graph->graphX();
+
+                    // Genera nombre de archivo único
                     $nombre_archivo = uniqid();
-                    $nombre_completo_archivo = $nombre_archivo.'.png';
-                    @$graph->showGraph(sfConfig::get('app_alba_tmpdir').DIRECTORY_SEPARATOR.$nombre_completo_archivo);
+                    $nombre_completo_archivo = $nombre_archivo.'.jpg';
+
+                    // nueva clase para grafico de tortas
+                    $graph = new ezcGraphPieChart();
+
+                    // uso driver GD pero podria ser SVG o Ming
+                    $graph->driver = new ezcGraphGdDriver();
+                    $graph->driver->options->supersampling = 1;
+                    $graph->driver->options->jpegQuality = 100;
+                    $graph->driver->options->imageFormat = IMG_JPEG;
+
+
+                    // Color de fondo del grafico
+                    $graph->background->color = '#FFFFFF';
+
+                    // De donde sacar la letra
+                    $graph->options->font = realpath(sfConfig::get('sf_lib_dir')."/font/FreeSerifBold.ttf");
+                    $graph->options->font->maxFontSize = 9;
+
+                    //     $graph->title = "Asistencia";
+
+                    // Cargo datos de la asistencia
+                    $graph->data['Asistencia'] = new ezcGraphArrayDataSet( $aPorcentajeAsistencia );
+
+                    // tamaño del symbolo de la lista
+                    $graph->legend->symbolSize = 10;
+
+                    // se selecciona las opciones graficas
+                    $graph->renderer = new ezcGraphRenderer3d();
+                    $graph->renderer->options->moveOut = .01;
+                    $graph->renderer->options->pieChartShadowSize = 10;
+                    // $graph->renderer->options->pieChartGleam = .5;
+                    $graph->renderer->options->dataBorder = false;
+                    $graph->renderer->options->pieChartHeight = 16;
+                    $graph->renderer->options->legendSymbolGleam = .5;
+
+                    //graba archivo de imagen
+                    $graph->render( 400, 250, sfConfig::get('app_alba_tmpdir').DIRECTORY_SEPARATOR.$nombre_completo_archivo );
                 } 
             }
         } 

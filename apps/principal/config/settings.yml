@@ -55,6 +55,14 @@ all:
   .settings:
   
      enabled_modules:       [ default, sfMediaLibrary]  
+
+
+    autoloading_fucntions:
+        -   [sfEzComponentsBridge,  autoload]
+
+
+
+
 #    available:              on
 #
 #    path_info_array:        SERVER
