@@ -996,6 +996,7 @@ CREATE TABLE `anio`
 	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
 	`fk_establecimiento_id` INTEGER(11) default 0 NOT NULL,
 	`descripcion` VARCHAR(255)  NOT NULL,
+	`orden` INTEGER default 0,
 	PRIMARY KEY (`id`),
 	INDEX `anio_FI_1` (`fk_establecimiento_id`),
 	CONSTRAINT `anio_FK_1`
