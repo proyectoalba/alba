@@ -505,6 +505,21 @@ class InformesActions extends sfActions
         foreach($aVariable as $idx => $result) { //Recorrer las variables
             switch($idx) { // me fijo que variables debo enviar al template de resultado
 
+                case 'cuenta':
+                    if( array_key_exists('loop', $result) AND $result['loop'] == 1) {
+                        $criteria = new Criteria();
+                        $cuentas = CuentaPeer::doSelect($criteria);
+                        foreach($cuentas as $cuenta) {
+                            $aDato['cuenta'][] = $cuenta->toArray();
+                        }
+                    } else {
+                        if($this->getRequestParameter('cuenta_id')) {
+                            $cuenta = CuentaPeer::retrieveByPk($this->getRequestParameter('cuenta_id'));
+                            $aDato['cuenta'] = $cuenta->toArray();
+                        }
+                    }
+                    break;
+
                 case 'responsable': 
                     if( array_key_exists('loop', $result) AND $result['loop'] == 1) {
                         $criteria = new Criteria();
