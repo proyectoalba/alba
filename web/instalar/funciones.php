@@ -184,24 +184,31 @@ function check_gd() {
 }
 function check_apache2() {
     DebugLog("Comprobando version de apache");
-    $version = 0;
-    preg_match('!Apache/(.*) !U', apache_get_version(), $version);
-    return version_compare($version[1],'2.0.0','>=');
-
+    if (extension_loaded('apache')) {
+	$version = 0;
+	preg_match('!Apache/(.*) !U', apache_get_version(), $version);
+        return version_compare($version[1],'2.0.0','>=');
+    }
+    else
+        return 0;
 }
 function check_rewrite() {
     DebugLog("Comprobando mod_rewrite");
-    $modulos = apache_get_modules();
-    if(count($modulos)>0) {
-        $res = array_search('mod_rewrite', $modulos);
-        if($res === false) {
-            return false;
+    if (extension_loaded('apache')) {
+        $modulos = apache_get_modules();
+        if(count($modulos)>0) {
+            $res = array_search('mod_rewrite', $modulos);
+            if($res === false) {
+                return false;
+            } else {
+                return true;
+            }
         } else {
-            return true;
+            return false;
         }
-    } else {
-        return false;
     }
+    else
+        return false;
 }
 
 ?>

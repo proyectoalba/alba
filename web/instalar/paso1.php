@@ -39,6 +39,7 @@ $dirs = array(
     'web' . DIRECTORY_SEPARATOR . 'tmp',
     'web' . DIRECTORY_SEPARATOR. 'uploads',
     'web' . DIRECTORY_SEPARATOR. 'uploads' .DIRECTORY_SEPARATOR. 'assets',
+    'web' . DIRECTORY_SEPARATOR. 'uploads' .DIRECTORY_SEPARATOR. 'informes',
 );
  
 $alba_path = AlbaPath();
