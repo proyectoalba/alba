@@ -508,9 +508,15 @@ class InformesActions extends sfActions
                     //dependiendo si es una variables de cilcos
                     if( array_key_exists('loop', $result) AND $result['loop'] == 1) {
                         $criteria = new Criteria();
+
                         if($this->getRequestParameter('division_id')) {
                             $criteria->add(DivisionPeer::ID, $this->getRequestParameter('division_id'));
                         }
+
+                        if($this->getRequestParameter('fk_cuenta_id')) {
+                            $criteria->add(AlumnoPeer::FK_CUENTA_ID, $this->getRequestParameter('fk_cuenta_id'));
+                        }
+
                         $criteria->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
                         $criteria->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID);
                         $criteria->addAscendingOrderByColumn(AlumnoPeer::APELLIDO);
