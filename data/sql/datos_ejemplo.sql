@@ -89,13 +89,13 @@ INSERT INTO `alumno` (`id`, `lugar_nacimiento`, `fk_pais_id`, `nombre`, `apellid
 -- Volcar la base de datos para la tabla `anio`
 -- 
 
-INSERT INTO `anio` (`id`, `fk_establecimiento_id`, `descripcion`) VALUES (1, 1, 'Primer Grado');
-INSERT INTO `anio` (`id`, `fk_establecimiento_id`, `descripcion`) VALUES (2, 1, 'Segundo Grado ');
-INSERT INTO `anio` (`id`, `fk_establecimiento_id`, `descripcion`) VALUES (3, 1, 'Tercer Grado');
-INSERT INTO `anio` (`id`, `fk_establecimiento_id`, `descripcion`) VALUES (4, 1, 'Cuarto Grado');
-INSERT INTO `anio` (`id`, `fk_establecimiento_id`, `descripcion`) VALUES (5, 1, 'Quinto grado');
-INSERT INTO `anio` (`id`, `fk_establecimiento_id`, `descripcion`) VALUES (6, 1, 'Sexto Grado');
-INSERT INTO `anio` (`id`, `fk_establecimiento_id`, `descripcion`) VALUES (7, 1, 'Séptimo Grado');
+INSERT INTO `anio` (`id`, `fk_establecimiento_id`, `descripcion`, `orden`) VALUES (1, 1, 'Primer Grado', 10);
+INSERT INTO `anio` (`id`, `fk_establecimiento_id`, `descripcion`, `orden`) VALUES (2, 1, 'Segundo Grado ', 20);
+INSERT INTO `anio` (`id`, `fk_establecimiento_id`, `descripcion`, `orden`) VALUES (3, 1, 'Tercer Grado', 30);
+INSERT INTO `anio` (`id`, `fk_establecimiento_id`, `descripcion`, `orden`) VALUES (4, 1, 'Cuarto Grado', 40);
+INSERT INTO `anio` (`id`, `fk_establecimiento_id`, `descripcion`, `orden`) VALUES (5, 1, 'Quinto grado', 50);
+INSERT INTO `anio` (`id`, `fk_establecimiento_id`, `descripcion`, `orden`) VALUES (6, 1, 'Sexto Grado', 60);
+INSERT INTO `anio` (`id`, `fk_establecimiento_id`, `descripcion`, `orden`) VALUES (7, 1, 'Séptimo Grado', 70);
 
 -- 
 -- Volcar la base de datos para la tabla `asistencia`
