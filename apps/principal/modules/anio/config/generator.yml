@@ -5,10 +5,11 @@ generator:
     theme:            default
     fields:
         descripcion: { name: Descripci&oacute;n , params: size=40 }
+        orden: { name: Orden , params: size=2 }
     
     edit:
         title: " "
-        display: [descripcion ]
+        display: [descripcion, orden ]
         actions:
             _delete: -
             _save: -
@@ -17,7 +18,7 @@ generator:
                     
     list:
         title: Listado de A&ntilde;os
-        display: [ =descripcion ]
+        display: [ =descripcion , orden]
         sort: descripcion
         object_actions:
             _edit:      -
