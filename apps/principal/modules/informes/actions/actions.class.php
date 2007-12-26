@@ -318,6 +318,8 @@ class InformesActions extends sfActions
                 } else {
                     $this->redirect('informes/busquedaListadoAlumnos?id='.$informe->getId()); break;
                 }
+            case 'General':
+                $this->redirect('informes/mostrar?id='.$informe->getId());
             default: $this->redirect('informes/busquedaAlumnos?id='.$informe->getId());
         }
     }
@@ -611,6 +613,22 @@ class InformesActions extends sfActions
                         //por seguridad: para no mostrar otros datos del usuario como clave, preguntas, etc
                         $aDato['usuario'] = array( 'Usuario' => $aUsuario['Usuario'], 'Email' => $aUsuario['Email']);
 
+                    }
+                    break;
+
+
+                case 'docente':
+                    if( array_key_exists('loop', $result) AND $result['loop'] == 1 ) {
+                        $c = new Criteria();
+                        $docentes = DocentePeer::doSelect($c);
+                        foreach($docentes as $docente) {
+                            $aDato['docente'][] = $docente->toArray();
+                        }
+                    } else {
+                        if($this->getRequestParameter('docente_id')) {
+                            $docente = DocentePeer::retrieveByPK($this->getRequestParameter('docente_id'));
+                            $aDato['docente'] = $docente->toArray();
+                        }
                     }
                     break;
 

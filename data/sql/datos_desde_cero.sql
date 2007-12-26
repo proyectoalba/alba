@@ -315,6 +315,8 @@ INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (56, 1
 
 INSERT INTO `tipoinforme` (`id` ,`nombre` ,`descripcion`) VALUES (1 , 'Alumnos', 'Informes relacionados a los alumnos');
 
+INSERT INTO `tipoinforme` (`id`, `nombre`, `descripcion`) VALUES (2, 'General', '');
+
 
 INSERT INTO `adjunto` (`id`, `descripcion`, `titulo`, `nombre_archivo`, `tipo_archivo`, `ruta`, `fecha`) VALUES (1, NULL, NULL, 'constancia_alumno_regular.odt', 'application/vnd.oasis.opendocument.text', 'constancia_alumno_regular.odt', '2007-10-17 00:00:00');
 
@@ -328,6 +330,8 @@ INSERT INTO `adjunto` (`id`, `descripcion`, `titulo`, `nombre_archivo`, `tipo_ar
 
 INSERT INTO `adjunto` (`id`, `descripcion`, `titulo`, `nombre_archivo`, `tipo_archivo`, `ruta`, `fecha`) VALUES (6, NULL, NULL, 'locacion.odt', 'application/vnd.oasis.opendocument.text', 'locacion.odt', '2007-10-17 00:00:00');
 
+INSERT INTO `adjunto` (`id`, `descripcion`, `titulo`, `nombre_archivo`, `tipo_archivo`, `ruta`, `fecha`) VALUES (6, NULL, NULL, 'docente.odt', 'application/vnd.oasis.opendocument.text', 'docente.odt', '2007-10-17 00:00:00');
+
 
 INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (1, 'Constancia de alumno regular', 'Constancia de alumno regular', 1, 1, 0, '');
 
@@ -339,6 +343,8 @@ INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoi
 
 INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (5, 'Alumnos por división', 'Alumnos por división', 5, 1, 1, '');
 
-INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (6, 'Locacion', 'Locacion', 6, 1, 1, '');
+INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (6, 'Locacion', 'Locacion', 6, 2, 1, '');
+
+INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (6, 'Docente', 'Docente', 7, 2, 1, '');
 
 SET FOREIGN_KEY_CHECKS = 1;
