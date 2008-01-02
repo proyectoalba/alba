@@ -458,6 +458,7 @@ class InformesActions extends sfActions
         $OOo->SaveXmlToDoc();
         header('Content-type: '.$OOo->GetMimetypeDoc());
         header('Content-Length: '.filesize($OOo->GetPathnameDoc()));
+        header('Content-Disposition: attachment; filename=informe'.$informe->getNombre().'.odt');
         $OOo->FlushDoc();
         $OOo->RemoveDoc();
     }
