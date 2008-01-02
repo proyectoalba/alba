@@ -2510,20 +2510,48 @@ INSERT INTO `docente_horario` (`fk_docente_id`, `fk_evento_id` ) VALUES (6, 6);
 -- 
 
 INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (1, 1, '1', 1, 0, 'Aplazado');
-INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (2, 1, '2', 2, 0, 'Aplazado');
-INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (3, 1, '3', 3, 0, 'Aplazado');
-INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (4, 1, '4', 4, 0, 'Regular');
-INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (5, 1, '5', 5, 0, 'Regular');
-INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (6, 1, '6', 6, 1, 'Bueno');
-INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (7, 1, '7', 7, 1, 'Bueno');
-INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (8, 1, '8', 8, 1, 'Muy bueno');
-INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (9, 1, '9', 9, 1, 'Muy bueno');
-INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (10, 1, '10', 10, 1, 'Sobresaliente.');
-INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (11, 1, 'S', 5, 1, 'Sobresaliente (conceptual).');
-INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (12, 1, 'MB', 4, 1, 'Muy bueno (conceptual).');
-INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (13, 1, 'B', 3, 1, 'Bueno (conceptual).');
-INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (14, 1, 'R', 2, 0, 'Regular (conceptual)');
-INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (15, 1, 'I', 1, 0, 'Insuficiente (conceptual).');
+
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (2, 1, '1.25', 1, 0, 'Aplazado');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (3, 1, '1.50', 1, 0, 'Aplazado');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (4, 1, '1.75', 1, 0, 'Aplazado');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (5, 1, '2', 2, 0, 'Aplazado');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (6, 1, '2.25', 2, 0, 'Aplazado');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (7, 1, '2.50', 2, 0, 'Aplazado');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (8, 1, '2.75', 2, 0, 'Aplazado');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (9, 1, '3', 3, 0, 'Aplazado');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (10, 1, '3.25', 3, 0, 'Aplazado');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (11, 1, '3.50', 3, 0, 'Aplazado');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (12, 1, '3.75', 3, 0, 'Aplazado');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (13, 1, '4', 4, 0, 'Regular');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (14, 1, '4.25', 4, 0, 'Regular');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (15, 1, '4.50', 4, 0, 'Regular');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (16, 1, '4.75', 4, 0, 'Regular');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (17, 1, '5', 5, 0, 'Regular');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (18, 1, '5.25', 5, 0, 'Regular');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (19, 1, '5.50', 5, 0, 'Regular');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (20, 1, '5.75', 5, 0, 'Regular');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (21, 1, '6', 6, 1, 'Bueno');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (22, 1, '6.25', 6, 1, 'Bueno');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (23, 1, '6.50', 6, 1, 'Bueno');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (24, 1, '6.75', 6, 1, 'Bueno');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (25, 1, '7', 7, 1, 'Bueno');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (26, 1, '7.25', 7, 1, 'Bueno');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (27, 1, '7.50', 7, 1, 'Bueno');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (28, 1, '7.75', 7, 1, 'Bueno');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (29, 1, '8', 8, 1, 'Muy bueno');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (30, 1, '8.25', 8, 1, 'Muy bueno');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (31, 1, '8.50', 8, 1, 'Muy bueno');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (32, 1, '8.75', 8, 1, 'Muy bueno');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (33, 1, '9', 9, 1, 'Muy bueno');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (34, 1, '9.25', 9, 1, 'Muy bueno');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (35, 1, '9.50', 9, 1, 'Muy bueno');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (36, 1, '9.75', 9, 1, 'Muy bueno');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (37, 1, '10', 10, 1, 'Sobresaliente.');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (38, 1, 'S', 5, 1, 'Sobresaliente (conceptual).');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (39, 1, 'MB', 4, 1, 'Muy bueno (conceptual).');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (40, 1, 'B', 3, 1, 'Bueno (conceptual).');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (41, 1, 'R', 2, 0, 'Regular (conceptual)');
+INSERT INTO `escalanota` (`id`, `fk_establecimiento_id`, `nombre`, `orden`, `aprobado`, `descripcion`) VALUES (42, 1, 'I', 1, 0, 'Insuficiente (conceptual).');
 
 -- 
 -- Volcar la base de datos para la tabla `espacio`
