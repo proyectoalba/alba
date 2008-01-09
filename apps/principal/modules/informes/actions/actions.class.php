@@ -319,7 +319,8 @@ class InformesActions extends sfActions
                     $this->redirect('informes/busquedaListadoAlumnos?id='.$informe->getId()); break;
                 }
             case 'General':
-                $this->redirect('informes/mostrar?id='.$informe->getId());
+                $this->redirect('informes/mostrar?id='.$informe->getId()); 
+                break;
             default: $this->redirect('informes/busquedaAlumnos?id='.$informe->getId());
         }
     }
