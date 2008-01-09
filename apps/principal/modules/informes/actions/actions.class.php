@@ -477,23 +477,31 @@ class InformesActions extends sfActions
         // Saco del template todas las variables del tipo [sssss.rrrrr], tambien las del ciclo y además 
         // evitando las variables del tbs con ;
         $matches = $results = array();
-        if( preg_match_all("/\[([^];]*\.[^]]*)\]/", $fuente, $matches)) {
-            foreach ($matches[1] as $tag) { // Process each
-                if (sizeof($tag = explode('.', $tag)) > 1) { // Breakdown into components
-                    $tail = array_pop($tag);
-                    //salto las variables que tienen frm, habria que integrarlo
-                    // a la expresion regular
-                    if(strpos($tail, "frm=") !== false) {
-                         continue;
+             if( preg_match_all("/\[[^];]*[;.][^]]*\]/", $fuente, $matches)) {
+
+             foreach ($matches as $tags) {
+                foreach($tags as $tag) {
+                    $tag = str_replace('[','',$tag);
+                    $tag = str_replace(']','',$tag);
+                    if (sizeof($aTag =explode('.', $tag)) > 1) { // Breakdown into components
+                        $aTag =explode('.', $tag);                    
+                        $tail = array_pop($aTag);
+                        if(strpos($tail, "frm=") !== false) {
+                            continue;
+                        }
+                        $pos = strpos($tail, ';block');  // posicion de block
+                        if($pos !== false) { // es un listado
+                            $tail = substr($tail, 0, $pos);
+                            $results[$aTag[0]]['loop'] = 1;
+                        }
+                        $results[$aTag[0]][] = $tail;
+                    } else {
+                        $pos = strpos($tag, ';block=end');  // posicion de block
+                        if($pos !== false) { // es un listado
+                            $tail = substr($tag, 0, $pos);
+                            $results[$tail]['loop'] = 1;
+                        }
                     }
-                    $pos = strpos($tail, ';block');  // posicion de block
-                    if($pos !== false) { // es un listado
-                        $tail = substr($tail, 0, $pos);
-                        $results[$tag[0]]['loop'] = 1;
-                   }
-                   eval('$results[\''.implode("']['", $tag)."'][] = '$tail';"); // Add to $result
-                } else {
-                    $results[] = $tag[0]; // Add to $result
                 }
             }
         }
