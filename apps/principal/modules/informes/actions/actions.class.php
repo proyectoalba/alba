@@ -463,7 +463,7 @@ class InformesActions extends sfActions
         header("Cache-Control: public, must-revalidate");
         header("Pragma: hack");
         header('Content-Length: '.filesize($OOo->GetPathnameDoc()));
-        header('Content-Disposition: attachment; filename=informe'.$informe->getNombre().'.odt');
+        header('Content-Disposition: attachment; filename="informe'.$informe->getNombre().'.odt"');
         header("Content-Transfer-Encoding: binary");
         $OOo->FlushDoc();
         $OOo->RemoveDoc();
