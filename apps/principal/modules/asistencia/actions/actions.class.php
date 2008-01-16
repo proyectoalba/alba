@@ -303,7 +303,7 @@ class asistenciaActions extends sfActions
 
         //Asignacion de variables para el template
 
-        $this->bool_tmp = $this->tienePermisoEscritura(sfConfig::get('app_alba_tmpdir'));
+        $this->bool_tmp = is_writable(sfConfig::get('app_alba_tmpdir'));
         $this->bool_gd = $bool_gd;
         $this->nombre_completo_archivo = $nombre_completo_archivo;
         $this->d = $d;
@@ -406,12 +406,5 @@ class asistenciaActions extends sfActions
         }
         return $aDatosTablaTipoAsistencias;
      }
-
-
-    function tienePermisoEscritura($dir) {
-        $octalPermiso = substr(sprintf('%o', @fileperms($dir)), -4);
-        return ($octalPermiso == "0777" OR $octalPermiso == "1777");
-    }
-
 }
 ?>

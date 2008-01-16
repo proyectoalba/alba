@@ -232,7 +232,7 @@
     <?php } else { ?>
         <div class="form-errors">
         <ul>
-            <li>No tiene permisos de escritura sobre el directorio tmp para ver los gr&aacute;ficos de estad&iacute;sticas.</li>
+            <li>No tiene permisos de escritura sobre el directorio web/tmp para ver los gr&aacute;ficos de estad&iacute;sticas.</li>
         </ul>
         </div>    
     <?php } ?>
