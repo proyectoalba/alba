@@ -34,7 +34,7 @@ function AlbaPath() {
 
 function DebugLog($str,$modo = 'I') {
     $log = AlbaPath() . DIRECTORY_SEPARATOR . "log" . DIRECTORY_SEPARATOR . "install.log";
-    $fp = fopen($log,"a+");
+    $fp = @fopen($log,"a+");
     if ($fp) {
         fwrite($fp,date('d/m/Y H:i:s') . " $modo: $str\n");
         fclose($fp);
