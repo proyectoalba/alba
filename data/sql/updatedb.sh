@@ -22,8 +22,12 @@ DB=${SERVERANDDB#*/}
 #    exit 0
 #fi
 
-mysqladmin --force -u $USER -p$PASS -h $SERVER drop $DB
-mysqladmin --force -u $USER -p$PASS -h $SERVER create $DB
-mysql -u $USER -p$PASS -h $SERVER $DB < $SCHEMA
-mysql -u $USER -p$PASS -h $SERVER $DB < $EJEMPLO
+if [ $USER != $PASS ]; then 
+    OPTION="-p$PASS"
+fi
+
+mysqladmin --force -u $USER $OPTION  -h $SERVER drop $DB
+mysqladmin --force -u $USER $OPTION  -h $SERVER create $DB
+mysql -u $USER $OPTION  -h $SERVER $DB < $SCHEMA
+mysql -u $USER $OPTION  -h $SERVER $DB < $EJEMPLO
 echo "DB Actualizada!"
