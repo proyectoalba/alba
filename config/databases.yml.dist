@@ -4,3 +4,4 @@ all:
     param:
       dsn:          mysql://USERDB:PASSDB@SERVER/DBNAME
       datasource: alba
+      enconding:  utf8
