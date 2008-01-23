@@ -44,7 +44,7 @@ class EspacioMapBuilder {
 
 		$tMap->addColumn('ESTADO', 'Estado', 'string', CreoleTypes::VARCHAR, false, 255);
 
-		$tMap->addForeignKey('FK_TIPOESPACIO_ID', 'FkTipoespacioId', 'int', CreoleTypes::INTEGER, 'tipoespacio', 'ID', false, 11);
+		$tMap->addForeignKey('FK_TIPOESPACIO_ID', 'FkTipoespacioId', 'int', CreoleTypes::INTEGER, 'tipoespacio', 'ID', false, null);
 
 		$tMap->addForeignKey('FK_LOCACION_ID', 'FkLocacionId', 'int', CreoleTypes::INTEGER, 'locacion', 'ID', true, null);
 
