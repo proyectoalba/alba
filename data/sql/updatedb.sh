@@ -2,7 +2,7 @@
 
 CONFIGURACIONDB="../../config/databases.yml"
 SCHEMA="lib.model.schema.sql"
-EJEMPLO="datos_ejemplo.sql"
+EJEMPLO="datos_desde_cero.sql"
 DSNARCHIVO=`cat ../../config/databases.yml | grep dsn: | tr -d " "`
 DSN=${DSNARCHIVO#dsn:*}
 
@@ -26,8 +26,10 @@ if [ $USER != $PASS ]; then
     OPTION="-p$PASS"
 fi
 
+ENCODING="--default-character-set=utf8"
+
 mysqladmin --force -u $USER $OPTION  -h $SERVER drop $DB
-mysqladmin --force -u $USER $OPTION  -h $SERVER create $DB
-mysql -u $USER $OPTION  -h $SERVER $DB < $SCHEMA
-mysql -u $USER $OPTION  -h $SERVER $DB < $EJEMPLO
+mysqladmin $ENCODING  --force -u $USER $OPTION  -h $SERVER create $DB
+mysql $ENCODING -u $USER $OPTION  -h $SERVER $DB < $SCHEMA
+mysql $ENCODING -u $USER $OPTION  -h $SERVER $DB < $EJEMPLO
 echo "DB Actualizada!"

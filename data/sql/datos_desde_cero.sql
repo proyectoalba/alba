@@ -1,6 +1,25 @@
-SET NAMES 'utf8';
-SET FOREIGN_KEY_CHECKS = 0;
- 
+-- 
+-- Volcar la base de datos para la tabla 'tipodocumento'
+-- 
+
+INSERT INTO tipodocumento (id, descripcion, orden, nombre) VALUES (1, 'Documento Nacional de Identidad', 1, 'DNI');
+INSERT INTO tipodocumento (id, descripcion, orden, nombre) VALUES (2, 'Libreta Cívica', 2, 'LC');
+INSERT INTO tipodocumento (id, descripcion, orden, nombre) VALUES (3, 'Libreta de enrolamiento', 3, 'LE');
+INSERT INTO tipodocumento (id, descripcion, orden, nombre) VALUES (6, 'Cédula de Identidad', 0, 'CI');
+INSERT INTO tipodocumento (id, descripcion, orden, nombre) VALUES (7, 'Pasaporte', 0, 'Pasaporte');
+
+
+-- 
+-- Volcar la base de datos para la tabla 'tipoiva'
+-- 
+
+INSERT INTO tipoiva (id, nombre, descripcion) VALUES (1, 'Exento', 'Exento de IVA');
+INSERT INTO tipoiva (id, nombre, descripcion) VALUES (2, 'Responsable Inscripto', 'Responsable inscripto');
+INSERT INTO tipoiva (id, nombre, descripcion) VALUES (3, 'Monotributo', 'Monotributo');
+INSERT INTO tipoiva (id, nombre, descripcion) VALUES (4, 'CF', 'Consumidor Final');
+
+
+
 -- Volcar la base de datos para la tabla 'niveltipo'
 -- 
 
@@ -46,66 +65,38 @@ INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (25, '
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (26, 'Corrientes', 'Corrientes', 1);
 INSERT INTO provincia (id, nombre_corto, nombre_largo, fk_pais_id) VALUES (27, 'Tucumán', 'Tucumán', 1);
 
--- 
--- Volcar la base de datos para la tabla 'repeticion'
--- 
-
-INSERT INTO `repeticion` (`descripcion`, `orden`) VALUES ('Semanal', 1);
-INSERT INTO `repeticion` (`descripcion`, `orden`) VALUES ('Semanal Intercalado', 2);
-INSERT INTO `repeticion` (`descripcion`, `orden`) VALUES ('Quincenal', 3);
-INSERT INTO `repeticion` (`descripcion`, `orden`) VALUES ('Mensual', 4);
-
--- 
--- Volcar la base de datos para la tabla 'tipoiva'
--- 
-
-INSERT INTO tipoiva (id, nombre, descripcion) VALUES (1, 'Exento', 'Exento de IVA');
-INSERT INTO tipoiva (id, nombre, descripcion) VALUES (2, 'Responsable Inscripto', 'Responsable inscripto');
-INSERT INTO tipoiva (id, nombre, descripcion) VALUES (3, 'Monotributo', 'Monotributo');
-INSERT INTO tipoiva (id, nombre, descripcion) VALUES (4, 'CF', 'Consumidor Final');
-
--- 
--- Volcar la base de datos para la tabla 'tipodocumento'
--- 
-
-INSERT INTO `tipodocumento` (`id`, `descripcion`, `orden`, `nombre`) VALUES (1, 'Documento Nacional de Identidad', 1, 'DNI');
-INSERT INTO `tipodocumento` (`id`, `descripcion`, `orden`, `nombre`) VALUES (2, 'Libreta Cívica', 2, 'LC');
-INSERT INTO `tipodocumento` (`id`, `descripcion`, `orden`, `nombre`) VALUES (3, 'Libreta de enrolamiento', 3, 'LE');
-INSERT INTO `tipodocumento` (`id`, `descripcion`, `orden`, `nombre`) VALUES (6, 'Cédula de Identidad', 0, 'CI');
-INSERT INTO `tipodocumento` (`id`, `descripcion`, `orden`, `nombre`) VALUES (7, 'Pasaporte', 0, 'Pasaporte');
 
 -- 
 -- Volcar la base de datos para la tabla 'calendariovacunacion'
 -- 
-INSERT INTO `calendariovacunacion` (`id`, `nombre`, `descripcion`, `periodo`, `observacion`) VALUES 
-(3, 'BCG (1era Dosis)', 'Tuberculosis', 'Recién nacido', ''),
-(4, 'BCG (refuerzo)', 'Tuberculosis', '6 años', NULL),
-(6, 'HA (dosis)', 'Hepatitis A', '12 meses', NULL),
-(7, 'HB (1era Dosis)', 'Hepatitis B', 'Recién nacido', NULL),
-(8, 'HB (2da Dosis)', 'Hepatitis B', '2 meses', NULL),
-(9, 'HB (3ra Dosis)', 'Hepatitis B', '6 meses', NULL),
-(10, 'HB (Iniciar o completar esquema de tres dosis)', 'Hepatitis B', '11 años', NULL),
-(11, 'Cuádruple (1era Dosis)', '(DTP-Hib) difteria, tétanos, pertussis, Haemophilus influenzae b.', '2 meses', ''),
-(12, 'Cuádruple (2da Dosis)', '(DTP-Hib) difteria, tétanos, pertussis, Haemophilus influenzae b.', '4 meses', NULL),
-(13, 'Cuádruple (3ra Dosis)', '(DTP-Hib) difteria, tétanos, pertussis, Haemophilus influenzae b.', '6 meses', NULL),
-(14, 'Cuádruple (4ta Dosis)', '(DTP-Hib) difteria, tétanos, pertussis, Haemophilus influenzae b.', '18 meses', NULL),
-(15, 'Sabin (1era Dosis)', '(OPV) Vacuna Poliomelítica Oral', '2 meses', NULL),
-(16, 'Sabin (2da Dosis)', '(OPV) Vacuna Poliomelítica Oral', '4 meses', NULL),
-(17, 'Sabin (3ra Dosis)', '(OPV) Vacuna Poliomelítica Oral', '6 meses', NULL),
-(18, 'Sabin (4ta Dosis)', '(OPV) Vacuna Poliomelítica Oral', '18 meses', NULL),
-(19, 'Sabin (Refuerzo)', '(OPV) Vacuna Poliomelítica Oral', '6 años', NULL),
-(20, 'Triple bacteriana (Refuerzo)', '(DTP) Difteria, tétanos, pertussis', '6 años', NULL),
-(21, 'Triple Viral (1era Dosis)', '(SRP) Sarampión, rubéola, parotiditis', '12 meses', NULL),
-(22, 'Triple Viral (2da Dosis)', '(SRP) Sarampión, rubéola, parotiditis', '6 años', NULL),
-(23, 'Triple Viral (Refuerzo)', '(SRP) Sarampión, rubéola, parotiditis', '11 años', NULL),
-(24, 'Doble Viral (dosis)', '(SR) Sarampión, Rubéola.', 'Puerperio o post-aborto inmediato.', NULL),
-(25, 'Doble Bacteriana (Refuerzo 1)', '(dT) Difteria, Tétanos.', '16 años', NULL),
-(26, 'Doble Bacteriana (Refuerzos)', '(dT) Difteria, Tétanos.', 'Cada 10 años', NULL);
+INSERT INTO calendariovacunacion (id, nombre, descripcion, periodo, observacion) VALUES (3, 'BCG (1era Dosis)', 'Tuberculosis', 'Recién nacido', '');
+INSERT INTO calendariovacunacion (id, nombre, descripcion, periodo, observacion) VALUES (4, 'BCG (refuerzo)', 'Tuberculosis', '6 años', NULL);
+INSERT INTO calendariovacunacion (id, nombre, descripcion, periodo, observacion) VALUES (6, 'HA (dosis)', 'Hepatitis A', '12 meses', NULL);
+INSERT INTO calendariovacunacion (id, nombre, descripcion, periodo, observacion) VALUES (7, 'HB (1era Dosis)', 'Hepatitis B', 'Recién nacido', NULL);
+INSERT INTO calendariovacunacion (id, nombre, descripcion, periodo, observacion) VALUES (8, 'HB (2da Dosis)', 'Hepatitis B', '2 meses', NULL);
+INSERT INTO calendariovacunacion (id, nombre, descripcion, periodo, observacion) VALUES (9, 'HB (3ra Dosis)', 'Hepatitis B', '6 meses', NULL);
+INSERT INTO calendariovacunacion (id, nombre, descripcion, periodo, observacion) VALUES (10, 'HB (Iniciar o completar esquema de tres dosis)', 'Hepatitis B', '11 años', NULL);
+INSERT INTO calendariovacunacion (id, nombre, descripcion, periodo, observacion) VALUES (11, 'Cuádruple (1era Dosis)', '(DTP-Hib) difteria, tétanos, pertussis, Haemophilus influenzae b.', '2 meses', '');
+INSERT INTO calendariovacunacion (id, nombre, descripcion, periodo, observacion) VALUES (12, 'Cuádruple (2da Dosis)', '(DTP-Hib) difteria, tétanos, pertussis, Haemophilus influenzae b.', '4 meses', NULL);
+INSERT INTO calendariovacunacion (id, nombre, descripcion, periodo, observacion) VALUES (13, 'Cuádruple (3ra Dosis)', '(DTP-Hib) difteria, tétanos, pertussis, Haemophilus influenzae b.', '6 meses', NULL);
+INSERT INTO calendariovacunacion (id, nombre, descripcion, periodo, observacion) VALUES (14, 'Cuádruple (4ta Dosis)', '(DTP-Hib) difteria, tétanos, pertussis, Haemophilus influenzae b.', '18 meses', NULL);
+INSERT INTO calendariovacunacion (id, nombre, descripcion, periodo, observacion) VALUES (15, 'Sabin (1era Dosis)', '(OPV) Vacuna Poliomelítica Oral', '2 meses', NULL);
+INSERT INTO calendariovacunacion (id, nombre, descripcion, periodo, observacion) VALUES (16, 'Sabin (2da Dosis)', '(OPV) Vacuna Poliomelítica Oral', '4 meses', NULL);
+INSERT INTO calendariovacunacion (id, nombre, descripcion, periodo, observacion) VALUES (17, 'Sabin (3ra Dosis)', '(OPV) Vacuna Poliomelítica Oral', '6 meses', NULL);
+INSERT INTO calendariovacunacion (id, nombre, descripcion, periodo, observacion) VALUES (18, 'Sabin (4ta Dosis)', '(OPV) Vacuna Poliomelítica Oral', '18 meses', NULL);
+INSERT INTO calendariovacunacion (id, nombre, descripcion, periodo, observacion) VALUES (19, 'Sabin (Refuerzo)', '(OPV) Vacuna Poliomelítica Oral', '6 años', NULL);
+INSERT INTO calendariovacunacion (id, nombre, descripcion, periodo, observacion) VALUES (20, 'Triple bacteriana (Refuerzo)', '(DTP) Difteria, tétanos, pertussis', '6 años', NULL);
+INSERT INTO calendariovacunacion (id, nombre, descripcion, periodo, observacion) VALUES (21, 'Triple Viral (1era Dosis)', '(SRP) Sarampión, rubéola, parotiditis', '12 meses', NULL);
+INSERT INTO calendariovacunacion (id, nombre, descripcion, periodo, observacion) VALUES (22, 'Triple Viral (2da Dosis)', '(SRP) Sarampión, rubéola, parotiditis', '6 años', NULL);
+INSERT INTO calendariovacunacion (id, nombre, descripcion, periodo, observacion) VALUES (23, 'Triple Viral (Refuerzo)', '(SRP) Sarampión, rubéola, parotiditis', '11 años', NULL);
+INSERT INTO calendariovacunacion (id, nombre, descripcion, periodo, observacion) VALUES (24, 'Doble Viral (dosis)', '(SR) Sarampión, Rubéola.', 'Puerperio o post-aborto inmediato.', NULL);
+INSERT INTO calendariovacunacion (id, nombre, descripcion, periodo, observacion) VALUES (25, 'Doble Bacteriana (Refuerzo 1)', '(dT) Difteria, Tétanos.', '16 años', NULL);
+INSERT INTO calendariovacunacion (id, nombre, descripcion, periodo, observacion) VALUES (26, 'Doble Bacteriana (Refuerzos)', '(dT) Difteria, Tétanos.', 'Cada 10 años', NULL);
 
 -- 
 -- Volcar la base de datos para la tabla 'distritoescolar'
 -- 
-INSERT INTO `distritoescolar` ( `id` , `nombre` , `direccion` , `telefono` , `ciudad` ) 
+INSERT INTO distritoescolar ( id , nombre , direccion , telefono , ciudad ) 
 VALUES (1 , 'Distrito de prueba', '-', '-', '-');
 
 
@@ -130,62 +121,62 @@ VALUES (1, 'Establecimiento Tu nombre', 'Establecimiento Tu descripcion',1,1,1);
 -- 
 
 INSERT INTO usuario (id, usuario, clave, correo_publico, email, activo, fecha_creado, fecha_actualizado, seguridad_pregunta, seguridad_respuesta, fk_establecimiento_id, borrado) 
-VALUES (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'admin@localhost', 1, '2006-12-03 00:00:00', '2006-12-03 00:00:00', 'usuario por defecto', 'adminsitrador', 1, 0);
+VALUES (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', true, 'admin@localhost', true, '2006-12-03 00:00:00', '2006-12-03 00:00:00', 'usuario por defecto', 'adminsitrador', 1, false);
 
 -- 
 -- Volcar la base de datos para la tabla 'modulo'
 -- 
 
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (1, 'Usuario', 'Usuarios', 'Administracion de usuarios', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (2, 'Actividad', 'Actividades', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (3, 'Alumno', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (4, 'Anio', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (5, 'Calendario', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (6, 'Calendariovacunacion', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (7, 'Ciclolectivo', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (8, 'Concepto', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (9, 'Creditos', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (10, 'Cuenta', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (11, 'Division', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (12, 'Docente', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (13, 'DocenteHorario', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (14, 'Escalanota', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (15, 'Establecimiento', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (16, 'Feriado', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (17, 'Legajocategoria', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (18, 'Locacion', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (19, 'Modulo', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (20, 'Organizacion', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (21, 'Pais', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (22, 'Permiso', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (23, 'Preferencia', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (24, 'Provincia', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (25, 'RelActividadDocente', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (26, 'RelAnioActividad', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (27, 'RelCalendariovacunacionAlumno', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (28, 'Responsable', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (29, 'Rol', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (30, 'Seguridad', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (31, 'Tipoiva', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (32, 'Turno', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (33, 'Default', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (34, 'Tipolocacion', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (35, 'Espacios', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (36, 'Tipoespacio', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (37, 'Cargoabaja', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (38, 'Conceptobaja', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (39, 'Distritoescolar', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (40, 'Horarioescolar', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (41, 'Horarioescolartipo', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (42, 'Tipodocente', '', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (43, 'tipoasistencia', 'tipoasistencia', 'Asistencia', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (44, 'legajopedagogico', 'legajopdagogico', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (45, 'Boletin', 'Boletin', '', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (46, 'tipodocumento', 'Tipo Documento', 'Tipo Documento', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (47, 'informes', 'informes', 'informes', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (48, 'rolResponsable','Rol Responsables','Roles de los Resposables de Alumos', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (49, 'orientacion','Orientacion','Orientacion de los grados', 1);
-INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (50, 'tiponivel','Tipo de Nivel','', 1);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (1, 'Usuario', 'Usuarios', 'Administracion de usuarios', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (2, 'Actividad', 'Actividades', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (3, 'Alumno', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (4, 'Anio', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (5, 'Calendario', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (6, 'Calendariovacunacion', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (7, 'Ciclolectivo', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (8, 'Concepto', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (9, 'Creditos', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (10, 'Cuenta', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (11, 'Division', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (12, 'Docente', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (13, 'DocenteHorario', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (14, 'Escalanota', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (15, 'Establecimiento', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (16, 'Feriado', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (17, 'Legajocategoria', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (18, 'Locacion', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (19, 'Modulo', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (20, 'Organizacion', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (21, 'Pais', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (22, 'Permiso', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (23, 'Preferencia', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (24, 'Provincia', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (25, 'RelActividadDocente', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (26, 'RelAnioActividad', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (27, 'RelCalendariovacunacionAlumno', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (28, 'Responsable', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (29, 'Rol', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (30, 'Seguridad', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (31, 'Tipoiva', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (32, 'Turno', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (33, 'Default', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (34, 'Tipolocacion', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (35, 'Espacios', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (36, 'Tipoespacio', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (37, 'Cargoabaja', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (38, 'Conceptobaja', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (39, 'Distritoescolar', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (40, 'Horarioescolar', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (41, 'Horarioescolartipo', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (42, 'Tipodocente', '', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (43, 'tipoasistencia', 'tipoasistencia', 'Asistencia', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (44, 'legajopedagogico', 'legajopdagogico', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (45, 'Boletin', 'Boletin', '', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (46, 'tipodocumento', 'Tipo Documento', 'Tipo Documento', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (47, 'informes', 'informes', 'informes', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (48, 'rolResponsable','Rol Responsables','Roles de los Resposables de Alumos', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (49, 'orientacion','Orientacion','Orientacion de los grados', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (50, 'tiponivel','Tipo de Nivel','', true);
 
 -- 
 -- Volcar la base de datos para la tabla 'permiso'
@@ -310,55 +301,52 @@ INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (55, 1
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (56, 1, 62);
 
 -- 
--- Volcar la base de datos para la tabla `tipoinforme`
+-- Volcar la base de datos para la tabla tipoinforme
 -- 
 
-INSERT INTO `tipoinforme` (`id` ,`nombre` ,`descripcion`) VALUES (1 , 'Alumnos', 'Informes relacionados a los alumnos');
+INSERT INTO tipoinforme (id ,nombre ,descripcion) VALUES (1 , 'Alumnos', 'Informes relacionados a los alumnos');
 
-INSERT INTO `tipoinforme` (`id`, `nombre`, `descripcion`) VALUES (2, 'General', '');
-
-
-INSERT INTO `adjunto` (`id`, `descripcion`, `titulo`, `nombre_archivo`, `tipo_archivo`, `ruta`, `fecha`) VALUES (1, NULL, NULL, 'constancia_alumno_regular.odt', 'application/vnd.oasis.opendocument.text', 'constancia_alumno_regular.odt', '2007-10-17 00:00:00');
-
-INSERT INTO `adjunto` (`id`, `descripcion`, `titulo`, `nombre_archivo`, `tipo_archivo`, `ruta`, `fecha`) VALUES (2, NULL, NULL, 'certificado_de_terminacion_de_estudios_primarios.odt', 'application/vnd.oasis.opendocument.text', 'certificado_de_terminacion_de_estudios_primarios.odt', '2007-10-17 00:00:00');
-
-INSERT INTO `adjunto` (`id`, `descripcion`, `titulo`, `nombre_archivo`, `tipo_archivo`, `ruta`, `fecha`) VALUES (3, NULL, NULL, 'solicitud_legajo.odt', 'application/vnd.oasis.opendocument.text', 'solicitud_legajo.odt', '2007-10-17 00:00:00');
-
-INSERT INTO `adjunto` (`id`, `descripcion`, `titulo`, `nombre_archivo`, `tipo_archivo`, `ruta`, `fecha`) VALUES (4, NULL, NULL, 'certificado_de_estudios.odt', 'application/vnd.oasis.opendocument.text', 'certificado_de_estudios.odt', '2007-10-17 00:00:00');
-
-INSERT INTO `adjunto` (`id`, `descripcion`, `titulo`, `nombre_archivo`, `tipo_archivo`, `ruta`, `fecha`) VALUES (5, NULL, NULL, 'alumnos_por_division.odt', 'application/vnd.oasis.opendocument.text', 'alumnos_por_division.odt', '2007-10-17 00:00:00');
-
-INSERT INTO `adjunto` (`id`, `descripcion`, `titulo`, `nombre_archivo`, `tipo_archivo`, `ruta`, `fecha`) VALUES (6, NULL, NULL, 'locacion.odt', 'application/vnd.oasis.opendocument.text', 'locacion.odt', '2007-10-17 00:00:00');
-
-INSERT INTO `adjunto` (`id`, `descripcion`, `titulo`, `nombre_archivo`, `tipo_archivo`, `ruta`, `fecha`) VALUES (7, NULL, NULL, 'docente.odt', 'application/vnd.oasis.opendocument.text', 'docente.odt', '2007-10-17 00:00:00');
-
-INSERT INTO `adjunto` (`id`, `descripcion`, `titulo`, `nombre_archivo`, `tipo_archivo`, `ruta`, `fecha`) VALUES (8, NULL, NULL, 'organizacion.odt', 'application/vnd.oasis.opendocument.text', 'organizacion.odt', '2007-10-17 00:00:00');
-
-INSERT INTO `adjunto` (`id`, `descripcion`, `titulo`, `nombre_archivo`, `tipo_archivo`, `ruta`, `fecha`) VALUES (9, NULL, NULL, 'cuenta.odt', 'application/vnd.oasis.opendocument.text', 'cuenta.odt', '2007-10-17 00:00:00');
-
-INSERT INTO `adjunto` (`id`, `descripcion`, `titulo`, `nombre_archivo`, `tipo_archivo`, `ruta`, `fecha`) VALUES (10, NULL, NULL, 'responsable.odt', 'application/vnd.oasis.opendocument.text', 'responsable.odt', '2007-10-17 00:00:00');
+INSERT INTO tipoinforme (id, nombre, descripcion) VALUES (2, 'General', '');
 
 
-INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (1, 'Constancia de alumno regular', 'Constancia de alumno regular', 1, 1, 0, '');
+INSERT INTO adjunto (id, descripcion, titulo, nombre_archivo, tipo_archivo, ruta, fecha) VALUES (1, NULL, NULL, 'constancia_alumno_regular.odt', 'application/vnd.oasis.opendocument.text', 'constancia_alumno_regular.odt', '2007-10-17 00:00:00');
 
-INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (2, 'Certificado fin de estudios primarios', 'Certificado fin de estudios primarios', 2, 1, 0, '');
+INSERT INTO adjunto (id, descripcion, titulo, nombre_archivo, tipo_archivo, ruta, fecha) VALUES (2, NULL, NULL, 'certificado_de_terminacion_de_estudios_primarios.odt', 'application/vnd.oasis.opendocument.text', 'certificado_de_terminacion_de_estudios_primarios.odt', '2007-10-17 00:00:00');
 
-INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (3, 'Solicitud de legajo', 'Solicitud de legajo', 3, 1, 0, 'origen');
+INSERT INTO adjunto (id, descripcion, titulo, nombre_archivo, tipo_archivo, ruta, fecha) VALUES (3, NULL, NULL, 'solicitud_legajo.odt', 'application/vnd.oasis.opendocument.text', 'solicitud_legajo.odt', '2007-10-17 00:00:00');
 
-INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (4, 'Certificado de estudios', 'Certificado de estudios', 4, 1, 0, 'grado;año');
+INSERT INTO adjunto (id, descripcion, titulo, nombre_archivo, tipo_archivo, ruta, fecha) VALUES (4, NULL, NULL, 'certificado_de_estudios.odt', 'application/vnd.oasis.opendocument.text', 'certificado_de_estudios.odt', '2007-10-17 00:00:00');
 
-INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (5, 'Alumnos por división', 'Alumnos por división', 5, 1, 1, '');
+INSERT INTO adjunto (id, descripcion, titulo, nombre_archivo, tipo_archivo, ruta, fecha) VALUES (5, NULL, NULL, 'alumnos_por_division.odt', 'application/vnd.oasis.opendocument.text', 'alumnos_por_division.odt', '2007-10-17 00:00:00');
 
-INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (6, 'Locacion', 'Locacion', 6, 2, 1, '');
+INSERT INTO adjunto (id, descripcion, titulo, nombre_archivo, tipo_archivo, ruta, fecha) VALUES (6, NULL, NULL, 'locacion.odt', 'application/vnd.oasis.opendocument.text', 'locacion.odt', '2007-10-17 00:00:00');
 
-INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (7, 'Docente', 'Docente', 7, 2, 1, '');
+INSERT INTO adjunto (id, descripcion, titulo, nombre_archivo, tipo_archivo, ruta, fecha) VALUES (7, NULL, NULL, 'docente.odt', 'application/vnd.oasis.opendocument.text', 'docente.odt', '2007-10-17 00:00:00');
 
-INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (8, 'Organizaci&oacute;n', 'Organizaci&oacute;n', 8, 2, 0, '');
+INSERT INTO adjunto (id, descripcion, titulo, nombre_archivo, tipo_archivo, ruta, fecha) VALUES (8, NULL, NULL, 'organizacion.odt', 'application/vnd.oasis.opendocument.text', 'organizacion.odt', '2007-10-17 00:00:00');
 
-INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (9, 'Cuenta', 'Cuenta', 9, 2, 1, '');
+INSERT INTO adjunto (id, descripcion, titulo, nombre_archivo, tipo_archivo, ruta, fecha) VALUES (9, NULL, NULL, 'cuenta.odt', 'application/vnd.oasis.opendocument.text', 'cuenta.odt', '2007-10-17 00:00:00');
 
-INSERT INTO `informe` (`id`, `nombre`, `descripcion`, `fk_adjunto_id`, `fk_tipoinforme_id`, `listado`, `variables`) VALUES (10, 'Responsable', 'Responsable', 10, 2, 1, '');
+INSERT INTO adjunto (id, descripcion, titulo, nombre_archivo, tipo_archivo, ruta, fecha) VALUES (10, NULL, NULL, 'responsable.odt', 'application/vnd.oasis.opendocument.text', 'responsable.odt', '2007-10-17 00:00:00');
 
 
+INSERT INTO informe (id, nombre, descripcion, fk_adjunto_id, fk_tipoinforme_id, listado, variables) VALUES (1, 'Constancia de alumno regular', 'Constancia de alumno regular', 1, 1, false, '');
 
-SET FOREIGN_KEY_CHECKS = 1;
+INSERT INTO informe (id, nombre, descripcion, fk_adjunto_id, fk_tipoinforme_id, listado, variables) VALUES (2, 'Certificado fin de estudios primarios', 'Certificado fin de estudios primarios', 2, 1, false, '');
+
+INSERT INTO informe (id, nombre, descripcion, fk_adjunto_id, fk_tipoinforme_id, listado, variables) VALUES (3, 'Solicitud de legajo', 'Solicitud de legajo', 3, 1, false, 'origen');
+
+INSERT INTO informe (id, nombre, descripcion, fk_adjunto_id, fk_tipoinforme_id, listado, variables) VALUES (4, 'Certificado de estudios', 'Certificado de estudios', 4, 1, false, 'grado;año');
+
+INSERT INTO informe (id, nombre, descripcion, fk_adjunto_id, fk_tipoinforme_id, listado, variables) VALUES (5, 'Alumnos por división', 'Alumnos por división', 5, 1, true, '');
+
+INSERT INTO informe (id, nombre, descripcion, fk_adjunto_id, fk_tipoinforme_id, listado, variables) VALUES (6, 'Locacion', 'Locacion', 6, 2, true, '');
+
+INSERT INTO informe (id, nombre, descripcion, fk_adjunto_id, fk_tipoinforme_id, listado, variables) VALUES (7, 'Docente', 'Docente', 7, 2, true, '');
+
+INSERT INTO informe (id, nombre, descripcion, fk_adjunto_id, fk_tipoinforme_id, listado, variables) VALUES (8, 'Organizaci&oacute;n', 'Organizaci&oacute;n', 8, 2, false, '');
+
+INSERT INTO informe (id, nombre, descripcion, fk_adjunto_id, fk_tipoinforme_id, listado, variables) VALUES (9, 'Cuenta', 'Cuenta', 9, 2, true, '');
+
+INSERT INTO informe (id, nombre, descripcion, fk_adjunto_id, fk_tipoinforme_id, listado, variables) VALUES (10, 'Responsable', 'Responsable', 10, 2, true, '');
+
