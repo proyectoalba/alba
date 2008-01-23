@@ -4,6 +4,105 @@
 SET FOREIGN_KEY_CHECKS = 0;
 
 #-----------------------------------------------------------------------------
+#-- conceptobaja
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `conceptobaja`;
+
+
+CREATE TABLE `conceptobaja`
+(
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(128)  NOT NULL,
+	`descripcion` VARCHAR(255),
+	PRIMARY KEY (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- tipodocumento
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `tipodocumento`;
+
+
+CREATE TABLE `tipodocumento`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(128)  NOT NULL,
+	`descripcion` VARCHAR(255),
+	`orden` INTEGER(11) default 0,
+	PRIMARY KEY (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- tipoiva
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `tipoiva`;
+
+
+CREATE TABLE `tipoiva`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(128)  NOT NULL,
+	`descripcion` VARCHAR(255),
+	`orden` INTEGER default 0,
+	PRIMARY KEY (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- pais
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `pais`;
+
+
+CREATE TABLE `pais`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`nombre_largo` VARCHAR(128)  NOT NULL,
+	`nombre_corto` VARCHAR(32)  NOT NULL,
+	`orden` INTEGER default 0,
+	PRIMARY KEY (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- provincia
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `provincia`;
+
+
+CREATE TABLE `provincia`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`nombre_corto` VARCHAR(32)  NOT NULL,
+	`nombre_largo` VARCHAR(128)  NOT NULL,
+	`fk_pais_id` INTEGER default 0 NOT NULL,
+	`orden` INTEGER default 0,
+	PRIMARY KEY (`id`),
+	INDEX `provincia_FI_1` (`fk_pais_id`),
+	CONSTRAINT `provincia_FK_1`
+		FOREIGN KEY (`fk_pais_id`)
+		REFERENCES `pais` (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- tipolocacion
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `tipolocacion`;
+
+
+CREATE TABLE `tipolocacion`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(128)  NOT NULL,
+	`descripcion` VARCHAR(255),
+	PRIMARY KEY (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
 #-- locacion
 #-----------------------------------------------------------------------------
 
@@ -97,21 +196,6 @@ CREATE TABLE `tipoespacio`
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
-#-- tipolocacion
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `tipolocacion`;
-
-
-CREATE TABLE `tipolocacion`
-(
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`nombre` VARCHAR(128)  NOT NULL,
-	`descripcion` VARCHAR(255),
-	PRIMARY KEY (`id`)
-)Type=InnoDB;
-
-#-----------------------------------------------------------------------------
 #-- distritoescolar
 #-----------------------------------------------------------------------------
 
@@ -126,36 +210,6 @@ CREATE TABLE `distritoescolar`
 	`telefono` VARCHAR(20),
 	`ciudad` VARCHAR(128),
 	PRIMARY KEY (`id`)
-)Type=InnoDB;
-
-#-----------------------------------------------------------------------------
-#-- establecimiento
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `establecimiento`;
-
-
-CREATE TABLE `establecimiento`
-(
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`nombre` VARCHAR(128)  NOT NULL,
-	`descripcion` VARCHAR(255),
-	`fk_distritoescolar_id` INTEGER default 0 NOT NULL,
-	`fk_organizacion_id` INTEGER default 0 NOT NULL,
-	`fk_niveltipo_id` INTEGER default 0 NOT NULL,
-	PRIMARY KEY (`id`),
-	INDEX `establecimiento_FI_1` (`fk_distritoescolar_id`),
-	CONSTRAINT `establecimiento_FK_1`
-		FOREIGN KEY (`fk_distritoescolar_id`)
-		REFERENCES `distritoescolar` (`id`),
-	INDEX `establecimiento_FI_2` (`fk_organizacion_id`),
-	CONSTRAINT `establecimiento_FK_2`
-		FOREIGN KEY (`fk_organizacion_id`)
-		REFERENCES `organizacion` (`id`),
-	INDEX `establecimiento_FI_3` (`fk_niveltipo_id`),
-	CONSTRAINT `establecimiento_FK_3`
-		FOREIGN KEY (`fk_niveltipo_id`)
-		REFERENCES `niveltipo` (`id`)
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
@@ -205,19 +259,33 @@ CREATE TABLE `organizacion`
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
-#-- pais
+#-- establecimiento
 #-----------------------------------------------------------------------------
 
-DROP TABLE IF EXISTS `pais`;
+DROP TABLE IF EXISTS `establecimiento`;
 
 
-CREATE TABLE `pais`
+CREATE TABLE `establecimiento`
 (
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`nombre_largo` VARCHAR(128)  NOT NULL,
-	`nombre_corto` VARCHAR(32)  NOT NULL,
-	`orden` INTEGER default 0,
-	PRIMARY KEY (`id`)
+	`nombre` VARCHAR(128)  NOT NULL,
+	`descripcion` VARCHAR(255),
+	`fk_distritoescolar_id` INTEGER default 0 NOT NULL,
+	`fk_organizacion_id` INTEGER default 0 NOT NULL,
+	`fk_niveltipo_id` INTEGER default 0 NOT NULL,
+	PRIMARY KEY (`id`),
+	INDEX `establecimiento_FI_1` (`fk_distritoescolar_id`),
+	CONSTRAINT `establecimiento_FK_1`
+		FOREIGN KEY (`fk_distritoescolar_id`)
+		REFERENCES `distritoescolar` (`id`),
+	INDEX `establecimiento_FI_2` (`fk_organizacion_id`),
+	CONSTRAINT `establecimiento_FK_2`
+		FOREIGN KEY (`fk_organizacion_id`)
+		REFERENCES `organizacion` (`id`),
+	INDEX `establecimiento_FI_3` (`fk_niveltipo_id`),
+	CONSTRAINT `establecimiento_FK_3`
+		FOREIGN KEY (`fk_niveltipo_id`)
+		REFERENCES `niveltipo` (`id`)
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
@@ -255,6 +323,50 @@ CREATE TABLE `preferencia`
 	`valor_por_defecto` VARCHAR(128),
 	`activo` INTEGER default 1 NOT NULL,
 	PRIMARY KEY (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- rol
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `rol`;
+
+
+CREATE TABLE `rol`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(128)  NOT NULL,
+	`descripcion` VARCHAR(255),
+	`activo` INTEGER default 1 NOT NULL,
+	PRIMARY KEY (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- usuario
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `usuario`;
+
+
+CREATE TABLE `usuario`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`usuario` VARCHAR(32)  NOT NULL,
+	`clave` VARCHAR(48)  NOT NULL,
+	`correo_publico` INTEGER default 1,
+	`activo` INTEGER default 1 NOT NULL,
+	`fecha_creado` DATETIME  NOT NULL,
+	`fecha_actualizado` DATETIME  NOT NULL,
+	`seguridad_pregunta` VARCHAR(128),
+	`seguridad_respuesta` VARCHAR(128),
+	`email` VARCHAR(128),
+	`fk_establecimiento_id` INTEGER default 0 NOT NULL,
+	`borrado` INTEGER default 0 NOT NULL,
+	PRIMARY KEY (`id`),
+	INDEX `usuario_FI_1` (`fk_establecimiento_id`),
+	CONSTRAINT `usuario_FK_1`
+		FOREIGN KEY (`fk_establecimiento_id`)
+		REFERENCES `establecimiento` (`id`)
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
@@ -343,50 +455,6 @@ CREATE TABLE `rel_usuario_preferencia`
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
-#-- rol
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `rol`;
-
-
-CREATE TABLE `rol`
-(
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`nombre` VARCHAR(128)  NOT NULL,
-	`descripcion` VARCHAR(255),
-	`activo` INTEGER default 1 NOT NULL,
-	PRIMARY KEY (`id`)
-)Type=InnoDB;
-
-#-----------------------------------------------------------------------------
-#-- usuario
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `usuario`;
-
-
-CREATE TABLE `usuario`
-(
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`usuario` VARCHAR(32)  NOT NULL,
-	`clave` VARCHAR(48)  NOT NULL,
-	`correo_publico` INTEGER default 1,
-	`activo` INTEGER default 1 NOT NULL,
-	`fecha_creado` DATETIME  NOT NULL,
-	`fecha_actualizado` DATETIME  NOT NULL,
-	`seguridad_pregunta` VARCHAR(128),
-	`seguridad_respuesta` VARCHAR(128),
-	`email` VARCHAR(128),
-	`fk_establecimiento_id` INTEGER default 0 NOT NULL,
-	`borrado` INTEGER default 0 NOT NULL,
-	PRIMARY KEY (`id`),
-	INDEX `usuario_FI_1` (`fk_establecimiento_id`),
-	CONSTRAINT `usuario_FK_1`
-		FOREIGN KEY (`fk_establecimiento_id`)
-		REFERENCES `establecimiento` (`id`)
-)Type=InnoDB;
-
-#-----------------------------------------------------------------------------
 #-- orientacion
 #-----------------------------------------------------------------------------
 
@@ -399,43 +467,6 @@ CREATE TABLE `orientacion`
 	`nombre` VARCHAR(128)  NOT NULL,
 	`descripcion` VARCHAR(255),
 	PRIMARY KEY (`id`)
-)Type=InnoDB;
-
-#-----------------------------------------------------------------------------
-#-- tipoiva
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `tipoiva`;
-
-
-CREATE TABLE `tipoiva`
-(
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`nombre` VARCHAR(128)  NOT NULL,
-	`descripcion` VARCHAR(255),
-	`orden` INTEGER default 0,
-	PRIMARY KEY (`id`)
-)Type=InnoDB;
-
-#-----------------------------------------------------------------------------
-#-- provincia
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `provincia`;
-
-
-CREATE TABLE `provincia`
-(
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`nombre_corto` VARCHAR(32)  NOT NULL,
-	`nombre_largo` VARCHAR(128)  NOT NULL,
-	`fk_pais_id` INTEGER default 0 NOT NULL,
-	`orden` INTEGER default 0,
-	PRIMARY KEY (`id`),
-	INDEX `provincia_FI_1` (`fk_pais_id`),
-	CONSTRAINT `provincia_FK_1`
-		FOREIGN KEY (`fk_pais_id`)
-		REFERENCES `pais` (`id`)
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
@@ -525,6 +556,22 @@ CREATE TABLE `alumno`
 	CONSTRAINT `alumno_FK_6`
 		FOREIGN KEY (`fk_pais_id`)
 		REFERENCES `pais` (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- rol_responsable
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `rol_responsable`;
+
+
+CREATE TABLE `rol_responsable`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(128)  NOT NULL,
+	`descripcion` VARCHAR(255),
+	`activo` INTEGER default 1 NOT NULL,
+	PRIMARY KEY (`id`)
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
@@ -637,21 +684,6 @@ CREATE TABLE `periodo`
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
-#-- conceptobaja
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `conceptobaja`;
-
-
-CREATE TABLE `conceptobaja`
-(
-	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
-	`nombre` VARCHAR(128)  NOT NULL,
-	`descripcion` VARCHAR(255),
-	PRIMARY KEY (`id`)
-)Type=InnoDB;
-
-#-----------------------------------------------------------------------------
 #-- tipodocente
 #-----------------------------------------------------------------------------
 
@@ -725,6 +757,20 @@ CREATE TABLE `rel_calendariovacunacion_alumno`
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
+#-- legajocategoria
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `legajocategoria`;
+
+
+CREATE TABLE `legajocategoria`
+(
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
+	`descripcion` VARCHAR(255)  NOT NULL,
+	PRIMARY KEY (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
 #-- legajopedagogico
 #-----------------------------------------------------------------------------
 
@@ -757,16 +803,21 @@ CREATE TABLE `legajopedagogico`
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
-#-- legajocategoria
+#-- adjunto
 #-----------------------------------------------------------------------------
 
-DROP TABLE IF EXISTS `legajocategoria`;
+DROP TABLE IF EXISTS `adjunto`;
 
 
-CREATE TABLE `legajocategoria`
+CREATE TABLE `adjunto`
 (
 	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
-	`descripcion` VARCHAR(255)  NOT NULL,
+	`descripcion` VARCHAR(255),
+	`titulo` VARCHAR(255),
+	`nombre_archivo` VARCHAR(255)  NOT NULL,
+	`tipo_archivo` VARCHAR(64)  NOT NULL,
+	`ruta` VARCHAR(255)  NOT NULL,
+	`fecha` DATETIME  NOT NULL,
 	PRIMARY KEY (`id`)
 )Type=InnoDB;
 
@@ -794,21 +845,20 @@ CREATE TABLE `legajoadjunto`
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
-#-- adjunto
+#-- tipoasistencia
 #-----------------------------------------------------------------------------
 
-DROP TABLE IF EXISTS `adjunto`;
+DROP TABLE IF EXISTS `tipoasistencia`;
 
 
-CREATE TABLE `adjunto`
+CREATE TABLE `tipoasistencia`
 (
 	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(10)  NOT NULL,
 	`descripcion` VARCHAR(255),
-	`titulo` VARCHAR(255),
-	`nombre_archivo` VARCHAR(255)  NOT NULL,
-	`tipo_archivo` VARCHAR(64)  NOT NULL,
-	`ruta` VARCHAR(255)  NOT NULL,
-	`fecha` DATETIME  NOT NULL,
+	`valor` DECIMAL(4,2) default 1 NOT NULL,
+	`grupo` VARCHAR(30),
+	`defecto` INTEGER default 0 NOT NULL,
 	PRIMARY KEY (`id`)
 )Type=InnoDB;
 
@@ -911,6 +961,26 @@ CREATE TABLE `boletin_conceptual`
 	CONSTRAINT `boletin_conceptual_FK_4`
 		FOREIGN KEY (`fk_periodo_id`)
 		REFERENCES `periodo` (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- actividad
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `actividad`;
+
+
+CREATE TABLE `actividad`
+(
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
+	`fk_establecimiento_id` INTEGER(11) default 0 NOT NULL,
+	`nombre` VARCHAR(128)  NOT NULL,
+	`descripcion` VARCHAR(255),
+	PRIMARY KEY (`id`),
+	INDEX `actividad_FI_1` (`fk_establecimiento_id`),
+	CONSTRAINT `actividad_FK_1`
+		FOREIGN KEY (`fk_establecimiento_id`)
+		REFERENCES `establecimiento` (`id`)
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
@@ -1050,26 +1120,6 @@ CREATE TABLE `repeticion`
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
-#-- actividad
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `actividad`;
-
-
-CREATE TABLE `actividad`
-(
-	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
-	`fk_establecimiento_id` INTEGER(11) default 0 NOT NULL,
-	`nombre` VARCHAR(128)  NOT NULL,
-	`descripcion` VARCHAR(255),
-	PRIMARY KEY (`id`),
-	INDEX `actividad_FI_1` (`fk_establecimiento_id`),
-	CONSTRAINT `actividad_FK_1`
-		FOREIGN KEY (`fk_establecimiento_id`)
-		REFERENCES `establecimiento` (`id`)
-)Type=InnoDB;
-
-#-----------------------------------------------------------------------------
 #-- rel_anio_actividad
 #-----------------------------------------------------------------------------
 
@@ -1122,40 +1172,6 @@ CREATE TABLE `rel_alumno_division`
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
-#-- rel_division_actividad_docente
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `rel_division_actividad_docente`;
-
-
-CREATE TABLE `rel_division_actividad_docente`
-(
-	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
-	`fk_division_id` INTEGER(11) default 0,
-	`fk_actividad_id` INTEGER(11) default 0 NOT NULL,
-	`fk_docente_id` INTEGER(11) default 0,
-	`fk_evento_id` INTEGER(11) default 0,
-	PRIMARY KEY (`id`),
-	INDEX `rel_division_actividad_docente_FI_1` (`fk_division_id`),
-	CONSTRAINT `rel_division_actividad_docente_FK_1`
-		FOREIGN KEY (`fk_division_id`)
-		REFERENCES `division` (`id`),
-	INDEX `rel_division_actividad_docente_FI_2` (`fk_actividad_id`),
-	CONSTRAINT `rel_division_actividad_docente_FK_2`
-		FOREIGN KEY (`fk_actividad_id`)
-		REFERENCES `actividad` (`id`),
-	INDEX `rel_division_actividad_docente_FI_3` (`fk_docente_id`),
-	CONSTRAINT `rel_division_actividad_docente_FK_3`
-		FOREIGN KEY (`fk_docente_id`)
-		REFERENCES `docente` (`id`),
-	INDEX `rel_division_actividad_docente_FI_4` (`fk_evento_id`),
-	CONSTRAINT `rel_division_actividad_docente_FK_4`
-		FOREIGN KEY (`fk_evento_id`)
-		REFERENCES `evento` (`id`)
-		ON DELETE CASCADE
-)Type=InnoDB;
-
-#-----------------------------------------------------------------------------
 #-- docente
 #-----------------------------------------------------------------------------
 
@@ -1200,6 +1216,77 @@ CREATE TABLE `docente`
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
+#-- horarioescolartipo
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `horarioescolartipo`;
+
+
+CREATE TABLE `horarioescolartipo`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(128)  NOT NULL,
+	`descripcion` VARCHAR(255),
+	PRIMARY KEY (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- evento
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `evento`;
+
+
+CREATE TABLE `evento`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`titulo` VARCHAR(128)  NOT NULL,
+	`fecha_inicio` DATETIME  NOT NULL,
+	`fecha_fin` DATETIME  NOT NULL,
+	`tipo` INTEGER default 0 NOT NULL,
+	`frecuencia` INTEGER default 0 NOT NULL,
+	`frecuencia_intervalo` INTEGER default 0 NOT NULL,
+	`recurrencia_fin` VARCHAR(16),
+	`recurrencia_dias` INTEGER default 0 NOT NULL,
+	`estado` INTEGER default 0 NOT NULL,
+	PRIMARY KEY (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- rel_division_actividad_docente
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `rel_division_actividad_docente`;
+
+
+CREATE TABLE `rel_division_actividad_docente`
+(
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
+	`fk_division_id` INTEGER(11) default 0,
+	`fk_actividad_id` INTEGER(11) default 0 NOT NULL,
+	`fk_docente_id` INTEGER(11) default 0,
+	`fk_evento_id` INTEGER(11) default 0,
+	PRIMARY KEY (`id`),
+	INDEX `rel_division_actividad_docente_FI_1` (`fk_division_id`),
+	CONSTRAINT `rel_division_actividad_docente_FK_1`
+		FOREIGN KEY (`fk_division_id`)
+		REFERENCES `division` (`id`),
+	INDEX `rel_division_actividad_docente_FI_2` (`fk_actividad_id`),
+	CONSTRAINT `rel_division_actividad_docente_FK_2`
+		FOREIGN KEY (`fk_actividad_id`)
+		REFERENCES `actividad` (`id`),
+	INDEX `rel_division_actividad_docente_FI_3` (`fk_docente_id`),
+	CONSTRAINT `rel_division_actividad_docente_FK_3`
+		FOREIGN KEY (`fk_docente_id`)
+		REFERENCES `docente` (`id`),
+	INDEX `rel_division_actividad_docente_FI_4` (`fk_evento_id`),
+	CONSTRAINT `rel_division_actividad_docente_FK_4`
+		FOREIGN KEY (`fk_evento_id`)
+		REFERENCES `evento` (`id`)
+		ON DELETE CASCADE
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
 #-- rel_docente_establecimiento
 #-----------------------------------------------------------------------------
 
@@ -1220,22 +1307,6 @@ CREATE TABLE `rel_docente_establecimiento`
 	CONSTRAINT `rel_docente_establecimiento_FK_2`
 		FOREIGN KEY (`fk_docente_id`)
 		REFERENCES `docente` (`id`)
-)Type=InnoDB;
-
-#-----------------------------------------------------------------------------
-#-- tipodocumento
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `tipodocumento`;
-
-
-CREATE TABLE `tipodocumento`
-(
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`nombre` VARCHAR(128)  NOT NULL,
-	`descripcion` VARCHAR(255),
-	`orden` INTEGER(11) default 0,
-	PRIMARY KEY (`id`)
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
@@ -1319,77 +1390,6 @@ CREATE TABLE `horarioescolar`
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
-#-- horarioescolartipo
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `horarioescolartipo`;
-
-
-CREATE TABLE `horarioescolartipo`
-(
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`nombre` VARCHAR(128)  NOT NULL,
-	`descripcion` VARCHAR(255),
-	PRIMARY KEY (`id`)
-)Type=InnoDB;
-
-#-----------------------------------------------------------------------------
-#-- tipoasistencia
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `tipoasistencia`;
-
-
-CREATE TABLE `tipoasistencia`
-(
-	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
-	`nombre` VARCHAR(10)  NOT NULL,
-	`descripcion` VARCHAR(255),
-	`valor` DECIMAL(4,2) default 1 NOT NULL,
-	`grupo` VARCHAR(30),
-	`defecto` INTEGER default 0 NOT NULL,
-	PRIMARY KEY (`id`)
-)Type=InnoDB;
-
-#-----------------------------------------------------------------------------
-#-- rol_responsable
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `rol_responsable`;
-
-
-CREATE TABLE `rol_responsable`
-(
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`nombre` VARCHAR(128)  NOT NULL,
-	`descripcion` VARCHAR(255),
-	`activo` INTEGER default 1 NOT NULL,
-	PRIMARY KEY (`id`)
-)Type=InnoDB;
-
-#-----------------------------------------------------------------------------
-#-- evento
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `evento`;
-
-
-CREATE TABLE `evento`
-(
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`titulo` VARCHAR(128)  NOT NULL,
-	`fecha_inicio` DATETIME  NOT NULL,
-	`fecha_fin` DATETIME  NOT NULL,
-	`tipo` INTEGER default 0 NOT NULL,
-	`frecuencia` INTEGER default 0 NOT NULL,
-	`frecuencia_intervalo` INTEGER default 0 NOT NULL,
-	`recurrencia_fin` VARCHAR(16),
-	`recurrencia_dias` INTEGER default 0 NOT NULL,
-	`estado` INTEGER default 0 NOT NULL,
-	PRIMARY KEY (`id`)
-)Type=InnoDB;
-
-#-----------------------------------------------------------------------------
 #-- rel_rolresponsable_responsable
 #-----------------------------------------------------------------------------
 
@@ -1440,6 +1440,21 @@ CREATE TABLE `rel_anio_actividad_docente`
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
+#-- tipoinforme
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `tipoinforme`;
+
+
+CREATE TABLE `tipoinforme`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(128)  NOT NULL,
+	`descripcion` VARCHAR(255),
+	PRIMARY KEY (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
 #-- informe
 #-----------------------------------------------------------------------------
 
@@ -1464,21 +1479,6 @@ CREATE TABLE `informe`
 	CONSTRAINT `informe_FK_2`
 		FOREIGN KEY (`fk_tipoinforme_id`)
 		REFERENCES `tipoinforme` (`id`)
-)Type=InnoDB;
-
-#-----------------------------------------------------------------------------
-#-- tipoinforme
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `tipoinforme`;
-
-
-CREATE TABLE `tipoinforme`
-(
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`nombre` VARCHAR(128)  NOT NULL,
-	`descripcion` VARCHAR(255),
-	PRIMARY KEY (`id`)
 )Type=InnoDB;
 
 # This restores the fkey checks, after having unset them earlier
