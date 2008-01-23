@@ -41,16 +41,16 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 	protected $aNiveltipo;
 
 	
-	protected $collRelEstablecimientoLocacions;
-
-	
-	protected $lastRelEstablecimientoLocacionCriteria = null;
-
-	
 	protected $collUsuarios;
 
 	
 	protected $lastUsuarioCriteria = null;
+
+	
+	protected $collRelEstablecimientoLocacions;
+
+	
+	protected $lastRelEstablecimientoLocacionCriteria = null;
 
 	
 	protected $collAlumnos;
@@ -77,16 +77,16 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 	protected $lastEscalanotaCriteria = null;
 
 	
-	protected $collAnios;
-
-	
-	protected $lastAnioCriteria = null;
-
-	
 	protected $collActividads;
 
 	
 	protected $lastActividadCriteria = null;
+
+	
+	protected $collAnios;
+
+	
+	protected $lastAnioCriteria = null;
 
 	
 	protected $collRelDocenteEstablecimientos;
@@ -356,16 +356,16 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 				}
 				$this->resetModified(); 			}
 
-			if ($this->collRelEstablecimientoLocacions !== null) {
-				foreach($this->collRelEstablecimientoLocacions as $referrerFK) {
+			if ($this->collUsuarios !== null) {
+				foreach($this->collUsuarios as $referrerFK) {
 					if (!$referrerFK->isDeleted()) {
 						$affectedRows += $referrerFK->save($con);
 					}
 				}
 			}
 
-			if ($this->collUsuarios !== null) {
-				foreach($this->collUsuarios as $referrerFK) {
+			if ($this->collRelEstablecimientoLocacions !== null) {
+				foreach($this->collRelEstablecimientoLocacions as $referrerFK) {
 					if (!$referrerFK->isDeleted()) {
 						$affectedRows += $referrerFK->save($con);
 					}
@@ -404,16 +404,16 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 				}
 			}
 
-			if ($this->collAnios !== null) {
-				foreach($this->collAnios as $referrerFK) {
+			if ($this->collActividads !== null) {
+				foreach($this->collActividads as $referrerFK) {
 					if (!$referrerFK->isDeleted()) {
 						$affectedRows += $referrerFK->save($con);
 					}
 				}
 			}
 
-			if ($this->collActividads !== null) {
-				foreach($this->collActividads as $referrerFK) {
+			if ($this->collAnios !== null) {
+				foreach($this->collAnios as $referrerFK) {
 					if (!$referrerFK->isDeleted()) {
 						$affectedRows += $referrerFK->save($con);
 					}
@@ -497,16 +497,16 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 			}
 
 
-				if ($this->collRelEstablecimientoLocacions !== null) {
-					foreach($this->collRelEstablecimientoLocacions as $referrerFK) {
+				if ($this->collUsuarios !== null) {
+					foreach($this->collUsuarios as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
 					}
 				}
 
-				if ($this->collUsuarios !== null) {
-					foreach($this->collUsuarios as $referrerFK) {
+				if ($this->collRelEstablecimientoLocacions !== null) {
+					foreach($this->collRelEstablecimientoLocacions as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -545,16 +545,16 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 					}
 				}
 
-				if ($this->collAnios !== null) {
-					foreach($this->collAnios as $referrerFK) {
+				if ($this->collActividads !== null) {
+					foreach($this->collActividads as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
 					}
 				}
 
-				if ($this->collActividads !== null) {
-					foreach($this->collActividads as $referrerFK) {
+				if ($this->collAnios !== null) {
+					foreach($this->collAnios as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -732,12 +732,12 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 		if ($deepCopy) {
 									$copyObj->setNew(false);
 
-			foreach($this->getRelEstablecimientoLocacions() as $relObj) {
-				$copyObj->addRelEstablecimientoLocacion($relObj->copy($deepCopy));
-			}
-
 			foreach($this->getUsuarios() as $relObj) {
 				$copyObj->addUsuario($relObj->copy($deepCopy));
+			}
+
+			foreach($this->getRelEstablecimientoLocacions() as $relObj) {
+				$copyObj->addRelEstablecimientoLocacion($relObj->copy($deepCopy));
 			}
 
 			foreach($this->getAlumnos() as $relObj) {
@@ -756,12 +756,12 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 				$copyObj->addEscalanota($relObj->copy($deepCopy));
 			}
 
-			foreach($this->getAnios() as $relObj) {
-				$copyObj->addAnio($relObj->copy($deepCopy));
-			}
-
 			foreach($this->getActividads() as $relObj) {
 				$copyObj->addActividad($relObj->copy($deepCopy));
+			}
+
+			foreach($this->getAnios() as $relObj) {
+				$copyObj->addAnio($relObj->copy($deepCopy));
 			}
 
 			foreach($this->getRelDocenteEstablecimientos() as $relObj) {
@@ -888,6 +888,76 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 	}
 
 	
+	public function initUsuarios()
+	{
+		if ($this->collUsuarios === null) {
+			$this->collUsuarios = array();
+		}
+	}
+
+	
+	public function getUsuarios($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseUsuarioPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collUsuarios === null) {
+			if ($this->isNew()) {
+			   $this->collUsuarios = array();
+			} else {
+
+				$criteria->add(UsuarioPeer::FK_ESTABLECIMIENTO_ID, $this->getId());
+
+				UsuarioPeer::addSelectColumns($criteria);
+				$this->collUsuarios = UsuarioPeer::doSelect($criteria, $con);
+			}
+		} else {
+						if (!$this->isNew()) {
+												
+
+				$criteria->add(UsuarioPeer::FK_ESTABLECIMIENTO_ID, $this->getId());
+
+				UsuarioPeer::addSelectColumns($criteria);
+				if (!isset($this->lastUsuarioCriteria) || !$this->lastUsuarioCriteria->equals($criteria)) {
+					$this->collUsuarios = UsuarioPeer::doSelect($criteria, $con);
+				}
+			}
+		}
+		$this->lastUsuarioCriteria = $criteria;
+		return $this->collUsuarios;
+	}
+
+	
+	public function countUsuarios($criteria = null, $distinct = false, $con = null)
+	{
+				include_once 'lib/model/om/BaseUsuarioPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		$criteria->add(UsuarioPeer::FK_ESTABLECIMIENTO_ID, $this->getId());
+
+		return UsuarioPeer::doCount($criteria, $distinct, $con);
+	}
+
+	
+	public function addUsuario(Usuario $l)
+	{
+		$this->collUsuarios[] = $l;
+		$l->setEstablecimiento($this);
+	}
+
+	
 	public function initRelEstablecimientoLocacions()
 	{
 		if ($this->collRelEstablecimientoLocacions === null) {
@@ -990,76 +1060,6 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 		$this->lastRelEstablecimientoLocacionCriteria = $criteria;
 
 		return $this->collRelEstablecimientoLocacions;
-	}
-
-	
-	public function initUsuarios()
-	{
-		if ($this->collUsuarios === null) {
-			$this->collUsuarios = array();
-		}
-	}
-
-	
-	public function getUsuarios($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseUsuarioPeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collUsuarios === null) {
-			if ($this->isNew()) {
-			   $this->collUsuarios = array();
-			} else {
-
-				$criteria->add(UsuarioPeer::FK_ESTABLECIMIENTO_ID, $this->getId());
-
-				UsuarioPeer::addSelectColumns($criteria);
-				$this->collUsuarios = UsuarioPeer::doSelect($criteria, $con);
-			}
-		} else {
-						if (!$this->isNew()) {
-												
-
-				$criteria->add(UsuarioPeer::FK_ESTABLECIMIENTO_ID, $this->getId());
-
-				UsuarioPeer::addSelectColumns($criteria);
-				if (!isset($this->lastUsuarioCriteria) || !$this->lastUsuarioCriteria->equals($criteria)) {
-					$this->collUsuarios = UsuarioPeer::doSelect($criteria, $con);
-				}
-			}
-		}
-		$this->lastUsuarioCriteria = $criteria;
-		return $this->collUsuarios;
-	}
-
-	
-	public function countUsuarios($criteria = null, $distinct = false, $con = null)
-	{
-				include_once 'lib/model/om/BaseUsuarioPeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		$criteria->add(UsuarioPeer::FK_ESTABLECIMIENTO_ID, $this->getId());
-
-		return UsuarioPeer::doCount($criteria, $distinct, $con);
-	}
-
-	
-	public function addUsuario(Usuario $l)
-	{
-		$this->collUsuarios[] = $l;
-		$l->setEstablecimiento($this);
 	}
 
 	
@@ -1518,76 +1518,6 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 	}
 
 	
-	public function initAnios()
-	{
-		if ($this->collAnios === null) {
-			$this->collAnios = array();
-		}
-	}
-
-	
-	public function getAnios($criteria = null, $con = null)
-	{
-				include_once 'lib/model/om/BaseAnioPeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		if ($this->collAnios === null) {
-			if ($this->isNew()) {
-			   $this->collAnios = array();
-			} else {
-
-				$criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $this->getId());
-
-				AnioPeer::addSelectColumns($criteria);
-				$this->collAnios = AnioPeer::doSelect($criteria, $con);
-			}
-		} else {
-						if (!$this->isNew()) {
-												
-
-				$criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $this->getId());
-
-				AnioPeer::addSelectColumns($criteria);
-				if (!isset($this->lastAnioCriteria) || !$this->lastAnioCriteria->equals($criteria)) {
-					$this->collAnios = AnioPeer::doSelect($criteria, $con);
-				}
-			}
-		}
-		$this->lastAnioCriteria = $criteria;
-		return $this->collAnios;
-	}
-
-	
-	public function countAnios($criteria = null, $distinct = false, $con = null)
-	{
-				include_once 'lib/model/om/BaseAnioPeer.php';
-		if ($criteria === null) {
-			$criteria = new Criteria();
-		}
-		elseif ($criteria instanceof Criteria)
-		{
-			$criteria = clone $criteria;
-		}
-
-		$criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $this->getId());
-
-		return AnioPeer::doCount($criteria, $distinct, $con);
-	}
-
-	
-	public function addAnio(Anio $l)
-	{
-		$this->collAnios[] = $l;
-		$l->setEstablecimiento($this);
-	}
-
-	
 	public function initActividads()
 	{
 		if ($this->collActividads === null) {
@@ -1654,6 +1584,76 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 	public function addActividad(Actividad $l)
 	{
 		$this->collActividads[] = $l;
+		$l->setEstablecimiento($this);
+	}
+
+	
+	public function initAnios()
+	{
+		if ($this->collAnios === null) {
+			$this->collAnios = array();
+		}
+	}
+
+	
+	public function getAnios($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BaseAnioPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collAnios === null) {
+			if ($this->isNew()) {
+			   $this->collAnios = array();
+			} else {
+
+				$criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $this->getId());
+
+				AnioPeer::addSelectColumns($criteria);
+				$this->collAnios = AnioPeer::doSelect($criteria, $con);
+			}
+		} else {
+						if (!$this->isNew()) {
+												
+
+				$criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $this->getId());
+
+				AnioPeer::addSelectColumns($criteria);
+				if (!isset($this->lastAnioCriteria) || !$this->lastAnioCriteria->equals($criteria)) {
+					$this->collAnios = AnioPeer::doSelect($criteria, $con);
+				}
+			}
+		}
+		$this->lastAnioCriteria = $criteria;
+		return $this->collAnios;
+	}
+
+	
+	public function countAnios($criteria = null, $distinct = false, $con = null)
+	{
+				include_once 'lib/model/om/BaseAnioPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		$criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $this->getId());
+
+		return AnioPeer::doCount($criteria, $distinct, $con);
+	}
+
+	
+	public function addAnio(Anio $l)
+	{
+		$this->collAnios[] = $l;
 		$l->setEstablecimiento($this);
 	}
 

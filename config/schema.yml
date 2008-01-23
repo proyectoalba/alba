@@ -2,6 +2,126 @@
 alba: 
   _attributes: 
     package: lib.model
+  conceptobaja: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: varchar
+      size: 128
+      required: true
+    descripcion: 
+      type: varchar
+      size: 255
+      required: false
+  tipodocumento: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+    descripcion: 
+      type: VARCHAR
+      size: 255
+      required: false
+    orden: 
+      type: integer
+      size: 11
+      required: false
+      default: 0
+  tipoiva: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+    descripcion: 
+      type: VARCHAR
+      size: 255
+      required: false
+    orden: 
+      type: INTEGER
+      required: false
+      default: 0
+  pais: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre_largo: 
+      type: VARCHAR
+      size: 128
+      required: true
+    nombre_corto: 
+      type: VARCHAR
+      size: 32
+      required: true
+    orden: 
+      type: INTEGER
+      required: false
+      default: 0
+  provincia: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre_corto: 
+      type: VARCHAR
+      size: 32
+      required: true
+    nombre_largo: 
+      type: VARCHAR
+      size: 128
+      required: true
+    fk_pais_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: pais
+      foreignReference: id
+    orden: 
+      type: INTEGER
+      required: false
+      default: 0
+  tipolocacion: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+    descripcion: 
+      type: VARCHAR
+      size: 255
+      required: false
   locacion: 
     _attributes: 
       idMethod: native
@@ -129,22 +249,6 @@ alba:
       type: VARCHAR
       size: 255
       required: false
-  tipolocacion: 
-    _attributes: 
-      idMethod: native
-    id: 
-      type: INTEGER
-      required: true
-      autoIncrement: true
-      primaryKey: true
-    nombre: 
-      type: VARCHAR
-      size: 128
-      required: true
-    descripcion: 
-      type: VARCHAR
-      size: 255
-      required: false
   distritoescolar: 
     _attributes: 
       idMethod: native
@@ -166,39 +270,6 @@ alba:
     ciudad: 
       type: VARCHAR
       size: 128
-  establecimiento: 
-    _attributes: 
-      idMethod: native
-    id: 
-      type: INTEGER
-      required: true
-      autoIncrement: true
-      primaryKey: true
-    nombre: 
-      type: VARCHAR
-      size: 128
-      required: true
-    descripcion: 
-      type: VARCHAR
-      size: 255
-    fk_distritoescolar_id: 
-      type: INTEGER
-      required: true
-      default: 0
-      foreignTable: distritoescolar
-      foreignReference: id
-    fk_organizacion_id: 
-      type: INTEGER
-      required: true
-      default: 0
-      foreignTable: organizacion
-      foreignReference: id
-    fk_niveltipo_id: 
-      type: INTEGER
-      required: true
-      default: 0
-      foreignTable: niveltipo
-      foreignReference: id
   niveltipo: 
     _attributes: 
       idMethod: native
@@ -265,7 +336,7 @@ alba:
       default: 0
       foreignTable: tipoiva
       foreignReference: id
-  pais: 
+  establecimiento: 
     _attributes: 
       idMethod: native
     id: 
@@ -273,18 +344,31 @@ alba:
       required: true
       autoIncrement: true
       primaryKey: true
-    nombre_largo: 
+    nombre: 
       type: VARCHAR
       size: 128
       required: true
-    nombre_corto: 
+    descripcion: 
       type: VARCHAR
-      size: 32
-      required: true
-    orden: 
+      size: 255
+    fk_distritoescolar_id: 
       type: INTEGER
-      required: false
+      required: true
       default: 0
+      foreignTable: distritoescolar
+      foreignReference: id
+    fk_organizacion_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: organizacion
+      foreignReference: id
+    fk_niveltipo_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: niveltipo
+      foreignReference: id
   permiso: 
     _attributes: 
       idMethod: native
@@ -328,6 +412,74 @@ alba:
       type: BOOLEAN
       required: true
       default: true
+  rol: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+    descripcion: 
+      type: VARCHAR
+      size: 255
+    activo: 
+      type: BOOLEAN
+      required: true
+      default: true
+  usuario: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    usuario: 
+      type: VARCHAR
+      size: 32
+      required: true
+    clave: 
+      type: VARCHAR
+      size: 48
+      required: true
+    correo_publico: 
+      type: BOOLEAN
+      required: false
+      default: true
+    activo: 
+      type: BOOLEAN
+      required: true
+      default: true
+    fecha_creado: 
+      type: TIMESTAMP
+      required: true
+    fecha_actualizado: 
+      type: TIMESTAMP
+      required: true
+    seguridad_pregunta: 
+      type: VARCHAR
+      size: 128
+    seguridad_respuesta: 
+      type: VARCHAR
+      size: 128
+    email: 
+      type: VARCHAR
+      size: 128
+    fk_establecimiento_id: 
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: establecimiento
+      foreignReference: id
+    borrado: 
+      type: BOOLEAN
+      required: true
+      default: false
   rel_establecimiento_locacion: 
     _attributes: 
       idMethod: native
@@ -405,74 +557,6 @@ alba:
       type: INTEGER
       required: true
       default: 0
-  rol: 
-    _attributes: 
-      idMethod: native
-    id: 
-      type: INTEGER
-      required: true
-      autoIncrement: true
-      primaryKey: true
-    nombre: 
-      type: VARCHAR
-      size: 128
-      required: true
-    descripcion: 
-      type: VARCHAR
-      size: 255
-    activo: 
-      type: BOOLEAN
-      required: true
-      default: true
-  usuario: 
-    _attributes: 
-      idMethod: native
-    id: 
-      type: INTEGER
-      required: true
-      autoIncrement: true
-      primaryKey: true
-    usuario: 
-      type: VARCHAR
-      size: 32
-      required: true
-    clave: 
-      type: VARCHAR
-      size: 48
-      required: true
-    correo_publico: 
-      type: BOOLEAN
-      required: false
-      default: true
-    activo: 
-      type: BOOLEAN
-      required: true
-      default: true
-    fecha_creado: 
-      type: TIMESTAMP
-      required: true
-    fecha_actualizado: 
-      type: TIMESTAMP
-      required: true
-    seguridad_pregunta: 
-      type: VARCHAR
-      size: 128
-    seguridad_respuesta: 
-      type: VARCHAR
-      size: 128
-    email: 
-      type: VARCHAR
-      size: 128
-    fk_establecimiento_id: 
-      type: INTEGER
-      required: true
-      default: 0
-      foreignTable: establecimiento
-      foreignReference: id
-    borrado: 
-      type: BOOLEAN
-      required: true
-      default: false
   orientacion: 
     _attributes: 
       idMethod: native
@@ -489,52 +573,6 @@ alba:
       type: VARCHAR
       size: 255
       required: false
-  tipoiva: 
-    _attributes: 
-      idMethod: native
-    id: 
-      type: INTEGER
-      required: true
-      autoIncrement: true
-      primaryKey: true
-    nombre: 
-      type: VARCHAR
-      size: 128
-      required: true
-    descripcion: 
-      type: VARCHAR
-      size: 255
-      required: false
-    orden: 
-      type: INTEGER
-      required: false
-      default: 0
-  provincia: 
-    _attributes: 
-      idMethod: native
-    id: 
-      type: INTEGER
-      required: true
-      autoIncrement: true
-      primaryKey: true
-    nombre_corto: 
-      type: VARCHAR
-      size: 32
-      required: true
-    nombre_largo: 
-      type: VARCHAR
-      size: 128
-      required: true
-    fk_pais_id: 
-      type: INTEGER
-      required: true
-      default: 0
-      foreignTable: pais
-      foreignReference: id
-    orden: 
-      type: INTEGER
-      required: false
-      default: 0
   cuenta: 
     _attributes: 
       idMethod: native
@@ -689,6 +727,25 @@ alba:
       default: 0
       foreignTable: pais
       foreignReference: id
+  rol_responsable: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+    descripcion: 
+      type: VARCHAR
+      size: 255
+    activo: 
+      type: BOOLEAN
+      required: true
+      default: true
   responsable: 
     _attributes: 
       idMethod: native
@@ -848,23 +905,6 @@ alba:
       type: varchar
       size: 255
       required: true
-  conceptobaja: 
-    _attributes: 
-      idMethod: native
-    id: 
-      type: integer
-      size: 11
-      required: true
-      autoIncrement: true
-      primaryKey: true
-    nombre: 
-      type: varchar
-      size: 128
-      required: true
-    descripcion: 
-      type: varchar
-      size: 255
-      required: false
   tipodocente: 
     _attributes: 
       idMethod: native
@@ -956,6 +996,19 @@ alba:
     fecha: 
       type: TIMESTAMP
       required: false
+  legajocategoria: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    descripcion: 
+      type: varchar
+      size: 255
+      required: true
   legajopedagogico: 
     _attributes: 
       idMethod: native
@@ -996,34 +1049,6 @@ alba:
       required: true
       foreignTable: legajocategoria
       foreignReference: id
-  legajocategoria: 
-    _attributes: 
-      idMethod: native
-    id: 
-      type: integer
-      size: 11
-      required: true
-      autoIncrement: true
-      primaryKey: true
-    descripcion: 
-      type: varchar
-      size: 255
-      required: true
-  legajoadjunto: 
-    _attributes: 
-      idMethod: native
-    fk_legajopedagogico_id: 
-      type: integer
-      size: 11
-      required: true
-      foreignTable: legajopedagogico
-      foreignReference: id
-    fk_adjunto_id: 
-      type: integer
-      size: 11
-      required: true
-      foreignTable: adjunto
-      foreignReference: id
   adjunto: 
     _attributes: 
       idMethod: native
@@ -1056,6 +1081,52 @@ alba:
     fecha: 
       type: timestamp
       required: true
+  legajoadjunto: 
+    _attributes: 
+      idMethod: native
+    fk_legajopedagogico_id: 
+      type: integer
+      size: 11
+      required: true
+      foreignTable: legajopedagogico
+      foreignReference: id
+    fk_adjunto_id: 
+      type: integer
+      size: 11
+      required: true
+      foreignTable: adjunto
+      foreignReference: id
+  tipoasistencia: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 10
+      required: true
+    descripcion: 
+      type: VARCHAR
+      size: 255
+      required: false
+    valor: 
+      type: DECIMAL
+      size: 4
+      scale: 2
+      required: true
+      default: 1
+    grupo: 
+      type: VARCHAR
+      size: 30
+      required: false
+    defecto: 
+      type: BOOLEAN
+      required: true
+      default: 0
   asistencia: 
     _attributes: 
       idMethod: native
@@ -1178,6 +1249,30 @@ alba:
     fecha: 
       type: timestamp
       required: true
+  actividad: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_establecimiento_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: establecimiento
+      foreignReference: id
+    nombre: 
+      type: varchar
+      size: 128
+      required: true
+    descripcion: 
+      type: varchar
+      size: 255
+      required: false
   boletin_actividades: 
     _attributes: 
       idMethod: native
@@ -1346,30 +1441,6 @@ alba:
       size: 11
       required: true
       default: 0
-  actividad: 
-    _attributes: 
-      idMethod: native
-    id: 
-      type: integer
-      size: 11
-      required: true
-      autoIncrement: true
-      primaryKey: true
-    fk_establecimiento_id: 
-      type: integer
-      size: 11
-      required: true
-      default: 0
-      foreignTable: establecimiento
-      foreignReference: id
-    nombre: 
-      type: varchar
-      size: 128
-      required: true
-    descripcion: 
-      type: varchar
-      size: 255
-      required: false
   rel_anio_actividad: 
     _attributes: 
       idMethod: native
@@ -1428,44 +1499,6 @@ alba:
       default: 0
       foreignTable: alumno
       foreignReference: id
-  rel_division_actividad_docente: 
-    _attributes: 
-      idMethod: native
-    id: 
-      type: integer
-      size: 11
-      required: true
-      autoIncrement: true
-      primaryKey: true
-    fk_division_id: 
-      type: integer
-      size: 11
-      required: false
-      default: 0
-      foreignTable: division
-      foreignReference: id
-    fk_actividad_id: 
-      type: integer
-      size: 11
-      required: true
-      default: 0
-      foreignTable: actividad
-      foreignReference: id
-    fk_docente_id: 
-      type: integer
-      size: 11
-      required: false
-      default: 0
-      foreignTable: docente
-      foreignReference: id
-    fk_evento_id: 
-      type: integer
-      size: 11
-      required: false
-      default: 0
-      foreignTable: evento
-      foreignReference: id
-      onDelete: cascade
   docente: 
     _attributes: 
       idMethod: native
@@ -1558,6 +1591,102 @@ alba:
       default: 0
       foreignTable: pais
       foreignReference: id
+  horarioescolartipo: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+    descripcion: 
+      type: VARCHAR
+      size: 255
+      required: false
+  evento: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    titulo: 
+      type: VARCHAR
+      size: 128
+      required: true
+    fecha_inicio: 
+      type: TIMESTAMP
+      required: true
+    fecha_fin: 
+      type: TIMESTAMP
+      required: true
+    tipo: 
+      type: INTEGER
+      required: true
+      default: 0
+    frecuencia: 
+      type: INTEGER
+      required: true
+      default: 0
+    frecuencia_intervalo: 
+      type: INTEGER
+      required: true
+      default: 0
+    recurrencia_fin: 
+      type: VARCHAR
+      size: 16
+      required: false
+    recurrencia_dias: 
+      type: INTEGER
+      required: true
+      default: 0
+    estado: 
+      type: INTEGER
+      required: true
+      default: 0
+  rel_division_actividad_docente: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      size: 11
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_division_id: 
+      type: integer
+      size: 11
+      required: false
+      default: 0
+      foreignTable: division
+      foreignReference: id
+    fk_actividad_id: 
+      type: integer
+      size: 11
+      required: true
+      default: 0
+      foreignTable: actividad
+      foreignReference: id
+    fk_docente_id: 
+      type: integer
+      size: 11
+      required: false
+      default: 0
+      foreignTable: docente
+      foreignReference: id
+    fk_evento_id: 
+      type: integer
+      size: 11
+      required: false
+      default: 0
+      foreignTable: evento
+      foreignReference: id
+      onDelete: cascade
   rel_docente_establecimiento: 
     _attributes: 
       idMethod: native
@@ -1575,27 +1704,6 @@ alba:
       default: 0
       foreignTable: docente
       foreignReference: id
-  tipodocumento: 
-    _attributes: 
-      idMethod: native
-    id: 
-      type: INTEGER
-      required: true
-      autoIncrement: true
-      primaryKey: true
-    nombre: 
-      type: VARCHAR
-      size: 128
-      required: true
-    descripcion: 
-      type: VARCHAR
-      size: 255
-      required: false
-    orden: 
-      type: integer
-      size: 11
-      required: false
-      default: 0
   docente_horario: 
     _attributes: 
       idMethod: native
@@ -1686,114 +1794,6 @@ alba:
       default: 0
       foreignTable: horarioescolartipo
       foreignReference: id
-  horarioescolartipo: 
-    _attributes: 
-      idMethod: native
-    id: 
-      type: INTEGER
-      required: true
-      autoIncrement: true
-      primaryKey: true
-    nombre: 
-      type: VARCHAR
-      size: 128
-      required: true
-    descripcion: 
-      type: VARCHAR
-      size: 255
-      required: false
-  tipoasistencia: 
-    _attributes: 
-      idMethod: native
-    id: 
-      type: INTEGER
-      size: 11
-      required: true
-      autoIncrement: true
-      primaryKey: true
-    nombre: 
-      type: VARCHAR
-      size: 10
-      required: true
-    descripcion: 
-      type: VARCHAR
-      size: 255
-      required: false
-    valor: 
-      type: DECIMAL
-      size: 4
-      scale: 2
-      required: true
-      default: 1
-    grupo: 
-      type: VARCHAR
-      size: 30
-      required: false
-    defecto: 
-      type: BOOLEAN
-      required: true
-      default: 0
-  rol_responsable: 
-    _attributes: 
-      idMethod: native
-    id: 
-      type: INTEGER
-      required: true
-      autoIncrement: true
-      primaryKey: true
-    nombre: 
-      type: VARCHAR
-      size: 128
-      required: true
-    descripcion: 
-      type: VARCHAR
-      size: 255
-    activo: 
-      type: BOOLEAN
-      required: true
-      default: true
-  evento: 
-    _attributes: 
-      idMethod: native
-    id: 
-      type: INTEGER
-      required: true
-      autoIncrement: true
-      primaryKey: true
-    titulo: 
-      type: VARCHAR
-      size: 128
-      required: true
-    fecha_inicio: 
-      type: TIMESTAMP
-      required: true
-    fecha_fin: 
-      type: TIMESTAMP
-      required: true
-    tipo: 
-      type: INTEGER
-      required: true
-      default: 0
-    frecuencia: 
-      type: INTEGER
-      required: true
-      default: 0
-    frecuencia_intervalo: 
-      type: INTEGER
-      required: true
-      default: 0
-    recurrencia_fin: 
-      type: VARCHAR
-      size: 16
-      required: false
-    recurrencia_dias: 
-      type: INTEGER
-      required: true
-      default: 0
-    estado: 
-      type: INTEGER
-      required: true
-      default: 0
   rel_rolresponsable_responsable: 
     _attributes: 
       idMethod: native
@@ -1844,6 +1844,22 @@ alba:
       primaryKey: true
       foreignTable: docente
       foreignReference: id
+  tipoinforme: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre: 
+      type: VARCHAR
+      size: 128
+      required: true
+    descripcion: 
+      type: VARCHAR
+      size: 255
+      required: false
   informe: 
     _attributes: 
       idMethod: native
@@ -1878,19 +1894,3 @@ alba:
     variables: 
       type: VARCHAR
       size: 128
-  tipoinforme: 
-    _attributes: 
-      idMethod: native
-    id: 
-      type: INTEGER
-      required: true
-      autoIncrement: true
-      primaryKey: true
-    nombre: 
-      type: VARCHAR
-      size: 128
-      required: true
-    descripcion: 
-      type: VARCHAR
-      size: 255
-      required: false
