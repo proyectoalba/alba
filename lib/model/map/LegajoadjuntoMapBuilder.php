@@ -32,9 +32,9 @@ class LegajoadjuntoMapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
-		$tMap->addForeignKey('FK_LEGAJOPEDAGOGICO_ID', 'FkLegajopedagogicoId', 'int', CreoleTypes::INTEGER, 'legajopedagogico', 'ID', true, 11);
+		$tMap->addForeignKey('FK_LEGAJOPEDAGOGICO_ID', 'FkLegajopedagogicoId', 'int', CreoleTypes::INTEGER, 'legajopedagogico', 'ID', true, null);
 
-		$tMap->addForeignKey('FK_ADJUNTO_ID', 'FkAdjuntoId', 'int', CreoleTypes::INTEGER, 'adjunto', 'ID', true, 11);
+		$tMap->addForeignKey('FK_ADJUNTO_ID', 'FkAdjuntoId', 'int', CreoleTypes::INTEGER, 'adjunto', 'ID', true, null);
 
 		$tMap->addPrimaryKey('ID', 'Id', 'int', CreoleTypes::INTEGER, true, null);
 

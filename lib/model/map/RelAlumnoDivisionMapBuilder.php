@@ -32,11 +32,11 @@ class RelAlumnoDivisionMapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
-		$tMap->addPrimaryKey('ID', 'Id', 'int', CreoleTypes::INTEGER, true, 11);
+		$tMap->addPrimaryKey('ID', 'Id', 'int', CreoleTypes::INTEGER, true, null);
 
-		$tMap->addForeignKey('FK_DIVISION_ID', 'FkDivisionId', 'int', CreoleTypes::INTEGER, 'division', 'ID', true, 11);
+		$tMap->addForeignKey('FK_DIVISION_ID', 'FkDivisionId', 'int', CreoleTypes::INTEGER, 'division', 'ID', true, null);
 
-		$tMap->addForeignKey('FK_ALUMNO_ID', 'FkAlumnoId', 'int', CreoleTypes::INTEGER, 'alumno', 'ID', true, 11);
+		$tMap->addForeignKey('FK_ALUMNO_ID', 'FkAlumnoId', 'int', CreoleTypes::INTEGER, 'alumno', 'ID', true, null);
 
 	} 
 } 

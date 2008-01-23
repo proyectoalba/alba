@@ -38,7 +38,7 @@ class TipodocumentoMapBuilder {
 
 		$tMap->addColumn('DESCRIPCION', 'Descripcion', 'string', CreoleTypes::VARCHAR, false, 255);
 
-		$tMap->addColumn('ORDEN', 'Orden', 'int', CreoleTypes::INTEGER, false, 11);
+		$tMap->addColumn('ORDEN', 'Orden', 'int', CreoleTypes::INTEGER, false, null);
 
 	} 
 } 

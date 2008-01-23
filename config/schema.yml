@@ -7,7 +7,6 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
@@ -37,7 +36,6 @@ alba:
       required: false
     orden: 
       type: integer
-      size: 11
       required: false
       default: 0
   tipoiva: 
@@ -224,7 +222,6 @@ alba:
       size: 255
     fk_tipoespacio_id: 
       type: INTEGER
-      size: 11
       foreignTable: tipoespacio
       foreignReference: id
     fk_locacion_id: 
@@ -667,7 +664,6 @@ alba:
       required: false
     fk_tipodocumento_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: tipodocumento
@@ -831,13 +827,11 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
     fk_establecimiento_id: 
       type: integer
-      size: 11
       required: true
       foreignTable: establecimiento
       foreignReference: id
@@ -860,13 +854,11 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
     fk_ciclolectivo_id: 
       type: integer
-      size: 11
       required: true
       foreignTable: ciclolectivo
       foreignReference: id
@@ -885,13 +877,11 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
     fk_ciclolectivo_id: 
       type: integer
-      size: 11
       required: true
       foreignTable: ciclolectivo
       foreignReference: id
@@ -910,7 +900,6 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
@@ -927,7 +916,6 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
@@ -944,7 +932,6 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
@@ -969,19 +956,16 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
     fk_alumno_id: 
       type: integer
-      size: 11
       required: true
       foreignTable: alumno
       foreignReference: id
     fk_calendariovacunacion_id: 
       type: integer
-      size: 11
       required: true
       foreignTable: calendariovacunacion
       foreignReference: id
@@ -1001,7 +985,6 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
@@ -1014,13 +997,11 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
     fk_alumno_id: 
       type: integer
-      size: 11
       required: true
       foreignTable: alumno
       foreignReference: id
@@ -1039,13 +1020,11 @@ alba:
       required: true
     fk_usuario_id: 
       type: integer
-      size: 11
       required: true
       foreignTable: usuario
       foreignReference: id
     fk_legajocategoria_id: 
       type: integer
-      size: 11
       required: true
       foreignTable: legajocategoria
       foreignReference: id
@@ -1054,7 +1033,6 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
@@ -1086,13 +1064,11 @@ alba:
       idMethod: native
     fk_legajopedagogico_id: 
       type: integer
-      size: 11
       required: true
       foreignTable: legajopedagogico
       foreignReference: id
     fk_adjunto_id: 
       type: integer
-      size: 11
       required: true
       foreignTable: adjunto
       foreignReference: id
@@ -1101,7 +1077,6 @@ alba:
       idMethod: native
     id: 
       type: INTEGER
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
@@ -1132,19 +1107,16 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
     fk_alumno_id: 
       type: integer
-      size: 11
       required: true
       foreignTable: alumno
       foreignReference: id
     fk_tipoasistencia_id: 
       type: integer
-      size: 11
       required: true
       foreignTable: tipoasistencia
       foreignReference: id
@@ -1156,13 +1128,11 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
     fk_establecimiento_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: establecimiento
@@ -1180,13 +1150,11 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
     fk_establecimiento_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: establecimiento
@@ -1201,7 +1169,6 @@ alba:
       required: false
     orden: 
       type: integer
-      size: 11
       required: true
     aprobado: 
       type: boolean
@@ -1212,33 +1179,28 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
     fk_escalanota_id: 
       type: integer
-      size: 11
       required: false
       foreignTable: escalanota
       foreignReference: id
     fk_alumno_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: alumno
       foreignReference: id
     fk_concepto_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: concepto
       foreignReference: id
     fk_periodo_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: periodo
@@ -1254,13 +1216,11 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
     fk_establecimiento_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: establecimiento
@@ -1278,33 +1238,28 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
     fk_escalanota_id: 
       type: integer
-      size: 11
       required: false
       foreignTable: escalanota
       foreignReference: id
     fk_alumno_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: alumno
       foreignReference: id
     fk_actividad_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: actividad
       foreignReference: id
     fk_periodo_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: periodo
@@ -1320,34 +1275,29 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
     fk_escalanota_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: escalanota
       foreignReference: id
     fk_alumno_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: alumno
       foreignReference: id
     fk_actividad_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: actividad
       foreignReference: id
     fk_periodo_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: periodo
@@ -1367,13 +1317,11 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
     fk_establecimiento_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: establecimiento
@@ -1391,13 +1339,11 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
     fk_anio_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: anio
@@ -1408,14 +1354,12 @@ alba:
       required: true
     fk_turno_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: turno
       foreignReference: id
     fk_orientacion_id: 
       type: integer
-      size: 11
       required: false
       foreignTable: orientacion
       foreignReference: id
@@ -1428,7 +1372,6 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
@@ -1438,7 +1381,6 @@ alba:
       required: true
     orden: 
       type: integer
-      size: 11
       required: true
       default: 0
   rel_anio_actividad: 
@@ -1446,27 +1388,23 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
     fk_anio_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: anio
       foreignReference: id
     fk_actividad_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: actividad
       foreignReference: id
     fk_orientacion_id: 
       type: integer
-      size: 11
       required: false
       foreignTable: orientacion
       foreignReference: id
@@ -1481,20 +1419,17 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
     fk_division_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: division
       foreignReference: id
     fk_alumno_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: alumno
@@ -1525,7 +1460,6 @@ alba:
       required: true
     fk_tipodocumento_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: tipodocumento
@@ -1580,7 +1514,6 @@ alba:
       default: true
     fk_provincia_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: provincia
@@ -1654,34 +1587,29 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
     fk_division_id: 
       type: integer
-      size: 11
       required: false
       default: 0
       foreignTable: division
       foreignReference: id
     fk_actividad_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: actividad
       foreignReference: id
     fk_docente_id: 
       type: integer
-      size: 11
       required: false
       default: 0
       foreignTable: docente
       foreignReference: id
     fk_evento_id: 
       type: integer
-      size: 11
       required: false
       default: 0
       foreignTable: evento
@@ -1692,14 +1620,12 @@ alba:
       idMethod: native
     fk_establecimiento_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: establecimiento
       foreignReference: id
     fk_docente_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: docente
@@ -1709,14 +1635,12 @@ alba:
       idMethod: native
     fk_docente_id: 
       type: integer
-      size: 11
       required: true
       primaryKey: true
       foreignTable: docente
       foreignReference: id
     fk_evento_id: 
       type: integer
-      size: 11
       required: true
       primaryKey: true
       foreignTable: evento
@@ -1727,7 +1651,6 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
@@ -1748,7 +1671,6 @@ alba:
       required: false
     fk_ciclolectivo_id: 
       type: integer
-      size: 11
       required: true
       default: 0
       foreignTable: ciclolectivo
@@ -1758,7 +1680,6 @@ alba:
       idMethod: native
     id: 
       type: integer
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
@@ -1799,27 +1720,23 @@ alba:
       idMethod: native
     id: 
       type: INTEGER
-      size: 11
       required: true
       autoIncrement: true
       primaryKey: true
     fk_rolresponsable_id: 
       type: INTEGER
-      size: 11
       required: true
       default: 0
       foreignTable: rol_responsable
       foreignReference: id
     fk_responsable_id: 
       type: INTEGER
-      size: 11
       required: true
       default: 0
       foreignTable: responsable
       foreignReference: id
     fk_alumno_id: 
       type: INTEGER
-      size: 11
       required: true
       default: 0
       foreignTable: alumno
@@ -1832,14 +1749,12 @@ alba:
       idMethod: native
     fk_anio_actividad_id: 
       type: integer
-      size: 11
       required: true
       primaryKey: true
       foreignTable: rel_anio_actividad
       foreignReference: id
     fk_docente_id: 
       type: integer
-      size: 11
       required: true
       primaryKey: true
       foreignTable: docente
@@ -1877,13 +1792,11 @@ alba:
       size: 255
     fk_adjunto_id: 
       type: integer
-      size: 11
       required: true
       foreignTable: adjunto
       foreignReference: id
     fk_tipoinforme_id: 
       type: integer
-      size: 11
       required: true
       foreignTable: tipoinforme
       foreignReference: id

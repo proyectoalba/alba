@@ -32,15 +32,15 @@ class DivisionMapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
-		$tMap->addPrimaryKey('ID', 'Id', 'int', CreoleTypes::INTEGER, true, 11);
+		$tMap->addPrimaryKey('ID', 'Id', 'int', CreoleTypes::INTEGER, true, null);
 
-		$tMap->addForeignKey('FK_ANIO_ID', 'FkAnioId', 'int', CreoleTypes::INTEGER, 'anio', 'ID', true, 11);
+		$tMap->addForeignKey('FK_ANIO_ID', 'FkAnioId', 'int', CreoleTypes::INTEGER, 'anio', 'ID', true, null);
 
 		$tMap->addColumn('DESCRIPCION', 'Descripcion', 'string', CreoleTypes::VARCHAR, true, 255);
 
-		$tMap->addForeignKey('FK_TURNO_ID', 'FkTurnoId', 'int', CreoleTypes::INTEGER, 'turno', 'ID', true, 11);
+		$tMap->addForeignKey('FK_TURNO_ID', 'FkTurnoId', 'int', CreoleTypes::INTEGER, 'turno', 'ID', true, null);
 
-		$tMap->addForeignKey('FK_ORIENTACION_ID', 'FkOrientacionId', 'int', CreoleTypes::INTEGER, 'orientacion', 'ID', false, 11);
+		$tMap->addForeignKey('FK_ORIENTACION_ID', 'FkOrientacionId', 'int', CreoleTypes::INTEGER, 'orientacion', 'ID', false, null);
 
 		$tMap->addColumn('ORDEN', 'Orden', 'int', CreoleTypes::INTEGER, false, null);
 
