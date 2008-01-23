@@ -126,6 +126,7 @@ function generate_databases_yml($host,$user,$pass,$db) {
         else
             fwrite ($fp,"      dsn: mysql://$user@$host/$db\n");
         fwrite ($fp,"      datasource: alba\n");
+        fwrite ($fp,"      encoding: utf8\n");
         fwrite ($fp, "\n");
         DebugLog("generate_databases_yml(): archivo yml generado");
         return true;
