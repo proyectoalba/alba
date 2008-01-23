@@ -38,9 +38,9 @@ class InformeMapBuilder {
 
 		$tMap->addColumn('DESCRIPCION', 'Descripcion', 'string', CreoleTypes::VARCHAR, false, 255);
 
-		$tMap->addForeignKey('FK_ADJUNTO_ID', 'FkAdjuntoId', 'int', CreoleTypes::INTEGER, 'adjunto', 'ID', true, null);
+		$tMap->addForeignKey('FK_ADJUNTO_ID', 'FkAdjuntoId', 'int', CreoleTypes::INTEGER, 'adjunto', 'ID', true, 11);
 
-		$tMap->addForeignKey('FK_TIPOINFORME_ID', 'FkTipoinformeId', 'int', CreoleTypes::INTEGER, 'tipoinforme', 'ID', true, null);
+		$tMap->addForeignKey('FK_TIPOINFORME_ID', 'FkTipoinformeId', 'int', CreoleTypes::INTEGER, 'tipoinforme', 'ID', true, 11);
 
 		$tMap->addColumn('LISTADO', 'Listado', 'boolean', CreoleTypes::BOOLEAN, true, null);
 

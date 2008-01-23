@@ -32,15 +32,15 @@ class BoletinActividadesMapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
-		$tMap->addPrimaryKey('ID', 'Id', 'int', CreoleTypes::INTEGER, true, null);
+		$tMap->addPrimaryKey('ID', 'Id', 'int', CreoleTypes::INTEGER, true, 11);
 
-		$tMap->addForeignKey('FK_ESCALANOTA_ID', 'FkEscalanotaId', 'int', CreoleTypes::INTEGER, 'escalanota', 'ID', false, null);
+		$tMap->addForeignKey('FK_ESCALANOTA_ID', 'FkEscalanotaId', 'int', CreoleTypes::INTEGER, 'escalanota', 'ID', false, 11);
 
-		$tMap->addForeignKey('FK_ALUMNO_ID', 'FkAlumnoId', 'int', CreoleTypes::INTEGER, 'alumno', 'ID', true, null);
+		$tMap->addForeignKey('FK_ALUMNO_ID', 'FkAlumnoId', 'int', CreoleTypes::INTEGER, 'alumno', 'ID', true, 11);
 
-		$tMap->addForeignKey('FK_ACTIVIDAD_ID', 'FkActividadId', 'int', CreoleTypes::INTEGER, 'actividad', 'ID', true, null);
+		$tMap->addForeignKey('FK_ACTIVIDAD_ID', 'FkActividadId', 'int', CreoleTypes::INTEGER, 'actividad', 'ID', true, 11);
 
-		$tMap->addForeignKey('FK_PERIODO_ID', 'FkPeriodoId', 'int', CreoleTypes::INTEGER, 'periodo', 'ID', true, null);
+		$tMap->addForeignKey('FK_PERIODO_ID', 'FkPeriodoId', 'int', CreoleTypes::INTEGER, 'periodo', 'ID', true, 11);
 
 		$tMap->addColumn('OBSERVACION', 'Observacion', 'string', CreoleTypes::BLOB, true, null);
 

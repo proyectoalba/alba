@@ -32,9 +32,9 @@ class RelAnioActividadDocenteMapBuilder {
 
 		$tMap->setUseIdGenerator(false);
 
-		$tMap->addForeignPrimaryKey('FK_ANIO_ACTIVIDAD_ID', 'FkAnioActividadId', 'int' , CreoleTypes::INTEGER, 'rel_anio_actividad', 'ID', true, null);
+		$tMap->addForeignPrimaryKey('FK_ANIO_ACTIVIDAD_ID', 'FkAnioActividadId', 'int' , CreoleTypes::INTEGER, 'rel_anio_actividad', 'ID', true, 11);
 
-		$tMap->addForeignPrimaryKey('FK_DOCENTE_ID', 'FkDocenteId', 'int' , CreoleTypes::INTEGER, 'docente', 'ID', true, null);
+		$tMap->addForeignPrimaryKey('FK_DOCENTE_ID', 'FkDocenteId', 'int' , CreoleTypes::INTEGER, 'docente', 'ID', true, 11);
 
 	} 
 } 

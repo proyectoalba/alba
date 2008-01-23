@@ -32,9 +32,9 @@ class LegajopedagogicoMapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
-		$tMap->addPrimaryKey('ID', 'Id', 'int', CreoleTypes::INTEGER, true, null);
+		$tMap->addPrimaryKey('ID', 'Id', 'int', CreoleTypes::INTEGER, true, 11);
 
-		$tMap->addForeignKey('FK_ALUMNO_ID', 'FkAlumnoId', 'int', CreoleTypes::INTEGER, 'alumno', 'ID', true, null);
+		$tMap->addForeignKey('FK_ALUMNO_ID', 'FkAlumnoId', 'int', CreoleTypes::INTEGER, 'alumno', 'ID', true, 11);
 
 		$tMap->addColumn('TITULO', 'Titulo', 'string', CreoleTypes::VARCHAR, true, 255);
 
@@ -44,9 +44,9 @@ class LegajopedagogicoMapBuilder {
 
 		$tMap->addColumn('FECHA', 'Fecha', 'int', CreoleTypes::TIMESTAMP, true, null);
 
-		$tMap->addForeignKey('FK_USUARIO_ID', 'FkUsuarioId', 'int', CreoleTypes::INTEGER, 'usuario', 'ID', true, null);
+		$tMap->addForeignKey('FK_USUARIO_ID', 'FkUsuarioId', 'int', CreoleTypes::INTEGER, 'usuario', 'ID', true, 11);
 
-		$tMap->addForeignKey('FK_LEGAJOCATEGORIA_ID', 'FkLegajocategoriaId', 'int', CreoleTypes::INTEGER, 'legajocategoria', 'ID', true, null);
+		$tMap->addForeignKey('FK_LEGAJOCATEGORIA_ID', 'FkLegajocategoriaId', 'int', CreoleTypes::INTEGER, 'legajocategoria', 'ID', true, 11);
 
 	} 
 } 

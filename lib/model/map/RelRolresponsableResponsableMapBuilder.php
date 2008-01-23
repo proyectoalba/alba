@@ -32,13 +32,13 @@ class RelRolresponsableResponsableMapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
-		$tMap->addPrimaryKey('ID', 'Id', 'int', CreoleTypes::INTEGER, true, null);
+		$tMap->addPrimaryKey('ID', 'Id', 'int', CreoleTypes::INTEGER, true, 11);
 
-		$tMap->addForeignKey('FK_ROLRESPONSABLE_ID', 'FkRolresponsableId', 'int', CreoleTypes::INTEGER, 'rol_responsable', 'ID', true, null);
+		$tMap->addForeignKey('FK_ROLRESPONSABLE_ID', 'FkRolresponsableId', 'int', CreoleTypes::INTEGER, 'rol_responsable', 'ID', true, 11);
 
-		$tMap->addForeignKey('FK_RESPONSABLE_ID', 'FkResponsableId', 'int', CreoleTypes::INTEGER, 'responsable', 'ID', true, null);
+		$tMap->addForeignKey('FK_RESPONSABLE_ID', 'FkResponsableId', 'int', CreoleTypes::INTEGER, 'responsable', 'ID', true, 11);
 
-		$tMap->addForeignKey('FK_ALUMNO_ID', 'FkAlumnoId', 'int', CreoleTypes::INTEGER, 'alumno', 'ID', true, null);
+		$tMap->addForeignKey('FK_ALUMNO_ID', 'FkAlumnoId', 'int', CreoleTypes::INTEGER, 'alumno', 'ID', true, 11);
 
 		$tMap->addColumn('DESCRIPCION', 'Descripcion', 'string', CreoleTypes::VARCHAR, false, 255);
 

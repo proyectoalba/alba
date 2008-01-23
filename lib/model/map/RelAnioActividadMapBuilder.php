@@ -32,13 +32,13 @@ class RelAnioActividadMapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
-		$tMap->addPrimaryKey('ID', 'Id', 'int', CreoleTypes::INTEGER, true, null);
+		$tMap->addPrimaryKey('ID', 'Id', 'int', CreoleTypes::INTEGER, true, 11);
 
-		$tMap->addForeignKey('FK_ANIO_ID', 'FkAnioId', 'int', CreoleTypes::INTEGER, 'anio', 'ID', true, null);
+		$tMap->addForeignKey('FK_ANIO_ID', 'FkAnioId', 'int', CreoleTypes::INTEGER, 'anio', 'ID', true, 11);
 
-		$tMap->addForeignKey('FK_ACTIVIDAD_ID', 'FkActividadId', 'int', CreoleTypes::INTEGER, 'actividad', 'ID', true, null);
+		$tMap->addForeignKey('FK_ACTIVIDAD_ID', 'FkActividadId', 'int', CreoleTypes::INTEGER, 'actividad', 'ID', true, 11);
 
-		$tMap->addForeignKey('FK_ORIENTACION_ID', 'FkOrientacionId', 'int', CreoleTypes::INTEGER, 'orientacion', 'ID', false, null);
+		$tMap->addForeignKey('FK_ORIENTACION_ID', 'FkOrientacionId', 'int', CreoleTypes::INTEGER, 'orientacion', 'ID', false, 11);
 
 		$tMap->addColumn('HORAS', 'Horas', 'double', CreoleTypes::DECIMAL, true, 10);
 

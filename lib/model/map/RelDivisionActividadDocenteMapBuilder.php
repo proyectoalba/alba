@@ -32,15 +32,15 @@ class RelDivisionActividadDocenteMapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
-		$tMap->addPrimaryKey('ID', 'Id', 'int', CreoleTypes::INTEGER, true, null);
+		$tMap->addPrimaryKey('ID', 'Id', 'int', CreoleTypes::INTEGER, true, 11);
 
-		$tMap->addForeignKey('FK_DIVISION_ID', 'FkDivisionId', 'int', CreoleTypes::INTEGER, 'division', 'ID', false, null);
+		$tMap->addForeignKey('FK_DIVISION_ID', 'FkDivisionId', 'int', CreoleTypes::INTEGER, 'division', 'ID', false, 11);
 
-		$tMap->addForeignKey('FK_ACTIVIDAD_ID', 'FkActividadId', 'int', CreoleTypes::INTEGER, 'actividad', 'ID', true, null);
+		$tMap->addForeignKey('FK_ACTIVIDAD_ID', 'FkActividadId', 'int', CreoleTypes::INTEGER, 'actividad', 'ID', true, 11);
 
-		$tMap->addForeignKey('FK_DOCENTE_ID', 'FkDocenteId', 'int', CreoleTypes::INTEGER, 'docente', 'ID', false, null);
+		$tMap->addForeignKey('FK_DOCENTE_ID', 'FkDocenteId', 'int', CreoleTypes::INTEGER, 'docente', 'ID', false, 11);
 
-		$tMap->addForeignKey('FK_EVENTO_ID', 'FkEventoId', 'int', CreoleTypes::INTEGER, 'evento', 'ID', false, null);
+		$tMap->addForeignKey('FK_EVENTO_ID', 'FkEventoId', 'int', CreoleTypes::INTEGER, 'evento', 'ID', false, 11);
 
 	} 
 } 

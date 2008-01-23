@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS `conceptobaja`;
 
 CREATE TABLE `conceptobaja`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
 	`nombre` VARCHAR(128)  NOT NULL,
 	`descripcion` VARCHAR(255),
 	PRIMARY KEY (`id`)
@@ -30,7 +30,7 @@ CREATE TABLE `tipodocumento`
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
 	`nombre` VARCHAR(128)  NOT NULL,
 	`descripcion` VARCHAR(255),
-	`orden` INTEGER default 0,
+	`orden` INTEGER(11) default 0,
 	PRIMARY KEY (`id`)
 )Type=InnoDB;
 
@@ -63,6 +63,21 @@ CREATE TABLE `pais`
 	`nombre_largo` VARCHAR(128)  NOT NULL,
 	`nombre_corto` VARCHAR(32)  NOT NULL,
 	`orden` INTEGER default 0,
+	PRIMARY KEY (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- tipoespacio
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `tipoespacio`;
+
+
+CREATE TABLE `tipoespacio`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(128)  NOT NULL,
+	`descripcion` VARCHAR(255),
 	PRIMARY KEY (`id`)
 )Type=InnoDB;
 
@@ -167,7 +182,7 @@ CREATE TABLE `espacio`
 	`capacidad` VARCHAR(255),
 	`descripcion` VARCHAR(255),
 	`estado` VARCHAR(255),
-	`fk_tipoespacio_id` INTEGER,
+	`fk_tipoespacio_id` INTEGER(11),
 	`fk_locacion_id` INTEGER default 0 NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `espacio_FI_1` (`fk_tipoespacio_id`),
@@ -178,21 +193,6 @@ CREATE TABLE `espacio`
 	CONSTRAINT `espacio_FK_2`
 		FOREIGN KEY (`fk_locacion_id`)
 		REFERENCES `locacion` (`id`)
-)Type=InnoDB;
-
-#-----------------------------------------------------------------------------
-#-- tipoespacio
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `tipoespacio`;
-
-
-CREATE TABLE `tipoespacio`
-(
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`nombre` VARCHAR(128)  NOT NULL,
-	`descripcion` VARCHAR(255),
-	PRIMARY KEY (`id`)
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
@@ -518,7 +518,7 @@ CREATE TABLE `alumno`
 	`fk_provincia_id` INTEGER default 0 NOT NULL,
 	`telefono` VARCHAR(20),
 	`lugar_nacimiento` VARCHAR(128),
-	`fk_tipodocumento_id` INTEGER default 0 NOT NULL,
+	`fk_tipodocumento_id` INTEGER(11) default 0 NOT NULL,
 	`nro_documento` VARCHAR(16)  NOT NULL,
 	`sexo` CHAR(1)  NOT NULL,
 	`email` VARCHAR(128)  NOT NULL,
@@ -628,8 +628,8 @@ DROP TABLE IF EXISTS `ciclolectivo`;
 
 CREATE TABLE `ciclolectivo`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`fk_establecimiento_id` INTEGER  NOT NULL,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
+	`fk_establecimiento_id` INTEGER(11)  NOT NULL,
 	`fecha_inicio` DATETIME  NOT NULL,
 	`fecha_fin` DATETIME  NOT NULL,
 	`descripcion` VARCHAR(255)  NOT NULL,
@@ -650,8 +650,8 @@ DROP TABLE IF EXISTS `turno`;
 
 CREATE TABLE `turno`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`fk_ciclolectivo_id` INTEGER  NOT NULL,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
+	`fk_ciclolectivo_id` INTEGER(11)  NOT NULL,
 	`hora_inicio` TIME  NOT NULL,
 	`hora_fin` TIME  NOT NULL,
 	`descripcion` VARCHAR(255)  NOT NULL,
@@ -671,8 +671,8 @@ DROP TABLE IF EXISTS `periodo`;
 
 CREATE TABLE `periodo`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`fk_ciclolectivo_id` INTEGER  NOT NULL,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
+	`fk_ciclolectivo_id` INTEGER(11)  NOT NULL,
 	`fecha_inicio` DATETIME  NOT NULL,
 	`fecha_fin` DATETIME  NOT NULL,
 	`descripcion` VARCHAR(255)  NOT NULL,
@@ -692,7 +692,7 @@ DROP TABLE IF EXISTS `tipodocente`;
 
 CREATE TABLE `tipodocente`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
 	`nombre` VARCHAR(128)  NOT NULL,
 	`descripcion` VARCHAR(255),
 	PRIMARY KEY (`id`)
@@ -707,7 +707,7 @@ DROP TABLE IF EXISTS `cargobaja`;
 
 CREATE TABLE `cargobaja`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
 	`nombre` VARCHAR(128)  NOT NULL,
 	`descripcion` VARCHAR(255),
 	PRIMARY KEY (`id`)
@@ -722,7 +722,7 @@ DROP TABLE IF EXISTS `calendariovacunacion`;
 
 CREATE TABLE `calendariovacunacion`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
 	`nombre` VARCHAR(128)  NOT NULL,
 	`descripcion` VARCHAR(255),
 	`periodo` VARCHAR(128),
@@ -739,9 +739,9 @@ DROP TABLE IF EXISTS `rel_calendariovacunacion_alumno`;
 
 CREATE TABLE `rel_calendariovacunacion_alumno`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`fk_alumno_id` INTEGER  NOT NULL,
-	`fk_calendariovacunacion_id` INTEGER  NOT NULL,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
+	`fk_alumno_id` INTEGER(11)  NOT NULL,
+	`fk_calendariovacunacion_id` INTEGER(11)  NOT NULL,
 	`observacion` VARCHAR(255),
 	`comprobante` INTEGER default 0 NOT NULL,
 	`fecha` DATETIME,
@@ -765,7 +765,7 @@ DROP TABLE IF EXISTS `legajocategoria`;
 
 CREATE TABLE `legajocategoria`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
 	`descripcion` VARCHAR(255)  NOT NULL,
 	PRIMARY KEY (`id`)
 )Type=InnoDB;
@@ -779,14 +779,14 @@ DROP TABLE IF EXISTS `legajopedagogico`;
 
 CREATE TABLE `legajopedagogico`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`fk_alumno_id` INTEGER  NOT NULL,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
+	`fk_alumno_id` INTEGER(11)  NOT NULL,
 	`titulo` VARCHAR(255)  NOT NULL,
 	`resumen` LONGBLOB  NOT NULL,
 	`texto` LONGBLOB  NOT NULL,
 	`fecha` DATETIME  NOT NULL,
-	`fk_usuario_id` INTEGER  NOT NULL,
-	`fk_legajocategoria_id` INTEGER  NOT NULL,
+	`fk_usuario_id` INTEGER(11)  NOT NULL,
+	`fk_legajocategoria_id` INTEGER(11)  NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `legajopedagogico_FI_1` (`fk_alumno_id`),
 	CONSTRAINT `legajopedagogico_FK_1`
@@ -811,7 +811,7 @@ DROP TABLE IF EXISTS `adjunto`;
 
 CREATE TABLE `adjunto`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
 	`descripcion` VARCHAR(255),
 	`titulo` VARCHAR(255),
 	`nombre_archivo` VARCHAR(255)  NOT NULL,
@@ -830,8 +830,8 @@ DROP TABLE IF EXISTS `legajoadjunto`;
 
 CREATE TABLE `legajoadjunto`
 (
-	`fk_legajopedagogico_id` INTEGER  NOT NULL,
-	`fk_adjunto_id` INTEGER  NOT NULL,
+	`fk_legajopedagogico_id` INTEGER(11)  NOT NULL,
+	`fk_adjunto_id` INTEGER(11)  NOT NULL,
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
 	PRIMARY KEY (`id`),
 	INDEX `legajoadjunto_FI_1` (`fk_legajopedagogico_id`),
@@ -853,7 +853,7 @@ DROP TABLE IF EXISTS `tipoasistencia`;
 
 CREATE TABLE `tipoasistencia`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
 	`nombre` VARCHAR(10)  NOT NULL,
 	`descripcion` VARCHAR(255),
 	`valor` DECIMAL(4,2) default 1 NOT NULL,
@@ -871,9 +871,9 @@ DROP TABLE IF EXISTS `asistencia`;
 
 CREATE TABLE `asistencia`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`fk_alumno_id` INTEGER  NOT NULL,
-	`fk_tipoasistencia_id` INTEGER  NOT NULL,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
+	`fk_alumno_id` INTEGER(11)  NOT NULL,
+	`fk_tipoasistencia_id` INTEGER(11)  NOT NULL,
 	`fecha` DATETIME  NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `asistencia_FI_1` (`fk_alumno_id`),
@@ -895,8 +895,8 @@ DROP TABLE IF EXISTS `concepto`;
 
 CREATE TABLE `concepto`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`fk_establecimiento_id` INTEGER default 0 NOT NULL,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
+	`fk_establecimiento_id` INTEGER(11) default 0 NOT NULL,
 	`nombre` VARCHAR(128)  NOT NULL,
 	`descripcion` VARCHAR(255),
 	PRIMARY KEY (`id`),
@@ -915,11 +915,11 @@ DROP TABLE IF EXISTS `escalanota`;
 
 CREATE TABLE `escalanota`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`fk_establecimiento_id` INTEGER default 0 NOT NULL,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
+	`fk_establecimiento_id` INTEGER(11) default 0 NOT NULL,
 	`nombre` VARCHAR(128)  NOT NULL,
 	`descripcion` VARCHAR(255),
-	`orden` INTEGER  NOT NULL,
+	`orden` INTEGER(11)  NOT NULL,
 	`aprobado` INTEGER default 0 NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `escalanota_FI_1` (`fk_establecimiento_id`),
@@ -937,11 +937,11 @@ DROP TABLE IF EXISTS `boletin_conceptual`;
 
 CREATE TABLE `boletin_conceptual`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`fk_escalanota_id` INTEGER,
-	`fk_alumno_id` INTEGER default 0 NOT NULL,
-	`fk_concepto_id` INTEGER default 0 NOT NULL,
-	`fk_periodo_id` INTEGER default 0 NOT NULL,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
+	`fk_escalanota_id` INTEGER(11),
+	`fk_alumno_id` INTEGER(11) default 0 NOT NULL,
+	`fk_concepto_id` INTEGER(11) default 0 NOT NULL,
+	`fk_periodo_id` INTEGER(11) default 0 NOT NULL,
 	`observacion` LONGBLOB  NOT NULL,
 	`fecha` DATETIME  NOT NULL,
 	PRIMARY KEY (`id`),
@@ -972,8 +972,8 @@ DROP TABLE IF EXISTS `actividad`;
 
 CREATE TABLE `actividad`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`fk_establecimiento_id` INTEGER default 0 NOT NULL,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
+	`fk_establecimiento_id` INTEGER(11) default 0 NOT NULL,
 	`nombre` VARCHAR(128)  NOT NULL,
 	`descripcion` VARCHAR(255),
 	PRIMARY KEY (`id`),
@@ -992,11 +992,11 @@ DROP TABLE IF EXISTS `boletin_actividades`;
 
 CREATE TABLE `boletin_actividades`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`fk_escalanota_id` INTEGER,
-	`fk_alumno_id` INTEGER default 0 NOT NULL,
-	`fk_actividad_id` INTEGER default 0 NOT NULL,
-	`fk_periodo_id` INTEGER default 0 NOT NULL,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
+	`fk_escalanota_id` INTEGER(11),
+	`fk_alumno_id` INTEGER(11) default 0 NOT NULL,
+	`fk_actividad_id` INTEGER(11) default 0 NOT NULL,
+	`fk_periodo_id` INTEGER(11) default 0 NOT NULL,
 	`observacion` LONGBLOB  NOT NULL,
 	`fecha` DATETIME  NOT NULL,
 	PRIMARY KEY (`id`),
@@ -1027,11 +1027,11 @@ DROP TABLE IF EXISTS `examen`;
 
 CREATE TABLE `examen`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`fk_escalanota_id` INTEGER default 0 NOT NULL,
-	`fk_alumno_id` INTEGER default 0 NOT NULL,
-	`fk_actividad_id` INTEGER default 0 NOT NULL,
-	`fk_periodo_id` INTEGER default 0 NOT NULL,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
+	`fk_escalanota_id` INTEGER(11) default 0 NOT NULL,
+	`fk_alumno_id` INTEGER(11) default 0 NOT NULL,
+	`fk_actividad_id` INTEGER(11) default 0 NOT NULL,
+	`fk_periodo_id` INTEGER(11) default 0 NOT NULL,
 	`nombre` VARCHAR(255)  NOT NULL,
 	`observacion` LONGBLOB  NOT NULL,
 	`fecha` DATETIME  NOT NULL,
@@ -1063,8 +1063,8 @@ DROP TABLE IF EXISTS `anio`;
 
 CREATE TABLE `anio`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`fk_establecimiento_id` INTEGER default 0 NOT NULL,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
+	`fk_establecimiento_id` INTEGER(11) default 0 NOT NULL,
 	`descripcion` VARCHAR(255)  NOT NULL,
 	`orden` INTEGER default 0,
 	PRIMARY KEY (`id`),
@@ -1083,11 +1083,11 @@ DROP TABLE IF EXISTS `division`;
 
 CREATE TABLE `division`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`fk_anio_id` INTEGER default 0 NOT NULL,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
+	`fk_anio_id` INTEGER(11) default 0 NOT NULL,
 	`descripcion` VARCHAR(255)  NOT NULL,
-	`fk_turno_id` INTEGER default 0 NOT NULL,
-	`fk_orientacion_id` INTEGER,
+	`fk_turno_id` INTEGER(11) default 0 NOT NULL,
+	`fk_orientacion_id` INTEGER(11),
 	`orden` INTEGER default 0,
 	PRIMARY KEY (`id`),
 	INDEX `division_FI_1` (`fk_anio_id`),
@@ -1113,9 +1113,9 @@ DROP TABLE IF EXISTS `repeticion`;
 
 CREATE TABLE `repeticion`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
 	`descripcion` VARCHAR(255)  NOT NULL,
-	`orden` INTEGER default 0 NOT NULL,
+	`orden` INTEGER(11) default 0 NOT NULL,
 	PRIMARY KEY (`id`)
 )Type=InnoDB;
 
@@ -1128,10 +1128,10 @@ DROP TABLE IF EXISTS `rel_anio_actividad`;
 
 CREATE TABLE `rel_anio_actividad`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`fk_anio_id` INTEGER default 0 NOT NULL,
-	`fk_actividad_id` INTEGER default 0 NOT NULL,
-	`fk_orientacion_id` INTEGER,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
+	`fk_anio_id` INTEGER(11) default 0 NOT NULL,
+	`fk_actividad_id` INTEGER(11) default 0 NOT NULL,
+	`fk_orientacion_id` INTEGER(11),
 	`horas` DECIMAL(10,2) default 0 NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `rel_anio_actividad_FI_1` (`fk_anio_id`),
@@ -1157,9 +1157,9 @@ DROP TABLE IF EXISTS `rel_alumno_division`;
 
 CREATE TABLE `rel_alumno_division`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`fk_division_id` INTEGER default 0 NOT NULL,
-	`fk_alumno_id` INTEGER default 0 NOT NULL,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
+	`fk_division_id` INTEGER(11) default 0 NOT NULL,
+	`fk_alumno_id` INTEGER(11) default 0 NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `rel_alumno_division_FI_1` (`fk_division_id`),
 	CONSTRAINT `rel_alumno_division_FK_1`
@@ -1185,7 +1185,7 @@ CREATE TABLE `docente`
 	`nombre` VARCHAR(128)  NOT NULL,
 	`sexo` CHAR(1)  NOT NULL,
 	`fecha_nacimiento` DATETIME  NOT NULL,
-	`fk_tipodocumento_id` INTEGER default 0 NOT NULL,
+	`fk_tipodocumento_id` INTEGER(11) default 0 NOT NULL,
 	`nro_documento` VARCHAR(16)  NOT NULL,
 	`lugar_nacimiento` VARCHAR(128),
 	`direccion` VARCHAR(128),
@@ -1198,7 +1198,7 @@ CREATE TABLE `docente`
 	`libreta_sanitaria` INTEGER default 0,
 	`psicofisico` INTEGER default 0,
 	`activo` INTEGER default 1,
-	`fk_provincia_id` INTEGER default 0 NOT NULL,
+	`fk_provincia_id` INTEGER(11) default 0 NOT NULL,
 	`fk_pais_id` INTEGER default 0 NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `docente_FI_1` (`fk_tipodocumento_id`),
@@ -1261,11 +1261,11 @@ DROP TABLE IF EXISTS `rel_division_actividad_docente`;
 
 CREATE TABLE `rel_division_actividad_docente`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`fk_division_id` INTEGER default 0,
-	`fk_actividad_id` INTEGER default 0 NOT NULL,
-	`fk_docente_id` INTEGER default 0,
-	`fk_evento_id` INTEGER default 0,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
+	`fk_division_id` INTEGER(11) default 0,
+	`fk_actividad_id` INTEGER(11) default 0 NOT NULL,
+	`fk_docente_id` INTEGER(11) default 0,
+	`fk_evento_id` INTEGER(11) default 0,
 	PRIMARY KEY (`id`),
 	INDEX `rel_division_actividad_docente_FI_1` (`fk_division_id`),
 	CONSTRAINT `rel_division_actividad_docente_FK_1`
@@ -1295,8 +1295,8 @@ DROP TABLE IF EXISTS `rel_docente_establecimiento`;
 
 CREATE TABLE `rel_docente_establecimiento`
 (
-	`fk_establecimiento_id` INTEGER default 0 NOT NULL,
-	`fk_docente_id` INTEGER default 0 NOT NULL,
+	`fk_establecimiento_id` INTEGER(11) default 0 NOT NULL,
+	`fk_docente_id` INTEGER(11) default 0 NOT NULL,
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
 	PRIMARY KEY (`id`),
 	INDEX `rel_docente_establecimiento_FI_1` (`fk_establecimiento_id`),
@@ -1318,8 +1318,8 @@ DROP TABLE IF EXISTS `docente_horario`;
 
 CREATE TABLE `docente_horario`
 (
-	`fk_docente_id` INTEGER  NOT NULL,
-	`fk_evento_id` INTEGER  NOT NULL,
+	`fk_docente_id` INTEGER(11)  NOT NULL,
+	`fk_evento_id` INTEGER(11)  NOT NULL,
 	PRIMARY KEY (`fk_docente_id`,`fk_evento_id`),
 	CONSTRAINT `docente_horario_FK_1`
 		FOREIGN KEY (`fk_docente_id`)
@@ -1340,12 +1340,12 @@ DROP TABLE IF EXISTS `feriado`;
 
 CREATE TABLE `feriado`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
 	`nombre` VARCHAR(128)  NOT NULL,
 	`fecha` DATETIME  NOT NULL,
 	`repeticion_anual` INTEGER default 0,
 	`inamovible` INTEGER default 0,
-	`fk_ciclolectivo_id` INTEGER default 0 NOT NULL,
+	`fk_ciclolectivo_id` INTEGER(11) default 0 NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `feriado_FI_1` (`fk_ciclolectivo_id`),
 	CONSTRAINT `feriado_FK_1`
@@ -1362,7 +1362,7 @@ DROP TABLE IF EXISTS `horarioescolar`;
 
 CREATE TABLE `horarioescolar`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
 	`nombre` VARCHAR(128)  NOT NULL,
 	`descripcion` VARCHAR(255),
 	`fk_evento_id` INTEGER,
@@ -1398,10 +1398,10 @@ DROP TABLE IF EXISTS `rel_rolresponsable_responsable`;
 
 CREATE TABLE `rel_rolresponsable_responsable`
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`fk_rolresponsable_id` INTEGER default 0 NOT NULL,
-	`fk_responsable_id` INTEGER default 0 NOT NULL,
-	`fk_alumno_id` INTEGER default 0 NOT NULL,
+	`id` INTEGER(11)  NOT NULL AUTO_INCREMENT,
+	`fk_rolresponsable_id` INTEGER(11) default 0 NOT NULL,
+	`fk_responsable_id` INTEGER(11) default 0 NOT NULL,
+	`fk_alumno_id` INTEGER(11) default 0 NOT NULL,
 	`descripcion` VARCHAR(255),
 	PRIMARY KEY (`id`),
 	INDEX `rel_rolresponsable_responsable_FI_1` (`fk_rolresponsable_id`),
@@ -1427,8 +1427,8 @@ DROP TABLE IF EXISTS `rel_anio_actividad_docente`;
 
 CREATE TABLE `rel_anio_actividad_docente`
 (
-	`fk_anio_actividad_id` INTEGER  NOT NULL,
-	`fk_docente_id` INTEGER  NOT NULL,
+	`fk_anio_actividad_id` INTEGER(11)  NOT NULL,
+	`fk_docente_id` INTEGER(11)  NOT NULL,
 	PRIMARY KEY (`fk_anio_actividad_id`,`fk_docente_id`),
 	CONSTRAINT `rel_anio_actividad_docente_FK_1`
 		FOREIGN KEY (`fk_anio_actividad_id`)
@@ -1466,8 +1466,8 @@ CREATE TABLE `informe`
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
 	`nombre` VARCHAR(128)  NOT NULL,
 	`descripcion` VARCHAR(255),
-	`fk_adjunto_id` INTEGER  NOT NULL,
-	`fk_tipoinforme_id` INTEGER  NOT NULL,
+	`fk_adjunto_id` INTEGER(11)  NOT NULL,
+	`fk_tipoinforme_id` INTEGER(11)  NOT NULL,
 	`listado` INTEGER default 0 NOT NULL,
 	`variables` VARCHAR(128),
 	PRIMARY KEY (`id`),

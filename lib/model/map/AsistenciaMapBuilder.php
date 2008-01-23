@@ -32,11 +32,11 @@ class AsistenciaMapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
-		$tMap->addPrimaryKey('ID', 'Id', 'int', CreoleTypes::INTEGER, true, null);
+		$tMap->addPrimaryKey('ID', 'Id', 'int', CreoleTypes::INTEGER, true, 11);
 
-		$tMap->addForeignKey('FK_ALUMNO_ID', 'FkAlumnoId', 'int', CreoleTypes::INTEGER, 'alumno', 'ID', true, null);
+		$tMap->addForeignKey('FK_ALUMNO_ID', 'FkAlumnoId', 'int', CreoleTypes::INTEGER, 'alumno', 'ID', true, 11);
 
-		$tMap->addForeignKey('FK_TIPOASISTENCIA_ID', 'FkTipoasistenciaId', 'int', CreoleTypes::INTEGER, 'tipoasistencia', 'ID', true, null);
+		$tMap->addForeignKey('FK_TIPOASISTENCIA_ID', 'FkTipoasistenciaId', 'int', CreoleTypes::INTEGER, 'tipoasistencia', 'ID', true, 11);
 
 		$tMap->addColumn('FECHA', 'Fecha', 'int', CreoleTypes::TIMESTAMP, true, null);
 
