@@ -192,9 +192,9 @@ class asistenciaActions extends sfActions
             //Obtener los alumnos de la division y asistencias en el rango de fecha
             $con = sfContext::getInstance()->getDatabaseConnection($connection='propel'); 
             $s = "SELECT alumno.id, alumno.nombre, alumno.apellido,";
-            $s .= "tipoasistencia.descripcion, tipoasistencia.nombre asistencia, asistencia.fecha,";
-            $s .= "fk_tipoasistencia_id ";
-            $s .= "FROM (alumno, rel_alumno_division) ";
+            $s .= "tipoasistencia.descripcion, tipoasistencia.nombre AS asistencia, asistencia.fecha,";
+            $s .= "asistencia.fk_tipoasistencia_id ";
+            $s .= "FROM alumno, rel_alumno_division ";
             $s .= "LEFT JOIN asistencia ON ( rel_alumno_division.FK_ALUMNO_ID = asistencia.FK_ALUMNO_ID ";
             $s .= "AND asistencia.FECHA ";
             $s .= "IN (";
