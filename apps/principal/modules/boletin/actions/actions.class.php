@@ -508,29 +508,38 @@ class boletinActions extends sfActions
 
     public function getAsistenciaTotal($alumno_id, $fecha_inicio, $fecha_fin) {
         $aAsistencia = array();
-        
-        $con = sfContext::getInstance()->getDatabaseConnection($connection='propel');
-        // consulta muy fea que supongo que se puede hacer mas elegante y simple
-        $sql = "
-(
- SELECT ta.grupo as grupo, 0 as valor, asistencia.id as id
- FROM tipoasistencia ta
- LEFT JOIN asistencia ON  asistencia.fk_tipoasistencia_id = ta.id AND asistencia.fk_alumno_id = %s AND asistencia.fecha >= '%s' AND asistencia.fecha <= '%s'
- GROUP BY ta.grupo
- HAVING asistencia.id IS NULL
- )
- UNION
- (
- SELECT ta.grupo as grupo,SUM(ta.valor) as valor, a.id as id
- FROM tipoasistencia ta, asistencia a
- WHERE a.fk_tipoasistencia_id = ta.id  AND a.fk_alumno_id = %s AND a.fecha >= '%s' AND a.fecha <= '%s'
- GROUP BY ta.grupo
- )
-                ";
-        $stmt = $con->createStatement();
-        $aDatos = $stmt->executeQuery(sprintf($sql,$alumno_id, $fecha_inicio, $fecha_fin, $alumno_id, $fecha_inicio, $fecha_fin), ResultSet::FETCHMODE_ASSOC);        
-        foreach($aDatos as $dato) {
-            $aAsistencia[$dato['grupo']] = $dato['valor'];
+
+        // En teoria esta dos consultas pueden reemplazarse con una solo usando LEFT JOIN y CASE
+
+        $c = new Criteria();
+        $c->addGroupByColumn(TipoasistenciaPeer::GRUPO);
+        $c->addSelectColumn(TipoasistenciaPeer::GRUPO);
+        $rsColumna = TipoasistenciaPeer::doSelectRS($c);
+
+        $c = new Criteria();
+        $c->clearSelectColumns();
+        $c->addGroupByColumn(TipoasistenciaPeer::GRUPO);
+        $c->addSelectColumn(TipoasistenciaPeer::GRUPO);
+        $c->addSelectColumn('SUM('.TipoasistenciaPeer::VALOR.') AS valor');
+        $c->addJoin(TipoasistenciaPeer::ID, AsistenciaPeer::FK_TIPOASISTENCIA_ID);
+        $c->add(AsistenciaPeer::FK_ALUMNO_ID, $alumno_id, Criteria::EQUAL);
+        $c2 = new Criteria();
+        $criterion = $c2->getNewCriterion(AsistenciaPeer::FECHA, $fecha_inicio, Criteria::GREATER_EQUAL);
+        $criterion->addAnd($c2->getNewCriterion(AsistenciaPeer::FECHA, $fecha_fin, Criteria::LESS_EQUAL));
+        $c->add($criterion);
+        $rsValor = TipoasistenciaPeer::doSelectRS($c);
+
+        if($rsColumna) {
+            while($rsColumna->next()) {
+                $aAsistencia[$rsColumna->getString(1)] = 0;  // indice: nombre del Grupo, contenido: 
+            }
+        }
+
+        if($rsValor) {
+            while($rsValor->next()) {
+                // indice: nombre del Grupo, contenido: sumatoria de valor
+                $aAsistencia[$rsValor->getString(1)] = $rsValor->getFloat(2); 
+            }
         }
 
         return $aAsistencia;
