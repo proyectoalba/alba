@@ -6,6 +6,7 @@ generator:
     fields:
         nombre: { name: Nombre , params: size=64}
         descripcion: { name: Descripci&oacute;n , params: size=64}
+        fk_establecimiento_id: { name: Establecimiento }
     
     edit:
         title: ""
