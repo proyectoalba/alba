@@ -2,6 +2,6 @@ all:
   propel:
     class:          sfPropelDatabase
     param:
-      dsn:          mysql://USERDB:PASSDB@SERVER/DBNAME
+      dsn:          PROTOCOL://USERDB:PASSDB@SERVER/DBNAME
       datasource: alba
       enconding:  utf8
