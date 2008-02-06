@@ -37,14 +37,13 @@ class sfCustomUniqueValidator extends sfValidator {
         $c = new Criteria();
         $myClass =  strtolower($this->getParameterHolder()->get("class"));
         $values = $this->getContext()->getRequest()->getParameter("$myClass");
-        $values["fk_establecimiento_id"] = $this->getContext()->getRequest()->getParameter("fk_establecimiento_id");
+        $values["fk_establecimiento_id"] = $this->getContext()->getUser()->getAttribute('fk_establecimiento_id');
 
         //Loop on the fields
         for($i = 1; $i <= $nb_fields ; $i++) {
             //Retrieve field_$i
             $check_param = $this->getParameterHolder()->get("field_$i");
             $check_value = $values["$check_param"];
-
             //If check value defined        
             if ($check_value != '') {   
                 //Adding field to the criteria
