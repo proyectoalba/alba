@@ -6,10 +6,11 @@ generator:
     fields:
         descripcion: { name: Descripci&oacute;n , params: size=40 }
         orden: { name: Orden , params: size=2 }
+        fk_establecimiento_id: { name: Establecimiento }
     
     edit:
         title: " "
-        display: [descripcion, orden ]
+        display: [descripcion, orden]
         actions:
             _delete: -
             _save: -
@@ -18,7 +19,7 @@ generator:
                     
     list:
         title: Listado de A&ntilde;os
-        display: [ =descripcion , orden]
+        display: [ =descripcion , orden ]
         sort: descripcion
         object_actions:
             _edit:      -

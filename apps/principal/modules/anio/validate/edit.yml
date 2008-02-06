@@ -1,6 +1,6 @@
 methods:
   post:       
-    - "anio{descripcion}"    
+    - "anio{descripcion}"
     
 fillin:
     enabled:       on
@@ -9,11 +9,19 @@ names:
     anio{descripcion}:
         required:     Yes
         required_msg: El campo descripci&oacute;n es obligatorio
-        validators: caracteresMaximos255
-        
+        validators: caracteresMaximos255, validarUnico
+    
 caracteresMaximos255:
     class:  sfStringValidator
     param:
         max: 255
         max_error: La maxima cantidad de caracteres permitida es de 255
 
+validarUnico:
+    class:    sfCustomUniqueValidator
+    param:
+        class: Anio
+        nb_fields:  2
+        field_1:    fk_establecimiento_id
+        field_2:    descripcion        
+        custom_unique_error:     El anio que intenta agregar ya existe en el mismo establecimiento!
