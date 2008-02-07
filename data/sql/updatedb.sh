@@ -5,10 +5,15 @@ SCHEMA="lib.model.schema.sql"
 EJEMPLO="datos_desde_cero.sql"
 DSNARCHIVO=`cat ../../config/databases.yml | grep dsn: | tr -d " "`
 DSN=${DSNARCHIVO#dsn:*}
-
-#DSN="mysql://root:master@localhost/alba"
-
 DSNs=${DSN#mysql://*}
+
+if [ $DSN == $DSNs ]; then
+    DBSERVER="pgsql"
+else
+    DBSERVER="mysql"    
+fi
+
+DSNs=${DSN#pgsql://*}
 USERANDPASS=${DSNs%@*}
 USER=${USERANDPASS%:*}
 PASS=${USERANDPASS#*:}
@@ -26,10 +31,20 @@ if [ $USER != $PASS ]; then
     OPTION="-p$PASS"
 fi
 
-ENCODING="--default-character-set=utf8"
 
-mysqladmin --force -u $USER $OPTION  -h $SERVER drop $DB
-mysqladmin $ENCODING  --force -u $USER $OPTION  -h $SERVER create $DB
-mysql $ENCODING -u $USER $OPTION  -h $SERVER $DB < $SCHEMA
-mysql $ENCODING -u $USER $OPTION  -h $SERVER $DB < $EJEMPLO
-echo "DB Actualizada!"
+if [ $DBSERVER == "mysql" ]; then
+    ENCODING="--default-character-set=utf8"
+    mysqladmin --force -u $USER -p$PASS -h $SERVER drop $DB
+    mysqladmin $ENCODING --force -u $USER -p$PASS -h $SERVER create $DB
+    mysql $ENCODING -u $USER -p$PASS -h $SERVER $DB < $SCHEMA
+    mysql $ENCODING -u $USER -p$PASS -h $SERVER $DB < $EJEMPLO
+fi
+
+if [ $DBSERVER == "pgsql" ]; then
+    dropdb $DB -U $USER
+    createdb $DB -U $USER
+    psql $DB -U $USER < $SCHEMA
+    #psql $DB -U $USER < $EJEMPLO
+    ../../symfony alba-load-data principal data/fixtures/datos_desde_cero.yml
+fi
+
