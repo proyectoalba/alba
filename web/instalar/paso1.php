@@ -33,6 +33,7 @@
 if (!defined('ALBA_INSTALLER')) die();
  
 $dirs = array(
+    'lib'. DIRECTORY_SEPARATOR .'model',
     'config', 
     'cache', 
     'log', 

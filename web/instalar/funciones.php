@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  *    This file is part of Alba.
  * 
@@ -32,8 +32,14 @@ function AlbaPath() {
     return realpath(dirname(__FILE__) .DIRECTORY_SEPARATOR. ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR);
 }
 
+
+function logFile() {
+    return AlbaPath() . DIRECTORY_SEPARATOR . "log" . DIRECTORY_SEPARATOR . "install.log";
+}
+
+
 function DebugLog($str,$modo = 'I') {
-    $log = AlbaPath() . DIRECTORY_SEPARATOR . "log" . DIRECTORY_SEPARATOR . "install.log";
+    $log = logFile();
     $fp = @fopen($log,"a+");
     if ($fp) {
         fwrite($fp,date('d/m/Y H:i:s') . " $modo: $str\n");
@@ -65,44 +71,82 @@ function dump2Array($file) {
     return $aSql;
 }
 
-function executeDump($file, $host, $user, $pass, $db) {
+function executeDump($file, $protocol, $host, $user, $pass, $db) {
     DebugLog("executeDump(): file: $file");
     DebugLog("executeDump(): user: $user");
     DebugLog("executeDump(): db: $db");
     $aSql = dump2Array($file);
     $error = false;    
     if(count($aSql) > 0 && file_exists($file)) {
-        if (mysql_connect($host,$user,$pass)) {
-            if(mysql_select_db($db)) {
-                DebugLog("executeDump(): ejecutando BEGIN" );    
-                mysql_query("BEGIN");
+
+        // otro pedazo de codigo para cambiarlo por PDO
+
+
+        if($protocol == 'mysql') {
+            if (mysql_connect($host,$user,$pass)) {
+                if(mysql_select_db($db)) {
+                    DebugLog("executeDump(): ejecutando BEGIN" );    
+                    mysql_query("BEGIN");
+                    foreach($aSql as $sql_line) {
+                        $res = mysql_query(trim($sql_line));
+                        if(!$res) {
+                            DebugLog("executeDump(): Fallo SQL: $sql_line");
+                            DebugLog("executeDump(): error:". mysql_error());
+                            $error = true;
+                        }
+                    }
+                    if($error == true) {
+                        DebugLog("executeDump(): Se encontraron errores ejecutando ROLLBACK y saliendo");    
+                        mysql_query("ROLLBACK");
+                        return false;
+                    } else {
+                        DebugLog("executeDump(): Sin errores ejecutando COMMIT y saliendo");    
+                        mysql_query("COMMIT");
+                        return true;
+                    }
+                }
+                else {
+                    DebugLog("executeDump(): Error al seleccionar la base: $db");    
+                    return false;
+                }
+            }
+            else {
+                DebugLog("excuteDump(): No se puede conectar ala base de datos. " . mysql_error());
+            }
+        }
+
+
+        if($protocol == 'pgsql') {
+            $conn = @pg_connect("host=$host user=$user password=$pass dbname=$db");
+            if ($conn) {
+                DebugLog("executeDump(): ejecutando BEGIN" );
+                pg_query("BEGIN");
+                DebugLog("executeDump(): ejecutando SET CONSTRAINTS ALL DEFERRED" );
+                pg_query("SET CONSTRAINTS ALL DEFERRED");
                 foreach($aSql as $sql_line) {
-                    $res = mysql_query(trim($sql_line));
+                    $res = pg_query(trim($sql_line));
                     if(!$res) {
                         DebugLog("executeDump(): Fallo SQL: $sql_line");
-                        DebugLog("executeDump(): error:". mysql_error());
+                        DebugLog("executeDump(): error:". pg_last_error($conn));
                         $error = true;
                     }
                 }
                 if($error == true) {
                     DebugLog("executeDump(): Se encontraron errores ejecutando ROLLBACK y saliendo");    
-                    mysql_query("ROLLBACK");
+                    pg_query("ROLLBACK");
                     return false;
                 } else {
                     DebugLog("executeDump(): Sin errores ejecutando COMMIT y saliendo");    
-                    mysql_query("COMMIT");
+                    pg_query("COMMIT");
                     return true;
                 }
             }
             else {
-                DebugLog("executeDump(): Error al seleccionar la base: $db");    
-                return false;
-            }    
+                DebugLog("excuteDump(): No se puede conectar ala base de datos. " . mysql_error());
+            }
+        }
 
-        }
-        else {
-            DebugLog("excuteDump(): No se puede conectar ala base de datos. " . mysql_error());
-        }
+
     } else {
         DebugLog("executeDump(): No hay instrucciones SQL en el archivo");    
         return false;
@@ -112,7 +156,7 @@ function executeDump($file, $host, $user, $pass, $db) {
 /**
 * genera el archivo de conexion a la base de datos
 */
-function generate_databases_yml($host,$user,$pass,$db) {
+function generate_databases_yml($protocol,$host,$user,$pass,$db) {
     $yml = AlbaPath() . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "databases.yml";
     DebugLog ("generate_databases_yml(): generando archivo de conexion $yml");
     if ($fp = @fopen ($yml,'w')) {
@@ -121,10 +165,11 @@ function generate_databases_yml($host,$user,$pass,$db) {
         fwrite ($fp,"  propel:\n");
         fwrite ($fp,"    class: sfPropelDatabase\n");
         fwrite ($fp,"    param:\n");
-        if ($pass != "")
-            fwrite ($fp,"      dsn: mysql://$user:$pass@$host/$db\n");
-        else
-            fwrite ($fp,"      dsn: mysql://$user@$host/$db\n");
+        if ($pass != "") {
+            fwrite ($fp,"      dsn: $protocol://$user:$pass@$host/$db\n");
+        } else {
+            fwrite ($fp,"      dsn: $protocol://$user@$host/$db\n");
+        }
         fwrite ($fp,"      datasource: alba\n");
         fwrite ($fp,"      encoding: utf8\n");
         fwrite ($fp, "\n");
@@ -135,28 +180,111 @@ function generate_databases_yml($host,$user,$pass,$db) {
         DebugLog("generate_databases_yml(): no se puede abrir el archivo. ");
         return false;
     }
-    
 }
+
+
+/**
+* genera el archivo autoload.yml para que no se autocarguen todos los modelos de DB
+*/
+function generate_autoload_yml($protocol) {
+    $yml = AlbaPath() . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "autoload.yml";
+    DebugLog ("generate_autoload_yml(): generando archivo de autoload $yml");
+    if ($fp = @fopen ($yml,'w')) {
+        fwrite ($fp,"# Archivo generado por el instalador de Alba " . date('m/d/Y H:i:s') . "\n");
+        fwrite ($fp,"autoload:\n");
+        fwrite ($fp,"  project_model:\n");
+        fwrite ($fp,"    name: project model\n");
+        fwrite ($fp,"    path: %SF_MODEL_LIB_DIR%/$protocol\n");
+        fwrite ($fp,"    recursive: on\n");
+        fwrite ($fp, "\n");
+        DebugLog("generate_autoload_yml(): archivo yml generado");
+        return true;
+    } else {
+        DebugLog("generate_autoload_yml(): no se puede abrir el archivo. ");
+        return false;
+    }
+}
+
+
+/**
+* genera el archivo propel.ini para configurar el acceso a la base de datos para tareas
+*/
+function generate_propel_ini($protocol,$host,$user,$pass,$db) {
+    $ini = AlbaPath() . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "propel.ini";
+    DebugLog ("generate_propel_ini(): generando archivo de propel $ini");
+    if ($fp = @fopen ($ini,'w')) {
+        fwrite ($fp,"# Archivo generado por el instalador de Alba " . date('m/d/Y H:i:s') . "\n\n");
+        fwrite ($fp,"propel.targetPackage       = alba\n");
+        fwrite ($fp,"propel.project             = alba\n");
+        fwrite ($fp,"propel.database            = $protocol\n");
+        fwrite ($fp,"propel.database.createUrl  = $protocol://$user:$pass@$host/\n");
+        fwrite ($fp,"propel.database.url        = $protocol://$user:$pass@$host/$db\n");
+        fwrite ($fp,"propel.addGenericAccessors = true\n");
+        fwrite ($fp,"propel.addGenericMutators  = true\n");
+        fwrite ($fp,"propel.addTimeStamp        = false\n");
+        fwrite ($fp,"propel.schema.validate     = false\n\n");
+        fwrite ($fp,"; directories\n");
+        fwrite ($fp,"propel.home                    = .\n");
+        fwrite ($fp,'propel.output.dir              = ${propel.home}'."\n");
+        fwrite ($fp,'propel.schema.dir              = ${propel.output.dir}/config'."\n");
+        fwrite ($fp,'propel.conf.dir                = ${propel.output.dir}/config'."\n");
+        fwrite ($fp,'propel.phpconf.dir             = ${propel.output.dir}/config'."\n");
+        fwrite ($fp,'propel.sql.dir                 = ${propel.output.dir}/data/sql'."\n");
+        fwrite ($fp,"propel.runtime.conf.file       = runtime-conf.xml\n");
+        fwrite ($fp,'propel.php.dir                 = ${propel.output.dir}'."\n");
+        fwrite ($fp,"propel.default.schema.basename = schema\n");
+        fwrite ($fp,"propel.datadump.mapper.from    = *schema.xml\n");
+        fwrite ($fp,"propel.datadump.mapper.to      = *data.xml\n\n");
+        fwrite ($fp,"; builder settings\n");
+        fwrite ($fp,"propel.builder.peer.class              = addon.propel.builder.SfPeerBuilder\n");
+        fwrite ($fp,"propel.builder.object.class            = addon.propel.builder.SfObjectBuilder\n");
+        fwrite ($fp,"propel.builder.objectstub.class        = addon.propel.builder.SfExtensionObjectBuilder\n");
+        fwrite ($fp,"propel.builder.peerstub.class          = addon.propel.builder.SfExtensionPeerBuilder\n");
+        fwrite ($fp,"propel.builder.objectmultiextend.class = addon.propel.builder.SfMultiExtendObjectBuilder\n");
+        fwrite ($fp,"propel.builder.mapbuilder.class        = addon.propel.builder.SfMapBuilderBuilder\n");
+        fwrite ($fp,"propel.builder.interface.class         = propel.engine.builder.om.php5.PHP5InterfaceBuilder\n");
+        fwrite ($fp,"propel.builder.node.class              = propel.engine.builder.om.php5.PHP5NodeBuilder\n");
+        fwrite ($fp,"propel.builder.nodepeer.class          = propel.engine.builder.om.php5.PHP5NodePeerBuilder\n");
+        fwrite ($fp,"propel.builder.nodestub.class          = propel.engine.builder.om.php5.PHP5ExtensionNodeBuilder\n");
+        fwrite ($fp,"propel.builder.nodepeerstub.class      = propel.engine.builder.om.php5.PHP5ExtensionNodePeerBuilder\n\n");
+        fwrite ($fp,"propel.mysql.tableType = InnoDB\n");
+        fwrite ($fp,"propel.mysql.encoding = utf8\n");
+        fwrite ($fp,"propel.packageObjectModel = true\n\n");
+        fwrite ($fp,"propel.builder.addIncludes  = false\n");
+        fwrite ($fp,"propel.builder.addComments  = false\n");
+        fwrite ($fp,"propel.builder.addBehaviors = false\n");
+
+        DebugLog("generate_propel_ini(): archivo ini generado");
+        return true;
+    } else {
+        DebugLog("generate_propel_ini(): no se puede abrir el archivo. ");
+        return false;
+    }
+}
+
+
+
 
 /**
 * carga el schema a l abase de datos
 */
-function crear_schema ($filesql, $host, $user, $pass, $db) {
+function crear_schema ($filesql, $protocol, $host, $user, $pass, $db) {
     DebugLog ("crear_schema(): Agregando $filesql");
-    return executeDump(AlbaPath() . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'sql'  . DIRECTORY_SEPARATOR .$filesql, $host, $user, $pass, $db);
-
+    if ($filesql == "")
+        return false;
+    else
+        return executeDump(AlbaPath() . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'sql'  . DIRECTORY_SEPARATOR .$filesql, $protocol, $host, $user, $pass, $db);
 }
 
 /**
 * caga los datos ejemplo/minima
 */
-function crear_base_modelo($filesql, $host, $user, $pass, $db) {
+function crear_base_modelo($filesql, $protocol, $host, $user, $pass, $db) {
     DebugLog("crear_base_modelo(): Creado base de datos modelo: $filesql");
     if ($filesql == "")
         return false;
     else
-        return executeDump(AlbaPath() . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'sql'  . DIRECTORY_SEPARATOR .$filesql, $host, $user, $pass, $db);
-    
+        return executeDump(AlbaPath() . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'sql'  . DIRECTORY_SEPARATOR .$filesql, $protocol, $host, $user, $pass, $db);
 }
 
 /**
@@ -211,5 +339,55 @@ function check_rewrite() {
     else
         return false;
 }
+
+
+function build_model() {
+    chdir('../../');
+    define('SF_ROOT_DIR',    realpath(dirname(__FILE__).'/../..'));
+    define('SF_APP',         'principal');
+    define('SF_ENVIRONMENT', 'dev');
+    define('SF_DEBUG',       true);
+    define('STDOUT','');
+    define('STDERR','');
+
+    require_once(SF_ROOT_DIR.DIRECTORY_SEPARATOR.'apps'.DIRECTORY_SEPARATOR.SF_APP.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'config.php');
+
+    require_once($sf_symfony_lib_dir.'/vendor/pake/pakeFunction.php');
+    require_once($sf_symfony_lib_dir.'/vendor/pake/pakeGetopt.class.php');
+
+
+    $dirs = array(
+    sfConfig::get('sf_data_dir').DIRECTORY_SEPARATOR.'tasks'         => 'myPake*.php', // project tasks
+    sfConfig::get('sf_symfony_data_dir').DIRECTORY_SEPARATOR.'tasks' => 'sfPake*.php', // symfony tasks
+    sfConfig::get('sf_root_dir').'/plugins/*/data/tasks'             => '*.php',       // plugin tasks
+    );
+
+    foreach ($dirs as $globDir => $name)
+    {
+        if ($dirs = glob($globDir))
+        {
+            $tasks = pakeFinder::type('file')->name($name)->in($dirs);
+            foreach ($tasks as $task)
+            {
+                include_once($task);
+            }
+        }
+    }
+    $pake = pakeApp::get_instance();
+
+    try
+    {
+//        $ret = $pake->run(sfConfig::get('sf_root_dir').'/plugins/albaTasks/data/tasks/albaTasks.php', 'alba-build-model', true);
+        $ret = $pake->run(sfConfig::get('sf_symfony_data_dir').DIRECTORY_SEPARATOR.'tasks'.DIRECTORY_SEPARATOR.'sfPakePropel.php', array('propel-build-model','--quiet') , true);
+    }
+    catch (pakeException $e)
+    {
+        print "<strong>ERROR</strong>: ".$e->getMessage();
+    }
+
+}
+
+
+
 
 ?>

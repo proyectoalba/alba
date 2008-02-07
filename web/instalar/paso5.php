@@ -56,6 +56,10 @@ alguno por favor haga click aqu&iacute;.
 
 <table>
     <tr>
+        <td>Motor de base de datos:</td>
+        <td><?php echo $_SESSION['albainstall']['tipo_motor_base']?></td>
+    </tr>
+    <tr>
         <td>Servidor:</td>
         <td><?php echo $_SESSION['albainstall']['host']?></td>
     </tr>

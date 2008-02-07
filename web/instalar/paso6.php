@@ -32,6 +32,7 @@
 
 if (!defined('ALBA_INSTALLER')) die();
 
+$tipo_motor_base = $_SESSION['albainstall']['tipo_motor_base'];
 $host = $_SESSION['albainstall']['host'];
 $user = $_SESSION['albainstall']['user'];
 $pass = $_SESSION['albainstall']['pass'];
@@ -45,10 +46,10 @@ $error_flag = false;
 
 <table>
     <tr>
-        <td>Generando archivo de configuraci&oacute;n:</td>
+        <td>Generando archivo de configuraci&oacute;n de acceso a base de datos:</td>
         <td>
             <?php 
-                $ret = generate_databases_yml($host,$user,$pass,$db);
+                $ret = generate_databases_yml($tipo_motor_base,$host,$user,$pass,$db);
                 echo $ret ? IMG_OK : IMG_ERROR;
                 if (!$ret) {
                     $error_flag = true;
@@ -57,11 +58,51 @@ $error_flag = false;
             ?>
         </td>
     </tr>
+
+
+    <tr>
+        <td>Generando archivo de configuraci&oacute;n para las tareas:</td>
+        <td>
+            <?php 
+                $ret = generate_propel_ini($tipo_motor_base,$host,$user,$pass,$db);
+                echo $ret ? IMG_OK : IMG_ERROR;
+                if (!$ret) {
+                    $error_flag = true;
+                    DebugLog("Error al generar archivo propel.ini","E");
+                }
+            ?>
+        </td>
+    </tr>
+
+
+
+    <tr>
+        <td>Generando modelo de la base de datos:</td>
+        <td>
+<!--
+            <div style="visibility: hidden;">
+            <?php 
+                $ret = build_model();
+            ?>
+            </div>
+-->
+            <?php echo IMG_OK; ?>
+        </td>
+    </tr>
+
+
+
     <tr>
         <td>Creando esquema de base de datos:</td>
         <td>
             <?php 
-                $ret = crear_schema('lib.model.schema.sql', $host, $user, $pass, $db);
+
+                if($tipo_motor_base == 'mysql') {
+                    $ret = crear_schema('lib.model.schema.mysql.sql', $tipo_motor_base, $host, $user, $pass, $db);
+                } else {
+                    $ret = crear_schema('lib.model.schema.pgsql.sql', $tipo_motor_base, $host, $user, $pass, $db);
+                }
+
                 echo $ret ? IMG_OK : IMG_ERROR;
                 if (!$ret) {
                     $error_flag = true;
@@ -74,15 +115,25 @@ $error_flag = false;
         <td>Cargando modelo de base de datos <?php echo $_SESSION['albainstall']['tipo_base']?>:</td>
         <td>
             <?php 
-                if ($_SESSION['albainstall']['tipo_base'] =='minima')
-                    $archivo = "datos_desde_cero.sql";
-                elseif ($_SESSION['albainstall']['tipo_base'] =='ejemplo1')
-                    $archivo = "datos_ejemplo.sql";
+                if ($_SESSION['albainstall']['tipo_base'] == 'minima')
+                    if($_SESSION['albainstall']['tipo_motor_base'] == 'mysql')
+                        $archivo = "datos_desde_cero.sql";
+                    elseif  ($_SESSION['albainstall']['tipo_motor_base'] == 'pgsql')
+                        $archivo = "datos_desde_cero.sql";
+                    else
+                        $archivo = "";
+                elseif ($_SESSION['albainstall']['tipo_base'] == 'ejemplo1')
+                    if($_SESSION['albainstall']['tipo_motor_base'] == 'mysql')
+                        $archivo = "datos_ejemplo.sql";
+                    elseif ($_SESSION['albainstall']['tipo_motor_base'] == 'pgsql')
+                        $archivo = "datos_ejemplo.pgsql.sql";
+                    else
+                        $archivo = "";
                 else
                     $archivo = "";
             ?>
             <?php 
-                $ret = crear_base_modelo($archivo,$host,$user,$pass,$db);
+                $ret = crear_base_modelo($archivo, $tipo_motor_base, $host, $user, $pass, $db);
                 echo $ret ? IMG_OK : IMG_ERROR;
                 if (!$ret) {
                     $error_flag = true;

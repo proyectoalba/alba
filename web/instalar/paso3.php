@@ -36,6 +36,7 @@ $cnx_error_flag = false; //errores de base de datos
 $cnx_error_msg = ""; //errores de base de datos
 $error_flag = false; // error en el paso del instalador
 
+$tipo_motor_base = "";
 $host = "";
 $user = "";
 $pass = "";
@@ -44,52 +45,109 @@ $creardb = "";
 
 if (isset($_POST['test_conn']) && $_POST['test_conn']==1) {
     //obtenidno datos del form
+
+    $tipo_motor_base = $_POST['tipo_motor_base'];
     $host = $_POST['host'];
     $user = $_POST['user'];
     $pass = $_POST['pass'];
     $db = $_POST['db'];    
     $creardb = (isset($_POST['creardb']) && $_POST['creardb'] == 1);
-    
+
     //probado conexion
     DebugLog('Probando conexión'); 
-    $conn = @mysql_connect($host,$user,$pass);
-    if (!$conn) {
+
+    //Todo este codigo podria ser mejorado integrando PDO (a partir de PHP 5.1)
+    //ya que no habria que repetir codigo
+
+    //comprueba si completo opcion de motor de base de datos
+    if($tipo_motor_base != 'mysql' AND $tipo_motor_base != 'pgsql') {
         $error_flag = true;
         $cnx_error_flag = true;
-        $cnx_error_msg = "No se puede conectar a la base de datos: <br>" . mysql_error();
+        $cnx_error_msg = "No se sabe cual es el motor de bases de datos <br>";
         DebugLog('Error al conectar con la base de datos','E');
-    }
-    else {
-        //crear base si es necesario
-        if ($creardb) {
-            DebugLog('Probando crear base de datos...');
-            $ret = @mysql_query('CREATE DATABASE ' . $db , $conn);
-            if (!$ret) {
+    } else {
+        if($tipo_motor_base == 'mysql') {
+            $conn = @mysql_connect($host,$user,$pass);
+            if (!$conn) {
                 $error_flag = true;
                 $cnx_error_flag = true;
-                $cnx_error_msg = "No se puede crear la base de datos: <br>" . mysql_error();
-                DebugLog('No se puede crear la base de datos: ' . mysql_error() ,'E');
-            }
-            else {
-                DebugLog("Base de datos $db creada correctamente");
-            }
-        }
-        else {
-            DebugLog("No se creara una base de datos");
-        } 
+                $cnx_error_msg = "No se puede conectar a la base de datos: <br>" . mysql_error();
+                DebugLog('Error al conectar con la base de datos','E');
+            } else {
+                //crear base si es necesario
+                if ($creardb) {
+                    DebugLog('Probando crear base de datos...');
+                    $ret = @mysql_query('CREATE DATABASE ' . $db , $conn);
+                    if (!$ret) {
+                        $error_flag = true;
+                        $cnx_error_flag = true;
+                        $cnx_error_msg = "No se puede crear la base de datos: <br>" . mysql_error();
+                        DebugLog('No se puede crear la base de datos: ' . mysql_error() ,'E');
+                    } else {
+                        DebugLog("Base de datos $db creada correctamente");
+                    }
+                } else {
+                    DebugLog("No se creara una base de datos");
+                } 
         
-        //conectado a la base
-        $ret = @mysql_select_db($db);
-        if (!$ret) {
-            $error_flag = true;
-            $cnx_error_flag = true;
-            $cnx_error_msg = "No es posible utilizar la base $db: " . mysql_error();
-            DebugLog("No es posible conectar a la base de datos $db: " . mysql_error(), 'E');
+                //conectado a la base
+                $ret = @mysql_select_db($db);
+                if (!$ret) {
+                    $error_flag = true;
+                    $cnx_error_flag = true;
+                    $cnx_error_msg = "No es posible utilizar la base $db: " . mysql_error();
+                    DebugLog("No es posible conectar a la base de datos $db: " . mysql_error(), 'E');
+                }
+                mysql_close($conn);
+            }
+            
         }
-           
+
+
+        // Si es Postgresql
+        if($tipo_motor_base == 'pgsql') {
+            $conn = @pg_connect("host=$host user=$user password=$pass port=5432");
+            if (!$conn) {
+                $error_flag = true;
+                $cnx_error_flag = true;
+                $cnx_error_msg = "No se puede conectar a la base de datos: <br>";
+                DebugLog('Error al conectar con la base de datos','E');
+            } else {
+                //crear base si es necesario
+                if ($creardb) {
+                    DebugLog('Probando crear base de datos...');
+                    $ret = @pg_query($conn, 'CREATE DATABASE ' . $db);
+                    if (!$ret) {
+                        $error_flag = true;
+                        $cnx_error_flag = true;
+                        $cnx_error_msg = "No se puede crear la base de datos: <br>" . pg_last_error($conn);
+                        DebugLog('No se puede crear la base de datos: ' . pg_last_error($conn) ,'E');
+                    } else {
+                        DebugLog("Base de datos $db creada correctamente");
+                    }
+                } else {
+                    DebugLog("No se creara una base de datos");
+                } 
+
+                pg_close($conn);
+
+                $conn = pg_connect("host=$host user=$user password=$pass port=5432 dbname=$db");
+                //conectado a la base
+                if (!$conn) {
+                    $error_flag = true;
+                    $cnx_error_flag = true;
+                    $cnx_error_msg = "No es posible utilizar la base $db: ";
+                    DebugLog("No es posible conectar a la base de datos $db", 'E');
+                }
+                pg_close($conn);
+
+            }
+        }
+
+        $_SESSION['albainstall']['tipo_motor_base'] = $tipo_motor_base;
         $_SESSION['albainstall']['host'] = $host;
-        $_SESSION['albainstall']['user'] = $user;        
-        $_SESSION['albainstall']['pass'] = $pass;   
+        $_SESSION['albainstall']['user'] = $user;
+        $_SESSION['albainstall']['pass'] = $pass;
         $_SESSION['albainstall']['db'] = $db;
         $_SESSION['albainstall']['creardb'] = $creardb;
     }
@@ -109,6 +167,12 @@ else
 <form name="test_conn" method="post">              
 <input type="hidden" name="test_conn" value="1">
 <table>
+
+    <tr>
+        <td>Motor de bases de datos:&nbsp;&nbsp;&nbsp;</td>
+        <td>Mysql<input type="radio" name="tipo_motor_base" value="mysql" <?php echo isset($tipo_motor_base) && $tipo_motor_base == 'mysql' ? 'checked' : ''?> >
+        Postgresql<input type="radio" name="tipo_motor_base" value="pgsql" <?php echo isset($tipo_motor_base) && $tipo_motor_base == 'pgsql' ? 'checked' : ''?> ></td>
+    </tr>
     <tr>
         <td>Servidor:</td>
         <td><input type="text" name="host" value="<?php echo $host?>" class="texto"></td>

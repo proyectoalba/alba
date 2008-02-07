@@ -68,13 +68,13 @@ $completo = false;
         <h1>Instalaci&oacute;n de ALBA</h1>
         </div>
         <div id="contenido">
-            <?php if (file_exists(AlbaPath() . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR .'databases.yml')): ?>
+            <?php if (file_exists(AlbaPath() . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR .'databases.yml') OR  file_exists(AlbaPath() . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR .'propel.ini')): ?>
                 <?php $error_flag = true;?>
                 <?php DebugLog("Ya existe un archivo de configuracion - Instalacion Abortada.")?>
                 <p>El sistema se encuentra instalado.</p>
                 <p>Si desea volver a iniciar la instalaci&oacute;n, por favor elimine el archivo
-                 de configuracion <b>databases.yml</b> que<br/>
-                se encuentra en el directorio de <b>config</b> de la aplicaci&oacute;n.
+                 de configuracion <b>databases.yml</b> y <b>propel.ini</b> que<br/>
+                se encuentran en el directorio de <b>config</b> de la aplicaci&oacute;n.
                 </p>
                     
             <?php else: ?>
