@@ -2,7 +2,7 @@
 
 CONFIGURACIONDB="../../config/databases.yml"
 SCHEMA="lib.model.schema.sql"
-EJEMPLO="datos_desde_cero.sql"
+EJEMPLO="datos_ejemplo.sql"
 DSNARCHIVO=`cat ../../config/databases.yml | grep dsn: | tr -d " "`
 DSN=${DSNARCHIVO#dsn:*}
 DSNs=${DSN#mysql://*}
