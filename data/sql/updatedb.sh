@@ -1,7 +1,6 @@
 #!/bin/bash
 
 CONFIGURACIONDB="../../config/databases.yml"
-SCHEMA="lib.model.schema.sql"
 EJEMPLO="datos_ejemplo.sql"
 DSNARCHIVO=`cat $CONFIGURACIONDB | grep dsn: | tr -d " "`
 DSN=${DSNARCHIVO#dsn:*}
@@ -10,8 +9,10 @@ DSNs=${DSN#mysql://*}
 if [ $DSN == $DSNs ]; then
     DBSERVER="pgsql"
     DSNs=${DSN#pgsql://*}
+    SCHEMA="lib.model.schema.pgsql.sql"
 else
     DBSERVER="mysql"    
+    SCHEMA="lib.model.schema.mysql.sql"
 fi
 
 USERANDPASS=${DSNs%@*}
