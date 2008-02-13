@@ -3,17 +3,17 @@
 CONFIGURACIONDB="../../config/databases.yml"
 SCHEMA="lib.model.schema.sql"
 EJEMPLO="datos_ejemplo.sql"
-DSNARCHIVO=`cat ../../config/databases.yml | grep dsn: | tr -d " "`
+DSNARCHIVO=`cat $CONFIGURACIONDB | grep dsn: | tr -d " "`
 DSN=${DSNARCHIVO#dsn:*}
 DSNs=${DSN#mysql://*}
 
 if [ $DSN == $DSNs ]; then
     DBSERVER="pgsql"
+    DSNs=${DSN#pgsql://*}
 else
     DBSERVER="mysql"    
 fi
 
-DSNs=${DSN#pgsql://*}
 USERANDPASS=${DSNs%@*}
 USER=${USERANDPASS%:*}
 PASS=${USERANDPASS#*:}
