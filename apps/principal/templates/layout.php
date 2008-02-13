@@ -81,7 +81,7 @@
                     <?php if ($sf_user->isAuthenticated() && $sf_user->getAttribute('fk_ciclolectivo_id') == 0):?>
                     <div class="form-errors">
                         <ul>
-                            <li>No tiene un ciclo lectivo seleccionado. &Eacute;ste valor es requerido para algunos m&oacute;dulos, por favor seleccione o ingrese uno <?php echo link_to('aqu&iacute;','ciclolectivo/list')?>.
+                            <li>No tiene un ciclo lectivo seleccionado. Este valor es requerido para algunos m&oacute;dulos, por favor seleccione o ingrese uno. <?php echo link_to('aqu&iacute;','ciclolectivo/list')?>.
                             </li>
                         </ul>
                     </div>
