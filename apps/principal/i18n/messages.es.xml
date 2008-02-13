@@ -40,35 +40,35 @@
             </trans-unit>              
             <trans-unit id="10">
                 <source>save and add</source>
-                <target>Guardar y agregar nuevo</target>
+                <target>Guardar y Agregar Nuevo</target>
             </trans-unit>              
             <trans-unit id="11">
                 <source>Your modifications have been saved</source>
-                <target>Las modificaciones han sido guardadas</target>
+                <target>Las modificaciones han sido guardadas.</target>
             </trans-unit>      
             <trans-unit id="12">
                 <source>Are you sure?</source>
-                <target>¿Esta seguro?</target>
+                <target>¿Está seguro?</target>
             </trans-unit>      
             <trans-unit id="13">
                 <source>There are some errors that prevent the form to validate</source>
-                <target>Hay algunos errores, por favor corríjalos</target>
+                <target>Se encontraron algunos errores, por favor corríjalos.</target>
             </trans-unit>      
             <trans-unit id="14">
                 <source>no result</source>
-                <target>no existen resultados</target>
+                <target>No existen resultados.</target>
             </trans-unit>      
             <trans-unit id="15">
                 <source>Could not delete the selected %s </source>
-                <target>No puede eliminar el %s seleccionado</target>
+                <target>No es posible eliminar el %s seleccionado.</target>
             </trans-unit>
             <trans-unit id="16">
                 <source>Could not delete the selected Establecimiento. Make sure it does not have any associated items.</source>
-                <target>No puede eliminar el Establecimiento seleccionado. Asegurese que no este siendo utilizado.</target>
+                <target>No es posible eliminar el Establecimiento seleccionado. Asegúrese que no esté siendo utilizado.</target>
             </trans-unit>
             <trans-unit id="17">
                 <source>Could not delete the selected Turnos. Make sure it does not have any associated items.</source>
-                <target>No puede eliminar el Turno seleccionado. Asegurese que no este siendo utilizado.</target>
+                <target>No puede eliminar el Turno seleccionado. Asegúrese que no esté siendo utilizado.</target>
             </trans-unit>
             <trans-unit id="18">
                 <source>edit</source>
