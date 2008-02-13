@@ -36,35 +36,32 @@ class alumnoActions extends autoalumnoActions
 
   /**
   * Ver las Asistencias del alumno
-  */  
+  */
   function executeAsistencia() {
     $this->redirect( 'asistencia?action=index&vistas=2&alumno_id='.$this->getRequestParameter('id'));
   }
 
   /**
   * Ver el Legajo del alumno
-  */  
+  */
   function executeLegajo() {
     $this->redirect( 'legajopedagogico?action=verLegajo&aid='.$this->getRequestParameter('id'));
   }
 
   /**
   * Ver las vacunas del alumno
-  */  
+  */
   function executeVacunas(){
    $this->redirect( 'relCalendariovacunacionAlumno/list?filters%5Bfk_alumno_id%5D='.$this->getRequestParameter('id') .'&filter=filtrar');
-  }  
-  
+  }
+
   function saveAlumno ($alumno) {
-    $alumno->setSexo($this->getRequestParameter('sexo'));  
+    $alumno->setSexo($this->getRequestParameter('sexo'));
     $alumno->setFkEstablecimientoId($this->getUser()->getAttribute('fk_establecimiento_id'));
-    
-    list($y, $m, $d) = split("[/. -]",$this->getRequestParameter('alumno[fecha_nacimiento]'));
-    $alumno->setFechaNacimiento("$y-$m-$d");
-    
+
     $alumno->save();
   }
-  
+
   protected function addFiltersCriteria($c) {
     $c->add(AlumnoPeer::FK_ESTABLECIMIENTO_ID,$this->getUser()->getAttribute('fk_establecimiento_id'));
 
@@ -86,17 +83,17 @@ class alumnoActions extends autoalumnoActions
 
 
   }
-    protected function addSortCriteria ($c) {                                                                                                                          
-        if ($sort_column = $this->getUser()->getAttribute('sort', 'apellido', 'sf_admin/alumno/sort')) {                                                                                                                        
-            $sort_column = Propel::getDB($c->getDbName())->quoteIdentifier($sort_column);                                          
-            if ($this->getUser()->getAttribute('type', 'asc', 'sf_admin/alumno/sort') == 'asc') {                                                                                                                      
-                $c->addAscendingOrderByColumn($sort_column);                                                                         
-            }                                                                                                                      
-            else {                                                                                                                      
-                $c->addDescendingOrderByColumn($sort_column);                                                                        
-            }                                                                                                                      
-        }                                                                                                                        
-    }                                                                                                                          
+    protected function addSortCriteria ($c) {
+        if ($sort_column = $this->getUser()->getAttribute('sort', 'apellido', 'sf_admin/alumno/sort')) {
+            $sort_column = Propel::getDB($c->getDbName())->quoteIdentifier($sort_column);
+            if ($this->getUser()->getAttribute('type', 'asc', 'sf_admin/alumno/sort') == 'asc') {
+                $c->addAscendingOrderByColumn($sort_column);
+            }
+            else {
+                $c->addDescendingOrderByColumn($sort_column);
+            }
+        }
+    }
   public function executeEdit ()
   {
     $this->alumno = $this->getAlumnoOrCreate();
@@ -114,7 +111,15 @@ class alumnoActions extends autoalumnoActions
     {
       $this->alumno = $this->getAlumnoOrCreate();
 
+
       $this->updateAlumnoFromRequest();
+    
+      //Obteniendo fecha segun cultura
+      $fecha_nacimiento = $this->getRequestParameter('alumno[fecha_nacimiento]');
+      $user_culture = $this->getUser()->getCulture();
+      list($d, $m, $y) = sfI18N::getDateForCulture($fecha_nacimiento, $user_culture);   
+      $this->alumno->setFechaNacimiento("$y-$m-$d");   
+
       $this->saveAlumno($this->alumno);
 
       $this->setFlash('notice', 'Your modifications have been saved');
@@ -135,7 +140,7 @@ class alumnoActions extends autoalumnoActions
       $this->getResponse()->addJavascript(sfConfig::get('sf_admin_web_dir').'/js/collapse');
       if ($this->getRequestParameter('fk_cuenta_id'))
         $this->alumno->setFkCuentaId($this->getRequestParameter('fk_cuenta_id'));
-                               
+
     }
   }
 
@@ -144,7 +149,7 @@ class alumnoActions extends autoalumnoActions
         $aCuentas = array();
 
         $txt_cuenta = $this->getRequestParameter("txt_cuenta");
-        
+
         $criteria = new Criteria();
         $cton1 = $criteria->getNewCriterion(CuentaPeer::NOMBRE, "%$txt_cuenta%", Criteria::LIKE);
         $cton2 = $criteria->getNewCriterion(CuentaPeer::RAZON_SOCIAL, "%$txt_cuenta%", Criteria::LIKE);
@@ -165,7 +170,7 @@ class alumnoActions extends autoalumnoActions
 
     public function executeCambiarCuenta() {
     }
-    
+
 
     public function handleErrorGrabarCuenta() {
         $this->cuenta = $this->updateCuentaFromRequest();
@@ -227,7 +232,7 @@ class alumnoActions extends autoalumnoActions
     if (isset($cuenta['telefono']))
     {
       $cuenta_obj->setTelefono($cuenta['telefono']);
-    }    
+    }
 
         return $cuenta_obj;
     }
@@ -236,7 +241,7 @@ class alumnoActions extends autoalumnoActions
     public function executeNuevaCuenta() {
         $this->cuenta = new Cuenta();
     }
-    
+
     public function executeCambiarPais() {
         $this->pais_id = $this->getRequestParameter('pais_id');
         $this->provincia_id = $this->getRequestParameter('provincia_id');
