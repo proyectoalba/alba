@@ -75,13 +75,10 @@ a utilizar el sistema con una base vac&iacute;a (datos m&iacute;nimos)<br/>
             <td>Datos m&iacute;nimos:</td>
             <td><input type="radio" name="tipo_base" value="minima" <?php echo isset($_POST['tipo_base']) && $_POST['tipo_base'] == 'minima' ? 'checked' : ''?> ></td>
         </tr>
-<?php if($tipo_motor_base != 'pgsql'): //Provisoria mientras no funcione los datos de ejemplo desde el YML ?>
         <tr>
             <td>Datos ejemplo:</td>
             <td><input type="radio" name="tipo_base" value="ejemplo1" <?php echo isset($_POST['tipo_base']) && $_POST['tipo_base'] == 'ejemplo1' ? 'checked' : ''?>></td>
         </tr>
-<?php endif; ?>
-
     </table>
     <br/>
     <input type="submit" name="btEnviar" value="Seleccionar base de datos" class="boton">
