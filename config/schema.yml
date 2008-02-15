@@ -1618,6 +1618,11 @@ alba:
   rel_docente_establecimiento: 
     _attributes: 
       idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
     fk_establecimiento_id: 
       type: integer
       required: true
