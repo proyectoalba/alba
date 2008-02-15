@@ -9,12 +9,11 @@ DSNs=${DSN#mysql://*}
 if [ $DSN == $DSNs ]; then
     DBSERVER="pgsql"
     DSNs=${DSN#pgsql://*}
-    SCHEMA="lib.model.schema.pgsql.sql"
 else
     DBSERVER="mysql"    
-    SCHEMA="lib.model.schema.mysql.sql"
 fi
 
+SCHEMA="lib.model.schema.sql"
 USERANDPASS=${DSNs%@*}
 USER=${USERANDPASS%:*}
 PASS=${USERANDPASS#*:}
@@ -22,30 +21,25 @@ SERVERANDDB=${DSNs#*@}
 SERVER=${SERVERANDDB%/*}
 DB=${SERVERANDDB#*/}
 
-#if [ $# != 1 ]; then
-#    clear
-#    echo "Uso: $0 <dsn>, Ejemplo: $0 mysql://user:pass@server/base"
-#    exit 0
-#fi
-
-if [ $USER != $PASS ]; then 
+DOSPUNTOS=`expr index "$USERANDPASS" :`
+OPTION=""
+if [ $DOSPUNTOS != 0 ]; then 
     OPTION="-p$PASS"
 fi
 
-
 if [ $DBSERVER == "mysql" ]; then
     ENCODING="--default-character-set=utf8"
-    mysqladmin --force -u $USER -p$PASS -h $SERVER drop $DB
-    mysqladmin $ENCODING --force -u $USER -p$PASS -h $SERVER create $DB
-    mysql $ENCODING -u $USER -p$PASS -h $SERVER $DB < $SCHEMA
-    mysql $ENCODING -u $USER -p$PASS -h $SERVER $DB < $EJEMPLO
+    mysqladmin --force -u $USER $OPTION -h $SERVER drop $DB
+    mysqladmin $ENCODING --force -u $USER $OPTION -h $SERVER create $DB
+    mysql $ENCODING -u $USER $OPTION -h $SERVER $DB < $SCHEMA
+    mysql $ENCODING -u $USER $OPTION -h $SERVER $DB < $EJEMPLO
 fi
 
 if [ $DBSERVER == "pgsql" ]; then
     dropdb $DB -U $USER
     createdb $DB -U $USER
     psql $DB -U $USER < $SCHEMA
-    #psql $DB -U $USER < $EJEMPLO
-    ../../symfony alba-load-data principal data/fixtures/datos_desde_cero.yml
+    psql $DB -U $USER < $EJEMPLO
+#    ../../symfony alba-load-data principal data/fixtures/datos_desde_cero.yml
 fi
 

@@ -1,5 +1,0 @@
-# Sqlfile -> Database map
-schema.sql=alba
-lib.model.schema.sql=alba
-generated-schema.sql=alba
-alba.schema.sql=alba

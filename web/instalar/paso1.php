@@ -33,6 +33,7 @@
 if (!defined('ALBA_INSTALLER')) die();
  
 $dirs = array(
+    'data'.DIRECTORY_SEPARATOR . 'sql',
     'lib'. DIRECTORY_SEPARATOR .'model',
     'config', 
     'cache', 

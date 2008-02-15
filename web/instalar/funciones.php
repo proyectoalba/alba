@@ -277,7 +277,7 @@ function crear_schema ($filesql, $protocol, $host, $user, $pass, $db) {
 }
 
 /**
-* caga los datos ejemplo/minima
+* carga los datos ejemplo/minima
 */
 function crear_base_modelo($filesql, $protocol, $host, $user, $pass, $db) {
     DebugLog("crear_base_modelo(): Creado base de datos modelo: $filesql");
@@ -341,8 +341,9 @@ function check_rewrite() {
 }
 
 
-function build_model() {
+function build_model_sql() {
     chdir('../../');
+
     define('SF_ROOT_DIR',    realpath(dirname(__FILE__).'/../..'));
     define('SF_APP',         'principal');
     define('SF_ENVIRONMENT', 'dev');
@@ -377,8 +378,16 @@ function build_model() {
 
     try
     {
-//        $ret = $pake->run(sfConfig::get('sf_root_dir').'/plugins/albaTasks/data/tasks/albaTasks.php', 'alba-build-model', true);
         $ret = $pake->run(sfConfig::get('sf_symfony_data_dir').DIRECTORY_SEPARATOR.'tasks'.DIRECTORY_SEPARATOR.'sfPakePropel.php', array('propel-build-model','--quiet') , true);
+    }
+    catch (pakeException $e)
+    {
+        print "<strong>ERROR</strong>: ".$e->getMessage();
+    }
+
+    try
+    {
+        $ret = $pake->run(sfConfig::get('sf_symfony_data_dir').DIRECTORY_SEPARATOR.'tasks'.DIRECTORY_SEPARATOR.'sfPakePropel.php', array('propel-build-sql','--quiet') , true);
     }
     catch (pakeException $e)
     {

@@ -73,40 +73,35 @@ $error_flag = false;
             ?>
         </td>
     </tr>
-
-
-
     <tr>
         <td>Generando modelo de la base de datos:</td>
         <td>
-<!--
-            <div style="visibility: hidden;">
+
+            <div style="display: none;">
             <?php 
-                $ret = build_model();
+                $ret = build_model_sql();
             ?>
             </div>
--->
-            <?php echo IMG_OK; ?>
+
+            <?php 
+                $ret = file_exists(AlbaPath() . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'sql'  . DIRECTORY_SEPARATOR .'lib.model.schema.sql');
+                echo $ret ? IMG_OK : IMG_ERROR;
+                if (!$ret) {
+                    $error_flag = true;
+                    DebugLog("Error al generar archivo lib.model.schema.sql","E");
+                }
+            ?>
         </td>
     </tr>
-
-
-
     <tr>
         <td>Creando esquema de base de datos:</td>
         <td>
             <?php 
-
-                if($tipo_motor_base == 'mysql') {
-                    $ret = crear_schema('lib.model.schema.mysql.sql', $tipo_motor_base, $host, $user, $pass, $db);
-                } else {
-                    $ret = crear_schema('lib.model.schema.pgsql.sql', $tipo_motor_base, $host, $user, $pass, $db);
-                }
-
+                $ret = crear_schema('lib.model.schema.sql', $tipo_motor_base, $host, $user, $pass, $db);
                 echo $ret ? IMG_OK : IMG_ERROR;
                 if (!$ret) {
                     $error_flag = true;
-                    DebugLog("Error al crear schemad e base de datos","E");
+                    DebugLog("Error al crear schema de base de datos","E");
                 }
             ?>
         </td>
@@ -116,21 +111,11 @@ $error_flag = false;
         <td>
             <?php 
                 if ($_SESSION['albainstall']['tipo_base'] == 'minima')
-                    if($_SESSION['albainstall']['tipo_motor_base'] == 'mysql')
-                        $archivo = "datos_desde_cero.sql";
-                    elseif  ($_SESSION['albainstall']['tipo_motor_base'] == 'pgsql')
-                        $archivo = "datos_desde_cero.sql";
-                    else
-                        $archivo = "";
+                    $archivo = "datos_desde_cero.sql";
                 elseif ($_SESSION['albainstall']['tipo_base'] == 'ejemplo1')
-                    if($_SESSION['albainstall']['tipo_motor_base'] == 'mysql')
                         $archivo = "datos_ejemplo.sql";
-                    elseif ($_SESSION['albainstall']['tipo_motor_base'] == 'pgsql')
-                        $archivo = "datos_ejemplo.pgsql.sql";
                     else
                         $archivo = "";
-                else
-                    $archivo = "";
             ?>
             <?php 
                 $ret = crear_base_modelo($archivo, $tipo_motor_base, $host, $user, $pass, $db);
