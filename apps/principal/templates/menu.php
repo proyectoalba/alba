@@ -28,6 +28,7 @@
                         </li>
 	                    <li><span></span><a href="#">Alumnos</a>
                             <ul>
+                                <li><span></span><?php echo link_to("Definir Roles de responsables","rolResponsable")?></li>
 	                            <li><span></span><?php echo link_to("Definir tipo de bajas","conceptobaja")?></li>
 	                            <li><span></span><?php echo link_to("Definir tipo de asistencia","tipoasistencia")?></li>
 	                            <li><span></span><?php echo link_to("Definir Escala de notas","escalanota")?></li>
