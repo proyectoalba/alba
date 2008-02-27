@@ -105,5 +105,8 @@
             </tr>
         </table>
     </body>
-<?php echo javascript_include_tag('varios/wz_tooltip.js'); ?>
+    <script type="text/javascript">
+        Drag.init(document.getElementById("sf_admin_bar"));
+    </script>
+    <?php echo javascript_include_tag('varios/wz_tooltip.js'); ?>
     </html>
