@@ -84,6 +84,7 @@ function executeDump($file, $protocol, $host, $user, $pass, $db) {
 
         if($protocol == 'mysql') {
             if (mysql_connect($host,$user,$pass)) {
+                mysql_set_charset('utf8');
                 if(mysql_select_db($db)) {
                     DebugLog("executeDump(): ejecutando BEGIN" );    
                     mysql_query("BEGIN");
