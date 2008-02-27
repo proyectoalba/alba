@@ -81,6 +81,54 @@ class relAlumnoDivisionActions extends autorelAlumnoDivisionActions
 
 
 
+  public function executeEdit()
+  {
+    $this->rel_alumno_division = $this->getRelAlumnoDivisionOrCreate();
+
+    if ($this->getRequest()->getMethod() == sfRequest::POST)
+    {
+      $this->updateRelAlumnoDivisionFromRequest();
+      $this->saveRelAlumnoDivision($this->rel_alumno_division);
+      $this->setFlash('notice', 'Your modifications have been saved');
+
+      if ($this->getRequestParameter('save_and_add')) {
+        return $this->redirect('relAlumnoDivision/create');
+      }
+      else if ($this->getRequestParameter('save_and_list'))
+      {
+        return $this->redirect('relAlumnoDivision/list');
+      }
+      else
+      {
+        return $this->redirect('relAlumnoDivision/edit?id='.$this->rel_alumno_division->getId());
+      }
+    }
+    else
+    {
+      $this->labels = $this->getLabels();
+    }
+  }
+
+
+
+  public function executeDelete()
+  {
+    $this->rel_alumno_division = RelAlumnoDivisionPeer::retrieveByPk($this->getRequestParameter('id'));
+    $this->forward404Unless($this->rel_alumno_division);
+
+    try
+    {
+      $this->deleteRelAlumnoDivision($this->rel_alumno_division);
+    }
+    catch (PropelException $e)
+    {
+      $this->getRequest()->setError('delete', 'Could not delete the selected Rel alumno division. Make sure it does not have any associated items.');
+      return $this->forward('relAlumnoDivision', 'list');
+    }
+
+    return $this->redirect('relAlumnoDivision/list');
+  }
+
 
 
 }
