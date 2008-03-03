@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    This file is part of Alba.
  * 
@@ -61,6 +60,7 @@ class relAlumnoDivisionActions extends autorelAlumnoDivisionActions
 
 
     // Valida si ya esta en la tabla este conjunto de datos ( alumno, division )
+/*
     function validateEdit() {
          if ($this->getRequest()->getMethod() == sfRequest::POST) {
             $rel_alumno_division = $this->getRequestParameter('rel_alumno_division');
@@ -74,62 +74,85 @@ class relAlumnoDivisionActions extends autorelAlumnoDivisionActions
                 return false;
             }
         }
-        
         return true;
     }
+*/
 
+    function executeEdit() {
 
+        //Listado de alumnos
+        $c = new Criteria();
+        $aAlumno = AlumnoPeer::doSelect($c);
+        $this->optionsAlumno = $aAlumno;
 
+        //Listado de division
+        $c = new Criteria();
+        $aDivision = DivisionPeer::doSelect($c);
 
-  public function executeEdit()
-  {
-    $this->rel_alumno_division = $this->getRelAlumnoDivisionOrCreate();
-
-    if ($this->getRequest()->getMethod() == sfRequest::POST)
-    {
-      $this->updateRelAlumnoDivisionFromRequest();
-      $this->saveRelAlumnoDivision($this->rel_alumno_division);
-      $this->setFlash('notice', 'Your modifications have been saved');
-
-      if ($this->getRequestParameter('save_and_add')) {
-        return $this->redirect('relAlumnoDivision/create');
-      }
-      else if ($this->getRequestParameter('save_and_list'))
-      {
-        return $this->redirect('relAlumnoDivision/list');
-      }
-      else
-      {
-        return $this->redirect('relAlumnoDivision/edit?id='.$this->rel_alumno_division->getId());
-      }
+        $optionsDivision = array();
+        foreach($aDivision as $division) {
+            $optionsDivision[$division->getId()] = $division->__toString();
+        }
+        $this->optionsDivision = $optionsDivision;
     }
-    else
-    {
-      $this->labels = $this->getLabels();
+
+
+    function executeSave()    {
+        $aAlumno = $this->getRequest()->getParameterHolder()->get('alumno');
+        $aDivision = $this->getRequest()->getParameterHolder()->get('division');
+
+        if(count($aAlumno) > 0) {
+            if(count($aDivision) > 0) {
+                foreach($aAlumno as $alumno_id) {
+                    foreach($aDivision as $division_id) {
+
+                        //Borro si existe la relacion esta entre esta division y este alumno (Editar)
+                        $c =  new Criteria();
+                        $c->add(RelAlumnoDivisionPeer::FK_ALUMNO_ID, $alumno_id);
+                        $c->add(RelAlumnoDivisionPeer::FK_DIVISION_ID, $division_id);
+                        RelAlumnoDivisionPeer::doDelete($c);
+
+                        // Doy de alta la nueva relacion entre alumno y division
+                        $ad = new RelAlumnosDivision();
+                        $ad->setFkAlumnoId($alumno_id);
+                        $ad->setFkDivisionId($division_id);
+                        $ad->save();
+                        unset($ad);
+                    }
+                }
+            }
+        }
+
+//         return $this->redirect('relAlumnoDivision/edit?id='.$usuarioId);
     }
-  }
 
 
+  public function executeDelete(){
 
-  public function executeDelete()
-  {
-    $this->rel_alumno_division = RelAlumnoDivisionPeer::retrieveByPk($this->getRequestParameter('id'));
-    $this->forward404Unless($this->rel_alumno_division);
+    $aAlumno = $this->getRequest()->getParameterHolder()->get('alumno');
+    $division_id = $this->getRequestParameter('division_id');
+
+    $c =  new Criteria();
+    $cton1 = $c->getNewCriterion(RelAlumnoDivisionPeer::FK_DIVISION_ID, $division_id);
+    foreach($aAlumno as $alumno_id) {
+        $cton1->addOr($c->getNewCriterion(RelAlumnoDivisionPeer::FK_DIVISION_ID, $division_id));
+    }
+    $c->add($cton1);
 
     try
     {
-      $this->deleteRelAlumnoDivision($this->rel_alumno_division);
+      RelAlumnoDivisionPeer::doDelete($c);
     }
     catch (PropelException $e)
     {
       $this->getRequest()->setError('delete', 'Could not delete the selected Rel alumno division. Make sure it does not have any associated items.');
-      return $this->forward('relAlumnoDivision', 'list');
+//       return $this->forward('relAlumnoDivision', 'list');
     }
-
-    return $this->redirect('relAlumnoDivision/list');
+//     return $this->redirect('relAlumnoDivision/list');
   }
-
-
-
+    public function executeAsignarAlumno(){
+        print_r($_GET);
+        print_r($_POST);
+    }  
 }
 ?>

@@ -4,28 +4,77 @@
 ?>
 <?php use_helper('Object', 'Validation', 'ObjectAdmin', 'I18N', 'Date') ?>
 <?php use_stylesheet('/sf/sf_admin/css/main') ?>
+<?php use_stylesheet('cart') ?>
 
 <div id="sf_admin_container">
 
 <h1><?php echo __('Asignar alumno a grado y secci&oacute;n', 
 array()) ?></h1>
 
+<?php //print_r($rel_alumno_division)?>
+<?php //include_partial('relAlumnoDivision/edit_header', array('rel_alumno_division' => $rel_alumno_division)) ?>
 
+<!-- Filtro Alumnos -->
 
-<div id="sf_admin_header">
-<?php include_partial('relAlumnoDivision/edit_header', array('rel_alumno_division' => $rel_alumno_division)) ?>
+<?php echo form_tag('relAlumnoDivision/list', array('method' => 'get')) ?>
+
+<div id="filtros_alumnos">
+    Filtro Alumnos: 
+    <?php echo input_tag("filtro_nombre_alumnos", '', array (
+  'size' => 20, 'class'=>'text'
+)) ?>
+    <?php echo select_tag('filtro_alumnos', options_for_select(array(
+  'Todos',  'No Asignados',), 0)) ?>
+    </form>
 </div>
 
-<div id="sf_admin_content">
-<?php include_partial('relAlumnoDivision/edit_messages', array('rel_alumno_division' => $rel_alumno_division, 'labels' => $labels)) ?>
-<?php include_partial('relAlumnoDivision/edit_form', array('rel_alumno_division' => $rel_alumno_division, 'labels' => $labels)) ?>
+<!-- Alumnos -->
+<?php 
+  foreach ($optionsAlumno as $alumno)  {
+        ?>
+      <div id="<?php echo "alumno_".$alumno->getId()?>" class="alumno" style="position:relative;left:20px;"> <?php echo $alumno->getId() ." - " .$alumno->__toString()?> </div>
+<?php
+      echo draggable_element('alumno_'.$alumno->getId(), array('revert' => true));
+}
+?>
+
+<!-- Filtro Divisiones -->
+<br/>
+<?php echo form_tag('relAlumnoDivision/list', array('method' => 'get')) ?>
+<div id="filtros_secciones">
+    Filtro Divisiones:
+    <?php echo input_tag("filtro_nombre_divisiones", '', array (
+  'size' => 20, 'class'=>'text'
+)) ?>
+    <?php echo select_tag('filtro_divisiones', options_for_select(array(
+  'Todos',  'No Asignados',), 0)) ?>
+    </form>
 </div>
 
-<div id="sf_admin_footer">
-<?php include_partial('relAlumnoDivision/edit_footer', array('rel_alumno_division' => $rel_alumno_division)) ?>
-</div>
-
-
-
+<!-- Divisiones-->
+<table>
+    <tr>
+<?php 
+    $i=0;
+    foreach ($optionsDivision as $indice=>$contenido)  {
+        if ($i>5){
+            echo "</tr>";
+            $i=0;
+            echo "<tr>";
+        }   
+        $i+=1;
+    ?>
+    <td>
+    <?php
+        echo $contenido;?>
+        <div id="division_<?php echo $indice?>" class="cart" style="position:relative;left:20px;"></div>
+        <?php echo drop_receiving_element('division_'.$indice, array(
+        'url'        => 'relAlumnoDivision/asignarAlumno?division_id='.$indice,
+        'accept'     => 'alumno',
+       'update'     => 'division_'.$indice,)) ?> 
+    </td>
+<?php } ?>
+    </tr>
+</table>
 
 </div>
