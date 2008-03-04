@@ -78,6 +78,89 @@ class relAlumnoDivisionActions extends autorelAlumnoDivisionActions
     }
 */
 
+
+
+        function executeBusqueda() {
+        $aAlumnoId = array();
+        $criteria = new Criteria();
+
+        if($this->getRequestParameter('filtro_nombre_alumnos')) {
+            $txt_nombre = $this->getRequestParameter('filtro_nombre_alumnos');
+            $cton1 = $criteria->getNewCriterion(AlumnoPeer::APELLIDO, "$txt_nombre%", Criteria::LIKE);
+        }
+
+        if($this->getRequestParameter('filtro_alumnos')) {
+            switch($this->getRequestParameter('filtro_alumnos')) {
+                case 0: break;
+                case 1: 
+                        $c = new Criteria();
+                        $c->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
+                        $c->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID);
+                        $c->addJoin(AnioPeer::ID, DivisionPeer::FK_ANIO_ID);
+                        $relAlumnoDivision = RelAlumnoDivisionPeer::doSelect($c);
+                        foreach($relAlumnoDivision as $r) {
+                            $aAlumnoId[] = $r->getFkAlumnoId();
+                        }
+                        $criteria->add(AlumnoPeer::ID, $r->getFkAlumnoId(), Criteria::NOT_IN);
+                        $cton2 = $criteria->getNewCriterion(AlumnoPeer::ID, $aAlumnoId, Criteria::NOT_IN);
+                        if($this->getRequestParameter('filtro_nombre_alumnos')) {
+                            $cton1->addAnd($cton2);
+                        } else {
+                            $criteria->add($cton2);
+                        }
+
+                        break;
+                default:
+            }
+        }
+
+        if($this->getRequestParameter('filtro_nombre_alumnos')) {
+            $criteria->add($cton1);
+        }
+
+        $alumnos = AlumnoPeer::doSelect($criteria);
+        $this->optionsAlumno = $alumnos;
+    }
+
+
+
+    function executeBusquedaDivision() {
+        $criteria = new Criteria();
+
+        if($this->getRequestParameter('filtro_nombre_divisiones')) {
+            $txt_nombre = $this->getRequestParameter('filtro_nombre_divisiones');
+            $criteria->add(DivisionPeer::DESCRIPCION, "$txt_nombre%", Criteria::LIKE);
+        }
+
+        if($this->getRequestParameter('fk_turno_id')) {
+            $criteria->add(DivisionPeer::FK_TURNO_ID, $this->getRequestParameter('fk_turno_id'));
+        }
+
+        if($this->getRequestParameter('fk_orientacion_id')) {
+            $criteria->add(DivisionPeer::FK_ORIENTACION_ID, $this->getRequestParameter('fk_orientacion_id'));
+        }   
+
+        if($this->getRequestParameter('fk_anio_id')) {
+            $criteria->add(DivisionPeer::FK_ANIO_ID, $this->getRequestParameter('fk_anio_id'));
+        }
+
+/*
+
+        if($this->getRequestParameter('filtro_divisiones')) {
+            switch($this->getRequestParameter('filtro_divisiones')) {
+                case 0: break;
+                case 1: break;
+                default:
+            }
+        }
+
+*/
+        $aDivision = DivisionPeer::doSelect($criteria);
+        $this->optionsDivision = $aDivision;
+    }
+
+
+
     function executeEdit() {
 
         //Listado de alumnos
@@ -88,12 +171,14 @@ class relAlumnoDivisionActions extends autorelAlumnoDivisionActions
         //Listado de division
         $c = new Criteria();
         $aDivision = DivisionPeer::doSelect($c);
+        $this->division = $aDivision;
 
         $optionsDivision = array();
         foreach($aDivision as $division) {
             $optionsDivision[$division->getId()] = $division->__toString();
         }
         $this->optionsDivision = $optionsDivision;
+
     }
 
 

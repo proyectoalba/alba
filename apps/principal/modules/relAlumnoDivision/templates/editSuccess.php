@@ -11,70 +11,70 @@
 <h1><?php echo __('Asignar alumno a grado y secci&oacute;n', 
 array()) ?></h1>
 
-<?php //print_r($rel_alumno_division)?>
-<?php //include_partial('relAlumnoDivision/edit_header', array('rel_alumno_division' => $rel_alumno_division)) ?>
-
 <!-- Filtro Alumnos -->
-
-<?php echo form_tag('relAlumnoDivision/list', array('method' => 'get')) ?>
-
-<div id="filtros_alumnos">
-    Filtro Alumnos: 
-    <?php echo input_tag("filtro_nombre_alumnos", '', array (
-  'size' => 20, 'class'=>'text'
+<?php echo form_remote_tag(array(
+    'update'   => 'alumnos',
+    'url'      => 'relAlumnoDivision/busqueda',
+    'script'    => true
 )) ?>
-    <?php echo select_tag('filtro_alumnos', options_for_select(array(
-  'Todos',  'No Asignados',), 0)) ?>
-    </form>
-</div>
+    <div id="filtros_alumnos">Apellido:
+        <?php echo input_tag("filtro_nombre_alumnos", '', array ( 'size' => 20, 'class'=>'text' )) ?>
+        <?php echo select_tag('filtro_alumnos', options_for_select(array('Todos',  'No Asignados',), 0)) ?>
+        <ul class="sf_admin_actions">
+            <li><?php echo submit_tag(__('Buscar'), array ( 'class' => 'sf_admin_action_save',)) ?></li>
+        </ul>
+    </div>
+</form>
+
 
 <!-- Alumnos -->
-<?php 
-  foreach ($optionsAlumno as $alumno)  {
-        ?>
-      <div id="<?php echo "alumno_".$alumno->getId()?>" class="alumno" style="position:relative;left:20px;"> <?php echo $alumno->getId() ." - " .$alumno->__toString()?> </div>
-<?php
-      echo draggable_element('alumno_'.$alumno->getId(), array('revert' => true));
-}
-?>
+<div id="alumnos">
+<?php include_partial('relAlumnoDivision/listado_alumnos', array('optionsAlumno' => $optionsAlumno)) ?>
+</div>
+
 
 <!-- Filtro Divisiones -->
 <br/>
-<?php echo form_tag('relAlumnoDivision/list', array('method' => 'get')) ?>
-<div id="filtros_secciones">
-    Filtro Divisiones:
-    <?php echo input_tag("filtro_nombre_divisiones", '', array (
-  'size' => 20, 'class'=>'text'
-)) ?>
-    <?php echo select_tag('filtro_divisiones', options_for_select(array(
-  'Todos',  'No Asignados',), 0)) ?>
-    </form>
-</div>
+<?php echo form_remote_tag(array( 'update'   => 'divisiones', 'url' => 'relAlumnoDivision/busquedaDivision',  'script'    => true )) ?>
+    <div id="filtros_secciones">Divisiones:
+        <?php echo input_tag("filtro_nombre_divisiones", '', array ('size' => 20, 'class'=>'text')) ?>
+
+    &nbsp;Orientaci&oacute;n:
+  <?php $value = object_select_tag($division, 'getFkOrientacionId', array (
+  'related_class' => 'Orientacion',
+  'control_name' => 'fk_orientacion_id',
+  'include_blank' => true,
+)); echo $value ? $value : '&nbsp;' ?>
+
+    &nbsp;A&ntilde;o: 
+  <?php $value = object_select_tag($division, 'getFkAnioId', array (
+  'related_class' => 'Anio',
+  'control_name' => 'fk_anio_id',
+  'include_blank' => true,
+)); echo $value ? $value : '&nbsp;' ?>
+
+    &nbsp;Turno:
+  <?php $value = object_select_tag($division, 'getFkTurnoId', array (
+  'related_class' => 'Turno',
+  'control_name' => 'fk_turno_id',
+  'include_blank' => true,
+)); echo $value ? $value : '&nbsp;' ?>
+
+
+<!-- 
+<?php echo select_tag('filtro_divisiones', options_for_select(array('Todos',  'No Asignados',), 0)) ?>
+-->
+
+    </div>
+        <ul class="sf_admin_actions">
+            <li><?php echo submit_tag(__('Buscar'), array ( 'class' => 'sf_admin_action_save',)) ?></li>
+        </ul>
+</form>
+
 
 <!-- Divisiones-->
-<table>
-    <tr>
-<?php 
-    $i=0;
-    foreach ($optionsDivision as $indice=>$contenido)  {
-        if ($i>5){
-            echo "</tr>";
-            $i=0;
-            echo "<tr>";
-        }   
-        $i+=1;
-    ?>
-    <td>
-    <?php
-        echo $contenido;?>
-        <div id="division_<?php echo $indice?>" class="cart" style="position:relative;left:20px;"></div>
-        <?php echo drop_receiving_element('division_'.$indice, array(
-        'url'        => 'relAlumnoDivision/asignarAlumno?division_id='.$indice,
-        'accept'     => 'alumno',
-       'update'     => 'division_'.$indice,)) ?> 
-    </td>
-<?php } ?>
-    </tr>
-</table>
+<div id="divisiones">
+<?php include_partial('relAlumnoDivision/listado_divisiones', array('optionsDivision' => $optionsDivision)) ?>
+</div>
 
 </div>
