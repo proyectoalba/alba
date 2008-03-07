@@ -155,21 +155,20 @@ class relAlumnoDivisionActions extends autorelAlumnoDivisionActions
         }
 
 */
-        $aDivision = DivisionPeer::doSelect($criteria);
-        $this->optionsDivision = $aDivision;
+        $this->optionsDivision = $this->getDivisionesDeEstablecimiento($criteria);
+        $this->alumnoDivision = $this->getAlumnosPorDivision();
     }
 
 
+    function getDivisionesDeEstablecimiento($c = null ) {
+        $optionsDivision = array();
+        if($c == null) {
+            $c = new Criteria();
+        }
 
-    function executeEdit() {
-
-        //Listado de alumnos
-        $c = new Criteria();
-        $aAlumno = AlumnoPeer::doSelect($c);
-        $this->optionsAlumno = $aAlumno;
-
-        //Listado de division
-        $c = new Criteria();
+        //Listado de division del establecimiento
+        $c->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
+        $c->addJoin(AnioPeer::ID, DivisionPeer::FK_ANIO_ID);
         $aDivision = DivisionPeer::doSelect($c);
         $this->division = $aDivision;
 
@@ -177,14 +176,50 @@ class relAlumnoDivisionActions extends autorelAlumnoDivisionActions
         foreach($aDivision as $division) {
             $optionsDivision[$division->getId()] = $division->__toString();
         }
-        $this->optionsDivision = $optionsDivision;
+        return $optionsDivision;
 
     }
 
 
-    function executeSave()    {
-        $aAlumno = $this->getRequest()->getParameterHolder()->get('alumno');
-        $aDivision = $this->getRequest()->getParameterHolder()->get('division');
+    function executeEdit() {
+        //Listado de alumnos
+        $c = new Criteria();
+        $aAlumno = AlumnoPeer::doSelect($c);
+        $this->optionsAlumno = $aAlumno;
+
+        $this->optionsDivision = $this->getDivisionesDeEstablecimiento();
+        $this->alumnoDivision = $this->getAlumnosPorDivision();
+    }
+
+
+
+    function getAlumnosPorDivision() {
+    // Alumnos por division
+        $aAlumnoDivision = array();
+        $c = new Criteria();
+        $c->clearSelectColumns();
+        $c->addSelectColumn(AlumnoPeer::NOMBRE);
+        $c->addSelectColumn(AlumnoPeer::APELLIDO);
+        $c->addSelectColumn(DivisionPeer::ID);
+        $c->addSelectColumn(AlumnoPeer::ID);
+        $c->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
+        $c->addJoin(AnioPeer::ID, DivisionPeer::FK_ANIO_ID);
+        $c->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID);
+        $c->addJoin(AlumnoPeer::ID, RelAlumnoDivisionPeer::FK_ALUMNO_ID);
+        $alumnosDivisiones = BasePeer::doSelect($c);
+        foreach($alumnosDivisiones as $alumnoDivision) {
+            if(!array_key_exists($alumnoDivision[2], $aAlumnoDivision)) {
+                $aAlumnoDivision["{$alumnoDivision['2']}"] = array();
+            }
+            array_push( $aAlumnoDivision["{$alumnoDivision['2']}"], (object) array(  'nombre' => $alumnoDivision[1].", ".$alumnoDivision[0], 'id' =>  $alumnoDivision[3])); 
+        }
+        return $aAlumnoDivision;
+    }
+
+
+    function save($aAlumno, $aDivision)    {
+//         $aAlumno = $this->getRequest()->getParameterHolder()->get('alumno');
+//         $aDivision = $this->getRequest()->getParameterHolder()->get('division');
 
         if(count($aAlumno) > 0) {
             if(count($aDivision) > 0) {
@@ -198,7 +233,7 @@ class relAlumnoDivisionActions extends autorelAlumnoDivisionActions
                         RelAlumnoDivisionPeer::doDelete($c);
 
                         // Doy de alta la nueva relacion entre alumno y division
-                        $ad = new RelAlumnosDivision();
+                        $ad = new RelAlumnoDivision();
                         $ad->setFkAlumnoId($alumno_id);
                         $ad->setFkDivisionId($division_id);
                         $ad->save();
@@ -236,8 +271,18 @@ class relAlumnoDivisionActions extends autorelAlumnoDivisionActions
 //     return $this->redirect('relAlumnoDivision/list');
   }
     public function executeAsignarAlumno(){
-        print_r($_GET);
-        print_r($_POST);
-    }  
+        $division_id = $this->getRequestParameter('division_id');
+        $tmp = split('_', $this->getRequestParameter('id', ''));
+        $alumno_id = $tmp[1];
+        $this->save(array($alumno_id), array($division_id));
+
+        $aAlumno = $this->getAlumnosPorDivision();
+        if(array_key_exists($division_id, $aAlumno)) {
+            $this->alumnos = $aAlumno[$division_id];
+        } else {
+            $this->alumnos = array();
+        }
+
+    }
 }
 ?>

@@ -15,11 +15,21 @@
     ?>
     <td>
     <?php echo $contenido;?>
-        <div id="division_<?php echo $indice?>" class="cart" style="position:relative;left:20px;"></div>
+        <div id="division_<?php echo $indice?>" class="cart" style="position:relative;left:20px;">
+
+<?php 
+    if (array_key_exists($indice, $alumnoDivision)) {
+        include_partial('relAlumnoDivision/listado_alumnos_division', array('alumnos' => $alumnoDivision[$indice]));
+    }
+?>
+
+        </div>
         <?php echo drop_receiving_element('division_'.$indice, array(
-        'url'        => 'relAlumnoDivision/asignarAlumno?division_id='.$indice,
+        'url'        => 'relAlumnoDivision?action=asignarAlumno&division_id='.$indice,
         'accept'     => 'alumno',
-       'update'     => 'division_'.$indice,)) ?> 
+        'script'     => true,
+        'update'     => 'division_'.$indice,
+        'method'     => 'get')) ?> 
     </td>
 <?php } ?>
     </tr>
