@@ -60,7 +60,7 @@ all:
     autoloading_fucntions:
         -   [sfEzComponentsBridge,  autoload]
 
-
+    
 
 
 #    available:              on
@@ -74,7 +74,7 @@ all:
 #
 #    use_security:           on
 #
-#    compressed:             on
+    compressed:             on
 #
 #    tidy:                   on
 #
