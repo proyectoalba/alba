@@ -71,6 +71,20 @@ document.getElementsByName("responsable[telefono]")[0].value = datosCuenta[4]
 </div>
 
 <div class="form-row">
+  <?php echo label_for('responsable[apellido_materno]', __('Apellido Materno:'), '') ?>
+  <div class="content<?php if ($sf_request->hasError('responsable{apellido_materno}')): ?> form-error<?php endif; ?>">
+  <?php if ($sf_request->hasError('responsable{apellido_materno}')): ?>
+    <?php echo form_error('responsable{apellido_materno}', array('class' => 'form-error-msg')) ?>
+  <?php endif; ?>
+
+  <?php $value = object_input_tag($responsable, 'getApellidoMaterno', array (
+  'size' => 64,
+  'control_name' => 'responsable[apellido_materno]',
+)); echo $value ? $value : '&nbsp;' ?>
+    </div>
+</div>
+
+<div class="form-row">
   <?php echo label_for('responsable[nombre]', __('Nombre:'), 'class="required" ') ?>
   <div class="content<?php if ($sf_request->hasError('responsable{nombre}')): ?> form-error<?php endif; ?>">
   <?php if ($sf_request->hasError('responsable{nombre}')): ?>

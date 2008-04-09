@@ -4,8 +4,9 @@ generator:
       model_class:      Responsable
       theme:            default
       fields:
-            nombre: { name: Nombre , params: size=64}
+            nombre: { name: Nombres , params: size=64}
             apellido: { name: Apellido , params: size=64}
+            apellido_materno: { name: Apellido Mat. , params: size=64}
             direccion: { name: Direcci&oacute;n , params: size=64 }
             ciudad: { name: Ciudad , params: size=64}
             codigo_postal: { name: CP , params: size=20}
@@ -23,7 +24,7 @@ generator:
         fields:
             apellido: { params: size=20 }
         title: Listado de Responsables
-        display: [ cuenta, =apellido, nombre, nro_documento, telefono_movil, telefono, _rolresponsable, autorizacion_retiro ]
+        display: [ cuenta, =apellido, apellido_materno, nombre, nro_documento, telefono_movil, telefono, _rolresponsable, autorizacion_retiro ]
         object_actions:
           _edit: -
           _delete: -
@@ -36,7 +37,7 @@ generator:
             fk_cuenta_id:   { params: include_custom=>>Selecciones un Cuenta<<}
             fk_provincia_id:   { params: include_custom=--Selecciones una Provincia--}
         display:
-                "Informaci&oacute;n general":  [apellido, nombre, _sexo, fk_tipodocumento_id, nro_documento]
+                "Informaci&oacute;n general":  [apellido, apellido_materno,  nombre, _sexo, fk_tipodocumento_id, nro_documento]
                 "Donde vive": [direccion, ciudad, _pais_id, _fk_provincia_id, codigo_postal ]
                 "Otros":  [ telefono, telefono_movil, email, observacion,  autorizacion_retiro]
         actions:
