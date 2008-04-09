@@ -16,4 +16,8 @@ require_once 'lib/model/om/BaseResponsable.php';
  */	
 class Responsable extends BaseResponsable {
 
+    public function getApellidos(){
+        return $this->getApellido().' '.$this->getApellidoMaterno();
+    }
+
 } // Responsable

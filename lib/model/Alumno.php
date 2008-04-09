@@ -15,9 +15,13 @@ require_once 'lib/model/om/BaseAlumno.php';
  * @package model
  */	
 class Alumno extends BaseAlumno {
- 	public function __toString() {
-         return $this->getApellido() . " " . $this->getNombre() ;
-	}		 
+    public function __toString() {
+        return $this->getApellido() . " ".$this->getApellidoMaterno()." ". $this->getNombre() ;
+    } 
+        
+    public function getApellidos(){
+        return $this->getApellido().' '.$this->getApellidoMaterno();
+    }
 
     public function toArrayInforme($keyType = BasePeer::TYPE_PHPNAME)
     {

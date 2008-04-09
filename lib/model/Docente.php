@@ -16,6 +16,9 @@ require_once 'lib/model/om/BaseDocente.php';
  */	
 class Docente extends BaseDocente {
     public function __toString() {
-        return $this->getApellido().' '.$this->getNombre();
+        return $this->getApellido().' '.$this->getApellidoMaterno().' '.$this->getNombre();
+    }
+    public function getApellidos(){
+        return $this->getApellido().' '.$this->getApellidoMaterno();
     }
 } // Docente
