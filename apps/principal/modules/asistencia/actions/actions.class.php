@@ -191,7 +191,7 @@ class asistenciaActions extends sfActions
         if(count($aIntervalo) > 0 ) {
             //Obtener los alumnos de la division y asistencias en el rango de fecha
             $con = sfContext::getInstance()->getDatabaseConnection($connection='propel'); 
-            $s = "SELECT alumno.id, alumno.nombre, alumno.apellido,";
+            $s = "SELECT alumno.id, alumno.nombre, alumno.apellido, alumno.apellido_materno,";
             $s .= "tipoasistencia.descripcion, tipoasistencia.nombre AS asistencia, asistencia.fecha,";
             $s .= "asistencia.fk_tipoasistencia_id ";
             $s .= "FROM alumno, rel_alumno_division ";
@@ -217,7 +217,7 @@ class asistenciaActions extends sfActions
             }
 
             $s .= " AND rel_alumno_division.FK_ALUMNO_ID = alumno.ID";    
-            $s .= " ORDER BY alumno.nombre,asistencia.FECHA";
+            $s .= " ORDER BY alumno.apellido,alumno.apellido_materno,alumno.nombre,asistencia.FECHA";
         
             $stmt = $con->createStatement();
             $alumnos = $stmt->executeQuery($s, ResultSet::FETCHMODE_ASSOC);
@@ -225,7 +225,7 @@ class asistenciaActions extends sfActions
             $totales = array();  
             $tot = 0;
             foreach ($alumnos as $alumno){
-                $idxAlumno[$alumno['id']] = $alumno['apellido']." ". $alumno['nombre'];
+                $idxAlumno[$alumno['id']] = $alumno['apellido']." ".$alumno['apellido_materno']." ". $alumno['nombre'];
                 if  ($alumno['fecha']) { 
                     $datos[$alumno['id']][$alumno['fecha']] = $alumno['asistencia'];
                     @$totales[$alumno['asistencia']]++;
