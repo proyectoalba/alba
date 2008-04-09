@@ -5,8 +5,8 @@
 
 <h2><?php echo __('Actividades/Materias por Docente') ?></h2>
 <div class="form-row">
-Apellido y Nombre:  
-<?php echo object_input_tag($docente, 'getApellido', array (
+Apellidos y Nombres:  
+<?php echo object_input_tag($docente, 'getApellidos', array (
   'size' => 32,
   'control_name' => 'docente[apellido]',
   'readonly' => 'true' ));
