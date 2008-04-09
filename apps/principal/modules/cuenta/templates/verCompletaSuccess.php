@@ -39,9 +39,9 @@
   <thead>
   <tr>
     <th id="sf_admin_list_th_apellido">
-      Apellido</th>
+      Apellidos</th>
     <th id="sf_admin_list_th_nombre">
-      Nombre</th>
+      Nombres</th>
     <th id="sf_admin_list_th_nro_documentot">
       Nro. Documento</th>
     <th id="sf_admin_list_th_Sexo">
@@ -56,7 +56,7 @@
   foreach($aAlumno as $alumno){
 ?>
   <tr class="sf_admin_row_0">
-    <td><?php echo $alumno->getApellido();?></td>
+    <td><?php echo $alumno->getApellidos();?></td>
     <td><?php echo $alumno->getNombre();?></td>
     <td><?php echo $alumno->getNroDocumento();?></td>
     <td><?php echo $alumno->getSexo();?></td>
@@ -106,9 +106,9 @@
   <thead>
   <tr>
     <th id="sf_admin_list_th_apellido">
-      Apellido</th>
+      Apellidos</th>
     <th id="sf_admin_list_th_nombre">
-      Nombre</th>
+      Nombres</th>
     <th id="sf_admin_list_th_nro_documentot">
       Nro. Documento</th>
     <th id="sf_admin_list_th_Direccion">
@@ -129,7 +129,7 @@
   foreach($aResponsable as $responsable){
 ?>
   <tr class="sf_admin_row_0">
-    <td><?php echo $responsable->getApellido();?></td>
+    <td><?php echo $responsable->getApellidos();?></td>
     <td><?php echo $responsable->getNombre();?></td>
     <td><?php echo $responsable->getNroDocumento();?></td>
     <td><?php echo $responsable->getDireccion();?></td>
