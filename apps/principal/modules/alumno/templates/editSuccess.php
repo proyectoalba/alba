@@ -62,6 +62,19 @@
             </div>
 
             <div class="form-row">
+              <?php echo label_for('alumno[apellido_materno]', __('Materno:'), '') ?>
+              <div class="content<?php if ($sf_request->haserror('alumno{apellido_materno}')): ?> form-error<?php endif; ?>">
+              <?php if ($sf_request->haserror('alumno{apellido_materno}')): ?>
+                <?php echo form_error('alumno{apellido_materno}', array('class' => 'form-error-msg')) ?>
+              <?php endif; ?>
+
+              <?php $value = object_input_tag($alumno, 'getApellidoMaterno', array (
+              'size' => 64,
+              'control_name' => 'alumno[apellido_materno]',
+            )); echo $value ? $value : '&nbsp;' ?>
+                </div>
+            </div>
+            <div class="form-row">
               <?php echo label_for('alumno[nombre]', __('Nombres:'), 'class="required" ') ?>
               <div class="content<?php if ($sf_request->hasError('alumno{nombre}')): ?> form-error<?php endif; ?>">
               <?php if ($sf_request->hasError('alumno{nombre}')): ?>

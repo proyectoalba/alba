@@ -5,7 +5,8 @@ generator:
       theme:            default
       fields:
             nombre: { name: Nombres , params: size=64 }
-            apellido: { name: Apellido , params: size=64}
+            apellido: { name: Apellido , params: size=64 }
+            apellido_materno: { name: Apellido Mat. , params: size=64 }
             fk_provincia_id: { name: Provincia }
             fk_establecimiento_id: { name: Establecimiento }
             fk_cuenta_id: { name: Cuenta }
@@ -31,7 +32,7 @@ generator:
 
       list:
             title: " "
-            display: [ =apellido, nombre, nro_documento, sexo, telefono, email, activo ]
+            display: [ =apellido, apellido_materno, nombre, nro_documento, sexo, telefono, email, activo ]
             filters:  [ _nombre_apellido, _division, nro_documento ]
             object_actions:
                 _edit: -
@@ -44,14 +45,13 @@ generator:
                 _create: -
             max_per_page: 10
             
-        
       edit:
             title: " "
             fields:
                 fk_cuenta_id:   { params: include_custom=--Seleccione un Cuenta--}
                 fk_provincia_id:   { params: include_custom=--Seleccione una Provincia--}
             display:
-                "Informacion general":  [apellido, nombre, _sexo, fk_tipodocumento_id, nro_documento, lugar_nacimiento, fecha_nacimiento, fk_pais_id, email, activo ]
+                "Informacion general":  [apellido, apellido_materno, nombre, _sexo, fk_tipodocumento_id, nro_documento, lugar_nacimiento, fecha_nacimiento, fk_pais_id, email, activo ]
                 "Donde vive": [direccion, ciudad, fk_provincia_id, codigo_postal, telefono]
                 "Prioridades": [ distancia_escuela, hermanos_escuela, hijo_maestro_escuela ]
                 "Otros": [ certificado_medico, _fk_cuenta_id ]
