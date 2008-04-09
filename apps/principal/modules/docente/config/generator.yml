@@ -6,6 +6,7 @@ generator:
 
     fields:
         apellido: { name: Apellido, params: size=64 }
+        apellido_materno: { name: Apellido Mat., params: size=64 }
         nombre: { name: Nombres , params: size=64 }
         fk_tipodocumento_id: { name: Tipo de Documento, type: select_tag, params: peer_method=getEnOrden related_class=Tipodocumento }
         tipodocumento: { name: Tipo de Documento }
@@ -32,7 +33,7 @@ generator:
             actividades: { type: admin_double_list, params: through_class=RelAnioActividadDocente style=width:260px }
 
         display:       
-                 "Informacion general":  [ apellido, nombre, _sexo, fk_tipodocumento_id , nro_documento , lugar_nacimiento, fecha_nacimiento, fk_pais_id ]
+                 "Informacion general":  [ apellido, apellido_materno, nombre, _sexo, fk_tipodocumento_id , nro_documento , lugar_nacimiento, fecha_nacimiento, fk_pais_id ]
                  "Donde vive": [direccion, ciudad, _pais_id, _fk_provincia_id, codigo_postal]
                  "Otros": [ email, telefono, telefono_movil, libreta_sanitaria, psicofisico, titulo, activo, actividades ]
                                                          
@@ -42,7 +43,7 @@ generator:
             apellido: { params: size=20 }
             nombre: { params: size=20 }
         title: Listado de Docentes
-        display: [ =apellido, nombre, tipodocumento, nro_documento, telefono, email, activo ]
+        display: [ =apellido, apellido_materno, nombre, tipodocumento, nro_documento, telefono, email, activo ]
         filters: [ apellido, nombre ]
         sort: [ apellido , asc ]
         object_actions:
