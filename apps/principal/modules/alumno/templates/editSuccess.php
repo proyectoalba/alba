@@ -62,7 +62,7 @@
             </div>
 
             <div class="form-row">
-              <?php echo label_for('alumno[apellido_materno]', __('Materno:'), '') ?>
+              <?php echo label_for('alumno[apellido_materno]', __('Apellido Materno:'), '') ?>
               <div class="content<?php if ($sf_request->haserror('alumno{apellido_materno}')): ?> form-error<?php endif; ?>">
               <?php if ($sf_request->haserror('alumno{apellido_materno}')): ?>
                 <?php echo form_error('alumno{apellido_materno}', array('class' => 'form-error-msg')) ?>
