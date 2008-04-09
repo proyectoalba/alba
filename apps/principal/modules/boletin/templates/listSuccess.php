@@ -54,7 +54,7 @@ Posibles Notas para calificar:
 <table cellspacing="0" class="sf_admin_list">
   <thead>
   <tr>
-    <th id="sf_admin_list_th_alumno"> Alumno</th>
+    <th id="sf_admin_list_th_alumno"> Apellidos/Nombres</th>
 
     <?php foreach ($aPeriodo as $periodo) {?>
     <th id="sf_admin_list_th_sf_actions"><?php echo $periodo->getDescripcion()?></th>
@@ -67,7 +67,7 @@ Posibles Notas para calificar:
   <tbody>
 <?php foreach($aAlumno as $alumno){ ?>
   <tr class="sf_admin_row_0">
-    <td><?php echo $alumno->getApellido()." ".$alumno->getNombre(); ?></td>
+    <td><?php echo $alumno ?></td>
     <?php foreach ($aPeriodo as $periodo) {?>    
     <td>
     <?php echo input_tag("nota[".$alumno->getId()."][".$periodo->getId()."][".""."]", $aNotaAlumno[$alumno->getId()][$periodo->getId()],array('size' => $sizeNota, 'maxlength' => $sizeNota));?>   
