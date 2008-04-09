@@ -629,6 +629,10 @@ alba:
       type: VARCHAR
       size: 128
       required: true
+    apellido_materno: 
+      type: VARCHAR
+      size: 128
+      required: false
     apellido: 
       type: VARCHAR
       size: 128
@@ -758,6 +762,10 @@ alba:
       type: VARCHAR
       size: 128
       required: true
+    apellido_materno: 
+      type: VARCHAR
+      size: 128
+      required: false
     direccion: 
       type: VARCHAR
       size: 128
@@ -1446,6 +1454,10 @@ alba:
       type: VARCHAR
       size: 128
       required: true
+    apellido_materno: 
+      type: VARCHAR
+      size: 128
+      required: false
     nombre: 
       type: VARCHAR
       size: 128
