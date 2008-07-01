@@ -1524,6 +1524,10 @@ alba:
       type: boolean
       required: false
       default: false
+    observacion:
+      type: varchar
+      size: 255
+      required: false
     activo: 
       type: boolean
       required: false

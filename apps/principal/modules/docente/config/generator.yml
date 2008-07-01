@@ -25,8 +25,10 @@ generator:
         titulo: { name: Titulo Habilitante , params: size=64}
         activo: { name: Activo}
         lugar_nacimiento: { name: Lugar de Nacimiento }
-        fk_pais_id: { name: Nacionalidad, type: select_tag, params: peer_method=getEnOrden related_class=Pais   } 
+        fk_pais_id: { name: Nacionalidad, type: select_tag, params: peer_method=getEnOrden related_class=Pais } 
         estado_civil: { name: Estado Civil }
+        observacion: { name: Observaci&oacute;n, type: textarea_tag,  params: size=45x5  }
+
     edit:
         title: ""
         fields:
@@ -35,7 +37,7 @@ generator:
         display:       
                  "Informacion general":  [ apellido, apellido_materno, nombre, _sexo, _estado_civil, fk_tipodocumento_id , nro_documento , lugar_nacimiento, fecha_nacimiento, fk_pais_id ]
                  "Donde vive": [direccion, ciudad, _pais_id, _fk_provincia_id, codigo_postal]
-                 "Otros": [ email, telefono, telefono_movil, libreta_sanitaria, psicofisico, titulo, activo, actividades ]
+                 "Otros": [ email, telefono, telefono_movil, libreta_sanitaria, psicofisico, titulo, observacion, activo, actividades ]
                                                          
                     
     list:
