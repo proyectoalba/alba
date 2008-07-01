@@ -42,5 +42,8 @@ CREATE TABLE `tipoinforme`
 
 ALTER TABLE anio ADD COLUMN `orden` INTEGER DEFAULT 0; 
 
+ALTER TABLE `docente` ADD `estado_civil` CHAR( 1 ) NOT NULL AFTER `sexo` ;
+
+
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;

@@ -5395,6 +5395,7 @@ Docente:
     apellido: Quiroga
     nombre: Juan David
     sexo: M
+    estado_civil: S
     fecha_nacimiento: 1980-04-12 00:00:00
     fk_tipodocumento_id: Tipodocumento_1
     nro_documento: 29456234
@@ -5415,6 +5416,7 @@ Docente:
     apellido: Benites
     nombre: Eleonora
     sexo: F
+    estado_civil: S
     fecha_nacimiento: 1975-06-12 00:00:00
     fk_tipodocumento_id: Tipodocumento_1
     nro_documento: 24890456
@@ -5435,6 +5437,7 @@ Docente:
     apellido: Gonzalez
     nombre: Mirta
     sexo: F
+    estado_civil: S
     fecha_nacimiento: 1960-06-23 00:00:00
     fk_tipodocumento_id: Tipodocumento_1
     nro_documento: 16456345
@@ -5455,6 +5458,7 @@ Docente:
     apellido: Fassio
     nombre: Carlos
     sexo: M
+    estado_civil: S
     fecha_nacimiento: 1980-05-23 00:00:00
     fk_tipodocumento_id: Tipodocumento_1
     nro_documento: 28345990
@@ -5475,6 +5479,7 @@ Docente:
     apellido: Dominguez
     nombre: Hernestina Maria Cristina
     sexo: F
+    estado_civil: S
     fecha_nacimiento: 1959-08-23 00:00:00
     fk_tipodocumento_id: Tipodocumento_1
     nro_documento: 12023450
@@ -5495,6 +5500,7 @@ Docente:
     apellido: Pereira
     nombre: Maria Laura
     sexo: F
+    estado_civil: S
     fecha_nacimiento: 1970-09-23 00:00:00
     fk_tipodocumento_id: Tipodocumento_1
     nro_documento: 22210034
@@ -5515,6 +5521,7 @@ Docente:
     apellido: Igarereta
     nombre: Ines Lorena
     sexo: F
+    estado_civil: S
     fecha_nacimiento: 1965-07-06 00:00:00
     fk_tipodocumento_id: Tipodocumento_1
     nro_documento: 22210034
@@ -5535,6 +5542,7 @@ Docente:
     apellido: Minet
     nombre: Dora Alfonsina
     sexo: F
+    estado_civil: S
     fecha_nacimiento: 1960-02-19 00:00:00
     fk_tipodocumento_id: Tipodocumento_1
     nro_documento: 12890230
@@ -5555,6 +5563,7 @@ Docente:
     apellido: Navarro
     nombre: Miguel Carlos
     sexo: M
+    estado_civil: S
     fecha_nacimiento: 1979-09-18 00:00:00
     fk_tipodocumento_id: Tipodocumento_1
     nro_documento: 25090109
@@ -5577,6 +5586,7 @@ Docente:
     apellido: Flores
     nombre: Adriana Florencia
     sexo: F
+    estado_civil: S
     fecha_nacimiento: 1978-02-08 00:00:00
     fk_tipodocumento_id: Tipodocumento_1
     nro_documento: 25905234
@@ -5599,6 +5609,7 @@ Docente:
     apellido: Paez
     nombre: Natalia Constanza
     sexo: F
+    estado_civil: S
     fecha_nacimiento: 1977-07-10 00:00:00
     fk_tipodocumento_id: Tipodocumento_1
     nro_documento: 25090123
@@ -5621,6 +5632,7 @@ Docente:
     apellido: GarcÃ­a
     nombre: Marcela Nadia
     sexo: F
+    estado_civil: S
     fecha_nacimiento: 1960-04-19 00:00:00
     fk_tipodocumento_id: Tipodocumento_1
     nro_documento: 12023409
@@ -5641,6 +5653,7 @@ Docente:
     apellido: Soria
     nombre: Marco Nahuel
     sexo: M
+    estado_civil: S
     fecha_nacimiento: 1974-11-21 00:00:00
     fk_tipodocumento_id: Tipodocumento_1
     nro_documento: 24819349
@@ -5663,6 +5676,7 @@ Docente:
     apellido: Diaz
     nombre: Cristina Noelia
     sexo: F
+    estado_civil: S
     fecha_nacimiento: 1977-09-10 00:00:00
     fk_tipodocumento_id: Tipodocumento_1
     nro_documento: 25002165
@@ -5683,6 +5697,7 @@ Docente:
     apellido: Quirno
     nombre: Osvaldo
     sexo: M
+    estado_civil: S
     fecha_nacimiento: 1967-09-19 00:00:00
     fk_tipodocumento_id: Tipodocumento_1
     nro_documento: 17090081
@@ -5706,6 +5721,7 @@ Docente:
     apellido: Acosta
     nombre: Mariana Noelia
     sexo: F
+    estado_civil: S
     fecha_nacimiento: 1974-11-25 00:00:00
     fk_tipodocumento_id: Tipodocumento_1
     nro_documento: 24011890
@@ -5728,6 +5744,7 @@ Docente:
     apellido: Seres
     nombre: Carolina Natalia
     sexo: F
+    estado_civil: S
     fecha_nacimiento: 1969-02-03 00:00:00
     fk_tipodocumento_id: Tipodocumento_1
     nro_documento: 18231003
@@ -5750,6 +5767,7 @@ Docente:
     apellido: Acosta
     nombre: Mariano omar
     sexo: M
+    estado_civil: S
     fecha_nacimiento: 1979-01-19 00:00:00
     fk_tipodocumento_id: Tipodocumento_1
     nro_documento: 26090121
@@ -5772,6 +5790,7 @@ Docente:
     apellido: Ceballos
     nombre: Simon Nahuel
     sexo: M
+    estado_civil: S
     fecha_nacimiento: 1981-12-22 00:00:00
     fk_tipodocumento_id: Tipodocumento_1
     nro_documento: 26012976
@@ -5792,6 +5811,7 @@ Docente:
     apellido: Ruedas
     nombre: Gabriela Ayelen
     sexo: F
+    estado_civil: S
     fecha_nacimiento: 1977-09-11 00:00:00
     fk_tipodocumento_id: Tipodocumento_1
     nro_documento: 25732872

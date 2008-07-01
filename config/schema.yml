@@ -1462,6 +1462,10 @@ alba:
       type: VARCHAR
       size: 128
       required: true
+    estado_civil:
+      type: CHAR
+      size: 1
+      required: true
     sexo: 
       type: CHAR
       size: 1

@@ -36,11 +36,24 @@
         if($opcionBlanco) {
             $aSexo[] = "";
         }
- 
+
         $aSexo["M"] = "Masculino";
         $aSexo["F"] = "Femenino";
-        
+
         return $aSexo;
+    }
+
+
+    function EstadoCivil($opcionBlanco = falase) {
+        if($opcionBlanco) {
+            $aEstadoCivil[] = "";
+        }
+
+        $aEstadoCivil["C"] = "Casado";
+        $aEstadoCivil["S"] = "Soltero";
+        $aEstadoCivil["D"] = "Divorciado";
+
+        return $aEstadoCivil;
     }
 
     function colorTurnos() {
