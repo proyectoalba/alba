@@ -44,7 +44,7 @@
     }
 
 
-    function EstadoCivil($opcionBlanco = falase) {
+    function EstadoCivil($opcionBlanco = false) {
         if($opcionBlanco) {
             $aEstadoCivil[] = "";
         }
