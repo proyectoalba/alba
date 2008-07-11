@@ -78,78 +78,56 @@ function executeDump($file, $protocol, $host, $user, $pass, $db) {
     $aSql = dump2Array($file);
     $error = false;    
     if(count($aSql) > 0 && file_exists($file)) {
+        if($protocol == 'mysql' OR $protocol == 'pgsql') {
+            $dsn = "$protocol:host=$host;dbname=$db"; // necesito saber como hacer conexion utf8
 
-        // otro pedazo de codigo para cambiarlo por PDO
-
-
-        if($protocol == 'mysql') {
-            if (mysql_connect($host,$user,$pass)) {
-                mysql_set_charset('utf8');
-                if(mysql_select_db($db)) {
-                    DebugLog("executeDump(): ejecutando BEGIN" );    
-                    mysql_query("BEGIN");
-                    foreach($aSql as $sql_line) {
-                        $res = mysql_query(trim($sql_line));
-                        if(!$res) {
-                            DebugLog("executeDump(): Fallo SQL: $sql_line");
-                            DebugLog("executeDump(): error:". mysql_error());
-                            $error = true;
-                        }
-                    }
-                    if($error == true) {
-                        DebugLog("executeDump(): Se encontraron errores ejecutando ROLLBACK y saliendo");    
-                        mysql_query("ROLLBACK");
-                        return false;
-                    } else {
-                        DebugLog("executeDump(): Sin errores ejecutando COMMIT y saliendo");    
-                        mysql_query("COMMIT");
-                        return true;
-                    }
-                }
-                else {
-                    DebugLog("executeDump(): Error al seleccionar la base: $db");    
-                    return false;
-                }
+            try {
+                $dbh = new PDO($dsn, $user, $pass);
+                $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }
-            else {
-                DebugLog("excuteDump(): No se puede conectar ala base de datos. " . mysql_error());
+            catch (PDOException $e) {
+                DebugLog("excuteDump(): No se puede conectar ala base de datos. " . $e->getMessage());
+                return false;
             }
-        }
 
-
-        if($protocol == 'pgsql') {
-            $conn = @pg_connect("host=$host user=$user password=$pass dbname=$db");
-            if ($conn) {
+            try {
                 DebugLog("executeDump(): ejecutando BEGIN" );
-                pg_query("BEGIN");
-                DebugLog("executeDump(): ejecutando SET CONSTRAINTS ALL DEFERRED" );
-                pg_query("SET CONSTRAINTS ALL DEFERRED");
+                $dbh->beginTransaction();
+
+                if($protocol == 'pgsql') { 
+                    DebugLog("executeDump(): ejecutando SET CONSTRAINTS ALL DEFERRED" );
+                    $dbh->exec("SET CONSTRAINTS ALL DEFERRED");
+                }
+
                 foreach($aSql as $sql_line) {
-                    $res = pg_query(trim($sql_line));
-                    if(!$res) {
-                        DebugLog("executeDump(): Fallo SQL: $sql_line");
-                        DebugLog("executeDump(): error:". pg_last_error($conn));
-                        $error = true;
+                    // esto es lamentable: saco los drop que genera el propel
+//                    if($protocol == 'pgsql' AND ( strstr($sql_line,'DROP') !== false)) {
+                        //                        continue;
+                    if($protocol == 'pgsql') {
+                        $sql_line = str_replace('DROP TABLE', 'DROP TABLE IF EXISTS', $sql_line);
+                        $sql_line = str_replace('DROP SEQUENCE', 'DROP SEQUENCE IF EXISTS', $sql_line);
                     }
+                    $dbh->exec(trim($sql_line));
                 }
-                if($error == true) {
-                    DebugLog("executeDump(): Se encontraron errores ejecutando ROLLBACK y saliendo");    
-                    pg_query("ROLLBACK");
-                    return false;
-                } else {
-                    DebugLog("executeDump(): Sin errores ejecutando COMMIT y saliendo");    
-                    pg_query("COMMIT");
-                    return true;
-                }
+
+                DebugLog("executeDump(): Sin errores ejecutando COMMIT y saliendo");
+                $dbh->commit();
             }
-            else {
-                DebugLog("excuteDump(): No se puede conectar ala base de datos. " . mysql_error());
+            catch (PDOException $e) {
+                DebugLog("executeDump(): Error en". $e->getMessage());
+                DebugLog("executeDump(): Se encontraron errores ejecutando ROLLBACK y saliendo");
+                $dbh->rollBack();
+                return false;
             }
+
+            return true;
+
+        } else {
+            DebugLog("executeDump(): El protocolo no es ni mysql ni pgsql");
+            return false;
         }
-
-
     } else {
-        DebugLog("executeDump(): No hay instrucciones SQL en el archivo");    
+        DebugLog("executeDump(): No hay instrucciones SQL en el archivo");
         return false;
     }
 
@@ -300,7 +278,7 @@ function check_mysql() {
     return extension_loaded('mysql');
 }
 function check_memorylimit() {
-    DebugLog("Comprobando limite de moeria de php");
+    DebugLog("Comprobando limite de memoria de php");
     $limite = ini_get('memory_limit');
     return ($limite >= 32);
 }

@@ -124,6 +124,17 @@ $error_flag = false;
                     $error_flag = true;
                     DebugLog("Error al cargar modelo de base de datos: $archivo","E");
                 }
+
+                //Esto se agrego para hacer update a las secuencias de postgresql
+                if($tipo_motor_base == 'pgsql') {
+                    $archivo = substr($archivo,0,-4)."_update_seq.sql";
+                    $ret = crear_base_modelo($archivo, $tipo_motor_base, $host, $user, $pass, $db);
+                    echo $ret ? IMG_OK : IMG_ERROR;
+                    if (!$ret) {
+                        $error_flag = true;
+                        DebugLog("Error al cargar modelo de base de datos: $archivo","E");
+                    }
+                }
             ?>
         </td>
     </tr>
