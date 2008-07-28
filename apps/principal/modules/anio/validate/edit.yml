@@ -15,7 +15,7 @@ caracteresMaximos255:
     class:  sfStringValidator
     param:
         max: 255
-        max_error: La maxima cantidad de caracteres permitida es de 255
+        max_error: La m&aacute;xima cantidad de caracteres permitida es de 255
 
 validarUnico:
     class:    sfCustomUniqueValidator
@@ -24,4 +24,4 @@ validarUnico:
         nb_fields:  2
         field_1:    fk_establecimiento_id
         field_2:    descripcion        
-        custom_unique_error:     El anio que intenta agregar ya existe en el mismo establecimiento!
+        custom_unique_error:     El a&ntilde;o que intenta agregar ya existe en el mismo establecimiento
