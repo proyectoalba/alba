@@ -63,5 +63,45 @@ class relAnioActividadActions extends autorelAnioActividadActions
         }
 
     }
+
+    protected function addFiltersCriteria($c) {
+
+        if (isset($this->filters['fk_anio_id_is_empty']))
+        {
+            $criterion = $c->getNewCriterion(RelAnioActividadPeer::FK_ANIO_ID, '');
+            $criterion->addOr($c->getNewCriterion(RelAnioActividadPeer::FK_ANIO_ID, null, Criteria::ISNULL));
+            $c->add($criterion);
+        }
+        else if (isset($this->filters['fk_anio_id']) && $this->filters['fk_anio_id'] !== '')
+        {
+            $c->add(RelAnioActividadPeer::FK_ANIO_ID, $this->filters['fk_anio_id']);
+        }
+        if (isset($this->filters['fk_actividad_id_is_empty']))
+        {
+            $criterion = $c->getNewCriterion(RelAnioActividadPeer::FK_ACTIVIDAD_ID, '');
+            $criterion->addOr($c->getNewCriterion(RelAnioActividadPeer::FK_ACTIVIDAD_ID, null, Criteria::ISNULL));
+            $c->add($criterion);
+        }
+        else if (isset($this->filters['fk_actividad_id']) && $this->filters['fk_actividad_id'] !== '')
+        {
+            $c->add(RelAnioActividadPeer::FK_ACTIVIDAD_ID, $this->filters['fk_actividad_id']);
+        }
+        if (isset($this->filters['fk_orientacion_id_is_empty']))
+        {
+            $criterion = $c->getNewCriterion(RelAnioActividadPeer::FK_ORIENTACION_ID, '');
+            $criterion->addOr($c->getNewCriterion(RelAnioActividadPeer::FK_ORIENTACION_ID, null, Criteria::ISNULL));
+            $c->add($criterion);
+        }
+        else if (isset($this->filters['fk_orientacion_id']) && $this->filters['fk_orientacion_id'] !== '')
+        {
+            $c->add(RelAnioActividadPeer::FK_ORIENTACION_ID, $this->filters['fk_orientacion_id']);
+        }
+
+        if (isset($this->filters['carrera']) && $this->filters['carrera'] !== '') {
+            $c->add(AnioPeer::FK_CARRERA_ID, $this->filters['carrera']);
+            $c->addJoin(AnioPeer::ID, RelAnioActividadPeer::FK_ANIO_ID);
+        }
+    }
+
 }
 ?>

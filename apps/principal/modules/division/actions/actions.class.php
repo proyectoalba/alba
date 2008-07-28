@@ -37,6 +37,38 @@ class divisionActions extends autodivisionActions
         $this->redirect('alumno/list?filters%5Bdivision%5D='.$this->getRequestParameter('id').'&filter=filtrar');
     }
 
+    protected function addFiltersCriteria($c) {
+        if (isset($this->filters['fk_anio_id_is_empty'])) {
+            $criterion = $c->getNewCriterion(DivisionPeer::FK_ANIO_ID, '');
+            $criterion->addOr($c->getNewCriterion(DivisionPeer::FK_ANIO_ID, null, Criteria::ISNULL));
+            $c->add($criterion);
+        }  else if (isset($this->filters['fk_anio_id']) && $this->filters['fk_anio_id'] !== '') {
+            $c->add(DivisionPeer::FK_ANIO_ID, $this->filters['fk_anio_id']);
+        }
+
+        if (isset($this->filters['fk_orientacion_id_is_empty'])) {
+            $criterion = $c->getNewCriterion(DivisionPeer::FK_ORIENTACION_ID, '');
+            $criterion->addOr($c->getNewCriterion(DivisionPeer::FK_ORIENTACION_ID, null, Criteria::ISNULL));
+            $c->add($criterion);
+        } else if (isset($this->filters['fk_orientacion_id']) && $this->filters['fk_orientacion_id'] !== '') {
+            $c->add(DivisionPeer::FK_ORIENTACION_ID, $this->filters['fk_orientacion_id']);
+        }
+
+        if (isset($this->filters['fk_turno_id_is_empty'])) {
+           $criterion = $c->getNewCriterion(DivisionPeer::FK_TURNO_ID, '');
+           $criterion->addOr($c->getNewCriterion(DivisionPeer::FK_TURNO_ID, null, Criteria::ISNULL));
+           $c->add($criterion);
+        }
+        else if (isset($this->filters['fk_turno_id']) && $this->filters['fk_turno_id'] !== '') {
+           $c->add(DivisionPeer::FK_TURNO_ID, $this->filters['fk_turno_id']);
+        }
+
+        if (isset($this->filters['carrera']) && $this->filters['carrera'] !== '') {
+            $c->add(AnioPeer::FK_CARRERA_ID, $this->filters['carrera']);
+            $c->addJoin(AnioPeer::ID, DivisionPeer::FK_ANIO_ID);
+        }
+    }
+
 }
 
 ?>

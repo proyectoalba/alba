@@ -141,6 +141,7 @@ INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (47, 'inform
 INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (48, 'rolResponsable', 'Rol Responsables', 'Roles de los Resposables de Alumos', true);
 INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (49, 'orientacion','Orientacion','Orientacion de los grados', true);
 INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (50, 'tiponivel','Tipo de Nivel','', true);
+INSERT INTO modulo (id, nombre, titulo, descripcion, activo) VALUES (51, 'carrera','','', true);
 
 -- 
 -- Volcar la base de datos para la tabla espacio
@@ -262,7 +263,7 @@ INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (
 INSERT INTO permiso (id,nombre, descripcion, credencial, fk_modulo_id) VALUES (60, 'rolResponsable', 'Rol de Responsables', 'rolResponsable', 48);
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (61, 'orientacion', 'Orientacion', 'orientacion', 49);
 INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (62, 'tiponivel', 'Tipo de Nivel', 'niveltipo', 50);
-
+INSERT INTO permiso (id, nombre, descripcion, credencial, fk_modulo_id) VALUES (63, 'carrera', '', 'carrera', 51);
 -- 
 -- Volcar la base de datos para la tabla preferencia
 -- 
@@ -346,6 +347,7 @@ INSERT INTO rel_rol_permiso (id, fk_rol_id, fk_permiso_id) VALUES (46, 2, 37);
 INSERT INTO rel_rol_permiso (id, fk_rol_id, fk_permiso_id) VALUES (47, 2, 34);
 INSERT INTO rel_rol_permiso (id, fk_rol_id, fk_permiso_id) VALUES (48, 2, 36);
 INSERT INTO rel_rol_permiso (id, fk_rol_id, fk_permiso_id) VALUES (49, 2, 35);
+INSERT INTO rel_rol_permiso (id, fk_rol_id, fk_permiso_id) VALUES (50, 2, 63);
 
 -- 
 -- Volcar la base de datos para la tabla rel_usuario_permiso
@@ -408,6 +410,7 @@ INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (207, 
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (211, 1, 60);
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (216, 1, 61);
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (217, 1, 62);
+INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (218, 1, 63);
 
 --Usuario 2
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (52, 2, 1);
@@ -463,6 +466,8 @@ INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (101, 
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (102, 2, 57);
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (212, 2, 60);
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (215, 2, 61);
+INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (219, 2, 62);
+INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (220, 2, 63);
 
 --Usuario 3
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (213, 3, 60);
@@ -3073,17 +3078,25 @@ INSERT INTO boletin_actividades (id, fk_escalanota_id, fk_alumno_id, fk_activida
 -- Volcar la base de datos para la tabla examen
 -- 
 
+
+-- 
+-- Volcar la base de datos para la tabla carrera
+-- 
+
+INSERT INTO carrera (id, fk_establecimiento_id, descripcion, orden)  VALUES ( 1, 1, 'Escuela Primaria Básica', 10);
+
+
 -- 
 -- Volcar la base de datos para la tabla anio
 -- 
 
-INSERT INTO anio (id, fk_establecimiento_id, descripcion, orden) VALUES (1, 1, 'Primer Grado', 10);
-INSERT INTO anio (id, fk_establecimiento_id, descripcion, orden) VALUES (2, 1, 'Segundo Grado ', 20);
-INSERT INTO anio (id, fk_establecimiento_id, descripcion, orden) VALUES (3, 1, 'Tercer Grado', 30);
-INSERT INTO anio (id, fk_establecimiento_id, descripcion, orden) VALUES (4, 1, 'Cuarto Grado', 40);
-INSERT INTO anio (id, fk_establecimiento_id, descripcion, orden) VALUES (5, 1, 'Quinto grado', 50);
-INSERT INTO anio (id, fk_establecimiento_id, descripcion, orden) VALUES (6, 1, 'Sexto Grado', 60);
-INSERT INTO anio (id, fk_establecimiento_id, descripcion, orden) VALUES (7, 1, 'Séptimo Grado', 70);
+INSERT INTO anio (id, fk_establecimiento_id, fk_carrera_id ,descripcion, orden) VALUES (1, 1, 1, 'Primer Grado', 10);
+INSERT INTO anio (id, fk_establecimiento_id, fk_carrera_id ,descripcion, orden) VALUES (2, 1, 1, 'Segundo Grado ', 20);
+INSERT INTO anio (id, fk_establecimiento_id, fk_carrera_id ,descripcion, orden) VALUES (3, 1, 1, 'Tercer Grado', 30);
+INSERT INTO anio (id, fk_establecimiento_id, fk_carrera_id ,descripcion, orden) VALUES (4, 1, 1, 'Cuarto Grado', 40);
+INSERT INTO anio (id, fk_establecimiento_id, fk_carrera_id ,descripcion, orden) VALUES (5, 1, 1, 'Quinto grado', 50);
+INSERT INTO anio (id, fk_establecimiento_id, fk_carrera_id ,descripcion, orden) VALUES (6, 1, 1, 'Sexto Grado', 60);
+INSERT INTO anio (id, fk_establecimiento_id, fk_carrera_id ,descripcion, orden) VALUES (7, 1, 1, 'Séptimo Grado', 70);
 
 -- 
 -- Volcar la base de datos para la tabla division

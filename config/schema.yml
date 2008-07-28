@@ -1320,6 +1320,28 @@ alba:
     fecha: 
       type: timestamp
       required: true
+  carrera:
+    _attributes:
+      idMethod: native
+    id:
+      type: integer
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_establecimiento_id: 
+      type: integer
+      required: true
+      default: 0
+      foreignTable: establecimiento
+      foreignReference: id
+    descripcion: 
+      type: varchar
+      size: 255
+      required: true
+    orden: 
+      type: INTEGER
+      required: false
+      default: 0
   anio: 
     _attributes: 
       idMethod: native
@@ -1334,6 +1356,12 @@ alba:
       default: 0
       foreignTable: establecimiento
       foreignReference: id
+    fk_carrera_id: 
+      type: integer
+      required: true
+      default: 0
+      foreignTable: carrera
+      foreignReference: id 
     descripcion: 
       type: varchar
       size: 255

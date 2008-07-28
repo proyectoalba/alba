@@ -46,5 +46,22 @@ ALTER TABLE `docente` ADD `estado_civil` CHAR( 1 ) NOT NULL AFTER `sexo` ;
 
 ALTER TABLE `docente` ADD `observacion` TEXT NULL AFTER `psicofisico`;
 
+
+--CREATE SEQUENCE "carrera_seq"; // esto es para postgres
+CREATE TABLE "carrera"
+(
+    "id" INTEGER  NOT NULL,
+    "fk_establecimiento_id" INTEGER default 0 NOT NULL,
+    "descripcion" VARCHAR(255)  NOT NULL,
+    "orden" INTEGER default 0,
+    PRIMARY KEY ("id")
+);
+
+ALTER TABLE "carrera" ADD CONSTRAINT "carrera_FK_1" FOREIGN KEY ("fk_establecimiento_id") REFERENCES "establecimiento" ("id");
+
+ALTER TABLE "anio" ADD "fk_carrera_id" INTEGER default 0 NOT NULL;
+ALTER TABLE "anio" ADD CONSTRAINT "anio_FK_2" FOREIGN KEY ("fk_carrera_id") REFERENCES "carrera" ("id")
+
+
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;

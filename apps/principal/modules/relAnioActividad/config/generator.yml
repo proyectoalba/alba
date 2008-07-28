@@ -22,5 +22,5 @@ generator:
         object_actions:
             _edit:      -
             _delete:    -
-        filters: [ fk_anio_id, fk_actividad_id, fk_orientacion_id ]
+        filters: [ _carrera, fk_anio_id, fk_actividad_id, fk_orientacion_id ]
 

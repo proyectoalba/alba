@@ -19,29 +19,22 @@
 
 
 /**
- *  anio actions.
+ * carrera actions.
  *
  * @package    alba
- * @author     José Luis Di Biase <josx@interorganic.com.ar>
- * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
- * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
- * @version    SVN: $Id$
- * @filesource
- * @license GPL
+ * @subpackage carrera
+ * @author     Your name here
+ * @version    SVN: $Id: actions.class.php 2288 2006-10-02 15:22:13Z josx $
  */
-
-class anioActions extends autoanioActions
+class carreraActions extends autocarreraActions
 {
-
     protected function addFiltersCriteria ($c) {
-        parent::addFiltersCriteria($c);
-        $c->add(AnioPeer::FK_ESTABLECIMIENTO_ID,$this->getUser()->getAttribute('fk_establecimiento_id'));
+        $c->add(CarreraPeer::FK_ESTABLECIMIENTO_ID,$this->getUser()->getAttribute('fk_establecimiento_id'));
     }
-    
-    protected function saveAnio ($anio) {
-        $anio->setFkEstablecimientoId($this->getUser()->getAttribute('fk_establecimiento_id'));
-        $anio->save();
-    
+
+    protected function saveCarrera ($carrera) {
+        $carrera->setFkEstablecimientoId($this->getUser()->getAttribute('fk_establecimiento_id'));
+        $carrera->save();
     }
 }
 
