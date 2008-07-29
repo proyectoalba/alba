@@ -101,7 +101,7 @@ class boletinActions extends sfActions
         $divisiones = DivisionPeer::doSelectJoinAnio($criteria);
         $optionsDivision[]  = "";
         foreach($divisiones as $division) {
-            $optionsDivision[$division->getId()] = $division->getAnio()->getDescripcion()." ".$division->getDescripcion();
+            $optionsDivision[$division->getId()] = $division->__toString();
         }
         asort($optionsDivision);
         return $optionsDivision;
