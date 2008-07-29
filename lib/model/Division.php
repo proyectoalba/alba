@@ -13,9 +13,11 @@ require_once 'lib/model/om/BaseDivision.php';
  * long as it does not already exist in the output directory.
  *
  * @package model
- */	
+ */
+
 class Division extends BaseDivision {
-    public function __toString() {
+
+   public function __toString() {
         return $this->getAnio()->getDescripcion()." ".$this->getDescripcion().(($this->getOrientacion())?" ".$this->getOrientacion()->getNombre():"");
    }
 
@@ -33,5 +35,5 @@ class Division extends BaseDivision {
         );
         return $result;
     }
-                 
+
 } // Division
