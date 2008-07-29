@@ -22,10 +22,14 @@
  * carrera actions.
  *
  * @package    alba
- * @subpackage carrera
- * @author     Your name here
- * @version    SVN: $Id: actions.class.php 2288 2006-10-02 15:22:13Z josx $
+ * @author     José Luis Di Biase <josx@interorganic.com.ar>
+ * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
+ * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
+ * @version    SVN: $Id: actions.class.php 5520 2008-04-09 19:35:08Z josx $
+ * @filesource
+ * @license GPL
  */
+
 class carreraActions extends autocarreraActions
 {
     protected function addFiltersCriteria ($c) {
