@@ -1,14 +1,26 @@
 <?php use_helper("I18N")?>
 <script>
      function linkTo(flag) {
-        
         var objd = document.getElementById('division_id');
         var objp = document.getElementById('periodo_id');
-        var url  = "<?php echo url_for('boletin/', false);?>/listConcepto/division_id/"+objd.options[objd.selectedIndex].value;
+        var objc = document.getElementById('carrera_id');
+
+        var url  = "<?php echo url_for('boletin/', false);?>/listConcepto/";
+        if(flag == 2) {
+            url = url + "carrera_id/"+objc.options[objc.selectedIndex].value;
+        }
+
+        if(flag == 0) {
+            url = url + "division_id/"+objd.options[objd.selectedIndex].value;
+            url = url + "/carrera_id/"+objc.options[objc.selectedIndex].value;
+        }
+
         if(flag == 1) {
+            url = url + "division_id/"+objd.options[objd.selectedIndex].value;
+            url = url + "/carrera_id/"+objc.options[objc.selectedIndex].value;
             url = url + "/periodo_id/"+objp.options[objp.selectedIndex].value;
         }
-        
+
         var obja = document.getElementById('concepto_id');
         url = url + "/concepto_id/"+obja.options[obja.selectedIndex].value;
         location.href = url;
@@ -21,6 +33,10 @@
 <?php echo form_tag('boletin/grabarNotasConcepto', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
 
 <fieldset id="sf_fieldset_none" class="">
+    <div class="form-row">
+        <?php echo label_for('carrera', __('Carrera:')) ?>
+        <?php echo select_tag('carrera_id', options_for_select($optionsCarrera, $carrera_id), "onChange='linkTo(2)'") ?>
+    </div>
     <div class="form-row">
         <?php echo label_for('division', __('Division:')) ?>
         <?php echo select_tag('division_id', options_for_select($optionsDivision, $division_id), "onChange='linkTo(0)'") ?>

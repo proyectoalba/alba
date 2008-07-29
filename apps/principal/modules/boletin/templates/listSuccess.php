@@ -3,12 +3,24 @@
 <script>
      function linkTo(flag) {
         var objd = document.getElementById('division_id');
-        var url  = "<?php echo url_for('boletin/', false);?>/list/division_id/"+objd.options[objd.selectedIndex].value;
-        if(flag == 1){
-            var objp = document.getElementById('periodo_id');
+        var objp = document.getElementById('periodo_id');
+        var objc = document.getElementById('carrera_id');
+        var obja = document.getElementById('actividad_id');
+        var url  = "<?php echo url_for('boletin/', false);?>/list/";
+
+        if(flag == 2) {
+            url = url + "carrera_id/"+objc.options[objc.selectedIndex].value;
+        }
+
+        if(flag == 0) {
+            url = url + "division_id/"+objd.options[objd.selectedIndex].value;
+            url = url + "/carrera_id/"+objc.options[objc.selectedIndex].value;
+        }
+
+        if(flag == 1) {
+            url = url + "division_id/"+objd.options[objd.selectedIndex].value;
+            url = url + "/carrera_id/"+objc.options[objc.selectedIndex].value;
             url = url + "/periodo_id/"+objp.options[objp.selectedIndex].value;
-        
-            var obja = document.getElementById('actividad_id');
             url = url + "/actividad_id/"+obja.options[obja.selectedIndex].value;
         }
 
@@ -22,6 +34,10 @@
 <?php echo form_tag('boletin/grabarNotas', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
 
 <fieldset id="sf_fieldset_none" class="">
+    <div class="form-row">
+        <?php echo label_for('carrera', __('Carrera:')) ?>
+        <?php echo select_tag('carrera_id', options_for_select($optionsCarrera, $carrera_id), "onChange='linkTo(2)'") ?>
+    </div>
     <div class="form-row">
         <?php echo label_for('division', __('Divisi&oacute;n:')) ?>
         <?php echo select_tag('division_id', options_for_select($optionsDivision, $division_id), "onChange='linkTo(0)'") ?>

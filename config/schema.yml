@@ -1215,7 +1215,7 @@ alba:
       foreignReference: id
     observacion: 
       type: blob
-      required: true
+      required: false
     fecha: 
       type: timestamp
       required: true
@@ -1274,7 +1274,7 @@ alba:
       foreignReference: id
     observacion: 
       type: blob
-      required: true
+      required: false
     fecha: 
       type: timestamp
       required: true

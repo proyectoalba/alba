@@ -92,12 +92,26 @@ class boletinActions extends sfActions
         return $this->redirect("boletin?action=list&division_id=$division_id&actividad_id=$actividad_id&periodo_id=$periodo_id");
     }   
 
+    protected function getCarreras($establecimiento_id) {
+        $optionsCarrera = array();
+        $criteria = new Criteria();
+        $criteria->add(CarreraPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
+        $carreras = CarreraPeer::doSelect($criteria);
+        $optionsCarrera[]  = "";
+        foreach($carreras as $carrera) {
+            $optionsCarrera[$carrera->getId()] = $carrera->__toString();
+        }
+        asort($optionsCarrera);
+        return $optionsCarrera;
+    }
 
-
-    protected function getDivisiones($establecimiento_id) {
+    protected function getDivisiones($establecimiento_id, $carrera_id = '') {
         $optionsDivision = array();
         $criteria = new Criteria();
         $criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
+        if($carrera_id != '') {
+            $criteria->add(AnioPeer::FK_CARRERA_ID, $carrera_id);
+        }
         $divisiones = DivisionPeer::doSelectJoinAnio($criteria);
         $optionsDivision[]  = "";
         foreach($divisiones as $division) {
@@ -139,25 +153,28 @@ class boletinActions extends sfActions
         // inicializando variables
         $optionsActividad = array();
         $optionsDivision = array();
+        $optionsCarrera = array();
         $aAlumno = array();    
         $division_id = "";
         $actividad_id = "";
         $periodo_id = "";
+        $carrera_id = "";
         $aPeriodo = array();
         $aPosiblesNotas = array();
         $optionsPeriodo = array();
         $aNotaAlumno = array();
         $sizeNota = 0;
-    
 
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
-        
-        // llenando el combo de division segun establecimiento
-        $optionsDivision = $this->getDivisiones($establecimiento_id);
 
         // tomando los datos del formulario
         $division_id = $this->getRequestParameter('division_id');
         $periodo_id = $this->getRequestParameter('periodo_id');
+        $carrera_id = $this->getRequestParameter('carrera_id');
+
+        // llenando el combo de division segun establecimiento
+        $optionsDivision = $this->getDivisiones($establecimiento_id, $carrera_id);
+        $optionsCarrera = $this->getCarreras($establecimiento_id);
 
         if($division_id) {
             $actividad_id = $this->getRequestParameter('actividad_id');
@@ -218,6 +235,8 @@ class boletinActions extends sfActions
         $this->aAlumno = $aAlumno;
         $this->division_id = $division_id;
         $this->actividad_id = $actividad_id;
+        $this->carrera_id = $carrera_id;
+        $this->optionsCarrera = $optionsCarrera;
         $this->periodo_id = $periodo_id;
         $this->aPeriodo = $aPeriodo;
         $this->aPosiblesNotas = $aPosiblesNotas;
@@ -242,10 +261,12 @@ class boletinActions extends sfActions
         // inicializando variables
         $optionsConcepto = array();
         $optionsDivision = array();
+        $optionsCarrera = array();
         $aAlumno = array();    
         $division_id = "";
         $concepto_id = "";
         $periodo_id = "";
+        $carrera_id = "";
         $aPeriodo = array();
         $aPosiblesNotas = array();
         $optionsPeriodo = array();
@@ -255,14 +276,17 @@ class boletinActions extends sfActions
 
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
         
-        // llenando el combo de division segun establecimiento
-        $optionsDivision = $this->getDivisiones($establecimiento_id);
-
         // tomando los datos del formulario
         $division_id = $this->getRequestParameter('division_id');
         $periodo_id = $this->getRequestParameter('periodo_id');
         $concepto_id = $this->getRequestParameter('concepto_id');
-             
+        $carrera_id = $this->getRequestParameter('carrera_id');
+
+        // llenando el combo de division segun establecimiento
+        $optionsDivision = $this->getDivisiones($establecimiento_id, $carrera_id);
+
+        $optionsCarrera = $this->getCarreras($establecimiento_id);
+
         $optionsConcepto [] = "";
         $optionsConcepto = array_merge($optionsConcepto, $this->getConcepto($establecimiento_id));
 
@@ -297,8 +321,10 @@ class boletinActions extends sfActions
                         if($boletinConceptual->getFkEscalanotaId()) {
                             $aNotaAlumno[$alumno->getId()][$periodo->getId()] = $boletinConceptual->getEscalanota()->getNombre();
                         }
-                        if($boletinConceptual->getObservacion()->getContents()) {
-                            $aNotaAlumnoObs[$alumno->getId()][$periodo->getId()] = $boletinConceptual->getObservacion()->getContents();
+                        if($boletinConceptual->getObservacion()) {
+                            if($boletinConceptual->getObservacion()->getContents()) {
+                                $aNotaAlumnoObs[$alumno->getId()][$periodo->getId()] = $boletinConceptual->getObservacion()->getContents();
+                            }
                         }
                     }
                 }
@@ -323,6 +349,8 @@ class boletinActions extends sfActions
         $this->division_id = $division_id;
         $this->concepto_id = $concepto_id;
         $this->periodo_id = $periodo_id;
+        $this->carrera_id = $carrera_id;
+        $this->optionsCarrera = $optionsCarrera;
         $this->aPeriodo = $aPeriodo;
         $this->aPosiblesNotas = $aPosiblesNotas;
         $this->optionsPeriodo = $optionsPeriodo;
@@ -449,6 +477,7 @@ class boletinActions extends sfActions
         $division_id = $this->getRequestParameter('division_id');
         $concepto_id = $this->getRequestParameter('concepto_id');
         $periodo_id = $this->getRequestParameter('periodo_id');
+        $carrera_id = $this->getRequestParameter('carrera_id');
         $aNota = $this->getRequestParameter('nota');
         $aNotaObs = $this->getRequestParameter('notaObs');
 
@@ -502,7 +531,7 @@ class boletinActions extends sfActions
                  throw $e;  
             }
         }
-        return $this->redirect("boletin?action=listConcepto&division_id=$division_id&concepto_id=$concepto_id&periodo_id=$periodo_id");
+        return $this->redirect("boletin?action=listConcepto&division_id=$division_id&concepto_id=$concepto_id&periodo_id=$periodo_id&carrera_id=$carrera_id");
     }   
 
 
