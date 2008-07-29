@@ -70,11 +70,13 @@ class asistenciaActions extends sfActions
         $cuenta_id = -1;
         $vista_id = 1;         // default para vista DIARIO
         $division_id =0;
+        $carrera_id = 0;
         $datos = array();
         $idxAlumno= array(); 
         $aFeriado = array();
         $aIntervalo = array();               
         $optionsDivision = array();
+        $optionsCarrera = array();
         $aTemp = array();
         $aFechaTemp = array();
         $aTipoasistencias = array();
@@ -122,6 +124,10 @@ class asistenciaActions extends sfActions
             $cuenta_id = $a->getFkCuentaId();
         }
 
+        if($this->getRequestParameter('carrera_id')) {
+            $carrera_id = $this->getRequestParameter('carrera_id');
+        }
+ 
         if ($this->getRequestParameter('vistas')) {
             $vista_id  = $this->getRequestParameter('vistas');              
         }
@@ -131,10 +137,15 @@ class asistenciaActions extends sfActions
         $criteria = new Criteria();
         $criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
         
-        if ($this->getRequestParameter('alumno_id')){
+        if ($this->getRequestParameter('alumno_id')) {
             $criteria->add(RelAlumnoDivisionPeer::FK_ALUMNO_ID, $alumno_id);
             $criteria->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID );
         }
+
+        if($this->getRequestParameter('carrera_id')) {
+            $criteria->add(AnioPeer::FK_CARRERA_ID, $carrera_id);
+        }
+
 
         $criteria->addAscendingOrderByColumn(AnioPeer::DESCRIPCION);
         $criteria->addAscendingOrderByColumn(DivisionPeer::ORDEN);     
@@ -156,6 +167,14 @@ class asistenciaActions extends sfActions
                 $flag_error = 1;
             }
         }
+
+        $cCarrera = new Criteria();
+        $cCarrera->add(CarreraPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
+        $carreras = CarreraPeer::doSelect($cCarrera);
+        foreach($carreras as $carrera) {
+            $optionsCarrera[$carrera->getId()] = $carrera->getDescripcion();
+        }
+
 
         if(!checkdate($m,$d,$y)) {
             // Ver si se puede hacer desde el validate
@@ -312,7 +331,8 @@ class asistenciaActions extends sfActions
         $this->aTipoasistencias = $aTipoasistencias;
         $this->aAlumnos = $idxAlumno;
         $this->aDatos = $datos;
-        $this->optionsDivision = $optionsDivision;    
+        $this->optionsDivision = $optionsDivision;
+        $this->optionsCarrera = $optionsCarrera;
         $this->aVistas = repeticiones();
         $this->aMeses = Meses();
         $this->aIntervalo = $aIntervalo;
@@ -322,6 +342,7 @@ class asistenciaActions extends sfActions
         $this->cuenta_id = $cuenta_id;
         $this->vista_id = $vista_id;
         $this->division_id = $division_id;
+        $this->carrera_id = $carrera_id;
         $this->anio_desde = $anio_desde;
         $this->anio_hasta = $anio_hasta;
   }

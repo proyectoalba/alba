@@ -33,6 +33,15 @@
 <?php use_helper('DateForm');
       use_helper("I18N");
 ?>
+<script>
+    function linkTo() {
+        var objd = document.getElementById('carrera_id');
+        var url  = "<?php echo url_for('asistencia/', false);?>/index/carrera_id/"+objd.options[objd.selectedIndex].value;
+        location.href = url;
+    }
+</script>
+
+
 <div id="sf_admin_container">
 <h1>Asistencias</h1>
     <?php if ($sf_request->hasErrors()): ?>
@@ -48,13 +57,16 @@
 
     <?php echo form_tag('asistencia/index', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
     <fieldset id="sf_fieldset_none" class="">
+
     <div class="form-row">
         <table cellspacing="1">
             <tr>
                 <td>
+                    <?php echo label_for('carrera_id', __('Carrera:'), 'class="required" '); ?>
                     <?php echo label_for('division_id', __('A&ntilde;o/Divisi&oacute;n:'), 'class="required" '); ?>
                 </td>
                 <td>
+                    <?php echo select_tag('carrera_id', options_for_select($optionsCarrera, $carrera_id, 'include_custom=--Todas--'),array('onChange' => 'javascript:linkTo()')); ?>
                     <?php echo select_tag('division_id', options_for_select($optionsDivision, $division_id)); ?>
                 </td>
                 <td style='padding-left:50px'>
@@ -74,14 +86,15 @@
                     <?php echo select_tag('vistas', options_for_select($aVistas, $vista_id)); ?>
                 </td>
             </tr>
+
         <table>      
         <ul class="sf_admin_actions">
             <li>
             <?php echo submit_tag(__('Mostrar'), array ('name' => 'Mostrar','class' => 'sf_admin_action_save')) ?>
             </li>
         </ul>
-      </div>      
-     </fieldset>
+      </div>
+      </fieldset>
         <?php if($alumno_id >= 0) {?>
             <?php echo input_hidden_tag('alumno_id', $alumno_id) ?>
         <?php }?>    
