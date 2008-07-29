@@ -153,7 +153,7 @@ class asistenciaActions extends sfActions
         $divisiones = DivisionPeer::doSelectJoinAnio($criteria);        // divisiones a mostrar
 
         foreach ($divisiones as $division)
-             $optionsDivision[$division->getId()] = $division->getAnio()->getDescripcion()." ".$division->getDescripcion();        
+            $optionsDivision[$division->getId()] = $division->__toString();
 
         if ($this->getRequestParameter('division_id')) {
             $division_id = $this->getRequestParameter('division_id'); 
