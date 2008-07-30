@@ -76,6 +76,14 @@ class relDivisionActividadDocenteActions extends autorelDivisionActividadDocente
     );
   }
 
+    public function executeCambiarDivision() {
+        $this->fk_division_id = $this->getRequestParameter('rel_division_actividad_docente[fk_division_id]');
+        $division = DivisionPeer::retrieveByPk($this->fk_division_id);
+        $c = new Criteria();
+        $c->add(RelAnioActividadPeer::FK_ANIO_ID, $division->getFkAnioId());
+        $c->addJoin(ActividadPeer::ID, RelAnioActividadPeer::FK_ACTIVIDAD_ID);
+        $this->actividades = ActividadPeer::doSelect($c);
+  }
 
   public function handleErrorEdit()
   {
@@ -107,7 +115,7 @@ class relDivisionActividadDocenteActions extends autorelDivisionActividadDocente
             $this->date_component = "";
         }
 
-	$this->view = $this->getRequestParameter('view','verPorDia');
+        $this->view = $this->getRequestParameter('view','verPorDia');
 //         if($this->getRequestParameter('view')) {
 //             switch($this->getRequestParameter('view')) {
 //                 case 'week': $this->view = 'verPorSemana'; break;

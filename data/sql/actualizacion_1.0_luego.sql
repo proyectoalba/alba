@@ -66,5 +66,7 @@ ALTER TABLE "anio" ADD CONSTRAINT "anio_FK_2" FOREIGN KEY ("fk_carrera_id") REFE
 ALTER TABLE "boletin_conceptual" ALTER observacion DROP NOT NULL;
 ALTER TABLE "boletin_actividades" ALTER observacion DROP NOT NULL;
 
+ALTER TABLE evento ALTER COLUMN recurrencia_fin TYPE VARCHAR (32);
+
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;

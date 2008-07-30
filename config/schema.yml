@@ -1620,7 +1620,7 @@ alba:
       default: 0
     recurrencia_fin: 
       type: VARCHAR
-      size: 16
+      size: 32
       required: false
     recurrencia_dias: 
       type: INTEGER
