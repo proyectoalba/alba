@@ -121,7 +121,7 @@ VALUES (1, 'Establecimiento Tu nombre', 'Establecimiento Tu descripcion',1,1,1);
 -- 
 
 INSERT INTO usuario (id, usuario, clave, correo_publico, email, activo, fecha_creado, fecha_actualizado, seguridad_pregunta, seguridad_respuesta, fk_establecimiento_id, borrado) 
-VALUES (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', true, 'admin@localhost', true, '2006-12-03 00:00:00', '2006-12-03 00:00:00', 'usuario por defecto', 'adminsitrador', 1, false);
+VALUES (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', true, 'admin@midominio.com', true, '2006-12-03 00:00:00', '2006-12-03 00:00:00', 'usuario por defecto', 'adminsitrador', 1, false);
 
 -- 
 -- Volcar la base de datos para la tabla 'modulo'

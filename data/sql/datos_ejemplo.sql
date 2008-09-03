@@ -281,9 +281,9 @@ INSERT INTO rol (id, nombre, descripcion, activo) VALUES (2, 'Secretaría', 'Rol
 -- Volcar la base de datos para la tabla usuario
 -- 
 
-INSERT INTO usuario (id, usuario, clave, correo_publico, email, activo, fecha_creado, fecha_actualizado, seguridad_pregunta, seguridad_respuesta, fk_establecimiento_id, borrado) VALUES (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', true, 'admin@proyectoalba.com.ar', true, '2006-12-03 00:00:00', '2006-12-03 00:00:00', 'usuario por defecto', 'adminsitrador', 1, false);
+INSERT INTO usuario (id, usuario, clave, correo_publico, email, activo, fecha_creado, fecha_actualizado, seguridad_pregunta, seguridad_respuesta, fk_establecimiento_id, borrado) VALUES (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', true, 'admin@midominio.com', true, '2006-12-03 00:00:00', '2006-12-03 00:00:00', 'usuario por defecto', 'adminsitrador', 1, false);
 INSERT INTO usuario (id, usuario, clave, correo_publico, email, activo, fecha_creado, fecha_actualizado, seguridad_pregunta, seguridad_respuesta, fk_establecimiento_id, borrado) VALUES (2, 'Secretaria', 'fd09accffacf03d7393c2a23a9601b43', true, 'sec@primarias.com', true, '2007-01-03 00:00:00', '2007-01-03 17:56:31', 'Estado civil.', 'Casada', 1, false);
-INSERT INTO usuario (id, usuario, clave, correo_publico, email, activo, fecha_creado, fecha_actualizado, seguridad_pregunta, seguridad_respuesta, fk_establecimiento_id, borrado) VALUES (3, 'Directora ', '3d591289c636292b8bf34ed929e666ef', true, 'directora@escuela.org', true, '2007-01-29 00:00:00', '2007-01-29 14:29:13', 'Cómo se llama mi abuela? ', 'margarita', 1, false);
+INSERT INTO usuario (id, usuario, clave, correo_publico, email, activo, fecha_creado, fecha_actualizado, seguridad_pregunta, seguridad_respuesta, fk_establecimiento_id, borrado) VALUES (3, 'Directora ', '3d591289c636292b8bf34ed929e666ef', true, 'directora@miescuela.net', true, '2007-01-29 00:00:00', '2007-01-29 14:29:13', 'Cómo se llama mi abuela? ', 'margarita', 1, false);
 INSERT INTO usuario (id, usuario, clave, correo_publico, email, activo, fecha_creado, fecha_actualizado, seguridad_pregunta, seguridad_respuesta, fk_establecimiento_id, borrado) VALUES (4, 'Carla Herrera', 'c893bad68927b457dbed39460e6afd62', true, 'carla.herrera@gmail.com', true, '2007-02-19 00:00:00', '2007-02-19 11:26:54', 'Cómo se llama mi novio?', 'Martiniano', 1, false);
 
 
