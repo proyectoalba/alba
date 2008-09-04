@@ -35,8 +35,7 @@ names:
         validators: caracteresMaximos128
 
     organizacion{cuit}:
-        required:   Yes
-        required_msg: El campo CUIT  es obligatorio
+        required:   No
         validators: caracteresMaximos13, validaCuit
 
     organizacion{ciudad}:
