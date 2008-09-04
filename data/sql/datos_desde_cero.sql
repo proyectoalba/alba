@@ -105,7 +105,7 @@ VALUES (1 , 'Distrito de prueba', '-', '-', '-');
 -- 
 
 INSERT INTO organizacion (id, nombre, descripcion, razon_social, cuit, direccion, ciudad, codigo_postal, fk_provincia_id, fk_tipoiva_id, telefono) 
-VALUES (1, 'Organización Tu Nombre', 'Organización Tu Descripción', 'Organización Tu Razón Social', '20123456789', 'Tu Dirección', 'Tu ciudad', 'Tu CP', 1, 1, '');
+VALUES (1, 'Organización Tu Nombre', 'Organización Tu Descripción', 'Organización Tu Razón Social', '', 'Tu Dirección', 'Tu ciudad', 'Tu CP', 1, 1, '');
 
 
 -- 
