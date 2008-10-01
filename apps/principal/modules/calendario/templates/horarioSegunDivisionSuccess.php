@@ -1,4 +1,4 @@
-<h1>Horario para la Divsión: <?php echo $division->getAnio()->getDescripcion()." ".$division->getDescripcion()?></h1>
+<h1>Horario para la División: <?php echo $division->getAnio()->getDescripcion()." ".$division->getDescripcion()?></h1>
 <?php
     include_component('cal', $view, array(
                         'archivo' => $archivo,
