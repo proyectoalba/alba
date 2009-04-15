@@ -353,7 +353,6 @@ INSERT INTO rel_rol_permiso (id, fk_rol_id, fk_permiso_id) VALUES (50, 2, 63);
 -- Volcar la base de datos para la tabla rel_usuario_permiso
 -- 
 
---Usuario 1
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (155, 1, 47);
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (156, 1, 6);
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (157, 1, 7);
@@ -412,7 +411,6 @@ INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (216, 
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (217, 1, 62);
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (218, 1, 63);
 
---Usuario 2
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (52, 2, 1);
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (53, 2, 2);
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (54, 2, 5);
@@ -469,10 +467,8 @@ INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (215, 
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (219, 2, 62);
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (220, 2, 63);
 
---Usuario 3
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (213, 3, 60);
 
---Usuario 4
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (208, 4, 47);
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (209, 4, 7);
 INSERT INTO rel_usuario_permiso (id, fk_usuario_id, fk_permiso_id) VALUES (210, 4, 55);
@@ -602,9 +598,9 @@ INSERT INTO alumno (id, lugar_nacimiento, fk_pais_id, nombre, apellido, fecha_na
 INSERT INTO alumno (id, lugar_nacimiento, fk_pais_id, nombre, apellido, fecha_nacimiento, nro_documento, direccion, ciudad, codigo_postal, fk_provincia_id, telefono, sexo, email, certificado_medico, distancia_escuela, hermanos_escuela, hijo_maestro_escuela, fk_establecimiento_id, fk_cuenta_id, fk_tipodocumento_id, fk_conceptobaja_id, activo) VALUES (62, 'Argentina', 1, 'Soledad', 'Pinedo', '1999-04-15 00:00:00', '46248795', 'Recuero 1250', 'CABA', '1225', 1, '4335-6564', 'F', '', false, 5, true, false, 1, 32, 1, null, true);
 INSERT INTO alumno (id, lugar_nacimiento, fk_pais_id, nombre, apellido, fecha_nacimiento, nro_documento, direccion, ciudad, codigo_postal, fk_provincia_id, telefono, sexo, email, certificado_medico, distancia_escuela, hermanos_escuela, hijo_maestro_escuela, fk_establecimiento_id, fk_cuenta_id, fk_tipodocumento_id, fk_conceptobaja_id, activo) VALUES (63, 'Argentina', 1, 'Diego', 'Pinedo', '1998-03-30 00:00:00', '49254985', 'Recuero 1250', 'CABA', '1225', 1, '4335-6564', 'M', '', false, 5, true, false, 1, 32, 1, null, true);
 
----
---- Volcar la base de datos para la tabla rol_responsable'
----
+--
+-- Volcar la base de datos para la tabla rol_responsable'
+--
 
 INSERT INTO rol_responsable (id, nombre, descripcion, activo) VALUES (1, 'Padre', 'Padre del alumno',true);
 INSERT INTO rol_responsable (id, nombre, descripcion, activo) VALUES (2, 'Madre', 'Madre del alumno',true);
