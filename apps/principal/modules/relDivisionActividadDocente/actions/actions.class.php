@@ -33,7 +33,7 @@
 class relDivisionActividadDocenteActions extends autorelDivisionActividadDocenteActions
 {
     public function executeEdit() {
-        $evento_generico = new miEvento();
+        $evento_generico = new miEvento(new sfEventDispatcher());
 
         $this->rel_division_actividad_docente = $this->getRelDivisionActividadDocenteOrCreate();
         $this->evento = $evento_generico->getEventoOrCreate($this->rel_division_actividad_docente->getFkEventoId());
@@ -52,7 +52,7 @@ class relDivisionActividadDocenteActions extends autorelDivisionActividadDocente
             $this->updateRelDivisionActividadDocenteFromRequest($this->evento->getId());
             $this->saveRelDivisionActividadDocente($this->rel_division_actividad_docente);
 
-            $this->setFlash('notice', 'Your modifications have been saved');
+            $this->getUser()->setFlash('notice', 'Your modifications have been saved');
             if ($this->getRequestParameter('save_and_add')) {
                 return $this->redirect('relDivisionActividadDocente/create');
             } else if ($this->getRequestParameter('save_and_list')) {
@@ -98,7 +98,7 @@ class relDivisionActividadDocenteActions extends autorelDivisionActividadDocente
 
     public function executeExportToIcal() {
         $this->executeList();
-        include("miExportadorIcal.class.php");
+        include(sfConfig::get('sf_app_lib_dir')."/miExportadorIcal.class.php");
         $e  = new miExportadorIcal();
         $e->exportar($this->pager->getResults());
     }
@@ -106,9 +106,10 @@ class relDivisionActividadDocenteActions extends autorelDivisionActividadDocente
 
     public function executeVerCalendario() {
         $this->executeList();
-        include("miExportadorIcal.class.php");
+        include(sfConfig::get('sf_app_lib_dir')."/miExportadorIcal.class.php");
+
         $e  = new miExportadorIcal();
-        $this->archivo = sfConfig::get('sf_root_cache_dir')."/".$e->exportar($this->pager->getResults(), 0);
+        $this->archivo = sfConfig::get('sf_cache_dir')."/".$e->exportar($this->pager->getResults(), 0);
         if($this->getRequestParameter('date')) {
             $this->date_component = $this->getRequestParameter('date');
         } else {

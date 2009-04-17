@@ -38,14 +38,14 @@ class alumnoActions extends autoalumnoActions
   * Ver las Asistencias del alumno
   */
   function executeAsistencia() {
-    $this->redirect( 'asistencia?action=index&vistas=2&alumno_id='.$this->getRequestParameter('id'));
+    $this->redirect( 'asistencia/index?vistas=2&alumno_id='.$this->getRequestParameter('id'));
   }
 
   /**
   * Ver el Legajo del alumno
   */
   function executeLegajo() {
-    $this->redirect( 'legajopedagogico?action=verLegajo&aid='.$this->getRequestParameter('id'));
+    $this->redirect( 'legajopedagogico/verLegajo?aid='.$this->getRequestParameter('id'));
   }
 
   /**
@@ -122,7 +122,7 @@ class alumnoActions extends autoalumnoActions
 
       $this->saveAlumno($this->alumno);
 
-      $this->setFlash('notice', 'Your modifications have been saved');
+      $this->getUser()->setFlash('notice', 'Your modifications have been saved');
 
       if ($this->getRequestParameter('save_and_add'))
       {

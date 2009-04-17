@@ -103,14 +103,14 @@ class ciclolectivoActions extends autociclolectivoActions
             if(isset($ciclolectivo['descripcion'])) $this->ciclolectivo->setDescripcion($ciclolectivo['descripcion']);
             if(isset($ciclolectivo['fecha_fin'])) { 
                 if($ciclolectivo['fecha_fin']) { 
-                    list($d, $m, $y) = sfI18N::getDateForCulture($ciclolectivo['fecha_fin'], $this->getUser()->getCulture());
+                    list($d, $m, $y) =  sfContext::getInstance()->getI18N()->getDateForCulture($ciclolectivo['fecha_fin'], $this->getUser()->getCulture());
                     $this->ciclolectivo->setFechaFin("$y-$m-$d");
                 }
             }    
 
             if(isset($ciclolectivo['fecha_inicio'])) { 
                 if($ciclolectivo['fecha_inicio']) { 
-                    list($d, $m, $y) = sfI18N::getDateForCulture($ciclolectivo['fecha_inicio'], $this->getUser()->getCulture());
+                    list($d, $m, $y) = sfContext::getInstance()->getI18N()->getDateForCulture($ciclolectivo['fecha_inicio'], $this->getUser()->getCulture());
                     $this->ciclolectivo->setFechaInicio("$y-$m-$d");
                 }
             }
@@ -162,14 +162,14 @@ class ciclolectivoActions extends autociclolectivoActions
                     
                     if(isset($periodo['fecha_inicio'])) { 
                         if($periodo['fecha_inicio']) { 
-                            list($d, $m, $y) = sfI18N::getDateForCulture($periodo['fecha_inicio'], $this->getUser()->getCulture());
+                            list($d, $m, $y) = sfContext::getInstance()->getI18N()->getDateForCulture($periodo['fecha_inicio'], $this->getUser()->getCulture());
                             $this->periodo->setFechaInicio("$y-$m-$d");
                         }
                     }    
                 
                     if(isset($periodo['fecha_fin'])) { 
                         if($periodo['fecha_fin']) { 
-                            list($d, $m, $y) = sfI18N::getDateForCulture($periodo['fecha_fin'], $this->getUser()->getCulture());
+                            list($d, $m, $y) = sfContext::getInstance()->getI18N()->getDateForCulture($periodo['fecha_fin'], $this->getUser()->getCulture());
                             $this->periodo->setFechaFin("$y-$m-$d");
                         }
                     }    
@@ -208,7 +208,7 @@ class ciclolectivoActions extends autociclolectivoActions
 		//los demas ciclo del establecimiento tiene que quedar como ACUAL = false
 
 		// $con = sfContext::getInstance()->getDatabaseConnection('propel');
-		new sfUser(); // nasty hack to load propel
+//		new sfUser(); // nasty hack to load propel
 
 		$con = Propel::getConnection();
 		try {
@@ -257,7 +257,7 @@ class ciclolectivoActions extends autociclolectivoActions
         if ($ciclolectivo) {
             $this->getUser()->setAttribute('fk_ciclolectivo_id',$id);
             $this->getUser()->setAttribute('ciclolectivo_descripcion',$ciclolectivo->getDescripcion());
-//            $this->setFlash('notice','Se ha cambiado correctamente de ciclo lectivo.');
+//            $this->getUser()->setFlash('notice','Se ha cambiado correctamente de ciclo lectivo.');
         }
         
         return $this->redirect($this->getRequestParameter('referer', '@homepage'));
@@ -326,7 +326,8 @@ class ciclolectivoActions extends autociclolectivoActions
       {
         try
         {
-            list($d, $m, $y) = sfI18N::getDateForCulture($ciclolectivo['fecha_inicio'], $this->getUser()->getCulture());
+            list($d, $m, $y) = sfContext::getInstance()->getI18N()->getDateForCulture($ciclolectivo['fecha_inicio'], $this->getUser()->getCulture());
+
             $this->ciclolectivo->setFechaInicio("$y-$m-$d");
         }
         catch (sfException $e)
@@ -345,7 +346,7 @@ class ciclolectivoActions extends autociclolectivoActions
       {
         try
         {
-            list($d, $m, $y) = sfI18N::getDateForCulture($ciclolectivo['fecha_fin'], $this->getUser()->getCulture());
+            list($d, $m, $y) = sfContext::getInstance()->getI18N()->getDateForCulture($ciclolectivo['fecha_fin'], $this->getUser()->getCulture());
             $this->ciclolectivo->setFechaFin("$y-$m-$d");
         }
         catch (sfException $e)

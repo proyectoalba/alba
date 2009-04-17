@@ -128,7 +128,7 @@ class DocenteHorarioActions extends sfActions
     $this->docente = DocentePeer::retrieveByPk($this->getRequestParameter('idDocente'));
     $this->docenteHorario = $this->getDocenteHorarioOrCreate();
 
-    $evento_generico = new miEvento();
+    $evento_generico = new miEvento(new sfEventDispatcher());
     $this->evento = $evento_generico->getEventoOrCreate($this->docenteHorario->getFkEventoId());
 
     if ($this->getRequest()->getMethod() == sfRequest::POST)
@@ -140,7 +140,7 @@ class DocenteHorarioActions extends sfActions
  
 
         $this->saveDocenteHorario($this->docenteHorario);
-        $this->setFlash('notice', 'Your modifications have been saved');
+        $this->getUser()->setFlash('notice', 'Your modifications have been saved');
 
         if ($this->getRequestParameter('save_and_add'))
       {
@@ -197,7 +197,7 @@ class DocenteHorarioActions extends sfActions
         $this->preExecute();
         $this->docenteHorario = $this->getDocenteHorarioOrCreate();
         $this->docente = DocentePeer::retrieveByPk($this->getRequestParameter('docente_horario[fk_docente_id]'));
-        $evento_generico = new miEvento();
+        $evento_generico = new miEvento(new sfEventDispatcher());
         $this->evento = $evento_generico->getEventoOrCreate($this->docenteHorario->getFkEventoId());
         $this->evento = $evento_generico->updateEventoFromRequest($this->evento, $this->getRequestParameter('evento'), $this->getUser()->getCulture());
         $this->updateDocenteHorarioFromRequest($this->evento->getId());

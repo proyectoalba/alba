@@ -36,7 +36,7 @@ class locacionActions extends autolocacionActions
     public function saveLocacion($locacion) {
 
         $id = $locacion->getId();
-        new sfUser(); // nasty hack to load propel
+        //new sfUser(); // nasty hack to load propel
         $con = Propel::getConnection();
         try {
 
@@ -78,7 +78,7 @@ class locacionActions extends autolocacionActions
 
     public function executeVerEstablecimiento() {
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
-        $this->redirect( 'establecimiento?action=editLocacion&id='.$establecimiento_id);
+        $this->redirect( 'establecimiento/editLocacion?id='.$establecimiento_id);
     }
 
     public function executeCambiarPais() {

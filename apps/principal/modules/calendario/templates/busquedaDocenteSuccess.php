@@ -41,7 +41,7 @@
     <td><?php echo $docente->getApellido()." ".$docente->getNombre(); ?></td>
     <td>
     <ul class="sf_admin_td_actions">
-    <li><?php echo link_to(image_tag('small/horario.png', array('alt' => __('verHorario'), 'title' => __('verHorario'))), 'calendario?action=horarioSegunDocente&id='.$docente->getId()); ?></li>
+    <li><?php echo link_to(image_tag('small/horario.png', array('alt' => __('verHorario'), 'title' => __('verHorario'))), 'calendario/horarioSegunDocente?id='.$docente->getId()); ?></li>
     </ul>
     </td>
   </tr>

@@ -25,7 +25,7 @@
 
         </div>
         <?php echo drop_receiving_element('division_'.$indice, array(
-        'url'        => 'relAlumnoDivision?action=asignarAlumno&division_id='.$indice,
+        'url'        => 'relAlumnoDivision/asignarAlumno?division_id='.$indice,
         'accept'     => 'alumno',
         'script'     => true,
         'update'     => 'division_'.$indice,

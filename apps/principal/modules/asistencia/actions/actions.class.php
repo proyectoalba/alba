@@ -362,7 +362,7 @@ class asistenciaActions extends sfActions
         $d = $this->getRequestParameter('dia');
         $m = $this->getRequestParameter('mes');
         $y = $this->getRequestParameter('ano');
-        $destino = "asistencia?division_id=$division_id&dia=$d&mes=$m&ano=$y&vistas=$vista_id";
+        $destino = "asistencia/index?division_id=$division_id&dia=$d&mes=$m&ano=$y&vistas=$vista_id";
         if ($this->getRequestParameter('alumno_id')) {
             $alumno_id = $this->getRequestParameter('alumno_id');   
             $destino .= "&alumno_id=$alumno_id";

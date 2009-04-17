@@ -762,7 +762,7 @@ alba:
       type: VARCHAR
       size: 128
       required: true
-    apellido_materno: 
+    apellido_materno:
       type: VARCHAR
       size: 128
       required: false

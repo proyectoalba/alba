@@ -9,4 +9,14 @@ require_once(SF_ROOT_DIR.DIRECTORY_SEPARATOR.'apps'.DIRECTORY_SEPARATOR.SF_APP.D
 
 sfContext::getInstance()->getController()->dispatch();
 
-?>
+
+
+/*
+<?php
+##IP_CHECK##
+require_once(dirname(__FILE__).'/../config/ProjectConfiguration.class.php');
+
+$configuration = ProjectConfiguration::getApplicationConfiguration('principal', 'demo', false);
+sfContext::createInstance($configuration)->dispatch();
+
+*/

@@ -23,21 +23,21 @@
                             <table class="user-info">
                                 <tr>
                                     <td nowrap="nowrap">Bienvenido, <a href="#" onmouseover="this.T_BGCOLOR='#d3e3f6';this.T_SHADOWWIDTH=3;this.T_FONTCOLOR='blue';this.T_BORDERWIDTH=2;this.T_BORDERCOLOR='#000000'; return escape('Organizaci&oacute;n: <?php echo $sf_user->getAttribute("organizacion_nombre")?> ' )"><?php echo $sf_user->getAttribute('usuario')?></a>
-                                    <?php if (SF_DEBUG)
+                                    <?php if (sfConfig::get('sf_debug'))
                                         echo ' #'. $sf_user->getAttribute('id');
                                     ?>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td nowrap="nowrap"><?php echo link_to($sf_user->getAttribute('establecimiento_nombre'),'establecimiento/cambiar')?>
-                                    <?php if (SF_DEBUG)
+                                    <?php if (sfConfig::get('sf_debug') )
                                         echo ' #'. $sf_user->getAttribute('fk_establecimiento_id');
                                     ?>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td nowrap="nowrap">Ciclo: <?php echo link_to($sf_user->getAttribute('ciclolectivo_descripcion'),'ciclolectivo/cambiar')?>
-                                    <?php if (SF_DEBUG)
+                                    <?php if (sfConfig::get('sf_debug') )
                                         echo ' #'. $sf_user->getAttribute('fk_ciclolectivo_id');
                                     ?>
                                     </td>
@@ -86,7 +86,7 @@
                         </ul>
                     </div>
                     <?php endif;?>
-                    <?php if ($sf_user->isAuthenticated() && SF_ENVIRONMENT =='demo'):?>
+                    <?php if ($sf_user->isAuthenticated() && sfConfig::get('sf_environment') =='demo'):?>
                     <div class="form-errors">
                         <ul>
                             <li>El sistema est&aacute; funcionando en modo Demostraci&oacute;n.</li>
@@ -94,7 +94,7 @@
                     </div>
                     <?php endif;?>
                     <br/>
-                    <div id="content"><?php echo $content ?></div>
+                    <div id="content"><?php echo $sf_content ?></div>
                 </td>
                 <td width="17" class="fder">&nbsp;</td>
             </tr>

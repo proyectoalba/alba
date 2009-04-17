@@ -323,14 +323,16 @@ function check_rewrite() {
 function build_model_sql() {
     chdir('../../');
 
-    define('SF_ROOT_DIR',    realpath(dirname(__FILE__).'/../..'));
-    define('SF_APP',         'principal');
-    define('SF_ENVIRONMENT', 'dev');
-    define('SF_DEBUG',       true);
     define('STDOUT','');
     define('STDERR','');
 
-    require_once(SF_ROOT_DIR.DIRECTORY_SEPARATOR.'apps'.DIRECTORY_SEPARATOR.SF_APP.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'config.php');
+    require_once(dirname(__FILE__).'/../config/ProjectConfiguration.class.php');
+    $configuration = ProjectConfiguration::getApplicationConfiguration('principal', 'dev', true);
+    sfContext::createInstance($configuration);
+
+
+
+
 
     require_once($sf_symfony_lib_dir.'/vendor/pake/pakeFunction.php');
     require_once($sf_symfony_lib_dir.'/vendor/pake/pakeGetopt.class.php');
@@ -378,4 +380,14 @@ function build_model_sql() {
 
 
 
-?>
+
+
+/*
+<?php
+##IP_CHECK##
+require_once(dirname(__FILE__).'/../config/ProjectConfiguration.class.php');
+
+$configuration = ProjectConfiguration::getApplicationConfiguration('principal', 'dev', true);
+sfContext::createInstance($configuration)->dispatch();
+
+*/

@@ -36,7 +36,7 @@ horaInicio:
     param:
       hora_error:    El campo debe ser una hora
       compare:       turno[hora_fin]
-      operator:      <
+      operator:      "<"
       compare_error: La hora de inicio debe ser anterior a la hora de fin
                     
 horaFin:
@@ -44,5 +44,5 @@ horaFin:
     param:
         hora_error:    EL campo debe ser una hora
         compare:       turno[hora_inicio]
-        operator:      >
+        operator:      ">"
         compare_error: La hora de fin debe ser posterior a la hora de inicio

@@ -62,7 +62,7 @@ class feriadoActions extends autoferiadoActions
       $this->feriado = $this->getFeriadoOrCreate();
       $this->updateFeriadoFromRequest();
       $this->saveFeriado($this->feriado);
-      $this->setFlash('notice', 'Your modifications have been saved');
+      $this->getUser()->setFlash('notice', 'Your modifications have been saved');
       if ($this->getRequestParameter('save_and_add'))
       {
         return $this->redirect('feriado/create');

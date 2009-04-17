@@ -1,5 +1,5 @@
-<?php if ($sf_flash->has('notice')):?>
+<?php if ($sf_user->hasFlash('notice')):?>
     <div class="save-ok">
-        <h2><?php echo $sf_flash->get('notice')?></h2>
+        <h2><?php echo $sf_user->getFlash('notice')?></h2>
     </div>
 <?php endif;?>

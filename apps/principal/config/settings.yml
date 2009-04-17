@@ -1,18 +1,22 @@
 prod:
   .settings:
+    logging_enabled: off
     no_script_name:           off
     i18n:                   on    
-
+    compat_10:  on
+    default_culture:    es
 dev:
   .settings:
     # E_ALL | E_STRICT = 4095
-    error_reporting:        4095
+    error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
     web_debug:              on
     cache:                  off
     stats:                  off
     no_script_name:         off
     etag:                   off
     i18n:                   on
+    compat_10:  on
+    default_culture:    es
 
 demo:
   .settings:
@@ -24,7 +28,7 @@ demo:
 test:
   .settings:
     # E_ALL | E_STRICT & ~E_NOTICE = 2047
-    error_reporting:        2047
+    error_reporting:        <?php echo ((E_ALL | E_STRICT) ^ E_NOTICE)."\n" ?>
     cache:                  off
     stats:                  off
     web_debug:              off
@@ -35,7 +39,6 @@ all:
   .actions:
     default_module:         default
     default_action:         index
-
 #
 #    error_404_module:       default
 #    error_404_action:       error404
@@ -53,15 +56,9 @@ all:
 #    unavailable_action:     unavailable
 #
   .settings:
-  
-     enabled_modules:       [ default, sfMediaLibrary]  
-
-
+    enabled_modules:       [ default, sfMediaLibrary]
     autoloading_fucntions:
         -   [sfEzComponentsBridge,  autoload]
-
-    
-
 
 #    available:              on
 #

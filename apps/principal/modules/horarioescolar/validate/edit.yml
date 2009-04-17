@@ -75,7 +75,7 @@ horaInicio:
     param:
       hora_error:    El campo debe ser una hora
       compare:       evento[hora_fin]
-      operator:      <
+      operator:      "<"
       compare_error: La hora de inicio debe ser anterior a la hora de fin
                     
 horaFin:
@@ -83,7 +83,7 @@ horaFin:
     param:
         hora_error:    EL campo debe ser una hora
         compare:       evento[hora_inicio]
-        operator:      >
+        operator:      ">"
         compare_error: La hora de fin debe ser posterior a la hora de inicio
 
 firstDay:
@@ -91,7 +91,7 @@ firstDay:
     param:
       date_error:    El campo debe ser una fecha
       compare:       evento[fecha_fin]
-      operator:      <=
+      operator:      "<="
       compare_error: La fecha inicio debe ser anterior a la fecha fin
                     
 lastDay:
@@ -99,6 +99,6 @@ lastDay:
     param:
         date_error:    EL campo debe ser una fecha
         compare:       evento[fecha_inicio]
-        operator:      >=
+        operator:      ">="
         compare_error: La fecha fin debe ser posterior a la fecha inicio
                                                 

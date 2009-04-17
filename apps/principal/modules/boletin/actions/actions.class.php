@@ -89,7 +89,7 @@ class boletinActions extends sfActions
                  throw $e;  
             }
         }
-        return $this->redirect("boletin?action=list&division_id=$division_id&actividad_id=$actividad_id&periodo_id=$periodo_id");
+        return $this->redirect("boletin/list?division_id=$division_id&actividad_id=$actividad_id&periodo_id=$periodo_id");
     }   
 
     protected function getCarreras($establecimiento_id) {
@@ -436,10 +436,10 @@ class boletinActions extends sfActions
                     $aAsistencia[$periodo->getId()] = $this->getAsistenciaTotal($alumno_id, $periodo->getFechaInicio(), $periodo->getFechaFin());
                 }       
             } else {
-                $this->setFlash('notice','Error: el alumno no esta en ninguna división');
+                $this->getUser()->setFlash('notice','Error: el alumno no esta en ninguna división');
             }
         } else {
-            $this->setFlash('notice','Error: no envio el alumno');
+            $this->getUser()->setFlash('notice','Error: no envio el alumno');
         }
 
 
@@ -531,7 +531,7 @@ class boletinActions extends sfActions
                  throw $e;  
             }
         }
-        return $this->redirect("boletin?action=listConcepto&division_id=$division_id&concepto_id=$concepto_id&periodo_id=$periodo_id&carrera_id=$carrera_id");
+        return $this->redirect("boletin/listConcepto?division_id=$division_id&concepto_id=$concepto_id&periodo_id=$periodo_id&carrera_id=$carrera_id");
     }   
 
 

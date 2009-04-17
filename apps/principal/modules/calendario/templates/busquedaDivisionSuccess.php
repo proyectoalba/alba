@@ -19,7 +19,7 @@
     <td><?php echo $division->getAnio()->getDescripcion()." ".$division->getDescripcion()?></td>
     <td>
     <ul class="sf_admin_td_actions">
-    <li><?php echo link_to(image_tag('small/horario.png', array('alt' => __('verHorario'), 'title' => __('verHorario'))), 'calendario?action=horarioSegunDivision&id='.$division->getId()); ?></li>
+    <li><?php echo link_to(image_tag('small/horario.png', array('alt' => __('verHorario'), 'title' => __('verHorario'))), 'calendario/horarioSegunDivision?id='.$division->getId()); ?></li>
     </ul>
     </td>
   </tr>

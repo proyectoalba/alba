@@ -91,7 +91,7 @@ class InformesActions extends sfActions
         }
 
 
-      $this->setFlash('notice', 'Your modifications have been saved');
+      $this->getUser()->setFlash('notice', 'Your modifications have been saved');
 
       if ($this->getRequestParameter('save_and_add'))
       {
@@ -418,7 +418,7 @@ class InformesActions extends sfActions
 
 
     private function reporteTBSOO($informe) {
-        define('BASE',sfConfig::get('sf_app_module_dir') .'/informes/' .sfConfig::get('sf_app_module_lib_dir_name').'/');
+        define('BASE',sfConfig::get('sf_app_module_dir') .'/informes/lib/');
         require_once(BASE.'tbs_class_php5.php');
         require_once(BASE.'tbsooo_class.php');
         $OOo = new clsTinyButStrongOOo;

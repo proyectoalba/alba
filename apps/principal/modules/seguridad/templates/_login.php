@@ -3,7 +3,7 @@
  <br>
  <div class="titulo">Inicio de Sesi&oacute;n del Sistema</div>
     <br>
-    <?php if (SF_ENVIRONMENT == 'demo'):?>
+    <?php if (sfConfig::get('sf_environment')  == 'demo'):?>
         <div style="border: 2px dashed; border-color: red; width: 50%">
         Ud. va a ingresar a una demo del sistema en desarrollo.<br/>
         <br/>

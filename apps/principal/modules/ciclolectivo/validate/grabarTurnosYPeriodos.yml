@@ -32,7 +32,7 @@ firstDay:
     param:
       date_error:    El campo debe ser una fecha
       compare:       ciclolectivo[fecha_fin]
-      operator:      <
+      operator:      "<"
       compare_error: La fecha inicio debe ser anterior a la fecha fin
                     
 lastDay:
@@ -40,6 +40,6 @@ lastDay:
     param:
         date_error:    EL campo debe ser una fecha
         compare:       ciclolectivo[fecha_inicio]
-        operator:      >
+        operator:      ">"
         compare_error: La fecha fin debe ser posterior a la fecha inicio
                                                 

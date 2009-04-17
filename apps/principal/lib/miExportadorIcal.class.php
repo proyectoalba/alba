@@ -39,7 +39,7 @@ class miExportadorIcal extends sfWebRequest {
     function exportar($aObj = array(), $directo_a_browser = 1 ) {
         if(is_array($aObj)) {
             $v = new vcalendar();
-            $v->setConfig('DIRECTORY',sfConfig::get('sf_root_cache_dir')); 
+            $v->setConfig('DIRECTORY',sfConfig::get('sf_cache_dir')); 
 
             foreach ($aObj as $link_evento) {
                 if($link_evento->getEvento()) {

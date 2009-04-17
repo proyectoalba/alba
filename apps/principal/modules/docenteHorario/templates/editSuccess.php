@@ -17,9 +17,9 @@
 <?php endforeach; ?>
 </dl>
 </div>
-<?php elseif ($sf_flash->has('notice')): ?>
+<?php elseif ($sf_user->hasFlash('notice')): ?>
 <div class="save-ok">
-<h2><?php echo __($sf_flash->get('notice')) ?></h2>
+<h2><?php echo __($sf_user->getFlash('notice')) ?></h2>
 </div>
 <?php endif; ?>
 

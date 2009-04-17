@@ -10,6 +10,6 @@
     </style>
     </head>
     <body>
-        <?php echo $content; ?>
+        <?php echo $sf_content; ?>
     </body>
     </html>

@@ -160,7 +160,7 @@ class legajopedagogicoActions extends sfActions
             $legajoadjunto->save(); 
         }
 
-        $this->setFlash('notice', 'Your modifications have been saved');
+        $this->getUser()->setFlash('notice', 'Your modifications have been saved');
         if ($this->getRequestParameter('save_and_add')) {
             return $this->redirect('legajopedagogico/create?aid='.$this->legajopedagogico->getFkAlumnoId().'&cid='.$this->legajopedagogico->getFkLegajocategoriaId());
         } else  {
@@ -259,7 +259,7 @@ class legajopedagogicoActions extends sfActions
         $this->legajopedagogico = LegajopedagogicoPeer::retrieveByPk($this->getRequestParameter('id'));
         $this->forward404Unless($this->legajopedagogico);
         $this->deleteLegajopedagogico($this->legajopedagogico);
-        return $this->redirect("legajopedagogico?action=verLegajo&aid=".$alumno_id."&cid=".$legajo_categoria_id);
+        return $this->redirect("legajopedagogico/verLegajo?aid=".$alumno_id."&cid=".$legajo_categoria_id);
     }
 
     protected function deleteLegajopedagogico($legajopedagogico){
@@ -280,7 +280,7 @@ class legajopedagogicoActions extends sfActions
         $criteria->add(LegajoadjuntoPeer::FK_ADJUNTO_ID, $this->adjunto_id);
         $adjuntos = LegajoadjuntoPeer::doDelete($criteria);  
 
-        return $this->redirect("legajopedagogico?action=edit&aid=".$this->alumno_id."&id=".$this->legajopedagogico_id);
+        return $this->redirect("legajopedagogico/edit?aid=".$this->alumno_id."&id=".$this->legajopedagogico_id);
     }
 
     public function executeAutocompletarApe() {

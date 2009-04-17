@@ -55,7 +55,7 @@ class eventoActions extends sfActions
         if ($this->getRequest()->getMethod() == sfRequest::POST) {
             $this->updateEventoFromRequest();
             $this->saveEvento($this->evento);
-            $this->setFlash('notice', 'Your modifications have been saved');
+            $this->getUser()->setFlash('notice', 'Your modifications have been saved');
             return $this->redirect('evento/');
             /*
             if ($this->getRequestParameter('save_and_add')) {

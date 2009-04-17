@@ -59,7 +59,7 @@ class responsableActions extends autoresponsableActions {
             $this->responsable = $this->getResponsableOrCreate(); 
             $this->updateResponsableFromRequest();
             $this->saveResponsable($this->responsable);
-            $this->setFlash('notice', 'Your modifications have been saved');
+            $this->getUser()->setFlash('notice', 'Your modifications have been saved');
             if ($this->getRequestParameter('save_and_add')) {                                                                                                                      
                 //el save_and_add debe volver al crate pero pasando la cuenta actual
                 return $this->redirect('responsable/create?fk_cuenta_id=' . $this->responsable->getFkCuentaId());                                                                        

@@ -9,6 +9,6 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     </head>
     <body>
-<?php echo $content; ?>
+<?php echo $sf_content; ?>
     </body>
     </html>

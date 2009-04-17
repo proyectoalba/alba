@@ -1,7 +1,7 @@
 <?php
 	/*@annotation
 		hay que ver por que no funciona el sfConfig*/
-	define('BASE',sfConfig::get('sf_app_module_dir') .'/cal/' .sfConfig::get('sf_app_module_lib_dir_name') .'/');
+	define('BASE',sfConfig::get('sf_app_module_dir') .'/cal/lib/');
 	
 // 	require_once(BASE.'ical_parser.php');
 // 	require_once(BASE.'list_functions.php');

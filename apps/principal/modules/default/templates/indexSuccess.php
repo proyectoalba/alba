@@ -60,7 +60,7 @@ El Proyecto Alba, es un proyecto de desarrollo de Software para la realizaci&oac
     </tr>
 
 </table>
-    <?php if (SF_DEBUG):?>
+    <?php if (sfConfig::get('sf_debug')):?>
     <ul>
         <li>Informaci&oacute;n del Sistema
             <ul>

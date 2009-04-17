@@ -1,0 +1,9 @@
+# Archivo generado por el instalador de Alba 04/04/2008 11:55:30
+all:
+  propel:
+    class: sfPropelDatabase
+    param:
+      dsn: mysql://root:josxjosx@localhost/alba
+      datasource: alba
+      encoding: utf8
+

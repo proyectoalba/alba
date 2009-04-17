@@ -56,9 +56,9 @@
 
     <td>
     <ul class="sf_admin_td_actions">
-    <li><?php echo link_to(image_tag(sfConfig::get('sf_admin_web_dir').'/images/edit_icon.png', array('alt' => __('verLegajo'), 'title' => __('verLegajo'))), 'legajopedagogico?action=edit&aid='.$alumno->getId().'&id='.$entradaLegajo->getId().'&cid='.$entradaLegajo->getFkLegajocategoriaId()); ?>
+    <li><?php echo link_to(image_tag(sfConfig::get('sf_admin_web_dir').'/images/edit_icon.png', array('alt' => __('verLegajo'), 'title' => __('verLegajo'))), 'legajopedagogico/edit?aid='.$alumno->getId().'&id='.$entradaLegajo->getId().'&cid='.$entradaLegajo->getFkLegajocategoriaId()); ?>
 
-    <li><?php echo link_to(image_tag(sfConfig::get('sf_admin_web_dir').'/images/delete_icon.png', array('alt' => __('borrar'), 'title' => __('borrar'))), 'legajopedagogico?action=delete&aid='.$alumno->getId().'&id='.$entradaLegajo->getId().'&cid='.$entradaLegajo->getFkLegajocategoriaId()); ?>
+    <li><?php echo link_to(image_tag(sfConfig::get('sf_admin_web_dir').'/images/delete_icon.png', array('alt' => __('borrar'), 'title' => __('borrar'))), 'legajopedagogico/delete?aid='.$alumno->getId().'&id='.$entradaLegajo->getId().'&cid='.$entradaLegajo->getFkLegajocategoriaId()); ?>
 
     </ul>
     </td>
@@ -82,7 +82,7 @@
                 <?php echo button_to('Listado Alumnos','alumno/list',"class=sf_admin_action_list")?>
             </li>
             <li>
-                <?php echo button_to('Ir a Cuenta','/cuenta/verCompleta?id='.$alumno->getFkCuentaId(),"class=sf_admin_action_ir_a") ?>
+                <?php echo button_to('Ir a Cuenta','cuenta/verCompleta?id='.$alumno->getFkCuentaId(),"class=sf_admin_action_ir_a") ?>
             </li>
         </ul>
       </div>

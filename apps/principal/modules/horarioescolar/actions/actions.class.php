@@ -36,7 +36,7 @@ class horarioescolarActions extends autohorarioescolarActions
     
 
     public function executeEdit()  {
-        $evento_generico = new miEvento();
+        $evento_generico = new miEvento(new sfEventDispatcher());
         $this->horarioescolar = $this->getHorarioescolarOrCreate();
         $this->evento = $evento_generico->getEventoOrCreate($this->horarioescolar->getFkEventoId());
         if ($this->getRequest()->getMethod() == sfRequest::POST) {
@@ -53,7 +53,7 @@ class horarioescolarActions extends autohorarioescolarActions
                 $this->updateHorarioescolarFromRequest($this->evento->getId());
             }
             $this->saveHorarioescolar($this->horarioescolar);
-            $this->setFlash('notice', 'Your modifications have been saved');
+            $this->getUser()->setFlash('notice', 'Your modifications have been saved');
             if ($this->getRequestParameter('save_and_add')) {
                 return $this->redirect('horarioescolar/create');
             } else if ($this->getRequestParameter('save_and_list')) {
@@ -110,17 +110,17 @@ class horarioescolarActions extends autohorarioescolarActions
 
     public function executeExportToIcal() {
         $this->executeList();
-        include("miExportadorIcal.class.php");
-        $e  = new miExportadorIcal();
+        include(sfConfig::get('sf_app_lib_dir')."/miExportadorIcal.class.php");
+        $e  = new miExportadorIcal(new sfEventDispatcher());
         $e->exportar($this->pager->getResults());
     }
 
 
     public function executeVerCalendario() {
         $this->executeList();
-        include("miExportadorIcal.class.php");
-        $e  = new miExportadorIcal();
-        $this->archivo = sfConfig::get('sf_root_cache_dir')."/".$e->exportar($this->pager->getResults(), 0);
+        include(sfConfig::get('sf_app_lib_dir')."/miExportadorIcal.class.php");
+        $e  = new miExportadorIcal(new sfEventDispatcher());
+        $this->archivo = sfConfig::get('sf_cache_dir')."/".$e->exportar($this->pager->getResults(), 0);
         if($this->getRequestParameter('date')) {
             $this->date_component = $this->getRequestParameter('date');
         } else {

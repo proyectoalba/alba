@@ -81,7 +81,7 @@ class establecimientoActions extends autoestablecimientoActions
                 unset($p);
             }
         }
-        $this->setFlash('notice','Se ha grabado correctamente.');
+        $this->getUser()->setFlash('notice','Se ha grabado correctamente.');
         return $this->redirect('establecimiento/editLocacion?id='.$establecimientoId);
     
     }
@@ -105,7 +105,7 @@ class establecimientoActions extends autoestablecimientoActions
         if ($establecimiento) {
             $this->getUser()->setAttribute('fk_establecimiento_id',$id);
             $this->getUser()->setAttribute('establecimiento_nombre',$establecimiento->getNombre());
-            //  $this->setFlash('notice', 'Se ha cambiado de establecimiento');
+            //  $this->getUser()->setFlash('notice', 'Se ha cambiado de establecimiento');
             $c = new Criteria();
             $c->add(CiclolectivoPeer::FK_ESTABLECIMIENTO_ID,$id);
             $c->addDescendingOrderByColumn(CiclolectivoPeer::ACTUAL);

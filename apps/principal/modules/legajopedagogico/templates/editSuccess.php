@@ -12,9 +12,9 @@
 <?php endforeach; ?>
 </ul>
 </div>
-<?php elseif ($sf_flash->has('notice')): ?>
+<?php elseif ($sf_user->hasFlash('notice')): ?>
 <div class="save-ok">
-<h2><?php echo __($sf_flash->get('notice')) ?></h2>
+<h2><?php echo __($sf_user->getFlash('notice')) ?></h2>
 </div>
 <?php endif; ?>
 
@@ -117,7 +117,7 @@ if(method_exists($legajopedagogico->getTexto(),'getContents')) {
         <?php  //aqui deberiamos hacer una funcion verAdjunto?id=XX y mandar el mimetype con header y luego el contenido )
             foreach ($aFile as $file) { 
            ?><a href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()."/".sfConfig::get('sf_upload_dir_name').'/'. $file->ruta?>"><?php echo $file->nombre_archivo?></a>&nbsp;&nbsp;<?php 
-           echo link_to("Borrar", "legajopedagogico?action=borrarAdjunto&id=".$legajopedagogico->getId()."&ajid=".$file->id."&aid=".$alumno_id);
+           echo link_to("Borrar", "legajopedagogico/borrarAdjunto?id=".$legajopedagogico->getId()."&ajid=".$file->id."&aid=".$alumno_id);
            echo "&nbsp;&nbsp;&nbsp;&nbsp;";
             } 
         ?>
@@ -130,7 +130,7 @@ if(method_exists($legajopedagogico->getTexto(),'getContents')) {
   'name' => 'save',
   'class' => 'sf_admin_action_save',
 )) ?></li>
-    <li><?php echo button_to(__('Legajos'), 'legajopedagogico?action=verLegajo&aid='.$alumno_id.'&cid='.$legajo_categoria_id, array (
+    <li><?php echo button_to(__('Legajos'), 'legajopedagogico/verLegajo?aid='.$alumno_id.'&cid='.$legajo_categoria_id, array (
   'class' => 'sf_admin_action_list',
 )) ?></li>
 </ul>

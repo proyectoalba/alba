@@ -69,7 +69,7 @@ class relCalendariovacunacionAlumnoActions extends autorelCalendariovacunacionAl
 
       $this->saveRelCalendariovacunacionAlumno($this->rel_calendariovacunacion_alumno);
 
-      $this->setFlash('notice', 'Your modifications have been saved');
+      $this->getUser()->setFlash('notice', 'Your modifications have been saved');
 
       if ($this->getRequestParameter('save_and_add'))
       {

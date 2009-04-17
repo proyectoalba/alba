@@ -123,7 +123,7 @@ class seguridadActions extends sfActions
         $this->debugMessage("Logout");
         $this->getUser()->clearCredentials();
         $this->getUser()->setAuthenticated(false);
-        $this->redirect('default');
+        $this->redirect('default/');
     }
     /* pagina de ingreso del usuario */
     public function executeEnviarclave() {

@@ -20,4 +20,3 @@ generator:
     edit:
         title: Ciclo Lectivo
         display: [ =descripcion, fecha_inicio, fecha_fin, actual ]
-		

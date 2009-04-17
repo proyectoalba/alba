@@ -3,7 +3,7 @@
   'name' => 'save',
   'class' => 'sf_admin_action_save',
 )) ?></li>
-    <li><?php echo button_to(__('list'), 'legajopedagogico?action=verLegajo&id='.$legajopedagogico->getId(), array (
+    <li><?php echo button_to(__('list'), 'legajopedagogico/verLegajo?id='.$legajopedagogico->getId(), array (
   'class' => 'sf_admin_action_list',
 )) ?></li>
 </ul>
