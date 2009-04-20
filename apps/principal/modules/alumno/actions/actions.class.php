@@ -31,7 +31,7 @@
  * @license GPL
  */
 
-class alumnoActions extends autoalumnoActions
+class alumnoActions extends autoAlumnoActions
 {
 
   /**
@@ -94,7 +94,7 @@ class alumnoActions extends autoalumnoActions
             }
         }
     }
-  public function executeEdit ()
+  public function executeEdit ($request)
   {
     $this->alumno = $this->getAlumnoOrCreate();
 
