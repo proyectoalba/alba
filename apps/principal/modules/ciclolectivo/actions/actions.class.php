@@ -212,7 +212,7 @@ class ciclolectivoActions extends autociclolectivoActions
 
 		$con = Propel::getConnection();
 		try {
-			$con->begin();
+			$con->beginTransaction();
 			if ($ciclolectivo->getActual()) {
 				$c1 = new Criteria();
 				$c1->add(CiclolectivoPeer::FK_ESTABLECIMIENTO_ID,$this->getUser()->getAttribute('fk_establecimiento_id'));
@@ -231,7 +231,7 @@ class ciclolectivoActions extends autociclolectivoActions
 		
 		}
 		catch (Exception $e){
-			$con->rollback();
+			$con->rollBack();
 			throw $e;
 		}
    	}
@@ -268,11 +268,11 @@ class ciclolectivoActions extends autociclolectivoActions
     * Elimino el ciclo lectivo si es el actual 
     * el usuario debe quedar con ciclolectivo "No seleccionado"
     */
-    public function executeDelete () {
+    public function executeDelete() {
        
         $this->ciclolectivo = CiclolectivoPeer::retrieveByPk($this->getRequestParameter('id'));
         $this->forward404Unless($this->ciclolectivo);
-        try { 
+        try {
             $this->deleteCiclolectivo($this->ciclolectivo);
             if ($this->getUser()->getAttribute('fk_ciclolectivo_id') == $this->getRequestParameter('id')) {
                 $this->getUser()->setAttribute('fk_ciclolectivo_id',0);

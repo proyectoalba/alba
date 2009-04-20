@@ -54,14 +54,13 @@ class responsableActions extends autoresponsableActions {
         }
         $this->datosCuenta = $datosCuenta;
 
-
         if ($this->getRequest()->getMethod() == sfRequest::POST) {                                                                                                                        
             $this->responsable = $this->getResponsableOrCreate(); 
             $this->updateResponsableFromRequest();
             $this->saveResponsable($this->responsable);
             $this->getUser()->setFlash('notice', 'Your modifications have been saved');
             if ($this->getRequestParameter('save_and_add')) {                                                                                                                      
-                //el save_and_add debe volver al crate pero pasando la cuenta actual
+                //el save_and_add debe volver al create pero pasando la cuenta actual
                 return $this->redirect('responsable/create?fk_cuenta_id=' . $this->responsable->getFkCuentaId());                                                                        
             }                                                                                                    
             else {                                                                                                                      
@@ -71,12 +70,13 @@ class responsableActions extends autoresponsableActions {
         else {                                                                                                                        
             // add javascripts                                                                                                     
             $this->getResponse()->addJavascript(sfConfig::get('sf_prototype_web_dir').'/js/prototype');                                                     
-            $this->getResponse()->addJavascript(sfConfig::get('sf_admin_web_dir').'/js/collapse');   
+            $this->getResponse()->addJavascript(sfConfig::get('sf_admin_web_dir').'/js/collapse');
             if ($this->getRequestParameter('fk_cuenta_id'))
                 $this->responsable->setFkCuentaId($this->getRequestParameter('fk_cuenta_id'));
         }
     }
-     protected function updateResponsableFromRequest(){
+
+    protected function updateResponsableFromRequest(){
         $responsable = $this->getRequestParameter('responsable');
 
         if (isset($responsable['apellido']))

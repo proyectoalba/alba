@@ -1,7 +1,22 @@
+dev:
+  propel:
+    param:
+      classname:    DebugPDO
+
+test:
+  propel:
+    param:
+      classname:    DebugPDO
+
 all:
   propel:
     class:          sfPropelDatabase
     param:
-      dsn:          PROTOCOL://USERDB:PASSDB@SERVER/DBNAME
-      datasource: alba
-      enconding:  utf8
+      dsn:          PROTOCOL:dbname=DBNAME;host=SERVER
+      username:     USERDB
+      password:     PASSDB
+      enconding:    utf8
+      persistent:   true
+      pooling:      true
+      classname:    PropelPDO
+      datasource:   alba

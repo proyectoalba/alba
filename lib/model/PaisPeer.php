@@ -23,7 +23,7 @@ class PaisPeer extends BasePaisPeer {
     public static function getEnOrden() {
         $c = new Criteria();
         $c->addAscendingOrderByColumn(PaisPeer::ORDEN);
-        return PaisPeer::populateObjects(PaisPeer::doSelectRS($c, null));
+        return PaisPeer::populateObjects(PaisPeer::doSelectStmt($c, null));
     }
 
 } // PaisPeer

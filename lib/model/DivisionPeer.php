@@ -39,19 +39,19 @@ class DivisionPeer extends BaseDivisionPeer {
 		$rs = BasePeer::doSelect($c, $con);
         $results = array();
 
-		while($rs->next()) {
+		while( $row = $rs->fetch(PDO::FETCH_NUM)) {
 
 			$omClass = DivisionPeer::getOMClass();
 
-			$cls = Propel::import($omClass);
+			$cls = Propel::importClass($omClass);
 			$obj1 = new $cls();
-			$obj1->hydrate($rs);
+			$obj1->hydrate($row);
 
 			$omClass = AnioPeer::getOMClass();
 
-			$cls = Propel::import($omClass);
+			$cls = Propel::importClass($omClass);
 			$obj2 = new $cls();
-			$obj2->hydrate($rs, $startcol);
+			$obj2->hydrate($row, $startcol);
 
 			$newObject = true;
 			foreach($results as $temp_obj1) {

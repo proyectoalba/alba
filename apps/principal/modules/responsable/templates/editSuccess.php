@@ -49,7 +49,7 @@ document.getElementsByName("responsable[telefono]")[0].value = datosCuenta[4]
 </div>
 <?php endif; ?>
 
-<?php echo form_tag('responsable/edit', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
+<?php echo form_tag('responsable/save', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
 
 <?php echo object_input_hidden_tag($responsable, 'getId') ?>
 

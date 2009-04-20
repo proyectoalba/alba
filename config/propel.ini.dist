@@ -1,8 +1,13 @@
 propel.targetPackage       = alba
 propel.project             = alba
-propel.database            = mysql
-propel.database.createUrl  = mysql://USERDB:PASSDB@SERVER/
-propel.database.url        = mysql://USERDB:PASSDB@SERVER/DBNAME
+
+propel.database            = PROTOCOL
+propel.database.driver     = PROTOCOL
+propel.database.url        = PROTOCOL:dbname=DBNAME;host=SERVER
+propel.database.user       = USERDB
+propel.database.password   = PASSDB
+propel.database.encoding   = utf8
+
 
 propel.addGenericAccessors = true
 propel.addGenericMutators  = true

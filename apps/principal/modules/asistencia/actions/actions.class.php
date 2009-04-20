@@ -209,7 +209,8 @@ class asistenciaActions extends sfActions
 
         if(count($aIntervalo) > 0 ) {
             //Obtener los alumnos de la division y asistencias en el rango de fecha
-            $con = sfContext::getInstance()->getDatabaseConnection($connection='propel'); 
+            //$con = sfContext::getInstance()->getDatabaseConnection($connection='propel');
+            $con = Propel::getConnection();
             $s = "SELECT alumno.id, alumno.nombre, alumno.apellido, alumno.apellido_materno,";
             $s .= "tipoasistencia.descripcion, tipoasistencia.nombre AS asistencia, asistencia.fecha,";
             $s .= "asistencia.fk_tipoasistencia_id ";
@@ -238,12 +239,13 @@ class asistenciaActions extends sfActions
             $s .= " AND rel_alumno_division.FK_ALUMNO_ID = alumno.ID";    
             $s .= " ORDER BY alumno.apellido,alumno.apellido_materno,alumno.nombre,asistencia.FECHA";
         
-            $stmt = $con->createStatement();
-            $alumnos = $stmt->executeQuery($s, ResultSet::FETCHMODE_ASSOC);
+            $stmt = $con->prepare($s);
+            $alumnos = $stmt->execute();
                 
             $totales = array();  
             $tot = 0;
-            foreach ($alumnos as $alumno){
+            while($alumno = $stmt->fetch(PDO::FETCH_ASSOC)) { 
+
                 $idxAlumno[$alumno['id']] = $alumno['apellido']." ".$alumno['apellido_materno']." ". $alumno['nombre'];
                 if  ($alumno['fecha']) { 
                     $datos[$alumno['id']][$alumno['fecha']] = $alumno['asistencia'];
@@ -376,8 +378,9 @@ class asistenciaActions extends sfActions
 
             //grabo al disco
             $con = Propel::getConnection();
+            // Propel::getConnection()
             try {
-                $con->begin();
+                $con->beginTransaction();
                 $criteria = new Criteria();
 
                 foreach($aAsistencia as $alumno_id => $aPeriodo ) {
@@ -407,8 +410,8 @@ class asistenciaActions extends sfActions
                 }
                 $con->commit();
              }
-             catch (Exception $e){
-                 $con->rollback();
+             catch (PDOException $e){
+                 $con->rollBack();
                  throw $e;
             }
         }

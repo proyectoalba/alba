@@ -16,7 +16,7 @@ require_once 'lib/model/om/BaseHorarioescolar.php';
  */	
 class Horarioescolar extends BaseHorarioescolar {
 
-    public function delete($con = null)
+    public function delete(PropelPDO $con = null)
     {
         if ($this->isDeleted()) {
             throw new PropelException("This object has already been deleted.");
@@ -27,7 +27,7 @@ class Horarioescolar extends BaseHorarioescolar {
         }
 
         try {
-            $con->begin();
+            $con->beginTransaction();
 
             $evento = EventoPeer::retrieveByPk($this->getFkEventoId());
             $evento->delete();
@@ -37,7 +37,7 @@ class Horarioescolar extends BaseHorarioescolar {
 
             $con->commit();
         } catch (PropelException $e) {
-            $con->rollback();
+            $con->rollBack();
             throw $e;
         }
     }

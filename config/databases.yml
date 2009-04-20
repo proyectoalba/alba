@@ -1,9 +1,22 @@
-# Archivo generado por el instalador de Alba 04/04/2008 11:55:30
+dev:
+  propel:
+    param:
+      classname:    DebugPDO
+
+test:
+  propel:
+    param:
+      classname:    DebugPDO
+
 all:
   propel:
-    class: sfPropelDatabase
+    class:          sfPropelDatabase
     param:
-      dsn: mysql://root:josxjosx@localhost/alba
-      datasource: alba
-      encoding: utf8
-
+      dsn:          mysql:dbname=alba;host=localhost
+      username:     root
+      password:     josxjosx
+      enconding:    utf8
+      persistent:   true
+      pooling:      true
+      classname:    PropelPDO
+      datasource:   alba
