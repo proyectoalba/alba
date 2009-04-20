@@ -144,7 +144,7 @@ document.getElementsByName("responsable[telefono]")[0].value = datosCuenta[4]
 <br>
 <?php
     if(isset($datosCuenta)) {
-        echo button_to("Cargar datos de la cuenta", "#", array("class" => "sf_admin_action_sava", "onClick" => "javascript:completaDatos()"));
+        echo button_to("Cargar datos de la cuenta", "", array("class" => "sf_admin_action_sava", "onClick" => "javascript:completaDatos()"));
    }
 ?>
 <div class="form-row">
