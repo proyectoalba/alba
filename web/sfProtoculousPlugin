@@ -1,1 +1,1 @@
-../../dist/symfony-1.2.5/lib/plugins/sfProtoculousPlugin/web
+../lib/vendor/symfony/lib/plugins/sfProtoculousPlugin/web
