@@ -51,7 +51,7 @@
   <tr class="sf_admin_row_0">
     <td><?php echo format_date($entradaLegajo->getFecha(), "dd/MM/yy")?></td>
     <td><?php echo $entradaLegajo->getTitulo()?></td>
-    <td onMouseOver="this.T_BGCOLOR='#d3e3f6';this.T_SHADOWWIDTH=5;this.T_STICKY=1;this.T_OFFSETX=-20;return escape('<?php echo htmlentities(str_replace("\n","<br />",$entradaLegajo->getTexto()->getContents()), ENT_QUOTES)?>');"><?php echo $entradaLegajo->getResumen()?></td>
+    <td onMouseOver="this.T_BGCOLOR='#d3e3f6';this.T_SHADOWWIDTH=5;this.T_STICKY=1;this.T_OFFSETX=-20;return escape('<?php echo htmlentities(str_replace("\n","<br />",$entradaLegajo->getTexto()), ENT_QUOTES)?>');"><?php echo $entradaLegajo->getResumen()?></td>
     <td><?php echo (method_exists($entradaLegajo->getLegajocategoria(),"getDescripcion"))?$entradaLegajo->getLegajocategoria()->getDescripcion():"";?></td>
 
     <td>
