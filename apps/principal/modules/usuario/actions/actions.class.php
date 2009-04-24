@@ -77,7 +77,7 @@ class usuarioActions extends autousuarioActions
     }                                                                                                                  
     
     
-    public function executeDelete() {
+    public function executeDelete($request) {
         $this->usuario = UsuarioPeer::retrieveByPk($this->getRequestParameter('id'));
         $this->forward404Unless($this->usuario);
         $this->usuario->setBorrado(1);          
@@ -86,7 +86,7 @@ class usuarioActions extends autousuarioActions
     }
                           
     
-    public function executeList() {
+    public function executeList($request) {
         $this->processSort();
         $this->processFilters();
         $this->filters = $this->getUser()->getAttributeHolder()->getAll('sf_admin/usuario/filters'); 
@@ -106,7 +106,7 @@ class usuarioActions extends autousuarioActions
                                 
 
  
-    function executeEditPermiso() {
+    function executeEditPermiso($request) {
       
         // estos son los permisos que tiene el usuario
         $c = new Criteria();
@@ -158,7 +158,7 @@ class usuarioActions extends autousuarioActions
         $this->usuario = UsuarioPeer::retrieveByPk($this->getRequestParameter('id'));
     }
                         
-    function executeSavePermiso() {
+    function executeSavePermiso($request) {
 
         // borrar todo los permisos para un usuarios determinado
         $usuarioId = $this->getRequestParameter('id');

@@ -43,7 +43,7 @@ class feriadoActions extends autoferiadoActions
     Sobreescribo la accion del generator porque nefecito que el combo 
     del ciclo lectivo sea dependiente de la session fk_establecimiento_id
 */
-  public function executeEdit ()
+  public function executeEdit ($request)
   {
     $this->feriado = $this->getFeriadoOrCreate();
     $criteria = new Criteria();

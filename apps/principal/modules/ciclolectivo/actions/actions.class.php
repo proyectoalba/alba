@@ -81,14 +81,14 @@ class ciclolectivoActions extends autociclolectivoActions
     
     }
 
-    public function executeDeleteTurno ()  {
+    public function executeDeleteTurno ($request)  {
         $this->turnos = TurnoPeer::retrieveByPk($this->getRequestParameter('idTurno'));
         $this->forward404Unless($this->turnos);
         $this->turnos->delete();
         return $this->forward('ciclolectivo','agregarTurnosYPeriodos','id/'.$this->getRequestParameter('id'));                
     }
                      
-    public function executeDeletePeriodo ()  {
+    public function executeDeletePeriodo ($request)  {
         $this->periodo = PeriodoPeer::retrieveByPk($this->getRequestParameter('idPeriodo'));
         $this->forward404Unless($this->periodo);
         $this->periodo->delete();
@@ -197,44 +197,37 @@ class ciclolectivoActions extends autociclolectivoActions
         return $string;
     }
 
-    protected function addFiltersCriteria($c)
-     {
-         
-         $c->add(CiclolectivoPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
+    protected function addFiltersCriteria($c){
+        $c->add(CiclolectivoPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
      }
-	protected function saveCiclolectivo($ciclolectivo)                                      
-   	{                                                                                       
-		//si se guarda el ciclo y se marca como actual
-		//los demas ciclo del establecimiento tiene que quedar como ACUAL = false
 
-		// $con = sfContext::getInstance()->getDatabaseConnection('propel');
-//		new sfUser(); // nasty hack to load propel
+    protected function saveCiclolectivo($ciclolectivo) {                                                                                       
+        //si se guarda el ciclo y se marca como actual
+	//los demas ciclo del establecimiento tiene que quedar como ACUAL = false
 
-		$con = Propel::getConnection();
-		try {
-			$con->beginTransaction();
-			if ($ciclolectivo->getActual()) {
-				$c1 = new Criteria();
-				$c1->add(CiclolectivoPeer::FK_ESTABLECIMIENTO_ID,$this->getUser()->getAttribute('fk_establecimiento_id'));
-				$c2 = new Criteria();
-				$c2->add(CiclolectivoPeer::ACTUAL,false);
-				BasePeer::doUpdate($c1,$c2,$con);
-						
-			}
+	$con = Propel::getConnection();
+	try {
+	    $con->beginTransaction();
+	    if ($ciclolectivo->getActual()) {
+                $c1 = new Criteria();
+		$c1->add(CiclolectivoPeer::FK_ESTABLECIMIENTO_ID,$this->getUser()->getAttribute('fk_establecimiento_id'));
+		$c2 = new Criteria();
+		$c2->add(CiclolectivoPeer::ACTUAL,false);
+		BasePeer::doUpdate($c1,$c2,$con);			
+	    }
             $ciclolectivo->setFkEstablecimientoId($this->getUser()->getAttribute('fk_establecimiento_id'));			
-    		$ciclolectivo->save();                                                                
-			$con->commit();
+	    $ciclolectivo->save();                                                                
+	    $con->commit();
 
-			//cambio el attributo porque se cambio el ciclo actual
-			$this->getUser()->setAttribute('fk_ciclolectivo_id',$ciclolectivo->getId());
-			$this->getUser()->setAttribute('ciclolectivo_descripcion',$ciclolectivo->getDescripcion());
-		
-		}
-		catch (Exception $e){
-			$con->rollBack();
-			throw $e;
-		}
-   	}
+	    //cambio el attributo porque se cambio el ciclo actual
+	    $this->getUser()->setAttribute('fk_ciclolectivo_id',$ciclolectivo->getId());
+	    $this->getUser()->setAttribute('ciclolectivo_descripcion',$ciclolectivo->getDescripcion());	
+	}
+	catch (Exception $e){
+	    $con->rollBack();
+	    throw $e;
+	}
+    }
     
     /**
     * Cambia el ciclo lectivo actual   
@@ -287,7 +280,7 @@ class ciclolectivoActions extends autociclolectivoActions
         return $this->redirect('ciclolectivo/list');
     }
     
-    function validateDelete() {
+    function validateDelete($request) {
         $this->ciclolectivo = CiclolectivoPeer::retrieveByPk($this->getRequestParameter('id'));
         $this->forward404Unless($this->ciclolectivo);
         if ($this->ciclolectivo->countTurnos() >0) {
@@ -303,9 +296,9 @@ class ciclolectivoActions extends autociclolectivoActions
             return false;
         }
             
-        return true;            
+        return true;  
     }
-
+    
     public function executeSinciclolectivo() {
         $this->modulo = $this->getRequestParameter('m');
     }    
@@ -361,10 +354,6 @@ class ciclolectivoActions extends autociclolectivoActions
     }
     $this->ciclolectivo->setActual(isset($ciclolectivo['actual']) ? $ciclolectivo['actual'] : 0);
   }
-
-
-
-
 }
 
 ?>
