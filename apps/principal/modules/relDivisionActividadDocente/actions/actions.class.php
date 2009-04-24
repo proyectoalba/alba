@@ -32,7 +32,7 @@
  */
 class relDivisionActividadDocenteActions extends autorelDivisionActividadDocenteActions
 {
-    public function executeEdit() {
+    public function executeEdit($request) {
         $evento_generico = new miEvento(new sfEventDispatcher());
 
         $this->rel_division_actividad_docente = $this->getRelDivisionActividadDocenteOrCreate();
