@@ -35,7 +35,7 @@ class horarioescolarActions extends autohorarioescolarActions
 {
     
 
-    public function executeEdit()  {
+    public function executeEdit($request)  {
         $evento_generico = new miEvento(new sfEventDispatcher());
         $this->horarioescolar = $this->getHorarioescolarOrCreate();
         $this->evento = $evento_generico->getEventoOrCreate($this->horarioescolar->getFkEventoId());
