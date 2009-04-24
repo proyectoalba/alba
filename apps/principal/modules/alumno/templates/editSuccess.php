@@ -25,17 +25,7 @@
         <?php include_partial('alumno/edit_header', array('alumno' => $alumno)) ?>
     </div>
 
-
-    <?php if ($sf_request->hasErrors()): ?>
-    <div class="form-errors">
-        <h2><?php echo __('There are some errors that prevent the form to validate') ?></h2>
-        <ul>
-            <?php foreach ($sf_request->getErrorNames() as $name): ?>
-              <li><?php echo $sf_request->getError($name) ?></li>
-            <?php endforeach; ?>
-        </ul>
-    </div>
-    <?php elseif ($sf_user->hasFlash('notice')): ?>
+    <?php if ($sf_user->hasFlash('notice')): ?>
     <div class="save-ok">
         <h2><?php echo __($sf_user->getFlash('notice')) ?></h2>
     </div>
@@ -63,8 +53,8 @@
 
             <div class="form-row">
               <?php echo label_for('alumno[apellido_materno]', __('Apellido Materno:'), '') ?>
-              <div class="content<?php if ($sf_request->haserror('alumno{apellido_materno}')): ?> form-error<?php endif; ?>">
-              <?php if ($sf_request->haserror('alumno{apellido_materno}')): ?>
+              <div class="content<?php if ($sf_request->hasError('alumno{apellido_materno}')): ?> form-error<?php endif; ?>">
+              <?php if ($sf_request->hasError('alumno{apellido_materno}')): ?>
                 <?php echo form_error('alumno{apellido_materno}', array('class' => 'form-error-msg')) ?>
               <?php endif; ?>
 
@@ -118,7 +108,7 @@
               <?php echo label_for('alumno[nro_documento]', __('Nro. Documento:'), 'class="required" ') ?>
               <div class="content<?php if ($sf_request->hasError('alumno{nro_documento}')): ?> form-error<?php endif; ?>">
               <?php if ($sf_request->hasError('alumno{nro_documento}')): ?>
-                <?php echo form_error('alumno{nro_documento}', array('class' => 'form-error-msg')) ?>
+            <?php echo form_error('alumno{nro_documento}', array('class' => 'form-error-msg')) ?>
               <?php endif; ?>
 
               <?php echo object_input_tag($alumno, 'getNroDocumento', array (
@@ -257,8 +247,6 @@
                  </div>
               </div>
             </div>
-            
-            
             <div class="form-row">
               <?php echo label_for('alumno[codigo_postal]', __('CP:'), 'class="required" ') ?>
               <div class="content<?php if ($sf_request->hasError('alumno{codigo_postal}')): ?> form-error<?php endif; ?>">
