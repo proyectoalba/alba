@@ -24,11 +24,11 @@ div.error {
     border: 1px dashed;
 }
 /* sobreescribo styles del admin generator */
-ul.sf_admin_actions                                                                       
-{                                                                                         
-  margin: 10px;                                                                         
-  list-style-type: none;                                                                  
-  text-align: left;                                                                     
+ul.sf_admin_actions
+{
+  margin: 10px;
+  list-style-type: none;
+  text-align: left;
 }
 .sf_admin_filters {
     float: left
@@ -95,3 +95,25 @@ ul {
  /* top: 10px; */
   width: 250px;
 }
+/* MAIN ERROR */
+#sf_admin_container div.error
+{
+  background: #f33 url(../sf/sf_admin/images/error.png) no-repeat 10px 4px;
+  color: #fff;
+}
+
+#sf_admin_container div.notice {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background: #ffc url(../sf/sf_admin/images/tick.png) no-repeat 10px 4px;
+    color: #222;
+}
+/* COMMON */
+#sf_admin_container div.error,
+#sf_admin_container div.notice {
+  margin: 10px 0;
+  padding: 7px 0 7px 35px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+/**/
