@@ -181,7 +181,7 @@ class relAlumnoDivisionActions extends autorelAlumnoDivisionActions
     }
 
 
-    function executeEdit() {
+    function executeEdit($request) {
         //Listado de alumnos
         $c = new Criteria();
         $aAlumno = AlumnoPeer::doSelect($c);
@@ -247,7 +247,7 @@ class relAlumnoDivisionActions extends autorelAlumnoDivisionActions
     }
 
 
-  public function executeDelete(){
+  public function executeDelete($request) {
 
     $aAlumno = $this->getRequest()->getParameterHolder()->get('alumno');
     $division_id = $this->getRequestParameter('division_id');

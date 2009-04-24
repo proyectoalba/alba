@@ -1,4 +1,4 @@
-<?php use_helper('Object', 'Validation', 'ObjectAdmin', 'I18N', 'Date') ?>
+<?php use_helper('Object', 'Validation', 'ObjectAdmin', 'I18N', 'Date','Form', 'Javascript') ?>
 <?php use_stylesheet('/sf/sf_admin/css/main') ?>
 <?php use_stylesheet('cart') ?>
 <div id="sf_admin_container">

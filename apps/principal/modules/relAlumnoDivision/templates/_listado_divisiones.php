@@ -1,4 +1,4 @@
-<?php use_helper('Object', 'Validation', 'ObjectAdmin', 'I18N', 'Date') ?>
+<?php use_helper('Object', 'Validation', 'ObjectAdmin', 'I18N', 'Date', 'Form', 'Javascript') ?>
 <?php if(count($optionsDivision) > 0) { ?>
 
 <table>
