@@ -71,7 +71,7 @@ all:
 #
 #    use_security:           on
 #
-    compressed:             on
+#    compressed:             on
 #
 #    tidy:                   on
 #

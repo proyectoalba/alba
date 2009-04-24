@@ -268,7 +268,7 @@ class ciclolectivoActions extends autociclolectivoActions
     * Elimino el ciclo lectivo si es el actual 
     * el usuario debe quedar con ciclolectivo "No seleccionado"
     */
-    public function executeDelete() {
+    public function executeDelete($request) {
        
         $this->ciclolectivo = CiclolectivoPeer::retrieveByPk($this->getRequestParameter('id'));
         $this->forward404Unless($this->ciclolectivo);
