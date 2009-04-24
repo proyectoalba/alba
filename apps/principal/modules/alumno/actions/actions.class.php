@@ -117,8 +117,8 @@ class alumnoActions extends autoAlumnoActions
       //Obteniendo fecha segun cultura
       $fecha_nacimiento = $this->getRequestParameter('alumno[fecha_nacimiento]');
       $user_culture = $this->getUser()->getCulture();
-      list($d, $m, $y) = sfI18N::getDateForCulture($fecha_nacimiento, $user_culture);   
-      $this->alumno->setFechaNacimiento("$y-$m-$d");   
+      list($d, $m, $y) = $this->getContext()->getI18N()->getDateForCulture($fecha_nacimiento, $user_culture);
+      $this->alumno->setFechaNacimiento("$y-$m-$d");
 
       $this->saveAlumno($this->alumno);
 
