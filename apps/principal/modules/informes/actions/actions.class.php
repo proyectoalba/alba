@@ -458,8 +458,8 @@ class InformesActions extends sfActions
 
         $OOo->SaveXmlToDoc();
         // OJO hay headers locos para que funcione en internet explorer
-        // header('Content-type: '.$OOo->GetMimetypeDoc());
-        header("Content-Type: application/force-download"); //para que funcione en konqueror
+        header('Content-type: '.$OOo->GetMimetypeDoc());
+        //header("Content-Type: application/force-download"); //para que funcione en konqueror
         header("Cache-Control: public, must-revalidate");
         header("Pragma: hack");
         header('Content-Length: '.filesize($OOo->GetPathnameDoc()));
