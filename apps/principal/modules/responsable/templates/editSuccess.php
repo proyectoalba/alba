@@ -34,19 +34,10 @@ document.getElementsByName("responsable[telefono]")[0].value = datosCuenta[4]
 
 <div id="sf_admin_content">
 
-<?php if ($sf_request->hasErrors()): ?>
-<div class="form-errors">
-<h2><?php echo __('There are some errors that prevent the form to validate') ?></h2>
-<ul>
-<?php foreach ($sf_request->getErrorNames() as $name): ?>
-  <li><?php echo $sf_request->getError($name) ?></li>
-<?php endforeach; ?>
-</ul>
-</div>
-<?php elseif ($sf_user->hasFlash('notice')): ?>
-<div class="save-ok">
-<h2><?php echo __($sf_user->getFlash('notice')) ?></h2>
-</div>
+<?php if ($sf_user->hasFlash('notice')): ?>
+    <div class="save-ok">
+        <h2><?php echo __($sf_user->getFlash('notice')) ?></h2>
+    </div>
 <?php endif; ?>
 
 <?php echo form_tag('responsable/save', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
