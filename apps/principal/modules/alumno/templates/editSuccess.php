@@ -198,7 +198,7 @@
             <br>
             <?php
                 if(isset($datosCuenta) and $datosCuenta) {
-                    echo button_to("Cargar datos de la cuenta", "#", array("class" => "sf_admin_action_sava", "onClick" => "javascript:completaDatos()"));
+                    echo button_to("Cargar datos de la cuenta", "", array("class" => "sf_admin_action_sava", "onClick" => "javascript:completaDatos()"));
                }
             ?>
 

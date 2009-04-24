@@ -105,7 +105,7 @@ class feriadoActions extends autoferiadoActions
       {
         try
         {
-            list($d, $m, $y) = sfI18N::getDateForCulture($feriado['fecha'], $this->getUser()->getCulture());
+            list($d, $m, $y) = $this->getContext()->getI18N()->getDateForCulture($feriado['fecha'], $this->getUser()->getCulture());
             $this->feriado->setFecha("$y-$m-$d");
         }
         catch (sfException $e)

@@ -219,7 +219,7 @@ class legajopedagogicoActions extends sfActions
 
         if (isset($legajopedagogico['fecha'])) {
             if ($legajopedagogico['fecha']) {
-                list($d, $m, $y) = sfI18N::getDateForCulture($legajopedagogico['fecha'], $this->getUser()->getCulture());
+                list($d, $m, $y) = $this->getContext()->getI18N()->getDateForCulture($legajopedagogico['fecha'], $this->getUser()->getCulture());
                 $this->legajopedagogico->setFecha("$y-$m-$d");
             } else {
                 $this->legajopedagogico->setFecha(null);        
