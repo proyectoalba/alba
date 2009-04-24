@@ -17,10 +17,18 @@
  * long as it does not already exist in the output directory.
  *
  * @package model
- */	
+ */
 class DivisionPeer extends BaseDivisionPeer {
 
+    public static function doSelectJoinAnioByOrden(Criteria $c, $con = null, $join_behavior = Criteria::LEFT_JOIN) {
+//      $c->addAscendingOrderByColumn(AnioPeer::ORDEN);   
+        $c->addAscendingOrderByColumn(AnioPeer::DESCRIPCION);
+        $c->addAscendingOrderByColumn(DivisionPeer::ORDEN);
+        $c->addAscendingOrderByColumn(DivisionPeer::DESCRIPCION);
+        return DivisionPeer::doSelectJoinAnio($c);
+    }
 
+/*
 	public static function doSelectJoinAnioByOrden(Criteria $c, $con = null)
 	{
 		$c = clone $c;
@@ -70,5 +78,6 @@ class DivisionPeer extends BaseDivisionPeer {
 		}
 		return $results;
 	}
+ */
 
 } // DivisionPeer
