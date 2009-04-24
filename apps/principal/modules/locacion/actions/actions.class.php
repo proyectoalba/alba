@@ -40,7 +40,7 @@ class locacionActions extends autolocacionActions
         $con = Propel::getConnection();
         try {
 
-            $con->begin();
+            $con->beginTransaction();
 
             if ($locacion->getPrincipal()) {
 
@@ -49,8 +49,7 @@ class locacionActions extends autolocacionActions
                 $s .= "WHERE locacion.id = rel_establecimiento_locacion.fk_locacion_id AND ";
                 $s .= "rel_establecimiento_locacion.fk_establecimiento_id = ".$this->getUser()->getAttribute('fk_establecimiento_id');
 
-                $stmt = $con->createStatement();
-                $alumnos = $stmt->executeQuery($s);
+                $alumnos = $con->query($s);
             }
             
             $locacion->save();                                                                
@@ -63,7 +62,7 @@ class locacionActions extends autolocacionActions
             $con->commit();
         }
         catch (Exception $e) {
-            $con->rollback();
+            $con->rollBack();
             throw $e;
         }
     }
