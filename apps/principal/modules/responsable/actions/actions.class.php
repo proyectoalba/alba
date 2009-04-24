@@ -42,7 +42,7 @@ class responsableActions extends autoresponsableActions {
                 $c->addDescendingOrderByColumn($sort_column);                                                                        
         }
     }
-    public function executeEdit (){                                                       
+    public function executeEdit ($request){                                                       
         $this->responsable = $this->getResponsableOrCreate();                                                                    
 
         $datosCuenta = "";
