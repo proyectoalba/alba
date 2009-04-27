@@ -1,9 +1,16 @@
-Version 1.2.5
--------------
 See the UPGRADE_TO_1_1 for upgrading 1.0 projects first to 1.1.
 See the UPGRADE_TO_1_2 file for more information about upgrading your projects from 1.1 to 1.2.
 
 All the new features are documented in the What's new? tutorial (http://www.symfony-project.org/tutorial/1_2/whats-new)
+
+Version 1.2.6
+-------------
+
+The 1.2.6 release is security release.
+Please read http://www.symfony-project.org/blog/2009/04/27/symfony-1-2-6-security-fix for more information.
+
+Version 1.2.5
+-------------
 
  * [16656]: fixed invalid assumption in cache:clear task (closes #6181)
  * [16587]: added CA translation for admin generator
