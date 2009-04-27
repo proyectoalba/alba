@@ -22,14 +22,15 @@
 <legend>Debe completar los siguiente datos</legend>
 
 <fieldset id="sf_fieldset_none" class="">
-
-
-
-        <?php 
-            foreach($variables as $variable) {
+<?php
+            foreach($variables as $idx => $variable) {
                 ?><div class="form-row"><?php
-                echo label_for($variable, __($variable.':'));
-                echo input_tag($variable);
+                echo label_for($idx, __($idx.':'));
+                if(!is_array($variable)) {
+                    echo input_tag($variable);
+                } else {
+                    echo select_tag($idx, options_for_select($variable));
+                }
                 ?></div><?php
             }
         ?>

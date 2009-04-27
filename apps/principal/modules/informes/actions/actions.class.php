@@ -357,10 +357,25 @@ class InformesActions extends sfActions
             $this->forward404Unless($alumno);
             $this->alumno = $alumno;
         }
-
-        $this->variables = explode(";",$informe->getVariables());
+        // El formato normal es ->   variable1;variable2;variableN
+        // Se puede agregar variables para select ->  variable:valor1,valor2,valorN
+        $variables = explode(";",$informe->getVariables());
+        foreach($variables as $variable) {
+            $pos = stripos($variable,":");
+            if($pos === false) {
+                $final_variables["$variable"] = $variable;
+            } else {
+                $str_op = substr($variable, $pos+1);
+                $idx_op = substr($variable, 0, $pos);
+                $aOp = explode(",",$str_op);
+                $final_variables["$idx_op"] = array_combine($aOp,$aOp);
+            }
+        }
+        $this->variables = $final_variables;
         $this->informe = $informe;
     }
+
+
 
 
     public function executeBusquedaListadoAlumnos() {
@@ -440,9 +455,16 @@ class InformesActions extends sfActions
         if($informe->getVariables()) {
             $aDato['variable'] = array();
             $variables = explode(";",$informe->getVariables());
+
             foreach($variables as $variable) {
+                $pos = stripos($variable,":");
+                if($pos === false) {
+                } else {
+                    $variable = substr($variable, 0, $pos);
+                }
                 $aDato['variable'] = array_merge( $aDato['variable'], array ( $variable => $this->getRequestParameter($variable)));
             }
+
         }
 
         // lleno finalmente de diferente forma si es un array (ciclo) o no (variable comun)
