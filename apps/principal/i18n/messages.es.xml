@@ -82,6 +82,10 @@
                 <source>Associated</source>
                 <target>Asociadas</target>
             </trans-unit>
+            <trans-unit id="21">
+                <source>The form is not valid because it contains some errors.</source>
+                <target>El formulario contiene algunos errores</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
