@@ -60,12 +60,8 @@
   <?php endif; ?>
 
 <?php 
-if(method_exists($legajopedagogico->getResumen(),'getContents')) {
-    echo object_input_tag($legajopedagogico->getResumen(), 'getContents', array ( 'size' => 40, 'control_name' => 'legajopedagogico[resumen]',));
-} else {
     echo object_input_tag($legajopedagogico, 'getResumen', array ( 'size' => 40, 'control_name' => 'legajopedagogico[resumen]',));
-}
- ?>
+?>
     </div>
 </div>
 
@@ -77,11 +73,7 @@ if(method_exists($legajopedagogico->getResumen(),'getContents')) {
   <?php endif; ?>
 
 <?php 
-if(method_exists($legajopedagogico->getTexto(),'getContents')) {
-    echo object_textarea_tag($legajopedagogico->getTexto(), 'getContents', array ( 'rows' => '10' , 'cols' => '80', 'control_name' => 'legajopedagogico[texto]',));
-} else {
-    echo object_textarea_tag($legajopedagogico, 'getTexto', array (  'rows' => '10' , 'cols' => '80', 'control_name' => 'legajopedagogico[texto]',));
-}
+    echo object_textarea_tag($legajopedagogico, 'getTexto', array ( 'rows' => '10' , 'cols' => '80', 'control_name' => 'legajopedagogico[texto]',));
 ?>
    </div>
 </div>

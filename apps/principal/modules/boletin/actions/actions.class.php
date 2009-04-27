@@ -322,8 +322,8 @@ class boletinActions extends sfActions
                             $aNotaAlumno[$alumno->getId()][$periodo->getId()] = $boletinConceptual->getEscalanota()->getNombre();
                         }
                         if($boletinConceptual->getObservacion()) {
-                            if($boletinConceptual->getObservacion()->getContents()) {
-                                $aNotaAlumnoObs[$alumno->getId()][$periodo->getId()] = $boletinConceptual->getObservacion()->getContents();
+                            if($boletinConceptual->getObservacion()!=null) {
+                                $aNotaAlumnoObs[$alumno->getId()][$periodo->getId()] = $boletinConceptual->getObservacion();
                             }
                         }
                     }
@@ -424,8 +424,8 @@ class boletinActions extends sfActions
                     if($boletinConceptual->getFkEscalanotaId()) {
                         $conceptoAlumno[$boletinConceptual->getFkPeriodoId()][$boletinConceptual->getFkConceptoId()] = $boletinConceptual->getEscalanota()->getNombre();
                     }
-                    if($boletinConceptual->getObservacion()->getContents()) {
-                        $conceptoAlumno[$boletinConceptual->getFkPeriodoId()][$boletinConceptual->getFkConceptoId()] = $boletinConceptual->getObservacion()->getContents();
+                    if($boletinConceptual->getObservacion() != null) {
+                        $conceptoAlumno[$boletinConceptual->getFkPeriodoId()][$boletinConceptual->getFkConceptoId()] = $boletinConceptual->getObservacion();
                     }
                 }            
                 $criteria = new Criteria();

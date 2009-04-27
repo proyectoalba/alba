@@ -15,5 +15,9 @@ require_once 'lib/model/om/BaseExamen.php';
  * @package model
  */	
 class Examen extends BaseExamen {
+    public function getObservacion() {
+        return stream_get_contents(parent::getObservacion());
+    }
+
 
 } // Examen

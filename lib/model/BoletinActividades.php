@@ -15,5 +15,9 @@ require_once 'lib/model/om/BaseBoletinActividades.php';
  * @package model
  */	
 class BoletinActividades extends BaseBoletinActividades {
+    public function getObservacion() {
+        return stream_get_contents(parent::getObservacion());
+    }
+
 
 } // BoletinActividades

@@ -16,4 +16,8 @@ require_once 'lib/model/om/BaseBoletinConceptual.php';
  */	
 class BoletinConceptual extends BaseBoletinConceptual {
 
+    public function getObservacion() {
+        return stream_get_contents(parent::getObservacion());
+    }
+
 } // BoletinConceptual
