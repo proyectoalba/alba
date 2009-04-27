@@ -107,11 +107,16 @@ class alumnoActions extends autoAlumnoActions
     }
     $this->datosCuenta = $datosCuenta;
 
+    $today = getdate();
+    $fecha_nac = $this->alumno->getFechaNacimiento("Y");
+    if($fecha_nac!="")
+        $this->edad = $today['year'] - $fecha_nac;
+    else
+        $this->edad = "";
+
     if ($this->getRequest()->getMethod() == sfRequest::POST)
     {
       $this->alumno = $this->getAlumnoOrCreate();
-
-
       $this->updateAlumnoFromRequest();
     
       //Obteniendo fecha segun cultura

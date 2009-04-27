@@ -144,7 +144,8 @@
               'withtime' => false,
               'calendar_button_img' => sfConfig::get('sf_admin_web_dir').'/images/date.png',
               'control_name' => 'alumno[fecha_nacimiento]',
-            )) ?>
+      )) ?>
+      Edad: <input type="text" value="<?php echo $edad?>" disabled="true" size="4">
                 </div>
             </div>
 
