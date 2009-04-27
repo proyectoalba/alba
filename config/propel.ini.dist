@@ -1,6 +1,6 @@
 # Archivo generado por el instalador de Alba 04/04/2008 11:55:30
 
-propel.targetPackage       = alba
+propel.targetPackage       = lib.model
 propel.project             = alba
 
 propel.database            = PROTOCOL

@@ -16,7 +16,5 @@ all:
       username:     USERDB
       password:     PASSDB
       enconding:    utf8
-      persistent:   true
-      pooling:      true
       classname:    PropelPDO
-      datasource:   alba
+      datasource:   propel
