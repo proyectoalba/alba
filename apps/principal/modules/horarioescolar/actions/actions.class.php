@@ -2,7 +2,7 @@
 
 /**
  *    This file is part of Alba.
- * 
+ *
  *    Alba is free software; you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as published by
  *    the Free Software Foundation; either version 2 of the License, or
@@ -33,9 +33,9 @@
 
 class horarioescolarActions extends autohorarioescolarActions
 {
-    
 
-    public function executeEdit($request)  {
+    public function executeEdit($request)
+    {
         $evento_generico = new miEvento(new sfEventDispatcher());
         $this->horarioescolar = $this->getHorarioescolarOrCreate();
         $this->evento = $evento_generico->getEventoOrCreate($this->horarioescolar->getFkEventoId());
@@ -130,7 +130,7 @@ class horarioescolarActions extends autohorarioescolarActions
     }
 
 
-    
+
     protected function getLabels() {
         return array(
         'horarioescolar{nombre}' => 'Nombre:',
@@ -145,8 +145,8 @@ class horarioescolarActions extends autohorarioescolarActions
 
         );
     }
-    
-    
+
+
     public function handleErrorEdit() {
         $this->preExecute();
         $this->horarioescolar = $this->getHorarioescolarOrCreate();
@@ -158,6 +158,5 @@ class horarioescolarActions extends autohorarioescolarActions
         $this->labels = $this->getLabels();
         return sfView::SUCCESS;
     }
-
 }
 ?>
