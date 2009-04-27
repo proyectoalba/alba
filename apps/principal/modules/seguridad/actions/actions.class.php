@@ -89,13 +89,12 @@ class seguridadActions extends sfActions
                         $this->debugMessage($message);                    
                     }                               
                     // quitando credenciales para la demo
-                    if(SF_ENVIRONMENT =='demo'){
+                    if(sfConfig::get('sf_environment') =='demo'){
                         $this->logMessage('{DEMO} quitando credenciales');
                         $this->getUser()->removeCredential('usuario');
                         $this->getUser()->removeCredential('permiso');
                         $this->getUser()->removeCredential('modulo');
                         $this->getUser()->removeCredential('rol');
-                    
                     }                                               
                     $this->debugMessage('Login ok');
                     return $this->redirect($this->getRequestParameter('referer', '@homepage'));
