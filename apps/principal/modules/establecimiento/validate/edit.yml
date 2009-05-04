@@ -1,7 +1,8 @@
 methods:
   post:       
     - "establecimiento{nombre}"
-    - "establecimiento{descripcion}"    
+    - "establecimiento{descripcion}"
+    - "establecimiento{cuit}"
     
 fillin:
     enabled:       on
@@ -16,6 +17,10 @@ names:
         required:     No
         validators: caracteresMaximos255
 
+    establecimiento{cuit}:
+        required:   No
+        validators: caracteresMaximos13, validaCuit
+
         
 caracteresMaximos128:
     class:  sfStringValidator
@@ -28,4 +33,16 @@ caracteresMaximos255:
     param:
         max: 255
         max_error: La maxima cantidad de caracteres permitida es de 255
+
+caracteresMaximos13:
+    class:  sfStringValidator
+    param:
+        max: 13
+        max_error: La maxima cantidad de caracteres permitida es de 13
+
+validaCuit: 
+    class:  albaCUITValidator
+    param:
+        cuit_error: El CUIT ingresado es invalido       
+        
 

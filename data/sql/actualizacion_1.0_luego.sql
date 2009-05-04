@@ -68,6 +68,8 @@ ALTER TABLE "boletin_actividades" ALTER observacion DROP NOT NULL;
 
 ALTER TABLE evento ALTER COLUMN recurrencia_fin TYPE VARCHAR (32);
 
+ALTER TABLE `establecimiento` ADD `cuit` VARCHAR( 20 ) NULL;
+
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
 

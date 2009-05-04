@@ -348,6 +348,10 @@ propel:
     descripcion:
       type: VARCHAR
       size: 255
+    cuit:
+      type: VARCHAR
+      size: 20
+      required: False
     fk_distritoescolar_id:
       type: INTEGER
       required: true
