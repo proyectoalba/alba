@@ -30,7 +30,7 @@
 
   <?php echo object_input_date_tag($legajopedagogico, 'getFecha', array (
   'rich' => true,
-  'withtime' => true,
+//  'withtime' => true,
   'calendar_button_img' => sfConfig::get('sf_admin_web_dir').'/images/date.png',
   'control_name' => 'legajopedagogico[fecha]',
 )) ?>
