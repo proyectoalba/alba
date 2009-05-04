@@ -48,6 +48,12 @@ class alumnoActions extends autoAlumnoActions
     $this->redirect( 'legajopedagogico/verLegajo?aid='.$this->getRequestParameter('id'));
   }
 
+
+  function executeLegajosalud() {
+    $this->redirect('legajosalud/verLegajo?aid='.$this->getRequestParameter('id'));
+  }
+
+
   /**
   * Ver las vacunas del alumno
   */

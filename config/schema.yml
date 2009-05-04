@@ -1860,3 +1860,32 @@ propel:
     variables:
       type: VARCHAR
       size: 128
+  legajosalud: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: integer
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_alumno_id: 
+      type: integer
+      required: true
+      foreignTable: alumno
+      foreignReference: id
+    titulo: 
+      type: varchar
+      size: 255
+      required: true
+    descripcion:
+      type: blob
+      required: true
+    fecha: 
+      type: timestamp
+      required: true
+    fk_usuario_id: 
+      type: integer
+      required: true
+      foreignTable: usuario
+      foreignReference: id
+
