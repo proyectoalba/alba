@@ -1,7 +1,7 @@
 <?php
 /**
  *    This file is part of Alba.
- * 
+ *
  *    Alba is free software; you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as published by
  *    the Free Software Foundation; either version 2 of the License, or
@@ -32,32 +32,31 @@
 
 class seguridadActions extends sfActions
 {
-   
+
     public function executeLogin() {
         $this->error_inicio_sesion = false;
 
          $login = $this->getRequestParameter('login');
          $password = $this->getRequestParameter('password');
-         
-        if (isset($login)){
-            $this->debugMessage($login);
 
-            $c = new Criteria();                                                            
+        if (isset($login)){
+
+            $c = new Criteria();
             $c->add(UsuarioPeer::USUARIO, $login);
-            $user = UsuarioPeer::doSelectOne($c);                                           
+            $user = UsuarioPeer::doSelectOne($c);
             if ($user){
-                // password OK?                                                                 
-                if (md5($password) == $user->getClave()) {                                                                                  
-                    $this->getUser()->setAuthenticated(true);                        
-                    
-                    // agrego atributos del usuario                
+                // password OK?
+                if (md5($password) == $user->getClave()) {
+                    $this->getUser()->setAuthenticated(true);
+
+                    // agrego atributos del usuario
                     $this->getUser()->setAttribute('id',$user->getId());
                     $this->getUser()->setAttribute('email', $user->getEmail());
                     $this->getUser()->setAttribute('fk_establecimiento_id',$user->getFkEstablecimientoId());
                     $this->getUser()->setAttribute('establecimiento_nombre',$user->getEstablecimiento()->getNombre());
                     $this->getUser()->setAttribute('fk_organizacion_id',$user->getEstablecimiento()->getFkOrganizacionId());
                     $this->getUser()->setAttribute('organizacion_nombre',$user->getEstablecimiento()->getOrganizacion()->getNombre());
-                    
+
                     $this->getUser()->setTheme('moderno');
 
                     //obtengo el ciclo lectivo actual del establecimiento
@@ -66,28 +65,44 @@ class seguridadActions extends sfActions
                     $c->add(CiclolectivoPeer::ACTUAL,1);
                     $ciclo_actual = CiclolectivoPeer::doSelectOne($c);
                     if ($ciclo_actual) {
-                        $this->getUser()->setAttribute('fk_ciclolectivo_id',$ciclo_actual->getId());                      
+                        $this->getUser()->setAttribute('fk_ciclolectivo_id',$ciclo_actual->getId());
                         $this->getUser()->setAttribute('ciclolectivo_descripcion',$ciclo_actual->getDescripcion());
                     }
                     else {
-                        $this->getUser ()->setAttribute('fk_ciclolectivo_id',0);
+                        $this->getUser()->setAttribute('fk_ciclolectivo_id',0);
                         $this->getUser()->setAttribute('ciclolectivo_descripcion','No Seleccionado');
                     }
-                        
-                    
+
+
                     $this->getUser()->setAttribute('usuario',$user->getUsuario());
                     $this->getUser()->setCulture('es_AR');
-                    
-                    /* asigno las credenciales */                                                  
-                    $cperm = new Criteria();                                                       
-                    $cperm->add(RelUsuarioPermisoPeer::FK_USUARIO_ID, $user->getId());             
-                    $cperm->addAscendingOrderBycolumn(PermisoPeer::CREDENCIAL);
-                    $usuarioPermisos = RelUsuarioPermisoPeer::doSelectJoinPermiso($cperm);         
-                    foreach ($usuarioPermisos as $usuarioPermiso) {                                
-                        $this->getUser()->addCredential($usuarioPermiso->getPermiso()->getCredencial());
-                        $message = "{Credenciales} " . $usuarioPermiso->getPermiso()->getCredencial();
-                        $this->debugMessage($message);                    
-                    }                               
+
+                    /* asigno las credenciales x rol*/
+                    $crol = new Criteria();
+                    $crol->add(UsuarioRolPeer::FK_USUARIO_ID, $user->getId());
+                    $roles = UsuarioRolPeer::doSelect($crol);
+
+                    //por cada rol busco los permisos y los asigno
+                    foreach ($roles as $rol) {
+
+                        $this->logMessage(' obteniendo rol: ' . $rol->getRol()->getNombre(), 'debug');
+                        $permisos = $rol->getRol()->getRolPermisos();
+                        foreach ($permisos as $permiso) {
+                            $this->logMessage(sprintf('permiso desde rol: %s', $permiso->getPermiso()),'debug');
+                            $this->getUser()->addCredential($permiso->getPermiso()->getNombre());
+                        }
+                    }
+
+                    /* asign credenciales por usuario */
+                    $this->logMessage('obteniendo permisos x usuario:', 'debug');
+                    $cuser = new Criteria();
+                    $cuser->add(UsuarioPermisoPeer::FK_USUARIO_ID, $user->getId());
+                    $permisos = UsuarioPermisoPeer::doSelect($cuser);
+                    foreach ($permisos as $permiso) {
+                        $this->logMessage('permiso desde usuario: ' . $permiso->getPermiso(),'debug');
+                        $this->getUser()->addCredential($permiso->getPermiso()->getNombre());
+                    }
+
                     // quitando credenciales para la demo
                     if(sfConfig::get('sf_environment') =='demo'){
                         $this->logMessage('{DEMO} quitando credenciales');
@@ -95,7 +110,7 @@ class seguridadActions extends sfActions
                         $this->getUser()->removeCredential('permiso');
                         $this->getUser()->removeCredential('modulo');
                         $this->getUser()->removeCredential('rol');
-                    }                                               
+                    }
                     $this->debugMessage('Login ok');
                     return $this->redirect($this->getRequestParameter('referer', '@homepage'));
                 }
@@ -103,7 +118,7 @@ class seguridadActions extends sfActions
                     $this->error_inicio_sesion = true;
                     return sfView::SUCCESS;
                 }
-                
+
             }
             else {
                 $this->debugMessage('Login Error');
@@ -112,11 +127,11 @@ class seguridadActions extends sfActions
             }
         }
         else {
-            $this->referer =  $this->getRequest()->getReferer();   
+            $this->referer =  $this->getRequest()->getReferer();
             $this->getRequest()->getParameterHolder()->set('referer', $this->getRequest()->getReferer());
         }
-    }  
-    
+    }
+
     /* cierre de session */
     public function executeLogout() {
         $this->debugMessage("Logout");
@@ -126,23 +141,23 @@ class seguridadActions extends sfActions
     }
     /* pagina de ingreso del usuario */
     public function executeEnviarclave() {
-    
-    
+
+
     }
     public function executeEnviar() {
-    
+
         require_once (sfConfig::get('sf_symfony_lib_dir').'/addon/sfMail/sfMail.class.php');
-        
+
         $c = new Criteria();
         $c->add(UsuarioPeer::USUARIO, $this->getRequestParameter('usuario'));
-        $user = UsuarioPeer::doSelectOne($c);     
-    
+        $user = UsuarioPeer::doSelectOne($c);
+
         if ($user) {
             if ($user->getEmail() != "") {
             $clave = $this->_generar_clave();
                 $user->setClave(md5($clave));
                 $user->save();
-                
+
                 $mail = new sfMail();
                 $mail->initialize();
                 $mail->setMailer("sendmail");
@@ -158,19 +173,19 @@ class seguridadActions extends sfActions
             }
             else
                 $this->resultado = "El usuario no posee una direccion de correo electronico valida";
-               
-                    
+
+
         }
-        else 
+        else
             $this->resultado = "El usuario no existe";
-        
+
     }
-    
+
 /*    public function handleError()
     {
         $this->debugMessase("error general");
         return sfView::ERROR;
-    }  
+    }
 */
     /* capturo el error de login */
    public function handleErrorLogin()
@@ -179,14 +194,14 @@ class seguridadActions extends sfActions
         $this->error_inicio_sesion = true;
         return sfView::SUCCESS;
     }
-   
-    
+
+
     /* Genera una clave aleatoria de 4 letras y 4 numeros */
     private function _generar_clave(){
-        
+
         $letras = "abcdefghijklmnopqrstuvwxyz";
         $clave = "";
-        
+
         for ($i=0;$i<4;$i++) {
             $clave .= substr($letras,rand(1,strlen($letras)),1);
         }
@@ -194,7 +209,7 @@ class seguridadActions extends sfActions
             $numero = rand(0,9);
             $clave .= $numero;
         }
-        
+
         return $clave;
     }
 }

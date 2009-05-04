@@ -4,7 +4,7 @@ generator:
         model_class:      Organizacion
         theme:            default
         fields:
-            nombre: { name: nombre , params: size=64}
+            nombre: { name: Nombre , params: size=64}
             razon_social: { name: Raz&oacute;n Social , params: size=64}
             fk_organizacion_id: { name: Organizaci&oacute;n }
             descripcion: { name: Descripci&oacute;n , params: size=64}

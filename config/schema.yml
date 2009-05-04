@@ -191,28 +191,6 @@ propel:
       type: BOOLEAN
       required: true
       default: false
-  modulo:
-    _attributes:
-      idMethod: native
-    id:
-      type: INTEGER
-      required: true
-      autoIncrement: true
-      primaryKey: true
-    nombre:
-      type: VARCHAR
-      size: 128
-      required: true
-    titulo:
-      type: VARCHAR
-      size: 128
-    descripcion:
-      type: VARCHAR
-      size: 255
-    activo:
-      type: BOOLEAN
-      required: true
-      default: true
   espacio:
     _attributes:
       idMethod: native
@@ -392,15 +370,7 @@ propel:
     descripcion:
       type: VARCHAR
       size: 255
-    fk_modulo_id:
-      type: INTEGER
-      required: true
-      default: 0
-      foreignTable: modulo
-      foreignReference: id
-    credencial:
-      type: VARCHAR
-      size: 32
+
   preferencia:
     _attributes:
       idMethod: native
@@ -508,7 +478,7 @@ propel:
       default: 0
       foreignTable: locacion
       foreignReference: id
-  rel_rol_permiso:
+  rol_permiso:
     _attributes:
       idMethod: native
     id:
@@ -528,27 +498,42 @@ propel:
       default: 0
       foreignTable: permiso
       foreignReference: id
-  rel_usuario_permiso:
+
+  usuario_rol:
     _attributes:
       idMethod: native
-    id:
-      type: INTEGER
+    fk_usuario_id:
+      type: integer
       required: true
-      autoIncrement: true
       primaryKey: true
+      foreignTable: usuario
+      foreignReference: id
+    fk_rol_id:
+      type: integer
+      required: true
+      primaryKey: true
+      foreignTable: rol
+      foreignReference: id
+
+  usuario_permiso:
+    _attributes:
+      idMethod: native
     fk_usuario_id:
       type: INTEGER
       required: true
+      primaryKey: true
       default: 0
       foreignTable: usuario
       foreignReference: id
     fk_permiso_id:
       type: INTEGER
       required: true
+      primaryKey: true
       default: 0
       foreignTable: permiso
       foreignReference: id
-      onDelete: CASCADE
+      onDelete: cascade
+
   rel_usuario_preferencia:
     _attributes:
       idMethod: native
@@ -1867,30 +1852,30 @@ propel:
     variables:
       type: VARCHAR
       size: 128
-  legajosalud: 
-    _attributes: 
+  legajosalud:
+    _attributes:
       idMethod: native
-    id: 
+    id:
       type: integer
       required: true
       autoIncrement: true
       primaryKey: true
-    fk_alumno_id: 
+    fk_alumno_id:
       type: integer
       required: true
       foreignTable: alumno
       foreignReference: id
-    titulo: 
+    titulo:
       type: varchar
       size: 255
       required: true
     descripcion:
       type: blob
       required: true
-    fecha: 
+    fecha:
       type: timestamp
       required: true
-    fk_usuario_id: 
+    fk_usuario_id:
       type: integer
       required: true
       foreignTable: usuario

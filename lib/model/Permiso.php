@@ -12,8 +12,11 @@ require_once 'lib/model/om/BasePermiso.php';
  * long as it does not already exist in the output directory.
  *
  * @package model
- */	
+ */
 class Permiso extends BasePermiso {
-
+    public function __toString()
+    {
+        return $this->getNombre();
+    }
 
 } // Permiso

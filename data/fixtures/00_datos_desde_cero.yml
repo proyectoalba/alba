@@ -75,547 +75,6 @@ Tipodocumento:
     nombre: Pasaporte
     descripcion: Pasaporte
     orden: 0
-Modulo:
-  Modulo_1:
-    nombre: Usuario
-    titulo: Usuarios
-    descripcion: Administracion de usuarios
-    activo: 1
-  Modulo_2:
-    nombre: Actividad
-    titulo: Actividades
-    descripcion:
-    activo: 1
-  Modulo_3:
-    nombre: Alumno
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_4:
-    nombre: Anio
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_5:
-    nombre: Calendario
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_6:
-    nombre: Calendariovacunacion
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_7:
-    nombre: Ciclolectivo
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_8:
-    nombre: Concepto
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_9:
-    nombre: Creditos
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_10:
-    nombre: Cuenta
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_11:
-    nombre: Division
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_12:
-    nombre: Docente
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_13:
-    nombre: DocenteHorario
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_14:
-    nombre: Escalanota
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_15:
-    nombre: Establecimiento
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_16:
-    nombre: Feriado
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_17:
-    nombre: Legajocategoria
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_18:
-    nombre: Locacion
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_19:
-    nombre: Modulo
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_20:
-    nombre: Organizacion
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_21:
-    nombre: Pais
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_22:
-    nombre: Permiso
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_23:
-    nombre: Preferencia
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_24:
-    nombre: Provincia
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_25:
-    nombre: RelActividadDocente
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_26:
-    nombre: RelAnioActividad
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_27:
-    nombre: RelCalendariovacunacionAlumno
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_28:
-    nombre: Responsable
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_29:
-    nombre: Rol
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_30:
-    nombre: Seguridad
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_31:
-    nombre: Tipoiva
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_32:
-    nombre: Turno
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_33:
-    nombre: Default
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_34:
-    nombre: Tipolocacion
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_35:
-    nombre: Espacios
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_36:
-    nombre: Tipoespacio
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_37:
-    nombre: Cargoabaja
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_38:
-    nombre: Conceptobaja
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_39:
-    nombre: Distritoescolar
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_40:
-    nombre: Horarioescolar
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_41:
-    nombre: Horarioescolartipo
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_42:
-    nombre: Tipodocente
-    titulo:
-    descripcion:
-    activo: 1
-  Modulo_43:
-    nombre: tipoasistencia
-    titulo: tipoasistencia
-    descripcion: Asistencia
-    activo: 1
-  Modulo_44:
-    nombre: legajopedagogico
-    titulo: legajopdagogico
-    descripcion:
-    activo: 1
-  Modulo_45:
-    nombre: Boletin
-    titulo: Boletin
-    descripcion:
-    activo: 1
-  Modulo_46:
-    nombre: tipodocumento
-    titulo: Tipo Documento
-    descripcion: Tipo Documento
-    activo: 1
-  Modulo_47:
-    nombre: informes
-    titulo: informes
-    descripcion: informes
-    activo: 1
-  Modulo_48:
-    nombre: rolResponsable
-    titulo: Rol Responsables
-    descripcion: Roles de los Resposables de Alumos
-    activo: 1
-  Modulo_49:
-    nombre: orientacion
-    titulo: Orientacion
-    descripcion: Orientacion de los grados
-    activo: 1
-  Modulo_50:
-    nombre: tiponivel
-    titulo: Tipo de Nivel
-    descripcion:
-    activo: 1
-  Modulo_carrera:
-    nombre: carrera
-    titulo: Carrera
-    descripcion: 'Carreras del establecimiento'
-Permiso:
-  Permiso_1:
-    nombre: usuario
-    descripcion: Modulo de usuario
-    fk_modulo_id: Modulo_1
-    credencial: usuario
-  Permiso_2:
-    nombre: permiso
-    descripcion: Administrar permisos de usuario
-    fk_modulo_id: Modulo_22
-    credencial: permiso
-  Permiso_5:
-    nombre: modulo
-    descripcion: AdministraciÃ³n de mÃ³dulos
-    fk_modulo_id: Modulo_1
-    credencial: modulo
-  Permiso_6:
-    nombre: actividad
-    descripcion:
-    fk_modulo_id: Modulo_2
-    credencial: actividad
-  Permiso_7:
-    nombre: alumno
-    descripcion:
-    fk_modulo_id: Modulo_3
-    credencial: alumno
-  Permiso_8:
-    nombre: anio
-    descripcion:
-    fk_modulo_id: Modulo_4
-    credencial: anio
-  Permiso_9:
-    nombre: calendario
-    descripcion:
-    fk_modulo_id: Modulo_5
-    credencial: calendario
-  Permiso_10:
-    nombre: calendariovacunacion
-    descripcion:
-    fk_modulo_id: Modulo_6
-    credencial: calendariovacunacion
-  Permiso_11:
-    nombre: ciclolectivo
-    descripcion:
-    fk_modulo_id: Modulo_7
-    credencial: ciclolectivo
-  Permiso_12:
-    nombre: concepto
-    descripcion:
-    fk_modulo_id: Modulo_8
-    credencial: concepto
-  Permiso_13:
-    nombre: creditos
-    descripcion:
-    fk_modulo_id: Modulo_9
-    credencial: creditos
-  Permiso_14:
-    nombre: cuenta
-    descripcion:
-    fk_modulo_id: Modulo_10
-    credencial: cuenta
-  Permiso_15:
-    nombre: division
-    descripcion:
-    fk_modulo_id: Modulo_11
-    credencial: division
-  Permiso_16:
-    nombre: docente
-    descripcion:
-    fk_modulo_id: Modulo_12
-    credencial: docente
-  Permiso_17:
-    nombre: docenteHorario
-    descripcion:
-    fk_modulo_id: Modulo_13
-    credencial: docenteHorario
-  Permiso_18:
-    nombre: escalanota
-    descripcion:
-    fk_modulo_id: Modulo_14
-    credencial: escalanota
-  Permiso_19:
-    nombre: establecimiento
-    descripcion:
-    fk_modulo_id: Modulo_15
-    credencial: establecimiento
-  Permiso_20:
-    nombre: feriado
-    descripcion:
-    fk_modulo_id: Modulo_16
-    credencial: feriado
-  Permiso_21:
-    nombre: legajocategoria
-    descripcion:
-    fk_modulo_id: Modulo_17
-    credencial: legajocategoria
-  Permiso_22:
-    nombre: locacion
-    descripcion:
-    fk_modulo_id: Modulo_18
-    credencial: locacion
-  Permiso_25:
-    nombre: pais
-    descripcion:
-    fk_modulo_id: Modulo_21
-    credencial: pais
-  Permiso_27:
-    nombre: preferencia
-    descripcion:
-    fk_modulo_id: Modulo_23
-    credencial: preferencia
-  Permiso_28:
-    nombre: provincia
-    descripcion:
-    fk_modulo_id: Modulo_24
-    credencial: provincia
-  Permiso_29:
-    nombre: relActividadDocente
-    descripcion:
-    fk_modulo_id: Modulo_25
-    credencial: relActividadDocente
-  Permiso_30:
-    nombre: relAnioActividad
-    descripcion:
-    fk_modulo_id: Modulo_26
-    credencial: relAnioActividad
-  Permiso_31:
-    nombre: relCalendariovacunacionAlumno
-    descripcion:
-    fk_modulo_id: Modulo_27
-    credencial: relCalendariovacunacionAlumno
-  Permiso_32:
-    nombre: responsable
-    descripcion:
-    fk_modulo_id: Modulo_28
-    credencial: responsable
-  Permiso_33:
-    nombre: rol
-    descripcion:
-    fk_modulo_id: Modulo_29
-    credencial: rol
-  Permiso_34:
-    nombre: tipoiva
-    descripcion:
-    fk_modulo_id: Modulo_31
-    credencial: tipoiva
-  Permiso_35:
-    nombre: turno
-    descripcion:
-    fk_modulo_id: Modulo_32
-    credencial: turno
-  Permiso_36:
-    nombre: tipolocacion
-    descripcion:
-    fk_modulo_id: Modulo_34
-    credencial: tipolocacion
-  Permiso_37:
-    nombre: tipoespacio
-    descripcion:
-    fk_modulo_id: Modulo_36
-    credencial: tipoespacio
-  Permiso_38:
-    nombre: espacio
-    descripcion:
-    fk_modulo_id: Modulo_35
-    credencial: espacio
-  Permiso_40:
-    nombre: cargoabaja
-    descripcion:
-    fk_modulo_id: Modulo_37
-    credencial: cargobaja
-  Permiso_41:
-    nombre: conceptobaja
-    descripcion:
-    fk_modulo_id: Modulo_38
-    credencial: conceptobaja
-  Permiso_42:
-    nombre: distritoescolar
-    descripcion:
-    fk_modulo_id: Modulo_39
-    credencial: distritoescolar
-  Permiso_43:
-    nombre: horarioescolar
-    descripcion:
-    fk_modulo_id: Modulo_40
-    credencial: horarioescolar
-  Permiso_44:
-    nombre: horarioescolartipo
-    descripcion:
-    fk_modulo_id: Modulo_41
-    credencial: horarioescolartipo
-  Permiso_45:
-    nombre: tipodocente
-    descripcion:
-    fk_modulo_id: Modulo_42
-    credencial: tipodocente
-  Permiso_46:
-    nombre: organizacion
-    descripcion:
-    fk_modulo_id: Modulo_20
-    credencial: organizacion
-  Permiso_47:
-    nombre: Asistencia
-    descripcion: Asistencia
-    fk_modulo_id: Modulo_43
-    credencial: asistencia
-  Permiso_48:
-    nombre: distrito
-    descripcion: distrito
-    fk_modulo_id: Modulo_39
-    credencial: distrito
-  Permiso_49:
-    nombre: distritoescolar
-    descripcion: Distrito Escolar
-    fk_modulo_id: Modulo_39
-    credencial: distritoescolar
-  Permiso_50:
-    nombre: legajopedagogico
-    descripcion:
-    fk_modulo_id: Modulo_1
-    credencial: legajopedagogico
-  Permiso_51:
-    nombre: tipoasistencia
-    descripcion:
-    fk_modulo_id: Modulo_43
-    credencial: tipoasistencia
-  Permiso_52:
-    nombre: formatofecha
-    descripcion:
-    fk_modulo_id: Modulo_1
-    credencial: formatofecha
-  Permiso_53:
-    nombre: relLocacionEspacio
-    descripcion:
-    fk_modulo_id: Modulo_1
-    credencial: relLocacionEspacio
-  Permiso_54:
-    nombre: relAlumnoDivision
-    descripcion:
-    fk_modulo_id: Modulo_1
-    credencial: relAlumnoDivision
-  Permiso_55:
-    nombre: boletin
-    descripcion:
-    fk_modulo_id: Modulo_1
-    credencial: boletin
-  Permiso_56:
-    nombre: boletinconcepto
-    descripcion: boletinconcepto
-    fk_modulo_id: Modulo_45
-    credencial: boletinconcepto
-  Permiso_57:
-    nombre: boletinnotas
-    descripcion: boletinnotas
-    fk_modulo_id: Modulo_45
-    credencial: boletinnotas
-  Permiso_58:
-    nombre: tipodocumento
-    descripcion: tipodocumento
-    fk_modulo_id: Modulo_46
-    credencial: tipodocumento
-  Permiso_59:
-    nombre: informes
-    descripcion: informes
-    fk_modulo_id: Modulo_47
-    credencial: informes
-  Permiso_60:
-    nombre: rolResponsable
-    descripcion: Rol de Responsables
-    fk_modulo_id: Modulo_48
-    credencial: rolResponsable
-  Permiso_61:
-    nombre: orientacion
-    descripcion: Orientacion
-    fk_modulo_id: Modulo_49
-    credencial: orientacion
-  Permiso_62:
-    nombre: tiponivel
-    descripcion: Tipo de Nivel
-    fk_modulo_id: Modulo_50
-    credencial: niveltipo
-  Permiso_63:
-    nombre: carrera
-    descripcion: Carreras
-    fk_modulo_id: Modulo_carrera
-    credencial: carrera
 Repeticion:
   Repeticion_1:
     descripcion: Semanal
@@ -938,340 +397,359 @@ Usuario:
     email: admin@localhost
     fk_establecimiento_id: Establecimiento_1
     borrado: 0
-RelUsuarioPermiso:
-  RelUsuarioPermiso_1:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_47
-  RelUsuarioPermiso_2:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_6
-  RelUsuarioPermiso_3:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_7
-  RelUsuarioPermiso_4:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_8
-  RelUsuarioPermiso_5:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_55
-  RelUsuarioPermiso_6:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_56
-  RelUsuarioPermiso_7:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_57
-  RelUsuarioPermiso_8:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_9
-  RelUsuarioPermiso_9:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_10
-  RelUsuarioPermiso_10:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_40
-  RelUsuarioPermiso_11:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_11
-  RelUsuarioPermiso_12:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_12
-  RelUsuarioPermiso_13:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_41
-  RelUsuarioPermiso_14:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_13
-  RelUsuarioPermiso_15:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_14
-  RelUsuarioPermiso_16:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_48
-  RelUsuarioPermiso_17:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_42
-  RelUsuarioPermiso_18:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_49
-  RelUsuarioPermiso_19:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_15
-  RelUsuarioPermiso_20:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_17
-  RelUsuarioPermiso_21:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_16
-  RelUsuarioPermiso_22:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_18
-  RelUsuarioPermiso_23:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_38
-  RelUsuarioPermiso_24:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_19
-  RelUsuarioPermiso_25:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_20
-  RelUsuarioPermiso_26:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_52
-  RelUsuarioPermiso_27:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_43
-  RelUsuarioPermiso_28:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_44
-  RelUsuarioPermiso_29:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_21
-  RelUsuarioPermiso_30:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_50
-  RelUsuarioPermiso_31:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_22
-  RelUsuarioPermiso_32:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_5
-  RelUsuarioPermiso_33:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_46
-  RelUsuarioPermiso_34:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_25
-  RelUsuarioPermiso_35:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_2
-  RelUsuarioPermiso_36:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_27
-  RelUsuarioPermiso_37:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_28
-  RelUsuarioPermiso_38:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_29
-  RelUsuarioPermiso_39:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_54
-  RelUsuarioPermiso_40:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_30
-  RelUsuarioPermiso_41:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_31
-  RelUsuarioPermiso_42:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_53
-  RelUsuarioPermiso_43:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_32
-  RelUsuarioPermiso_44:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_33
-  RelUsuarioPermiso_45:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_51
-  RelUsuarioPermiso_46:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_45
-  RelUsuarioPermiso_47:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_37
-  RelUsuarioPermiso_48:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_34
-  RelUsuarioPermiso_49:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_36
-  RelUsuarioPermiso_50:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_35
-  RelUsuarioPermiso_51:
-    fk_usuario_id: Usuario_1
+
+Permiso:
+  Permiso_1:
+    nombre: usuario
+    descripcion: Modulo de usuario
+  Permiso_2:
+    nombre: permiso
+    descripcion: Administrar permisos de usuario
+  Permiso_3:
+    nombre: modulo
+    descripcion: Administración de módulos
+  Permiso_4:
+    nombre: actividad
+    descripcion:
+  Permiso_5:
+    nombre: alumno
+    descripcion:
+  Permiso_6:
+    nombre: anio
+    descripcion:
+  Permiso_7:
+    nombre: calendario
+    descripcion:
+  Permiso_8:
+    nombre: calendariovacunacion
+    descripcion:
+  Permiso_9:
+    nombre: ciclolectivo
+    descripcion:
+  Permiso_10:
+    nombre: concepto
+    descripcion:
+  Permiso_11:
+    nombre: creditos
+    descripcion:
+  Permiso_12:
+    nombre: cuenta
+    descripcion:
+  Permiso_13:
+    nombre: division
+    descripcion:
+  Permiso_14:
+    nombre: docente
+    descripcion:
+  Permiso_15:
+    nombre: docenteHorario
+    descripcion:
+  Permiso_16:
+    nombre: escalanota
+    descripcion:
+  Permiso_17:
+    nombre: establecimiento
+    descripcion:
+  Permiso_18:
+    nombre: feriado
+    descripcion:
+  Permiso_19:
+    nombre: legajocategoria
+    descripcion:
+  Permiso_20:
+    nombre: locacion
+    descripcion:
+  Permiso_21:
+    nombre: pais
+    descripcion:
+  Permiso_22:
+    nombre: preferencia
+    descripcion:
+  Permiso_23:
+    nombre: provincia
+    descripcion:
+  Permiso_24:
+    nombre: relActividadDocente
+    descripcion:
+  Permiso_25:
+    nombre: relAnioActividad
+    descripcion:
+  Permiso_26:
+    nombre: relCalendariovacunacionAlumno
+    descripcion:
+  Permiso_27:
+    nombre: responsable
+    descripcion:
+  Permiso_28:
+    nombre: rol
+    descripcion:
+  Permiso_29:
+    nombre: tipoiva
+    descripcion:
+  Permiso_30:
+    nombre: turno
+    descripcion:
+  Permiso_31:
+    nombre: tipolocacion
+    descripcion:
+  Permiso_32:
+    nombre: tipoespacio
+    descripcion:
+  Permiso_33:
+    nombre: espacio
+    descripcion:
+  Permiso_34:
+    nombre: cargoabaja
+    descripcion:
+  Permiso_35:
+    nombre: conceptobaja
+    descripcion:
+  Permiso_36:
+    nombre: distritoescolar
+    descripcion:
+  Permiso_37:
+    nombre: horarioescolar
+    descripcion:
+  Permiso_38:
+    nombre: horarioescolartipo
+    descripcion:
+  Permiso_39:
+    nombre: tipodocente
+    descripcion:
+  Permiso_40:
+    nombre: organizacion
+    descripcion:
+  Permiso_41:
+    nombre: Asistencia
+    descripcion: Asistencia
+  Permiso_42:
+    nombre: distrito
+    descripcion: distrito
+  Permiso_43:
+    nombre: distritoescolar
+    descripcion: Distrito Escolar
+  Permiso_44:
+    nombre: legajopedagogico
+    descripcion:
+  Permiso_45:
+    nombre: tipoasistencia
+    descripcion:
+  Permiso_46:
+    nombre: formatofecha
+    descripcion:
+  Permiso_47:
+    nombre: relLocacionEspacio
+    descripcion:
+  Permiso_48:
+    nombre: relAlumnoDivision
+    descripcion:
+  Permiso_49:
+    nombre: boletin
+    descripcion:
+  Permiso_50:
+    nombre: boletinconcepto
+    descripcion: boletinconcepto
+  Permiso_51:
+    nombre: boletinnotas
+    descripcion: boletinnotas
+  Permiso_52:
+    nombre: tipodocumento
+    descripcion: tipodocumento
+  Permiso_53:
+    nombre: informes
+    descripcion: informes
+  Permiso_54:
+    nombre: rolResponsable
+    descripcion: Rol de Responsables
+  Permiso_55:
+    nombre: orientacion
+    descripcion: Orientacion
+  Permiso_56:
+    nombre: tiponivel
+    descripcion: Tipo de Nivel
+  Permiso_57:
+    nombre: carrera
+    descripcion: Carreras
+Rol:
+  Rol_1:
+    nombre: Administrador
+    descripcion: Administrador del sistema
+    activo: 1
+
+RolPermiso:
+  Rol_permiso_1_1:
+    fk_rol_id: Rol_1
     fk_permiso_id: Permiso_1
-  RelUsuarioPermiso_52:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_58
-  RelUsuarioPermiso_53:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_59
-  RelUsuarioPermiso_54:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_60
-  RelUsuarioPermiso_55:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_61
-  RelUsuarioPermiso_56:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_62
-  RelUsuarioPermiso_155:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_47
-  RelUsuarioPermiso_156:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_6
-  RelUsuarioPermiso_157:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_7
-  RelUsuarioPermiso_158:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_8
-  RelUsuarioPermiso_159:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_55
-  RelUsuarioPermiso_160:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_56
-  RelUsuarioPermiso_161:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_57
-  RelUsuarioPermiso_162:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_9
-  RelUsuarioPermiso_163:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_10
-  RelUsuarioPermiso_164:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_40
-  RelUsuarioPermiso_165:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_11
-  RelUsuarioPermiso_166:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_12
-  RelUsuarioPermiso_167:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_41
-  RelUsuarioPermiso_168:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_13
-  RelUsuarioPermiso_169:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_14
-  RelUsuarioPermiso_170:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_48
-  RelUsuarioPermiso_171:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_42
-  RelUsuarioPermiso_172:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_49
-  RelUsuarioPermiso_173:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_15
-  RelUsuarioPermiso_174:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_17
-  RelUsuarioPermiso_175:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_16
-  RelUsuarioPermiso_176:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_18
-  RelUsuarioPermiso_177:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_38
-  RelUsuarioPermiso_178:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_19
-  RelUsuarioPermiso_179:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_20
-  RelUsuarioPermiso_180:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_52
-  RelUsuarioPermiso_181:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_43
-  RelUsuarioPermiso_182:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_44
-  RelUsuarioPermiso_183:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_59
-  RelUsuarioPermiso_184:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_21
-  RelUsuarioPermiso_185:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_50
-  RelUsuarioPermiso_186:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_22
-  RelUsuarioPermiso_187:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_5
-  RelUsuarioPermiso_188:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_46
-  RelUsuarioPermiso_189:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_25
-  RelUsuarioPermiso_190:
-    fk_usuario_id: Usuario_1
+  Rol_permiso_1_2:
+    fk_rol_id: Rol_1
     fk_permiso_id: Permiso_2
-  RelUsuarioPermiso_191:
-    fk_usuario_id: Usuario_1
+  Rol_permiso_1_3:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_3
+  Rol_permiso_1_4:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_4
+  Rol_permiso_1_5:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_5
+  Rol_permiso_1_6:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_6
+  Rol_permiso_1_7:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_7
+  Rol_permiso_1_8:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_8
+  Rol_permiso_1_9:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_9
+  Rol_permiso_1_10:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_10
+  Rol_permiso_1_11:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_11
+  Rol_permiso_1_12:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_12
+  Rol_permiso_1_13:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_13
+  Rol_permiso_1_14:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_14
+  Rol_permiso_1_15:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_15
+  Rol_permiso_1_16:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_16
+  Rol_permiso_1_17:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_17
+  Rol_permiso_1_18:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_18
+  Rol_permiso_1_19:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_19
+  Rol_permiso_1_20:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_20
+  Rol_permiso_1_21:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_21
+  Rol_permiso_1_22:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_22
+  Rol_permiso_1_23:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_23
+  Rol_permiso_1_24:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_24
+  Rol_permiso_1_25:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_25
+  Rol_permiso_1_26:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_26
+  Rol_permiso_1_27:
+    fk_rol_id: Rol_1
     fk_permiso_id: Permiso_27
-  RelUsuarioPermiso_192:
-    fk_usuario_id: Usuario_1
+  Rol_permiso_1_28:
+    fk_rol_id: Rol_1
     fk_permiso_id: Permiso_28
-  RelUsuarioPermiso_193:
-    fk_usuario_id: Usuario_1
+  Rol_permiso_1_29:
+    fk_rol_id: Rol_1
     fk_permiso_id: Permiso_29
-  RelUsuarioPermiso_194:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_54
-  RelUsuarioPermiso_195:
-    fk_usuario_id: Usuario_1
+  Rol_permiso_1_30:
+    fk_rol_id: Rol_1
     fk_permiso_id: Permiso_30
-  RelUsuarioPermiso_196:
-    fk_usuario_id: Usuario_1
+  Rol_permiso_1_31:
+    fk_rol_id: Rol_1
     fk_permiso_id: Permiso_31
-  RelUsuarioPermiso_197:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_53
-  RelUsuarioPermiso_198:
-    fk_usuario_id: Usuario_1
+  Rol_permiso_1_32:
+    fk_rol_id: Rol_1
     fk_permiso_id: Permiso_32
-  RelUsuarioPermiso_199:
-    fk_usuario_id: Usuario_1
+  Rol_permiso_1_33:
+    fk_rol_id: Rol_1
     fk_permiso_id: Permiso_33
-  RelUsuarioPermiso_200:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_51
-  RelUsuarioPermiso_201:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_45
-  RelUsuarioPermiso_202:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_58
-  RelUsuarioPermiso_203:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_37
-  RelUsuarioPermiso_204:
-    fk_usuario_id: Usuario_1
+  Rol_permiso_1_34:
+    fk_rol_id: Rol_1
     fk_permiso_id: Permiso_34
-  RelUsuarioPermiso_205:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_36
-  RelUsuarioPermiso_206:
-    fk_usuario_id: Usuario_1
+  Rol_permiso_1_35:
+    fk_rol_id: Rol_1
     fk_permiso_id: Permiso_35
-  RelUsuarioPermiso_207:
+  Rol_permiso_1_36:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_36
+  Rol_permiso_1_37:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_37
+  Rol_permiso_1_38:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_38
+  Rol_permiso_1_39:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_39
+  Rol_permiso_1_40:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_40
+  Rol_permiso_1_41:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_41
+  Rol_permiso_1_42:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_42
+  Rol_permiso_1_43:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_43
+  Rol_permiso_1_44:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_44
+  Rol_permiso_1_45:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_45
+  Rol_permiso_1_46:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_46
+  Rol_permiso_1_47:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_47
+  Rol_permiso_1_48:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_48
+  Rol_permiso_1_49:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_49
+  Rol_permiso_1_50:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_50
+  Rol_permiso_1_51:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_51
+  Rol_permiso_1_52:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_52
+  Rol_permiso_1_53:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_53
+  Rol_permiso_1_54:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_54
+  Rol_permiso_1_55:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_55
+  Rol_permiso_1_56:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_56
+  Rol_permiso_1_57:
+    fk_rol_id: Rol_1
+    fk_permiso_id: Permiso_57
+
+UsuarioRol:
+  Usuario_rol_1_1:
     fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_1
-  RelUsuarioPermiso_211:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_60
-  RelUsuarioPermiso_216:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_61
-  RelUsuarioPermiso_217:
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_62
+    fk_rol_id: Rol_1

@@ -16,4 +16,8 @@ require_once 'lib/model/om/BaseRol.php';
  */	
 class Rol extends BaseRol {
 
+    public function __toString()
+    {
+        return $this->getNombre();
+    }
 } // Rol
