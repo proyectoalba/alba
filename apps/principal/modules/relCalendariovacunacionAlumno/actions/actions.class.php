@@ -39,25 +39,22 @@ class relCalendariovacunacionAlumnoActions extends autorelCalendariovacunacionAl
   */
   function executeIrCuenta(){
     if ( $this->getRequestParameter('id') ){
-      
         $c = new Criteria();
         $c->add(RelCalendariovacunacionAlumnoPeer::ID,$this->getRequestParameter('id') );
         $c->addJoin(AlumnoPeer::ID,RelCalendariovacunacionAlumnoPeer::FK_ALUMNO_ID);
-        
         $Alum = AlumnoPeer::doSelectOne($c);
         if($Alum->getFkCuentaId()) 
             $this->redirect('cuenta/verCompleta?id='.$Alum->getFkCuentaId());
          else 
              $this->redirect('alumno/list');
-    }    
+    }
   }
- 
+
   function executeIrAlumnos(){
     $this->redirect('alumno/list');
-  }                
+  }
 
-
-  public function executeEdit ()
+  public function executeEdit($request)
   {
     $this->rel_calendariovacunacion_alumno = $this->getRelCalendariovacunacionAlumnoOrCreate();
 
@@ -89,13 +86,8 @@ class relCalendariovacunacionAlumnoActions extends autorelCalendariovacunacionAl
       // add javascripts
       $this->getResponse()->addJavascript(sfConfig::get('sf_prototype_web_dir').'/js/prototype');
       $this->getResponse()->addJavascript(sfConfig::get('sf_admin_web_dir').'/js/collapse');
-	  if ($this->getRequestParameter('fk_alumno_id'))
-                $this->rel_calendariovacunacion_alumno->setFkAlumnoId($this->getRequestParameter('fk_alumno_id'));
-
-
+      if ($this->getRequestParameter('fk_alumno_id'))
+        $this->rel_calendariovacunacion_alumno->setFkAlumnoId($this->getRequestParameter('fk_alumno_id'));
     }
   }
-
-
-
 }
