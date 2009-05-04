@@ -70,3 +70,7 @@ ALTER TABLE evento ALTER COLUMN recurrencia_fin TYPE VARCHAR (32);
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
+
+--Alumno
+
+ALTER TABLE `alumno` ADD `procedencia` VARCHAR (128);
