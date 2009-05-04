@@ -12,13 +12,13 @@ generator:
         fk_distritoescolar_id : { name: Distrito Escolar}
         distritoescolar : { name: Distrito Escolar}
         cuit: { name: CUIT }
-        
+        legajoprefijo: { name: Prefijo Legajo }
     edit:
         title: ""
-        display: [nombre, descripcion, cuit, fk_organizacion_id, fk_niveltipo_id, fk_distritoescolar_id]
+        display: [nombre, descripcion, cuit, legajoprefijo, fk_organizacion_id, fk_niveltipo_id, fk_distritoescolar_id]
                                                          
     list:
-        display: [=nombre, descripcion, cuit, _organizacion, _nivel_tipo, _distritoescolar]
+        display: [=nombre, descripcion, cuit, legajoprefijo, _organizacion, _nivel_tipo, _distritoescolar]
         title: Listado de Establecimientos
         sort: [ nombre, asc ]
         object_actions:

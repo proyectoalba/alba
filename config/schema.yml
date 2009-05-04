@@ -352,6 +352,13 @@ propel:
       type: VARCHAR
       size: 20
       required: False
+    legajoprefijo:
+      type: VARCHAR
+      size: 10
+      required: True
+    legajosiguiente:
+      type: INTEGER
+      required: false
     fk_distritoescolar_id:
       type: INTEGER
       required: true
