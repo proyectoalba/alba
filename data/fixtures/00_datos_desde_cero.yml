@@ -1,1211 +1,899 @@
----
-Distritoescolar: 
-  Distritoescolar_1: 
+Distritoescolar:
+  Distritoescolar_1:
     nombre: Distrito de prueba
     direccion: -
     telefono: -
     ciudad: -
-Pais: 
-  Pais_1: 
-    nombre_largo: Argentina
-    nombre_corto: ARG
+Pais:
+  Pais_0:
+    nombre_largo: Nombre Pais
+    nombre_corto: XXX
     orden: 100
-Provincia: 
-  Provincia_1: 
-    nombre_corto: Bs. As.
-    nombre_largo: Buenos Aires
-    fk_pais_id: Pais_1
+Provincia:
+  Provincia_0:
+    nombre_corto: Prov.
+    nombre_largo: Provincia
+    fk_pais_id: Pais_0
     orden: 0
-  Provincia_6: 
-    nombre_corto: La Pampa
-    nombre_largo: La Pampa
-    fk_pais_id: Pais_1
-    orden: 0
-  Provincia_7: 
-    nombre_corto: Chaco
-    nombre_largo: Chaco
-    fk_pais_id: Pais_1
-    orden: 0
-  Provincia_8: 
-    nombre_corto: Córdoba
-    nombre_largo: Córdoba
-    fk_pais_id: Pais_1
-    orden: 0
-  Provincia_9: 
-    nombre_corto: Misiones
-    nombre_largo: Misiones
-    fk_pais_id: Pais_1
-    orden: 0
-  Provincia_10: 
-    nombre_corto: Mendoza
-    nombre_largo: Mendoza
-    fk_pais_id: Pais_1
-    orden: 0
-  Provincia_11: 
-    nombre_corto: E.Ríos
-    nombre_largo: Entre Ríos
-    fk_pais_id: Pais_1
-    orden: 0
-  Provincia_12: 
-    nombre_corto: Jujuy
-    nombre_largo: Jujuy
-    fk_pais_id: Pais_1
-    orden: 0
-  Provincia_13: 
-    nombre_corto: Chubut
-    nombre_largo: Chubut
-    fk_pais_id: Pais_1
-    orden: 0
-  Provincia_14: 
-    nombre_corto: Salta
-    nombre_largo: Salta
-    fk_pais_id: Pais_1
-    orden: 0
-  Provincia_15: 
-    nombre_corto: Santa Cruz
-    nombre_largo: Santa Cruz
-    fk_pais_id: Pais_1
-    orden: 0
-  Provincia_16: 
-    nombre_corto: San Juan
-    nombre_largo: San Juan
-    fk_pais_id: Pais_1
-    orden: 0
-  Provincia_17: 
-    nombre_corto: San Luis
-    nombre_largo: San Luis
-    fk_pais_id: Pais_1
-    orden: 0
-  Provincia_18: 
-    nombre_corto: R.Negro
-    nombre_largo: Río Negro
-    fk_pais_id: Pais_1
-    orden: 0
-  Provincia_19: 
-    nombre_corto: Neuquén
-    nombre_largo: Neuquén
-    fk_pais_id: Pais_1
-    orden: 0
-  Provincia_20: 
-    nombre_corto: Formosa
-    nombre_largo: Formosa
-    fk_pais_id: Pais_1
-    orden: 0
-  Provincia_21: 
-    nombre_corto: La Rioja
-    nombre_largo: La Rioja
-    fk_pais_id: Pais_1
-    orden: 0
-  Provincia_22: 
-    nombre_corto: Catamarca
-    nombre_largo: Catamarca
-    fk_pais_id: Pais_1
-    orden: 0
-  Provincia_23: 
-    nombre_corto: T.del Fuego
-    nombre_largo: Tierra Del Fuego
-    fk_pais_id: Pais_1
-    orden: 0
-  Provincia_24: 
-    nombre_corto: S. del Estero
-    nombre_largo: Santiago del Estero
-    fk_pais_id: Pais_1
-    orden: 0
-  Provincia_25: 
-    nombre_corto: Santa Fe
-    nombre_largo: Santa Fe
-    fk_pais_id: Pais_1
-    orden: 0
-  Provincia_26: 
-    nombre_corto: Corrientes
-    nombre_largo: Corrientes
-    fk_pais_id: Pais_1
-    orden: 0
-  Provincia_27: 
-    nombre_corto: Tucumán
-    nombre_largo: Tucumán
-    fk_pais_id: Pais_1
-    orden: 0
-Tipoiva: 
-  Tipoiva_1: 
+Tipoiva:
+  Tipoiva_1:
     nombre: Exento
     descripcion: Exento de IVA
     orden: 0
-  Tipoiva_2: 
+  Tipoiva_2:
     nombre: Responsable Inscripto
     descripcion: Responsable inscripto
     orden: 0
-  Tipoiva_3: 
+  Tipoiva_3:
     nombre: Monotributo
     descripcion: Monotributo
     orden: 0
-  Tipoiva_4: 
+  Tipoiva_4:
     nombre: CF
     descripcion: Consumidor Final
     orden: 0
-Organizacion: 
-  Organizacion_1: 
-    nombre: Organización Tu Nombre
-    descripcion: Organización Tu Descripción
-    razon_social: Organización Tu Razón Social
-    cuit: 20123456789
-    direccion: Tu Dirección
-    ciudad: Tu ciudad
-    codigo_postal: Tu CP
-    telefono: 
-    fk_provincia_id: Provincia_1
-    fk_tipoiva_id: Tipoiva_1
-Niveltipo: 
-  Niveltipo_1: 
+Niveltipo:
+  Niveltipo_1:
     nombre: Jardín
     descripcion: Jardín
-  Niveltipo_2: 
+  Niveltipo_2:
     nombre: Primaria
     descripcion: Primaria
-  Niveltipo_3: 
+  Niveltipo_3:
     nombre: Secundaria
     descripcion: Secundaria
-  Niveltipo_4: 
+  Niveltipo_4:
     nombre: Universitario
     descripcion: Universitario
-  Niveltipo_5: 
+  Niveltipo_5:
     nombre: Terciario
     descripcion: Terciario
-  Niveltipo_6: 
+  Niveltipo_6:
     nombre: Institutos
     descripcion: Institutos
-  Niveltipo_7: 
+  Niveltipo_7:
     nombre: Otros
     descripcion: Otros
-Establecimiento: 
-  Establecimiento_1: 
-    nombre: Establecimiento Tu nombre
-    descripcion: Establecimiento Tu descripcion
-    fk_distritoescolar_id: Distritoescolar_1
-    fk_organizacion_id: Organizacion_1
-    fk_niveltipo_id: Niveltipo_1
-Tipodocumento: 
-  Tipodocumento_1: 
+Tipodocumento:
+  Tipodocumento_1:
     nombre: DNI
     descripcion: Documento Nacional de Identidad
     orden: 1
-  Tipodocumento_2: 
+  Tipodocumento_2:
     nombre: LC
     descripcion: Libreta Cívica
     orden: 2
-  Tipodocumento_3: 
+  Tipodocumento_3:
     nombre: LE
     descripcion: Libreta de enrolamiento
     orden: 3
-  Tipodocumento_6: 
+  Tipodocumento_6:
     nombre: CI
     descripcion: Cédula de Identidad
     orden: 0
-  Tipodocumento_7: 
+  Tipodocumento_7:
     nombre: Pasaporte
     descripcion: Pasaporte
     orden: 0
-Modulo: 
-  Modulo_1: 
+Modulo:
+  Modulo_1:
     nombre: Usuario
     titulo: Usuarios
     descripcion: Administracion de usuarios
     activo: 1
-  Modulo_2: 
+  Modulo_2:
     nombre: Actividad
     titulo: Actividades
-    descripcion: 
+    descripcion:
     activo: 1
-  Modulo_3: 
+  Modulo_3:
     nombre: Alumno
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_4: 
+  Modulo_4:
     nombre: Anio
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_5: 
+  Modulo_5:
     nombre: Calendario
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_6: 
+  Modulo_6:
     nombre: Calendariovacunacion
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_7: 
+  Modulo_7:
     nombre: Ciclolectivo
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_8: 
+  Modulo_8:
     nombre: Concepto
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_9: 
+  Modulo_9:
     nombre: Creditos
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_10: 
+  Modulo_10:
     nombre: Cuenta
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_11: 
+  Modulo_11:
     nombre: Division
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_12: 
+  Modulo_12:
     nombre: Docente
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_13: 
+  Modulo_13:
     nombre: DocenteHorario
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_14: 
+  Modulo_14:
     nombre: Escalanota
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_15: 
+  Modulo_15:
     nombre: Establecimiento
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_16: 
+  Modulo_16:
     nombre: Feriado
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_17: 
+  Modulo_17:
     nombre: Legajocategoria
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_18: 
+  Modulo_18:
     nombre: Locacion
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_19: 
+  Modulo_19:
     nombre: Modulo
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_20: 
+  Modulo_20:
     nombre: Organizacion
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_21: 
+  Modulo_21:
     nombre: Pais
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_22: 
+  Modulo_22:
     nombre: Permiso
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_23: 
+  Modulo_23:
     nombre: Preferencia
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_24: 
+  Modulo_24:
     nombre: Provincia
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_25: 
+  Modulo_25:
     nombre: RelActividadDocente
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_26: 
+  Modulo_26:
     nombre: RelAnioActividad
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_27: 
+  Modulo_27:
     nombre: RelCalendariovacunacionAlumno
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_28: 
+  Modulo_28:
     nombre: Responsable
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_29: 
+  Modulo_29:
     nombre: Rol
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_30: 
+  Modulo_30:
     nombre: Seguridad
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_31: 
+  Modulo_31:
     nombre: Tipoiva
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_32: 
+  Modulo_32:
     nombre: Turno
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_33: 
+  Modulo_33:
     nombre: Default
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_34: 
+  Modulo_34:
     nombre: Tipolocacion
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_35: 
+  Modulo_35:
     nombre: Espacios
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_36: 
+  Modulo_36:
     nombre: Tipoespacio
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_37: 
+  Modulo_37:
     nombre: Cargoabaja
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_38: 
+  Modulo_38:
     nombre: Conceptobaja
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_39: 
+  Modulo_39:
     nombre: Distritoescolar
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_40: 
+  Modulo_40:
     nombre: Horarioescolar
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_41: 
+  Modulo_41:
     nombre: Horarioescolartipo
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_42: 
+  Modulo_42:
     nombre: Tipodocente
-    titulo: 
-    descripcion: 
+    titulo:
+    descripcion:
     activo: 1
-  Modulo_43: 
+  Modulo_43:
     nombre: tipoasistencia
     titulo: tipoasistencia
     descripcion: Asistencia
     activo: 1
-  Modulo_44: 
+  Modulo_44:
     nombre: legajopedagogico
     titulo: legajopdagogico
-    descripcion: 
+    descripcion:
     activo: 1
-  Modulo_45: 
+  Modulo_45:
     nombre: Boletin
     titulo: Boletin
-    descripcion: 
+    descripcion:
     activo: 1
-  Modulo_46: 
+  Modulo_46:
     nombre: tipodocumento
     titulo: Tipo Documento
     descripcion: Tipo Documento
     activo: 1
-  Modulo_47: 
+  Modulo_47:
     nombre: informes
     titulo: informes
     descripcion: informes
     activo: 1
-  Modulo_48: 
+  Modulo_48:
     nombre: rolResponsable
     titulo: Rol Responsables
     descripcion: Roles de los Resposables de Alumos
     activo: 1
-  Modulo_49: 
+  Modulo_49:
     nombre: orientacion
     titulo: Orientacion
     descripcion: Orientacion de los grados
     activo: 1
-  Modulo_50: 
+  Modulo_50:
     nombre: tiponivel
     titulo: Tipo de Nivel
-    descripcion: 
+    descripcion:
     activo: 1
-Permiso: 
-  Permiso_1: 
+Permiso:
+  Permiso_1:
     nombre: usuario
     descripcion: Modulo de usuario
     fk_modulo_id: Modulo_1
     credencial: usuario
-  Permiso_2: 
+  Permiso_2:
     nombre: permiso
     descripcion: Administrar permisos de usuario
     fk_modulo_id: Modulo_22
     credencial: permiso
-  Permiso_5: 
+  Permiso_5:
     nombre: modulo
     descripcion: AdministraciÃ³n de mÃ³dulos
     fk_modulo_id: Modulo_1
     credencial: modulo
-  Permiso_6: 
+  Permiso_6:
     nombre: actividad
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_2
     credencial: actividad
-  Permiso_7: 
+  Permiso_7:
     nombre: alumno
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_3
     credencial: alumno
-  Permiso_8: 
+  Permiso_8:
     nombre: anio
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_4
     credencial: anio
-  Permiso_9: 
+  Permiso_9:
     nombre: calendario
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_5
     credencial: calendario
-  Permiso_10: 
+  Permiso_10:
     nombre: calendariovacunacion
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_6
     credencial: calendariovacunacion
-  Permiso_11: 
+  Permiso_11:
     nombre: ciclolectivo
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_7
     credencial: ciclolectivo
-  Permiso_12: 
+  Permiso_12:
     nombre: concepto
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_8
     credencial: concepto
-  Permiso_13: 
+  Permiso_13:
     nombre: creditos
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_9
     credencial: creditos
-  Permiso_14: 
+  Permiso_14:
     nombre: cuenta
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_10
     credencial: cuenta
-  Permiso_15: 
+  Permiso_15:
     nombre: division
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_11
     credencial: division
-  Permiso_16: 
+  Permiso_16:
     nombre: docente
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_12
     credencial: docente
-  Permiso_17: 
+  Permiso_17:
     nombre: docenteHorario
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_13
     credencial: docenteHorario
-  Permiso_18: 
+  Permiso_18:
     nombre: escalanota
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_14
     credencial: escalanota
-  Permiso_19: 
+  Permiso_19:
     nombre: establecimiento
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_15
     credencial: establecimiento
-  Permiso_20: 
+  Permiso_20:
     nombre: feriado
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_16
     credencial: feriado
-  Permiso_21: 
+  Permiso_21:
     nombre: legajocategoria
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_17
     credencial: legajocategoria
-  Permiso_22: 
+  Permiso_22:
     nombre: locacion
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_18
     credencial: locacion
-  Permiso_25: 
+  Permiso_25:
     nombre: pais
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_21
     credencial: pais
-  Permiso_27: 
+  Permiso_27:
     nombre: preferencia
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_23
     credencial: preferencia
-  Permiso_28: 
+  Permiso_28:
     nombre: provincia
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_24
     credencial: provincia
-  Permiso_29: 
+  Permiso_29:
     nombre: relActividadDocente
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_25
     credencial: relActividadDocente
-  Permiso_30: 
+  Permiso_30:
     nombre: relAnioActividad
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_26
     credencial: relAnioActividad
-  Permiso_31: 
+  Permiso_31:
     nombre: relCalendariovacunacionAlumno
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_27
     credencial: relCalendariovacunacionAlumno
-  Permiso_32: 
+  Permiso_32:
     nombre: responsable
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_28
     credencial: responsable
-  Permiso_33: 
+  Permiso_33:
     nombre: rol
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_29
     credencial: rol
-  Permiso_34: 
+  Permiso_34:
     nombre: tipoiva
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_31
     credencial: tipoiva
-  Permiso_35: 
+  Permiso_35:
     nombre: turno
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_32
     credencial: turno
-  Permiso_36: 
+  Permiso_36:
     nombre: tipolocacion
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_34
     credencial: tipolocacion
-  Permiso_37: 
+  Permiso_37:
     nombre: tipoespacio
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_36
     credencial: tipoespacio
-  Permiso_38: 
+  Permiso_38:
     nombre: espacio
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_35
     credencial: espacio
-  Permiso_40: 
+  Permiso_40:
     nombre: cargoabaja
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_37
     credencial: cargobaja
-  Permiso_41: 
+  Permiso_41:
     nombre: conceptobaja
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_38
     credencial: conceptobaja
-  Permiso_42: 
+  Permiso_42:
     nombre: distritoescolar
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_39
     credencial: distritoescolar
-  Permiso_43: 
+  Permiso_43:
     nombre: horarioescolar
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_40
     credencial: horarioescolar
-  Permiso_44: 
+  Permiso_44:
     nombre: horarioescolartipo
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_41
     credencial: horarioescolartipo
-  Permiso_45: 
+  Permiso_45:
     nombre: tipodocente
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_42
     credencial: tipodocente
-  Permiso_46: 
+  Permiso_46:
     nombre: organizacion
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_20
     credencial: organizacion
-  Permiso_47: 
+  Permiso_47:
     nombre: Asistencia
     descripcion: Asistencia
     fk_modulo_id: Modulo_43
     credencial: asistencia
-  Permiso_48: 
+  Permiso_48:
     nombre: distrito
     descripcion: distrito
     fk_modulo_id: Modulo_39
     credencial: distrito
-  Permiso_49: 
+  Permiso_49:
     nombre: distritoescolar
     descripcion: Distrito Escolar
     fk_modulo_id: Modulo_39
     credencial: distritoescolar
-  Permiso_50: 
+  Permiso_50:
     nombre: legajopedagogico
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_1
     credencial: legajopedagogico
-  Permiso_51: 
+  Permiso_51:
     nombre: tipoasistencia
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_43
     credencial: tipoasistencia
-  Permiso_52: 
+  Permiso_52:
     nombre: formatofecha
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_1
     credencial: formatofecha
-  Permiso_53: 
+  Permiso_53:
     nombre: relLocacionEspacio
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_1
     credencial: relLocacionEspacio
-  Permiso_54: 
+  Permiso_54:
     nombre: relAlumnoDivision
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_1
     credencial: relAlumnoDivision
-  Permiso_55: 
+  Permiso_55:
     nombre: boletin
-    descripcion: 
+    descripcion:
     fk_modulo_id: Modulo_1
     credencial: boletin
-  Permiso_56: 
+  Permiso_56:
     nombre: boletinconcepto
     descripcion: boletinconcepto
     fk_modulo_id: Modulo_45
     credencial: boletinconcepto
-  Permiso_57: 
+  Permiso_57:
     nombre: boletinnotas
     descripcion: boletinnotas
     fk_modulo_id: Modulo_45
     credencial: boletinnotas
-  Permiso_58: 
+  Permiso_58:
     nombre: tipodocumento
     descripcion: tipodocumento
     fk_modulo_id: Modulo_46
     credencial: tipodocumento
-  Permiso_59: 
+  Permiso_59:
     nombre: informes
     descripcion: informes
     fk_modulo_id: Modulo_47
     credencial: informes
-  Permiso_60: 
+  Permiso_60:
     nombre: rolResponsable
     descripcion: Rol de Responsables
     fk_modulo_id: Modulo_48
     credencial: rolResponsable
-  Permiso_61: 
+  Permiso_61:
     nombre: orientacion
     descripcion: Orientacion
     fk_modulo_id: Modulo_49
     credencial: orientacion
-  Permiso_62: 
+  Permiso_62:
     nombre: tiponivel
     descripcion: Tipo de Nivel
     fk_modulo_id: Modulo_50
     credencial: niveltipo
-Repeticion: 
-  Repeticion_1: 
+Repeticion:
+  Repeticion_1:
     descripcion: Semanal
     orden: 1
-  Repeticion_2: 
+  Repeticion_2:
     descripcion: Semanal Intercalado
     orden: 2
-  Repeticion_3: 
+  Repeticion_3:
     descripcion: Quincenal
     orden: 3
-  Repeticion_4: 
+  Repeticion_4:
     descripcion: Mensual
     orden: 4
-Tipoinforme: 
-  Tipoinforme_1: 
+Tipoinforme:
+  Tipoinforme_1:
     nombre: Alumnos
     descripcion: Informes relacionados a los alumnos
-  Tipoinforme_2: 
+  Tipoinforme_2:
     nombre: General
-    descripcion: 
-Adjunto: 
-  Adjunto_1: 
-    descripcion: 
-    titulo: 
+    descripcion:
+Adjunto:
+  Adjunto_1:
+    descripcion:
+    titulo:
     nombre_archivo: constancia_alumno_regular.odt
     tipo_archivo: application/vnd.oasis.opendocument.text
     ruta: constancia_alumno_regular.odt
     fecha: 2007-10-17 00:00:00
-  Adjunto_2: 
-    descripcion: 
-    titulo: 
+  Adjunto_2:
+    descripcion:
+    titulo:
     nombre_archivo: >
       certificado_de_terminacion_de_estudios_primarios.odt
     tipo_archivo: application/vnd.oasis.opendocument.text
     ruta: >
       certificado_de_terminacion_de_estudios_primarios.odt
     fecha: 2007-10-17 00:00:00
-  Adjunto_3: 
-    descripcion: 
-    titulo: 
+  Adjunto_3:
+    descripcion:
+    titulo:
     nombre_archivo: solicitud_legajo.odt
     tipo_archivo: application/vnd.oasis.opendocument.text
     ruta: solicitud_legajo.odt
     fecha: 2007-10-17 00:00:00
-  Adjunto_4: 
-    descripcion: 
-    titulo: 
+  Adjunto_4:
+    descripcion:
+    titulo:
     nombre_archivo: certificado_de_estudios.odt
     tipo_archivo: application/vnd.oasis.opendocument.text
     ruta: certificado_de_estudios.odt
     fecha: 2007-10-17 00:00:00
-  Adjunto_5: 
-    descripcion: 
-    titulo: 
+  Adjunto_5:
+    descripcion:
+    titulo:
     nombre_archivo: alumnos_por_division.odt
     tipo_archivo: application/vnd.oasis.opendocument.text
     ruta: alumnos_por_division.odt
     fecha: 2007-10-17 00:00:00
-  Adjunto_6: 
-    descripcion: 
-    titulo: 
+  Adjunto_6:
+    descripcion:
+    titulo:
     nombre_archivo: locacion.odt
     tipo_archivo: application/vnd.oasis.opendocument.text
     ruta: locacion.odt
     fecha: 2007-10-17 00:00:00
-  Adjunto_7: 
-    descripcion: 
-    titulo: 
+  Adjunto_7:
+    descripcion:
+    titulo:
     nombre_archivo: docente.odt
     tipo_archivo: application/vnd.oasis.opendocument.text
     ruta: docente.odt
     fecha: 2007-10-17 00:00:00
-  Adjunto_8: 
-    descripcion: 
-    titulo: 
+  Adjunto_8:
+    descripcion:
+    titulo:
     nombre_archivo: organizacion.odt
     tipo_archivo: application/vnd.oasis.opendocument.text
     ruta: organizacion.odt
     fecha: 2007-10-17 00:00:00
-  Adjunto_9: 
-    descripcion: 
-    titulo: 
+  Adjunto_9:
+    descripcion:
+    titulo:
     nombre_archivo: cuenta.odt
     tipo_archivo: application/vnd.oasis.opendocument.text
     ruta: cuenta.odt
     fecha: 2007-10-17 00:00:00
-  Adjunto_10: 
-    descripcion: 
-    titulo: 
+  Adjunto_10:
+    descripcion:
+    titulo:
     nombre_archivo: responsable.odt
     tipo_archivo: application/vnd.oasis.opendocument.text
     ruta: responsable.odt
     fecha: 2007-10-17 00:00:00
-Informe: 
-  Informe_1: 
+Informe:
+  Informe_1:
     nombre: Constancia de alumno regular
     descripcion: Constancia de alumno regular
     fk_adjunto_id: Adjunto_1
     fk_tipoinforme_id: Tipoinforme_1
     listado: 0
-    variables: 
-  Informe_2: 
+    variables:
+  Informe_2:
     nombre: Certificado fin de estudios primarios
     descripcion: Certificado fin de estudios primarios
     fk_adjunto_id: Adjunto_2
     fk_tipoinforme_id: Tipoinforme_1
     listado: 0
-    variables: 
-  Informe_3: 
+    variables:
+  Informe_3:
     nombre: Solicitud de legajo
     descripcion: Solicitud de legajo
     fk_adjunto_id: Adjunto_3
     fk_tipoinforme_id: Tipoinforme_1
     listado: 0
     variables: origen
-  Informe_4: 
+  Informe_4:
     nombre: Certificado de estudios
     descripcion: Certificado de estudios
     fk_adjunto_id: Adjunto_4
     fk_tipoinforme_id: Tipoinforme_1
     listado: 0
     variables: grado;año
-  Informe_5: 
+  Informe_5:
     nombre: Alumnos por división
     descripcion: Alumnos por división
     fk_adjunto_id: Adjunto_5
     fk_tipoinforme_id: Tipoinforme_1
     listado: 1
-    variables: 
-  Informe_6: 
+    variables:
+  Informe_6:
     nombre: Locacion
     descripcion: Locacion
     fk_adjunto_id: Adjunto_6
     fk_tipoinforme_id: Tipoinforme_2
     listado: 1
-    variables: 
-  Informe_7: 
+    variables:
+  Informe_7:
     nombre: Docente
     descripcion: Docente
     fk_adjunto_id: Adjunto_7
     fk_tipoinforme_id: Tipoinforme_2
     listado: 1
-    variables: 
-  Informe_8: 
+    variables:
+  Informe_8:
     nombre: Organizaci&oacute;n
     descripcion: Organizaci&oacute;n
     fk_adjunto_id: Adjunto_8
     fk_tipoinforme_id: Tipoinforme_2
     listado: 0
-    variables: 
-  Informe_9: 
+    variables:
+  Informe_9:
     nombre: Cuenta
     descripcion: Cuenta
     fk_adjunto_id: Adjunto_9
     fk_tipoinforme_id: Tipoinforme_2
     listado: 1
-    variables: 
-  Informe_10: 
+    variables:
+  Informe_10:
     nombre: Responsable
     descripcion: Responsable
     fk_adjunto_id: Adjunto_10
     fk_tipoinforme_id: Tipoinforme_2
     listado: 1
-    variables: 
-Calendariovacunacion: 
-  Calendariovacunacion_3: 
+    variables:
+Calendariovacunacion:
+  Calendariovacunacion_3:
     nombre: BCG (1era Dosis)
     descripcion: Tuberculosis
     periodo: Recién nacido
-    observacion: 
-  Calendariovacunacion_4: 
+    observacion:
+  Calendariovacunacion_4:
     nombre: BCG (refuerzo)
     descripcion: Tuberculosis
     periodo: 6 años
-    observacion: 
-  Calendariovacunacion_6: 
+    observacion:
+  Calendariovacunacion_6:
     nombre: HA (dosis)
     descripcion: Hepatitis A
     periodo: 12 meses
-    observacion: 
-  Calendariovacunacion_7: 
+    observacion:
+  Calendariovacunacion_7:
     nombre: HB (1era Dosis)
     descripcion: Hepatitis B
     periodo: Recién nacido
-    observacion: 
-  Calendariovacunacion_8: 
+    observacion:
+  Calendariovacunacion_8:
     nombre: HB (2da Dosis)
     descripcion: Hepatitis B
     periodo: 2 meses
-    observacion: 
-  Calendariovacunacion_9: 
+    observacion:
+  Calendariovacunacion_9:
     nombre: HB (3ra Dosis)
     descripcion: Hepatitis B
     periodo: 6 meses
-    observacion: 
-  Calendariovacunacion_10: 
+    observacion:
+  Calendariovacunacion_10:
     nombre: >
       HB (Iniciar o completar esquema de tres
       dosis)
     descripcion: Hepatitis B
     periodo: 11 años
-    observacion: 
-  Calendariovacunacion_11: 
+    observacion:
+  Calendariovacunacion_11:
     nombre: Cuádruple (1era Dosis)
     descripcion: >
       (DTP-Hib) difteria, tétanos, pertussis,
       Haemophilus influenzae b.
     periodo: 2 meses
-    observacion: 
-  Calendariovacunacion_12: 
+    observacion:
+  Calendariovacunacion_12:
     nombre: Cuádruple (2da Dosis)
     descripcion: >
       (DTP-Hib) difteria, tétanos, pertussis,
       Haemophilus influenzae b.
     periodo: 4 meses
-    observacion: 
-  Calendariovacunacion_13: 
+    observacion:
+  Calendariovacunacion_13:
     nombre: Cuádruple (3ra Dosis)
     descripcion: >
       (DTP-Hib) difteria, tétanos, pertussis,
       Haemophilus influenzae b.
     periodo: 6 meses
-    observacion: 
-  Calendariovacunacion_14: 
+    observacion:
+  Calendariovacunacion_14:
     nombre: Cuádruple (4ta Dosis)
     descripcion: >
       (DTP-Hib) difteria, tétanos, pertussis,
       Haemophilus influenzae b.
     periodo: 18 meses
-    observacion: 
-  Calendariovacunacion_15: 
+    observacion:
+  Calendariovacunacion_15:
     nombre: Sabin (1era Dosis)
     descripcion: (OPV) Vacuna Poliomelítica Oral
     periodo: 2 meses
-    observacion: 
-  Calendariovacunacion_16: 
+    observacion:
+  Calendariovacunacion_16:
     nombre: Sabin (2da Dosis)
     descripcion: (OPV) Vacuna Poliomelítica Oral
     periodo: 4 meses
-    observacion: 
-  Calendariovacunacion_17: 
+    observacion:
+  Calendariovacunacion_17:
     nombre: Sabin (3ra Dosis)
     descripcion: (OPV) Vacuna Poliomelítica Oral
     periodo: 6 meses
-    observacion: 
-  Calendariovacunacion_18: 
+    observacion:
+  Calendariovacunacion_18:
     nombre: Sabin (4ta Dosis)
     descripcion: (OPV) Vacuna Poliomelítica Oral
     periodo: 18 meses
-    observacion: 
-  Calendariovacunacion_19: 
+    observacion:
+  Calendariovacunacion_19:
     nombre: Sabin (Refuerzo)
     descripcion: (OPV) Vacuna Poliomelítica Oral
     periodo: 6 años
-    observacion: 
-  Calendariovacunacion_20: 
+    observacion:
+  Calendariovacunacion_20:
     nombre: Triple bacteriana (Refuerzo)
     descripcion: (DTP) Difteria, tétanos, pertussis
     periodo: 6 años
-    observacion: 
-  Calendariovacunacion_21: 
+    observacion:
+  Calendariovacunacion_21:
     nombre: Triple Viral (1era Dosis)
     descripcion: (SRP) Sarampión, rubéola, parotiditis
     periodo: 12 meses
-    observacion: 
-  Calendariovacunacion_22: 
+    observacion:
+  Calendariovacunacion_22:
     nombre: Triple Viral (2da Dosis)
     descripcion: (SRP) Sarampión, rubéola, parotiditis
     periodo: 6 años
-    observacion: 
-  Calendariovacunacion_23: 
+    observacion:
+  Calendariovacunacion_23:
     nombre: Triple Viral (Refuerzo)
     descripcion: (SRP) Sarampión, rubéola, parotiditis
     periodo: 11 años
-    observacion: 
-  Calendariovacunacion_24: 
+    observacion:
+  Calendariovacunacion_24:
     nombre: Doble Viral (dosis)
     descripcion: (SR) Sarampión, Rubéola.
     periodo: Puerperio o post-aborto inmediato.
-    observacion: 
-  Calendariovacunacion_25: 
+    observacion:
+  Calendariovacunacion_25:
     nombre: Doble Bacteriana (Refuerzo 1)
     descripcion: (dT) Difteria, Tétanos.
     periodo: 16 años
-    observacion: 
-  Calendariovacunacion_26: 
+    observacion:
+  Calendariovacunacion_26:
     nombre: Doble Bacteriana (Refuerzos)
     descripcion: (dT) Difteria, Tétanos.
     periodo: Cada 10 años
-    observacion: 
-Usuario: 
-  Usuario_1: 
-    usuario: admin
-    clave: 21232f297a57a5a743894a0e4a801fc3
-    correo_publico: 1
-    activo: 1
-    fecha_creado: 2006-12-03 00:00:00
-    fecha_actualizado: 2006-12-03 00:00:00
-    seguridad_pregunta: usuario por defecto
-    seguridad_respuesta: adminsitrador
-    email: admin@localhost
-    fk_establecimiento_id: Establecimiento_1
-    borrado: 0
-RelUsuarioPermiso: 
-  RelUsuarioPermiso_1: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_47
-  RelUsuarioPermiso_2: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_6
-  RelUsuarioPermiso_3: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_7
-  RelUsuarioPermiso_4: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_8
-  RelUsuarioPermiso_5: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_55
-  RelUsuarioPermiso_6: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_56
-  RelUsuarioPermiso_7: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_57
-  RelUsuarioPermiso_8: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_9
-  RelUsuarioPermiso_9: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_10
-  RelUsuarioPermiso_10: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_40
-  RelUsuarioPermiso_11: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_11
-  RelUsuarioPermiso_12: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_12
-  RelUsuarioPermiso_13: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_41
-  RelUsuarioPermiso_14: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_13
-  RelUsuarioPermiso_15: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_14
-  RelUsuarioPermiso_16: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_48
-  RelUsuarioPermiso_17: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_42
-  RelUsuarioPermiso_18: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_49
-  RelUsuarioPermiso_19: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_15
-  RelUsuarioPermiso_20: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_17
-  RelUsuarioPermiso_21: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_16
-  RelUsuarioPermiso_22: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_18
-  RelUsuarioPermiso_23: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_38
-  RelUsuarioPermiso_24: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_19
-  RelUsuarioPermiso_25: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_20
-  RelUsuarioPermiso_26: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_52
-  RelUsuarioPermiso_27: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_43
-  RelUsuarioPermiso_28: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_44
-  RelUsuarioPermiso_29: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_21
-  RelUsuarioPermiso_30: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_50
-  RelUsuarioPermiso_31: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_22
-  RelUsuarioPermiso_32: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_5
-  RelUsuarioPermiso_33: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_46
-  RelUsuarioPermiso_34: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_25
-  RelUsuarioPermiso_35: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_2
-  RelUsuarioPermiso_36: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_27
-  RelUsuarioPermiso_37: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_28
-  RelUsuarioPermiso_38: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_29
-  RelUsuarioPermiso_39: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_54
-  RelUsuarioPermiso_40: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_30
-  RelUsuarioPermiso_41: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_31
-  RelUsuarioPermiso_42: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_53
-  RelUsuarioPermiso_43: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_32
-  RelUsuarioPermiso_44: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_33
-  RelUsuarioPermiso_45: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_51
-  RelUsuarioPermiso_46: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_45
-  RelUsuarioPermiso_47: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_37
-  RelUsuarioPermiso_48: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_34
-  RelUsuarioPermiso_49: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_36
-  RelUsuarioPermiso_50: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_35
-  RelUsuarioPermiso_51: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_1
-  RelUsuarioPermiso_52: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_58
-  RelUsuarioPermiso_53: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_59
-  RelUsuarioPermiso_54: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_60
-  RelUsuarioPermiso_55: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_61
-  RelUsuarioPermiso_56: 
-    fk_usuario_id: Usuario_1
-    fk_permiso_id: Permiso_62
+    observacion:
