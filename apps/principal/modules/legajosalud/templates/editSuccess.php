@@ -37,7 +37,7 @@
 </div>
 
 <div class="form-row">
-<?php echo label_for('legajosalud[titulo]', __('Titulo:'), 'class="required" ') ?>
+<?php echo label_for('legajosalud[titulo]', __('Enfermedad:'), 'class="required" ') ?>
   <div class="content<?php if ($sf_request->hasError('legajosalud{titulo}')): ?> form-error<?php endif; ?>">
   <?php if ($sf_request->hasError('legajosalud{titulo}')): ?>
     <?php echo form_error('legajosalud{titulo}', array('class' => 'form-error-msg')) ?>
@@ -52,7 +52,7 @@
 </div>
 
 <div class="form-row">
-  <?php echo label_for('legajosalud[descripcion]', __('Descripci&oacute;n:'), 'class="required" ') ?>
+  <?php echo label_for('legajosalud[descripcion]', __('Observaci&oacute;n:'), 'class="required" ') ?>
   <div class="content<?php if ($sf_request->hasError('legajosalud{descripcion}')): ?> form-error<?php endif; ?>">
   <?php if ($sf_request->hasError('legajosalud{descripcion}')): ?>
     <?php echo form_error('legajosalud{descripcion}', array('class' => 'form-error-msg')) ?>

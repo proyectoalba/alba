@@ -9,8 +9,8 @@
   <thead>
   <tr>
     <th id="sf_admin_list_th_fecha"> Fecha</th>
-    <th id="sf_admin_list_th_titulo"> T&iacute;tulo</th>
-    <th id="sf_admin_list_th_categoria">Descripci&oacute;n</th>
+    <th id="sf_admin_list_th_titulo"> Enfermedad</th>
+    <th id="sf_admin_list_th_categoria">Observaci&oacute;n</th>
     <th id="sf_admin_list_th_sf_actions">Acciones</th>
   </tr>
   </thead>
