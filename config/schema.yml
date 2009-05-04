@@ -643,26 +643,21 @@ propel:
     apellido_materno:
       type: VARCHAR
       size: 128
-      required: false
     apellido:
       type: VARCHAR
       size: 128
       required: true
     fecha_nacimiento:
       type: TIMESTAMP
-      required: true
     direccion:
       type: VARCHAR
       size: 128
-      required: true
     ciudad:
       type: VARCHAR
       size: 128
-      required: true
     codigo_postal:
       type: VARCHAR
       size: 20
-      required: true
     fk_provincia_id:
       type: INTEGER
       required: true
@@ -672,11 +667,9 @@ propel:
     telefono:
       type: VARCHAR
       size: 20
-      required: false
     lugar_nacimiento:
       type: VARCHAR
       size: 128
-      required: false
     fk_tipodocumento_id:
       type: integer
       required: true
@@ -686,26 +679,20 @@ propel:
     nro_documento:
       type: varchar
       size: 16
-      required: true
     sexo:
       type: CHAR
       size: 1
-      required: true
     email:
       type: VARCHAR
       size: 128
-      required: true
     distancia_escuela:
       type: INTEGER
-      required: false
       default: 0
     hermanos_escuela:
       type: boolean
-      required: true
       default: 0
     hijo_maestro_escuela:
       type: boolean
-      required: true
       default: 0
     fk_establecimiento_id:
       type: INTEGER
@@ -721,11 +708,9 @@ propel:
       foreignReference: id
     certificado_medico:
       type: boolean
-      required: true
       default: 0
     activo:
       type: boolean
-      required: true
       default: true
     fk_conceptobaja_id:
       type: INTEGER
