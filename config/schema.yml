@@ -727,6 +727,10 @@ propel:
       default: 0
       foreignTable: pais
       foreignReference: id
+    procedencia:
+      type: VARCHAR
+      size: 128
+
   rol_responsable:
     _attributes:
       idMethod: native

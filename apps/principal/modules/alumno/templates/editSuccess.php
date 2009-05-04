@@ -336,7 +336,14 @@
             )) ?>
                 </div>
             </div>
+            <div class="form-row">
+            <?php echo label_for('alumno[procedencia]', __('Procedencia'), 'class="required"') ?>
 
+            <?php echo object_input_tag($alumno, 'getProcedencia', array (
+              'size' => 50,
+              'control_name' => 'alumno[procedencia]',
+            )) ?>
+            </div>
             <div class="form-row">
                 <?php echo label_for('alumno[fk_cuenta_id]', __('Cuenta:'), 'class="required" ') ?>
                 <div class="content<?php if ($sf_request->hasError('alumno{fk_cuenta_id}')): ?> form-error<?php endif; ?>">  
