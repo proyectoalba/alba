@@ -629,6 +629,13 @@ propel:
       required: true
       autoIncrement: true
       primaryKey: true
+    legajo_prefijo:
+      type: VARCHAR
+      size: 10
+      required: true
+    legajo_numero:
+      type: INTEGER
+      required: true
     nombre:
       type: VARCHAR
       size: 128
