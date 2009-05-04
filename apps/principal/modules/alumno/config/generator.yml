@@ -27,8 +27,9 @@ generator:
             activo: { name: ¿Est&aacute; activo? }
             nombre_apellido: { name: Nombre }
             division: { name: Divisi&oacute;n }
-            fk_pais_id: { name: Nacionalidad}
-            lugar_nacimiento: { name: Lugar de Nacimiento}
+            fk_pais_id: { name: Nacionalidad }
+            lugar_nacimiento: { name: Lugar de Nacimiento }
+            procedencia: { name: Procedencia }
 
       list:
             title: " "
@@ -55,7 +56,7 @@ generator:
                 "Informacion general":  [apellido, apellido_materno, nombre, _sexo, fk_tipodocumento_id, nro_documento, lugar_nacimiento, fecha_nacimiento, fk_pais_id, email, activo ]
                 "Donde vive": [direccion, ciudad, fk_provincia_id, codigo_postal, telefono]
                 "Prioridades": [ distancia_escuela, hermanos_escuela, hijo_maestro_escuela ]
-                "Otros": [ certificado_medico, _fk_cuenta_id ]
+                "Otros": [ procedencia, certificado_medico, _fk_cuenta_id ]
             actions:
                 _delete: -
                 _save: -

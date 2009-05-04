@@ -130,7 +130,6 @@ class alumnoActions extends autoAlumnoActions
       $user_culture = $this->getUser()->getCulture();
       list($d, $m, $y) = $this->getContext()->getI18N()->getDateForCulture($fecha_nacimiento, $user_culture);
       $this->alumno->setFechaNacimiento("$y-$m-$d");
-
       $this->saveAlumno($this->alumno);
 
       $this->getUser()->setFlash('notice', 'Your modifications have been saved');
