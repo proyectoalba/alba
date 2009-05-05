@@ -15,10 +15,12 @@ class BaseAlumnoFormFilter extends BaseFormFilterPropel
   public function setup()
   {
     $this->setWidgets(array(
+      'legajo_prefijo'        => new sfWidgetFormFilterInput(),
+      'legajo_numero'         => new sfWidgetFormFilterInput(),
       'nombre'                => new sfWidgetFormFilterInput(),
       'apellido_materno'      => new sfWidgetFormFilterInput(),
       'apellido'              => new sfWidgetFormFilterInput(),
-      'fecha_nacimiento'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'fecha_nacimiento'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
       'direccion'             => new sfWidgetFormFilterInput(),
       'ciudad'                => new sfWidgetFormFilterInput(),
       'codigo_postal'         => new sfWidgetFormFilterInput(),
@@ -38,9 +40,12 @@ class BaseAlumnoFormFilter extends BaseFormFilterPropel
       'activo'                => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'fk_conceptobaja_id'    => new sfWidgetFormPropelChoice(array('model' => 'Conceptobaja', 'add_empty' => true)),
       'fk_pais_id'            => new sfWidgetFormPropelChoice(array('model' => 'Pais', 'add_empty' => true)),
+      'procedencia'           => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
+      'legajo_prefijo'        => new sfValidatorPass(array('required' => false)),
+      'legajo_numero'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'nombre'                => new sfValidatorPass(array('required' => false)),
       'apellido_materno'      => new sfValidatorPass(array('required' => false)),
       'apellido'              => new sfValidatorPass(array('required' => false)),
@@ -64,6 +69,7 @@ class BaseAlumnoFormFilter extends BaseFormFilterPropel
       'activo'                => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'fk_conceptobaja_id'    => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Conceptobaja', 'column' => 'id')),
       'fk_pais_id'            => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Pais', 'column' => 'id')),
+      'procedencia'           => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('alumno_filters[%s]');
@@ -82,6 +88,8 @@ class BaseAlumnoFormFilter extends BaseFormFilterPropel
   {
     return array(
       'id'                    => 'Number',
+      'legajo_prefijo'        => 'Text',
+      'legajo_numero'         => 'Number',
       'nombre'                => 'Text',
       'apellido_materno'      => 'Text',
       'apellido'              => 'Text',
@@ -105,6 +113,7 @@ class BaseAlumnoFormFilter extends BaseFormFilterPropel
       'activo'                => 'Boolean',
       'fk_conceptobaja_id'    => 'ForeignKey',
       'fk_pais_id'            => 'ForeignKey',
+      'procedencia'           => 'Text',
     );
   }
 }

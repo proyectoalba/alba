@@ -39,6 +39,12 @@ class EstablecimientoMapBuilder implements MapBuilder {
 
 		$tMap->addColumn('DESCRIPCION', 'Descripcion', 'VARCHAR', false, 255);
 
+		$tMap->addColumn('CUIT', 'Cuit', 'VARCHAR', false, 20);
+
+		$tMap->addColumn('LEGAJOPREFIJO', 'Legajoprefijo', 'VARCHAR', true, 10);
+
+		$tMap->addColumn('LEGAJOSIGUIENTE', 'Legajosiguiente', 'INTEGER', false, null);
+
 		$tMap->addForeignKey('FK_DISTRITOESCOLAR_ID', 'FkDistritoescolarId', 'INTEGER', 'distritoescolar', 'ID', true, null);
 
 		$tMap->addForeignKey('FK_ORGANIZACION_ID', 'FkOrganizacionId', 'INTEGER', 'organizacion', 'ID', true, null);

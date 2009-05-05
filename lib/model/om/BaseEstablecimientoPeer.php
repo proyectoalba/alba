@@ -13,7 +13,7 @@ abstract class BaseEstablecimientoPeer {
 	const CLASS_DEFAULT = 'lib.model.Establecimiento';
 
 	
-	const NUM_COLUMNS = 6;
+	const NUM_COLUMNS = 9;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -26,6 +26,15 @@ abstract class BaseEstablecimientoPeer {
 
 	
 	const DESCRIPCION = 'establecimiento.DESCRIPCION';
+
+	
+	const CUIT = 'establecimiento.CUIT';
+
+	
+	const LEGAJOPREFIJO = 'establecimiento.LEGAJOPREFIJO';
+
+	
+	const LEGAJOSIGUIENTE = 'establecimiento.LEGAJOSIGUIENTE';
 
 	
 	const FK_DISTRITOESCOLAR_ID = 'establecimiento.FK_DISTRITOESCOLAR_ID';
@@ -44,20 +53,20 @@ abstract class BaseEstablecimientoPeer {
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Descripcion', 'FkDistritoescolarId', 'FkOrganizacionId', 'FkNiveltipoId', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'nombre', 'descripcion', 'fkDistritoescolarId', 'fkOrganizacionId', 'fkNiveltipoId', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::NOMBRE, self::DESCRIPCION, self::FK_DISTRITOESCOLAR_ID, self::FK_ORGANIZACION_ID, self::FK_NIVELTIPO_ID, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'descripcion', 'fk_distritoescolar_id', 'fk_organizacion_id', 'fk_niveltipo_id', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Descripcion', 'Cuit', 'Legajoprefijo', 'Legajosiguiente', 'FkDistritoescolarId', 'FkOrganizacionId', 'FkNiveltipoId', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'nombre', 'descripcion', 'cuit', 'legajoprefijo', 'legajosiguiente', 'fkDistritoescolarId', 'fkOrganizacionId', 'fkNiveltipoId', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::NOMBRE, self::DESCRIPCION, self::CUIT, self::LEGAJOPREFIJO, self::LEGAJOSIGUIENTE, self::FK_DISTRITOESCOLAR_ID, self::FK_ORGANIZACION_ID, self::FK_NIVELTIPO_ID, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'descripcion', 'cuit', 'legajoprefijo', 'legajosiguiente', 'fk_distritoescolar_id', 'fk_organizacion_id', 'fk_niveltipo_id', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Descripcion' => 2, 'FkDistritoescolarId' => 3, 'FkOrganizacionId' => 4, 'FkNiveltipoId' => 5, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'nombre' => 1, 'descripcion' => 2, 'fkDistritoescolarId' => 3, 'fkOrganizacionId' => 4, 'fkNiveltipoId' => 5, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::NOMBRE => 1, self::DESCRIPCION => 2, self::FK_DISTRITOESCOLAR_ID => 3, self::FK_ORGANIZACION_ID => 4, self::FK_NIVELTIPO_ID => 5, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'descripcion' => 2, 'fk_distritoescolar_id' => 3, 'fk_organizacion_id' => 4, 'fk_niveltipo_id' => 5, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Descripcion' => 2, 'Cuit' => 3, 'Legajoprefijo' => 4, 'Legajosiguiente' => 5, 'FkDistritoescolarId' => 6, 'FkOrganizacionId' => 7, 'FkNiveltipoId' => 8, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'nombre' => 1, 'descripcion' => 2, 'cuit' => 3, 'legajoprefijo' => 4, 'legajosiguiente' => 5, 'fkDistritoescolarId' => 6, 'fkOrganizacionId' => 7, 'fkNiveltipoId' => 8, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::NOMBRE => 1, self::DESCRIPCION => 2, self::CUIT => 3, self::LEGAJOPREFIJO => 4, self::LEGAJOSIGUIENTE => 5, self::FK_DISTRITOESCOLAR_ID => 6, self::FK_ORGANIZACION_ID => 7, self::FK_NIVELTIPO_ID => 8, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'descripcion' => 2, 'cuit' => 3, 'legajoprefijo' => 4, 'legajosiguiente' => 5, 'fk_distritoescolar_id' => 6, 'fk_organizacion_id' => 7, 'fk_niveltipo_id' => 8, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
 	);
 
 	
@@ -104,6 +113,12 @@ abstract class BaseEstablecimientoPeer {
 		$criteria->addSelectColumn(EstablecimientoPeer::NOMBRE);
 
 		$criteria->addSelectColumn(EstablecimientoPeer::DESCRIPCION);
+
+		$criteria->addSelectColumn(EstablecimientoPeer::CUIT);
+
+		$criteria->addSelectColumn(EstablecimientoPeer::LEGAJOPREFIJO);
+
+		$criteria->addSelectColumn(EstablecimientoPeer::LEGAJOSIGUIENTE);
 
 		$criteria->addSelectColumn(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID);
 

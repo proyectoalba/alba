@@ -13,13 +13,19 @@ abstract class BaseAlumnoPeer {
 	const CLASS_DEFAULT = 'lib.model.Alumno';
 
 	
-	const NUM_COLUMNS = 24;
+	const NUM_COLUMNS = 27;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	
 	const ID = 'alumno.ID';
+
+	
+	const LEGAJO_PREFIJO = 'alumno.LEGAJO_PREFIJO';
+
+	
+	const LEGAJO_NUMERO = 'alumno.LEGAJO_NUMERO';
 
 	
 	const NOMBRE = 'alumno.NOMBRE';
@@ -91,6 +97,9 @@ abstract class BaseAlumnoPeer {
 	const FK_PAIS_ID = 'alumno.FK_PAIS_ID';
 
 	
+	const PROCEDENCIA = 'alumno.PROCEDENCIA';
+
+	
 	public static $instances = array();
 
 	
@@ -98,20 +107,20 @@ abstract class BaseAlumnoPeer {
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'ApellidoMaterno', 'Apellido', 'FechaNacimiento', 'Direccion', 'Ciudad', 'CodigoPostal', 'FkProvinciaId', 'Telefono', 'LugarNacimiento', 'FkTipodocumentoId', 'NroDocumento', 'Sexo', 'Email', 'DistanciaEscuela', 'HermanosEscuela', 'HijoMaestroEscuela', 'FkEstablecimientoId', 'FkCuentaId', 'CertificadoMedico', 'Activo', 'FkConceptobajaId', 'FkPaisId', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'nombre', 'apellidoMaterno', 'apellido', 'fechaNacimiento', 'direccion', 'ciudad', 'codigoPostal', 'fkProvinciaId', 'telefono', 'lugarNacimiento', 'fkTipodocumentoId', 'nroDocumento', 'sexo', 'email', 'distanciaEscuela', 'hermanosEscuela', 'hijoMaestroEscuela', 'fkEstablecimientoId', 'fkCuentaId', 'certificadoMedico', 'activo', 'fkConceptobajaId', 'fkPaisId', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::NOMBRE, self::APELLIDO_MATERNO, self::APELLIDO, self::FECHA_NACIMIENTO, self::DIRECCION, self::CIUDAD, self::CODIGO_POSTAL, self::FK_PROVINCIA_ID, self::TELEFONO, self::LUGAR_NACIMIENTO, self::FK_TIPODOCUMENTO_ID, self::NRO_DOCUMENTO, self::SEXO, self::EMAIL, self::DISTANCIA_ESCUELA, self::HERMANOS_ESCUELA, self::HIJO_MAESTRO_ESCUELA, self::FK_ESTABLECIMIENTO_ID, self::FK_CUENTA_ID, self::CERTIFICADO_MEDICO, self::ACTIVO, self::FK_CONCEPTOBAJA_ID, self::FK_PAIS_ID, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'apellido_materno', 'apellido', 'fecha_nacimiento', 'direccion', 'ciudad', 'codigo_postal', 'fk_provincia_id', 'telefono', 'lugar_nacimiento', 'fk_tipodocumento_id', 'nro_documento', 'sexo', 'email', 'distancia_escuela', 'hermanos_escuela', 'hijo_maestro_escuela', 'fk_establecimiento_id', 'fk_cuenta_id', 'certificado_medico', 'activo', 'fk_conceptobaja_id', 'fk_pais_id', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'LegajoPrefijo', 'LegajoNumero', 'Nombre', 'ApellidoMaterno', 'Apellido', 'FechaNacimiento', 'Direccion', 'Ciudad', 'CodigoPostal', 'FkProvinciaId', 'Telefono', 'LugarNacimiento', 'FkTipodocumentoId', 'NroDocumento', 'Sexo', 'Email', 'DistanciaEscuela', 'HermanosEscuela', 'HijoMaestroEscuela', 'FkEstablecimientoId', 'FkCuentaId', 'CertificadoMedico', 'Activo', 'FkConceptobajaId', 'FkPaisId', 'Procedencia', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'legajoPrefijo', 'legajoNumero', 'nombre', 'apellidoMaterno', 'apellido', 'fechaNacimiento', 'direccion', 'ciudad', 'codigoPostal', 'fkProvinciaId', 'telefono', 'lugarNacimiento', 'fkTipodocumentoId', 'nroDocumento', 'sexo', 'email', 'distanciaEscuela', 'hermanosEscuela', 'hijoMaestroEscuela', 'fkEstablecimientoId', 'fkCuentaId', 'certificadoMedico', 'activo', 'fkConceptobajaId', 'fkPaisId', 'procedencia', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::LEGAJO_PREFIJO, self::LEGAJO_NUMERO, self::NOMBRE, self::APELLIDO_MATERNO, self::APELLIDO, self::FECHA_NACIMIENTO, self::DIRECCION, self::CIUDAD, self::CODIGO_POSTAL, self::FK_PROVINCIA_ID, self::TELEFONO, self::LUGAR_NACIMIENTO, self::FK_TIPODOCUMENTO_ID, self::NRO_DOCUMENTO, self::SEXO, self::EMAIL, self::DISTANCIA_ESCUELA, self::HERMANOS_ESCUELA, self::HIJO_MAESTRO_ESCUELA, self::FK_ESTABLECIMIENTO_ID, self::FK_CUENTA_ID, self::CERTIFICADO_MEDICO, self::ACTIVO, self::FK_CONCEPTOBAJA_ID, self::FK_PAIS_ID, self::PROCEDENCIA, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'legajo_prefijo', 'legajo_numero', 'nombre', 'apellido_materno', 'apellido', 'fecha_nacimiento', 'direccion', 'ciudad', 'codigo_postal', 'fk_provincia_id', 'telefono', 'lugar_nacimiento', 'fk_tipodocumento_id', 'nro_documento', 'sexo', 'email', 'distancia_escuela', 'hermanos_escuela', 'hijo_maestro_escuela', 'fk_establecimiento_id', 'fk_cuenta_id', 'certificado_medico', 'activo', 'fk_conceptobaja_id', 'fk_pais_id', 'procedencia', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'ApellidoMaterno' => 2, 'Apellido' => 3, 'FechaNacimiento' => 4, 'Direccion' => 5, 'Ciudad' => 6, 'CodigoPostal' => 7, 'FkProvinciaId' => 8, 'Telefono' => 9, 'LugarNacimiento' => 10, 'FkTipodocumentoId' => 11, 'NroDocumento' => 12, 'Sexo' => 13, 'Email' => 14, 'DistanciaEscuela' => 15, 'HermanosEscuela' => 16, 'HijoMaestroEscuela' => 17, 'FkEstablecimientoId' => 18, 'FkCuentaId' => 19, 'CertificadoMedico' => 20, 'Activo' => 21, 'FkConceptobajaId' => 22, 'FkPaisId' => 23, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'nombre' => 1, 'apellidoMaterno' => 2, 'apellido' => 3, 'fechaNacimiento' => 4, 'direccion' => 5, 'ciudad' => 6, 'codigoPostal' => 7, 'fkProvinciaId' => 8, 'telefono' => 9, 'lugarNacimiento' => 10, 'fkTipodocumentoId' => 11, 'nroDocumento' => 12, 'sexo' => 13, 'email' => 14, 'distanciaEscuela' => 15, 'hermanosEscuela' => 16, 'hijoMaestroEscuela' => 17, 'fkEstablecimientoId' => 18, 'fkCuentaId' => 19, 'certificadoMedico' => 20, 'activo' => 21, 'fkConceptobajaId' => 22, 'fkPaisId' => 23, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::NOMBRE => 1, self::APELLIDO_MATERNO => 2, self::APELLIDO => 3, self::FECHA_NACIMIENTO => 4, self::DIRECCION => 5, self::CIUDAD => 6, self::CODIGO_POSTAL => 7, self::FK_PROVINCIA_ID => 8, self::TELEFONO => 9, self::LUGAR_NACIMIENTO => 10, self::FK_TIPODOCUMENTO_ID => 11, self::NRO_DOCUMENTO => 12, self::SEXO => 13, self::EMAIL => 14, self::DISTANCIA_ESCUELA => 15, self::HERMANOS_ESCUELA => 16, self::HIJO_MAESTRO_ESCUELA => 17, self::FK_ESTABLECIMIENTO_ID => 18, self::FK_CUENTA_ID => 19, self::CERTIFICADO_MEDICO => 20, self::ACTIVO => 21, self::FK_CONCEPTOBAJA_ID => 22, self::FK_PAIS_ID => 23, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'apellido_materno' => 2, 'apellido' => 3, 'fecha_nacimiento' => 4, 'direccion' => 5, 'ciudad' => 6, 'codigo_postal' => 7, 'fk_provincia_id' => 8, 'telefono' => 9, 'lugar_nacimiento' => 10, 'fk_tipodocumento_id' => 11, 'nro_documento' => 12, 'sexo' => 13, 'email' => 14, 'distancia_escuela' => 15, 'hermanos_escuela' => 16, 'hijo_maestro_escuela' => 17, 'fk_establecimiento_id' => 18, 'fk_cuenta_id' => 19, 'certificado_medico' => 20, 'activo' => 21, 'fk_conceptobaja_id' => 22, 'fk_pais_id' => 23, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'LegajoPrefijo' => 1, 'LegajoNumero' => 2, 'Nombre' => 3, 'ApellidoMaterno' => 4, 'Apellido' => 5, 'FechaNacimiento' => 6, 'Direccion' => 7, 'Ciudad' => 8, 'CodigoPostal' => 9, 'FkProvinciaId' => 10, 'Telefono' => 11, 'LugarNacimiento' => 12, 'FkTipodocumentoId' => 13, 'NroDocumento' => 14, 'Sexo' => 15, 'Email' => 16, 'DistanciaEscuela' => 17, 'HermanosEscuela' => 18, 'HijoMaestroEscuela' => 19, 'FkEstablecimientoId' => 20, 'FkCuentaId' => 21, 'CertificadoMedico' => 22, 'Activo' => 23, 'FkConceptobajaId' => 24, 'FkPaisId' => 25, 'Procedencia' => 26, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'legajoPrefijo' => 1, 'legajoNumero' => 2, 'nombre' => 3, 'apellidoMaterno' => 4, 'apellido' => 5, 'fechaNacimiento' => 6, 'direccion' => 7, 'ciudad' => 8, 'codigoPostal' => 9, 'fkProvinciaId' => 10, 'telefono' => 11, 'lugarNacimiento' => 12, 'fkTipodocumentoId' => 13, 'nroDocumento' => 14, 'sexo' => 15, 'email' => 16, 'distanciaEscuela' => 17, 'hermanosEscuela' => 18, 'hijoMaestroEscuela' => 19, 'fkEstablecimientoId' => 20, 'fkCuentaId' => 21, 'certificadoMedico' => 22, 'activo' => 23, 'fkConceptobajaId' => 24, 'fkPaisId' => 25, 'procedencia' => 26, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::LEGAJO_PREFIJO => 1, self::LEGAJO_NUMERO => 2, self::NOMBRE => 3, self::APELLIDO_MATERNO => 4, self::APELLIDO => 5, self::FECHA_NACIMIENTO => 6, self::DIRECCION => 7, self::CIUDAD => 8, self::CODIGO_POSTAL => 9, self::FK_PROVINCIA_ID => 10, self::TELEFONO => 11, self::LUGAR_NACIMIENTO => 12, self::FK_TIPODOCUMENTO_ID => 13, self::NRO_DOCUMENTO => 14, self::SEXO => 15, self::EMAIL => 16, self::DISTANCIA_ESCUELA => 17, self::HERMANOS_ESCUELA => 18, self::HIJO_MAESTRO_ESCUELA => 19, self::FK_ESTABLECIMIENTO_ID => 20, self::FK_CUENTA_ID => 21, self::CERTIFICADO_MEDICO => 22, self::ACTIVO => 23, self::FK_CONCEPTOBAJA_ID => 24, self::FK_PAIS_ID => 25, self::PROCEDENCIA => 26, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'legajo_prefijo' => 1, 'legajo_numero' => 2, 'nombre' => 3, 'apellido_materno' => 4, 'apellido' => 5, 'fecha_nacimiento' => 6, 'direccion' => 7, 'ciudad' => 8, 'codigo_postal' => 9, 'fk_provincia_id' => 10, 'telefono' => 11, 'lugar_nacimiento' => 12, 'fk_tipodocumento_id' => 13, 'nro_documento' => 14, 'sexo' => 15, 'email' => 16, 'distancia_escuela' => 17, 'hermanos_escuela' => 18, 'hijo_maestro_escuela' => 19, 'fk_establecimiento_id' => 20, 'fk_cuenta_id' => 21, 'certificado_medico' => 22, 'activo' => 23, 'fk_conceptobaja_id' => 24, 'fk_pais_id' => 25, 'procedencia' => 26, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, )
 	);
 
 	
@@ -154,6 +163,10 @@ abstract class BaseAlumnoPeer {
 	{
 
 		$criteria->addSelectColumn(AlumnoPeer::ID);
+
+		$criteria->addSelectColumn(AlumnoPeer::LEGAJO_PREFIJO);
+
+		$criteria->addSelectColumn(AlumnoPeer::LEGAJO_NUMERO);
 
 		$criteria->addSelectColumn(AlumnoPeer::NOMBRE);
 
@@ -200,6 +213,8 @@ abstract class BaseAlumnoPeer {
 		$criteria->addSelectColumn(AlumnoPeer::FK_CONCEPTOBAJA_ID);
 
 		$criteria->addSelectColumn(AlumnoPeer::FK_PAIS_ID);
+
+		$criteria->addSelectColumn(AlumnoPeer::PROCEDENCIA);
 
 	}
 

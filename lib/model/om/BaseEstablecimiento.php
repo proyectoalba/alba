@@ -19,6 +19,15 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 	protected $descripcion;
 
 	
+	protected $cuit;
+
+	
+	protected $legajoprefijo;
+
+	
+	protected $legajosiguiente;
+
+	
 	protected $fk_distritoescolar_id;
 
 	
@@ -142,6 +151,24 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 	}
 
 	
+	public function getCuit()
+	{
+		return $this->cuit;
+	}
+
+	
+	public function getLegajoprefijo()
+	{
+		return $this->legajoprefijo;
+	}
+
+	
+	public function getLegajosiguiente()
+	{
+		return $this->legajosiguiente;
+	}
+
+	
 	public function getFkDistritoescolarId()
 	{
 		return $this->fk_distritoescolar_id;
@@ -197,6 +224,48 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 		if ($this->descripcion !== $v) {
 			$this->descripcion = $v;
 			$this->modifiedColumns[] = EstablecimientoPeer::DESCRIPCION;
+		}
+
+		return $this;
+	} 
+	
+	public function setCuit($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->cuit !== $v) {
+			$this->cuit = $v;
+			$this->modifiedColumns[] = EstablecimientoPeer::CUIT;
+		}
+
+		return $this;
+	} 
+	
+	public function setLegajoprefijo($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->legajoprefijo !== $v) {
+			$this->legajoprefijo = $v;
+			$this->modifiedColumns[] = EstablecimientoPeer::LEGAJOPREFIJO;
+		}
+
+		return $this;
+	} 
+	
+	public function setLegajosiguiente($v)
+	{
+		if ($v !== null) {
+			$v = (int) $v;
+		}
+
+		if ($this->legajosiguiente !== $v) {
+			$this->legajosiguiente = $v;
+			$this->modifiedColumns[] = EstablecimientoPeer::LEGAJOSIGUIENTE;
 		}
 
 		return $this;
@@ -284,9 +353,12 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 			$this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
 			$this->nombre = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
 			$this->descripcion = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-			$this->fk_distritoescolar_id = ($row[$startcol + 3] !== null) ? (int) $row[$startcol + 3] : null;
-			$this->fk_organizacion_id = ($row[$startcol + 4] !== null) ? (int) $row[$startcol + 4] : null;
-			$this->fk_niveltipo_id = ($row[$startcol + 5] !== null) ? (int) $row[$startcol + 5] : null;
+			$this->cuit = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
+			$this->legajoprefijo = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+			$this->legajosiguiente = ($row[$startcol + 5] !== null) ? (int) $row[$startcol + 5] : null;
+			$this->fk_distritoescolar_id = ($row[$startcol + 6] !== null) ? (int) $row[$startcol + 6] : null;
+			$this->fk_organizacion_id = ($row[$startcol + 7] !== null) ? (int) $row[$startcol + 7] : null;
+			$this->fk_niveltipo_id = ($row[$startcol + 8] !== null) ? (int) $row[$startcol + 8] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -295,7 +367,7 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 				$this->ensureConsistency();
 			}
 
-						return $startcol + 6; 
+						return $startcol + 9; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Establecimiento object", $e);
 		}
@@ -733,12 +805,21 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 				return $this->getDescripcion();
 				break;
 			case 3:
-				return $this->getFkDistritoescolarId();
+				return $this->getCuit();
 				break;
 			case 4:
-				return $this->getFkOrganizacionId();
+				return $this->getLegajoprefijo();
 				break;
 			case 5:
+				return $this->getLegajosiguiente();
+				break;
+			case 6:
+				return $this->getFkDistritoescolarId();
+				break;
+			case 7:
+				return $this->getFkOrganizacionId();
+				break;
+			case 8:
 				return $this->getFkNiveltipoId();
 				break;
 			default:
@@ -754,9 +835,12 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 			$keys[0] => $this->getId(),
 			$keys[1] => $this->getNombre(),
 			$keys[2] => $this->getDescripcion(),
-			$keys[3] => $this->getFkDistritoescolarId(),
-			$keys[4] => $this->getFkOrganizacionId(),
-			$keys[5] => $this->getFkNiveltipoId(),
+			$keys[3] => $this->getCuit(),
+			$keys[4] => $this->getLegajoprefijo(),
+			$keys[5] => $this->getLegajosiguiente(),
+			$keys[6] => $this->getFkDistritoescolarId(),
+			$keys[7] => $this->getFkOrganizacionId(),
+			$keys[8] => $this->getFkNiveltipoId(),
 		);
 		return $result;
 	}
@@ -782,12 +866,21 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 				$this->setDescripcion($value);
 				break;
 			case 3:
-				$this->setFkDistritoescolarId($value);
+				$this->setCuit($value);
 				break;
 			case 4:
-				$this->setFkOrganizacionId($value);
+				$this->setLegajoprefijo($value);
 				break;
 			case 5:
+				$this->setLegajosiguiente($value);
+				break;
+			case 6:
+				$this->setFkDistritoescolarId($value);
+				break;
+			case 7:
+				$this->setFkOrganizacionId($value);
+				break;
+			case 8:
 				$this->setFkNiveltipoId($value);
 				break;
 		} 	}
@@ -800,9 +893,12 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setNombre($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setDescripcion($arr[$keys[2]]);
-		if (array_key_exists($keys[3], $arr)) $this->setFkDistritoescolarId($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setFkOrganizacionId($arr[$keys[4]]);
-		if (array_key_exists($keys[5], $arr)) $this->setFkNiveltipoId($arr[$keys[5]]);
+		if (array_key_exists($keys[3], $arr)) $this->setCuit($arr[$keys[3]]);
+		if (array_key_exists($keys[4], $arr)) $this->setLegajoprefijo($arr[$keys[4]]);
+		if (array_key_exists($keys[5], $arr)) $this->setLegajosiguiente($arr[$keys[5]]);
+		if (array_key_exists($keys[6], $arr)) $this->setFkDistritoescolarId($arr[$keys[6]]);
+		if (array_key_exists($keys[7], $arr)) $this->setFkOrganizacionId($arr[$keys[7]]);
+		if (array_key_exists($keys[8], $arr)) $this->setFkNiveltipoId($arr[$keys[8]]);
 	}
 
 	
@@ -813,6 +909,9 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(EstablecimientoPeer::ID)) $criteria->add(EstablecimientoPeer::ID, $this->id);
 		if ($this->isColumnModified(EstablecimientoPeer::NOMBRE)) $criteria->add(EstablecimientoPeer::NOMBRE, $this->nombre);
 		if ($this->isColumnModified(EstablecimientoPeer::DESCRIPCION)) $criteria->add(EstablecimientoPeer::DESCRIPCION, $this->descripcion);
+		if ($this->isColumnModified(EstablecimientoPeer::CUIT)) $criteria->add(EstablecimientoPeer::CUIT, $this->cuit);
+		if ($this->isColumnModified(EstablecimientoPeer::LEGAJOPREFIJO)) $criteria->add(EstablecimientoPeer::LEGAJOPREFIJO, $this->legajoprefijo);
+		if ($this->isColumnModified(EstablecimientoPeer::LEGAJOSIGUIENTE)) $criteria->add(EstablecimientoPeer::LEGAJOSIGUIENTE, $this->legajosiguiente);
 		if ($this->isColumnModified(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID)) $criteria->add(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID, $this->fk_distritoescolar_id);
 		if ($this->isColumnModified(EstablecimientoPeer::FK_ORGANIZACION_ID)) $criteria->add(EstablecimientoPeer::FK_ORGANIZACION_ID, $this->fk_organizacion_id);
 		if ($this->isColumnModified(EstablecimientoPeer::FK_NIVELTIPO_ID)) $criteria->add(EstablecimientoPeer::FK_NIVELTIPO_ID, $this->fk_niveltipo_id);
@@ -849,6 +948,12 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 		$copyObj->setNombre($this->nombre);
 
 		$copyObj->setDescripcion($this->descripcion);
+
+		$copyObj->setCuit($this->cuit);
+
+		$copyObj->setLegajoprefijo($this->legajoprefijo);
+
+		$copyObj->setLegajosiguiente($this->legajosiguiente);
 
 		$copyObj->setFkDistritoescolarId($this->fk_distritoescolar_id);
 

@@ -13,6 +13,12 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	protected $id;
 
 	
+	protected $legajo_prefijo;
+
+	
+	protected $legajo_numero;
+
+	
 	protected $nombre;
 
 	
@@ -80,6 +86,9 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 
 	
 	protected $fk_pais_id;
+
+	
+	protected $procedencia;
 
 	
 	protected $aProvincia;
@@ -185,6 +194,18 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	public function getId()
 	{
 		return $this->id;
+	}
+
+	
+	public function getLegajoPrefijo()
+	{
+		return $this->legajo_prefijo;
+	}
+
+	
+	public function getLegajoNumero()
+	{
+		return $this->legajo_numero;
 	}
 
 	
@@ -347,6 +368,12 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	}
 
 	
+	public function getProcedencia()
+	{
+		return $this->procedencia;
+	}
+
+	
 	public function setId($v)
 	{
 		if ($v !== null) {
@@ -356,6 +383,34 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		if ($this->id !== $v) {
 			$this->id = $v;
 			$this->modifiedColumns[] = AlumnoPeer::ID;
+		}
+
+		return $this;
+	} 
+	
+	public function setLegajoPrefijo($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->legajo_prefijo !== $v) {
+			$this->legajo_prefijo = $v;
+			$this->modifiedColumns[] = AlumnoPeer::LEGAJO_PREFIJO;
+		}
+
+		return $this;
+	} 
+	
+	public function setLegajoNumero($v)
+	{
+		if ($v !== null) {
+			$v = (int) $v;
+		}
+
+		if ($this->legajo_numero !== $v) {
+			$this->legajo_numero = $v;
+			$this->modifiedColumns[] = AlumnoPeer::LEGAJO_NUMERO;
 		}
 
 		return $this;
@@ -725,6 +780,20 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return $this;
 	} 
 	
+	public function setProcedencia($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->procedencia !== $v) {
+			$this->procedencia = $v;
+			$this->modifiedColumns[] = AlumnoPeer::PROCEDENCIA;
+		}
+
+		return $this;
+	} 
+	
 	public function hasOnlyDefaultValues()
 	{
 						if (array_diff($this->modifiedColumns, array(AlumnoPeer::FK_PROVINCIA_ID,AlumnoPeer::FK_TIPODOCUMENTO_ID,AlumnoPeer::DISTANCIA_ESCUELA,AlumnoPeer::HERMANOS_ESCUELA,AlumnoPeer::HIJO_MAESTRO_ESCUELA,AlumnoPeer::FK_ESTABLECIMIENTO_ID,AlumnoPeer::FK_CUENTA_ID,AlumnoPeer::CERTIFICADO_MEDICO,AlumnoPeer::ACTIVO,AlumnoPeer::FK_PAIS_ID))) {
@@ -779,29 +848,32 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		try {
 
 			$this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
-			$this->nombre = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
-			$this->apellido_materno = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-			$this->apellido = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-			$this->fecha_nacimiento = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
-			$this->direccion = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
-			$this->ciudad = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
-			$this->codigo_postal = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
-			$this->fk_provincia_id = ($row[$startcol + 8] !== null) ? (int) $row[$startcol + 8] : null;
-			$this->telefono = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
-			$this->lugar_nacimiento = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
-			$this->fk_tipodocumento_id = ($row[$startcol + 11] !== null) ? (int) $row[$startcol + 11] : null;
-			$this->nro_documento = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
-			$this->sexo = ($row[$startcol + 13] !== null) ? (string) $row[$startcol + 13] : null;
-			$this->email = ($row[$startcol + 14] !== null) ? (string) $row[$startcol + 14] : null;
-			$this->distancia_escuela = ($row[$startcol + 15] !== null) ? (int) $row[$startcol + 15] : null;
-			$this->hermanos_escuela = ($row[$startcol + 16] !== null) ? (boolean) $row[$startcol + 16] : null;
-			$this->hijo_maestro_escuela = ($row[$startcol + 17] !== null) ? (boolean) $row[$startcol + 17] : null;
-			$this->fk_establecimiento_id = ($row[$startcol + 18] !== null) ? (int) $row[$startcol + 18] : null;
-			$this->fk_cuenta_id = ($row[$startcol + 19] !== null) ? (int) $row[$startcol + 19] : null;
-			$this->certificado_medico = ($row[$startcol + 20] !== null) ? (boolean) $row[$startcol + 20] : null;
-			$this->activo = ($row[$startcol + 21] !== null) ? (boolean) $row[$startcol + 21] : null;
-			$this->fk_conceptobaja_id = ($row[$startcol + 22] !== null) ? (int) $row[$startcol + 22] : null;
-			$this->fk_pais_id = ($row[$startcol + 23] !== null) ? (int) $row[$startcol + 23] : null;
+			$this->legajo_prefijo = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
+			$this->legajo_numero = ($row[$startcol + 2] !== null) ? (int) $row[$startcol + 2] : null;
+			$this->nombre = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
+			$this->apellido_materno = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+			$this->apellido = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+			$this->fecha_nacimiento = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
+			$this->direccion = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
+			$this->ciudad = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
+			$this->codigo_postal = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
+			$this->fk_provincia_id = ($row[$startcol + 10] !== null) ? (int) $row[$startcol + 10] : null;
+			$this->telefono = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
+			$this->lugar_nacimiento = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
+			$this->fk_tipodocumento_id = ($row[$startcol + 13] !== null) ? (int) $row[$startcol + 13] : null;
+			$this->nro_documento = ($row[$startcol + 14] !== null) ? (string) $row[$startcol + 14] : null;
+			$this->sexo = ($row[$startcol + 15] !== null) ? (string) $row[$startcol + 15] : null;
+			$this->email = ($row[$startcol + 16] !== null) ? (string) $row[$startcol + 16] : null;
+			$this->distancia_escuela = ($row[$startcol + 17] !== null) ? (int) $row[$startcol + 17] : null;
+			$this->hermanos_escuela = ($row[$startcol + 18] !== null) ? (boolean) $row[$startcol + 18] : null;
+			$this->hijo_maestro_escuela = ($row[$startcol + 19] !== null) ? (boolean) $row[$startcol + 19] : null;
+			$this->fk_establecimiento_id = ($row[$startcol + 20] !== null) ? (int) $row[$startcol + 20] : null;
+			$this->fk_cuenta_id = ($row[$startcol + 21] !== null) ? (int) $row[$startcol + 21] : null;
+			$this->certificado_medico = ($row[$startcol + 22] !== null) ? (boolean) $row[$startcol + 22] : null;
+			$this->activo = ($row[$startcol + 23] !== null) ? (boolean) $row[$startcol + 23] : null;
+			$this->fk_conceptobaja_id = ($row[$startcol + 24] !== null) ? (int) $row[$startcol + 24] : null;
+			$this->fk_pais_id = ($row[$startcol + 25] !== null) ? (int) $row[$startcol + 25] : null;
+			$this->procedencia = ($row[$startcol + 26] !== null) ? (string) $row[$startcol + 26] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -810,7 +882,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->ensureConsistency();
 			}
 
-						return $startcol + 24; 
+						return $startcol + 27; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Alumno object", $e);
 		}
@@ -1255,73 +1327,82 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				return $this->getId();
 				break;
 			case 1:
-				return $this->getNombre();
+				return $this->getLegajoPrefijo();
 				break;
 			case 2:
-				return $this->getApellidoMaterno();
+				return $this->getLegajoNumero();
 				break;
 			case 3:
-				return $this->getApellido();
+				return $this->getNombre();
 				break;
 			case 4:
-				return $this->getFechaNacimiento();
+				return $this->getApellidoMaterno();
 				break;
 			case 5:
-				return $this->getDireccion();
+				return $this->getApellido();
 				break;
 			case 6:
-				return $this->getCiudad();
+				return $this->getFechaNacimiento();
 				break;
 			case 7:
-				return $this->getCodigoPostal();
+				return $this->getDireccion();
 				break;
 			case 8:
-				return $this->getFkProvinciaId();
+				return $this->getCiudad();
 				break;
 			case 9:
-				return $this->getTelefono();
+				return $this->getCodigoPostal();
 				break;
 			case 10:
-				return $this->getLugarNacimiento();
+				return $this->getFkProvinciaId();
 				break;
 			case 11:
-				return $this->getFkTipodocumentoId();
+				return $this->getTelefono();
 				break;
 			case 12:
-				return $this->getNroDocumento();
+				return $this->getLugarNacimiento();
 				break;
 			case 13:
-				return $this->getSexo();
+				return $this->getFkTipodocumentoId();
 				break;
 			case 14:
-				return $this->getEmail();
+				return $this->getNroDocumento();
 				break;
 			case 15:
-				return $this->getDistanciaEscuela();
+				return $this->getSexo();
 				break;
 			case 16:
-				return $this->getHermanosEscuela();
+				return $this->getEmail();
 				break;
 			case 17:
-				return $this->getHijoMaestroEscuela();
+				return $this->getDistanciaEscuela();
 				break;
 			case 18:
-				return $this->getFkEstablecimientoId();
+				return $this->getHermanosEscuela();
 				break;
 			case 19:
-				return $this->getFkCuentaId();
+				return $this->getHijoMaestroEscuela();
 				break;
 			case 20:
-				return $this->getCertificadoMedico();
+				return $this->getFkEstablecimientoId();
 				break;
 			case 21:
-				return $this->getActivo();
+				return $this->getFkCuentaId();
 				break;
 			case 22:
-				return $this->getFkConceptobajaId();
+				return $this->getCertificadoMedico();
 				break;
 			case 23:
+				return $this->getActivo();
+				break;
+			case 24:
+				return $this->getFkConceptobajaId();
+				break;
+			case 25:
 				return $this->getFkPaisId();
+				break;
+			case 26:
+				return $this->getProcedencia();
 				break;
 			default:
 				return null;
@@ -1334,29 +1415,32 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		$keys = AlumnoPeer::getFieldNames($keyType);
 		$result = array(
 			$keys[0] => $this->getId(),
-			$keys[1] => $this->getNombre(),
-			$keys[2] => $this->getApellidoMaterno(),
-			$keys[3] => $this->getApellido(),
-			$keys[4] => $this->getFechaNacimiento(),
-			$keys[5] => $this->getDireccion(),
-			$keys[6] => $this->getCiudad(),
-			$keys[7] => $this->getCodigoPostal(),
-			$keys[8] => $this->getFkProvinciaId(),
-			$keys[9] => $this->getTelefono(),
-			$keys[10] => $this->getLugarNacimiento(),
-			$keys[11] => $this->getFkTipodocumentoId(),
-			$keys[12] => $this->getNroDocumento(),
-			$keys[13] => $this->getSexo(),
-			$keys[14] => $this->getEmail(),
-			$keys[15] => $this->getDistanciaEscuela(),
-			$keys[16] => $this->getHermanosEscuela(),
-			$keys[17] => $this->getHijoMaestroEscuela(),
-			$keys[18] => $this->getFkEstablecimientoId(),
-			$keys[19] => $this->getFkCuentaId(),
-			$keys[20] => $this->getCertificadoMedico(),
-			$keys[21] => $this->getActivo(),
-			$keys[22] => $this->getFkConceptobajaId(),
-			$keys[23] => $this->getFkPaisId(),
+			$keys[1] => $this->getLegajoPrefijo(),
+			$keys[2] => $this->getLegajoNumero(),
+			$keys[3] => $this->getNombre(),
+			$keys[4] => $this->getApellidoMaterno(),
+			$keys[5] => $this->getApellido(),
+			$keys[6] => $this->getFechaNacimiento(),
+			$keys[7] => $this->getDireccion(),
+			$keys[8] => $this->getCiudad(),
+			$keys[9] => $this->getCodigoPostal(),
+			$keys[10] => $this->getFkProvinciaId(),
+			$keys[11] => $this->getTelefono(),
+			$keys[12] => $this->getLugarNacimiento(),
+			$keys[13] => $this->getFkTipodocumentoId(),
+			$keys[14] => $this->getNroDocumento(),
+			$keys[15] => $this->getSexo(),
+			$keys[16] => $this->getEmail(),
+			$keys[17] => $this->getDistanciaEscuela(),
+			$keys[18] => $this->getHermanosEscuela(),
+			$keys[19] => $this->getHijoMaestroEscuela(),
+			$keys[20] => $this->getFkEstablecimientoId(),
+			$keys[21] => $this->getFkCuentaId(),
+			$keys[22] => $this->getCertificadoMedico(),
+			$keys[23] => $this->getActivo(),
+			$keys[24] => $this->getFkConceptobajaId(),
+			$keys[25] => $this->getFkPaisId(),
+			$keys[26] => $this->getProcedencia(),
 		);
 		return $result;
 	}
@@ -1376,73 +1460,82 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->setId($value);
 				break;
 			case 1:
-				$this->setNombre($value);
+				$this->setLegajoPrefijo($value);
 				break;
 			case 2:
-				$this->setApellidoMaterno($value);
+				$this->setLegajoNumero($value);
 				break;
 			case 3:
-				$this->setApellido($value);
+				$this->setNombre($value);
 				break;
 			case 4:
-				$this->setFechaNacimiento($value);
+				$this->setApellidoMaterno($value);
 				break;
 			case 5:
-				$this->setDireccion($value);
+				$this->setApellido($value);
 				break;
 			case 6:
-				$this->setCiudad($value);
+				$this->setFechaNacimiento($value);
 				break;
 			case 7:
-				$this->setCodigoPostal($value);
+				$this->setDireccion($value);
 				break;
 			case 8:
-				$this->setFkProvinciaId($value);
+				$this->setCiudad($value);
 				break;
 			case 9:
-				$this->setTelefono($value);
+				$this->setCodigoPostal($value);
 				break;
 			case 10:
-				$this->setLugarNacimiento($value);
+				$this->setFkProvinciaId($value);
 				break;
 			case 11:
-				$this->setFkTipodocumentoId($value);
+				$this->setTelefono($value);
 				break;
 			case 12:
-				$this->setNroDocumento($value);
+				$this->setLugarNacimiento($value);
 				break;
 			case 13:
-				$this->setSexo($value);
+				$this->setFkTipodocumentoId($value);
 				break;
 			case 14:
-				$this->setEmail($value);
+				$this->setNroDocumento($value);
 				break;
 			case 15:
-				$this->setDistanciaEscuela($value);
+				$this->setSexo($value);
 				break;
 			case 16:
-				$this->setHermanosEscuela($value);
+				$this->setEmail($value);
 				break;
 			case 17:
-				$this->setHijoMaestroEscuela($value);
+				$this->setDistanciaEscuela($value);
 				break;
 			case 18:
-				$this->setFkEstablecimientoId($value);
+				$this->setHermanosEscuela($value);
 				break;
 			case 19:
-				$this->setFkCuentaId($value);
+				$this->setHijoMaestroEscuela($value);
 				break;
 			case 20:
-				$this->setCertificadoMedico($value);
+				$this->setFkEstablecimientoId($value);
 				break;
 			case 21:
-				$this->setActivo($value);
+				$this->setFkCuentaId($value);
 				break;
 			case 22:
-				$this->setFkConceptobajaId($value);
+				$this->setCertificadoMedico($value);
 				break;
 			case 23:
+				$this->setActivo($value);
+				break;
+			case 24:
+				$this->setFkConceptobajaId($value);
+				break;
+			case 25:
 				$this->setFkPaisId($value);
+				break;
+			case 26:
+				$this->setProcedencia($value);
 				break;
 		} 	}
 
@@ -1452,29 +1545,32 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		$keys = AlumnoPeer::getFieldNames($keyType);
 
 		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
-		if (array_key_exists($keys[1], $arr)) $this->setNombre($arr[$keys[1]]);
-		if (array_key_exists($keys[2], $arr)) $this->setApellidoMaterno($arr[$keys[2]]);
-		if (array_key_exists($keys[3], $arr)) $this->setApellido($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setFechaNacimiento($arr[$keys[4]]);
-		if (array_key_exists($keys[5], $arr)) $this->setDireccion($arr[$keys[5]]);
-		if (array_key_exists($keys[6], $arr)) $this->setCiudad($arr[$keys[6]]);
-		if (array_key_exists($keys[7], $arr)) $this->setCodigoPostal($arr[$keys[7]]);
-		if (array_key_exists($keys[8], $arr)) $this->setFkProvinciaId($arr[$keys[8]]);
-		if (array_key_exists($keys[9], $arr)) $this->setTelefono($arr[$keys[9]]);
-		if (array_key_exists($keys[10], $arr)) $this->setLugarNacimiento($arr[$keys[10]]);
-		if (array_key_exists($keys[11], $arr)) $this->setFkTipodocumentoId($arr[$keys[11]]);
-		if (array_key_exists($keys[12], $arr)) $this->setNroDocumento($arr[$keys[12]]);
-		if (array_key_exists($keys[13], $arr)) $this->setSexo($arr[$keys[13]]);
-		if (array_key_exists($keys[14], $arr)) $this->setEmail($arr[$keys[14]]);
-		if (array_key_exists($keys[15], $arr)) $this->setDistanciaEscuela($arr[$keys[15]]);
-		if (array_key_exists($keys[16], $arr)) $this->setHermanosEscuela($arr[$keys[16]]);
-		if (array_key_exists($keys[17], $arr)) $this->setHijoMaestroEscuela($arr[$keys[17]]);
-		if (array_key_exists($keys[18], $arr)) $this->setFkEstablecimientoId($arr[$keys[18]]);
-		if (array_key_exists($keys[19], $arr)) $this->setFkCuentaId($arr[$keys[19]]);
-		if (array_key_exists($keys[20], $arr)) $this->setCertificadoMedico($arr[$keys[20]]);
-		if (array_key_exists($keys[21], $arr)) $this->setActivo($arr[$keys[21]]);
-		if (array_key_exists($keys[22], $arr)) $this->setFkConceptobajaId($arr[$keys[22]]);
-		if (array_key_exists($keys[23], $arr)) $this->setFkPaisId($arr[$keys[23]]);
+		if (array_key_exists($keys[1], $arr)) $this->setLegajoPrefijo($arr[$keys[1]]);
+		if (array_key_exists($keys[2], $arr)) $this->setLegajoNumero($arr[$keys[2]]);
+		if (array_key_exists($keys[3], $arr)) $this->setNombre($arr[$keys[3]]);
+		if (array_key_exists($keys[4], $arr)) $this->setApellidoMaterno($arr[$keys[4]]);
+		if (array_key_exists($keys[5], $arr)) $this->setApellido($arr[$keys[5]]);
+		if (array_key_exists($keys[6], $arr)) $this->setFechaNacimiento($arr[$keys[6]]);
+		if (array_key_exists($keys[7], $arr)) $this->setDireccion($arr[$keys[7]]);
+		if (array_key_exists($keys[8], $arr)) $this->setCiudad($arr[$keys[8]]);
+		if (array_key_exists($keys[9], $arr)) $this->setCodigoPostal($arr[$keys[9]]);
+		if (array_key_exists($keys[10], $arr)) $this->setFkProvinciaId($arr[$keys[10]]);
+		if (array_key_exists($keys[11], $arr)) $this->setTelefono($arr[$keys[11]]);
+		if (array_key_exists($keys[12], $arr)) $this->setLugarNacimiento($arr[$keys[12]]);
+		if (array_key_exists($keys[13], $arr)) $this->setFkTipodocumentoId($arr[$keys[13]]);
+		if (array_key_exists($keys[14], $arr)) $this->setNroDocumento($arr[$keys[14]]);
+		if (array_key_exists($keys[15], $arr)) $this->setSexo($arr[$keys[15]]);
+		if (array_key_exists($keys[16], $arr)) $this->setEmail($arr[$keys[16]]);
+		if (array_key_exists($keys[17], $arr)) $this->setDistanciaEscuela($arr[$keys[17]]);
+		if (array_key_exists($keys[18], $arr)) $this->setHermanosEscuela($arr[$keys[18]]);
+		if (array_key_exists($keys[19], $arr)) $this->setHijoMaestroEscuela($arr[$keys[19]]);
+		if (array_key_exists($keys[20], $arr)) $this->setFkEstablecimientoId($arr[$keys[20]]);
+		if (array_key_exists($keys[21], $arr)) $this->setFkCuentaId($arr[$keys[21]]);
+		if (array_key_exists($keys[22], $arr)) $this->setCertificadoMedico($arr[$keys[22]]);
+		if (array_key_exists($keys[23], $arr)) $this->setActivo($arr[$keys[23]]);
+		if (array_key_exists($keys[24], $arr)) $this->setFkConceptobajaId($arr[$keys[24]]);
+		if (array_key_exists($keys[25], $arr)) $this->setFkPaisId($arr[$keys[25]]);
+		if (array_key_exists($keys[26], $arr)) $this->setProcedencia($arr[$keys[26]]);
 	}
 
 	
@@ -1483,6 +1579,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		$criteria = new Criteria(AlumnoPeer::DATABASE_NAME);
 
 		if ($this->isColumnModified(AlumnoPeer::ID)) $criteria->add(AlumnoPeer::ID, $this->id);
+		if ($this->isColumnModified(AlumnoPeer::LEGAJO_PREFIJO)) $criteria->add(AlumnoPeer::LEGAJO_PREFIJO, $this->legajo_prefijo);
+		if ($this->isColumnModified(AlumnoPeer::LEGAJO_NUMERO)) $criteria->add(AlumnoPeer::LEGAJO_NUMERO, $this->legajo_numero);
 		if ($this->isColumnModified(AlumnoPeer::NOMBRE)) $criteria->add(AlumnoPeer::NOMBRE, $this->nombre);
 		if ($this->isColumnModified(AlumnoPeer::APELLIDO_MATERNO)) $criteria->add(AlumnoPeer::APELLIDO_MATERNO, $this->apellido_materno);
 		if ($this->isColumnModified(AlumnoPeer::APELLIDO)) $criteria->add(AlumnoPeer::APELLIDO, $this->apellido);
@@ -1506,6 +1604,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(AlumnoPeer::ACTIVO)) $criteria->add(AlumnoPeer::ACTIVO, $this->activo);
 		if ($this->isColumnModified(AlumnoPeer::FK_CONCEPTOBAJA_ID)) $criteria->add(AlumnoPeer::FK_CONCEPTOBAJA_ID, $this->fk_conceptobaja_id);
 		if ($this->isColumnModified(AlumnoPeer::FK_PAIS_ID)) $criteria->add(AlumnoPeer::FK_PAIS_ID, $this->fk_pais_id);
+		if ($this->isColumnModified(AlumnoPeer::PROCEDENCIA)) $criteria->add(AlumnoPeer::PROCEDENCIA, $this->procedencia);
 
 		return $criteria;
 	}
@@ -1535,6 +1634,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	
 	public function copyInto($copyObj, $deepCopy = false)
 	{
+
+		$copyObj->setLegajoPrefijo($this->legajo_prefijo);
+
+		$copyObj->setLegajoNumero($this->legajo_numero);
 
 		$copyObj->setNombre($this->nombre);
 
@@ -1581,6 +1684,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		$copyObj->setFkConceptobajaId($this->fk_conceptobaja_id);
 
 		$copyObj->setFkPaisId($this->fk_pais_id);
+
+		$copyObj->setProcedencia($this->procedencia);
 
 
 		if ($deepCopy) {
