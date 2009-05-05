@@ -37,6 +37,31 @@
         <fieldset id="sf_fieldset_informacion_general" class="">
             <h2><?php echo __('Informaci&oacute;n general') ?></h2>
 
+            <!-- Legajo -->
+            <div class="form-row">
+              <?php echo label_for('alumno[legajo_prefijo]', __('Legajo:'), 'class="required" ') ?>
+              <div class="content<?php if ($sf_request->hasError('alumno{legajo_prefijo}')|| $sf_request->hasError('alumno{legajo_numero}')): ?> form-error<?php endif; ?>">
+              <?php if ($sf_request->hasError('alumno{legajo_prefijo}')): ?>
+                <?php echo form_error('alumno{legajo_prefijo}', array('class' => 'form-error-msg')) ?>
+              <?php endif; ?>
+              <?php if ($sf_request->hasError('alumno{legajo_numero}')): ?>
+                <?php echo form_error('alumno{legajo_numero}', array('class' => 'form-error-msg')) ?>
+              <?php endif; ?>
+
+              <?php echo object_input_tag($alumno, 'getLegajoPrefijo', array (
+              'size' => 10,
+              'control_name' => 'alumno[legajo_prefijo]',
+            )) ?>
+              <?php echo object_input_tag($alumno, 'getLegajoNumero', array (
+              'size' => 10,
+              'control_name' => 'alumno[legajo_numero]',
+            )) ?>
+                </div>
+            </div>
+
+
+            <!-- Fin Legajo -->
+
             <div class="form-row">
               <?php echo label_for('alumno[apellido]', __('Apellido:'), 'class="required" ') ?>
               <div class="content<?php if ($sf_request->hasError('alumno{apellido}')): ?> form-error<?php endif; ?>">

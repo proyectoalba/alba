@@ -17,11 +17,23 @@ methods:
     - "alumno{activo}"        
     - "alumno{fk_cuenta_id}"
     - "alumno{fk_provincia_id}"        
-    
+    - "alumno{legajo_prefijo}"          
+    - "alumno{legajo_numero}"          
+
 fillin:
     enabled:       on
       
 names:
+    alumno{legajo_prefijo}:
+        required:     Yes
+        required_msg: Complete el Nro. de Legajo.
+        validators: caracteresMaximos20
+    
+    alumno{legajo_numero}:
+        required:     Yes
+        required_msg: Complete el Nro. de Legajo.
+        validators: validarNumero
+    
     alumno{nombre}:
         required:     Yes
         required_msg: El campo nombre es obligatorio
@@ -33,28 +45,24 @@ names:
         validators: caracteresMaximos128
 
     alumno{fecha_nacimiento}:
-        required:     Yes
-        required_msg: El campo fecha de nacimiento es obligatorio
+        required:     No
         validators: validaFecha
 
     alumno{nro_documento}:
-        required:     Yes
-        required_msg: El campo n&uacute;mero de documento es obligatorio
+        required:     No
         validators: validaNroDocumento, validarNumero
 
     alumno{ciudad}:
-        required:     Yes
+        required:     No
         required_msg: El campo ciudad es obligatorio
         validators: caracteresMaximos128
 
     alumno{direccion}:
-        required:     Yes
-        required_msg: El campo direcci&oacute;n es obligatorio
+        required:     No
         validators: caracteresMaximos128
 
     alumno{codigo_postal}:
-        required:     Yes
-        required_msg: El campo c&oacute;digo postal  es obligatorio
+        required:     No
         validators: caracteresMaximos20
         
     alumno{telefono}:
