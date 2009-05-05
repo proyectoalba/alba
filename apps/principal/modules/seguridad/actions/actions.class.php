@@ -77,41 +77,10 @@ class seguridadActions extends sfActions
                     $this->getUser()->setAttribute('usuario',$user->getUsuario());
                     $this->getUser()->setCulture('es_AR');
 
-                    /* asigno las credenciales x rol*/
-                    $crol = new Criteria();
-                    $crol->add(UsuarioRolPeer::FK_USUARIO_ID, $user->getId());
-                    $roles = UsuarioRolPeer::doSelect($crol);
+                    //cargo las credenciales del usuario ylos roles
+                    $this->getUser()->cargarCredenciales($user->getId());
 
-                    //por cada rol busco los permisos y los asigno
-                    foreach ($roles as $rol) {
-
-                        $this->logMessage(' obteniendo rol: ' . $rol->getRol()->getNombre(), 'debug');
-                        $permisos = $rol->getRol()->getRolPermisos();
-                        foreach ($permisos as $permiso) {
-                            $this->logMessage(sprintf('permiso desde rol: %s', $permiso->getPermiso()),'debug');
-                            $this->getUser()->addCredential($permiso->getPermiso()->getNombre());
-                        }
-                    }
-
-                    /* asign credenciales por usuario */
-                    $this->logMessage('obteniendo permisos x usuario:', 'debug');
-                    $cuser = new Criteria();
-                    $cuser->add(UsuarioPermisoPeer::FK_USUARIO_ID, $user->getId());
-                    $permisos = UsuarioPermisoPeer::doSelect($cuser);
-                    foreach ($permisos as $permiso) {
-                        $this->logMessage('permiso desde usuario: ' . $permiso->getPermiso(),'debug');
-                        $this->getUser()->addCredential($permiso->getPermiso()->getNombre());
-                    }
-
-                    // quitando credenciales para la demo
-                    if(sfConfig::get('sf_environment') =='demo'){
-                        $this->logMessage('{DEMO} quitando credenciales');
-                        $this->getUser()->removeCredential('usuario');
-                        $this->getUser()->removeCredential('permiso');
-                        $this->getUser()->removeCredential('modulo');
-                        $this->getUser()->removeCredential('rol');
-                    }
-                    $this->debugMessage('Login ok');
+                    $this->logMessage('Login ok','debug');
                     return $this->redirect($this->getRequestParameter('referer', '@homepage'));
                 }
                 else {
@@ -121,7 +90,7 @@ class seguridadActions extends sfActions
 
             }
             else {
-                $this->debugMessage('Login Error');
+                $this->logMessage('Login Error','debug');
                 $this->error_inicio_sesion = true;
                 return sfView::SUCCESS;
             }
@@ -134,7 +103,7 @@ class seguridadActions extends sfActions
 
     /* cierre de session */
     public function executeLogout() {
-        $this->debugMessage("Logout");
+        $this->logMessage("Logout", 'debug');
         $this->getUser()->clearCredentials();
         $this->getUser()->setAuthenticated(false);
         $this->redirect('default/index');
@@ -190,7 +159,7 @@ class seguridadActions extends sfActions
     /* capturo el error de login */
    public function handleErrorLogin()
     {
-        $this->debugMessage("Error inicio de sesion");
+        $this->logMessage("Error inicio de sesion", 'debug');
         $this->error_inicio_sesion = true;
         return sfView::SUCCESS;
     }

@@ -401,357 +401,333 @@ Usuario:
     borrado: 0
 
 Permiso:
-  Permiso_1:
+  Permiso_usuario:
     nombre: usuario
     descripcion: Modulo de usuario
-  Permiso_2:
-    nombre: permiso
-    descripcion: Administrar permisos de usuario
-  Permiso_3:
-    nombre: modulo
-    descripcion: Administración de módulos
-  Permiso_4:
+  Permiso_actividad:
     nombre: actividad
     descripcion:
-  Permiso_5:
+  Permiso_alumno:
     nombre: alumno
     descripcion:
-  Permiso_6:
+  Permiso_anio:
     nombre: anio
     descripcion:
-  Permiso_7:
+  Permiso_calendario:
     nombre: calendario
     descripcion:
-  Permiso_8:
+  Permiso_calendariovacunacion:
     nombre: calendariovacunacion
     descripcion:
-  Permiso_9:
+  Permiso_ciclolectivo:
     nombre: ciclolectivo
     descripcion:
-  Permiso_10:
+  Permiso_concepto:
     nombre: concepto
     descripcion:
-  Permiso_11:
-    nombre: creditos
-    descripcion:
-  Permiso_12:
+  Permiso_cuenta:
     nombre: cuenta
     descripcion:
-  Permiso_13:
+  Permiso_division:
     nombre: division
     descripcion:
-  Permiso_14:
+  Permiso_docente:
     nombre: docente
     descripcion:
-  Permiso_15:
-    nombre: docenteHorario
+  Permiso_docentehorario:
+    nombre: docentehorario
     descripcion:
-  Permiso_16:
+  Permiso_escalanota:
     nombre: escalanota
     descripcion:
-  Permiso_17:
+  Permiso_establecimiento:
     nombre: establecimiento
     descripcion:
-  Permiso_18:
+  Permiso_feriado:
     nombre: feriado
     descripcion:
-  Permiso_19:
+  Permiso_legajocategoria:
     nombre: legajocategoria
     descripcion:
-  Permiso_20:
+  Permiso_locacion:
     nombre: locacion
     descripcion:
-  Permiso_21:
+  Permiso_pais:
     nombre: pais
     descripcion:
-  Permiso_22:
+  Permiso_preferencia:
     nombre: preferencia
     descripcion:
-  Permiso_23:
+  Permiso_provincia:
     nombre: provincia
     descripcion:
-  Permiso_24:
-    nombre: relActividadDocente
+  Permiso_relactividaddocente:
+    nombre: relactividaddocente
     descripcion:
-  Permiso_25:
-    nombre: relAnioActividad
+  Permiso_relactividad:
+    nombre: relactividad
     descripcion:
-  Permiso_26:
-    nombre: relCalendariovacunacionAlumno
+  Permiso_relcalendariovacunacionalumno:
+    nombre: relcalendariovacunacionalumno
     descripcion:
-  Permiso_27:
+  Permiso_responsable:
     nombre: responsable
     descripcion:
-  Permiso_28:
+  Permiso_rol:
     nombre: rol
     descripcion:
-  Permiso_29:
+  Permiso_tipoiva:
     nombre: tipoiva
     descripcion:
-  Permiso_30:
+  Permiso_turno:
     nombre: turno
     descripcion:
-  Permiso_31:
+  Permiso_tipolocacion:
     nombre: tipolocacion
     descripcion:
-  Permiso_32:
+  Permiso_tipoespacio:
     nombre: tipoespacio
     descripcion:
-  Permiso_33:
+  Permiso_espacio:
     nombre: espacio
     descripcion:
-  Permiso_34:
+  Permiso_cargobaja:
     nombre: cargoabaja
     descripcion:
-  Permiso_35:
+  Permiso_conceptobaja:
     nombre: conceptobaja
     descripcion:
-  Permiso_36:
+  Permiso_distritoescolar:
     nombre: distritoescolar
     descripcion:
-  Permiso_37:
+  Permiso_horarioescolar:
     nombre: horarioescolar
     descripcion:
-  Permiso_38:
+  Permiso_horarioescolartipo:
     nombre: horarioescolartipo
     descripcion:
-  Permiso_39:
+  Permiso_tipodocente:
     nombre: tipodocente
     descripcion:
-  Permiso_40:
+  Permiso_organizacion:
     nombre: organizacion
     descripcion:
-  Permiso_41:
-    nombre: Asistencia
-    descripcion: Asistencia
-  Permiso_42:
-    nombre: distrito
-    descripcion: distrito
-  Permiso_43:
-    nombre: distritoescolar
-    descripcion: Distrito Escolar
-  Permiso_44:
+  Permiso_asistencia:
+    nombre: asistencia
+    descripcion: Asistencias
+  Permiso_legajopedagogico:
     nombre: legajopedagogico
     descripcion:
-  Permiso_45:
+  Permiso_tipoasistencia:
     nombre: tipoasistencia
     descripcion:
-  Permiso_46:
+  Permiso_formatofecha:
     nombre: formatofecha
     descripcion:
-  Permiso_47:
-    nombre: relLocacionEspacio
+  Permiso_rellocacionespacio:
+    nombre: rellocacionespacio
     descripcion:
-  Permiso_48:
-    nombre: relAlumnoDivision
+  Permiso_relalumnodivision:
+    nombre: relalumnodivision
     descripcion:
-  Permiso_49:
+  Permiso_boletin:
     nombre: boletin
     descripcion:
-  Permiso_50:
+  Permiso_boletinconcepto:
     nombre: boletinconcepto
     descripcion: boletinconcepto
-  Permiso_51:
+  Permiso_boletinnotas:
     nombre: boletinnotas
     descripcion: boletinnotas
-  Permiso_52:
+  Permiso_tipodocumento:
     nombre: tipodocumento
     descripcion: tipodocumento
-  Permiso_53:
-    nombre: informes
+  Permiso_informe:
+    nombre: informe
     descripcion: informes
-  Permiso_54:
-    nombre: rolResponsable
+  Permiso_rolresponsable:
+    nombre: rolresponsable
     descripcion: Rol de Responsables
-  Permiso_55:
+  Permiso_orientacion:
     nombre: orientacion
     descripcion: Orientacion
-  Permiso_56:
+  Permiso_tiponivel:
     nombre: tiponivel
     descripcion: Tipo de Nivel
-  Permiso_57:
+  Permiso_carrera:
     nombre: carrera
     descripcion: Carreras
+  Permiso_legajosalud:
+    nombre: legajosalud
+    descripcion: Legajo de Salud
 Rol:
-  Rol_1:
+  Rol_administrador:
     nombre: Administrador
     descripcion: Administrador del sistema
     activo: 1
 
 RolPermiso:
   Rol_permiso_1_1:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_1
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_actividad
   Rol_permiso_1_2:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_2
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_alumno
   Rol_permiso_1_3:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_3
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_anio
   Rol_permiso_1_4:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_4
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_asistencia
   Rol_permiso_1_5:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_5
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_boletin
   Rol_permiso_1_6:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_6
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_boletinconcepto
   Rol_permiso_1_7:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_7
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_boletinnotas
   Rol_permiso_1_8:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_8
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_calendario
   Rol_permiso_1_9:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_9
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_calendariovacunacion
   Rol_permiso_1_10:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_10
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_cargobaja
   Rol_permiso_1_11:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_11
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_carrera
   Rol_permiso_1_12:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_12
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_ciclolectivo
   Rol_permiso_1_13:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_13
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_conceptobaja
   Rol_permiso_1_14:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_14
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_concepto
   Rol_permiso_1_15:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_15
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_cuenta
   Rol_permiso_1_16:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_16
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_distritoescolar
   Rol_permiso_1_17:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_17
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_division
   Rol_permiso_1_18:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_18
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_docente
   Rol_permiso_1_19:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_19
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_docentehorario
   Rol_permiso_1_20:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_20
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_escalanota
   Rol_permiso_1_21:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_21
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_espacio
   Rol_permiso_1_22:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_22
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_establecimiento
   Rol_permiso_1_23:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_23
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_feriado
   Rol_permiso_1_24:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_24
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_formatofecha
   Rol_permiso_1_25:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_25
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_horarioescolar
   Rol_permiso_1_26:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_26
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_horarioescolartipo
   Rol_permiso_1_27:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_27
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_informe
   Rol_permiso_1_28:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_28
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_legajocategoria
   Rol_permiso_1_29:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_29
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_legajopedagogico
   Rol_permiso_1_30:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_30
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_legajosalud
   Rol_permiso_1_31:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_31
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_locacion
   Rol_permiso_1_32:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_32
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_organizacion
   Rol_permiso_1_33:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_33
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_orientacion
   Rol_permiso_1_34:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_34
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_pais
   Rol_permiso_1_35:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_35
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_preferencia
   Rol_permiso_1_36:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_36
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_provincia
   Rol_permiso_1_37:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_37
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_relactividad
   Rol_permiso_1_38:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_38
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_relactividaddocente
   Rol_permiso_1_39:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_39
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_relalumnodivision
   Rol_permiso_1_40:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_40
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_relcalendariovacunacionalumno
   Rol_permiso_1_41:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_41
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_rellocacionespacio
   Rol_permiso_1_42:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_42
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_responsable
   Rol_permiso_1_43:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_43
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_rol
   Rol_permiso_1_44:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_44
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_rolresponsable
   Rol_permiso_1_45:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_45
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_tipoasistencia
   Rol_permiso_1_46:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_46
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_tipodocente
   Rol_permiso_1_47:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_47
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_tipodocumento
   Rol_permiso_1_48:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_48
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_tipoespacio
   Rol_permiso_1_49:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_49
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_tipoiva
   Rol_permiso_1_50:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_50
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_tipolocacion
   Rol_permiso_1_51:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_51
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_tiponivel
   Rol_permiso_1_52:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_52
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_turno
   Rol_permiso_1_53:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_53
-  Rol_permiso_1_54:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_54
-  Rol_permiso_1_55:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_55
-  Rol_permiso_1_56:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_56
-  Rol_permiso_1_57:
-    fk_rol_id: Rol_1
-    fk_permiso_id: Permiso_57
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_usuario
 
 UsuarioRol:
-  Usuario_rol_1_1:
+  Usuario_Rol_administrador_1:
     fk_usuario_id: Usuario_1
-    fk_rol_id: Rol_1
+    fk_rol_id: Rol_administrador

@@ -2,7 +2,7 @@
 
 /**
  *    This file is part of Alba.
- * 
+ *
  *    Alba is free software; you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as published by
  *    the Free Software Foundation; either version 2 of the License, or
@@ -37,13 +37,18 @@ class rolActions extends autorolActions
     function executeEditPermiso() {
         // estos son los permisos que tiene el rol
         $c = new Criteria();
-        $c->add(RelRolPermisoPeer::FK_ROL_ID, $this->getRequestParameter('id'));
-        $rolPermisos = RelRolPermisoPeer::doSelectJoinPermiso($c);
-    
-            // esto puede ser descartado usando en el select_tag, objects_for_select                               
+        $c->add(RolPermisoPeer::FK_ROL_ID, $this->getRequestParameter('id'));
+        $c->addAscendingOrderByColumn(PermisoPeer::NOMBRE);
+        $rolPermisos = RolPermisoPeer::doSelectJoinPermiso($c);
+
+        // esto puede ser descartado usando en el select_tag, objects_for_select
         $optionsRolPermisos = array();
         foreach($rolPermisos as $rolPermiso) {
-            $optionsRolPermisos[$rolPermiso->getFkPermisoId()] = $rolPermiso->getPermiso()->getNombre();
+            $optionsRolPermisos[$rolPermiso->getFkPermisoId()] =
+              sprintf("%s (%s)",
+              $rolPermiso->getPermiso()->getNombre(),
+              $rolPermiso->getPermiso()->getDescripcion()
+              );
         }
 
         //estos son todos los permisos existentes
@@ -52,53 +57,48 @@ class rolActions extends autorolActions
         foreach($permisos as $permiso) {
             $todosLosPermisos[$permiso->getId()] = $permiso->getNombre();
         }
-        
+
         // estos son los permisos existentes menos los del usuario
         $this->optionsPermisos = array_diff_key($todosLosPermisos, $optionsRolPermisos);
-         
+
         $c = new Criteria();
-        //$c->clearSelectColumns()->addSelectColumn(RolPeer::NOMBRE);
-        //$c->addSelectColumn(RolPeer::ID);
-        
         $c->add(RolPeer::ACTIVO, 1);
         $roles  = RolPeer::doSelect($c);
 
         $optionsRol = array();
         foreach($roles as $rol) {
-            $optionsRol[$rol->getId()] = $rol->getNombre(); 
+            $optionsRol[$rol->getId()] = $rol->getNombre();
         }
         $this->optionsRol = $optionsRol;
         $this->optionsRolPermisos = $optionsRolPermisos;
-    }        
-    
+    }
+
     function executeSavePermiso() {
-      
+
         // borrar todo los permisos para un usuarios determinado
         $rolId = $this->getRequestParameter('id');
         $aPermiso = $this->getRequest()->getParameterHolder()->get('rolPermisos');
 
         $c =  new Criteria();
-        $c->add(RelRolPermisoPeer::FK_ROL_ID, $rolId);
-        RelRolPermisoPeer::doDelete($c);
+        $c->add(RolPermisoPeer::FK_ROL_ID, $rolId);
+        RolPermisoPeer::doDelete($c);
 
         if(count($aPermiso) > 0) {
             // grabar todos los que vienen seleccionados
             // aqui se debe poder grabar haciendo un solo insert
-                        
+
             $c =  new Criteria();
             foreach($aPermiso as $permisoId) {
-                $p = new RelRolPermiso();
+                $p = new RolPermiso();
                 $p->setFkRolId($rolId);
                 $p->setFkPermisoId($permisoId);
                 $p->save();
                 unset($p);
             }
         }
+        $this->getUser()->setFlash('notice', 'Los permisos para este Rol fueron actualizados correctamente.');
         return $this->redirect('rol/editPermiso?id='.$rolId);
-               
-    }        
-    
-
+    }
 }
 
 ?>

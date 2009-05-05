@@ -13,7 +13,11 @@ class defaultActions extends sfActions
     public function executeIndex(sfWebRequest $request)
     {
     }
-
-    public function executeLogin($request) {
+    public function executeLogin(sfWebRequest $request)
+    {
     }
+    public function executeSecure(sfWebRequest $request)
+    {
+    }
+
 }
