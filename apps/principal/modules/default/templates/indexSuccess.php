@@ -93,6 +93,6 @@ El Proyecto Alba, es un proyecto de desarrollo de Software para la realizaci&oac
             </ul>
         </li>
     </ul>
-<?php endif;?>
+    <?php endif;?>
 
 <?php endif; ?>
