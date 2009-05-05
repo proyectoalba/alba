@@ -160,6 +160,8 @@ Establecimiento:
   Establecimiento_2:
     nombre: Escuela N999 Gral. Stallman
     descripcion: Escuela Primaria
+    legajosiguiente: 1
+    legajoprefijo: MAT
     fk_distritoescolar_id: Distritoescolar_1
     fk_organizacion_id: Organizacion_1
     fk_niveltipo_id: Niveltipo_2

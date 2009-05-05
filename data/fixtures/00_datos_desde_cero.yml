@@ -381,6 +381,8 @@ Establecimiento:
   Establecimiento_1:
     nombre: Nombre de Escuela
     descripcion: Escuela Primaria
+    legajoprefijo: MAT
+    legajosiguiente: 1
     fk_distritoescolar_id: Distritoescolar_1
     fk_organizacion_id: Organizacion_1
     fk_niveltipo_id: Niveltipo_2
