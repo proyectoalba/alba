@@ -12,9 +12,9 @@
     </head>
     <body>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
-            <tr valign="top"> 
+            <tr valign="top">
                 <td colspan="2" class="fmedio">
-            <div id="logo"> 
+            <div id="logo">
                 <table cellpadding="0" cellspacing="0" width="100%">
                     <tr>
                         <td class="fmedio"><?php echo image_tag("gui/index_1x1.png", array ( 'width' => '758' , 'heigth' => '77' ) )?></td>
@@ -53,7 +53,7 @@
                 </td>
                 <td id="marco_derecha"><?php echo image_tag("gui/index_1x2.png", array ( 'width' => '17' , 'heigth' => '77' ) )?></td>
             </tr>
-            <tr valign="top"> 
+            <tr valign="top">
                 <td class="fizq-menu" width="1%">&nbsp;</td>
                 <td colspan="1" class="fmenu"><?php
                     if($sf_user->isAuthenticated() == true)  {
@@ -66,11 +66,11 @@
                 </td>
                 <td id="marco_derecha"><?php echo image_tag("gui/index_2x2.png", array ( 'width' => '17' , 'heigth' => '35' ) )?></td>
             </tr>
-            <tr valign="top"> 
+            <tr valign="top">
                 <td width="33" class="fizq">&nbsp;</td>
                 <td width="959">
                     <div id="cabecera" align="center">
-                    <?php 
+                    <?php
                         if($sf_user->isAuthenticated() != true)  {
                             if ($sf_params->get('module') != 'seguridad' && $sf_params->get('action') !='login') {
                                include_partial('seguridad/login', array('sf_params' => $sf_params, 'error_inicio_sesion' => @$error_inicio_sesion));
@@ -98,7 +98,7 @@
                 </td>
                 <td width="17" class="fder">&nbsp;</td>
             </tr>
-            <tr id="marco_pie" valign="top"> 
+            <tr id="marco_pie" valign="top">
                 <td><?php echo image_tag("gui/index3_5x1.png", array ( 'width' => '33' , 'heigth' => '22' ) )?></td>
                 <td class="fdown">&nbsp;</td>
                 <td><?php echo image_tag("gui/index3_5x3.png", array ( 'width' => '17' , 'heigth' => '20' ) )?></td>

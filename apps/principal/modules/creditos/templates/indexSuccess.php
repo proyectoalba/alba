@@ -1,11 +1,11 @@
 <style>
 
-h2 { 
-    font: bold 140% Arial, Sans-Serif; 
-    letter-spacing: -1px; 
+h2 {
+    font: bold 140% Arial, Sans-Serif;
+    letter-spacing: -1px;
     margin: 0 0 2px 0;
-    padding: 0; 
-    color: #494949; 
+    padding: 0;
+    color: #494949;
 }
 
 h3.spip {
@@ -19,7 +19,7 @@ h3.spip {
 }
 
 
-p { 
+p {
     margin: 0 0 5px 0;
     padding: 0;
 }
@@ -35,19 +35,19 @@ img {
 
 /* content */
 
-.content { 
+.content {
     margin: 20px auto;
-    width: 760px; 
+    width: 760px;
     background: #fff;
     color: #565656;
 }
 
 /* lists styling */
 
-ul { 
-    margin: 0; 
-    padding : 0; 
-    list-style : none; 
+ul {
+    margin: 0;
+    padding : 0;
+    list-style : none;
 }
 
 .chapo, .articleContent, p.spip {
