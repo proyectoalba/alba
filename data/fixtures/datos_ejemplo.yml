@@ -167,8 +167,8 @@ Establecimiento:
     fk_niveltipo_id: Niveltipo_2
 Usuario:
   Usuario_2:
-    usuario: adminprueba
-    clave: '<?php echo md5('adminprueba')?>'
+    usuario: ejemplo
+    clave: '<?php echo md5('ejemplo')?>'
     correo_publico: 1
     activo: 1
     fecha_creado: 2006-12-03 00:00:00
@@ -203,6 +203,11 @@ Usuario:
     fk_establecimiento_id: Establecimiento_2
     borrado: 0
 
+UsuarioRol:
+  UsuarioRol_2:
+    fk_usuario_id: Usuario_2
+    fk_rol_id: Rol_administrador
+        
 RolResponsable:
   RolResponsable_1:
     nombre: Padre
