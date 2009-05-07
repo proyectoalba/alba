@@ -1,4 +1,4 @@
 all:
     is_secure: on
-    credentials: relCalendariovacunacionAlumno
+    credentials: relcalendariovacunacionalumno
     
