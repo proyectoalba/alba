@@ -542,8 +542,8 @@ Permiso:
   Permiso_tipodocumento:
     nombre: tipodocumento
     descripcion: tipodocumento
-  Permiso_informe:
-    nombre: informe
+  Permiso_informes:
+    nombre: informes
     descripcion: informes
   Permiso_rolresponsable:
     nombre: rolresponsable
@@ -647,7 +647,7 @@ RolPermiso:
     fk_permiso_id: Permiso_horarioescolartipo
   Rol_permiso_1_27:
     fk_rol_id: Rol_administrador
-    fk_permiso_id: Permiso_informe
+    fk_permiso_id: Permiso_informes
   Rol_permiso_1_28:
     fk_rol_id: Rol_administrador
     fk_permiso_id: Permiso_legajocategoria
