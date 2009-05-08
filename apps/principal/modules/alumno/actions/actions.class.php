@@ -124,12 +124,14 @@ class alumnoActions extends autoAlumnoActions
     {
       $this->alumno = $this->getAlumnoOrCreate();
       $this->updateAlumnoFromRequest();
-    
+
       //Obteniendo fecha segun cultura
       $fecha_nacimiento = $this->getRequestParameter('alumno[fecha_nacimiento]');
-      $user_culture = $this->getUser()->getCulture();
-      list($d, $m, $y) = $this->getContext()->getI18N()->getDateForCulture($fecha_nacimiento, $user_culture);
-      $this->alumno->setFechaNacimiento("$y-$m-$d");
+      if ($fecha_nacimiento) {
+        $user_culture = $this->getUser()->getCulture();
+        list($d, $m, $y) = $this->getContext()->getI18N()->getDateForCulture($fecha_nacimiento, $user_culture);
+        $this->alumno->setFechaNacimiento("$y-$m-$d");
+      }
       $this->saveAlumno($this->alumno);
 
       $this->getUser()->setFlash('notice', 'Your modifications have been saved');
@@ -153,7 +155,18 @@ class alumnoActions extends autoAlumnoActions
 
     }
   }
-
+  public function executeAddfoto(sfWebRequest $request)
+  {
+    $alumno = AlumnoPeer::retrieveByPk($request->getParameter('id'));
+    $this->forward404Unless($alumno);
+    if ($alumno->getLegajoPrefijo() != '' && $alumno->getLegajoNumero() != '') {
+      $this->getRequest()->moveFile('archivo', sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'alumnos'.DIRECTORY_SEPARATOR.$alumno->getLegajo(),'.png');
+      return $this->renderPartial('foto', array('alumno'=>$alumno));
+    }
+    else {
+      return $this->renderText('El alumno no tien eun legajo valido!');
+    }
+  }
 
     public function executeBuscar() {
         $aCuentas = array();

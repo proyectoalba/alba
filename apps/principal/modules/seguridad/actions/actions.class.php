@@ -43,6 +43,7 @@ class seguridadActions extends sfActions
 
             $c = new Criteria();
             $c->add(UsuarioPeer::USUARIO, $login);
+            $c->add(UsuarioPeer::BORRADO, false);
             $user = UsuarioPeer::doSelectOne($c);
             if ($user){
                 // password OK?
