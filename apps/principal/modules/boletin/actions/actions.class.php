@@ -543,7 +543,7 @@ class boletinActions extends sfActions
         $c = new Criteria();
         $c->addGroupByColumn(TipoasistenciaPeer::GRUPO);
         $c->addSelectColumn(TipoasistenciaPeer::GRUPO);
-        $rsColumna = TipoasistenciaPeer::doSelectRS($c);
+        $rsColumna = TipoasistenciaPeer::doSelectStmt($c);
 
         $c = new Criteria();
         $c->clearSelectColumns();
@@ -556,18 +556,18 @@ class boletinActions extends sfActions
         $criterion = $c2->getNewCriterion(AsistenciaPeer::FECHA, $fecha_inicio, Criteria::GREATER_EQUAL);
         $criterion->addAnd($c2->getNewCriterion(AsistenciaPeer::FECHA, $fecha_fin, Criteria::LESS_EQUAL));
         $c->add($criterion);
-        $rsValor = TipoasistenciaPeer::doSelectRS($c);
+        $rsValor = TipoasistenciaPeer::doSelectStmt($c);
 
         if($rsColumna) {
-            while($rsColumna->next()) {
-                $aAsistencia[$rsColumna->getString(1)] = 0;  // indice: nombre del Grupo, contenido: 
+            while( $res = $rsColumna->fetchColumn(1)) {
+                $aAsistencia[$res] = 0;  // indice: nombre del Grupo, contenido: 
             }
         }
 
         if($rsValor) {
-            while($rsValor->next()) {
+            while($rsValor->fetch()) {
                 // indice: nombre del Grupo, contenido: sumatoria de valor
-                $aAsistencia[$rsValor->getString(1)] = $rsValor->getFloat(2); 
+                $aAsistencia[$rsValor->fetchColumn(1)] = $rsValor->fetchColumn(2); 
             }
         }
 
