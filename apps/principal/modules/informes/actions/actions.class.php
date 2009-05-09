@@ -708,6 +708,10 @@ class InformesActions extends sfActions
                     }
                     break;
 
+                case 'boletin':
+                    
+
+                    break;
                 default:
             }
         }

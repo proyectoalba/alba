@@ -403,38 +403,17 @@ class boletinActions extends sfActions
                 $optionsActividad = $this->getActividades($division_id);
                 $optionsConcepto = $this->getConcepto($establecimiento_id);
 
-                // notas del alumno
-                $criteria = new Criteria();
-                $criteria->add(BoletinActividadesPeer::FK_ALUMNO_ID, $alumno->getId());
-                $criteria->addJoin(BoletinActividadesPeer::FK_ESCALANOTA_ID, EscalanotaPeer::ID);
-                $criteria->addAsColumn("boletinActividades_periodo_id", BoletinActividadesPeer::FK_PERIODO_ID);
-                $criteria->addAsColumn("boletinActividades_actividad_id", BoletinActividadesPeer::FK_ACTIVIDAD_ID);
-                $criteria->addAsColumn("escalanota_nombre", EscalanotaPeer::NOMBRE);
-                $aBoletinActividades = BasePeer::doSelect($criteria);
-                foreach($aBoletinActividades as $boletinActividades) {
-                    $notaAlumno[$boletinActividades[0]][$boletinActividades[1]] = $boletinActividades[2];
-                }
+                $notaAlumno = $alumno->getNotas();
+                $conceptoAlumno = $alumno->getNotasConcepto();
 
-
-                //conceptos de alumno
-                $criteria = new Criteria();
-                $criteria->add(BoletinConceptualPeer::FK_ALUMNO_ID, $alumno->getId());
-                $aBoletinConceptual = BoletinConceptualPeer::doSelect($criteria);
-                foreach($aBoletinConceptual as $boletinConceptual ) {
-                    if($boletinConceptual->getFkEscalanotaId()) {
-                        $conceptoAlumno[$boletinConceptual->getFkPeriodoId()][$boletinConceptual->getFkConceptoId()] = $boletinConceptual->getEscalanota()->getNombre();
-                    }
-                    if($boletinConceptual->getObservacion() != null) {
-                        $conceptoAlumno[$boletinConceptual->getFkPeriodoId()][$boletinConceptual->getFkConceptoId()] = $boletinConceptual->getObservacion();
-                    }
-                }            
                 $criteria = new Criteria();
                 $criteria->add(PeriodoPeer::FK_CICLOLECTIVO_ID, $this->getUser()->getAttribute('fk_ciclolectivo_id'));
                 $aPeriodo = PeriodoPeer::doSelect($criteria);
                 foreach($aPeriodo as $periodo) {
                     $optionsPeriodo[$periodo->getId()] = $periodo->getDescripcion();
-                    $aAsistencia[$periodo->getId()] = $this->getAsistenciaTotal($alumno_id, $periodo->getFechaInicio(), $periodo->getFechaFin());
-                }       
+                    $aAsistencia[$periodo->getId()] = $alumno->getAsistenciasPorFechas($periodo->getFechaInicio(), $periodo->getFechaFin());
+                }
+
             } else {
                 $this->getUser()->setFlash('notice','Error: el alumno no esta en ninguna división');
             }
@@ -533,45 +512,5 @@ class boletinActions extends sfActions
         }
         return $this->redirect("boletin/listConcepto?division_id=$division_id&concepto_id=$concepto_id&periodo_id=$periodo_id&carrera_id=$carrera_id");
     }   
-
-
-    public function getAsistenciaTotal($alumno_id, $fecha_inicio, $fecha_fin) {
-        $aAsistencia = array();
-
-        // En teoria esta dos consultas pueden reemplazarse con una solo usando LEFT JOIN y CASE
-
-        $c = new Criteria();
-        $c->addGroupByColumn(TipoasistenciaPeer::GRUPO);
-        $c->addSelectColumn(TipoasistenciaPeer::GRUPO);
-        $rsColumna = TipoasistenciaPeer::doSelectStmt($c);
-
-        $c = new Criteria();
-        $c->clearSelectColumns();
-        $c->addGroupByColumn(TipoasistenciaPeer::GRUPO);
-        $c->addSelectColumn(TipoasistenciaPeer::GRUPO);
-        $c->addSelectColumn('SUM('.TipoasistenciaPeer::VALOR.') AS valor');
-        $c->addJoin(TipoasistenciaPeer::ID, AsistenciaPeer::FK_TIPOASISTENCIA_ID);
-        $c->add(AsistenciaPeer::FK_ALUMNO_ID, $alumno_id, Criteria::EQUAL);
-        $c2 = new Criteria();
-        $criterion = $c2->getNewCriterion(AsistenciaPeer::FECHA, $fecha_inicio, Criteria::GREATER_EQUAL);
-        $criterion->addAnd($c2->getNewCriterion(AsistenciaPeer::FECHA, $fecha_fin, Criteria::LESS_EQUAL));
-        $c->add($criterion);
-        $rsValor = TipoasistenciaPeer::doSelectStmt($c);
-
-        if($rsColumna) {
-            while( $res = $rsColumna->fetchColumn(1)) {
-                $aAsistencia[$res] = 0;  // indice: nombre del Grupo, contenido: 
-            }
-        }
-
-        if($rsValor) {
-            while($rsValor->fetch()) {
-                // indice: nombre del Grupo, contenido: sumatoria de valor
-                $aAsistencia[$rsValor->fetchColumn(1)] = $rsValor->fetchColumn(2); 
-            }
-        }
-
-        return $aAsistencia;
-    }
 
 }
