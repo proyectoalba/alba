@@ -133,21 +133,6 @@ class boletinActions extends sfActions
 
     }
 
-    protected function getActividades($division_id) {
-        $optionsActividad = array();
-        $criteria = new Criteria();
-        $criteria->add(DivisionPeer::ID, $division_id);
-        $criteria->addJoin(DivisionPeer::FK_ANIO_ID, AnioPeer::ID);
-        $criteria->addJoin(RelAnioActividadPeer::FK_ANIO_ID, AnioPeer::ID);
-        $criteria->addJoin(RelAnioActividadPeer::FK_ACTIVIDAD_ID, ActividadPeer::ID);
-        $actividades = ActividadPeer::doSelect($criteria);
-        foreach($actividades as $actividad) {
-            $optionsActividad[$actividad->getId()] = $actividad->getNombre();
-        }
-        asort($optionsActividad);
-        return $optionsActividad;
-    }
-
     public function executeList() {
 
         // inicializando variables
@@ -178,7 +163,8 @@ class boletinActions extends sfActions
 
         if($division_id) {
             $actividad_id = $this->getRequestParameter('actividad_id');
-            $optionsActividad = $this->getActividades($division_id);
+            $d = DivisionPeer::retrieveByPk($division_id);
+            $optionsActividad = $d->getActividadesArray();
         }
 
             $aAlumno = $this->getAlumnos($division_id);
@@ -245,18 +231,6 @@ class boletinActions extends sfActions
         $this->sizeNota = $sizeNota;
     }
 
-
-    protected function getConcepto($establecimiento_id) {
-        $optionsConcepto = array();
-        $criteria = new Criteria();
-        $criteria->add(ConceptoPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id );
-        $conceptos = ConceptoPeer::doSelect($criteria);
-        foreach($conceptos as $concepto) {
-            $optionsConcepto[$concepto->getId()] = $concepto->getNombre();
-        }
-        return $optionsConcepto;
-    }
-
     public function executeListConcepto() {
         // inicializando variables
         $optionsConcepto = array();
@@ -288,7 +262,8 @@ class boletinActions extends sfActions
         $optionsCarrera = $this->getCarreras($establecimiento_id);
 
         $optionsConcepto [] = "";
-        $optionsConcepto = array_merge($optionsConcepto, $this->getConcepto($establecimiento_id));
+        $e = EstablecimientoPeer::retrieveByPk($establecimiento_id);
+        $optionsConcepto = array_merge($optionsConcepto, $e->getConceptoArray());
 
         $aAlumno = $this->getAlumnos($division_id);
 
@@ -400,20 +375,19 @@ class boletinActions extends sfActions
             if($no_cargar == 0) {
 
                 $division = DivisionPeer::retrieveByPK($division_id);
-                $optionsActividad = $this->getActividades($division_id);
-                $optionsConcepto = $this->getConcepto($establecimiento_id);
+
+                $optionsActividad = $division->getActividadesArray();
+
+                $e = EstablecimientoPeer::retrieveByPk($establecimiento_id);
+                $optionsConcepto = $e->getConceptosArray();
 
                 $notaAlumno = $alumno->getNotas();
                 $conceptoAlumno = $alumno->getNotasConcepto();
 
-                $criteria = new Criteria();
-                $criteria->add(PeriodoPeer::FK_CICLOLECTIVO_ID, $this->getUser()->getAttribute('fk_ciclolectivo_id'));
-                $aPeriodo = PeriodoPeer::doSelect($criteria);
-                foreach($aPeriodo as $periodo) {
-                    $optionsPeriodo[$periodo->getId()] = $periodo->getDescripcion();
-                    $aAsistencia[$periodo->getId()] = $alumno->getAsistenciasPorFechas($periodo->getFechaInicio(), $periodo->getFechaFin());
-                }
-
+                $c = CiclolectivoPeer::retrieveByPk($this->getUser()->getAttribute('fk_ciclolectivo_id'));
+                $optionsPeriodo = $c->getPeriodosArray();
+                
+                $aAsistencia = $alumno->getAsistenciasPorCiclolectivo($this->getUser()->getAttribute('fk_ciclolectivo_id'));
             } else {
                 $this->getUser()->setFlash('notice','Error: el alumno no esta en ninguna división');
             }

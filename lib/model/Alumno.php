@@ -127,8 +127,18 @@ class Alumno extends BaseAlumno {
         }
 
         return $aAsistencia;
+    }
 
 
+    public function getAsistenciasPorCiclolectivo($ciclo_lectivo) {
+        $aAsistencia = array(); 
+        $criteria = new Criteria();
+        $criteria->add(PeriodoPeer::FK_CICLOLECTIVO_ID, $ciclo_lectivo);
+        $aPeriodo = PeriodoPeer::doSelect($criteria);
+        foreach($aPeriodo as $periodo) {
+            $aAsistencia[$periodo->getId()] = $this->getAsistenciasPorFechas($periodo->getFechaInicio(), $periodo->getFechaFin());
+        }
+        return $aAsistencia;
     }
 
 } // Alumno

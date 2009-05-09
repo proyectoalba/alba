@@ -36,4 +36,19 @@ class Division extends BaseDivision {
         return $result;
     }
 
+   public function getActividadesArray() {
+        $optionsActividad = array();
+        $criteria = new Criteria();
+        $criteria->add(DivisionPeer::ID, $this->getId());
+        $criteria->addJoin(DivisionPeer::FK_ANIO_ID, AnioPeer::ID);
+        $criteria->addJoin(RelAnioActividadPeer::FK_ANIO_ID, AnioPeer::ID);
+        $criteria->addJoin(RelAnioActividadPeer::FK_ACTIVIDAD_ID, ActividadPeer::ID);
+        $actividades = ActividadPeer::doSelect($criteria);
+        foreach($actividades as $actividad) {
+            $optionsActividad[$actividad->getId()] = $actividad->getNombre();
+        }
+        asort($optionsActividad);
+        return $optionsActividad;
+   }
+
 } // Division

@@ -36,4 +36,16 @@ class Establecimiento extends BaseEstablecimiento {
     }
 
 
+   public function getConceptosArray() {
+        $optionsConcepto = array();
+        $criteria = new Criteria();
+        $criteria->add(ConceptoPeer::FK_ESTABLECIMIENTO_ID, $this->getId() );
+        $conceptos = ConceptoPeer::doSelect($criteria);
+        foreach($conceptos as $concepto) {
+            $optionsConcepto[$concepto->getId()] = $concepto->getNombre();
+        }
+        return $optionsConcepto;
+   }
+
+
 } // Establecimiento

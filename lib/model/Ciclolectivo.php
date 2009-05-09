@@ -19,4 +19,16 @@ class Ciclolectivo extends BaseCiclolectivo {
     public function __toString() {
         return $this->getDescripcion();
     }
+
+    public function getPeriodosArray() {
+        $optionsPeriodo = array();
+        $criteria = new Criteria();
+        $criteria->add(PeriodoPeer::FK_CICLOLECTIVO_ID, $this->getId());
+        $aPeriodo = PeriodoPeer::doSelect($criteria);
+        foreach($aPeriodo as $periodo) {
+            $optionsPeriodo[$periodo->getId()] = $periodo->getDescripcion();
+        }
+        return $optionsPeriodo;
+    }
+
 } // Ciclolectivo
