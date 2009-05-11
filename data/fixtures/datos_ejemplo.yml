@@ -16709,12 +16709,10 @@ Cargobaja:
     descripcion: Renuncia formal al cargo.
   Cargobaja_2:
     nombre: Retiro
-    descripcion: Renuncia formal al cargo por jubilación.
+    descripcion: "Renuncia formal al cargo por jubilación."
   Cargobaja_3:
     nombre: Ascenso
-    descripcion: >
-      Renuncia al cargo por ascenso (ocupa
-      nuevo cargo).
+    descripcion: "Renuncia al cargo por ascenso (ocupa nuevo cargo)."
   Cargobaja_4:
     nombre: Fallecimiento
     descripcion: Baja por fallecimiento.

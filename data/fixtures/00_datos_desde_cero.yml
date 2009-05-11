@@ -492,7 +492,7 @@ Permiso:
     nombre: espacio
     descripcion:
   Permiso_cargobaja:
-    nombre: cargoabaja
+    nombre: cargobaja
     descripcion:
   Permiso_conceptobaja:
     nombre: conceptobaja
