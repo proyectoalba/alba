@@ -35,7 +35,7 @@ generator:
 
       list:
             title: " "
-            display: [ =apellido, apellido_materno, nombre, nro_documento, sexo, telefono, email, activo ]
+            display: [ _legajo, =apellido, apellido_materno, nombre, nro_documento, sexo, telefono, email, activo ]
             filters:  [ _nombre_apellido, _division, nro_documento ]
             object_actions:
                 _edit: -

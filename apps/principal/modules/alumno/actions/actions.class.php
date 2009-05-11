@@ -89,21 +89,23 @@ class alumnoActions extends autoAlumnoActions
 
 
   }
+
     protected function addSortCriteria ($c) {
         if ($sort_column = $this->getUser()->getAttribute('sort', 'apellido', 'sf_admin/alumno/sort')) {
             $sort_column = Propel::getDB($c->getDbName())->quoteIdentifier($sort_column);
             if ($this->getUser()->getAttribute('type', 'asc', 'sf_admin/alumno/sort') == 'asc') {
                 $c->addAscendingOrderByColumn($sort_column);
-            }
-            else {
+            } else {
                 $c->addDescendingOrderByColumn($sort_column);
             }
         }
     }
+
   public function executeEdit ($request)
   {
     $this->alumno = $this->getAlumnoOrCreate();
 
+    //Datos de la cuenta
     $datosCuenta = "";
     if($this->getRequestParameter("fk_cuenta_id")) {
         $datosCuenta = CuentaPeer::retrieveByPk($this->getRequestParameter("fk_cuenta_id"));
@@ -113,15 +115,28 @@ class alumnoActions extends autoAlumnoActions
     }
     $this->datosCuenta = $datosCuenta;
 
+    //Prefijo y número de legajo
+    //@TODO obtener el establecimiento de la session
+    $estable = EstablecimientoPeer::retrieveByPk(1);
+
+    $this->prefijo = $this->alumno->getLegajoPrefijo();
+    $this->nrolegajo = $this->alumno->getLegajoNumero();
+
+    if ($this->prefijo == "")
+        $this->prefijo = $estable->getLegajoPrefijo();
+
+    if ($this->nrolegajo == "")
+        $this->nrolegajo = $estable->getLegajoSiguiente();
+
+    //Fecha de nacimiento
     $today = getdate();
     $fecha_nac = $this->alumno->getFechaNacimiento("Y");
-    if($fecha_nac!="")
+    if($fecha_nac != "")
         $this->edad = $today['year'] - $fecha_nac;
     else
         $this->edad = "";
 
-    if ($this->getRequest()->getMethod() == sfRequest::POST)
-    {
+    if ($this->getRequest()->getMethod() == sfRequest::POST) {
       $this->alumno = $this->getAlumnoOrCreate();
       $this->updateAlumnoFromRequest();
 
@@ -132,29 +147,31 @@ class alumnoActions extends autoAlumnoActions
         list($d, $m, $y) = $this->getContext()->getI18N()->getDateForCulture($fecha_nacimiento, $user_culture);
         $this->alumno->setFechaNacimiento("$y-$m-$d");
       }
+
       $this->saveAlumno($this->alumno);
+
+      //Actualizo el nro siguiente.
+      $nrosiguiente = $this->alumno->getLegajoNumero() +1;
+      $estable->setLegajoSiguiente($nrosiguiente);
+      $estable->Save(); 
 
       $this->getUser()->setFlash('notice', 'Your modifications have been saved');
 
-      if ($this->getRequestParameter('save_and_add'))
-      {
+      if ($this->getRequestParameter('save_and_add')) {
         return $this->redirect('alumno/create?fk_cuenta_id=' . $this->alumno->getFkCuentaId());
-      }
-      else
-      {
+      } else {
         return $this->redirect('alumno/edit?id='.$this->alumno->getId());
       }
-    }
-    else
-    {
+    } else {
       // add javascripts
       $this->getResponse()->addJavascript(sfConfig::get('sf_prototype_web_dir').'/js/prototype');
       $this->getResponse()->addJavascript(sfConfig::get('sf_admin_web_dir').'/js/collapse');
-      if ($this->getRequestParameter('fk_cuenta_id'))
-        $this->alumno->setFkCuentaId($this->getRequestParameter('fk_cuenta_id'));
-
+      if ($this->getRequestParameter('fk_cuenta_id')) {
+          $this->alumno->setFkCuentaId($this->getRequestParameter('fk_cuenta_id'));
+      }
     }
   }
+
   public function executeAddfoto(sfWebRequest $request)
   {
     $alumno = AlumnoPeer::retrieveByPk($request->getParameter('id'));

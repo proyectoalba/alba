@@ -41,24 +41,19 @@
             <div class="form-row">
               <?php echo label_for('alumno[legajo_prefijo]', __('Legajo:'), 'class="required" ') ?>
               <div class="content<?php if ($sf_request->hasError('alumno{legajo_prefijo}')|| $sf_request->hasError('alumno{legajo_numero}')): ?> form-error<?php endif; ?>">
+
               <?php if ($sf_request->hasError('alumno{legajo_prefijo}')): ?>
-                <?php echo form_error('alumno{legajo_prefijo}', array('class' => 'form-error-msg')) ?>
+                    <?php echo form_error('alumno{legajo_prefijo}', array('class' => 'form-error-msg')) ?>
               <?php endif; ?>
+
               <?php if ($sf_request->hasError('alumno{legajo_numero}')): ?>
                 <?php echo form_error('alumno{legajo_numero}', array('class' => 'form-error-msg')) ?>
               <?php endif; ?>
 
-              <?php echo object_input_tag($alumno, 'getLegajoPrefijo', array (
-              'size' => 10,
-              'control_name' => 'alumno[legajo_prefijo]',
-            )) ?>
-              <?php echo object_input_tag($alumno, 'getLegajoNumero', array (
-              'size' => 10,
-              'control_name' => 'alumno[legajo_numero]',
-            )) ?>
+              <?php echo input_tag('alumno[legajo_prefijo]', (isset($prefijo)?$prefijo:"")) ?> 
+              <?php echo input_tag('alumno[legajo_numero]', (isset($nrolegajo)?$nrolegajo:"")) ?>
                 </div>
             </div>
-
 
             <!-- Fin Legajo -->
 
@@ -170,7 +165,7 @@
               'calendar_button_img' => sfConfig::get('sf_admin_web_dir').'/images/date.png',
               'control_name' => 'alumno[fecha_nacimiento]',
       )) ?>
-      Edad: <input type="text" value="<?php echo $edad?>" disabled="true" size="4">
+      Edad: <input type="text" value="<?php echo (isset($edad)?$edad:"")?>" disabled="true" size="4">
                 </div>
             </div>
 
