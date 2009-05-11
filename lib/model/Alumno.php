@@ -25,34 +25,33 @@ class Alumno extends BaseAlumno {
 
     public function toArrayInforme($keyType = BasePeer::TYPE_PHPNAME)
     {
-        $keys = AlumnoPeer::getFieldNames($keyType);
-        $result = array(
-            $keys[0] => $this->getId(),
-            $keys[1] => $this->getNombre(),
-            $keys[2] => $this->getApellidoMaterno(),
-            $keys[3] => $this->getApellido(),
-            $keys[4] => $this->getFechaNacimiento(),
-            $keys[5] => $this->getDireccion(),
-            $keys[6] => $this->getCiudad(),
-            $keys[7] => $this->getCodigoPostal(),
+        return array(
+            "Id"  => $this->getId(),
+            "Nombre"  => $this->getNombre(),
+            "ApellidoMaterno" => $this->getApellidoMaterno(),
+            "Apellido" => $this->getApellido(),
+            "FechaNacimiento" => $this->getFechaNacimiento(),
+            "Direccion" => $this->getDireccion(),
+            "Ciduad" => $this->getCiudad(),
+            "CodigoPostal" => $this->getCodigoPostal(),
             'Provincia' => ($this->getProvincia())?$this->getProvincia()->getNombreCorto():'' ,
-            $keys[9] => $this->getTelefono(),
-            $keys[10] => $this->getLugarNacimiento(),
+            "Telefono" => $this->getTelefono(),
+            "LugarNacimiento" => $this->getLugarNacimiento(),
             'TipoDocumento' => ($this->getTipodocumento())?$this->getTipodocumento()->getNombre():'',
-            $keys[12] => $this->getNroDocumento(),
-            $keys[13] => $this->getSexo(),
-            $keys[14] => $this->getEmail(),
-            $keys[15] => $this->getDistanciaEscuela(),
-            $keys[16] => $this->getHermanosEscuela(),
-            $keys[17] => $this->getHijoMaestroEscuela(),
+            "NroDocumento" => $this->getNroDocumento(),
+            "Sexo" => $this->getSexo(),
+            "Email" => $this->getEmail(),
+            "DistanciaEscuela" => $this->getDistanciaEscuela(),
+            "HermanosEscuela" => $this->getHermanosEscuela(),
+            "HijoMaestroEscuela" => $this->getHijoMaestroEscuela(),
             'Establecimiento' => ($this->getEstablecimiento())?$this->getEstablecimiento()->getNombre():'',
             'Cuenta' => ($this->getCuenta())?$this->getCuenta()->getNombre():'',
-            $keys[20] => $this->getCertificadoMedico(),
-            $keys[21] => $this->getActivo(),
-            $keys[22] => $this->getFkConceptobajaId(),
+            "CertificadoMedico" => $this->getCertificadoMedico(),
+            "Activo" => $this->getActivo(),
+            "FkConceptobajaId" => $this->getFkConceptobajaId(),
             'Pais' => ($this->getPais())?$this->getPais()->getNombreLargo():'',
         );
-        return $result;
+
     }
 
 
@@ -85,7 +84,6 @@ class Alumno extends BaseAlumno {
         foreach($aBoletinActividades as $boletinActividades) {
             $notaAlumno[$boletinActividades[0]][$boletinActividades[1]] = $boletinActividades[2];
         }
-
         return $notaAlumno;
     }
 
