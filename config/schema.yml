@@ -2,6 +2,7 @@
 propel:
   _attributes:
     package: lib.model
+    
   conceptobaja:
     _attributes:
       idMethod: native
@@ -18,6 +19,7 @@ propel:
       type: varchar
       size: 255
       required: false
+
   tipodocumento:
     _attributes:
       idMethod: native
@@ -38,6 +40,7 @@ propel:
       type: integer
       required: false
       default: 0
+
   tipoiva:
     _attributes:
       idMethod: native
@@ -58,6 +61,7 @@ propel:
       type: INTEGER
       required: false
       default: 0
+
   pais:
     _attributes:
       idMethod: native
@@ -78,6 +82,7 @@ propel:
       type: INTEGER
       required: false
       default: 0
+
   tipoespacio:
     _attributes:
       idMethod: native
@@ -94,6 +99,7 @@ propel:
       type: VARCHAR
       size: 255
       required: false
+
   provincia:
     _attributes:
       idMethod: native
@@ -120,6 +126,7 @@ propel:
       type: INTEGER
       required: false
       default: 0
+
   tipolocacion:
     _attributes:
       idMethod: native
@@ -136,6 +143,7 @@ propel:
       type: VARCHAR
       size: 255
       required: false
+
   locacion:
     _attributes:
       idMethod: native
@@ -191,6 +199,7 @@ propel:
       type: BOOLEAN
       required: true
       default: false
+
   espacio:
     _attributes:
       idMethod: native
@@ -224,6 +233,7 @@ propel:
       default: 0
       foreignTable: locacion
       foreignReference: id
+
   distritoescolar:
     _attributes:
       idMethod: native
@@ -245,6 +255,7 @@ propel:
     ciudad:
       type: VARCHAR
       size: 128
+
   niveltipo:
     _attributes:
       idMethod: native
@@ -260,6 +271,7 @@ propel:
     descripcion:
       type: VARCHAR
       size: 255
+
   organizacion:
     _attributes:
       idMethod: native
@@ -311,6 +323,7 @@ propel:
       default: 0
       foreignTable: tipoiva
       foreignReference: id
+
   establecimiento:
     _attributes:
       idMethod: native
@@ -355,6 +368,7 @@ propel:
       default: 0
       foreignTable: niveltipo
       foreignReference: id
+
   permiso:
     _attributes:
       idMethod: native
@@ -390,6 +404,7 @@ propel:
       type: BOOLEAN
       required: true
       default: true
+
   rol:
     _attributes:
       idMethod: native
@@ -409,6 +424,7 @@ propel:
       type: BOOLEAN
       required: true
       default: true
+
   usuario:
     _attributes:
       idMethod: native
@@ -458,6 +474,7 @@ propel:
       type: BOOLEAN
       required: true
       default: false
+
   rel_establecimiento_locacion:
     _attributes:
       idMethod: native
@@ -478,6 +495,7 @@ propel:
       default: 0
       foreignTable: locacion
       foreignReference: id
+
   rol_permiso:
     _attributes:
       idMethod: native
@@ -550,6 +568,7 @@ propel:
       type: INTEGER
       required: true
       default: 0
+
   orientacion:
     _attributes:
       idMethod: native
@@ -566,6 +585,7 @@ propel:
       type: VARCHAR
       size: 255
       required: false
+
   cuenta:
     _attributes:
       idMethod: native
@@ -613,6 +633,7 @@ propel:
       default: 0
       foreignTable: tipoiva
       foreignReference: id
+
   alumno:
     _attributes:
       idMethod: native
@@ -738,6 +759,7 @@ propel:
       type: BOOLEAN
       required: true
       default: true
+
   responsable:
     _attributes:
       idMethod: native
@@ -822,6 +844,7 @@ propel:
       default: 1
       foreignTable: rol_responsable
       foreignReference: id
+
   ciclolectivo:
     _attributes:
       idMethod: native
@@ -849,6 +872,7 @@ propel:
       type: boolean
       required: true
       default: false
+
   turno:
     _attributes:
       idMethod: native
@@ -872,6 +896,7 @@ propel:
       type: varchar
       size: 255
       required: true
+
   periodo:
     _attributes:
       idMethod: native
@@ -895,6 +920,7 @@ propel:
       type: varchar
       size: 255
       required: true
+
   tipodocente:
     _attributes:
       idMethod: native
@@ -911,6 +937,7 @@ propel:
       type: varchar
       size: 255
       required: false
+
   cargobaja:
     _attributes:
       idMethod: native
@@ -927,6 +954,7 @@ propel:
       type: varchar
       size: 255
       required: false
+
   calendariovacunacion:
     _attributes:
       idMethod: native
@@ -951,6 +979,7 @@ propel:
       type: varchar
       size: 255
       required: false
+
   rel_calendariovacunacion_alumno:
     _attributes:
       idMethod: native
@@ -980,6 +1009,7 @@ propel:
     fecha:
       type: TIMESTAMP
       required: false
+
   legajocategoria:
     _attributes:
       idMethod: native
@@ -992,6 +1022,7 @@ propel:
       type: varchar
       size: 255
       required: true
+
   legajopedagogico:
     _attributes:
       idMethod: native
@@ -1028,6 +1059,7 @@ propel:
       required: true
       foreignTable: legajocategoria
       foreignReference: id
+
   adjunto:
     _attributes:
       idMethod: native
@@ -1059,6 +1091,7 @@ propel:
     fecha:
       type: timestamp
       required: true
+
   legajoadjunto:
     _attributes:
       idMethod: native
@@ -1072,6 +1105,7 @@ propel:
       required: true
       foreignTable: adjunto
       foreignReference: id
+
   tipoasistencia:
     _attributes:
       idMethod: native
@@ -1102,6 +1136,7 @@ propel:
       type: BOOLEAN
       required: true
       default: 0
+
   asistencia:
     _attributes:
       idMethod: native
@@ -1123,6 +1158,7 @@ propel:
     fecha:
       type: timestamp
       required: true
+
   concepto:
     _attributes:
       idMethod: native
@@ -1145,6 +1181,7 @@ propel:
       type: varchar
       size: 255
       required: false
+
   escalanota:
     _attributes:
       idMethod: native
@@ -1174,6 +1211,7 @@ propel:
       type: boolean
       required: true
       default: false
+
   boletin_conceptual:
     _attributes:
       idMethod: native
@@ -1211,6 +1249,7 @@ propel:
     fecha:
       type: timestamp
       required: true
+
   actividad:
     _attributes:
       idMethod: native
@@ -1233,6 +1272,7 @@ propel:
       type: varchar
       size: 255
       required: false
+
   boletin_actividades:
     _attributes:
       idMethod: native
@@ -1270,6 +1310,7 @@ propel:
     fecha:
       type: timestamp
       required: true
+
   examen:
     _attributes:
       idMethod: native
@@ -1312,6 +1353,7 @@ propel:
     fecha:
       type: timestamp
       required: true
+
   carrera:
     _attributes:
       idMethod: native
@@ -1334,6 +1376,7 @@ propel:
       type: INTEGER
       required: false
       default: 0
+
   anio:
     _attributes:
       idMethod: native
@@ -1362,6 +1405,7 @@ propel:
       type: INTEGER
       required: false
       default: 0
+
   division:
     _attributes:
       idMethod: native
@@ -1395,6 +1439,7 @@ propel:
       type: INTEGER
       required: false
       default: 0
+
   repeticion:
     _attributes:
       idMethod: native
@@ -1411,6 +1456,7 @@ propel:
       type: integer
       required: true
       default: 0
+
   rel_anio_actividad:
     _attributes:
       idMethod: native
@@ -1442,6 +1488,7 @@ propel:
       scale: 2
       required: true
       default: 0
+
   rel_alumno_division:
     _attributes:
       idMethod: native
@@ -1462,6 +1509,7 @@ propel:
       default: 0
       foreignTable: alumno
       foreignReference: id
+
   docente:
     _attributes:
       idMethod: native
@@ -1564,6 +1612,7 @@ propel:
       default: 0
       foreignTable: pais
       foreignReference: id
+
   horarioescolartipo:
     _attributes:
       idMethod: native
@@ -1580,6 +1629,7 @@ propel:
       type: VARCHAR
       size: 255
       required: false
+
   evento:
     _attributes:
       idMethod: native
@@ -1622,6 +1672,7 @@ propel:
       type: INTEGER
       required: true
       default: 0
+
   rel_division_actividad_docente:
     _attributes:
       idMethod: native
@@ -1655,6 +1706,7 @@ propel:
       foreignTable: evento
       foreignReference: id
       onDelete: cascade
+
   rel_docente_establecimiento:
     _attributes:
       idMethod: native
@@ -1675,6 +1727,7 @@ propel:
       default: 0
       foreignTable: docente
       foreignReference: id
+
   docente_horario:
     _attributes:
       idMethod: native
@@ -1691,6 +1744,7 @@ propel:
       foreignTable: evento
       foreignReference: id
       onDelete: cascade
+
   feriado:
     _attributes:
       idMethod: native
@@ -1720,6 +1774,7 @@ propel:
       default: 0
       foreignTable: ciclolectivo
       foreignReference: id
+
   horarioescolar:
     _attributes:
       idMethod: native
@@ -1760,6 +1815,7 @@ propel:
       default: 0
       foreignTable: horarioescolartipo
       foreignReference: id
+
   rel_rolresponsable_responsable:
     _attributes:
       idMethod: native
@@ -1789,6 +1845,7 @@ propel:
     descripcion:
       type: VARCHAR
       size: 255
+
   rel_anio_actividad_docente:
     _attributes:
       idMethod: native
@@ -1804,6 +1861,7 @@ propel:
       primaryKey: true
       foreignTable: docente
       foreignReference: id
+
   tipoinforme:
     _attributes:
       idMethod: native
@@ -1820,6 +1878,7 @@ propel:
       type: VARCHAR
       size: 255
       required: false
+
   informe:
     _attributes:
       idMethod: native
@@ -1852,6 +1911,7 @@ propel:
     variables:
       type: VARCHAR
       size: 128
+
   legajosalud:
     _attributes:
       idMethod: native
@@ -1880,4 +1940,3 @@ propel:
       required: true
       foreignTable: usuario
       foreignReference: id
-

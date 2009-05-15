@@ -177,11 +177,11 @@ class alumnoActions extends autoAlumnoActions
     $alumno = AlumnoPeer::retrieveByPk($request->getParameter('id'));
     $this->forward404Unless($alumno);
     if ($alumno->getLegajoPrefijo() != '' && $alumno->getLegajoNumero() != '') {
-      $this->getRequest()->moveFile('archivo', sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'alumnos'.DIRECTORY_SEPARATOR.$alumno->getLegajo(),'.png');
+      $this->getRequest()->moveFile('archivo', sfConfig::get('sf_upload_dir').DIRECTORY_SEPARATOR.'alumnos'.DIRECTORY_SEPARATOR.$alumno->getLegajo(),'.png');
       return $this->renderPartial('foto', array('alumno'=>$alumno));
     }
     else {
-      return $this->renderText('El alumno no tien eun legajo valido!');
+      return $this->renderText('El alumno no tiene un legajo valido!');
     }
   }
 

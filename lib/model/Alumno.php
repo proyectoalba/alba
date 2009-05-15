@@ -6,19 +6,19 @@ require_once 'lib/model/om/BaseAlumno.php';
 /**
  * Skeleton subclass for representing a row from the 'alumno' table.
  *
- * 
+ *
  *
  * You should add additional methods to this class to meet the
  * application requirements.  This class will only be generated as
  * long as it does not already exist in the output directory.
  *
  * @package model
- */	
+ */
 class Alumno extends BaseAlumno {
     public function __toString() {
         return $this->getApellido() . " ".$this->getApellidoMaterno()." ". $this->getNombre() ;
-    } 
-        
+    }
+
     public function getApellidos(){
         return $this->getApellido().' '.$this->getApellidoMaterno();
     }
@@ -54,6 +54,13 @@ class Alumno extends BaseAlumno {
 
     }
 
+    /**
+     * Devuelve el legajo formateado
+     **/
+    public function getLegajo()
+    {
+      return trim($this->legajo_prefijo) .'-'. trim($this->legajo_numero);
+    }
 
     public function getNotasConcepto() {
         $conceptoAlumno = array();

@@ -1,6 +1,6 @@
 <?php if(isset($datosCuenta) and $datosCuenta): ?>
 <script type="text/javascript">
-    function completaDatos() 
+    function completaDatos()
     {
         var datosCuenta = new Array()
         datosCuenta [0] = "<?php echo $datosCuenta->getDireccion()?>"
@@ -17,14 +17,16 @@
 </script>
 <?php endif;?>
 
-<?php use_helper('Object', 'Validation', 'ObjectAdmin', 'I18N', 'Date') ?>
+<?php use_helper('Object', 'Validation', 'ObjectAdmin', 'I18N', 'Date', 'Javascript') ?>
 <h1><?php echo __(' ',array()) ?></h1>
 <div id="sf_admin_container">
 
     <div id="sf_admin_header">
         <?php include_partial('alumno/edit_header', array('alumno' => $alumno)) ?>
     </div>
-
+    <?php if ($sf_request->getParameter('action') == 'edit'): ?>
+    	<?php include_partial('alumno/foto', array('alumno'=>$alumno))?>
+    <?php endif;?>
     <?php if ($sf_user->hasFlash('notice')): ?>
     <div class="save-ok">
         <h2><?php echo __($sf_user->getFlash('notice')) ?></h2>
@@ -181,8 +183,8 @@
   'peer_method' => 'getEnOrden',
     'control_name' => 'alumno[fk_pais_id]',
     )); echo $value ? $value : '&nbsp;' ?>
-                
-            
+
+
                 </div>
             </div>
 
@@ -255,7 +257,7 @@
                    <?php echo label_for('pais_id]', __('Pa&iacute;s:'), 'class="required" ') ?>
                    <?php echo include_partial('pais_id', array('type' => 'edit', 'alumno' => $alumno)) ?>
                </div>
-            
+
 
             <div class="form-row">
               <?php echo label_for('alumno[fk_provincia_id]', __('Provincia:'), 'class="required" ') ?>
@@ -366,12 +368,12 @@
             </div>
             <div class="form-row">
                 <?php echo label_for('alumno[fk_cuenta_id]', __('Cuenta:'), 'class="required" ') ?>
-                <div class="content<?php if ($sf_request->hasError('alumno{fk_cuenta_id}')): ?> form-error<?php endif; ?>">  
+                <div class="content<?php if ($sf_request->hasError('alumno{fk_cuenta_id}')): ?> form-error<?php endif; ?>">
                     <div id="cuenta">
                         <?php if($alumno->getFkCuentaId()) { ?>
                             <?php echo include_partial('verCuenta', array('cuenta_nombre' => $alumno->getCuenta()->getNombre(), 'cuenta_id' => $alumno->getCuenta()->getId()) ); ?>
                         <?php } else { ?>
-                            <?php echo include_partial('buscarCuenta'); ?>  
+                            <?php echo include_partial('buscarCuenta'); ?>
                         <?php } ?>
                     </div>
                 </div>
@@ -398,5 +400,5 @@
     <div id="sf_admin_footer">
     <?php include_partial('alumno/edit_footer', array('alumno' => $alumno)) ?>
     </div>
-    <div id="nueva_cuenta"></div>  
+    <div id="nueva_cuenta"></div>
 </div>
