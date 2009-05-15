@@ -116,8 +116,9 @@ class alumnoActions extends autoAlumnoActions
     $this->datosCuenta = $datosCuenta;
 
     //Prefijo y número de legajo
-    //@TODO obtener el establecimiento de la session
-    $estable = EstablecimientoPeer::retrieveByPk(1);
+    $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
+    $estable = EstablecimientoPeer::retrieveByPk($establecimiento_id);
+
 
     $this->prefijo = $this->alumno->getLegajoPrefijo();
     $this->nrolegajo = $this->alumno->getLegajoNumero();
