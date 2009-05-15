@@ -1940,3 +1940,16 @@ propel:
       required: true
       foreignTable: usuario
       foreignReference: id
+  
+  estadosalumnos:
+    _attributes:
+      idMethod: native
+    id:
+      type: integer
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre:
+      type: varchar
+      size: 128
+      required: true
