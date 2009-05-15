@@ -1,7 +1,7 @@
 <?php
 
-require_once dirname(__FILE__).'/../lib/estadosalumnosGeneratorConfiguration.class.php';
-require_once dirname(__FILE__).'/../lib/estadosalumnosGeneratorHelper.class.php';
+//require_once dirname(__FILE__).'/../lib/estadosalumnosGeneratorConfiguration.class.php';
+//require_once dirname(__FILE__).'/../lib/estadosalumnosGeneratorHelper.class.php';
 
 /**
  * estadosalumnos actions.

@@ -1,20 +1,5 @@
 generator:
-  class: sfPropelGenerator
+  class: sfPropelAdminGenerator
   param:
     model_class:           Estadosalumnos
-    theme:                 admin
-    non_verbose_templates: true
-    with_show:             false
-    singular:              ~
-    plural:                ~
-    route_prefix:          estadosalumnos
-    with_propel_route:     1
-
-    config:
-      actions: ~
-      fields:  ~
-      list:    ~
-      filter:  ~
-      form:    ~
-      edit:    ~
-      new:     ~
+    theme:                 default
