@@ -560,6 +560,10 @@ Permiso:
   Permiso_legajosalud:
     nombre: legajosalud
     descripcion: Legajo de Salud
+  Permiso_relanioactividad:
+    nombre: relanioactividad
+    descripcion: Modulo de Años y Actividades
+
 Rol:
   Rol_administrador:
     nombre: Administrador
@@ -726,6 +730,9 @@ RolPermiso:
   Rol_permiso_1_53:
     fk_rol_id: Rol_administrador
     fk_permiso_id: Permiso_usuario
+  Rol_permiso_1_54:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_relanioactividad
 
 UsuarioRol:
   Usuario_Rol_administrador_1:
