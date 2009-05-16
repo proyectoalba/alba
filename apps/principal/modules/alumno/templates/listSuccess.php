@@ -5,7 +5,7 @@
 <?php use_helper('I18N', 'Date') ?>
 <div id="sf_admin_container">
 
-<h1><?php echo __(' ', 
+<h1><?php echo __(' ',
 array()) ?></h1>
 
 <div id="sf_admin_header">
@@ -38,7 +38,7 @@ array()) ?></h1>
 <?php endforeach; ?>
 </tbody>
 <tfoot>
-<tr><th colspan="8">
+<tr><th colspan="10">
 <div class="float-right">
 <?php if ($pager->haveToPaginate()): ?>
   <?php echo link_to(image_tag(sfConfig::get('sf_admin_web_dir').'/images/first.png', 'align=absmiddle'), 'alumno/list?page=1') ?>
