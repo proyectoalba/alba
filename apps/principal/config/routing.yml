@@ -1,12 +1,3 @@
-estadosalumnos:
-  class: sfPropelRouteCollection
-  options:
-    model:                Estadosalumnos
-    module:               estadosalumnos
-    prefix_path:          estadosalumnos
-    column:               id
-    with_wildcard_routes: true
-
 # default rules
 homepage:
   url:   /
