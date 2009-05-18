@@ -102,8 +102,8 @@ class Alumno extends BaseAlumno {
 
         $c = new Criteria();
         $c->addGroupByColumn(TipoasistenciaPeer::GRUPO);
-        $c->addSelectColumn(TipoasistenciaPeer::GRUPO);
-        $rsColumna = TipoasistenciaPeer::doSelectStmt($c);
+//        $c->addSelectColumn(TipoasistenciaPeer::GRUPO);
+        $rsColumna = TipoasistenciaPeer::doSelect($c);
 
         $c = new Criteria();
         $c->clearSelectColumns();
@@ -119,15 +119,15 @@ class Alumno extends BaseAlumno {
         $rsValor = TipoasistenciaPeer::doSelectStmt($c);
 
         if($rsColumna) {
-            while( $res = $rsColumna->fetchColumn(1)) {
-                $aAsistencia[$res] = 0;  // indice: nombre del Grupo, contenido: 
+            foreach($rsColumna as $r) {
+                 $aAsistencia[$r->getGrupo()] = 0;  // indice: nombre del Grupo, contenido: 
             }
         }
 
         if($rsValor) {
-            while($rsValor->fetch()) {
+            while($res = $rsValor->fetch()) {
                 // indice: nombre del Grupo, contenido: sumatoria de valor
-                $aAsistencia[$rsValor->fetchColumn(1)] = $rsValor->fetchColumn(2); 
+                $aAsistencia[$res[0]] = $res[1]; 
             }
         }
 
