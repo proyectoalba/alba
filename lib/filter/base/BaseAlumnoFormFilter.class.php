@@ -41,6 +41,7 @@ class BaseAlumnoFormFilter extends BaseFormFilterPropel
       'fk_conceptobaja_id'    => new sfWidgetFormPropelChoice(array('model' => 'Conceptobaja', 'add_empty' => true)),
       'fk_pais_id'            => new sfWidgetFormPropelChoice(array('model' => 'Pais', 'add_empty' => true)),
       'procedencia'           => new sfWidgetFormFilterInput(),
+      'fk_estadoalumno_id'    => new sfWidgetFormPropelChoice(array('model' => 'Estadosalumnos', 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
@@ -70,6 +71,7 @@ class BaseAlumnoFormFilter extends BaseFormFilterPropel
       'fk_conceptobaja_id'    => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Conceptobaja', 'column' => 'id')),
       'fk_pais_id'            => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Pais', 'column' => 'id')),
       'procedencia'           => new sfValidatorPass(array('required' => false)),
+      'fk_estadoalumno_id'    => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Estadosalumnos', 'column' => 'id')),
     ));
 
     $this->widgetSchema->setNameFormat('alumno_filters[%s]');
@@ -114,6 +116,7 @@ class BaseAlumnoFormFilter extends BaseFormFilterPropel
       'fk_conceptobaja_id'    => 'ForeignKey',
       'fk_pais_id'            => 'ForeignKey',
       'procedencia'           => 'Text',
+      'fk_estadoalumno_id'    => 'ForeignKey',
     );
   }
 }

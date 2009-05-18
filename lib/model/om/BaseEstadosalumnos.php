@@ -16,6 +16,12 @@ abstract class BaseEstadosalumnos extends BaseObject  implements Persistent {
 	protected $nombre;
 
 	
+	protected $collAlumnos;
+
+	
+	private $lastAlumnoCriteria = null;
+
+	
 	protected $alreadyInSave = false;
 
 	
@@ -132,6 +138,9 @@ abstract class BaseEstadosalumnos extends BaseObject  implements Persistent {
 		}
 		$this->hydrate($row, 0, true); 
 		if ($deep) {  
+			$this->collAlumnos = null;
+			$this->lastAlumnoCriteria = null;
+
 		} 	}
 
 	
@@ -201,6 +210,14 @@ abstract class BaseEstadosalumnos extends BaseObject  implements Persistent {
 
 				$this->resetModified(); 			}
 
+			if ($this->collAlumnos !== null) {
+				foreach ($this->collAlumnos as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
 			$this->alreadyInSave = false;
 
 		}
@@ -242,6 +259,14 @@ abstract class BaseEstadosalumnos extends BaseObject  implements Persistent {
 				$failureMap = array_merge($failureMap, $retval);
 			}
 
+
+				if ($this->collAlumnos !== null) {
+					foreach ($this->collAlumnos as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
 
 
 			$this->alreadyInValidation = false;
@@ -352,6 +377,16 @@ abstract class BaseEstadosalumnos extends BaseObject  implements Persistent {
 		$copyObj->setNombre($this->nombre);
 
 
+		if ($deepCopy) {
+									$copyObj->setNew(false);
+
+			foreach ($this->getAlumnos() as $relObj) {
+				if ($relObj !== $this) {  					$copyObj->addAlumno($relObj->copy($deepCopy));
+				}
+			}
+
+		} 
+
 		$copyObj->setNew(true);
 
 		$copyObj->setId(NULL); 
@@ -376,10 +411,321 @@ abstract class BaseEstadosalumnos extends BaseObject  implements Persistent {
 	}
 
 	
+	public function clearAlumnos()
+	{
+		$this->collAlumnos = null; 	}
+
+	
+	public function initAlumnos()
+	{
+		$this->collAlumnos = array();
+	}
+
+	
+	public function getAlumnos($criteria = null, PropelPDO $con = null)
+	{
+		if ($criteria === null) {
+			$criteria = new Criteria(EstadosalumnosPeer::DATABASE_NAME);
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collAlumnos === null) {
+			if ($this->isNew()) {
+			   $this->collAlumnos = array();
+			} else {
+
+				$criteria->add(AlumnoPeer::FK_ESTADOALUMNO_ID, $this->id);
+
+				AlumnoPeer::addSelectColumns($criteria);
+				$this->collAlumnos = AlumnoPeer::doSelect($criteria, $con);
+			}
+		} else {
+						if (!$this->isNew()) {
+												
+
+				$criteria->add(AlumnoPeer::FK_ESTADOALUMNO_ID, $this->id);
+
+				AlumnoPeer::addSelectColumns($criteria);
+				if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
+					$this->collAlumnos = AlumnoPeer::doSelect($criteria, $con);
+				}
+			}
+		}
+		$this->lastAlumnoCriteria = $criteria;
+		return $this->collAlumnos;
+	}
+
+	
+	public function countAlumnos(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+	{
+		if ($criteria === null) {
+			$criteria = new Criteria(EstadosalumnosPeer::DATABASE_NAME);
+		} else {
+			$criteria = clone $criteria;
+		}
+
+		if ($distinct) {
+			$criteria->setDistinct();
+		}
+
+		$count = null;
+
+		if ($this->collAlumnos === null) {
+			if ($this->isNew()) {
+				$count = 0;
+			} else {
+
+				$criteria->add(AlumnoPeer::FK_ESTADOALUMNO_ID, $this->id);
+
+				$count = AlumnoPeer::doCount($criteria, $con);
+			}
+		} else {
+						if (!$this->isNew()) {
+												
+
+				$criteria->add(AlumnoPeer::FK_ESTADOALUMNO_ID, $this->id);
+
+				if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
+					$count = AlumnoPeer::doCount($criteria, $con);
+				} else {
+					$count = count($this->collAlumnos);
+				}
+			} else {
+				$count = count($this->collAlumnos);
+			}
+		}
+		return $count;
+	}
+
+	
+	public function addAlumno(Alumno $l)
+	{
+		if ($this->collAlumnos === null) {
+			$this->initAlumnos();
+		}
+		if (!in_array($l, $this->collAlumnos, true)) { 			array_push($this->collAlumnos, $l);
+			$l->setEstadosalumnos($this);
+		}
+	}
+
+
+	
+	public function getAlumnosJoinProvincia($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		if ($criteria === null) {
+			$criteria = new Criteria(EstadosalumnosPeer::DATABASE_NAME);
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collAlumnos === null) {
+			if ($this->isNew()) {
+				$this->collAlumnos = array();
+			} else {
+
+				$criteria->add(AlumnoPeer::FK_ESTADOALUMNO_ID, $this->id);
+
+				$this->collAlumnos = AlumnoPeer::doSelectJoinProvincia($criteria, $con, $join_behavior);
+			}
+		} else {
+									
+			$criteria->add(AlumnoPeer::FK_ESTADOALUMNO_ID, $this->id);
+
+			if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
+				$this->collAlumnos = AlumnoPeer::doSelectJoinProvincia($criteria, $con, $join_behavior);
+			}
+		}
+		$this->lastAlumnoCriteria = $criteria;
+
+		return $this->collAlumnos;
+	}
+
+
+	
+	public function getAlumnosJoinTipodocumento($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		if ($criteria === null) {
+			$criteria = new Criteria(EstadosalumnosPeer::DATABASE_NAME);
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collAlumnos === null) {
+			if ($this->isNew()) {
+				$this->collAlumnos = array();
+			} else {
+
+				$criteria->add(AlumnoPeer::FK_ESTADOALUMNO_ID, $this->id);
+
+				$this->collAlumnos = AlumnoPeer::doSelectJoinTipodocumento($criteria, $con, $join_behavior);
+			}
+		} else {
+									
+			$criteria->add(AlumnoPeer::FK_ESTADOALUMNO_ID, $this->id);
+
+			if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
+				$this->collAlumnos = AlumnoPeer::doSelectJoinTipodocumento($criteria, $con, $join_behavior);
+			}
+		}
+		$this->lastAlumnoCriteria = $criteria;
+
+		return $this->collAlumnos;
+	}
+
+
+	
+	public function getAlumnosJoinEstablecimiento($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		if ($criteria === null) {
+			$criteria = new Criteria(EstadosalumnosPeer::DATABASE_NAME);
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collAlumnos === null) {
+			if ($this->isNew()) {
+				$this->collAlumnos = array();
+			} else {
+
+				$criteria->add(AlumnoPeer::FK_ESTADOALUMNO_ID, $this->id);
+
+				$this->collAlumnos = AlumnoPeer::doSelectJoinEstablecimiento($criteria, $con, $join_behavior);
+			}
+		} else {
+									
+			$criteria->add(AlumnoPeer::FK_ESTADOALUMNO_ID, $this->id);
+
+			if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
+				$this->collAlumnos = AlumnoPeer::doSelectJoinEstablecimiento($criteria, $con, $join_behavior);
+			}
+		}
+		$this->lastAlumnoCriteria = $criteria;
+
+		return $this->collAlumnos;
+	}
+
+
+	
+	public function getAlumnosJoinCuenta($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		if ($criteria === null) {
+			$criteria = new Criteria(EstadosalumnosPeer::DATABASE_NAME);
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collAlumnos === null) {
+			if ($this->isNew()) {
+				$this->collAlumnos = array();
+			} else {
+
+				$criteria->add(AlumnoPeer::FK_ESTADOALUMNO_ID, $this->id);
+
+				$this->collAlumnos = AlumnoPeer::doSelectJoinCuenta($criteria, $con, $join_behavior);
+			}
+		} else {
+									
+			$criteria->add(AlumnoPeer::FK_ESTADOALUMNO_ID, $this->id);
+
+			if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
+				$this->collAlumnos = AlumnoPeer::doSelectJoinCuenta($criteria, $con, $join_behavior);
+			}
+		}
+		$this->lastAlumnoCriteria = $criteria;
+
+		return $this->collAlumnos;
+	}
+
+
+	
+	public function getAlumnosJoinConceptobaja($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		if ($criteria === null) {
+			$criteria = new Criteria(EstadosalumnosPeer::DATABASE_NAME);
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collAlumnos === null) {
+			if ($this->isNew()) {
+				$this->collAlumnos = array();
+			} else {
+
+				$criteria->add(AlumnoPeer::FK_ESTADOALUMNO_ID, $this->id);
+
+				$this->collAlumnos = AlumnoPeer::doSelectJoinConceptobaja($criteria, $con, $join_behavior);
+			}
+		} else {
+									
+			$criteria->add(AlumnoPeer::FK_ESTADOALUMNO_ID, $this->id);
+
+			if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
+				$this->collAlumnos = AlumnoPeer::doSelectJoinConceptobaja($criteria, $con, $join_behavior);
+			}
+		}
+		$this->lastAlumnoCriteria = $criteria;
+
+		return $this->collAlumnos;
+	}
+
+
+	
+	public function getAlumnosJoinPais($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		if ($criteria === null) {
+			$criteria = new Criteria(EstadosalumnosPeer::DATABASE_NAME);
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collAlumnos === null) {
+			if ($this->isNew()) {
+				$this->collAlumnos = array();
+			} else {
+
+				$criteria->add(AlumnoPeer::FK_ESTADOALUMNO_ID, $this->id);
+
+				$this->collAlumnos = AlumnoPeer::doSelectJoinPais($criteria, $con, $join_behavior);
+			}
+		} else {
+									
+			$criteria->add(AlumnoPeer::FK_ESTADOALUMNO_ID, $this->id);
+
+			if (!isset($this->lastAlumnoCriteria) || !$this->lastAlumnoCriteria->equals($criteria)) {
+				$this->collAlumnos = AlumnoPeer::doSelectJoinPais($criteria, $con, $join_behavior);
+			}
+		}
+		$this->lastAlumnoCriteria = $criteria;
+
+		return $this->collAlumnos;
+	}
+
+	
 	public function clearAllReferences($deep = false)
 	{
 		if ($deep) {
+			if ($this->collAlumnos) {
+				foreach ((array) $this->collAlumnos as $o) {
+					$o->clearAllReferences($deep);
+				}
+			}
 		} 
+		$this->collAlumnos = null;
 	}
 
 } 

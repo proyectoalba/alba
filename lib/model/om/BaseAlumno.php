@@ -91,6 +91,9 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	protected $procedencia;
 
 	
+	protected $fk_estadoalumno_id;
+
+	
 	protected $aProvincia;
 
 	
@@ -107,6 +110,9 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 
 	
 	protected $aPais;
+
+	
+	protected $aEstadosalumnos;
 
 	
 	protected $collRelCalendariovacunacionAlumnos;
@@ -188,6 +194,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		$this->certificado_medico = false;
 		$this->activo = true;
 		$this->fk_pais_id = 0;
+		$this->fk_estadoalumno_id = 1;
 	}
 
 	
@@ -371,6 +378,12 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	public function getProcedencia()
 	{
 		return $this->procedencia;
+	}
+
+	
+	public function getFkEstadoalumnoId()
+	{
+		return $this->fk_estadoalumno_id;
 	}
 
 	
@@ -794,9 +807,27 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return $this;
 	} 
 	
+	public function setFkEstadoalumnoId($v)
+	{
+		if ($v !== null) {
+			$v = (int) $v;
+		}
+
+		if ($this->fk_estadoalumno_id !== $v || $v === 1) {
+			$this->fk_estadoalumno_id = $v;
+			$this->modifiedColumns[] = AlumnoPeer::FK_ESTADOALUMNO_ID;
+		}
+
+		if ($this->aEstadosalumnos !== null && $this->aEstadosalumnos->getId() !== $v) {
+			$this->aEstadosalumnos = null;
+		}
+
+		return $this;
+	} 
+	
 	public function hasOnlyDefaultValues()
 	{
-						if (array_diff($this->modifiedColumns, array(AlumnoPeer::FK_PROVINCIA_ID,AlumnoPeer::FK_TIPODOCUMENTO_ID,AlumnoPeer::DISTANCIA_ESCUELA,AlumnoPeer::HERMANOS_ESCUELA,AlumnoPeer::HIJO_MAESTRO_ESCUELA,AlumnoPeer::FK_ESTABLECIMIENTO_ID,AlumnoPeer::FK_CUENTA_ID,AlumnoPeer::CERTIFICADO_MEDICO,AlumnoPeer::ACTIVO,AlumnoPeer::FK_PAIS_ID))) {
+						if (array_diff($this->modifiedColumns, array(AlumnoPeer::FK_PROVINCIA_ID,AlumnoPeer::FK_TIPODOCUMENTO_ID,AlumnoPeer::DISTANCIA_ESCUELA,AlumnoPeer::HERMANOS_ESCUELA,AlumnoPeer::HIJO_MAESTRO_ESCUELA,AlumnoPeer::FK_ESTABLECIMIENTO_ID,AlumnoPeer::FK_CUENTA_ID,AlumnoPeer::CERTIFICADO_MEDICO,AlumnoPeer::ACTIVO,AlumnoPeer::FK_PAIS_ID,AlumnoPeer::FK_ESTADOALUMNO_ID))) {
 				return false;
 			}
 
@@ -840,6 +871,10 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				return false;
 			}
 
+			if ($this->fk_estadoalumno_id !== 1) {
+				return false;
+			}
+
 				return true;
 	} 
 	
@@ -874,6 +909,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->fk_conceptobaja_id = ($row[$startcol + 24] !== null) ? (int) $row[$startcol + 24] : null;
 			$this->fk_pais_id = ($row[$startcol + 25] !== null) ? (int) $row[$startcol + 25] : null;
 			$this->procedencia = ($row[$startcol + 26] !== null) ? (string) $row[$startcol + 26] : null;
+			$this->fk_estadoalumno_id = ($row[$startcol + 27] !== null) ? (int) $row[$startcol + 27] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -882,7 +918,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->ensureConsistency();
 			}
 
-						return $startcol + 27; 
+						return $startcol + 28; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Alumno object", $e);
 		}
@@ -909,6 +945,9 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		}
 		if ($this->aPais !== null && $this->fk_pais_id !== $this->aPais->getId()) {
 			$this->aPais = null;
+		}
+		if ($this->aEstadosalumnos !== null && $this->fk_estadoalumno_id !== $this->aEstadosalumnos->getId()) {
+			$this->aEstadosalumnos = null;
 		}
 	} 
 	
@@ -941,6 +980,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->aCuenta = null;
 			$this->aConceptobaja = null;
 			$this->aPais = null;
+			$this->aEstadosalumnos = null;
 			$this->collRelCalendariovacunacionAlumnos = null;
 			$this->lastRelCalendariovacunacionAlumnoCriteria = null;
 
@@ -1062,6 +1102,13 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 					$affectedRows += $this->aPais->save($con);
 				}
 				$this->setPais($this->aPais);
+			}
+
+			if ($this->aEstadosalumnos !== null) {
+				if ($this->aEstadosalumnos->isModified() || $this->aEstadosalumnos->isNew()) {
+					$affectedRows += $this->aEstadosalumnos->save($con);
+				}
+				$this->setEstadosalumnos($this->aEstadosalumnos);
 			}
 
 			if ($this->isNew() ) {
@@ -1223,6 +1270,12 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			if ($this->aPais !== null) {
 				if (!$this->aPais->validate($columns)) {
 					$failureMap = array_merge($failureMap, $this->aPais->getValidationFailures());
+				}
+			}
+
+			if ($this->aEstadosalumnos !== null) {
+				if (!$this->aEstadosalumnos->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aEstadosalumnos->getValidationFailures());
 				}
 			}
 
@@ -1404,6 +1457,9 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			case 26:
 				return $this->getProcedencia();
 				break;
+			case 27:
+				return $this->getFkEstadoalumnoId();
+				break;
 			default:
 				return null;
 				break;
@@ -1441,6 +1497,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$keys[24] => $this->getFkConceptobajaId(),
 			$keys[25] => $this->getFkPaisId(),
 			$keys[26] => $this->getProcedencia(),
+			$keys[27] => $this->getFkEstadoalumnoId(),
 		);
 		return $result;
 	}
@@ -1537,6 +1594,9 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			case 26:
 				$this->setProcedencia($value);
 				break;
+			case 27:
+				$this->setFkEstadoalumnoId($value);
+				break;
 		} 	}
 
 	
@@ -1571,6 +1631,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[24], $arr)) $this->setFkConceptobajaId($arr[$keys[24]]);
 		if (array_key_exists($keys[25], $arr)) $this->setFkPaisId($arr[$keys[25]]);
 		if (array_key_exists($keys[26], $arr)) $this->setProcedencia($arr[$keys[26]]);
+		if (array_key_exists($keys[27], $arr)) $this->setFkEstadoalumnoId($arr[$keys[27]]);
 	}
 
 	
@@ -1605,6 +1666,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(AlumnoPeer::FK_CONCEPTOBAJA_ID)) $criteria->add(AlumnoPeer::FK_CONCEPTOBAJA_ID, $this->fk_conceptobaja_id);
 		if ($this->isColumnModified(AlumnoPeer::FK_PAIS_ID)) $criteria->add(AlumnoPeer::FK_PAIS_ID, $this->fk_pais_id);
 		if ($this->isColumnModified(AlumnoPeer::PROCEDENCIA)) $criteria->add(AlumnoPeer::PROCEDENCIA, $this->procedencia);
+		if ($this->isColumnModified(AlumnoPeer::FK_ESTADOALUMNO_ID)) $criteria->add(AlumnoPeer::FK_ESTADOALUMNO_ID, $this->fk_estadoalumno_id);
 
 		return $criteria;
 	}
@@ -1686,6 +1748,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		$copyObj->setFkPaisId($this->fk_pais_id);
 
 		$copyObj->setProcedencia($this->procedencia);
+
+		$copyObj->setFkEstadoalumnoId($this->fk_estadoalumno_id);
 
 
 		if ($deepCopy) {
@@ -1945,6 +2009,37 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			
 		}
 		return $this->aPais;
+	}
+
+	
+	public function setEstadosalumnos(Estadosalumnos $v = null)
+	{
+		if ($v === null) {
+			$this->setFkEstadoalumnoId(1);
+		} else {
+			$this->setFkEstadoalumnoId($v->getId());
+		}
+
+		$this->aEstadosalumnos = $v;
+
+						if ($v !== null) {
+			$v->addAlumno($this);
+		}
+
+		return $this;
+	}
+
+
+	
+	public function getEstadosalumnos(PropelPDO $con = null)
+	{
+		if ($this->aEstadosalumnos === null && ($this->fk_estadoalumno_id !== null)) {
+			$c = new Criteria(EstadosalumnosPeer::DATABASE_NAME);
+			$c->add(EstadosalumnosPeer::ID, $this->fk_estadoalumno_id);
+			$this->aEstadosalumnos = EstadosalumnosPeer::doSelectOne($c, $con);
+			
+		}
+		return $this->aEstadosalumnos;
 	}
 
 	
@@ -3499,6 +3594,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->aCuenta = null;
 			$this->aConceptobaja = null;
 			$this->aPais = null;
+			$this->aEstadosalumnos = null;
 	}
 
 } 

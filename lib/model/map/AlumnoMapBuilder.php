@@ -87,5 +87,7 @@ class AlumnoMapBuilder implements MapBuilder {
 
 		$tMap->addColumn('PROCEDENCIA', 'Procedencia', 'VARCHAR', false, 128);
 
+		$tMap->addForeignKey('FK_ESTADOALUMNO_ID', 'FkEstadoalumnoId', 'INTEGER', 'estadosalumnos', 'ID', true, null);
+
 	} 
 } 

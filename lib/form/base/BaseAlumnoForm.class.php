@@ -40,6 +40,7 @@ class BaseAlumnoForm extends BaseFormPropel
       'fk_conceptobaja_id'    => new sfWidgetFormPropelChoice(array('model' => 'Conceptobaja', 'add_empty' => true)),
       'fk_pais_id'            => new sfWidgetFormPropelChoice(array('model' => 'Pais', 'add_empty' => false)),
       'procedencia'           => new sfWidgetFormInput(),
+      'fk_estadoalumno_id'    => new sfWidgetFormPropelChoice(array('model' => 'Estadosalumnos', 'add_empty' => false)),
     ));
 
     $this->setValidators(array(
@@ -70,6 +71,7 @@ class BaseAlumnoForm extends BaseFormPropel
       'fk_conceptobaja_id'    => new sfValidatorPropelChoice(array('model' => 'Conceptobaja', 'column' => 'id', 'required' => false)),
       'fk_pais_id'            => new sfValidatorPropelChoice(array('model' => 'Pais', 'column' => 'id')),
       'procedencia'           => new sfValidatorString(array('max_length' => 128, 'required' => false)),
+      'fk_estadoalumno_id'    => new sfValidatorPropelChoice(array('model' => 'Estadosalumnos', 'column' => 'id')),
     ));
 
     $this->widgetSchema->setNameFormat('alumno[%s]');
