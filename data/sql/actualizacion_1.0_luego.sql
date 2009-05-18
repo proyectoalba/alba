@@ -80,3 +80,15 @@ SET FOREIGN_KEY_CHECKS = 1;
 --Alumno
 
 ALTER TABLE `alumno` ADD `procedencia` VARCHAR (128);
+
+ALTER TABLE alumno ADD fk_estadoalumno_id INTEGER default 1 NOT NULL;
+ALTER TABLE alumno ADD CONSTRAINT estadoalumno_FK_1 FOREIGN KEY ("fk_estadoalumno_id") REFERENCES "estadosalumnos" ("id");
+--estadosalumnos
+
+CREATE TABLE `estadosalumnos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+
