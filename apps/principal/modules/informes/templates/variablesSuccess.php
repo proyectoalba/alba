@@ -47,6 +47,10 @@
     if($sf_params->get('division_id')) {
         echo input_hidden_tag('division_id', $sf_params->get('division_id'));
     }
+    if($sf_params->get('docente_id')) {
+        echo input_hidden_tag('docente_id', $sf_params->get('docente_id'));
+    }
+
 ?>
 
 <?php echo input_hidden_tag('id', $informe->getId()) ?>

@@ -318,6 +318,10 @@ class InformesActions extends sfActions
                 } else {
                     $this->redirect('informes/busquedaListadoAlumnos?id='.$informe->getId()); break;
                 }
+
+            case 'Docente':
+                    $this->redirect('informes/busquedaDocentes?id='.$informe->getId()); break;
+                break;
             case 'General':
                 $this->redirect('informes/mostrar?id='.$informe->getId()); 
                 break;
@@ -339,6 +343,10 @@ class InformesActions extends sfActions
             if($this->getRequestParameter('division_id')) {
                 $url .= '&division_id='.$this->getRequestParameter('division_id');
             }
+            if($this->getRequestParameter('docente_id')) {
+                $url .= '&docente_id='.$this->getRequestParameter('docente_id');
+            }
+
             $this->redirect($url);
         } else {
             $this->reporteTBSOO($informe);
@@ -431,6 +439,31 @@ class InformesActions extends sfActions
         $this->informe = $informe;
     }
 
+    public function executeBusquedaDocentes() {
+
+        $informe = InformePeer::retrieveByPk($this->getRequestParameter('id'));
+        $this->forward404Unless($informe);
+
+        // inicializando variables
+        $aDocente  = array();        
+
+        // tomando los datos del formulario
+        $txt = $this->getRequestParameter('txt');
+
+        // llenando el combo de division segun establecimiento
+        $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
+
+        if ($this->getRequest()->getMethod() == sfRequest::POST) {
+            $aDocente = $this->_getDocentes( $txt);
+        }
+
+        // asignando variables para ser usadas en el template
+        $this->txt = $txt;
+        $this->aDocente = $aDocente;
+        $this->informe = $informe;
+
+    }
+
 
     private function reporteTBSOO($informe) {
         define('BASE',sfConfig::get('sf_app_module_dir') .'/informes/lib/');
@@ -466,7 +499,6 @@ class InformesActions extends sfActions
             }
 
         }
-
         // lleno finalmente de diferente forma si es un array (ciclo) o no (variable comun)
         if(is_array($aDato)) {
             foreach($aDato as $idx => $dato) {
@@ -701,6 +733,7 @@ class InformesActions extends sfActions
                             $aDato['docente'][] = $docente->toArray();
                         }
                     } else {
+                        
                         if($this->getRequestParameter('docente_id')) {
                             $docente = DocentePeer::retrieveByPK($this->getRequestParameter('docente_id'));
                             $aDato['docente'] = $docente->toArray();
@@ -789,6 +822,24 @@ function isNotAssocArray($arr)
         }
 
         return $aAlumno;
+    }   
+
+    private function _getDocentes($txt = '') {
+        $aDocente = array();
+        $criteria = new Criteria();
+        if($txt) {
+            $cton1 = $criteria->getNewCriterion(DocentePeer::NOMBRE, "%$txt%", Criteria::LIKE);
+            $cton2 = $criteria->getNewCriterion(DocentePeer::APELLIDO, "%$txt%", Criteria::LIKE);
+            $cton1->addOr($cton2);
+            $criteria->add($cton1);
+        }
+
+        $aDocente = DocentePeer::doSelect($criteria);
+/*        foreach($docentes as $d) {
+            $aDocente[] = $d->toArray();
+        }
+*/
+        return $aDocente;
     }   
 
 
