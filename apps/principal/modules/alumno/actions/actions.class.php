@@ -154,7 +154,7 @@ class alumnoActions extends autoAlumnoActions
       //Actualizo el nro siguiente.
       $nrosiguiente = $this->alumno->getLegajoNumero() +1;
       $estable->setLegajoSiguiente($nrosiguiente);
-      $estable->Save(); 
+      $estable->Save();
 
       $this->getUser()->setFlash('notice', 'Your modifications have been saved');
 
@@ -175,14 +175,22 @@ class alumnoActions extends autoAlumnoActions
 
   public function executeAddfoto(sfWebRequest $request)
   {
-    $alumno = AlumnoPeer::retrieveByPk($request->getParameter('id'));
-    $this->forward404Unless($alumno);
-    if ($alumno->getLegajoPrefijo() != '' && $alumno->getLegajoNumero() != '') {
-      $this->getRequest()->moveFile('archivo', sfConfig::get('sf_upload_dir').DIRECTORY_SEPARATOR.'alumnos'.DIRECTORY_SEPARATOR.$alumno->getLegajo(),'.png');
-      return $this->renderPartial('foto', array('alumno'=>$alumno));
+    $this->alumno = AlumnoPeer::retrieveByPk($request->getParameter('id'));
+    $this->forward404Unless($this->alumno);
+    if ($this->alumno->getLegajoPrefijo() != '' && $this->alumno->getLegajoNumero() != '') {
+      try {
+      	$this->getRequest()->moveFile('archivo', sfConfig::get('sf_upload_dir').DIRECTORY_SEPARATOR.'alumnos'.DIRECTORY_SEPARATOR.$this->alumno->getLegajo(). '.png');
+      	$this->result = 1;
+      }
+      catch (Exception $e) {
+      	$this->result_msg = $e->getMessage();
+      	$this->result = 0;
+      }
     }
     else {
-      return $this->renderText('El alumno no tiene un legajo valido!');
+    	// legajo invalido
+    	$this->result_msg = 'El alumno posee un legajo inv&aacute;lido!';
+      	$this->result = 0;
     }
   }
 

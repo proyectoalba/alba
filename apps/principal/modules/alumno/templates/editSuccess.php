@@ -24,21 +24,19 @@
     <div id="sf_admin_header">
         <?php include_partial('alumno/edit_header', array('alumno' => $alumno)) ?>
     </div>
-    <?php if ($sf_request->getParameter('action') == 'edit'): ?>
-    	<?php include_partial('alumno/foto', array('alumno'=>$alumno))?>
-    <?php endif;?>
     <?php if ($sf_user->hasFlash('notice')): ?>
     <div class="save-ok">
         <h2><?php echo __($sf_user->getFlash('notice')) ?></h2>
     </div>
     <?php endif; ?>
-
+    <?php if ($sf_request->getParameter('action') == 'edit'): ?>
+    	<?php include_component('alumno', 'verfoto', array('alumno'=>$alumno))?>
+    <?php endif;?>
     <?php echo form_tag('alumno/edit', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>
         <?php echo object_input_hidden_tag($alumno, 'getId') ?>
 
         <fieldset id="sf_fieldset_informacion_general" class="">
             <h2><?php echo __('Informaci&oacute;n general') ?></h2>
-
             <!-- Legajo -->
             <div class="form-row">
               <?php echo label_for('alumno[legajo_prefijo]', __('Legajo:'), 'class="required" ') ?>
@@ -52,7 +50,7 @@
                 <?php echo form_error('alumno{legajo_numero}', array('class' => 'form-error-msg')) ?>
               <?php endif; ?>
 
-              <?php echo input_tag('alumno[legajo_prefijo]', (isset($prefijo)?$prefijo:"")) ?> 
+              <?php echo input_tag('alumno[legajo_prefijo]', (isset($prefijo)?$prefijo:"")) ?>
               <?php echo input_tag('alumno[legajo_numero]', (isset($nrolegajo)?$nrolegajo:"")) ?>
                 </div>
             </div>
