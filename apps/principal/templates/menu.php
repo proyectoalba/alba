@@ -32,7 +32,7 @@
                   <li><span></span><?php echo link_to("Definir tipo de bajas","conceptobaja/index")?></li>
                   <li><span></span><?php echo link_to("Definir tipo de asistencia","tipoasistencia/index")?></li>
                   <li><span></span><?php echo link_to("Definir Escala de notas","escalanota/index")?></li>
-                  <li><span></span><?php echo link_to("Estados Alumnos","estadosalumnos/index")?></li>
+                  <li><span></span><?php echo link_to("Definir Estados de alumnos","estadosalumnos/index")?></li>
                   <li><span></span><?php echo link_to("Tipos de entrada al legajo pedag&oacute;gico","legajocategoria/index")?></li>
                   <li><span></span><?php echo link_to("Definir Categor&iacute;as del Bolet&iacute;n de Concepto","concepto/index")?></li>
                 </ul>
