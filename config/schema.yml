@@ -739,6 +739,12 @@ propel:
     procedencia:
       type: VARCHAR
       size: 128
+    fk_estadoalumno_id:
+      type: INTEGER
+      required: true
+      default: 1
+      foreignTable: estadosalumnos
+      foreignReference: id
 
   rol_responsable:
     _attributes:
