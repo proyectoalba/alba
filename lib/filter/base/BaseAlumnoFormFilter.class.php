@@ -42,6 +42,7 @@ class BaseAlumnoFormFilter extends BaseFormFilterPropel
       'fk_pais_id'            => new sfWidgetFormPropelChoice(array('model' => 'Pais', 'add_empty' => true)),
       'procedencia'           => new sfWidgetFormFilterInput(),
       'fk_estadoalumno_id'    => new sfWidgetFormPropelChoice(array('model' => 'Estadosalumnos', 'add_empty' => true)),
+      'observacion'           => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -72,6 +73,7 @@ class BaseAlumnoFormFilter extends BaseFormFilterPropel
       'fk_pais_id'            => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Pais', 'column' => 'id')),
       'procedencia'           => new sfValidatorPass(array('required' => false)),
       'fk_estadoalumno_id'    => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Estadosalumnos', 'column' => 'id')),
+      'observacion'           => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('alumno_filters[%s]');
@@ -117,6 +119,7 @@ class BaseAlumnoFormFilter extends BaseFormFilterPropel
       'fk_pais_id'            => 'ForeignKey',
       'procedencia'           => 'Text',
       'fk_estadoalumno_id'    => 'ForeignKey',
+      'observacion'           => 'Text',
     );
   }
 }

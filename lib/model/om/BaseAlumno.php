@@ -94,6 +94,9 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	protected $fk_estadoalumno_id;
 
 	
+	protected $observacion;
+
+	
 	protected $aProvincia;
 
 	
@@ -384,6 +387,12 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	public function getFkEstadoalumnoId()
 	{
 		return $this->fk_estadoalumno_id;
+	}
+
+	
+	public function getObservacion()
+	{
+		return $this->observacion;
 	}
 
 	
@@ -825,6 +834,20 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return $this;
 	} 
 	
+	public function setObservacion($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->observacion !== $v) {
+			$this->observacion = $v;
+			$this->modifiedColumns[] = AlumnoPeer::OBSERVACION;
+		}
+
+		return $this;
+	} 
+	
 	public function hasOnlyDefaultValues()
 	{
 						if (array_diff($this->modifiedColumns, array(AlumnoPeer::FK_PROVINCIA_ID,AlumnoPeer::FK_TIPODOCUMENTO_ID,AlumnoPeer::DISTANCIA_ESCUELA,AlumnoPeer::HERMANOS_ESCUELA,AlumnoPeer::HIJO_MAESTRO_ESCUELA,AlumnoPeer::FK_ESTABLECIMIENTO_ID,AlumnoPeer::FK_CUENTA_ID,AlumnoPeer::CERTIFICADO_MEDICO,AlumnoPeer::ACTIVO,AlumnoPeer::FK_PAIS_ID,AlumnoPeer::FK_ESTADOALUMNO_ID))) {
@@ -910,6 +933,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->fk_pais_id = ($row[$startcol + 25] !== null) ? (int) $row[$startcol + 25] : null;
 			$this->procedencia = ($row[$startcol + 26] !== null) ? (string) $row[$startcol + 26] : null;
 			$this->fk_estadoalumno_id = ($row[$startcol + 27] !== null) ? (int) $row[$startcol + 27] : null;
+			$this->observacion = ($row[$startcol + 28] !== null) ? (string) $row[$startcol + 28] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -918,7 +942,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->ensureConsistency();
 			}
 
-						return $startcol + 28; 
+						return $startcol + 29; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Alumno object", $e);
 		}
@@ -1460,6 +1484,9 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			case 27:
 				return $this->getFkEstadoalumnoId();
 				break;
+			case 28:
+				return $this->getObservacion();
+				break;
 			default:
 				return null;
 				break;
@@ -1498,6 +1525,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$keys[25] => $this->getFkPaisId(),
 			$keys[26] => $this->getProcedencia(),
 			$keys[27] => $this->getFkEstadoalumnoId(),
+			$keys[28] => $this->getObservacion(),
 		);
 		return $result;
 	}
@@ -1597,6 +1625,9 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			case 27:
 				$this->setFkEstadoalumnoId($value);
 				break;
+			case 28:
+				$this->setObservacion($value);
+				break;
 		} 	}
 
 	
@@ -1632,6 +1663,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[25], $arr)) $this->setFkPaisId($arr[$keys[25]]);
 		if (array_key_exists($keys[26], $arr)) $this->setProcedencia($arr[$keys[26]]);
 		if (array_key_exists($keys[27], $arr)) $this->setFkEstadoalumnoId($arr[$keys[27]]);
+		if (array_key_exists($keys[28], $arr)) $this->setObservacion($arr[$keys[28]]);
 	}
 
 	
@@ -1667,6 +1699,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(AlumnoPeer::FK_PAIS_ID)) $criteria->add(AlumnoPeer::FK_PAIS_ID, $this->fk_pais_id);
 		if ($this->isColumnModified(AlumnoPeer::PROCEDENCIA)) $criteria->add(AlumnoPeer::PROCEDENCIA, $this->procedencia);
 		if ($this->isColumnModified(AlumnoPeer::FK_ESTADOALUMNO_ID)) $criteria->add(AlumnoPeer::FK_ESTADOALUMNO_ID, $this->fk_estadoalumno_id);
+		if ($this->isColumnModified(AlumnoPeer::OBSERVACION)) $criteria->add(AlumnoPeer::OBSERVACION, $this->observacion);
 
 		return $criteria;
 	}
@@ -1750,6 +1783,8 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		$copyObj->setProcedencia($this->procedencia);
 
 		$copyObj->setFkEstadoalumnoId($this->fk_estadoalumno_id);
+
+		$copyObj->setObservacion($this->observacion);
 
 
 		if ($deepCopy) {

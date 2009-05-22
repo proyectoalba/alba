@@ -745,6 +745,10 @@ propel:
       default: 1
       foreignTable: estadosalumnos
       foreignReference: id
+    observacion:
+      type: VARCHAR
+      size: 255
+      required: false
 
   rol_responsable:
     _attributes:
