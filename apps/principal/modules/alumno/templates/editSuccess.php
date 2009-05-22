@@ -99,7 +99,7 @@
             </div>
 
             <div class="form-row">
-              <?php echo label_for('alumno[sexo]', __('Sexo:'), 'class="required" ') ?>
+              <?php echo label_for('alumno[sexo]', __('Sexo:'), '') ?>
               <div class="content<?php if ($sf_request->hasError('alumno{sexo}')): ?> form-error<?php endif; ?>">
               <?php if ($sf_request->hasError('alumno{sexo}')): ?>
                 <?php echo form_error('alumno{sexo}', array('class' => 'form-error-msg')) ?>
@@ -110,7 +110,7 @@
             </div>
 
             <div class="form-row">
-              <?php echo label_for('alumno[fk_tipodocumento_id]', __('Tipo de Documento:'), 'class="required" ') ?>
+              <?php echo label_for('alumno[fk_tipodocumento_id]', __('Tipo de Documento:'), '') ?>
               <div class="content<?php if ($sf_request->hasError('alumno{fk_tipodocumento_id}')): ?> form-error<?php endif; ?>">
               <?php if ($sf_request->hasError('alumno{fk_tipodocumento_id}')): ?>
                 <?php echo form_error('alumno{fk_tipodocumento_id}', array('class' => 'form-error-msg')) ?>
@@ -125,7 +125,7 @@
             </div>
 
             <div class="form-row">
-              <?php echo label_for('alumno[nro_documento]', __('Nro. Documento:'), 'class="required" ') ?>
+              <?php echo label_for('alumno[nro_documento]', __('Nro. Documento:'), '') ?>
               <div class="content<?php if ($sf_request->hasError('alumno{nro_documento}')): ?> form-error<?php endif; ?>">
               <?php if ($sf_request->hasError('alumno{nro_documento}')): ?>
             <?php echo form_error('alumno{nro_documento}', array('class' => 'form-error-msg')) ?>
@@ -153,7 +153,7 @@
             </div>
 
             <div class="form-row">
-              <?php echo label_for('alumno[fecha_nacimiento]', __('Fecha Nacimiento:'), 'class="required" ') ?>
+              <?php echo label_for('alumno[fecha_nacimiento]', __('Fecha Nacimiento:'), '') ?>
               <div class="content<?php if ($sf_request->hasError('alumno{fecha_nacimiento}')): ?> form-error<?php endif; ?>">
               <?php if ($sf_request->hasError('alumno{fecha_nacimiento}')): ?>
                 <?php echo form_error('alumno{fecha_nacimiento}', array('class' => 'form-error-msg')) ?>
@@ -170,24 +170,22 @@
             </div>
 
             <div class="form-row">
-              <?php echo label_for('alumno[fk_pais_id]', __('Nacionalidad:'), 'class="required" ') ?>
+              <?php echo label_for('alumno[fk_pais_id]', __('Nacionalidad:'), '') ?>
               <div class="content<?php if ($sf_request->hasError('alumno{fk_pais_id}')): ?> form-error<?php endif; ?>">
               <?php if ($sf_request->hasError('alumno{fk_pais_id}')): ?>
                 <?php echo form_error('alumno{fk_pais_id}', array('class' => 'form-error-msg')) ?>
               <?php endif; ?>
 
-<?php $value = object_select_tag($alumno, 'getFkPaisId', array (
-  'related_class' => 'Pais',
-  'peer_method' => 'getEnOrden',
-    'control_name' => 'alumno[fk_pais_id]',
-    )); echo $value ? $value : '&nbsp;' ?>
-
-
+              <?php $value = object_select_tag($alumno, 'getFkPaisId', array (
+                        'related_class' => 'Pais',
+                        'peer_method' => 'getEnOrden',
+                        'control_name' => 'alumno[fk_pais_id]',
+                         )); echo $value ? $value : '&nbsp;' ?>
                 </div>
             </div>
 
             <div class="form-row">
-              <?php echo label_for('alumno[email]', __('Email:'), 'class="required" ') ?>
+              <?php echo label_for('alumno[email]', __('Email:'), '') ?>
               <div class="content<?php if ($sf_request->hasError('alumno{email}')): ?> form-error<?php endif; ?>">
               <?php if ($sf_request->hasError('alumno{email}')): ?>
                 <?php echo form_error('alumno{email}', array('class' => 'form-error-msg')) ?>
@@ -201,7 +199,7 @@
             </div>
 
             <div class="form-row">
-              <?php echo label_for('alumno[activo]', __('¿Est&aacute; activo?:'), 'class="required" ') ?>
+              <?php echo label_for('alumno[activo]', __('¿Est&aacute; activo?:'), '') ?>
               <div class="content<?php if ($sf_request->hasError('alumno{activo}')): ?> form-error<?php endif; ?>">
               <?php if ($sf_request->hasError('alumno{activo}')): ?>
                 <?php echo form_error('alumno{activo}', array('class' => 'form-error-msg')) ?>
@@ -210,6 +208,21 @@
               <?php echo object_checkbox_tag($alumno, 'getActivo', array (
               'control_name' => 'alumno[activo]',
             )) ?>
+                </div>
+            </div>
+
+            <div class="form-row">
+              <?php echo label_for('alumno[fk_estadoalumno_id]', __('Estado:'), '') ?>
+              <div class="content<?php if ($sf_request->hasError('alumno{fk_estadoalumno_id}')): ?> form-error<?php endif; ?>">
+              <?php if ($sf_request->hasError('alumno{fk_estadoalumno_id}')): ?>
+                <?php echo form_error('alumno{fk_estadoalumno_id}', array('class' => 'form-error-msg')) ?>
+              <?php endif; ?>
+
+              <?php echo object_select_tag($alumno, 'getFkEstadoalumnoId', array (
+                        'related_class' => 'Estadosalumnos',
+                        'peer_method' => 'getEnOrden',
+                        'control_name' => 'alumno[fk_estadolaumno_id]',
+                         )) ?>
                 </div>
             </div>
 
@@ -224,7 +237,7 @@
             ?>
 
             <div class="form-row">
-              <?php echo label_for('alumno[direccion]', __('Direcci&oacute;n:'), 'class="required" ') ?>
+              <?php echo label_for('alumno[direccion]', __('Direcci&oacute;n:'), '') ?>
               <div class="content<?php if ($sf_request->hasError('alumno{direccion}')): ?> form-error<?php endif; ?>">
               <?php if ($sf_request->hasError('alumno{direccion}')): ?>
                 <?php echo form_error('alumno{direccion}', array('class' => 'form-error-msg')) ?>
@@ -238,7 +251,7 @@
             </div>
 
             <div class="form-row">
-              <?php echo label_for('alumno[ciudad]', __('Ciudad:'), 'class="required" ') ?>
+              <?php echo label_for('alumno[ciudad]', __('Ciudad:'), '') ?>
               <div class="content<?php if ($sf_request->hasError('alumno{ciudad}')): ?> form-error<?php endif; ?>">
               <?php if ($sf_request->hasError('alumno{ciudad}')): ?>
                 <?php echo form_error('alumno{ciudad}', array('class' => 'form-error-msg')) ?>
@@ -252,13 +265,13 @@
             </div>
 
                <div class="form-row">
-                   <?php echo label_for('pais_id]', __('Pa&iacute;s:'), 'class="required" ') ?>
+                   <?php echo label_for('pais_id]', __('Pa&iacute;s:'), '') ?>
                    <?php echo include_partial('pais_id', array('type' => 'edit', 'alumno' => $alumno)) ?>
                </div>
 
 
             <div class="form-row">
-              <?php echo label_for('alumno[fk_provincia_id]', __('Provincia:'), 'class="required" ') ?>
+              <?php echo label_for('alumno[fk_provincia_id]', __('Provincia:'), '') ?>
               <div class="content<?php if ($sf_request->hasError('alumno{fk_provincia_id}')): ?> form-error<?php endif; ?>">
               <?php if ($sf_request->hasError('alumno{fk_provincia_id}')): ?>
                 <?php echo form_error('alumno{fk_provincia_id}', array('class' => 'form-error-msg')) ?>
@@ -269,7 +282,7 @@
               </div>
             </div>
             <div class="form-row">
-              <?php echo label_for('alumno[codigo_postal]', __('CP:'), 'class="required" ') ?>
+              <?php echo label_for('alumno[codigo_postal]', __('CP:'), '') ?>
               <div class="content<?php if ($sf_request->hasError('alumno{codigo_postal}')): ?> form-error<?php endif; ?>">
               <?php if ($sf_request->hasError('alumno{codigo_postal}')): ?>
                 <?php echo form_error('alumno{codigo_postal}', array('class' => 'form-error-msg')) ?>
@@ -315,7 +328,7 @@
             </div>
 
             <div class="form-row">
-              <?php echo label_for('alumno[hermanos_escuela]', __('¿Hermanos en la escuela?:'), 'class="required" ') ?>
+              <?php echo label_for('alumno[hermanos_escuela]', __('¿Hermanos en la escuela?:'), '') ?>
               <div class="content<?php if ($sf_request->hasError('alumno{hermanos_escuela}')): ?> form-error<?php endif; ?>">
               <?php if ($sf_request->hasError('alumno{hermanos_escuela}')): ?>
                 <?php echo form_error('alumno{hermanos_escuela}', array('class' => 'form-error-msg')) ?>
@@ -328,7 +341,7 @@
             </div>
 
             <div class="form-row">
-              <?php echo label_for('alumno[hijo_maestro_escuela]', __('¿Alguno de sus padres es Maestro?:'), 'class="required" ') ?>
+              <?php echo label_for('alumno[hijo_maestro_escuela]', __('¿Alguno de sus padres es Maestro?:'), '') ?>
               <div class="content<?php if ($sf_request->hasError('alumno{hijo_maestro_escuela}')): ?> form-error<?php endif; ?>">
               <?php if ($sf_request->hasError('alumno{hijo_maestro_escuela}')): ?>
                 <?php echo form_error('alumno{hijo_maestro_escuela}', array('class' => 'form-error-msg')) ?>
@@ -345,7 +358,7 @@
             <h2><?php echo __('Otros') ?></h2>
 
             <div class="form-row">
-              <?php echo label_for('alumno[certificado_medico]', __('Trajo el certificado m&eacute;dico?:'), 'class="required" ') ?>
+              <?php echo label_for('alumno[certificado_medico]', __('Trajo el certificado m&eacute;dico?:'), '') ?>
               <div class="content<?php if ($sf_request->hasError('alumno{certificado_medico}')): ?> form-error<?php endif; ?>">
               <?php if ($sf_request->hasError('alumno{certificado_medico}')): ?>
                 <?php echo form_error('alumno{certificado_medico}', array('class' => 'form-error-msg')) ?>
@@ -357,7 +370,7 @@
                 </div>
             </div>
             <div class="form-row">
-            <?php echo label_for('alumno[procedencia]', __('Procedencia'), 'class="required"') ?>
+            <?php echo label_for('alumno[procedencia]', __('Procedencia'), '') ?>
 
             <?php echo object_input_tag($alumno, 'getProcedencia', array (
               'size' => 50,
@@ -365,7 +378,7 @@
             )) ?>
             </div>
             <div class="form-row">
-                <?php echo label_for('alumno[fk_cuenta_id]', __('Cuenta:'), 'class="required" ') ?>
+                <?php echo label_for('alumno[fk_cuenta_id]', __('Cuenta:'), '') ?>
                 <div class="content<?php if ($sf_request->hasError('alumno{fk_cuenta_id}')): ?> form-error<?php endif; ?>">
                     <div id="cuenta">
                         <?php if($alumno->getFkCuentaId()) { ?>
