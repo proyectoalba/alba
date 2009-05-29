@@ -82,7 +82,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 ALTER TABLE `alumno` ADD `procedencia` VARCHAR (128);
 
 ALTER TABLE alumno ADD fk_estadoalumno_id INTEGER default 1 NOT NULL;
-ALTER TABLE alumno ADD observacion` varchar(255) DEFAULT NULL;
+ALTER TABLE alumno ADD observacion varchar(255) DEFAULT NULL;
 
 ALTER TABLE alumno ADD CONSTRAINT estadoalumno_FK_1 FOREIGN KEY ("fk_estadoalumno_id") REFERENCES "estadosalumnos" ("id");
 --estadosalumnos
