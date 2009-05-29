@@ -8,7 +8,7 @@ generator:
         fk_anio_id: { name: A&ntilde;o }
         division: { name: Divisi&oacute;n }
         fk_turno_id: { name: Turnos }
-        descripcion: { name: Descripci&oacute;n }
+        descripcion: { name: Divisi&oacute;n }
         orden: { name: Orden }
         fk_orientacion_id: { name: Orientacion }
 
