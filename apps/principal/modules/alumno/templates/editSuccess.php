@@ -221,7 +221,7 @@
               <?php echo object_select_tag($alumno, 'getFkEstadoalumnoId', array (
                         'related_class' => 'Estadosalumnos',
                         'peer_method' => 'getEnOrden',
-                        'control_name' => 'alumno[fk_estadolaumno_id]',
+                        'control_name' => 'alumno[fk_estadoalumno_id]',
                          )) ?>
                 </div>
             </div>
