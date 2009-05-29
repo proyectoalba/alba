@@ -368,7 +368,32 @@ propel:
       default: 0
       foreignTable: niveltipo
       foreignReference: id
-
+    direccion:
+      type: VARCHAR
+      size: 128
+      required: false
+    ciudad:
+      type: VARCHAR
+      size: 128
+      required: false
+    codigo_postal:
+      type: VARCHAR
+      size: 20
+      required: false
+    telefono:
+      type: VARCHAR
+      size: 20
+      required: false
+    fk_provincia_id:
+      type: INTEGER
+      required: true
+      default: 0
+      foreignTable: provincia
+      foreignReference: id
+    rector:
+      type: VARCHAR
+      size: 255
+      required: false
   permiso:
     _attributes:
       idMethod: native

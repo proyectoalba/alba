@@ -93,4 +93,9 @@ CREATE TABLE `estadosalumnos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
-
+ ALTER TABLE `establecimiento` ADD `direccion` VARCHAR( 128 ) DEFAULT NULL ,
+ADD `ciudad` VARCHAR( 128 )  DEFAULT NULL ,
+ADD `codigo_postal` VARCHAR( 20 )  DEFAULT NULL ,
+ADD `telefono` VARCHAR( 20 )  DEFAULT NULL ,
+ADD `fk_provincia_id` INT DEFAULT 0 ,
+ADD `rector` VARCHAR( 255 ) DEFAULT NULL 

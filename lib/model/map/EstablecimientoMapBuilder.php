@@ -51,5 +51,17 @@ class EstablecimientoMapBuilder implements MapBuilder {
 
 		$tMap->addForeignKey('FK_NIVELTIPO_ID', 'FkNiveltipoId', 'INTEGER', 'niveltipo', 'ID', true, null);
 
+		$tMap->addColumn('DIRECCION', 'Direccion', 'VARCHAR', false, 128);
+
+		$tMap->addColumn('CIUDAD', 'Ciudad', 'VARCHAR', false, 128);
+
+		$tMap->addColumn('CODIGO_POSTAL', 'CodigoPostal', 'VARCHAR', false, 20);
+
+		$tMap->addColumn('TELEFONO', 'Telefono', 'VARCHAR', false, 20);
+
+		$tMap->addForeignKey('FK_PROVINCIA_ID', 'FkProvinciaId', 'INTEGER', 'provincia', 'ID', true, null);
+
+		$tMap->addColumn('RECTOR', 'Rector', 'VARCHAR', false, 255);
+
 	} 
 } 

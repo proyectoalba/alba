@@ -22,7 +22,7 @@
     </div>
 <?php } else { ?>
 
-
+<!--
 <div style="text-align: center;"><?php echo image_tag('small/escudo_bsas_chico.jpg')?></div>
 <div style="text-align: center;" class="titulo">
 <span style="font-weight: bold;" class="titulo">GOBIERNO DE LA CIUDAD DE BUENOS AIRES</span><br style="font-weight: bold;">
@@ -30,6 +30,10 @@
 <br>
 <span class="subtitulo">Educaci&oacute;n General B&aacute;sica<br>Documento de evaluaci&oacute;n</span><br>
 </div>
+
+-->
+
+<?php echo $establecimiento->getNombre()?>
 
 
 

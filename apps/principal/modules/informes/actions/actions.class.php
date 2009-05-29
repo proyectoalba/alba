@@ -33,6 +33,57 @@
 class InformesActions extends sfActions
 {
 
+  public function executeBasic(sfWebRequest $request) {
+      $doc = new sfTinyDoc();
+      $doc->createFrom();
+      $doc->loadXml('content.xml');
+/*      $doc->mergeXmlField('field1', 'variable');
+
+      $doc->mergeXmlField('field2', array('id' => 55, 'name' => 'bob'));
+
+ */
+        
+
+//      $doc->mergeXmlField('field4', AlumnoPeer::doSelect(new Criteria()));
+
+  
+  
+  
+  
+//      $doc->mergeXmlBlock('block1', AlumnoPeer::doSelectJoinAsistencia = array();
+
+      $nbr_col = 10;
+      $nbr_row = 5;
+
+
+      for ($col=1;$col<=$nbr_col;$col++) {
+                  $columns[$col] = 'column_'.$col;
+      }
+      
+      // Creating data
+       $data = array();
+       for ($row=1;$row<=$nbr_row;$row++) {
+          $record = array();
+          for ($col=1;$col<=$nbr_col;$col++) {
+              $record[$columns[$col]] = $row * $col * 2;
+          }
+          $data[$row] = $record;
+       } 
+
+      $doc->mergeXmlBlock('c0,c1,c2', $columns);
+      $doc->mergeXmlBlock('r', $data);
+      $doc->saveXml();
+      $doc->close();
+      $doc->sendResponse();
+      $doc->remove();
+      throw new sfStopException;
+  }
+
+
+
+
+
+
   public function executeIndex()
   {
     return $this->forward('informes', 'list');

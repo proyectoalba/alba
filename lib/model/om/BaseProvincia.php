@@ -40,6 +40,12 @@ abstract class BaseProvincia extends BaseObject  implements Persistent {
 	private $lastOrganizacionCriteria = null;
 
 	
+	protected $collEstablecimientos;
+
+	
+	private $lastEstablecimientoCriteria = null;
+
+	
 	protected $collCuentas;
 
 	
@@ -267,6 +273,9 @@ abstract class BaseProvincia extends BaseObject  implements Persistent {
 			$this->collOrganizacions = null;
 			$this->lastOrganizacionCriteria = null;
 
+			$this->collEstablecimientos = null;
+			$this->lastEstablecimientoCriteria = null;
+
 			$this->collCuentas = null;
 			$this->lastCuentaCriteria = null;
 
@@ -372,6 +381,14 @@ abstract class BaseProvincia extends BaseObject  implements Persistent {
 				}
 			}
 
+			if ($this->collEstablecimientos !== null) {
+				foreach ($this->collEstablecimientos as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
 			if ($this->collCuentas !== null) {
 				foreach ($this->collCuentas as $referrerFK) {
 					if (!$referrerFK->isDeleted()) {
@@ -464,6 +481,14 @@ abstract class BaseProvincia extends BaseObject  implements Persistent {
 
 				if ($this->collOrganizacions !== null) {
 					foreach ($this->collOrganizacions as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
+
+				if ($this->collEstablecimientos !== null) {
+					foreach ($this->collEstablecimientos as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -654,6 +679,11 @@ abstract class BaseProvincia extends BaseObject  implements Persistent {
 
 			foreach ($this->getOrganizacions() as $relObj) {
 				if ($relObj !== $this) {  					$copyObj->addOrganizacion($relObj->copy($deepCopy));
+				}
+			}
+
+			foreach ($this->getEstablecimientos() as $relObj) {
+				if ($relObj !== $this) {  					$copyObj->addEstablecimiento($relObj->copy($deepCopy));
 				}
 			}
 
@@ -1001,6 +1031,209 @@ abstract class BaseProvincia extends BaseObject  implements Persistent {
 		$this->lastOrganizacionCriteria = $criteria;
 
 		return $this->collOrganizacions;
+	}
+
+	
+	public function clearEstablecimientos()
+	{
+		$this->collEstablecimientos = null; 	}
+
+	
+	public function initEstablecimientos()
+	{
+		$this->collEstablecimientos = array();
+	}
+
+	
+	public function getEstablecimientos($criteria = null, PropelPDO $con = null)
+	{
+		if ($criteria === null) {
+			$criteria = new Criteria(ProvinciaPeer::DATABASE_NAME);
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collEstablecimientos === null) {
+			if ($this->isNew()) {
+			   $this->collEstablecimientos = array();
+			} else {
+
+				$criteria->add(EstablecimientoPeer::FK_PROVINCIA_ID, $this->id);
+
+				EstablecimientoPeer::addSelectColumns($criteria);
+				$this->collEstablecimientos = EstablecimientoPeer::doSelect($criteria, $con);
+			}
+		} else {
+						if (!$this->isNew()) {
+												
+
+				$criteria->add(EstablecimientoPeer::FK_PROVINCIA_ID, $this->id);
+
+				EstablecimientoPeer::addSelectColumns($criteria);
+				if (!isset($this->lastEstablecimientoCriteria) || !$this->lastEstablecimientoCriteria->equals($criteria)) {
+					$this->collEstablecimientos = EstablecimientoPeer::doSelect($criteria, $con);
+				}
+			}
+		}
+		$this->lastEstablecimientoCriteria = $criteria;
+		return $this->collEstablecimientos;
+	}
+
+	
+	public function countEstablecimientos(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+	{
+		if ($criteria === null) {
+			$criteria = new Criteria(ProvinciaPeer::DATABASE_NAME);
+		} else {
+			$criteria = clone $criteria;
+		}
+
+		if ($distinct) {
+			$criteria->setDistinct();
+		}
+
+		$count = null;
+
+		if ($this->collEstablecimientos === null) {
+			if ($this->isNew()) {
+				$count = 0;
+			} else {
+
+				$criteria->add(EstablecimientoPeer::FK_PROVINCIA_ID, $this->id);
+
+				$count = EstablecimientoPeer::doCount($criteria, $con);
+			}
+		} else {
+						if (!$this->isNew()) {
+												
+
+				$criteria->add(EstablecimientoPeer::FK_PROVINCIA_ID, $this->id);
+
+				if (!isset($this->lastEstablecimientoCriteria) || !$this->lastEstablecimientoCriteria->equals($criteria)) {
+					$count = EstablecimientoPeer::doCount($criteria, $con);
+				} else {
+					$count = count($this->collEstablecimientos);
+				}
+			} else {
+				$count = count($this->collEstablecimientos);
+			}
+		}
+		return $count;
+	}
+
+	
+	public function addEstablecimiento(Establecimiento $l)
+	{
+		if ($this->collEstablecimientos === null) {
+			$this->initEstablecimientos();
+		}
+		if (!in_array($l, $this->collEstablecimientos, true)) { 			array_push($this->collEstablecimientos, $l);
+			$l->setProvincia($this);
+		}
+	}
+
+
+	
+	public function getEstablecimientosJoinDistritoescolar($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		if ($criteria === null) {
+			$criteria = new Criteria(ProvinciaPeer::DATABASE_NAME);
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collEstablecimientos === null) {
+			if ($this->isNew()) {
+				$this->collEstablecimientos = array();
+			} else {
+
+				$criteria->add(EstablecimientoPeer::FK_PROVINCIA_ID, $this->id);
+
+				$this->collEstablecimientos = EstablecimientoPeer::doSelectJoinDistritoescolar($criteria, $con, $join_behavior);
+			}
+		} else {
+									
+			$criteria->add(EstablecimientoPeer::FK_PROVINCIA_ID, $this->id);
+
+			if (!isset($this->lastEstablecimientoCriteria) || !$this->lastEstablecimientoCriteria->equals($criteria)) {
+				$this->collEstablecimientos = EstablecimientoPeer::doSelectJoinDistritoescolar($criteria, $con, $join_behavior);
+			}
+		}
+		$this->lastEstablecimientoCriteria = $criteria;
+
+		return $this->collEstablecimientos;
+	}
+
+
+	
+	public function getEstablecimientosJoinOrganizacion($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		if ($criteria === null) {
+			$criteria = new Criteria(ProvinciaPeer::DATABASE_NAME);
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collEstablecimientos === null) {
+			if ($this->isNew()) {
+				$this->collEstablecimientos = array();
+			} else {
+
+				$criteria->add(EstablecimientoPeer::FK_PROVINCIA_ID, $this->id);
+
+				$this->collEstablecimientos = EstablecimientoPeer::doSelectJoinOrganizacion($criteria, $con, $join_behavior);
+			}
+		} else {
+									
+			$criteria->add(EstablecimientoPeer::FK_PROVINCIA_ID, $this->id);
+
+			if (!isset($this->lastEstablecimientoCriteria) || !$this->lastEstablecimientoCriteria->equals($criteria)) {
+				$this->collEstablecimientos = EstablecimientoPeer::doSelectJoinOrganizacion($criteria, $con, $join_behavior);
+			}
+		}
+		$this->lastEstablecimientoCriteria = $criteria;
+
+		return $this->collEstablecimientos;
+	}
+
+
+	
+	public function getEstablecimientosJoinNiveltipo($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		if ($criteria === null) {
+			$criteria = new Criteria(ProvinciaPeer::DATABASE_NAME);
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collEstablecimientos === null) {
+			if ($this->isNew()) {
+				$this->collEstablecimientos = array();
+			} else {
+
+				$criteria->add(EstablecimientoPeer::FK_PROVINCIA_ID, $this->id);
+
+				$this->collEstablecimientos = EstablecimientoPeer::doSelectJoinNiveltipo($criteria, $con, $join_behavior);
+			}
+		} else {
+									
+			$criteria->add(EstablecimientoPeer::FK_PROVINCIA_ID, $this->id);
+
+			if (!isset($this->lastEstablecimientoCriteria) || !$this->lastEstablecimientoCriteria->equals($criteria)) {
+				$this->collEstablecimientos = EstablecimientoPeer::doSelectJoinNiveltipo($criteria, $con, $join_behavior);
+			}
+		}
+		$this->lastEstablecimientoCriteria = $criteria;
+
+		return $this->collEstablecimientos;
 	}
 
 	
@@ -1829,6 +2062,11 @@ abstract class BaseProvincia extends BaseObject  implements Persistent {
 					$o->clearAllReferences($deep);
 				}
 			}
+			if ($this->collEstablecimientos) {
+				foreach ((array) $this->collEstablecimientos as $o) {
+					$o->clearAllReferences($deep);
+				}
+			}
 			if ($this->collCuentas) {
 				foreach ((array) $this->collCuentas as $o) {
 					$o->clearAllReferences($deep);
@@ -1852,6 +2090,7 @@ abstract class BaseProvincia extends BaseObject  implements Persistent {
 		} 
 		$this->collLocacions = null;
 		$this->collOrganizacions = null;
+		$this->collEstablecimientos = null;
 		$this->collCuentas = null;
 		$this->collAlumnos = null;
 		$this->collResponsables = null;

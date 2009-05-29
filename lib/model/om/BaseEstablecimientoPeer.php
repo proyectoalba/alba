@@ -13,7 +13,7 @@ abstract class BaseEstablecimientoPeer {
 	const CLASS_DEFAULT = 'lib.model.Establecimiento';
 
 	
-	const NUM_COLUMNS = 9;
+	const NUM_COLUMNS = 15;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -46,6 +46,24 @@ abstract class BaseEstablecimientoPeer {
 	const FK_NIVELTIPO_ID = 'establecimiento.FK_NIVELTIPO_ID';
 
 	
+	const DIRECCION = 'establecimiento.DIRECCION';
+
+	
+	const CIUDAD = 'establecimiento.CIUDAD';
+
+	
+	const CODIGO_POSTAL = 'establecimiento.CODIGO_POSTAL';
+
+	
+	const TELEFONO = 'establecimiento.TELEFONO';
+
+	
+	const FK_PROVINCIA_ID = 'establecimiento.FK_PROVINCIA_ID';
+
+	
+	const RECTOR = 'establecimiento.RECTOR';
+
+	
 	public static $instances = array();
 
 	
@@ -53,20 +71,20 @@ abstract class BaseEstablecimientoPeer {
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Descripcion', 'Cuit', 'Legajoprefijo', 'Legajosiguiente', 'FkDistritoescolarId', 'FkOrganizacionId', 'FkNiveltipoId', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'nombre', 'descripcion', 'cuit', 'legajoprefijo', 'legajosiguiente', 'fkDistritoescolarId', 'fkOrganizacionId', 'fkNiveltipoId', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::NOMBRE, self::DESCRIPCION, self::CUIT, self::LEGAJOPREFIJO, self::LEGAJOSIGUIENTE, self::FK_DISTRITOESCOLAR_ID, self::FK_ORGANIZACION_ID, self::FK_NIVELTIPO_ID, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'descripcion', 'cuit', 'legajoprefijo', 'legajosiguiente', 'fk_distritoescolar_id', 'fk_organizacion_id', 'fk_niveltipo_id', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Descripcion', 'Cuit', 'Legajoprefijo', 'Legajosiguiente', 'FkDistritoescolarId', 'FkOrganizacionId', 'FkNiveltipoId', 'Direccion', 'Ciudad', 'CodigoPostal', 'Telefono', 'FkProvinciaId', 'Rector', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'nombre', 'descripcion', 'cuit', 'legajoprefijo', 'legajosiguiente', 'fkDistritoescolarId', 'fkOrganizacionId', 'fkNiveltipoId', 'direccion', 'ciudad', 'codigoPostal', 'telefono', 'fkProvinciaId', 'rector', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::NOMBRE, self::DESCRIPCION, self::CUIT, self::LEGAJOPREFIJO, self::LEGAJOSIGUIENTE, self::FK_DISTRITOESCOLAR_ID, self::FK_ORGANIZACION_ID, self::FK_NIVELTIPO_ID, self::DIRECCION, self::CIUDAD, self::CODIGO_POSTAL, self::TELEFONO, self::FK_PROVINCIA_ID, self::RECTOR, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'descripcion', 'cuit', 'legajoprefijo', 'legajosiguiente', 'fk_distritoescolar_id', 'fk_organizacion_id', 'fk_niveltipo_id', 'direccion', 'ciudad', 'codigo_postal', 'telefono', 'fk_provincia_id', 'rector', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Descripcion' => 2, 'Cuit' => 3, 'Legajoprefijo' => 4, 'Legajosiguiente' => 5, 'FkDistritoescolarId' => 6, 'FkOrganizacionId' => 7, 'FkNiveltipoId' => 8, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'nombre' => 1, 'descripcion' => 2, 'cuit' => 3, 'legajoprefijo' => 4, 'legajosiguiente' => 5, 'fkDistritoescolarId' => 6, 'fkOrganizacionId' => 7, 'fkNiveltipoId' => 8, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::NOMBRE => 1, self::DESCRIPCION => 2, self::CUIT => 3, self::LEGAJOPREFIJO => 4, self::LEGAJOSIGUIENTE => 5, self::FK_DISTRITOESCOLAR_ID => 6, self::FK_ORGANIZACION_ID => 7, self::FK_NIVELTIPO_ID => 8, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'descripcion' => 2, 'cuit' => 3, 'legajoprefijo' => 4, 'legajosiguiente' => 5, 'fk_distritoescolar_id' => 6, 'fk_organizacion_id' => 7, 'fk_niveltipo_id' => 8, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Descripcion' => 2, 'Cuit' => 3, 'Legajoprefijo' => 4, 'Legajosiguiente' => 5, 'FkDistritoescolarId' => 6, 'FkOrganizacionId' => 7, 'FkNiveltipoId' => 8, 'Direccion' => 9, 'Ciudad' => 10, 'CodigoPostal' => 11, 'Telefono' => 12, 'FkProvinciaId' => 13, 'Rector' => 14, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'nombre' => 1, 'descripcion' => 2, 'cuit' => 3, 'legajoprefijo' => 4, 'legajosiguiente' => 5, 'fkDistritoescolarId' => 6, 'fkOrganizacionId' => 7, 'fkNiveltipoId' => 8, 'direccion' => 9, 'ciudad' => 10, 'codigoPostal' => 11, 'telefono' => 12, 'fkProvinciaId' => 13, 'rector' => 14, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::NOMBRE => 1, self::DESCRIPCION => 2, self::CUIT => 3, self::LEGAJOPREFIJO => 4, self::LEGAJOSIGUIENTE => 5, self::FK_DISTRITOESCOLAR_ID => 6, self::FK_ORGANIZACION_ID => 7, self::FK_NIVELTIPO_ID => 8, self::DIRECCION => 9, self::CIUDAD => 10, self::CODIGO_POSTAL => 11, self::TELEFONO => 12, self::FK_PROVINCIA_ID => 13, self::RECTOR => 14, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'descripcion' => 2, 'cuit' => 3, 'legajoprefijo' => 4, 'legajosiguiente' => 5, 'fk_distritoescolar_id' => 6, 'fk_organizacion_id' => 7, 'fk_niveltipo_id' => 8, 'direccion' => 9, 'ciudad' => 10, 'codigo_postal' => 11, 'telefono' => 12, 'fk_provincia_id' => 13, 'rector' => 14, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, )
 	);
 
 	
@@ -125,6 +143,18 @@ abstract class BaseEstablecimientoPeer {
 		$criteria->addSelectColumn(EstablecimientoPeer::FK_ORGANIZACION_ID);
 
 		$criteria->addSelectColumn(EstablecimientoPeer::FK_NIVELTIPO_ID);
+
+		$criteria->addSelectColumn(EstablecimientoPeer::DIRECCION);
+
+		$criteria->addSelectColumn(EstablecimientoPeer::CIUDAD);
+
+		$criteria->addSelectColumn(EstablecimientoPeer::CODIGO_POSTAL);
+
+		$criteria->addSelectColumn(EstablecimientoPeer::TELEFONO);
+
+		$criteria->addSelectColumn(EstablecimientoPeer::FK_PROVINCIA_ID);
+
+		$criteria->addSelectColumn(EstablecimientoPeer::RECTOR);
 
 	}
 
@@ -368,6 +398,41 @@ abstract class BaseEstablecimientoPeer {
 
 
 	
+	public static function doCountJoinProvincia(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+				$criteria = clone $criteria;
+
+								$criteria->setPrimaryTableName(EstablecimientoPeer::TABLE_NAME);
+
+		if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->setDistinct();
+		}
+
+		if (!$criteria->hasSelectClause()) {
+			EstablecimientoPeer::addSelectColumns($criteria);
+		}
+
+		$criteria->clearOrderByColumns(); 
+				$criteria->setDbName(self::DATABASE_NAME);
+
+		if ($con === null) {
+			$con = Propel::getConnection(EstablecimientoPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+		}
+
+		$criteria->addJoin(array(EstablecimientoPeer::FK_PROVINCIA_ID,), array(ProvinciaPeer::ID,), $join_behavior);
+
+		$stmt = BasePeer::doCount($criteria, $con);
+
+		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+			$count = (int) $row[0];
+		} else {
+			$count = 0; 		}
+		$stmt->closeCursor();
+		return $count;
+	}
+
+
+	
 	public static function doSelectJoinDistritoescolar(Criteria $c, $con = null, $join_behavior = Criteria::LEFT_JOIN)
 	{
 		$c = clone $c;
@@ -521,6 +586,57 @@ abstract class BaseEstablecimientoPeer {
 
 
 	
+	public static function doSelectJoinProvincia(Criteria $c, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		$c = clone $c;
+
+				if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		EstablecimientoPeer::addSelectColumns($c);
+		$startcol = (EstablecimientoPeer::NUM_COLUMNS - EstablecimientoPeer::NUM_LAZY_LOAD_COLUMNS);
+		ProvinciaPeer::addSelectColumns($c);
+
+		$c->addJoin(array(EstablecimientoPeer::FK_PROVINCIA_ID,), array(ProvinciaPeer::ID,), $join_behavior);
+		$stmt = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+			$key1 = EstablecimientoPeer::getPrimaryKeyHashFromRow($row, 0);
+			if (null !== ($obj1 = EstablecimientoPeer::getInstanceFromPool($key1))) {
+															} else {
+
+				$omClass = EstablecimientoPeer::getOMClass();
+
+				$cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+				$obj1 = new $cls();
+				$obj1->hydrate($row);
+				EstablecimientoPeer::addInstanceToPool($obj1, $key1);
+			} 
+			$key2 = ProvinciaPeer::getPrimaryKeyHashFromRow($row, $startcol);
+			if ($key2 !== null) {
+				$obj2 = ProvinciaPeer::getInstanceFromPool($key2);
+				if (!$obj2) {
+
+					$omClass = ProvinciaPeer::getOMClass();
+
+					$cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+					$obj2 = new $cls();
+					$obj2->hydrate($row, $startcol);
+					ProvinciaPeer::addInstanceToPool($obj2, $key2);
+				} 
+								$obj2->addEstablecimiento($obj1);
+
+			} 
+			$results[] = $obj1;
+		}
+		$stmt->closeCursor();
+		return $results;
+	}
+
+
+	
 	public static function doCountJoinAll(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
 	{
 				$criteria = clone $criteria;
@@ -545,6 +661,7 @@ abstract class BaseEstablecimientoPeer {
 		$criteria->addJoin(array(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID,), array(DistritoescolarPeer::ID,), $join_behavior);
 		$criteria->addJoin(array(EstablecimientoPeer::FK_ORGANIZACION_ID,), array(OrganizacionPeer::ID,), $join_behavior);
 		$criteria->addJoin(array(EstablecimientoPeer::FK_NIVELTIPO_ID,), array(NiveltipoPeer::ID,), $join_behavior);
+		$criteria->addJoin(array(EstablecimientoPeer::FK_PROVINCIA_ID,), array(ProvinciaPeer::ID,), $join_behavior);
 		$stmt = BasePeer::doCount($criteria, $con);
 
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
@@ -576,9 +693,13 @@ abstract class BaseEstablecimientoPeer {
 		NiveltipoPeer::addSelectColumns($c);
 		$startcol5 = $startcol4 + (NiveltipoPeer::NUM_COLUMNS - NiveltipoPeer::NUM_LAZY_LOAD_COLUMNS);
 
+		ProvinciaPeer::addSelectColumns($c);
+		$startcol6 = $startcol5 + (ProvinciaPeer::NUM_COLUMNS - ProvinciaPeer::NUM_LAZY_LOAD_COLUMNS);
+
 		$c->addJoin(array(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID,), array(DistritoescolarPeer::ID,), $join_behavior);
 		$c->addJoin(array(EstablecimientoPeer::FK_ORGANIZACION_ID,), array(OrganizacionPeer::ID,), $join_behavior);
 		$c->addJoin(array(EstablecimientoPeer::FK_NIVELTIPO_ID,), array(NiveltipoPeer::ID,), $join_behavior);
+		$c->addJoin(array(EstablecimientoPeer::FK_PROVINCIA_ID,), array(ProvinciaPeer::ID,), $join_behavior);
 		$stmt = BasePeer::doSelect($c, $con);
 		$results = array();
 
@@ -641,6 +762,22 @@ abstract class BaseEstablecimientoPeer {
 				} 
 								$obj4->addEstablecimiento($obj1);
 			} 
+			
+			$key5 = ProvinciaPeer::getPrimaryKeyHashFromRow($row, $startcol5);
+			if ($key5 !== null) {
+				$obj5 = ProvinciaPeer::getInstanceFromPool($key5);
+				if (!$obj5) {
+
+					$omClass = ProvinciaPeer::getOMClass();
+
+
+					$cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+					$obj5 = new $cls();
+					$obj5->hydrate($row, $startcol5);
+					ProvinciaPeer::addInstanceToPool($obj5, $key5);
+				} 
+								$obj5->addEstablecimiento($obj1);
+			} 
 			$results[] = $obj1;
 		}
 		$stmt->closeCursor();
@@ -670,6 +807,7 @@ abstract class BaseEstablecimientoPeer {
 	
 				$criteria->addJoin(array(EstablecimientoPeer::FK_ORGANIZACION_ID,), array(OrganizacionPeer::ID,), $join_behavior);
 				$criteria->addJoin(array(EstablecimientoPeer::FK_NIVELTIPO_ID,), array(NiveltipoPeer::ID,), $join_behavior);
+				$criteria->addJoin(array(EstablecimientoPeer::FK_PROVINCIA_ID,), array(ProvinciaPeer::ID,), $join_behavior);
 		$stmt = BasePeer::doCount($criteria, $con);
 
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
@@ -703,6 +841,7 @@ abstract class BaseEstablecimientoPeer {
 	
 				$criteria->addJoin(array(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID,), array(DistritoescolarPeer::ID,), $join_behavior);
 				$criteria->addJoin(array(EstablecimientoPeer::FK_NIVELTIPO_ID,), array(NiveltipoPeer::ID,), $join_behavior);
+				$criteria->addJoin(array(EstablecimientoPeer::FK_PROVINCIA_ID,), array(ProvinciaPeer::ID,), $join_behavior);
 		$stmt = BasePeer::doCount($criteria, $con);
 
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
@@ -736,6 +875,41 @@ abstract class BaseEstablecimientoPeer {
 	
 				$criteria->addJoin(array(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID,), array(DistritoescolarPeer::ID,), $join_behavior);
 				$criteria->addJoin(array(EstablecimientoPeer::FK_ORGANIZACION_ID,), array(OrganizacionPeer::ID,), $join_behavior);
+				$criteria->addJoin(array(EstablecimientoPeer::FK_PROVINCIA_ID,), array(ProvinciaPeer::ID,), $join_behavior);
+		$stmt = BasePeer::doCount($criteria, $con);
+
+		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+			$count = (int) $row[0];
+		} else {
+			$count = 0; 		}
+		$stmt->closeCursor();
+		return $count;
+	}
+
+
+	
+	public static function doCountJoinAllExceptProvincia(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+				$criteria = clone $criteria;
+
+		if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->setDistinct();
+		}
+
+		if (!$criteria->hasSelectClause()) {
+			EstablecimientoPeer::addSelectColumns($criteria);
+		}
+
+		$criteria->clearOrderByColumns(); 
+				$criteria->setDbName(self::DATABASE_NAME);
+
+		if ($con === null) {
+			$con = Propel::getConnection(EstablecimientoPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+		}
+	
+				$criteria->addJoin(array(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID,), array(DistritoescolarPeer::ID,), $join_behavior);
+				$criteria->addJoin(array(EstablecimientoPeer::FK_ORGANIZACION_ID,), array(OrganizacionPeer::ID,), $join_behavior);
+				$criteria->addJoin(array(EstablecimientoPeer::FK_NIVELTIPO_ID,), array(NiveltipoPeer::ID,), $join_behavior);
 		$stmt = BasePeer::doCount($criteria, $con);
 
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
@@ -765,8 +939,12 @@ abstract class BaseEstablecimientoPeer {
 		NiveltipoPeer::addSelectColumns($c);
 		$startcol4 = $startcol3 + (NiveltipoPeer::NUM_COLUMNS - NiveltipoPeer::NUM_LAZY_LOAD_COLUMNS);
 
+		ProvinciaPeer::addSelectColumns($c);
+		$startcol5 = $startcol4 + (ProvinciaPeer::NUM_COLUMNS - ProvinciaPeer::NUM_LAZY_LOAD_COLUMNS);
+
 				$c->addJoin(array(EstablecimientoPeer::FK_ORGANIZACION_ID,), array(OrganizacionPeer::ID,), $join_behavior);
 				$c->addJoin(array(EstablecimientoPeer::FK_NIVELTIPO_ID,), array(NiveltipoPeer::ID,), $join_behavior);
+				$c->addJoin(array(EstablecimientoPeer::FK_PROVINCIA_ID,), array(ProvinciaPeer::ID,), $join_behavior);
 
 		$stmt = BasePeer::doSelect($c, $con);
 		$results = array();
@@ -816,6 +994,23 @@ abstract class BaseEstablecimientoPeer {
 								$obj3->addEstablecimiento($obj1);
 
 			} 
+				
+				$key4 = ProvinciaPeer::getPrimaryKeyHashFromRow($row, $startcol4);
+				if ($key4 !== null) {
+					$obj4 = ProvinciaPeer::getInstanceFromPool($key4);
+					if (!$obj4) {
+	
+						$omClass = ProvinciaPeer::getOMClass();
+
+
+					$cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+					$obj4 = new $cls();
+					$obj4->hydrate($row, $startcol4);
+					ProvinciaPeer::addInstanceToPool($obj4, $key4);
+				} 
+								$obj4->addEstablecimiento($obj1);
+
+			} 
 			$results[] = $obj1;
 		}
 		$stmt->closeCursor();
@@ -841,8 +1036,12 @@ abstract class BaseEstablecimientoPeer {
 		NiveltipoPeer::addSelectColumns($c);
 		$startcol4 = $startcol3 + (NiveltipoPeer::NUM_COLUMNS - NiveltipoPeer::NUM_LAZY_LOAD_COLUMNS);
 
+		ProvinciaPeer::addSelectColumns($c);
+		$startcol5 = $startcol4 + (ProvinciaPeer::NUM_COLUMNS - ProvinciaPeer::NUM_LAZY_LOAD_COLUMNS);
+
 				$c->addJoin(array(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID,), array(DistritoescolarPeer::ID,), $join_behavior);
 				$c->addJoin(array(EstablecimientoPeer::FK_NIVELTIPO_ID,), array(NiveltipoPeer::ID,), $join_behavior);
+				$c->addJoin(array(EstablecimientoPeer::FK_PROVINCIA_ID,), array(ProvinciaPeer::ID,), $join_behavior);
 
 		$stmt = BasePeer::doSelect($c, $con);
 		$results = array();
@@ -892,6 +1091,23 @@ abstract class BaseEstablecimientoPeer {
 								$obj3->addEstablecimiento($obj1);
 
 			} 
+				
+				$key4 = ProvinciaPeer::getPrimaryKeyHashFromRow($row, $startcol4);
+				if ($key4 !== null) {
+					$obj4 = ProvinciaPeer::getInstanceFromPool($key4);
+					if (!$obj4) {
+	
+						$omClass = ProvinciaPeer::getOMClass();
+
+
+					$cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+					$obj4 = new $cls();
+					$obj4->hydrate($row, $startcol4);
+					ProvinciaPeer::addInstanceToPool($obj4, $key4);
+				} 
+								$obj4->addEstablecimiento($obj1);
+
+			} 
 			$results[] = $obj1;
 		}
 		$stmt->closeCursor();
@@ -917,8 +1133,12 @@ abstract class BaseEstablecimientoPeer {
 		OrganizacionPeer::addSelectColumns($c);
 		$startcol4 = $startcol3 + (OrganizacionPeer::NUM_COLUMNS - OrganizacionPeer::NUM_LAZY_LOAD_COLUMNS);
 
+		ProvinciaPeer::addSelectColumns($c);
+		$startcol5 = $startcol4 + (ProvinciaPeer::NUM_COLUMNS - ProvinciaPeer::NUM_LAZY_LOAD_COLUMNS);
+
 				$c->addJoin(array(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID,), array(DistritoescolarPeer::ID,), $join_behavior);
 				$c->addJoin(array(EstablecimientoPeer::FK_ORGANIZACION_ID,), array(OrganizacionPeer::ID,), $join_behavior);
+				$c->addJoin(array(EstablecimientoPeer::FK_PROVINCIA_ID,), array(ProvinciaPeer::ID,), $join_behavior);
 
 		$stmt = BasePeer::doSelect($c, $con);
 		$results = array();
@@ -966,6 +1186,120 @@ abstract class BaseEstablecimientoPeer {
 					OrganizacionPeer::addInstanceToPool($obj3, $key3);
 				} 
 								$obj3->addEstablecimiento($obj1);
+
+			} 
+				
+				$key4 = ProvinciaPeer::getPrimaryKeyHashFromRow($row, $startcol4);
+				if ($key4 !== null) {
+					$obj4 = ProvinciaPeer::getInstanceFromPool($key4);
+					if (!$obj4) {
+	
+						$omClass = ProvinciaPeer::getOMClass();
+
+
+					$cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+					$obj4 = new $cls();
+					$obj4->hydrate($row, $startcol4);
+					ProvinciaPeer::addInstanceToPool($obj4, $key4);
+				} 
+								$obj4->addEstablecimiento($obj1);
+
+			} 
+			$results[] = $obj1;
+		}
+		$stmt->closeCursor();
+		return $results;
+	}
+
+
+	
+	public static function doSelectJoinAllExceptProvincia(Criteria $c, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		$c = clone $c;
+
+								if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		EstablecimientoPeer::addSelectColumns($c);
+		$startcol2 = (EstablecimientoPeer::NUM_COLUMNS - EstablecimientoPeer::NUM_LAZY_LOAD_COLUMNS);
+
+		DistritoescolarPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + (DistritoescolarPeer::NUM_COLUMNS - DistritoescolarPeer::NUM_LAZY_LOAD_COLUMNS);
+
+		OrganizacionPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + (OrganizacionPeer::NUM_COLUMNS - OrganizacionPeer::NUM_LAZY_LOAD_COLUMNS);
+
+		NiveltipoPeer::addSelectColumns($c);
+		$startcol5 = $startcol4 + (NiveltipoPeer::NUM_COLUMNS - NiveltipoPeer::NUM_LAZY_LOAD_COLUMNS);
+
+				$c->addJoin(array(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID,), array(DistritoescolarPeer::ID,), $join_behavior);
+				$c->addJoin(array(EstablecimientoPeer::FK_ORGANIZACION_ID,), array(OrganizacionPeer::ID,), $join_behavior);
+				$c->addJoin(array(EstablecimientoPeer::FK_NIVELTIPO_ID,), array(NiveltipoPeer::ID,), $join_behavior);
+
+		$stmt = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+			$key1 = EstablecimientoPeer::getPrimaryKeyHashFromRow($row, 0);
+			if (null !== ($obj1 = EstablecimientoPeer::getInstanceFromPool($key1))) {
+															} else {
+				$omClass = EstablecimientoPeer::getOMClass();
+
+				$cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+				$obj1 = new $cls();
+				$obj1->hydrate($row);
+				EstablecimientoPeer::addInstanceToPool($obj1, $key1);
+			} 
+				
+				$key2 = DistritoescolarPeer::getPrimaryKeyHashFromRow($row, $startcol2);
+				if ($key2 !== null) {
+					$obj2 = DistritoescolarPeer::getInstanceFromPool($key2);
+					if (!$obj2) {
+	
+						$omClass = DistritoescolarPeer::getOMClass();
+
+
+					$cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+					$obj2 = new $cls();
+					$obj2->hydrate($row, $startcol2);
+					DistritoescolarPeer::addInstanceToPool($obj2, $key2);
+				} 
+								$obj2->addEstablecimiento($obj1);
+
+			} 
+				
+				$key3 = OrganizacionPeer::getPrimaryKeyHashFromRow($row, $startcol3);
+				if ($key3 !== null) {
+					$obj3 = OrganizacionPeer::getInstanceFromPool($key3);
+					if (!$obj3) {
+	
+						$omClass = OrganizacionPeer::getOMClass();
+
+
+					$cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+					$obj3 = new $cls();
+					$obj3->hydrate($row, $startcol3);
+					OrganizacionPeer::addInstanceToPool($obj3, $key3);
+				} 
+								$obj3->addEstablecimiento($obj1);
+
+			} 
+				
+				$key4 = NiveltipoPeer::getPrimaryKeyHashFromRow($row, $startcol4);
+				if ($key4 !== null) {
+					$obj4 = NiveltipoPeer::getInstanceFromPool($key4);
+					if (!$obj4) {
+	
+						$omClass = NiveltipoPeer::getOMClass();
+
+
+					$cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+					$obj4 = new $cls();
+					$obj4->hydrate($row, $startcol4);
+					NiveltipoPeer::addInstanceToPool($obj4, $key4);
+				} 
+								$obj4->addEstablecimiento($obj1);
 
 			} 
 			$results[] = $obj1;

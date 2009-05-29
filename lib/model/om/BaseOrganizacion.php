@@ -1017,6 +1017,40 @@ abstract class BaseOrganizacion extends BaseObject  implements Persistent {
 		return $this->collEstablecimientos;
 	}
 
+
+	
+	public function getEstablecimientosJoinProvincia($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		if ($criteria === null) {
+			$criteria = new Criteria(OrganizacionPeer::DATABASE_NAME);
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collEstablecimientos === null) {
+			if ($this->isNew()) {
+				$this->collEstablecimientos = array();
+			} else {
+
+				$criteria->add(EstablecimientoPeer::FK_ORGANIZACION_ID, $this->id);
+
+				$this->collEstablecimientos = EstablecimientoPeer::doSelectJoinProvincia($criteria, $con, $join_behavior);
+			}
+		} else {
+									
+			$criteria->add(EstablecimientoPeer::FK_ORGANIZACION_ID, $this->id);
+
+			if (!isset($this->lastEstablecimientoCriteria) || !$this->lastEstablecimientoCriteria->equals($criteria)) {
+				$this->collEstablecimientos = EstablecimientoPeer::doSelectJoinProvincia($criteria, $con, $join_behavior);
+			}
+		}
+		$this->lastEstablecimientoCriteria = $criteria;
+
+		return $this->collEstablecimientos;
+	}
+
 	
 	public function clearAllReferences($deep = false)
 	{

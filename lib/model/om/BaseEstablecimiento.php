@@ -37,6 +37,24 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 	protected $fk_niveltipo_id;
 
 	
+	protected $direccion;
+
+	
+	protected $ciudad;
+
+	
+	protected $codigo_postal;
+
+	
+	protected $telefono;
+
+	
+	protected $fk_provincia_id;
+
+	
+	protected $rector;
+
+	
 	protected $aDistritoescolar;
 
 	
@@ -44,6 +62,9 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 
 	
 	protected $aNiveltipo;
+
+	
+	protected $aProvincia;
 
 	
 	protected $collUsuarios;
@@ -130,6 +151,7 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 		$this->fk_distritoescolar_id = 0;
 		$this->fk_organizacion_id = 0;
 		$this->fk_niveltipo_id = 0;
+		$this->fk_provincia_id = 0;
 	}
 
 	
@@ -184,6 +206,42 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 	public function getFkNiveltipoId()
 	{
 		return $this->fk_niveltipo_id;
+	}
+
+	
+	public function getDireccion()
+	{
+		return $this->direccion;
+	}
+
+	
+	public function getCiudad()
+	{
+		return $this->ciudad;
+	}
+
+	
+	public function getCodigoPostal()
+	{
+		return $this->codigo_postal;
+	}
+
+	
+	public function getTelefono()
+	{
+		return $this->telefono;
+	}
+
+	
+	public function getFkProvinciaId()
+	{
+		return $this->fk_provincia_id;
+	}
+
+	
+	public function getRector()
+	{
+		return $this->rector;
 	}
 
 	
@@ -325,9 +383,97 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 		return $this;
 	} 
 	
+	public function setDireccion($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->direccion !== $v) {
+			$this->direccion = $v;
+			$this->modifiedColumns[] = EstablecimientoPeer::DIRECCION;
+		}
+
+		return $this;
+	} 
+	
+	public function setCiudad($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->ciudad !== $v) {
+			$this->ciudad = $v;
+			$this->modifiedColumns[] = EstablecimientoPeer::CIUDAD;
+		}
+
+		return $this;
+	} 
+	
+	public function setCodigoPostal($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->codigo_postal !== $v) {
+			$this->codigo_postal = $v;
+			$this->modifiedColumns[] = EstablecimientoPeer::CODIGO_POSTAL;
+		}
+
+		return $this;
+	} 
+	
+	public function setTelefono($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->telefono !== $v) {
+			$this->telefono = $v;
+			$this->modifiedColumns[] = EstablecimientoPeer::TELEFONO;
+		}
+
+		return $this;
+	} 
+	
+	public function setFkProvinciaId($v)
+	{
+		if ($v !== null) {
+			$v = (int) $v;
+		}
+
+		if ($this->fk_provincia_id !== $v || $v === 0) {
+			$this->fk_provincia_id = $v;
+			$this->modifiedColumns[] = EstablecimientoPeer::FK_PROVINCIA_ID;
+		}
+
+		if ($this->aProvincia !== null && $this->aProvincia->getId() !== $v) {
+			$this->aProvincia = null;
+		}
+
+		return $this;
+	} 
+	
+	public function setRector($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->rector !== $v) {
+			$this->rector = $v;
+			$this->modifiedColumns[] = EstablecimientoPeer::RECTOR;
+		}
+
+		return $this;
+	} 
+	
 	public function hasOnlyDefaultValues()
 	{
-						if (array_diff($this->modifiedColumns, array(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID,EstablecimientoPeer::FK_ORGANIZACION_ID,EstablecimientoPeer::FK_NIVELTIPO_ID))) {
+						if (array_diff($this->modifiedColumns, array(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID,EstablecimientoPeer::FK_ORGANIZACION_ID,EstablecimientoPeer::FK_NIVELTIPO_ID,EstablecimientoPeer::FK_PROVINCIA_ID))) {
 				return false;
 			}
 
@@ -340,6 +486,10 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 			}
 
 			if ($this->fk_niveltipo_id !== 0) {
+				return false;
+			}
+
+			if ($this->fk_provincia_id !== 0) {
 				return false;
 			}
 
@@ -359,6 +509,12 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 			$this->fk_distritoescolar_id = ($row[$startcol + 6] !== null) ? (int) $row[$startcol + 6] : null;
 			$this->fk_organizacion_id = ($row[$startcol + 7] !== null) ? (int) $row[$startcol + 7] : null;
 			$this->fk_niveltipo_id = ($row[$startcol + 8] !== null) ? (int) $row[$startcol + 8] : null;
+			$this->direccion = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
+			$this->ciudad = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
+			$this->codigo_postal = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
+			$this->telefono = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
+			$this->fk_provincia_id = ($row[$startcol + 13] !== null) ? (int) $row[$startcol + 13] : null;
+			$this->rector = ($row[$startcol + 14] !== null) ? (string) $row[$startcol + 14] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -367,7 +523,7 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 				$this->ensureConsistency();
 			}
 
-						return $startcol + 9; 
+						return $startcol + 15; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Establecimiento object", $e);
 		}
@@ -385,6 +541,9 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 		}
 		if ($this->aNiveltipo !== null && $this->fk_niveltipo_id !== $this->aNiveltipo->getId()) {
 			$this->aNiveltipo = null;
+		}
+		if ($this->aProvincia !== null && $this->fk_provincia_id !== $this->aProvincia->getId()) {
+			$this->aProvincia = null;
 		}
 	} 
 	
@@ -414,6 +573,7 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 			$this->aDistritoescolar = null;
 			$this->aOrganizacion = null;
 			$this->aNiveltipo = null;
+			$this->aProvincia = null;
 			$this->collUsuarios = null;
 			$this->lastUsuarioCriteria = null;
 
@@ -520,6 +680,13 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 					$affectedRows += $this->aNiveltipo->save($con);
 				}
 				$this->setNiveltipo($this->aNiveltipo);
+			}
+
+			if ($this->aProvincia !== null) {
+				if ($this->aProvincia->isModified() || $this->aProvincia->isNew()) {
+					$affectedRows += $this->aProvincia->save($con);
+				}
+				$this->setProvincia($this->aProvincia);
 			}
 
 			if ($this->isNew() ) {
@@ -682,6 +849,12 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 				}
 			}
 
+			if ($this->aProvincia !== null) {
+				if (!$this->aProvincia->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aProvincia->getValidationFailures());
+				}
+			}
+
 
 			if (($retval = EstablecimientoPeer::doValidate($this, $columns)) !== true) {
 				$failureMap = array_merge($failureMap, $retval);
@@ -822,6 +995,24 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 			case 8:
 				return $this->getFkNiveltipoId();
 				break;
+			case 9:
+				return $this->getDireccion();
+				break;
+			case 10:
+				return $this->getCiudad();
+				break;
+			case 11:
+				return $this->getCodigoPostal();
+				break;
+			case 12:
+				return $this->getTelefono();
+				break;
+			case 13:
+				return $this->getFkProvinciaId();
+				break;
+			case 14:
+				return $this->getRector();
+				break;
 			default:
 				return null;
 				break;
@@ -841,6 +1032,12 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 			$keys[6] => $this->getFkDistritoescolarId(),
 			$keys[7] => $this->getFkOrganizacionId(),
 			$keys[8] => $this->getFkNiveltipoId(),
+			$keys[9] => $this->getDireccion(),
+			$keys[10] => $this->getCiudad(),
+			$keys[11] => $this->getCodigoPostal(),
+			$keys[12] => $this->getTelefono(),
+			$keys[13] => $this->getFkProvinciaId(),
+			$keys[14] => $this->getRector(),
 		);
 		return $result;
 	}
@@ -883,6 +1080,24 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 			case 8:
 				$this->setFkNiveltipoId($value);
 				break;
+			case 9:
+				$this->setDireccion($value);
+				break;
+			case 10:
+				$this->setCiudad($value);
+				break;
+			case 11:
+				$this->setCodigoPostal($value);
+				break;
+			case 12:
+				$this->setTelefono($value);
+				break;
+			case 13:
+				$this->setFkProvinciaId($value);
+				break;
+			case 14:
+				$this->setRector($value);
+				break;
 		} 	}
 
 	
@@ -899,6 +1114,12 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[6], $arr)) $this->setFkDistritoescolarId($arr[$keys[6]]);
 		if (array_key_exists($keys[7], $arr)) $this->setFkOrganizacionId($arr[$keys[7]]);
 		if (array_key_exists($keys[8], $arr)) $this->setFkNiveltipoId($arr[$keys[8]]);
+		if (array_key_exists($keys[9], $arr)) $this->setDireccion($arr[$keys[9]]);
+		if (array_key_exists($keys[10], $arr)) $this->setCiudad($arr[$keys[10]]);
+		if (array_key_exists($keys[11], $arr)) $this->setCodigoPostal($arr[$keys[11]]);
+		if (array_key_exists($keys[12], $arr)) $this->setTelefono($arr[$keys[12]]);
+		if (array_key_exists($keys[13], $arr)) $this->setFkProvinciaId($arr[$keys[13]]);
+		if (array_key_exists($keys[14], $arr)) $this->setRector($arr[$keys[14]]);
 	}
 
 	
@@ -915,6 +1136,12 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID)) $criteria->add(EstablecimientoPeer::FK_DISTRITOESCOLAR_ID, $this->fk_distritoescolar_id);
 		if ($this->isColumnModified(EstablecimientoPeer::FK_ORGANIZACION_ID)) $criteria->add(EstablecimientoPeer::FK_ORGANIZACION_ID, $this->fk_organizacion_id);
 		if ($this->isColumnModified(EstablecimientoPeer::FK_NIVELTIPO_ID)) $criteria->add(EstablecimientoPeer::FK_NIVELTIPO_ID, $this->fk_niveltipo_id);
+		if ($this->isColumnModified(EstablecimientoPeer::DIRECCION)) $criteria->add(EstablecimientoPeer::DIRECCION, $this->direccion);
+		if ($this->isColumnModified(EstablecimientoPeer::CIUDAD)) $criteria->add(EstablecimientoPeer::CIUDAD, $this->ciudad);
+		if ($this->isColumnModified(EstablecimientoPeer::CODIGO_POSTAL)) $criteria->add(EstablecimientoPeer::CODIGO_POSTAL, $this->codigo_postal);
+		if ($this->isColumnModified(EstablecimientoPeer::TELEFONO)) $criteria->add(EstablecimientoPeer::TELEFONO, $this->telefono);
+		if ($this->isColumnModified(EstablecimientoPeer::FK_PROVINCIA_ID)) $criteria->add(EstablecimientoPeer::FK_PROVINCIA_ID, $this->fk_provincia_id);
+		if ($this->isColumnModified(EstablecimientoPeer::RECTOR)) $criteria->add(EstablecimientoPeer::RECTOR, $this->rector);
 
 		return $criteria;
 	}
@@ -960,6 +1187,18 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 		$copyObj->setFkOrganizacionId($this->fk_organizacion_id);
 
 		$copyObj->setFkNiveltipoId($this->fk_niveltipo_id);
+
+		$copyObj->setDireccion($this->direccion);
+
+		$copyObj->setCiudad($this->ciudad);
+
+		$copyObj->setCodigoPostal($this->codigo_postal);
+
+		$copyObj->setTelefono($this->telefono);
+
+		$copyObj->setFkProvinciaId($this->fk_provincia_id);
+
+		$copyObj->setRector($this->rector);
 
 
 		if ($deepCopy) {
@@ -1136,6 +1375,37 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 			
 		}
 		return $this->aNiveltipo;
+	}
+
+	
+	public function setProvincia(Provincia $v = null)
+	{
+		if ($v === null) {
+			$this->setFkProvinciaId(0);
+		} else {
+			$this->setFkProvinciaId($v->getId());
+		}
+
+		$this->aProvincia = $v;
+
+						if ($v !== null) {
+			$v->addEstablecimiento($this);
+		}
+
+		return $this;
+	}
+
+
+	
+	public function getProvincia(PropelPDO $con = null)
+	{
+		if ($this->aProvincia === null && ($this->fk_provincia_id !== null)) {
+			$c = new Criteria(ProvinciaPeer::DATABASE_NAME);
+			$c->add(ProvinciaPeer::ID, $this->fk_provincia_id);
+			$this->aProvincia = ProvinciaPeer::doSelectOne($c, $con);
+			
+		}
+		return $this->aProvincia;
 	}
 
 	
@@ -2731,6 +3001,7 @@ abstract class BaseEstablecimiento extends BaseObject  implements Persistent {
 			$this->aDistritoescolar = null;
 			$this->aOrganizacion = null;
 			$this->aNiveltipo = null;
+			$this->aProvincia = null;
 	}
 
 } 
