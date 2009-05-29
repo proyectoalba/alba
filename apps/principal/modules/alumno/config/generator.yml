@@ -32,6 +32,8 @@ generator:
             procedencia: { name: Procedencia }
             legajo_prefijo: { name: Legajo Prefijo }
             legajo_numero: { name: Legajo Numero }
+            observacion: { name: Observaci&oacute;n }
+            fk_estadoalumno_id: { name: Estado Alumno }
 
       list:
             title: " "
@@ -55,10 +57,10 @@ generator:
                 fk_cuenta_id:   { params: include_custom=--Seleccione un Cuenta--}
                 fk_provincia_id:   { params: include_custom=--Seleccione una Provincia--}
             display:
-                "Informacion general":  [ legajo_prefijo, legajo_numero, apellido, apellido_materno, nombre, _sexo, fk_tipodocumento_id, nro_documento, lugar_nacimiento, fecha_nacimiento, fk_pais_id, email, activo ]
+                "Informacion general":  [ legajo_prefijo, legajo_numero, apellido, apellido_materno, nombre, _sexo, fk_tipodocumento_id, nro_documento, lugar_nacimiento, fecha_nacimiento, fk_pais_id, email, activo, fk_estadoalumno_id ]
                 "Donde vive": [direccion, ciudad, fk_provincia_id, codigo_postal, telefono]
                 "Prioridades": [ distancia_escuela, hermanos_escuela, hijo_maestro_escuela ]
-                "Otros": [ procedencia, certificado_medico, _fk_cuenta_id ]
+                "Otros": [ procedencia, observacion,  certificado_medico, _fk_cuenta_id ]
             actions:
                 _delete: -
                 _save: -

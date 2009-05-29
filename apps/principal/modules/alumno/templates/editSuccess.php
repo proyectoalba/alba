@@ -377,6 +377,16 @@
               'control_name' => 'alumno[procedencia]',
             )) ?>
             </div>
+            
+            <div class="form-row">
+            <?php echo label_for('alumno[observacion]', __('Observación'), '') ?>
+
+
+            <?php  echo object_textarea_tag($alumno, 'getObservacion', array ( 
+                'rows' => '5' , 'cols' => '80', 
+                'control_name' => 'alumno[observacion]',))
+            ?>
+            </div>
             <div class="form-row">
                 <?php echo label_for('alumno[fk_cuenta_id]', __('Cuenta:'), '') ?>
                 <div class="content<?php if ($sf_request->hasError('alumno{fk_cuenta_id}')): ?> form-error<?php endif; ?>">
