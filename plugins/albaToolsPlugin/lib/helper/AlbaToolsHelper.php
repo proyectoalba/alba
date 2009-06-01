@@ -21,5 +21,5 @@ function text2img($texto)
     if (is_null($texto)){
         return null;
     }
-    return tag('img', array('alt'=> $texto, 'src'=>'albaTools/text2img?texto=' . $texto));
+    return tag('img', array('alt'=> $texto, 'src'=>url_for('albaTools/text2img?texto=' . $texto)));
 }
