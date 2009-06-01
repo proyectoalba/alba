@@ -56,7 +56,7 @@ all:
 #    unavailable_action:     unavailable
 #
   .settings:
-    enabled_modules:       [ default, sfMediaLibrary]
+    enabled_modules:       [ default, sfMediaLibrary, albaTools]
     autoloading_fucntions:
         -   [sfEzComponentsBridge,  autoload]
 
