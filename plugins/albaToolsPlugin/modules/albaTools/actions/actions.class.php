@@ -11,11 +11,9 @@ class albaToolsActions extends sfActions
     	//fuente por defecto
     	$this->font = 2;
     	//obtengo el texto
-    	$texto = $request->getParameter('texto');
+    	$texto = $request->getParameter('texto', 'null');
 		//seteo el header
-        $this->setLayout(false);
-        $this->getResponse()->clearHttpHeaders();
-        $this->getResponse()->setContentType("Content-type: image/png");
+        header("Content-type: image/png");
 
 		// calculo el alto
 		$alto = strlen($texto) * imagefontwidth($this->font) + imagefontwidth($this->font);
