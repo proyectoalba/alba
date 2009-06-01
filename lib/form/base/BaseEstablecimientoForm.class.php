@@ -22,6 +22,12 @@ class BaseEstablecimientoForm extends BaseFormPropel
       'fk_distritoescolar_id' => new sfWidgetFormPropelChoice(array('model' => 'Distritoescolar', 'add_empty' => false)),
       'fk_organizacion_id'    => new sfWidgetFormPropelChoice(array('model' => 'Organizacion', 'add_empty' => false)),
       'fk_niveltipo_id'       => new sfWidgetFormPropelChoice(array('model' => 'Niveltipo', 'add_empty' => false)),
+      'direccion'             => new sfWidgetFormInput(),
+      'ciudad'                => new sfWidgetFormInput(),
+      'codigo_postal'         => new sfWidgetFormInput(),
+      'telefono'              => new sfWidgetFormInput(),
+      'fk_provincia_id'       => new sfWidgetFormPropelChoice(array('model' => 'Provincia', 'add_empty' => false)),
+      'rector'                => new sfWidgetFormInput(),
     ));
 
     $this->setValidators(array(
@@ -34,6 +40,12 @@ class BaseEstablecimientoForm extends BaseFormPropel
       'fk_distritoescolar_id' => new sfValidatorPropelChoice(array('model' => 'Distritoescolar', 'column' => 'id')),
       'fk_organizacion_id'    => new sfValidatorPropelChoice(array('model' => 'Organizacion', 'column' => 'id')),
       'fk_niveltipo_id'       => new sfValidatorPropelChoice(array('model' => 'Niveltipo', 'column' => 'id')),
+      'direccion'             => new sfValidatorString(array('max_length' => 128, 'required' => false)),
+      'ciudad'                => new sfValidatorString(array('max_length' => 128, 'required' => false)),
+      'codigo_postal'         => new sfValidatorString(array('max_length' => 20, 'required' => false)),
+      'telefono'              => new sfValidatorString(array('max_length' => 20, 'required' => false)),
+      'fk_provincia_id'       => new sfValidatorPropelChoice(array('model' => 'Provincia', 'column' => 'id')),
+      'rector'                => new sfValidatorString(array('max_length' => 255, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('establecimiento[%s]');

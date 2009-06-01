@@ -391,6 +391,7 @@ Establecimiento:
     fk_distritoescolar_id: Distritoescolar_1
     fk_organizacion_id: Organizacion_1
     fk_niveltipo_id: Niveltipo_2
+    fk_provincia_id: Provincia_0
 Usuario:
   Usuario_1:
     usuario: admin
