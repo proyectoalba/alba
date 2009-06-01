@@ -397,6 +397,7 @@ class boletinActions extends sfActions
 
 
         // variables al template
+        $this->establecimiento = EstablecimientoPeer::retrieveByPk($establecimiento_id);
         $this->optionsPeriodo = $optionsPeriodo;
         $this->optionsActividad = $optionsActividad;
         $this->cantOptionsActividad = count($optionsActividad);

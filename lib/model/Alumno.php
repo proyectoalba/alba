@@ -101,14 +101,15 @@ class Alumno extends BaseAlumno {
         // En teoria esta dos consultas pueden reemplazarse con una solo usando LEFT JOIN y CASE
 
         $c = new Criteria();
-        $c->addGroupByColumn(TipoasistenciaPeer::GRUPO);
-//        $c->addSelectColumn(TipoasistenciaPeer::GRUPO);
-        $rsColumna = TipoasistenciaPeer::doSelect($c);
+        $c->addSelectColumn(TipoasistenciaPeer::DESCRIPCION);
+        $c->add(TipoasistenciaPeer::GRUPO, 'Inasistencias', Criteria::EQUAL);
+        $rsColumna = TipoasistenciaPeer::doSelectStmt($c);
 
         $c = new Criteria();
         $c->clearSelectColumns();
-        $c->addGroupByColumn(TipoasistenciaPeer::GRUPO);
-        $c->addSelectColumn(TipoasistenciaPeer::GRUPO);
+        $c->addGroupByColumn(TipoasistenciaPeer::DESCRIPCION);
+//        $c->addSelectColumn(TipoasistenciaPeer::GRUPO);
+        $c->addSelectColumn(TipoasistenciaPeer::DESCRIPCION);
         $c->addSelectColumn('SUM('.TipoasistenciaPeer::VALOR.') AS valor');
         $c->addJoin(TipoasistenciaPeer::ID, AsistenciaPeer::FK_TIPOASISTENCIA_ID);
         $c->add(AsistenciaPeer::FK_ALUMNO_ID, $this->getId(), Criteria::EQUAL);
@@ -116,18 +117,18 @@ class Alumno extends BaseAlumno {
         $criterion = $c2->getNewCriterion(AsistenciaPeer::FECHA, $fecha_inicio, Criteria::GREATER_EQUAL);
         $criterion->addAnd($c2->getNewCriterion(AsistenciaPeer::FECHA, $fecha_fin, Criteria::LESS_EQUAL));
         $c->add($criterion);
+        $c->add(TipoasistenciaPeer::GRUPO, 'Inasistencias', Criteria::EQUAL);
         $rsValor = TipoasistenciaPeer::doSelectStmt($c);
 
         if($rsColumna) {
-            foreach($rsColumna as $r) {
-                 $aAsistencia[$r->getGrupo()] = 0;  // indice: nombre del Grupo, contenido: 
+            while($res_c = $rsColumna->fetch()) {
+                 $aAsistencia[$res_c[0]] = 0;  // indice: nombre del Grupo, contenido: 
             }
         }
-
         if($rsValor) {
             while($res = $rsValor->fetch()) {
                 // indice: nombre del Grupo, contenido: sumatoria de valor
-                $aAsistencia[$res[0]] = $res[1]; 
+                $aAsistencia[$res[0]] = $res[1];
             }
         }
 

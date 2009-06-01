@@ -33,24 +33,35 @@
 
 -->
 
-<?php echo $establecimiento->getNombre()?>
-
+<div align="center">
+<?php echo $establecimiento->getNombre()?><br>
+<?php echo $establecimiento->getDireccion()?> 
+<?php echo $establecimiento->getCiudad()?> 
+<?php echo $establecimiento->getCodigoPostal()?> 
+<?php echo $establecimiento->getTelefono()?> 
+</div>
 
 
 <br>
 <div align="center">
+BOLET&Iacute;N  Ciclo Lectivo <br><br>
+<b>Alumno: <?php echo $alumno->getNombre()." ".$alumno->getApellido()?></b>
+<b>Curso:&nbsp;<?php echo ($division->getAnio())?$division->getAnio()->getDescripcion():""?> <?php echo $division->getDescripcion()?> </b>
+<!-- TURNO:&nbsp;<b><?php echo ($division->getTurno())?$division->getTurno()->getDescripcion():""?></b><br> -->
+<br><br>
 <table style="text-align: left; width: 766px; height: 143px; border-collapse: collapse; border: solid;" border="1" cellpadding="2" cellspacing="2">
-<CAPTION><em>BOLETIN DE CALIFICACIONES PERTENECIENTES A: </em>&nbsp;<b><?php echo $alumno->getNombre()." ".$alumno->getApellido()?></b>&nbsp;&nbsp;&nbsp;&nbsp;<em>GRADO:</em> &nbsp;<b><?php echo ($division->getAnio())?$division->getAnio()->getDescripcion():""?></b>&nbsp;&nbsp;&nbsp;&nbsp;<em>SECCION:</em>&nbsp; <b><?php echo $division->getDescripcion()?></b>&nbsp;&nbsp;&nbsp;&nbsp;<em>TURNO:</em>&nbsp;<b><?php echo ($division->getTurno())?$division->getTurno()->getDescripcion():""?></b><br></CAPTION>
   <tbody>
+<!--
     <tr>
-      <td colspan="1" rowspan="2"><div class="etiquetas">PERIODO</div></td>
+      <td colspan="1" rowspan="2"><div class="etiquetas"><!--PERIODO--></div></td>
       <td colspan="<?php echo $cantOptionsActividad?>" rowspan="1"><div class="etiquetas">AREAS FORMATIVAS</div></td>
       <td colspan="<?php echo $cantOptionsConcepto?>" rowspan="1"><div class="etiquetas">APRECIACION PERSONAL</div></td>
       <td colspan="<?php echo $cantOptionsAsistencia?>" rowspan="1"><div class="etiquetas">CONTROL DE ASISTENCIAS</div></td>
       <td colspan="2" rowspan="1"><div class="etiquetas">FIRMAS</div></td>
     </tr>
+-->
     <tr>
-
+<td></td>
       <?php foreach($optionsActividad as $actividad) { ?> 
       <td><div class="etiquetas"><?php echo $actividad?></div></td>
       <?php } ?>
@@ -59,15 +70,17 @@
       <td><div class="etiquetas"><?php echo $concepto?></div></td>
       <?php } ?>
 
-      <?php if(count($aAsistencia)>0) { 
+<?php 
+        if(count($aAsistencia)>0) { 
             foreach( current($aAsistencia) as $grupo => $valor) { ?> 
       <td><div class="etiquetas"><?php echo $grupo?></div></td>
       <?php
             }
         } ?>
-
+<!--
       <td><div class="etiquetas">Maestro</div></td>
       <td><div class="etiquetas">Director</div></td>
+-->
     </tr>
 
 
@@ -96,6 +109,40 @@
 <?php } ?>
   </tbody>
 </table>
+
+<br>
+<br>
+
+
+<table width="100%">
+<tr>
+<td>Observaciones:</td>
+<td></td>
+<td>Pendientes:</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+
+
+<tr>
+<td><hr width="100px"></td>
+<td><hr width="100px"></td>
+<td><hr width="100px"></td>
+</tr>
+
+
+<tr>
+<td align="center"><?php echo $establecimiento->getRector()?>, Rector</td>
+<td align="center">Alumno</td>
+<td align="center">Padre, Madre o Tutor</td>
+</tr>
+</table>
+
 </div>
 <br>
 <?php } ?>
