@@ -11,7 +11,7 @@ class albaToolsActions extends sfActions
     	//fuente por defecto
     	$this->font = 2;
     	//obtengo el texto
-    	$texto = $request->getParameter('texto', 'null');
+    	$texto = utf8_decode($request->getParameter('texto', 'null'));
 		//seteo el header
         header("Content-type: image/png");
 

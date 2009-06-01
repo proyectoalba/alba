@@ -1,3 +1,4 @@
+<?php use_helper("AlbaTools")?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -63,17 +64,17 @@ BOLET&Iacute;N  Ciclo Lectivo <br><br>
     <tr>
 <td></td>
       <?php foreach($optionsActividad as $actividad) { ?> 
-      <td><div class="etiquetas"><?php echo $actividad?></div></td>
+      <td><div class="etiquetas"><?php echo text2img($actividad);?></div></td>
       <?php } ?>
 
       <?php foreach($optionsConcepto as $concepto) { ?> 
-      <td><div class="etiquetas"><?php echo $concepto?></div></td>
+      <td><div class="etiquetas"><?php echo text2img($concepto);?></div></td>
       <?php } ?>
 
 <?php 
         if(count($aAsistencia)>0) { 
             foreach( current($aAsistencia) as $grupo => $valor) { ?> 
-      <td><div class="etiquetas"><?php echo $grupo?></div></td>
+      <td><div class="etiquetas"><?php echo text2img($grupo);?></div></td>
       <?php
             }
         } ?>

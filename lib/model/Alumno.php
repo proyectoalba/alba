@@ -127,8 +127,8 @@ class Alumno extends BaseAlumno {
         }
         if($rsValor) {
             while($res = $rsValor->fetch()) {
-                // indice: nombre del Grupo, contenido: sumatoria de valor
-                $aAsistencia[$res[0]] = $res[1];
+               // indice: nombre del Grupo, contenido: sumatoria de valor
+              $aAsistencia[$res[0]] = $res[1];
             }
         }
 
