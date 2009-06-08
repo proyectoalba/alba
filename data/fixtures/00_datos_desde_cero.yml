@@ -11,31 +11,19 @@ Distritoescolar:
     ciudad: -
 Pais:
   Pais_0:
-    nombre_largo: Nombre Pais
-    nombre_corto: XXX
+    nombre_largo: No definido
+    nombre_corto: No def.
     orden: 100
 Provincia:
   Provincia_0:
-    nombre_corto: Prov.
-    nombre_largo: Provincia
+    nombre_corto: No def.
+    nombre_largo: No definido
     fk_pais_id: Pais_0
     orden: 0
 Tipoiva:
-  Tipoiva_1:
-    nombre: Exento
-    descripcion: Exento de IVA
-    orden: 0
-  Tipoiva_2:
-    nombre: Responsable Inscripto
-    descripcion: Responsable inscripto
-    orden: 0
-  Tipoiva_3:
-    nombre: Monotributo
-    descripcion: Monotributo
-    orden: 0
-  Tipoiva_4:
-    nombre: CF
-    descripcion: Consumidor Final
+  Tipoiva_0:
+    nombre: No definido
+    descripcion: No definido
     orden: 0
 Niveltipo:
   Niveltipo_1:
@@ -60,26 +48,10 @@ Niveltipo:
     nombre: Otros
     descripcion: Otros
 Tipodocumento:
-  Tipodocumento_1:
-    nombre: DNI
-    descripcion: Documento Nacional de Identidad
+  Tipodocumento_0:
+    nombre: No definido
+    descripcion: No definido
     orden: 1
-  Tipodocumento_2:
-    nombre: LC
-    descripcion: Libreta Cívica
-    orden: 2
-  Tipodocumento_3:
-    nombre: LE
-    descripcion: Libreta de enrolamiento
-    orden: 3
-  Tipodocumento_6:
-    nombre: CI
-    descripcion: Cédula de Identidad
-    orden: 0
-  Tipodocumento_7:
-    nombre: Pasaporte
-    descripcion: Pasaporte
-    orden: 0
 Repeticion:
   Repeticion_1:
     descripcion: Semanal
@@ -381,7 +353,7 @@ Organizacion:
     codigo_postal: Tu CP
     telefono:
     fk_provincia_id: Provincia_0
-    fk_tipoiva_id: Tipoiva_1
+    fk_tipoiva_id: Tipoiva_0
 Establecimiento:
   Establecimiento_1:
     nombre: Nombre de Escuela

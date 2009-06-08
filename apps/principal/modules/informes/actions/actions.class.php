@@ -42,14 +42,14 @@ class InformesActions extends sfActions
       $doc->mergeXmlField('field2', array('id' => 55, 'name' => 'bob'));
 
  */
-        
+
 
 //      $doc->mergeXmlField('field4', AlumnoPeer::doSelect(new Criteria()));
 
-  
-  
-  
-  
+
+
+
+
 //      $doc->mergeXmlBlock('block1', AlumnoPeer::doSelectJoinAsistencia = array();
 
       $nbr_col = 10;
@@ -59,7 +59,7 @@ class InformesActions extends sfActions
       for ($col=1;$col<=$nbr_col;$col++) {
                   $columns[$col] = 'column_'.$col;
       }
-      
+
       // Creating data
        $data = array();
        for ($row=1;$row<=$nbr_row;$row++) {
@@ -68,7 +68,7 @@ class InformesActions extends sfActions
               $record[$columns[$col]] = $row * $col * 2;
           }
           $data[$row] = $record;
-       } 
+       }
 
       $doc->mergeXmlBlock('c0,c1,c2', $columns);
       $doc->mergeXmlBlock('r', $data);
@@ -131,10 +131,10 @@ class InformesActions extends sfActions
             $realFileName = $this->getRequest()->getFileName('file');
             $uniqueFileName = uniqid(rand()) . $ext;
             $this->getRequest()->moveFile('file', sfConfig::get('sf_informe_dir').'/'.$uniqueFileName);
-            $adjunto = new Adjunto(); 
+            $adjunto = new Adjunto();
             $adjunto->setFecha(date('Y-m-d'));
             $adjunto->setNombreArchivo($realFileName);
-            $adjunto->setTipoArchivo($mimetype);     
+            $adjunto->setTipoArchivo($mimetype);
             $adjunto->setRuta($uniqueFileName);
             $adjunto->save();
             $this->informe->setFkAdjuntoId($adjunto->getId());
@@ -363,7 +363,7 @@ class InformesActions extends sfActions
         $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
 
         switch($informe->getTipoInforme()->getNombre()) {
-            case 'Alumnos': 
+            case 'Alumnos':
                 if($informe->getListado() != 1) {
                     $this->redirect('informes/busquedaAlumnos?id='.$informe->getId()); break;
                 } else {
@@ -374,7 +374,7 @@ class InformesActions extends sfActions
                     $this->redirect('informes/busquedaDocentes?id='.$informe->getId()); break;
                 break;
             case 'General':
-                $this->redirect('informes/mostrar?id='.$informe->getId()); 
+                $this->redirect('informes/mostrar?id='.$informe->getId());
                 break;
             default: $this->redirect('informes/busquedaAlumnos?id='.$informe->getId());
         }
@@ -443,7 +443,7 @@ class InformesActions extends sfActions
 
         // inicializando variables
         $optionsDivision = array();
-        
+
         // tomando los datos del formulario
         $division_id = $this->getRequestParameter('division_id');
 
@@ -468,7 +468,7 @@ class InformesActions extends sfActions
 
         // inicializando variables
         $optionsDivision = array();
-        $aAlumno  = array();        
+        $aAlumno  = array();
 
         // tomando los datos del formulario
         $division_id = $this->getRequestParameter('division_id');
@@ -496,7 +496,7 @@ class InformesActions extends sfActions
         $this->forward404Unless($informe);
 
         // inicializando variables
-        $aDocente  = array();        
+        $aDocente  = array();
 
         // tomando los datos del formulario
         $txt = $this->getRequestParameter('txt');
@@ -579,7 +579,7 @@ class InformesActions extends sfActions
   * @returns array
   */
     private function leerTemplate($fuente) {
-        // Saco del template todas las variables del tipo [sssss.rrrrr], tambien las del ciclo y además 
+        // Saco del template todas las variables del tipo [sssss.rrrrr], tambien las del ciclo y además
         // evitando las variables del tbs con ;
         $matches = $results = array();
              if( preg_match_all("/\[[^];]*[;.][^]]*\]/", $fuente, $matches)) {
@@ -589,7 +589,7 @@ class InformesActions extends sfActions
                     $tag = str_replace('[','',$tag);
                     $tag = str_replace(']','',$tag);
                     if (sizeof($aTag =explode('.', $tag)) > 1) { // Breakdown into components
-                        $aTag =explode('.', $tag);                    
+                        $aTag =explode('.', $tag);
                         $tail = array_pop($aTag);
                         if(strpos($tail, "frm=") !== false) {
                             continue;
@@ -640,7 +640,7 @@ class InformesActions extends sfActions
                     }
                     break;
 
-                case 'responsable': 
+                case 'responsable':
                     if( array_key_exists('loop', $result) AND $result['loop'] == 1) {
                         $criteria = new Criteria();
                         if($this->getRequestParameter('fk_cuenta_id')) {
@@ -686,7 +686,7 @@ class InformesActions extends sfActions
                     }
                     break;
 
-                case 'division': 
+                case 'division':
                     if($this->getRequestParameter('division_id')) {
                         $d = DivisionPeer::retrieveByPK($this->getRequestParameter('division_id'));
                     } else {
@@ -698,14 +698,14 @@ class InformesActions extends sfActions
                     $aDato['division'] = $d->toArrayInforme();
                     break;
 
-                case 'establecimiento': 
+                case 'establecimiento':
                     if($this->getUser()->getAttribute('fk_establecimiento_id')) {
                         $establecimiento = EstablecimientoPeer::retrieveByPk($this->getUser()->getAttribute('fk_establecimiento_id'));
                         $aDato['establecimiento'] = $establecimiento->toArrayInforme();
                     }
                     break;
 
-                case 'ciclolectivo': 
+                case 'ciclolectivo':
                     if($this->getUser()->getAttribute('fk_ciclolectivo_id')) {
                         $ciclolectivo_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');
                         $ciclolectivo = CiclolectivoPeer::retrieveByPk($ciclolectivo_id);
@@ -732,7 +732,7 @@ class InformesActions extends sfActions
                     }
                     break;
 
-                case 'espacio': 
+                case 'espacio':
                     if( array_key_exists('loop', $result) AND $result['loop'] == 1 AND $this->getUser()->getAttribute('fk_establecimiento_id')) {
                         $c = new Criteria();
                         $c->add(RelEstablecimientoLocacionPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
@@ -755,7 +755,7 @@ class InformesActions extends sfActions
                     }
                     break;
 
-                case 'organizacion': 
+                case 'organizacion':
                     if($this->getUser()->getAttribute('fk_establecimiento_id')) {
                         $c = new Criteria();
                         $c->add(EstablecimientoPeer::ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
@@ -784,7 +784,7 @@ class InformesActions extends sfActions
                             $aDato['docente'][] = $docente->toArray();
                         }
                     } else {
-                        
+
                         if($this->getRequestParameter('docente_id')) {
                             $docente = DocentePeer::retrieveByPK($this->getRequestParameter('docente_id'));
                             $aDato['docente'] = $docente->toArray();
@@ -793,7 +793,7 @@ class InformesActions extends sfActions
                     break;
 
                 case 'boletin':
-                    
+
 
                     break;
                 default:
@@ -822,7 +822,7 @@ function isNotAssocArray($arr)
 
 
 /**
- *  Informe: Alumnos por Division 
+ *  Informe: Alumnos por Division
  *
  */
 
@@ -873,7 +873,7 @@ function isNotAssocArray($arr)
         }
 
         return $aAlumno;
-    }   
+    }
 
     private function _getDocentes($txt = '') {
         $aDocente = array();
@@ -891,7 +891,7 @@ function isNotAssocArray($arr)
         }
 */
         return $aDocente;
-    }   
+    }
 
 
 
@@ -1003,7 +1003,7 @@ function isNotAssocArray($arr)
 
         if ($this->getRequest()->getMethod() == sfRequest::POST) {
             // buscando alumnos
-            $aAlumno = $this->_getAlumnosPorDivision($division_id, $txt);    
+            $aAlumno = $this->_getAlumnosPorDivision($division_id, $txt);
         }
 
         // asignando variables para ser usadas en el template
@@ -1018,7 +1018,8 @@ function isNotAssocArray($arr)
 
     public function executeBoletinListado() {
        $this->checks = $this->getRequestParameter('boletin');
-       $this->setLayout(false);
+       $this->setLayout('layout_sinmenu');
+       $this->getResponse()->addStyleSheet('impresion', 'last', array('media' =>'print'));
     }
 
     public function executeAyuda() {

@@ -29,7 +29,7 @@
         <h2><?php echo __($sf_user->getFlash('notice')) ?></h2>
     </div>
     <?php endif; ?>
-    <?php if ($sf_request->getParameter('action') == 'edit'): ?>
+    <?php if ($sf_request->getParameter('action') == 'edit' && !$alumno->isNew()): ?>
     	<?php include_component('alumno', 'verfoto', array('alumno'=>$alumno))?>
     <?php endif;?>
     <?php echo form_tag('alumno/edit', 'id=sf_admin_edit_form name=sf_admin_edit_form multipart=true') ?>

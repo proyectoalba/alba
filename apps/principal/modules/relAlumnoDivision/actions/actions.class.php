@@ -246,7 +246,7 @@ class relAlumnoDivisionActions extends autorelAlumnoDivisionActions
 //         return $this->redirect('relAlumnoDivision/edit?id='.$usuarioId);
     }
 
-
+/*
   public function executeDelete($request) {
 
     $aAlumno = $this->getRequest()->getParameterHolder()->get('alumno');
@@ -262,14 +262,15 @@ class relAlumnoDivisionActions extends autorelAlumnoDivisionActions
     try
     {
       RelAlumnoDivisionPeer::doDelete($c);
+      return $this->redirect('relAlumnoDivision/list');
     }
     catch (PropelException $e)
     {
       $this->getRequest()->setError('delete', 'Could not delete the selected Rel alumno division. Make sure it does not have any associated items.');
 //       return $this->forward('relAlumnoDivision', 'list');
     }
-//     return $this->redirect('relAlumnoDivision/list');
   }
+  */
     public function executeAsignarAlumno(){
         $division_id = $this->getRequestParameter('division_id');
         $tmp = split('_', $this->getRequestParameter('id', ''));
