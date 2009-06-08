@@ -340,75 +340,8 @@ class boletinActions extends sfActions
     }
 
     public function executeMostrar() {
-        // Inicializar variables
-        $optionsConcepto = array();
-        $optionsPeriodo = array();
-        $optionsActividad = array();
-        $alumno = "";
-        $division = "";
-        $alumno_id = "";
-        $division_id = "";
-        $notaAlumno = array();
-        $conceptoAlumno = array();
-        $aAsistencia = array();
-
-        // vars del formulario
-        $alumno_id = $this->getRequestParameter('alumno_id');
-        $division_id = $this->getRequestParameter('division_id');
-        $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
-        $no_cargar = 0;
-
-        if($alumno_id) {
-            $alumno = AlumnoPeer::retrieveByPK($alumno_id);
-
-            if(!$division_id) {
-                $c = new Criteria();
-                $c->add(RelAlumnoDivisionPeer::FK_ALUMNO_ID, $alumno_id);
-                $ad = RelAlumnoDivisionPeer::doSelectOne($c);
-                if($ad) {
-                    $division_id = $ad->getFkDivisionId();
-                } else {
-                    $no_cargar = 1;    
-                }
-            }
-
-            if($no_cargar == 0) {
-
-                $division = DivisionPeer::retrieveByPK($division_id);
-
-                $optionsActividad = $division->getActividadesArray();
-
-                $e = EstablecimientoPeer::retrieveByPk($establecimiento_id);
-                $optionsConcepto = $e->getConceptosArray();
-
-                $notaAlumno = $alumno->getNotas();
-                $conceptoAlumno = $alumno->getNotasConcepto();
-
-                $c = CiclolectivoPeer::retrieveByPk($this->getUser()->getAttribute('fk_ciclolectivo_id'));
-                $optionsPeriodo = $c->getPeriodosArray();
-                
-                $aAsistencia = $alumno->getAsistenciasPorCiclolectivo($this->getUser()->getAttribute('fk_ciclolectivo_id'));
-            } else {
-                $this->getUser()->setFlash('notice','Error: el alumno no esta en ninguna división');
-            }
-        } else {
-            $this->getUser()->setFlash('notice','Error: no envio el alumno');
-        }
-
-
-        // variables al template
-        $this->establecimiento = EstablecimientoPeer::retrieveByPk($establecimiento_id);
-        $this->optionsPeriodo = $optionsPeriodo;
-        $this->optionsActividad = $optionsActividad;
-        $this->cantOptionsActividad = count($optionsActividad);
-        $this->alumno = $alumno;
-        $this->division = $division;
-        $this->optionsConcepto = $optionsConcepto;
-        $this->cantOptionsConcepto = count($optionsConcepto);
-        $this->notaAlumno = $notaAlumno;
-        $this->conceptoAlumno = $conceptoAlumno;
-        $this->aAsistencia = $aAsistencia;
-        $this->cantOptionsAsistencia = (count($aAsistencia)>0)?count(current($aAsistencia)):0;
+        $this->alumno_id = $this->getRequestParameter('alumno_id');
+        $this->division_id = $this->getRequestParameter('division_id');
     }
 
     protected function getEscalanota($establecimiento_id) {

@@ -26,7 +26,15 @@
     if ($txt) { ?>
     Ustde busc&oacute; -<?php echo $txt?>-
     <?php } ?>
+
+<?php echo form_tag('informes/boletinListado', 'id=listado name=listado multipart=true') ?>
 <h1>Alumnos</h1>
+
+ <?php echo submit_tag(__('Generar'), array (
+  'name' => 'Generar Boletines',
+)) ?>
+
+
 <table cellspacing="0" class="sf_admin_list">
   <thead>
   <tr>
@@ -44,13 +52,17 @@
     <td><?php echo $alumno->alumno_apellido." ".$alumno->alumno_nombre; ?> ( <?php echo $alumno->anio_descripcion?> - <?php echo $alumno->division_nombre?> ) </td>
     <td>
     <ul class="sf_admin_td_actions">
+<!--
      <li><?php echo link_to(image_tag('/images/small/report_go.png', array('alt' => 'editar', 'title' => 'Editar')) , 'informes/boletinListado?alumno_id='.$alumno->alumno_id."&division_id=".$alumno->division_id); ?></li>
+-->
+<li><?php echo checkbox_tag("boletin[$alumno->alumno_id]",$alumno->division_id, false);?></li>
     </ul>
     </td>
   </tr>
   <?php } ?>
   </tbody>
 </table>
+</form>
 <?php } else {
     if ($txt) { ?>
         Su b&uacute;squeda por -<?php echo $txt?>- no ha encontrado alumnos.
