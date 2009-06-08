@@ -48,13 +48,17 @@
 BOLET&Iacute;N  Ciclo Lectivo <br><br>
 <b>Alumno: <?php echo $alumno->getNombre()." ".$alumno->getApellido()?></b>
 <b>Curso:&nbsp;<?php echo ($division->getAnio())?$division->getAnio()->getDescripcion():""?> <?php echo $division->getDescripcion()?> </b>
-<!-- TURNO:&nbsp;<b><?php echo ($division->getTurno())?$division->getTurno()->getDescripcion():""?></b><br> -->
+<!-- 
+
+TURNO:&nbsp;<b> <?php echo ($division->getTurno())?$division->getTurno()->getDescripcion():""?> </b><br>
+
+-->
 <br><br>
 <table style="text-align: left; width: 766px; height: 143px; border-collapse: collapse; border: solid;" border="1" cellpadding="2" cellspacing="2">
   <tbody>
 <!--
     <tr>
-      <td colspan="1" rowspan="2"><div class="etiquetas"><!--PERIODO--></div></td>
+      <td colspan="1" rowspan="2"><div class="etiquetas">PERIODO</div></td>
       <td colspan="<?php echo $cantOptionsActividad?>" rowspan="1"><div class="etiquetas">AREAS FORMATIVAS</div></td>
       <td colspan="<?php echo $cantOptionsConcepto?>" rowspan="1"><div class="etiquetas">APRECIACION PERSONAL</div></td>
       <td colspan="<?php echo $cantOptionsAsistencia?>" rowspan="1"><div class="etiquetas">CONTROL DE ASISTENCIAS</div></td>

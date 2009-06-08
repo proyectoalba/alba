@@ -1018,7 +1018,7 @@ function isNotAssocArray($arr)
 
     public function executeBoletinListado() {
        $this->checks = $this->getRequestParameter('boletin');
-       $this->setLayout("layout_sinmenu");
+       $this->setLayout(false);
     }
 
     public function executeAyuda() {

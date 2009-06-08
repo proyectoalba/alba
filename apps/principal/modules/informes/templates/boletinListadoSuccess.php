@@ -5,7 +5,7 @@
         include_component('boletin','mostrar', array( 'alumno_id' => $alumno_id, 'division_id' => $division_id));
         if($h == 0) {
 ?>
-        <div class="pageBreak" />
+        <div class="pageBreak"></div>
 <?
         }
     }
