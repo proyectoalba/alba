@@ -128,3 +128,5 @@ div#indicator
   z-index: 900;
   background: url(../images/indicator.gif) no-repeat 0 0;
 }
+
+div.pageBreak { page-break-before: always; }
