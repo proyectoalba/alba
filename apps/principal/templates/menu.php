@@ -100,7 +100,7 @@
         <li><span></span><?php echo link_to("Definir Grados/A&ntilde;os","anio/index")?></li>
         <li><span></span><?php echo link_to("Definir Orientaciones","orientacion/index")?></li>
         <li><span></span><?php echo link_to("Definir Secciones/Divisiones","division/index")?></li>
-        <li><span></span><?php echo link_to("Asignar Alumno a Secci&oacute;n/Divisi&oacute;n","relAlumnoDivision/create")?></li>
+        <li><span></span><?php echo link_to("Asignar Alumno a Secci&oacute;n/Divisi&oacute;n","relAlumnoDivision/list")?></li>
         <li><span></span><?php echo link_to("Ingresar Materias/Actividades","actividad/index")?></li>
         <li><span></span><?php echo link_to("Listar Actividades por Grado/A&ntilde;o","relAnioActividad/index")?></li>
       </ul>
