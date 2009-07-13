@@ -220,14 +220,15 @@ class ciclolectivoActions extends autociclolectivoActions
 	try {
 	    $con->beginTransaction();
 	    if ($ciclolectivo->getActual()) {
-                $c1 = new Criteria();
-		$c1->add(CiclolectivoPeer::FK_ESTABLECIMIENTO_ID,$this->getUser()->getAttribute('fk_establecimiento_id'));
-		$c2 = new Criteria();
-		$c2->add(CiclolectivoPeer::ACTUAL,false);
-		BasePeer::doUpdate($c1,$c2,$con);
+            $c1 = new Criteria();
+            $c1->add(CiclolectivoPeer::FK_ESTABLECIMIENTO_ID,$this->getUser()->getAttribute('fk_establecimiento_id'));
+            $c2 = new Criteria();
+		    $c2->add(CiclolectivoPeer::ACTUAL,false);
+    		BasePeer::doUpdate($c1,$c2,$con);
 	    }
-            $ciclolectivo->setFkEstablecimientoId($this->getUser()->getAttribute('fk_establecimiento_id'));
-	    $ciclolectivo->save();
+        $ciclolectivo->setFkEstablecimientoId($this->getUser()->getAttribute('fk_establecimiento_id'));
+        $isNew = $ciclolectivo->isNew();
+        $ciclolectivo->save();
 	    $con->commit();
 
 	    //cambio el attributo porque se cambio el ciclo actual
@@ -237,7 +238,13 @@ class ciclolectivoActions extends autociclolectivoActions
 	catch (Exception $e){
 	    $con->rollBack();
 	    throw $e;
-	}
+    }
+
+    if($isNew) {
+            # Codigo para copiar las divisiones del ciclo lectivo actual al nuevo
+            # La consulta debe contemplar que lo haga desde el ciclo lectivo actual
+    }
+
     }
 
     /**
@@ -365,6 +372,7 @@ class ciclolectivoActions extends autociclolectivoActions
     }
     $this->ciclolectivo->setActual(isset($ciclolectivo['actual']) ? $ciclolectivo['actual'] : 0);
   }
+
 }
 
 ?>
