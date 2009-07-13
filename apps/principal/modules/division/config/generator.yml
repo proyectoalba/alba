@@ -8,6 +8,7 @@ generator:
         fk_anio_id: { name: A&ntilde;o }
         division: { name: Divisi&oacute;n }
         fk_turno_id: { name: Turnos }
+        fk_turno_id_filter: { name: Turnos }
         descripcion: { name: Divisi&oacute;n }
         orden: { name: Orden }
         fk_orientacion_id: { name: Orientacion }
@@ -25,5 +26,5 @@ generator:
             _edit:      -
             _delete:    -
             alumnosPorDivision:  { name: Alumnos por Division, action: alumnosPorDivision, icon: small/alumnos.png } 
-        filters: [ _carrera, fk_anio_id, fk_orientacion_id, fk_turno_id ]
+        filters: [ _carrera, fk_anio_id, fk_orientacion_id, _fk_turno_id_filter ]
 
