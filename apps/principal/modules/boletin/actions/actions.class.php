@@ -42,6 +42,7 @@ class boletinActions extends sfActions
         $division_id = $this->getRequestParameter('division_id');
         $actividad_id = $this->getRequestParameter('actividad_id');
         $periodo_id = $this->getRequestParameter('periodo_id');
+        $carrera_id = $this->getRequestParameter('carrera_id');
         $aNota = $this->getRequestParameter('nota');
 
         $cantNotas = count($aNota);
@@ -53,7 +54,7 @@ class boletinActions extends sfActions
             //grabo al disco
             $con = Propel::getConnection();
             try {
-                $con->begin();
+                //$con->begin();
                 $criteria = new Criteria();
 
                 foreach($aNota as $alumno_id => $aPeriodo ) {
@@ -82,14 +83,14 @@ class boletinActions extends sfActions
                     }
                 }
 
-                $con->commit(); 
+                //$con->commit(); 
              }             
              catch (Exception $e){
-                 $con->rollback();
+                 //$con->rollback();
                  throw $e;  
             }
         }
-        return $this->redirect("boletin/list?division_id=$division_id&actividad_id=$actividad_id&periodo_id=$periodo_id");
+        return $this->redirect("boletin/list?carrera_id=$carrera_id&division_id=$division_id&actividad_id=$actividad_id&periodo_id=$periodo_id");
     }   
 
     protected function getCarreras($establecimiento_id) {
@@ -378,7 +379,7 @@ class boletinActions extends sfActions
             //grabo al disco
             $con = Propel::getConnection();
             try {
-                $con->begin();
+                //$con->begin();
                 $criteria = new Criteria();
 
                 foreach($aNota as $alumno_id => $aPeriodo ) {
@@ -411,10 +412,10 @@ class boletinActions extends sfActions
                         $boletin->save();
                     }
                 }
-                $con->commit(); 
+                //$con->commit(); 
              }             
              catch (Exception $e){
-                 $con->rollback();
+                 //$con->rollback();
                  throw $e;  
             }
         }
