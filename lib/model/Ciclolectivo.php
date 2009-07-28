@@ -31,4 +31,22 @@ class Ciclolectivo extends BaseCiclolectivo {
         return $optionsPeriodo;
     }
 
+    public function getDivisionesArray() {
+      $c = new Criteria();
+      #$c->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $sf_user->getAttribute('fk_establecimiento_id'));
+      $c->add(TurnoPeer::FK_CICLOLECTIVO_ID, $this->getId());
+      $c->addJoin(AnioPeer::ID,DivisionPeer::FK_ANIO_ID);
+      $c->addJoin(TurnoPeer::ID,DivisionPeer::FK_TURNO_ID);
+      $divisiones = DivisionPeer::doSelect($c);
+      $optionsDivisiones = array();
+      $optionsDivisiones[""] = "";
+      foreach ($divisiones as $division) {
+        $optionsDivisiones[$division->getId()] = $division->__toString();
+      }
+      return $optionsDivisiones;
+    }
+    
+
+
+
 } // Ciclolectivo

@@ -373,6 +373,70 @@ class ciclolectivoActions extends autociclolectivoActions
     $this->ciclolectivo->setActual(isset($ciclolectivo['actual']) ? $ciclolectivo['actual'] : 0);
   }
 
-}
 
+
+    public function executePasajeAlumnosForm() {
+        $ciclolectivo_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');
+        $ciclo_actual = CiclolectivoPeer::retrieveByPK($ciclolectivo_id);
+        $this->optionsDivisiones = $ciclo_actual->getDivisionesArray();
+
+        $c = new Criteria ();
+        $c->add(CiclolectivoPeer::FK_ESTABLECIMIENTO_ID,$this->getUser()->getAttribute('fk_establecimiento_id'));
+        $c->add(CiclolectivoPeer::ID, $ciclolectivo_id, Criteria::NOT_EQUAL);
+        $this->optionsCiclos = CiclolectivoPeer::doSelect($c);
+    }
+
+    public function executeCambiarCicloAjax() {
+        $id = $this->getRequestParameter('ciclolectivo_id');
+        if(!$id) {
+            return $this->renderText("");
+        }
+        $ciclo = CiclolectivoPeer::retrieveByPK($id);
+        $this->optionsDivisiones = $ciclo->getDivisionesArray();
+    }
+
+    public function executeListarAlumnos() {
+        $id = $this->getRequestParameter('division_id');
+        if(!$id) {
+            return $this->renderText("");
+        }
+        $c = new Criteria();
+        $c->add(RelAlumnoDivisionPeer::FK_DIVISION_ID, $id);
+        if($this->getRequestParameter('division_no_id')) {
+            $not_in_query = " alumno.id NOT IN ( SELECT fk_alumno_id FROM rel_alumno_division  WHERE fk_alumno_id = alumno.id AND fk_division_id = ". $this->getRequestParameter("division_no_id").")";
+            $c->add(AlumnoPeer::ID, $not_in_query, Criteria::CUSTOM);
+        }
+        $c->addJoin(AlumnoPeer::ID, RelAlumnoDivisionPeer::FK_ALUMNO_ID);
+        $this->alumnos = AlumnoPeer::doSelect($c);
+    }
+
+    public function executePasajeAlumnos() {
+        $pasaje = $this->getRequestParameter('pasaje');
+        $ciclolectivo_actual_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');
+        $con = Propel::getConnection();
+        try {
+            $con->beginTransaction();
+            foreach($pasaje['fk_alumno_id'] as $aid) {
+                $a = new RelAlumnoDivision();
+                $a->setFkDivisionId($pasaje['fk_division_destino_id']);
+                $a->setFkAlumnoId($aid);
+                $a->save();
+            }
+            $con->commit();
+            $this->getUser()->setFlash('notice','Se ha hecho el pasaje de alumnos correctamente.');
+        }
+        catch (Exception $e) {
+            $con->rollBack();
+            throw $e;
+        }
+    }
+
+    public function handleErrorPasajeAlumnos() {
+//        $pasaje = $this->getResquestParameter('pasaje');
+        $this->forward('ciclolectivo','pasajeAlumnosForm');
+    }
+
+
+
+}
 ?>

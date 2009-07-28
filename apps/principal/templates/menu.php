@@ -87,6 +87,7 @@
             <li><span></span><?php echo link_to("Notas","boletin/list")?></li>
           </ul>
         </li>
+        <li><span></span><?php echo link_to("Pasar de a&ntilde;o","ciclolectivo/pasajeAlumnosForm")?></li>
       </ul>
     </li>
     <li><span></span><a href="#">Docentes</a>

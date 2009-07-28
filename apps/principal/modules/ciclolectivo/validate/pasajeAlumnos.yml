@@ -1,0 +1,26 @@
+methods:
+  post:       
+    - "pasaje{fk_division_id}"
+    - "pasaje{fk_division_destino_id}"
+    - "pasaje{fk_ciclolectivo_id}"    
+    - "pasaje{fk_alumno_id}"    
+    
+fillin:
+    enabled:       on
+      
+names:
+    pasaje{fk_division_id}:
+        required:     Yes
+        required_msg: La divisi&oacute;n de origen es obligatoria
+
+    pasaje{fk_division_destino_id}:
+        required:     Yes
+        required_msg: La divisi&oacute;n de destino  es obligatoria
+
+    pasaje{fk_ciclolectivo_id}:
+        required:     Yes
+        required_msg: El Ciclo L&eacute;ctivo destino es obligatorio
+       
+    pasaje{fk_alumno_id}:
+        required:     Yes
+        required_msg: Los Alumnos son obligatorios
