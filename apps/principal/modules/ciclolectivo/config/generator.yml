@@ -3,7 +3,7 @@ generator:
   param:
     model_class:      Ciclolectivo
     theme:            default
-    
+
     fields:
         descripcion: {name: Descripci&oacute;n, params: size=64 }
         fecha_inicio: { params: date_format='dd/MM/yy' withtime=false }
@@ -15,8 +15,10 @@ generator:
             _edit: -
             _delete: -
             agregarTurnosYPeriodos:  { name: Definir Turnos y Per&iacute;odos, action: agregarTurnosYPeriodos, icon: next.png }
-              
-        
+
     edit:
         title: Ciclo Lectivo
-        display: [ =descripcion, fecha_inicio, fecha_fin, actual ]
+        display: [ =descripcion, fecha_inicio, fecha_fin, actual]
+    new:
+        title: Ciclo Lectivo
+        display: [ =descripcion, fecha_inicio, fecha_fin, actual, _importarciclo ]

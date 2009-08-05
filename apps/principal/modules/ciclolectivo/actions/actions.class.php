@@ -212,38 +212,106 @@ class ciclolectivoActions extends autociclolectivoActions
         $c->add(CiclolectivoPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
      }
 
+ public function executeEdit($request)
+  {
+    $this->ciclolectivo = $this->getCiclolectivoOrCreate();
+
+    if ($request->isMethod('post'))
+    {
+      $this->updateCiclolectivoFromRequest();
+
+      try
+      {
+        $this->saveCiclolectivo($this->ciclolectivo);
+      }
+      catch (PropelException $e)
+      {
+        $request->setError('edit', 'Could not save the edited Ciclolectivos.');
+        return $this->forward('ciclolectivo', 'list');
+      }
+
+      $this->getUser()->setFlash('notice', 'Your modifications have been saved');
+
+      if ($this->getRequestParameter('save_and_add'))
+      {
+        return $this->redirect('ciclolectivo/create');
+      }
+      else if ($this->getRequestParameter('save_and_list'))
+      {
+        return $this->redirect('ciclolectivo/list');
+      }
+      else
+      {
+        return $this->redirect('ciclolectivo/edit?id='.$this->ciclolectivo->getId());
+      }
+    }
+    else
+    {
+      $this->labels = $this->getLabels();
+    }
+  }
+
+
     protected function saveCiclolectivo($ciclolectivo) {
         //si se guarda el ciclo y se marca como actual
-	//los demas ciclo del establecimiento tiene que quedar como ACUAL = false
+        //los demas ciclo del establecimiento tiene que quedar como ACUAL = false
 
-	$con = Propel::getConnection();
-	try {
-	    $con->beginTransaction();
-	    if ($ciclolectivo->getActual()) {
-            $c1 = new Criteria();
-            $c1->add(CiclolectivoPeer::FK_ESTABLECIMIENTO_ID,$this->getUser()->getAttribute('fk_establecimiento_id'));
-            $c2 = new Criteria();
-		    $c2->add(CiclolectivoPeer::ACTUAL,false);
-    		BasePeer::doUpdate($c1,$c2,$con);
-	    }
-        $ciclolectivo->setFkEstablecimientoId($this->getUser()->getAttribute('fk_establecimiento_id'));
-        $isNew = $ciclolectivo->isNew();
-        $ciclolectivo->save();
-	    $con->commit();
+        $con = Propel::getConnection();
+        try {
+            $con->beginTransaction();
+            if ($ciclolectivo->getActual()) {
+                $c1 = new Criteria();
+                $c1->add(CiclolectivoPeer::FK_ESTABLECIMIENTO_ID,$this->getUser()->getAttribute('fk_establecimiento_id'));
+                $c2 = new Criteria();
+                $c2->add(CiclolectivoPeer::ACTUAL,false);
+                BasePeer::doUpdate($c1,$c2,$con);
+            }
+            $ciclolectivo->setFkEstablecimientoId($this->getUser()->getAttribute('fk_establecimiento_id'));
+            $isNew = $ciclolectivo->isNew();
+            $ciclolectivo->save();
+            if($isNew) {
+                # Codigo para copiar las divisiones del ciclo lectivo actual al nuevo
+                # La consulta debe contemplar que lo haga desde el ciclo lectivo actual
+                if ($this->getRequestParameter('importar')) {
+                    $ciclo_actual = CiclolectivoPeer::retrieveByPk($this->getUser()->getAttribute('fk_ciclolectivo_id'));
+                    $this->logMessage('ciclo_actual: ' . $ciclo_actual, 'debug');
+                    //clonar turnos
+                    foreach ($ciclo_actual->getTurnos() as $turno) {
+                        $nt = new Turno();
+                        $nt->setFkCiclolectivoId($ciclolectivo->getId());
+                        $nt->setHoraInicio($turno->getHoraInicio());
+                        $nt->setHoraFin($turno->getHoraFin());
+                        $nt->setDescripcion($turno->getDescripcion());
+                        $nt->save();
+                        //clonar las divisiones
+                        foreach ($turno->getDivisions() as $division) {
+                            $this->logMessage('division: '. $division, 'debug');
 
-	    //cambio el attributo porque se cambio el ciclo actual
-	    $this->getUser()->setAttribute('fk_ciclolectivo_id',$ciclolectivo->getId());
-	    $this->getUser()->setAttribute('ciclolectivo_descripcion',$ciclolectivo->getDescripcion());
-	}
-	catch (Exception $e){
-	    $con->rollBack();
-	    throw $e;
-    }
+                            $nd = new Division();
+                            $nd->setFkAnioId($division->getFkAnioId());
+                            $nd->setDescripcion($division->getDescripcion());
+                            $nd->setFkTurnoId($nt->getId());
+                            $nd->setFkOrientacionId($division->getFkOrientacionId());
+                            $nd->setOrden($division->getOrden());
+                            $nd->save();
+                        }
+                    }
 
-    if($isNew) {
-            # Codigo para copiar las divisiones del ciclo lectivo actual al nuevo
-            # La consulta debe contemplar que lo haga desde el ciclo lectivo actual
-    }
+                }
+            }
+
+            $con->commit();
+            if ($ciclolectivo->getActual()) {
+                //cambio el attributo porque se cambio el ciclo actual
+                $this->getUser()->setAttribute('fk_ciclolectivo_id',$ciclolectivo->getId());
+                $this->getUser()->setAttribute('ciclolectivo_descripcion',$ciclolectivo->getDescripcion());
+            }
+
+        }
+        catch (Exception $e){
+            $con->rollBack();
+            throw $e;
+        }
 
     }
 
