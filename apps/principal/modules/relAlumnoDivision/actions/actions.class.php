@@ -180,7 +180,7 @@ class relAlumnoDivisionActions extends autorelAlumnoDivisionActions
 
     }
 
-
+/*
     function executeEdit($request) {
         //Listado de alumnos
         $c = new Criteria();
@@ -190,7 +190,7 @@ class relAlumnoDivisionActions extends autorelAlumnoDivisionActions
         $this->optionsDivision = $this->getDivisionesDeEstablecimiento();
         $this->alumnoDivision = $this->getAlumnosPorDivision();
     }
-
+*/
 
 
     function getAlumnosPorDivision() {

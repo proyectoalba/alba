@@ -9,7 +9,7 @@ generator:
         division:   { name: Divisi&oacute;n}
     edit:
         title: Asignar alumno a grado y secci&oacute;n
-        display: [ _fk_alumno_id, _fk_division_id]
+        # display: [ alumno, _fk_division_id]
     list:
         title: Listado de alumnos por grado y secci&oacute;n
         display: [ alumno, division ]
