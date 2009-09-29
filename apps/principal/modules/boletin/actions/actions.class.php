@@ -264,7 +264,7 @@ class boletinActions extends sfActions
 
         $optionsConcepto [] = "";
         $e = EstablecimientoPeer::retrieveByPk($establecimiento_id);
-        $optionsConcepto = array_merge($optionsConcepto, $e->getConceptoArray());
+        $optionsConcepto = array_merge($optionsConcepto, $e->getConceptosArray());
 
         $aAlumno = $this->getAlumnos($division_id);
 
