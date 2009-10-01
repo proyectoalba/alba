@@ -5,7 +5,7 @@
     </div>
 <?php else:?>
 <br/>
-<div align="center" id="boletin">
+<div id="boletin">
   <div class="header">
   <?php echo $establecimiento->getNombre()?><br>
   <?php echo $establecimiento->getDireccion()?>
@@ -16,7 +16,6 @@
   <br/><br/><b>Alumno: <?php echo $alumno->getNombre()." ".$alumno->getApellido()?></b>
   <b>Curso:&nbsp;<?php echo ($division->getAnio())?$division->getAnio()->getDescripcion():""?> <?php echo $division->getDescripcion()?> </b>
   </div>
-  <br/><br/>
   <table class="notas" cellpadding="2" cellspacing="2">
     <tbody>
       <tr>
@@ -55,8 +54,6 @@
               <td><div style="text-align: center;"><?php echo $valor?></div></td>
             <?php endforeach;?>
           <?php endif;?>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
       </tr>
     <?php endforeach;?>
   </tbody>

@@ -14,10 +14,10 @@ background-image:url(../images/logo.png);
 background-repeat: no-repeat;
 background-position: right;
 vertical-align: center;
+align: center;
 }
 
 #boletin table.notas {
-text-align: center;
 width: 766px; 
 height: 143px;
 border-collapse: collapse; 
