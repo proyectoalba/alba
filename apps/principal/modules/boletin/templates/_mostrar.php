@@ -5,19 +5,19 @@
     </div>
 <?php else:?>
 <br/>
-<div align="center" style="border: 1px solid; padding: 1px;">
-  <div align="center" style="font-size: 12px; font-weight: bold; text-transform: uppercase">
+<div align="center" id="boletin">
+  <div class="header">
   <?php echo $establecimiento->getNombre()?><br>
   <?php echo $establecimiento->getDireccion()?>
   <?php echo $establecimiento->getCiudad()?>
   <?php echo $establecimiento->getCodigoPostal()?>
   <?php echo $establecimiento->getTelefono()?>
-  </div>
   <br/>BOLET&Iacute;N  Ciclo Lectivo
   <br/><br/><b>Alumno: <?php echo $alumno->getNombre()." ".$alumno->getApellido()?></b>
   <b>Curso:&nbsp;<?php echo ($division->getAnio())?$division->getAnio()->getDescripcion():""?> <?php echo $division->getDescripcion()?> </b>
+  </div>
   <br/><br/>
-  <table style="text-align: left; width: 766px; height: 143px; border-collapse: collapse; border: solid;" border="1" cellpadding="2" cellspacing="2">
+  <table class="notas" cellpadding="2" cellspacing="2">
     <tbody>
       <tr>
         <td>&nbsp;</td>
@@ -55,7 +55,6 @@
               <td><div style="text-align: center;"><?php echo $valor?></div></td>
             <?php endforeach;?>
           <?php endif;?>
-
         <td>&nbsp;</td>
         <td>&nbsp;</td>
       </tr>
