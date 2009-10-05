@@ -16,7 +16,7 @@
   <br/><br/><b>Alumno: <?php echo $alumno->getNombre()." ".$alumno->getApellido()?></b>
   <b>Curso:&nbsp;<?php echo ($division->getAnio())?$division->getAnio()->getDescripcion():""?> <?php echo $division->getDescripcion()?> </b>
   </div>
-  <table class="notas" cellpadding="2" cellspacing="2">
+  <table class="notas" cellpadding="2" cellspacing="2" align="center">
     <tbody>
       <tr>
         <td>&nbsp;</td>
