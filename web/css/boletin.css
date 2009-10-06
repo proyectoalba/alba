@@ -1,26 +1,21 @@
 #boletin {
 text-align:center;
-border: 1px solid; 
+border: 1px solid;
 padding: 1px;
 }
 
 #boletin .header {
-height: 152px;
+height: 100px;
 text-align:center;
-font-size: 12px; 
+font-size: 12px;
 font-weight: bold;
-text-transform: uppercase; 
-background-image:url(../images/logo.png);
-background-repeat: no-repeat;
-background-position: right;
+text-transform: uppercase;
 vertical-align: center;
-align: center;
 }
 
 #boletin table.notas {
-width: 766px; 
-height: 143px;
-border-collapse: collapse; 
+width: 766px;
+border-collapse: collapse;
 border-left: 2px solid;
 border-bottom: 1px solid;
 }

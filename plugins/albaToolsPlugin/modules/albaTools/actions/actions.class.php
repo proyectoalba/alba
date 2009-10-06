@@ -24,7 +24,7 @@ class albaToolsActions extends sfActions
 		$back_color = ImageColorAllocate ($img_handle, 255, 255,255 );
 		$txt_color = ImageColorAllocate ($img_handle, 0, 0, 0);
 		ImageFill($img_handle,0,0, $back_color);
-		ImageStringUp ($img_handle, $this->font, 0,$alto  - (imagefontwidth($this->font)/2), $texto, $txt_color);
+		ImageStringUp ($img_handle, $this->font, 0,$alto  - (imagefontwidth($this->font)/2),$texto, $txt_color);
 		ImagePng ($img_handle);
 		ImageDestroy($img_handle);
 		return sfView::NONE;
