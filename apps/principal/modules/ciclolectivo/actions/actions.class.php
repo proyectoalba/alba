@@ -170,8 +170,12 @@ class ciclolectivoActions extends autociclolectivoActions
                     }
 
                     if(isset($periodo['descripcion'])) $this->periodo->setDescripcion($periodo['descripcion']);
-                    if(isset($periodo['calcular'])) $this->periodo->setCalcular($periodo['calcular']);
-                     if(isset($periodo['formula'])) $this->periodo->setFormula($periodo['formula']);
+                    if(isset($periodo['calcular'])) { 
+                        $this->periodo->setCalcular($periodo['calcular']);
+                    } else {
+                        $this->periodo->setCalcular(false);
+                    }
+                    if(isset($periodo['formula'])) $this->periodo->setFormula($periodo['formula']);
                     if(isset($periodo['fecha_inicio'])) {
                         if($periodo['fecha_inicio']) {
                             list($d, $m, $y) = sfContext::getInstance()->getI18N()->getDateForCulture($periodo['fecha_inicio'], $this->getUser()->getCulture());
