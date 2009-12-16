@@ -143,6 +143,8 @@ foreach($aTurnos as $turno){
     <th id="sf_admin_list_th_descripcion"> Descripci&oacute;n</th>
     <th id="sf_admin_list_th_fecha_inicio">Fecha Inicio</th>
     <th id="sf_admin_list_th_fecha_fin">Fecha Fin</th>
+    <th id="sf_admin_list_th_fecha_fin">Calcular</th>
+    <th id="sf_admin_list_th_fecha_fin">Formula</th>
     <th id="sf_admin_list_th_nro_action">Acciones</th>
   </tr>
   </thead>
@@ -154,7 +156,9 @@ foreach($aTurnos as $turno){
   <tr class="sf_admin_row_0">
     <td><?php echo input_tag("periodo[$i][descripcion]",$periodo->getDescripcion());?></td>
     <td><?php echo input_date_tag("periodo[$i][fecha_inicio]",$periodo->getFechaInicio(), "rich=true calendar_button_img=/sf/sf_admin/images/date.png");?></td>
-    <td><?php echo input_date_tag("preiodo[$i][fecha_fin]",$periodo->getFechaFin(), "rich=true calendar_button_img=/sf/sf_admin/images/date.png");?></td>
+    <td><?php echo input_date_tag("periodo[$i][fecha_fin]",$periodo->getFechaFin(), "rich=true calendar_button_img=/sf/sf_admin/images/date.png");?></td>
+    <td><?php echo checkbox_tag("periodo[$i][calcular]",'1',$periodo->getCalcular());?></td>
+    <td><?php echo input_tag("periodo[$i][formula]",$periodo->getFormula());?></td>
     <?php echo input_hidden_tag("periodo[$i][id]", $periodo->getId()); ?>
     <td>
     <ul class="sf_admin_td_actions">
@@ -169,6 +173,8 @@ foreach($aTurnos as $turno){
     <td><?php echo input_tag("periodo[$i][descripcion]",'');?></td>
     <td><?php echo input_date_tag("periodo[$i][fecha_inicio]",'',"rich=true calendar_button_img=/sf/sf_admin/images/date.png");?></td>
     <td><?php echo input_date_tag("periodo[$i][fecha_fin]",'',"rich=true calendar_button_img=/sf/sf_admin/images/date.png");?></td>
+    <td><?php echo checkbox_tag("periodo[$i][calcular]",'1',false);?></td>
+    <td><?php echo input_tag("periodo[$i][formula]",'');?></td>
     <td></td>
   </tr>
 
