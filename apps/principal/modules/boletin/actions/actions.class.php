@@ -171,7 +171,9 @@ class boletinActions extends sfActions
             $aAlumno = $this->getAlumnos($division_id);
             $criteria = new Criteria();
             $criteria->add(PeriodoPeer::FK_CICLOLECTIVO_ID, $this->getUser()->getAttribute('fk_ciclolectivo_id'));
+            $criteria->add(PeriodoPeer::CALCULAR, false);
             $aPeriodo = PeriodoPeer::doSelect($criteria);
+
             $optionsPeriodo[] = "";
             foreach($aPeriodo as $periodo) {
                 $optionsPeriodo[$periodo->getId()] = $periodo->getDescripcion();
@@ -270,6 +272,7 @@ class boletinActions extends sfActions
 
         $criteria = new Criteria();
         $criteria->add(PeriodoPeer::FK_CICLOLECTIVO_ID, $this->getUser()->getAttribute('fk_ciclolectivo_id'));
+        $criteria->add(PeriodoPeer::CALCULAR, false);
         $aPeriodo = PeriodoPeer::doSelect($criteria);
         $optionsPeriodo[] = "Todos";
         foreach($aPeriodo as $periodo) {

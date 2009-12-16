@@ -36,8 +36,8 @@ class BaseDocenteForm extends BaseFormPropel
       'activo'                          => new sfWidgetFormInputCheckbox(),
       'fk_provincia_id'                 => new sfWidgetFormPropelChoice(array('model' => 'Provincia', 'add_empty' => false)),
       'fk_pais_id'                      => new sfWidgetFormPropelChoice(array('model' => 'Pais', 'add_empty' => false)),
-      'docente_horario_list'            => new sfWidgetFormPropelChoiceMany(array('model' => 'Evento')),
       'rel_anio_actividad_docente_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'RelAnioActividad')),
+      'docente_horario_list'            => new sfWidgetFormPropelChoiceMany(array('model' => 'Evento')),
     ));
 
     $this->setValidators(array(
@@ -64,8 +64,8 @@ class BaseDocenteForm extends BaseFormPropel
       'activo'                          => new sfValidatorBoolean(array('required' => false)),
       'fk_provincia_id'                 => new sfValidatorPropelChoice(array('model' => 'Provincia', 'column' => 'id')),
       'fk_pais_id'                      => new sfValidatorPropelChoice(array('model' => 'Pais', 'column' => 'id')),
-      'docente_horario_list'            => new sfValidatorPropelChoiceMany(array('model' => 'Evento', 'required' => false)),
       'rel_anio_actividad_docente_list' => new sfValidatorPropelChoiceMany(array('model' => 'RelAnioActividad', 'required' => false)),
+      'docente_horario_list'            => new sfValidatorPropelChoiceMany(array('model' => 'Evento', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('docente[%s]');
@@ -85,17 +85,6 @@ class BaseDocenteForm extends BaseFormPropel
   {
     parent::updateDefaultsFromObject();
 
-    if (isset($this->widgetSchema['docente_horario_list']))
-    {
-      $values = array();
-      foreach ($this->object->getDocenteHorarios() as $obj)
-      {
-        $values[] = $obj->getFkEventoId();
-      }
-
-      $this->setDefault('docente_horario_list', $values);
-    }
-
     if (isset($this->widgetSchema['rel_anio_actividad_docente_list']))
     {
       $values = array();
@@ -107,49 +96,25 @@ class BaseDocenteForm extends BaseFormPropel
       $this->setDefault('rel_anio_actividad_docente_list', $values);
     }
 
+    if (isset($this->widgetSchema['docente_horario_list']))
+    {
+      $values = array();
+      foreach ($this->object->getDocenteHorarios() as $obj)
+      {
+        $values[] = $obj->getFkEventoId();
+      }
+
+      $this->setDefault('docente_horario_list', $values);
+    }
+
   }
 
   protected function doSave($con = null)
   {
     parent::doSave($con);
 
-    $this->saveDocenteHorarioList($con);
     $this->saveRelAnioActividadDocenteList($con);
-  }
-
-  public function saveDocenteHorarioList($con = null)
-  {
-    if (!$this->isValid())
-    {
-      throw $this->getErrorSchema();
-    }
-
-    if (!isset($this->widgetSchema['docente_horario_list']))
-    {
-      // somebody has unset this widget
-      return;
-    }
-
-    if (is_null($con))
-    {
-      $con = $this->getConnection();
-    }
-
-    $c = new Criteria();
-    $c->add(DocenteHorarioPeer::FK_DOCENTE_ID, $this->object->getPrimaryKey());
-    DocenteHorarioPeer::doDelete($c, $con);
-
-    $values = $this->getValue('docente_horario_list');
-    if (is_array($values))
-    {
-      foreach ($values as $value)
-      {
-        $obj = new DocenteHorario();
-        $obj->setFkDocenteId($this->object->getPrimaryKey());
-        $obj->setFkEventoId($value);
-        $obj->save();
-      }
-    }
+    $this->saveDocenteHorarioList($con);
   }
 
   public function saveRelAnioActividadDocenteList($con = null)
@@ -182,6 +147,41 @@ class BaseDocenteForm extends BaseFormPropel
         $obj = new RelAnioActividadDocente();
         $obj->setFkDocenteId($this->object->getPrimaryKey());
         $obj->setFkAnioActividadId($value);
+        $obj->save();
+      }
+    }
+  }
+
+  public function saveDocenteHorarioList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['docente_horario_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (is_null($con))
+    {
+      $con = $this->getConnection();
+    }
+
+    $c = new Criteria();
+    $c->add(DocenteHorarioPeer::FK_DOCENTE_ID, $this->object->getPrimaryKey());
+    DocenteHorarioPeer::doDelete($c, $con);
+
+    $values = $this->getValue('docente_horario_list');
+    if (is_array($values))
+    {
+      foreach ($values as $value)
+      {
+        $obj = new DocenteHorario();
+        $obj->setFkDocenteId($this->object->getPrimaryKey());
+        $obj->setFkEventoId($value);
         $obj->save();
       }
     }
