@@ -61,7 +61,7 @@ class boletinComponents extends sfComponents
                 if($ad) {
                     $division_id = $ad->getFkDivisionId();
                 } else {
-                    $no_cargar = 1;    
+                    $no_cargar = 1;
                 }
             }
 
@@ -74,12 +74,12 @@ class boletinComponents extends sfComponents
                 $e = EstablecimientoPeer::retrieveByPk($establecimiento_id);
                 $optionsConcepto = $e->getConceptosArray();
 
-                $notaAlumno = $alumno->getNotas();
+                $notaAlumno = $alumno->getNotas($this->getUser()->getAttribute('fk_ciclolectivo_id'));
                 $conceptoAlumno = $alumno->getNotasConcepto();
 
                 $c = CiclolectivoPeer::retrieveByPk($this->getUser()->getAttribute('fk_ciclolectivo_id'));
                 $optionsPeriodo = $c->getPeriodosArray();
-                
+
                 $aAsistencia = $alumno->getAsistenciasPorCiclolectivo($this->getUser()->getAttribute('fk_ciclolectivo_id'));
             } else {
                 $this->getUser()->setFlash('notice','Error: el alumno no esta en ninguna división');

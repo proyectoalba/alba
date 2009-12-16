@@ -78,19 +78,68 @@ class Alumno extends BaseAlumno {
         return $conceptoAlumno;
     }
 
-    public function getNotas() {
+    public function getNotas($ciclolectivo_id) {
         $notaAlumno = array();
+        $notaActividad = array();
         // notas del alumno
         $criteria = new Criteria();
         $criteria->add(BoletinActividadesPeer::FK_ALUMNO_ID, $this->getId());
+        $criteria->add(PeriodoPeer::CALCULAR, false);
+        $criteria->add(PeriodoPeer::FK_CICLOLECTIVO_ID, $ciclolectivo_id);
         $criteria->addJoin(BoletinActividadesPeer::FK_ESCALANOTA_ID, EscalanotaPeer::ID);
+        $criteria->addJoin(BoletinActividadesPeer::FK_PERIODO_ID, PeriodoPeer::ID);
         $criteria->addAsColumn("boletinActividades_periodo_id", BoletinActividadesPeer::FK_PERIODO_ID);
         $criteria->addAsColumn("boletinActividades_actividad_id", BoletinActividadesPeer::FK_ACTIVIDAD_ID);
         $criteria->addAsColumn("escalanota_nombre", EscalanotaPeer::NOMBRE);
+
         $aBoletinActividades = BasePeer::doSelect($criteria);
         foreach($aBoletinActividades as $boletinActividades) {
             $notaAlumno[$boletinActividades[0]][$boletinActividades[1]] = $boletinActividades[2];
-            $notaAlumno['calcular'] = true;
+            $notaActividad[$boletinActividades[1]][$boletinActividades[0]] = $boletinActividades[2];
+        }
+        $c = new Criteria();
+        $c->add(PeriodoPeer::FK_CICLOLECTIVO_ID, $ciclolectivo_id);
+        $c->add(PeriodoPeer::CALCULAR,true);
+
+        $periodos = PeriodoPeer::doSelect($c);
+        foreach ($notaActividad as $act_indice => &$act) {
+            foreach ($periodos as $periodo) {
+                //validar que esten ok
+                if (trim($periodo->getFormula()) != '') {
+
+                    list($class_formula,$parametros) = explode('|', $periodo->getFormula());
+
+                    $parametros = explode(',', $parametros);
+                    //if (array_intersect($parametros,array_keys($act)) == $parametros) {
+                        sfContext::getInstance()->getLogger()->debug("estan todo slo ids");
+
+                        $class_formula = "formula_$class_formula";
+
+                        require_once(sfConfig::get('sf_lib_dir') . DIRECTORY_SEPARATOR. 'formulas' . DIRECTORY_SEPARATOR . $class_formula . ".class.php");
+                        $formula = new $class_formula;
+                        $notas_parametros = array();
+                        foreach($parametros as $parametro) {
+                            if (isset($act[$parametro])) {
+                                array_push($notas_parametros,sprintf("%01.2f",str_replace(",",".",$act[$parametro])));
+                            }
+                            else {
+                                array_push($notas_parametros,'');
+                            }
+
+                        }
+                        $nota = $formula->calcular($notas_parametros);
+                        $notaAlumno[$periodo->getId()][$act_indice] = $nota;
+                        $act[$periodo->getId()] = $nota;
+                    //}
+                    //else {
+                    //    sfContext::getInstance()->getLogger()->debug('faltan parametros para la formula');
+                    //}
+                }
+                else
+                {
+                    sfContext::getInstance()->getLogger()->debug('el periodo es calculable pero no tiene una formula cargada');
+                }
+            }
         }
 
         return $notaAlumno;
