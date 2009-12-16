@@ -25,6 +25,12 @@ abstract class BasePeriodo extends BaseObject  implements Persistent {
 	protected $descripcion;
 
 	
+	protected $calcular;
+
+	
+	protected $formula;
+
+	
 	protected $aCiclolectivo;
 
 	
@@ -61,6 +67,7 @@ abstract class BasePeriodo extends BaseObject  implements Persistent {
 	
 	public function applyDefaultValues()
 	{
+		$this->calcular = false;
 	}
 
 	
@@ -133,6 +140,18 @@ abstract class BasePeriodo extends BaseObject  implements Persistent {
 	public function getDescripcion()
 	{
 		return $this->descripcion;
+	}
+
+	
+	public function getCalcular()
+	{
+		return $this->calcular;
+	}
+
+	
+	public function getFormula()
+	{
+		return $this->formula;
 	}
 
 	
@@ -246,9 +265,41 @@ abstract class BasePeriodo extends BaseObject  implements Persistent {
 		return $this;
 	} 
 	
+	public function setCalcular($v)
+	{
+		if ($v !== null) {
+			$v = (boolean) $v;
+		}
+
+		if ($this->calcular !== $v || $v === false) {
+			$this->calcular = $v;
+			$this->modifiedColumns[] = PeriodoPeer::CALCULAR;
+		}
+
+		return $this;
+	} 
+	
+	public function setFormula($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->formula !== $v) {
+			$this->formula = $v;
+			$this->modifiedColumns[] = PeriodoPeer::FORMULA;
+		}
+
+		return $this;
+	} 
+	
 	public function hasOnlyDefaultValues()
 	{
-						if (array_diff($this->modifiedColumns, array())) {
+						if (array_diff($this->modifiedColumns, array(PeriodoPeer::CALCULAR))) {
+				return false;
+			}
+
+			if ($this->calcular !== false) {
 				return false;
 			}
 
@@ -264,6 +315,8 @@ abstract class BasePeriodo extends BaseObject  implements Persistent {
 			$this->fecha_inicio = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
 			$this->fecha_fin = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
 			$this->descripcion = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+			$this->calcular = ($row[$startcol + 5] !== null) ? (boolean) $row[$startcol + 5] : null;
+			$this->formula = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -272,7 +325,7 @@ abstract class BasePeriodo extends BaseObject  implements Persistent {
 				$this->ensureConsistency();
 			}
 
-						return $startcol + 5; 
+						return $startcol + 7; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Periodo object", $e);
 		}
@@ -529,6 +582,12 @@ abstract class BasePeriodo extends BaseObject  implements Persistent {
 			case 4:
 				return $this->getDescripcion();
 				break;
+			case 5:
+				return $this->getCalcular();
+				break;
+			case 6:
+				return $this->getFormula();
+				break;
 			default:
 				return null;
 				break;
@@ -544,6 +603,8 @@ abstract class BasePeriodo extends BaseObject  implements Persistent {
 			$keys[2] => $this->getFechaInicio(),
 			$keys[3] => $this->getFechaFin(),
 			$keys[4] => $this->getDescripcion(),
+			$keys[5] => $this->getCalcular(),
+			$keys[6] => $this->getFormula(),
 		);
 		return $result;
 	}
@@ -574,6 +635,12 @@ abstract class BasePeriodo extends BaseObject  implements Persistent {
 			case 4:
 				$this->setDescripcion($value);
 				break;
+			case 5:
+				$this->setCalcular($value);
+				break;
+			case 6:
+				$this->setFormula($value);
+				break;
 		} 	}
 
 	
@@ -586,6 +653,8 @@ abstract class BasePeriodo extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[2], $arr)) $this->setFechaInicio($arr[$keys[2]]);
 		if (array_key_exists($keys[3], $arr)) $this->setFechaFin($arr[$keys[3]]);
 		if (array_key_exists($keys[4], $arr)) $this->setDescripcion($arr[$keys[4]]);
+		if (array_key_exists($keys[5], $arr)) $this->setCalcular($arr[$keys[5]]);
+		if (array_key_exists($keys[6], $arr)) $this->setFormula($arr[$keys[6]]);
 	}
 
 	
@@ -598,6 +667,8 @@ abstract class BasePeriodo extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(PeriodoPeer::FECHA_INICIO)) $criteria->add(PeriodoPeer::FECHA_INICIO, $this->fecha_inicio);
 		if ($this->isColumnModified(PeriodoPeer::FECHA_FIN)) $criteria->add(PeriodoPeer::FECHA_FIN, $this->fecha_fin);
 		if ($this->isColumnModified(PeriodoPeer::DESCRIPCION)) $criteria->add(PeriodoPeer::DESCRIPCION, $this->descripcion);
+		if ($this->isColumnModified(PeriodoPeer::CALCULAR)) $criteria->add(PeriodoPeer::CALCULAR, $this->calcular);
+		if ($this->isColumnModified(PeriodoPeer::FORMULA)) $criteria->add(PeriodoPeer::FORMULA, $this->formula);
 
 		return $criteria;
 	}
@@ -635,6 +706,10 @@ abstract class BasePeriodo extends BaseObject  implements Persistent {
 		$copyObj->setFechaFin($this->fecha_fin);
 
 		$copyObj->setDescripcion($this->descripcion);
+
+		$copyObj->setCalcular($this->calcular);
+
+		$copyObj->setFormula($this->formula);
 
 
 		if ($deepCopy) {

@@ -43,5 +43,9 @@ class PeriodoMapBuilder implements MapBuilder {
 
 		$tMap->addColumn('DESCRIPCION', 'Descripcion', 'VARCHAR', true, 255);
 
+		$tMap->addColumn('CALCULAR', 'Calcular', 'BOOLEAN', true, null);
+
+		$tMap->addColumn('FORMULA', 'Formula', 'VARCHAR', false, 1000);
+
 	} 
 } 

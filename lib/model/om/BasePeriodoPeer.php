@@ -13,7 +13,7 @@ abstract class BasePeriodoPeer {
 	const CLASS_DEFAULT = 'lib.model.Periodo';
 
 	
-	const NUM_COLUMNS = 5;
+	const NUM_COLUMNS = 7;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -34,6 +34,12 @@ abstract class BasePeriodoPeer {
 	const DESCRIPCION = 'periodo.DESCRIPCION';
 
 	
+	const CALCULAR = 'periodo.CALCULAR';
+
+	
+	const FORMULA = 'periodo.FORMULA';
+
+	
 	public static $instances = array();
 
 	
@@ -41,20 +47,20 @@ abstract class BasePeriodoPeer {
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'FkCiclolectivoId', 'FechaInicio', 'FechaFin', 'Descripcion', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'fkCiclolectivoId', 'fechaInicio', 'fechaFin', 'descripcion', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::FK_CICLOLECTIVO_ID, self::FECHA_INICIO, self::FECHA_FIN, self::DESCRIPCION, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'fk_ciclolectivo_id', 'fecha_inicio', 'fecha_fin', 'descripcion', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'FkCiclolectivoId', 'FechaInicio', 'FechaFin', 'Descripcion', 'Calcular', 'Formula', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'fkCiclolectivoId', 'fechaInicio', 'fechaFin', 'descripcion', 'calcular', 'formula', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::FK_CICLOLECTIVO_ID, self::FECHA_INICIO, self::FECHA_FIN, self::DESCRIPCION, self::CALCULAR, self::FORMULA, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'fk_ciclolectivo_id', 'fecha_inicio', 'fecha_fin', 'descripcion', 'calcular', 'formula', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'FkCiclolectivoId' => 1, 'FechaInicio' => 2, 'FechaFin' => 3, 'Descripcion' => 4, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'fkCiclolectivoId' => 1, 'fechaInicio' => 2, 'fechaFin' => 3, 'descripcion' => 4, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::FK_CICLOLECTIVO_ID => 1, self::FECHA_INICIO => 2, self::FECHA_FIN => 3, self::DESCRIPCION => 4, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'fk_ciclolectivo_id' => 1, 'fecha_inicio' => 2, 'fecha_fin' => 3, 'descripcion' => 4, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'FkCiclolectivoId' => 1, 'FechaInicio' => 2, 'FechaFin' => 3, 'Descripcion' => 4, 'Calcular' => 5, 'Formula' => 6, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'fkCiclolectivoId' => 1, 'fechaInicio' => 2, 'fechaFin' => 3, 'descripcion' => 4, 'calcular' => 5, 'formula' => 6, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::FK_CICLOLECTIVO_ID => 1, self::FECHA_INICIO => 2, self::FECHA_FIN => 3, self::DESCRIPCION => 4, self::CALCULAR => 5, self::FORMULA => 6, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'fk_ciclolectivo_id' => 1, 'fecha_inicio' => 2, 'fecha_fin' => 3, 'descripcion' => 4, 'calcular' => 5, 'formula' => 6, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, )
 	);
 
 	
@@ -105,6 +111,10 @@ abstract class BasePeriodoPeer {
 		$criteria->addSelectColumn(PeriodoPeer::FECHA_FIN);
 
 		$criteria->addSelectColumn(PeriodoPeer::DESCRIPCION);
+
+		$criteria->addSelectColumn(PeriodoPeer::CALCULAR);
+
+		$criteria->addSelectColumn(PeriodoPeer::FORMULA);
 
 	}
 

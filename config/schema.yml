@@ -955,7 +955,15 @@ propel:
       type: varchar
       size: 255
       required: true
-
+    calcular:
+      type: boolean
+      required: true
+      default: false
+    formula:
+      type: varchar
+      size: 1000
+      required: false
+      
   tipodocente:
     _attributes:
       idMethod: native

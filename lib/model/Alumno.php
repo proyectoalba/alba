@@ -90,7 +90,9 @@ class Alumno extends BaseAlumno {
         $aBoletinActividades = BasePeer::doSelect($criteria);
         foreach($aBoletinActividades as $boletinActividades) {
             $notaAlumno[$boletinActividades[0]][$boletinActividades[1]] = $boletinActividades[2];
+            $notaAlumno['calcular'] = true;
         }
+
         return $notaAlumno;
     }
 
@@ -122,7 +124,7 @@ class Alumno extends BaseAlumno {
 
         if($rsColumna) {
             while($res_c = $rsColumna->fetch()) {
-                 $aAsistencia[$res_c[0]] = 0;  // indice: nombre del Grupo, contenido: 
+                 $aAsistencia[$res_c[0]] = 0;  // indice: nombre del Grupo, contenido:
             }
         }
         if($rsValor) {
@@ -137,7 +139,7 @@ class Alumno extends BaseAlumno {
 
 
     public function getAsistenciasPorCiclolectivo($ciclo_lectivo) {
-        $aAsistencia = array(); 
+        $aAsistencia = array();
         $criteria = new Criteria();
         $criteria->add(PeriodoPeer::FK_CICLOLECTIVO_ID, $ciclo_lectivo);
         $aPeriodo = PeriodoPeer::doSelect($criteria);
