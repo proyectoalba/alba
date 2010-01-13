@@ -321,42 +321,29 @@ function check_rewrite() {
 
 
 function build_model_sql() {
-    chdir('../../');
 
-    define('STDOUT','');
-    define('STDERR','');
-
-    require_once(dirname(__FILE__).'/../config/ProjectConfiguration.class.php');
+    define ('STDOUT','');
+    $pconfig = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'ProjectConfiguration.class.php';
+    DebugLog('pconfig: ' . $pconfig);
+    require($pconfig);
     $configuration = ProjectConfiguration::getApplicationConfiguration('principal', 'dev', true);
     sfContext::createInstance($configuration);
 
+    $dispatcher = sfContext::getInstance()->getEventDispatcher();
+    $formatter = new sfFormatter();
+    $args = array();
+    $options = array();
+    
+    $task = new sfPropelBuildModelTask($dispatcher,$formatter);
+    chdir(sfConfig::get('sf_root_dir'));
+    $task->run($args, $options);
+    
+    $task = new sfPropelBuildSqlTask($dispatcher, $formatter);
+    chdir(sfConfig::get('sf_root_dir'));
+    $task->run($args, $options);
+  
 
-
-
-
-    require_once($sf_symfony_lib_dir.'/vendor/pake/pakeFunction.php');
-    require_once($sf_symfony_lib_dir.'/vendor/pake/pakeGetopt.class.php');
-
-
-    $dirs = array(
-    sfConfig::get('sf_data_dir').DIRECTORY_SEPARATOR.'tasks'         => 'myPake*.php', // project tasks
-    sfConfig::get('sf_symfony_data_dir').DIRECTORY_SEPARATOR.'tasks' => 'sfPake*.php', // symfony tasks
-    sfConfig::get('sf_root_dir').'/plugins/*/data/tasks'             => '*.php',       // plugin tasks
-    );
-
-    foreach ($dirs as $globDir => $name)
-    {
-        if ($dirs = glob($globDir))
-        {
-            $tasks = pakeFinder::type('file')->name($name)->in($dirs);
-            foreach ($tasks as $task)
-            {
-                include_once($task);
-            }
-        }
-    }
-    $pake = pakeApp::get_instance();
-
+    /*
     try
     {
         $ret = $pake->run(sfConfig::get('sf_symfony_data_dir').DIRECTORY_SEPARATOR.'tasks'.DIRECTORY_SEPARATOR.'sfPakePropel.php', array('propel-build-model','--quiet') , true);
@@ -374,11 +361,8 @@ function build_model_sql() {
     {
         print "<strong>ERROR</strong>: ".$e->getMessage();
     }
-
+*/
 }
-
-
-
 
 
 
