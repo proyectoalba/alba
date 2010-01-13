@@ -12,9 +12,9 @@ all:
   propel:
     class:          sfPropelDatabase
     param:
-      dsn:          PROTOCOL:dbname=DBNAME;host=SERVER
-      username:     USERDB
-      password:     PASSDB
+      dsn:          %PROTOCOL%:dbname=%DBNAME%;host=%SERVER%
+      username:     %USERDB%
+      password:     %PASSDB%
       enconding:    utf8
       classname:    PropelPDO
       datasource:   propel
