@@ -4,8 +4,8 @@ propel.targetPackage       = lib.model
 propel.project             = alba
 
 propel.database            = %PROTOCOL%
-propel.database.driver     = %PROTOCOL5
-propel.database.url        = %PROTOCOL%:dbname=%DBNAME5;host=%SERVER%
+propel.database.driver     = %PROTOCOL%
+propel.database.url        = %PROTOCOL%:dbname=%DBNAME%;host=%SERVER%
 propel.database.user       = %USERDB%
 propel.database.password   = %PASSDB%
 propel.database.encoding   = utf8
