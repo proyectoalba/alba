@@ -75,14 +75,14 @@ Tipoinforme:
 Adjunto:
   Adjunto_1:
     descripcion:
-    titulo:
+    titulo: constancia_alumno_regular
     nombre_archivo: constancia_alumno_regular.odt
     tipo_archivo: application/vnd.oasis.opendocument.text
     ruta: constancia_alumno_regular.odt
     fecha: 2007-10-17 00:00:00
   Adjunto_2:
     descripcion:
-    titulo:
+    titulo: certificado_de_terminacion_de_estudios_primarios
     nombre_archivo: >
       certificado_de_terminacion_de_estudios_primarios.odt
     tipo_archivo: application/vnd.oasis.opendocument.text
@@ -91,56 +91,56 @@ Adjunto:
     fecha: 2007-10-17 00:00:00
   Adjunto_3:
     descripcion:
-    titulo:
+    titulo: solicitud_legajo
     nombre_archivo: solicitud_legajo.odt
     tipo_archivo: application/vnd.oasis.opendocument.text
     ruta: solicitud_legajo.odt
     fecha: 2007-10-17 00:00:00
   Adjunto_4:
     descripcion:
-    titulo:
+    titulo: certificado_de_estudios
     nombre_archivo: certificado_de_estudios.odt
     tipo_archivo: application/vnd.oasis.opendocument.text
     ruta: certificado_de_estudios.odt
     fecha: 2007-10-17 00:00:00
   Adjunto_5:
     descripcion:
-    titulo:
+    titulo: alumnos_por_division
     nombre_archivo: alumnos_por_division.odt
     tipo_archivo: application/vnd.oasis.opendocument.text
     ruta: alumnos_por_division.odt
     fecha: 2007-10-17 00:00:00
   Adjunto_6:
     descripcion:
-    titulo:
+    titulo: locacion
     nombre_archivo: locacion.odt
     tipo_archivo: application/vnd.oasis.opendocument.text
     ruta: locacion.odt
     fecha: 2007-10-17 00:00:00
   Adjunto_7:
     descripcion:
-    titulo:
+    titulo: docente
     nombre_archivo: docente.odt
     tipo_archivo: application/vnd.oasis.opendocument.text
     ruta: docente.odt
     fecha: 2007-10-17 00:00:00
   Adjunto_8:
     descripcion:
-    titulo:
+    titulo: organizacion
     nombre_archivo: organizacion.odt
     tipo_archivo: application/vnd.oasis.opendocument.text
     ruta: organizacion.odt
     fecha: 2007-10-17 00:00:00
   Adjunto_9:
     descripcion:
-    titulo:
+    titulo: cuenta
     nombre_archivo: cuenta.odt
     tipo_archivo: application/vnd.oasis.opendocument.text
     ruta: cuenta.odt
     fecha: 2007-10-17 00:00:00
   Adjunto_10:
     descripcion:
-    titulo:
+    titulo: responsable
     nombre_archivo: responsable.odt
     tipo_archivo: application/vnd.oasis.opendocument.text
     ruta: responsable.odt
