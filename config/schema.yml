@@ -630,7 +630,7 @@ propel:
     cuit:
       type: VARCHAR
       size: 20
-      required: true
+      required: false
     direccion:
       type: VARCHAR
       size: 128
