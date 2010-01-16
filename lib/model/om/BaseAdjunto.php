@@ -104,14 +104,11 @@ abstract class BaseAdjunto extends BaseObject  implements Persistent {
 		}
 
 
-		if ($this->fecha === '0000-00-00 00:00:00') {
-									return null;
-		} else {
-			try {
-				$dt = new DateTime($this->fecha);
-			} catch (Exception $x) {
-				throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->fecha, true), $x);
-			}
+
+		try {
+			$dt = new DateTime($this->fecha);
+		} catch (Exception $x) {
+			throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->fecha, true), $x);
 		}
 
 		if ($format === null) {
@@ -228,12 +225,12 @@ abstract class BaseAdjunto extends BaseObject  implements Persistent {
 
 		if ( $this->fecha !== null || $dt !== null ) {
 			
-			$currNorm = ($this->fecha !== null && $tmpDt = new DateTime($this->fecha)) ? $tmpDt->format('Y-m-d H:i:s') : null;
-			$newNorm = ($dt !== null) ? $dt->format('Y-m-d H:i:s') : null;
+			$currNorm = ($this->fecha !== null && $tmpDt = new DateTime($this->fecha)) ? $tmpDt->format('Y-m-d\\TH:i:sO') : null;
+			$newNorm = ($dt !== null) ? $dt->format('Y-m-d\\TH:i:sO') : null;
 
 			if ( ($currNorm !== $newNorm) 					)
 			{
-				$this->fecha = ($dt ? $dt->format('Y-m-d H:i:s') : null);
+				$this->fecha = ($dt ? $dt->format('Y-m-d\\TH:i:sO') : null);
 				$this->modifiedColumns[] = AdjuntoPeer::FECHA;
 			}
 		} 

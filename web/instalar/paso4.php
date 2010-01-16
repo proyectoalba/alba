@@ -1,7 +1,7 @@
 <?php
 /**
  *    This file is part of Alba.
- * 
+ *
  *    Alba is free software; you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as published by
  *    the Free Software Foundation; either version 2 of the License, or
@@ -37,24 +37,24 @@ if (!defined('ALBA_INSTALLER')) die();
     $user = $_SESSION['albainstall']['user'];
     $pass = $_SESSION['albainstall']['pass'];
     $db = $_SESSION['albainstall']['db'];
- 
- 
+
+
     if (isset($_POST['set_tipo_base']) && $_POST['set_tipo_base'] == 1) {
         if(!isset($_POST['tipo_base'])) {
             $error_flag= true;
             $error_msg = "Por favor seleccione un tipo de base de datos";
         }
-        else {    
+        else {
             $_SESSION['albainstall']['tipo_base'] = $_POST['tipo_base'];
             $completo = false;
         }
     }
     else
-        $completo = true; 
+        $completo = true;
 ?>
 <div id="detalle">
 <p>Selecci&oacute;n de base de datos inicial:</p>
-<p>Ahora ud. podr&aacute; elegir si desea comenzar 
+<p>Ahora ud. podr&aacute; elegir si desea comenzar
 a utilizar el sistema con una base vac&iacute;a (datos m&iacute;nimos)<br/>
 &oacute; con una base de datos de Ejemplo (datos de prueba).</p>
 </div>
@@ -73,11 +73,12 @@ a utilizar el sistema con una base vac&iacute;a (datos m&iacute;nimos)<br/>
     <table>
         <tr>
             <td>Datos m&iacute;nimos:</td>
-            <td><input type="radio" name="tipo_base" value="minima" <?php echo isset($_POST['tipo_base']) && $_POST['tipo_base'] == 'minima' ? 'checked' : ''?> ></td>
-        </tr>
-        <tr>
-            <td>Datos ejemplo:</td>
-            <td><input type="radio" name="tipo_base" value="ejemplo1" <?php echo isset($_POST['tipo_base']) && $_POST['tipo_base'] == 'ejemplo1' ? 'checked' : ''?>></td>
+            <td>
+              <select name="tipo_base">
+                <option value="" <?php echo $_SESSION['albainstall']['tipo_base'] == '' ? 'selected' : ''?>>MINIMA - Datos basicos para comenzar a operar</option>
+                <option value="ejemplo1" <?php echo $_SESSION['albainstall']['tipo_base'] == 'ejemplo1' ? 'selected' : ''?>>EJEMPLO1 - Datos de ejemplo</option>
+              </select>
+            </td>
         </tr>
     </table>
     <br/>
@@ -92,8 +93,8 @@ a utilizar el sistema con una base vac&iacute;a (datos m&iacute;nimos)<br/>
     <?php endif;?>
 <?php endif;?>
 
-<?php 
+<?php
 // ir al siguiente paso
    $paso = 5;
-   
+
 ?>

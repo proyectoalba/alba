@@ -33,6 +33,8 @@ class RelUsuarioPreferenciaMapBuilder implements MapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
+		$tMap->setPrimaryKeyMethodInfo('rel_usuario_preferencia_id_seq');
+
 		$tMap->addPrimaryKey('ID', 'Id', 'INTEGER', true, null);
 
 		$tMap->addColumn('FK_USUARIO_ID', 'FkUsuarioId', 'INTEGER', true, null);

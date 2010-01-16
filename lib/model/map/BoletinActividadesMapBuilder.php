@@ -33,6 +33,8 @@ class BoletinActividadesMapBuilder implements MapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
+		$tMap->setPrimaryKeyMethodInfo('boletin_actividades_id_seq');
+
 		$tMap->addPrimaryKey('ID', 'Id', 'INTEGER', true, null);
 
 		$tMap->addForeignKey('FK_ESCALANOTA_ID', 'FkEscalanotaId', 'INTEGER', 'escalanota', 'ID', false, null);

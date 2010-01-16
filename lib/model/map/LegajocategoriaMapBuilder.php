@@ -33,6 +33,8 @@ class LegajocategoriaMapBuilder implements MapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
+		$tMap->setPrimaryKeyMethodInfo('legajocategoria_id_seq');
+
 		$tMap->addPrimaryKey('ID', 'Id', 'INTEGER', true, null);
 
 		$tMap->addColumn('DESCRIPCION', 'Descripcion', 'VARCHAR', true, 255);

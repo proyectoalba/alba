@@ -33,6 +33,8 @@ class RelRolresponsableResponsableMapBuilder implements MapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
+		$tMap->setPrimaryKeyMethodInfo('rel_rolresponsable_responsable_id_seq');
+
 		$tMap->addPrimaryKey('ID', 'Id', 'INTEGER', true, null);
 
 		$tMap->addForeignKey('FK_ROLRESPONSABLE_ID', 'FkRolresponsableId', 'INTEGER', 'rol_responsable', 'ID', true, null);

@@ -29,7 +29,7 @@ class BaseCuentaForm extends BaseFormPropel
       'id'              => new sfValidatorPropelChoice(array('model' => 'Cuenta', 'column' => 'id', 'required' => false)),
       'nombre'          => new sfValidatorString(array('max_length' => 128)),
       'razon_social'    => new sfValidatorString(array('max_length' => 128)),
-      'cuit'            => new sfValidatorString(array('max_length' => 20)),
+      'cuit'            => new sfValidatorString(array('max_length' => 20, 'required' => false)),
       'direccion'       => new sfValidatorString(array('max_length' => 128)),
       'ciudad'          => new sfValidatorString(array('max_length' => 128)),
       'codigo_postal'   => new sfValidatorString(array('max_length' => 20)),

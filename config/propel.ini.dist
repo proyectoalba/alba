@@ -1,4 +1,4 @@
-# Archivo generado por el instalador de Alba 04/04/2008 11:55:30
+# Archivo generado por el instalador de Alba %TIMESTAMP%
 
 propel.targetPackage       = lib.model
 propel.project             = alba

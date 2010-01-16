@@ -33,6 +33,8 @@ class LegajoadjuntoMapBuilder implements MapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
+		$tMap->setPrimaryKeyMethodInfo('legajoadjunto_id_seq');
+
 		$tMap->addForeignKey('FK_LEGAJOPEDAGOGICO_ID', 'FkLegajopedagogicoId', 'INTEGER', 'legajopedagogico', 'ID', true, null);
 
 		$tMap->addForeignKey('FK_ADJUNTO_ID', 'FkAdjuntoId', 'INTEGER', 'adjunto', 'ID', true, null);

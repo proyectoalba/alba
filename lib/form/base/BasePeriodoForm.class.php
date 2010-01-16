@@ -18,6 +18,8 @@ class BasePeriodoForm extends BaseFormPropel
       'fecha_inicio'       => new sfWidgetFormDateTime(),
       'fecha_fin'          => new sfWidgetFormDateTime(),
       'descripcion'        => new sfWidgetFormInput(),
+      'calcular'           => new sfWidgetFormInputCheckbox(),
+      'formula'            => new sfWidgetFormInput(),
     ));
 
     $this->setValidators(array(
@@ -26,6 +28,8 @@ class BasePeriodoForm extends BaseFormPropel
       'fecha_inicio'       => new sfValidatorDateTime(),
       'fecha_fin'          => new sfValidatorDateTime(),
       'descripcion'        => new sfValidatorString(array('max_length' => 255)),
+      'calcular'           => new sfValidatorBoolean(),
+      'formula'            => new sfValidatorString(array('max_length' => 1000, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('periodo[%s]');

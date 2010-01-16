@@ -83,14 +83,11 @@ abstract class BaseLegajosalud extends BaseObject  implements Persistent {
 		}
 
 
-		if ($this->fecha === '0000-00-00 00:00:00') {
-									return null;
-		} else {
-			try {
-				$dt = new DateTime($this->fecha);
-			} catch (Exception $x) {
-				throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->fecha, true), $x);
-			}
+
+		try {
+			$dt = new DateTime($this->fecha);
+		} catch (Exception $x) {
+			throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->fecha, true), $x);
 		}
 
 		if ($format === null) {
@@ -188,12 +185,12 @@ abstract class BaseLegajosalud extends BaseObject  implements Persistent {
 
 		if ( $this->fecha !== null || $dt !== null ) {
 			
-			$currNorm = ($this->fecha !== null && $tmpDt = new DateTime($this->fecha)) ? $tmpDt->format('Y-m-d H:i:s') : null;
-			$newNorm = ($dt !== null) ? $dt->format('Y-m-d H:i:s') : null;
+			$currNorm = ($this->fecha !== null && $tmpDt = new DateTime($this->fecha)) ? $tmpDt->format('Y-m-d\\TH:i:sO') : null;
+			$newNorm = ($dt !== null) ? $dt->format('Y-m-d\\TH:i:sO') : null;
 
 			if ( ($currNorm !== $newNorm) 					)
 			{
-				$this->fecha = ($dt ? $dt->format('Y-m-d H:i:s') : null);
+				$this->fecha = ($dt ? $dt->format('Y-m-d\\TH:i:sO') : null);
 				$this->modifiedColumns[] = LegajosaludPeer::FECHA;
 			}
 		} 
@@ -234,13 +231,7 @@ abstract class BaseLegajosalud extends BaseObject  implements Persistent {
 			$this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
 			$this->fk_alumno_id = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
 			$this->titulo = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-			if ($row[$startcol + 3] !== null) {
-				$this->descripcion = fopen('php://memory', 'r+');
-				fwrite($this->descripcion, $row[$startcol + 3]);
-				rewind($this->descripcion);
-			} else {
-				$this->descripcion = null;
-			}
+			$this->descripcion = $row[$startcol + 3];
 			$this->fecha = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
 			$this->fk_usuario_id = ($row[$startcol + 5] !== null) ? (int) $row[$startcol + 5] : null;
 			$this->resetModified();

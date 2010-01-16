@@ -156,6 +156,74 @@ Provincia:
     nombre_largo: Tucumán
     fk_pais_id: Pais_1
     orden: 0
+
+Distritoescolar:
+  Distritoescolar_1:
+    nombre: Nº8
+    direccion: Aguirre 3345
+    telefono: 4321-2134
+    ciudad: Buenos Aires
+  Distritoescolar_2:
+    nombre: Nº 4
+    direccion: Suarez 1131
+    telefono: 4302-2823 / 4301-355
+    ciudad: Buenos Aires
+  Distritoescolar_3:
+    nombre: Nº 5
+    direccion: Avda. M. A. Montes de Oca 439 - 1er Piso
+    telefono: 4307-4676 / 6753 / 4
+    ciudad: Buenos Aires
+  Distritoescolar_4:
+    nombre: Nº 6
+    direccion: Humberto Primo 3187
+    telefono: 4957-1563
+    ciudad: Buenos Aires
+  Distritoescolar_5:
+    nombre: Nº 9
+    direccion: Güemes 4615
+    telefono: 4773-7453
+    ciudad: Buenos Aires
+  Distritoescolar_6:
+    nombre: Nº 11
+    direccion:
+    telefono:
+    ciudad: Buenos Aires
+  Distritoescolar_7:
+    nombre: Nº 13
+    direccion: Manuel Artigas 5951
+    telefono: 4682-9849/0566
+    ciudad: Buenos Aires
+  Distritoescolar_8:
+    nombre: Nº 14
+    direccion: Bolivia 2571
+    telefono: 4581-6248
+    ciudad: Buenos Aires
+  Distritoescolar_9:
+    nombre: Nº 15
+    direccion: Galván 3463
+    telefono:  4541-0212 / 4541-26
+    ciudad: Buenos Aires
+  Distritoescolar_10:
+    nombre: Nº 16
+    direccion: José Cubas 3789
+    telefono:  4502-0182/6664/2165
+    ciudad: Buenos Aires
+  Distritoescolar_11:
+    nombre: Nº 19
+    direccion: Cnel. Pagola 4181
+    telefono: 4923-1276 / 6228
+    ciudad: Buenos Aires
+  Distritoescolar_12:
+    nombre: Nº 20
+    direccion: Fonrouge 346
+    telefono: 4641-1796 / 7247
+    ciudad: Buenos Aires
+  Distritoescolar_13:
+    nombre: Nº 21
+    direccion: Cnel. M. Chilavert 6090
+    telefono: 4605-1597 / 5860
+    ciudad: Buenos Aires
+
 Establecimiento:
   Establecimiento_2:
     nombre: Escuela N999 Gral. Stallman
@@ -544,72 +612,6 @@ Evento:
     recurrencia_fin: 2007-12-14 00:00
     recurrencia_dias: 6
     estado: 1
-Distritoescolar:
-  Distritoescolar_1:
-    nombre: Nº8
-    direccion: Aguirre 3345
-    telefono: 4321-2134
-    ciudad: Buenos Aires
-  Distritoescolar_2:
-    nombre: Nº 4
-    direccion: Suarez 1131
-    telefono: 4302-2823 / 4301-355
-    ciudad: Buenos Aires
-  Distritoescolar_3:
-    nombre: Nº 5
-    direccion: Avda. M. A. Montes de Oca 439 - 1er Piso
-    telefono: 4307-4676 / 6753 / 4
-    ciudad: Buenos Aires
-  Distritoescolar_4:
-    nombre: Nº 6
-    direccion: Humberto Primo 3187
-    telefono: 4957-1563
-    ciudad: Buenos Aires
-  Distritoescolar_5:
-    nombre: Nº 9
-    direccion: Güemes 4615
-    telefono: 4773-7453
-    ciudad: Buenos Aires
-  Distritoescolar_6:
-    nombre: Nº 11
-    direccion:
-    telefono:
-    ciudad: Buenos Aires
-  Distritoescolar_7:
-    nombre: Nº 13
-    direccion: Manuel Artigas 5951
-    telefono: 4682-9849/0566
-    ciudad: Buenos Aires
-  Distritoescolar_8:
-    nombre: Nº 14
-    direccion: Bolivia 2571
-    telefono: 4581-6248
-    ciudad: Buenos Aires
-  Distritoescolar_9:
-    nombre: Nº 15
-    direccion: Galván 3463
-    telefono:  4541-0212 / 4541-26
-    ciudad: Buenos Aires
-  Distritoescolar_10:
-    nombre: Nº 16
-    direccion: José Cubas 3789
-    telefono:  4502-0182/6664/2165
-    ciudad: Buenos Aires
-  Distritoescolar_11:
-    nombre: Nº 19
-    direccion: Cnel. Pagola 4181
-    telefono: 4923-1276 / 6228
-    ciudad: Buenos Aires
-  Distritoescolar_12:
-    nombre: Nº 20
-    direccion: Fonrouge 346
-    telefono: 4641-1796 / 7247
-    ciudad: Buenos Aires
-  Distritoescolar_13:
-    nombre: Nº 21
-    direccion: Cnel. M. Chilavert 6090
-    telefono: 4605-1597 / 5860
-    ciudad: Buenos Aires
 Tipoiva:
   Tipoiva_1:
     nombre: Exento

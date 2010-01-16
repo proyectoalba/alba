@@ -19,6 +19,8 @@ class BasePeriodoFormFilter extends BaseFormFilterPropel
       'fecha_inicio'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'fecha_fin'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'descripcion'        => new sfWidgetFormFilterInput(),
+      'calcular'           => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'formula'            => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -26,6 +28,8 @@ class BasePeriodoFormFilter extends BaseFormFilterPropel
       'fecha_inicio'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'fecha_fin'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'descripcion'        => new sfValidatorPass(array('required' => false)),
+      'calcular'           => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'formula'            => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('periodo_filters[%s]');
@@ -48,6 +52,8 @@ class BasePeriodoFormFilter extends BaseFormFilterPropel
       'fecha_inicio'       => 'Date',
       'fecha_fin'          => 'Date',
       'descripcion'        => 'Text',
+      'calcular'           => 'Boolean',
+      'formula'            => 'Text',
     );
   }
 }

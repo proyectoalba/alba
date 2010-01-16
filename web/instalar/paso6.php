@@ -1,7 +1,7 @@
 <?php
 /**
  *    This file is part of Alba.
- * 
+ *
  *    Alba is free software; you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as published by
  *    the Free Software Foundation; either version 2 of the License, or
@@ -37,9 +37,9 @@ $host = $_SESSION['albainstall']['host'];
 $user = $_SESSION['albainstall']['user'];
 $pass = $_SESSION['albainstall']['pass'];
 $db = $_SESSION['albainstall']['db'];
-$tipo_base = $_SESSION ['albainstall']['tipo_base']; 
- 
-$error_flag = false;    
+$tipo_base = $_SESSION ['albainstall']['tipo_base'];
+
+$error_flag = false;
 ?>
 <div id="detalle">
 <p>Resultado de la instalaci&oacute;n:</p>
@@ -48,7 +48,7 @@ $error_flag = false;
     <tr>
         <td>Generando archivo de configuraci&oacute;n de acceso a base de datos:</td>
         <td>
-            <?php 
+            <?php
                 $ret = generate_databases_yml($tipo_motor_base,$host,$user,$pass,$db);
                 echo $ret ? IMG_OK : IMG_ERROR;
                 if (!$ret) {
@@ -63,7 +63,7 @@ $error_flag = false;
     <tr>
         <td>Generando archivo de configuraci&oacute;n para las tareas:</td>
         <td>
-            <?php 
+            <?php
                 $ret = generate_propel_ini($tipo_motor_base,$host,$user,$pass,$db);
                 echo $ret ? IMG_OK : IMG_ERROR;
                 if (!$ret) {
@@ -74,21 +74,18 @@ $error_flag = false;
         </td>
     </tr>
     <tr>
-        <td>Generando modelo de la base de datos:</td>
+        <td>Generando modelo de datos:</td>
         <td>
 
-            <div style="display: none;">
-            <?php 
-                $ret = build_model_sql();
-            ?>
+            <div style="display: none">
+            <?php $ret = build_model_sql();?>
             </div>
 
-            <?php 
-                $ret = file_exists(AlbaPath() . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'sql'  . DIRECTORY_SEPARATOR .'lib.model.schema.sql');
+            <?php
                 echo $ret ? IMG_OK : IMG_ERROR;
                 if (!$ret) {
                     $error_flag = true;
-                    DebugLog("Error al generar archivo lib.model.schema.sql","E");
+                    DebugLog("Error al generar el modelo de datos","E");
                 }
             ?>
         </td>
@@ -96,8 +93,8 @@ $error_flag = false;
     <tr>
         <td>Creando esquema de base de datos:</td>
         <td>
-            <?php 
-                $ret = crear_schema('lib.model.schema.sql', $tipo_motor_base, $host, $user, $pass, $db);
+            <?php
+                $ret = crear_schema();
                 echo $ret ? IMG_OK : IMG_ERROR;
                 if (!$ret) {
                     $error_flag = true;
@@ -107,33 +104,16 @@ $error_flag = false;
         </td>
     </tr>
     <tr>
-        <td>Cargando modelo de base de datos <?php echo $_SESSION['albainstall']['tipo_base']?>:</td>
+        <td>Inicializar base de datos <?php echo $_SESSION['albainstall']['tipo_base']?>:</td>
         <td>
-            <?php 
-                if ($_SESSION['albainstall']['tipo_base'] == 'minima')
-                    $archivo = "datos_desde_cero.sql";
-                elseif ($_SESSION['albainstall']['tipo_base'] == 'ejemplo1')
-                        $archivo = "datos_ejemplo.sql";
-                    else
-                        $archivo = "";
+            <?php
             ?>
-            <?php 
-                $ret = crear_base_modelo($archivo, $tipo_motor_base, $host, $user, $pass, $db);
+            <?php
+                $ret = cargar_base_modelo($_SESSION['albainstall']['tipo_base']);
                 echo $ret ? IMG_OK : IMG_ERROR;
                 if (!$ret) {
                     $error_flag = true;
-                    DebugLog("Error al cargar modelo de base de datos: $archivo","E");
-                }
-
-                //Esto se agrego para hacer update a las secuencias de postgresql
-                if($tipo_motor_base == 'pgsql') {
-                    $archivo = substr($archivo,0,-4)."_update_seq.sql";
-                    $ret = crear_base_modelo($archivo, $tipo_motor_base, $host, $user, $pass, $db);
-                    echo $ret ? IMG_OK : IMG_ERROR;
-                    if (!$ret) {
-                        $error_flag = true;
-                        DebugLog("Error al cargar modelo de base de datos: $archivo","E");
-                    }
+                    DebugLog("Error al cargar modelo de datos: $archivo","E");
                 }
             ?>
         </td>
@@ -155,8 +135,8 @@ en el siguiente enlace:
 <p><a href="../">Ingresar al Sistema de Gesti&oacute;n Educactiva Alba</a></p>
 <p><i>* Recuerde que para ingresar al sistema el nombre de usuario por defecto es <b>admin</b> y la clave es <b>admin</b>.</i></p>
 <?php
-         
-// finaliznado los pasos 
+
+// finaliznado los pasos
     DebugLog  ("============================ FIN INSTALACION ALBA - " .date('d-m-Y H:i:s'). "=======================");
     $completo = true;
 ?>

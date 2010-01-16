@@ -33,6 +33,8 @@ class RolPermisoMapBuilder implements MapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
+		$tMap->setPrimaryKeyMethodInfo('rol_permiso_id_seq');
+
 		$tMap->addPrimaryKey('ID', 'Id', 'INTEGER', true, null);
 
 		$tMap->addForeignKey('FK_ROL_ID', 'FkRolId', 'INTEGER', 'rol', 'ID', true, null);

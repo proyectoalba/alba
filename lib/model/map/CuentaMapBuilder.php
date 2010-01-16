@@ -33,13 +33,15 @@ class CuentaMapBuilder implements MapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
+		$tMap->setPrimaryKeyMethodInfo('cuenta_id_seq');
+
 		$tMap->addPrimaryKey('ID', 'Id', 'INTEGER', true, null);
 
 		$tMap->addColumn('NOMBRE', 'Nombre', 'VARCHAR', true, 128);
 
 		$tMap->addColumn('RAZON_SOCIAL', 'RazonSocial', 'VARCHAR', true, 128);
 
-		$tMap->addColumn('CUIT', 'Cuit', 'VARCHAR', true, 20);
+		$tMap->addColumn('CUIT', 'Cuit', 'VARCHAR', false, 20);
 
 		$tMap->addColumn('DIRECCION', 'Direccion', 'VARCHAR', true, 128);
 

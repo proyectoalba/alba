@@ -33,6 +33,8 @@ class UsuarioMapBuilder implements MapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
+		$tMap->setPrimaryKeyMethodInfo('usuario_id_seq');
+
 		$tMap->addPrimaryKey('ID', 'Id', 'INTEGER', true, null);
 
 		$tMap->addColumn('USUARIO', 'Usuario', 'VARCHAR', true, 32);
