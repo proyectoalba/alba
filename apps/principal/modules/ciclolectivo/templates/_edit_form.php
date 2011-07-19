@@ -69,10 +69,12 @@
     </div>
 </div>
 <?php if($sf_request->getParameter('action') == 'create' || $ciclolectivo->getId() == 0):?>
+ <?php if ($sf_user->getAttribute('fk_ciclolectivo_id') != 0): ?>
     <div class="form-row">
         <?php echo label_for('importarciclo', 'Importar divisiones', 'class="required" ') ?>
         <?php include_partial('importarciclo')?>
     </div>
+    <?php endif;?>
 <?php endif;?>
 </fieldset>
 
