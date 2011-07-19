@@ -1,4 +1,0 @@
-all: 
-    default_culture: es
-    debug: off
-    

@@ -2,7 +2,6 @@ prod:
   .settings:
     logging_enabled: off
     no_script_name:           off
-    i18n:                   on    
     compat_10:  on
     default_culture:    es
 dev:
@@ -14,14 +13,12 @@ dev:
     stats:                  off
     no_script_name:         off
     etag:                   off
-    i18n:                   on
     compat_10:  on
     default_culture:    es
 
 demo:
   .settings:
     no_script_name:           on
-    i18n:                   on    
     cache:                  off
 
 
@@ -57,9 +54,8 @@ all:
 #
   .settings:
     enabled_modules:       [ default, sfMediaLibrary, albaTools]
-    autoloading_fucntions:
-        -   [sfEzComponentsBridge,  autoload]
-
+    autoloading_fucntions: [sfEzComponentsBridge,  autoload]
+    
 #    available:              on
 #
 #    path_info_array:        SERVER
@@ -75,7 +71,8 @@ all:
 #
 #    tidy:                   on
 #
-#    i18n:                   off
+    i18n:                   on
+    default_culture:        es
 #
 #   timeout (60 * 60 * 3Hs)
     timeout:                10800 
