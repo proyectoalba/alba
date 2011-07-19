@@ -20,8 +20,8 @@ generator:
         sexo: { name: Sexo }
         telefono_movil: { name: Tel&eacute;fono m&oacute;vil, params: size=20}
         fk_provincia_id: { name: Provincia}
-        libreta_sanitaria: { name: ¿Trajo libreta sanitaria?}
-        psicofisico: { name: ¿Trajo Examen psicofisico?}
+        libreta_sanitaria: { name: "¿Trajo libreta sanitaria?"}
+        psicofisico: { name: "¿Trajo Examen psicofisico?"}
         titulo: { name: Titulo Habilitante , params: size=64}
         activo: { name: Activo}
         lugar_nacimiento: { name: Lugar de Nacimiento }
