@@ -6,9 +6,9 @@ class formula_Promedio extends albaFormulaBoletin {
 
  public function init()
   {
-    $this->ayuda = "Esta formula calcula el promedio entre los parametros pasados (P1 y P2)\n";
-    $this->ayuda .= "Luego si P3 >=6, queda como resultado este promedio de P1 y P2";
-    $this->ayuda .= "Si P3<6 el resultado es P3";
+    $this->ayuda = "Esta formula calcula el promedio entre las notas de 3 peridoso p1,p2 y p3\n";
+    $this->ayuda .= "Se debe utilizar: Promedio|4,5,6\n";
+    $this->ayuda .= "Donde 4,5 y 6 son los ID's de los periodos que se obtienen las notas";
     $this->nombre = 'Promedio';
   }
 
