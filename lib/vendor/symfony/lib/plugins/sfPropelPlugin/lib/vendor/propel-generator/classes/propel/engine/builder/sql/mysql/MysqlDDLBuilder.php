@@ -141,20 +141,22 @@ CREATE TABLE ".$this->quoteIdentifier($this->prefixTablename($table->getName()))
 		$script .= "
 )";
 
-		$mysqlTableType = $this->getBuildProperty("mysqlTableType");
-		if (!$mysqlTableType) {
+        $mysqlTableType = $this->getBuildProperty("mysqlTableType");
+        $engine = $this->getBuildProperty("mysqlEngine");
+        
+        if (!$mysqlTableType) {
 			$vendorSpecific = $table->getVendorInfoForType($this->getPlatform()->getDatabaseType());
-			if ($vendorSpecific->hasParameter('Type')) {
+            if ($vendorSpecific->hasParameter('Type')) {
 				$mysqlTableType = $vendorSpecific->getParameter('Type');
-			} elseif ($vendorSpecific->hasParameter('Engine')) {
+            } elseif ($vendorSpecific->hasParameter('Engine')) {
 				$mysqlTableType = $vendorSpecific->getParameter('Engine');
-			} else {
+            } else {
 				$mysqlTableType = 'MyISAM';
 			}
-		}
-
-		$script .= "Type=$mysqlTableType";
-
+        }
+        
+        $script .= "$engine=$mysqlTableType";
+            
 		$dbVendorSpecific = $table->getDatabase()->getVendorInfoForType($databaseType);
 		$tableVendorSpecific = $table->getVendorInfoForType($databaseType);
 		$vendorSpecific = $dbVendorSpecific->getMergedVendorInfo($tableVendorSpecific);
