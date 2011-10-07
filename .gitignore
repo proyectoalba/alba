@@ -1,0 +1,4 @@
+config/databases.yml
+config/propel.ini
+log/*
+cache/*
