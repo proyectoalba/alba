@@ -33,8 +33,6 @@ class DocenteMapBuilder implements MapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
-		$tMap->setPrimaryKeyMethodInfo('docente_id_seq');
-
 		$tMap->addPrimaryKey('ID', 'Id', 'INTEGER', true, null);
 
 		$tMap->addColumn('APELLIDO', 'Apellido', 'VARCHAR', true, 128);

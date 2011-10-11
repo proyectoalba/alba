@@ -33,8 +33,6 @@ class DivisionMapBuilder implements MapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
-		$tMap->setPrimaryKeyMethodInfo('division_id_seq');
-
 		$tMap->addPrimaryKey('ID', 'Id', 'INTEGER', true, null);
 
 		$tMap->addForeignKey('FK_ANIO_ID', 'FkAnioId', 'INTEGER', 'anio', 'ID', true, null);

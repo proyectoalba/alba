@@ -87,11 +87,14 @@ abstract class BaseCiclolectivo extends BaseObject  implements Persistent {
 		}
 
 
-
-		try {
-			$dt = new DateTime($this->fecha_inicio);
-		} catch (Exception $x) {
-			throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->fecha_inicio, true), $x);
+		if ($this->fecha_inicio === '0000-00-00 00:00:00') {
+									return null;
+		} else {
+			try {
+				$dt = new DateTime($this->fecha_inicio);
+			} catch (Exception $x) {
+				throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->fecha_inicio, true), $x);
+			}
 		}
 
 		if ($format === null) {
@@ -111,11 +114,14 @@ abstract class BaseCiclolectivo extends BaseObject  implements Persistent {
 		}
 
 
-
-		try {
-			$dt = new DateTime($this->fecha_fin);
-		} catch (Exception $x) {
-			throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->fecha_fin, true), $x);
+		if ($this->fecha_fin === '0000-00-00 00:00:00') {
+									return null;
+		} else {
+			try {
+				$dt = new DateTime($this->fecha_fin);
+			} catch (Exception $x) {
+				throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->fecha_fin, true), $x);
+			}
 		}
 
 		if ($format === null) {
@@ -192,12 +198,12 @@ abstract class BaseCiclolectivo extends BaseObject  implements Persistent {
 
 		if ( $this->fecha_inicio !== null || $dt !== null ) {
 			
-			$currNorm = ($this->fecha_inicio !== null && $tmpDt = new DateTime($this->fecha_inicio)) ? $tmpDt->format('Y-m-d\\TH:i:sO') : null;
-			$newNorm = ($dt !== null) ? $dt->format('Y-m-d\\TH:i:sO') : null;
+			$currNorm = ($this->fecha_inicio !== null && $tmpDt = new DateTime($this->fecha_inicio)) ? $tmpDt->format('Y-m-d H:i:s') : null;
+			$newNorm = ($dt !== null) ? $dt->format('Y-m-d H:i:s') : null;
 
 			if ( ($currNorm !== $newNorm) 					)
 			{
-				$this->fecha_inicio = ($dt ? $dt->format('Y-m-d\\TH:i:sO') : null);
+				$this->fecha_inicio = ($dt ? $dt->format('Y-m-d H:i:s') : null);
 				$this->modifiedColumns[] = CiclolectivoPeer::FECHA_INICIO;
 			}
 		} 
@@ -224,12 +230,12 @@ abstract class BaseCiclolectivo extends BaseObject  implements Persistent {
 
 		if ( $this->fecha_fin !== null || $dt !== null ) {
 			
-			$currNorm = ($this->fecha_fin !== null && $tmpDt = new DateTime($this->fecha_fin)) ? $tmpDt->format('Y-m-d\\TH:i:sO') : null;
-			$newNorm = ($dt !== null) ? $dt->format('Y-m-d\\TH:i:sO') : null;
+			$currNorm = ($this->fecha_fin !== null && $tmpDt = new DateTime($this->fecha_fin)) ? $tmpDt->format('Y-m-d H:i:s') : null;
+			$newNorm = ($dt !== null) ? $dt->format('Y-m-d H:i:s') : null;
 
 			if ( ($currNorm !== $newNorm) 					)
 			{
-				$this->fecha_fin = ($dt ? $dt->format('Y-m-d\\TH:i:sO') : null);
+				$this->fecha_fin = ($dt ? $dt->format('Y-m-d H:i:s') : null);
 				$this->modifiedColumns[] = CiclolectivoPeer::FECHA_FIN;
 			}
 		} 

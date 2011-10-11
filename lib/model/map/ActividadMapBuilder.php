@@ -33,8 +33,6 @@ class ActividadMapBuilder implements MapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
-		$tMap->setPrimaryKeyMethodInfo('actividad_id_seq');
-
 		$tMap->addPrimaryKey('ID', 'Id', 'INTEGER', true, null);
 
 		$tMap->addForeignKey('FK_ESTABLECIMIENTO_ID', 'FkEstablecimientoId', 'INTEGER', 'establecimiento', 'ID', true, null);

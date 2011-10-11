@@ -33,8 +33,6 @@ class ProvinciaMapBuilder implements MapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
-		$tMap->setPrimaryKeyMethodInfo('provincia_id_seq');
-
 		$tMap->addPrimaryKey('ID', 'Id', 'INTEGER', true, null);
 
 		$tMap->addColumn('NOMBRE_CORTO', 'NombreCorto', 'VARCHAR', true, 32);

@@ -33,8 +33,6 @@ class EventoMapBuilder implements MapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
-		$tMap->setPrimaryKeyMethodInfo('evento_id_seq');
-
 		$tMap->addPrimaryKey('ID', 'Id', 'INTEGER', true, null);
 
 		$tMap->addColumn('TITULO', 'Titulo', 'VARCHAR', true, 128);

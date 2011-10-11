@@ -33,8 +33,6 @@ class PaisMapBuilder implements MapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
-		$tMap->setPrimaryKeyMethodInfo('pais_id_seq');
-
 		$tMap->addPrimaryKey('ID', 'Id', 'INTEGER', true, null);
 
 		$tMap->addColumn('NOMBRE_LARGO', 'NombreLargo', 'VARCHAR', true, 128);

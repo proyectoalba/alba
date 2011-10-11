@@ -107,11 +107,14 @@ abstract class BaseBoletinActividades extends BaseObject  implements Persistent 
 		}
 
 
-
-		try {
-			$dt = new DateTime($this->fecha);
-		} catch (Exception $x) {
-			throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->fecha, true), $x);
+		if ($this->fecha === '0000-00-00 00:00:00') {
+									return null;
+		} else {
+			try {
+				$dt = new DateTime($this->fecha);
+			} catch (Exception $x) {
+				throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->fecha, true), $x);
+			}
 		}
 
 		if ($format === null) {
@@ -243,12 +246,12 @@ abstract class BaseBoletinActividades extends BaseObject  implements Persistent 
 
 		if ( $this->fecha !== null || $dt !== null ) {
 			
-			$currNorm = ($this->fecha !== null && $tmpDt = new DateTime($this->fecha)) ? $tmpDt->format('Y-m-d\\TH:i:sO') : null;
-			$newNorm = ($dt !== null) ? $dt->format('Y-m-d\\TH:i:sO') : null;
+			$currNorm = ($this->fecha !== null && $tmpDt = new DateTime($this->fecha)) ? $tmpDt->format('Y-m-d H:i:s') : null;
+			$newNorm = ($dt !== null) ? $dt->format('Y-m-d H:i:s') : null;
 
 			if ( ($currNorm !== $newNorm) 					)
 			{
-				$this->fecha = ($dt ? $dt->format('Y-m-d\\TH:i:sO') : null);
+				$this->fecha = ($dt ? $dt->format('Y-m-d H:i:s') : null);
 				$this->modifiedColumns[] = BoletinActividadesPeer::FECHA;
 			}
 		} 
@@ -285,7 +288,13 @@ abstract class BaseBoletinActividades extends BaseObject  implements Persistent 
 			$this->fk_alumno_id = ($row[$startcol + 2] !== null) ? (int) $row[$startcol + 2] : null;
 			$this->fk_actividad_id = ($row[$startcol + 3] !== null) ? (int) $row[$startcol + 3] : null;
 			$this->fk_periodo_id = ($row[$startcol + 4] !== null) ? (int) $row[$startcol + 4] : null;
-			$this->observacion = $row[$startcol + 5];
+			if ($row[$startcol + 5] !== null) {
+				$this->observacion = fopen('php://memory', 'r+');
+				fwrite($this->observacion, $row[$startcol + 5]);
+				rewind($this->observacion);
+			} else {
+				$this->observacion = null;
+			}
 			$this->fecha = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
 			$this->resetModified();
 

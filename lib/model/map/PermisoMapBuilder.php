@@ -33,8 +33,6 @@ class PermisoMapBuilder implements MapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
-		$tMap->setPrimaryKeyMethodInfo('permiso_id_seq');
-
 		$tMap->addPrimaryKey('ID', 'Id', 'INTEGER', true, null);
 
 		$tMap->addColumn('NOMBRE', 'Nombre', 'VARCHAR', true, 128);

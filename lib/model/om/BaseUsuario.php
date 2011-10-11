@@ -132,11 +132,14 @@ abstract class BaseUsuario extends BaseObject  implements Persistent {
 		}
 
 
-
-		try {
-			$dt = new DateTime($this->fecha_creado);
-		} catch (Exception $x) {
-			throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->fecha_creado, true), $x);
+		if ($this->fecha_creado === '0000-00-00 00:00:00') {
+									return null;
+		} else {
+			try {
+				$dt = new DateTime($this->fecha_creado);
+			} catch (Exception $x) {
+				throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->fecha_creado, true), $x);
+			}
 		}
 
 		if ($format === null) {
@@ -156,11 +159,14 @@ abstract class BaseUsuario extends BaseObject  implements Persistent {
 		}
 
 
-
-		try {
-			$dt = new DateTime($this->fecha_actualizado);
-		} catch (Exception $x) {
-			throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->fecha_actualizado, true), $x);
+		if ($this->fecha_actualizado === '0000-00-00 00:00:00') {
+									return null;
+		} else {
+			try {
+				$dt = new DateTime($this->fecha_actualizado);
+			} catch (Exception $x) {
+				throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->fecha_actualizado, true), $x);
+			}
 		}
 
 		if ($format === null) {
@@ -293,12 +299,12 @@ abstract class BaseUsuario extends BaseObject  implements Persistent {
 
 		if ( $this->fecha_creado !== null || $dt !== null ) {
 			
-			$currNorm = ($this->fecha_creado !== null && $tmpDt = new DateTime($this->fecha_creado)) ? $tmpDt->format('Y-m-d\\TH:i:sO') : null;
-			$newNorm = ($dt !== null) ? $dt->format('Y-m-d\\TH:i:sO') : null;
+			$currNorm = ($this->fecha_creado !== null && $tmpDt = new DateTime($this->fecha_creado)) ? $tmpDt->format('Y-m-d H:i:s') : null;
+			$newNorm = ($dt !== null) ? $dt->format('Y-m-d H:i:s') : null;
 
 			if ( ($currNorm !== $newNorm) 					)
 			{
-				$this->fecha_creado = ($dt ? $dt->format('Y-m-d\\TH:i:sO') : null);
+				$this->fecha_creado = ($dt ? $dt->format('Y-m-d H:i:s') : null);
 				$this->modifiedColumns[] = UsuarioPeer::FECHA_CREADO;
 			}
 		} 
@@ -325,12 +331,12 @@ abstract class BaseUsuario extends BaseObject  implements Persistent {
 
 		if ( $this->fecha_actualizado !== null || $dt !== null ) {
 			
-			$currNorm = ($this->fecha_actualizado !== null && $tmpDt = new DateTime($this->fecha_actualizado)) ? $tmpDt->format('Y-m-d\\TH:i:sO') : null;
-			$newNorm = ($dt !== null) ? $dt->format('Y-m-d\\TH:i:sO') : null;
+			$currNorm = ($this->fecha_actualizado !== null && $tmpDt = new DateTime($this->fecha_actualizado)) ? $tmpDt->format('Y-m-d H:i:s') : null;
+			$newNorm = ($dt !== null) ? $dt->format('Y-m-d H:i:s') : null;
 
 			if ( ($currNorm !== $newNorm) 					)
 			{
-				$this->fecha_actualizado = ($dt ? $dt->format('Y-m-d\\TH:i:sO') : null);
+				$this->fecha_actualizado = ($dt ? $dt->format('Y-m-d H:i:s') : null);
 				$this->modifiedColumns[] = UsuarioPeer::FECHA_ACTUALIZADO;
 			}
 		} 

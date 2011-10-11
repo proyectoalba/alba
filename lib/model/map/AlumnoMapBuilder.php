@@ -33,8 +33,6 @@ class AlumnoMapBuilder implements MapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
-		$tMap->setPrimaryKeyMethodInfo('alumno_id_seq');
-
 		$tMap->addPrimaryKey('ID', 'Id', 'INTEGER', true, null);
 
 		$tMap->addColumn('LEGAJO_PREFIJO', 'LegajoPrefijo', 'VARCHAR', true, 10);

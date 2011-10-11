@@ -104,11 +104,14 @@ abstract class BaseLegajopedagogico extends BaseObject  implements Persistent {
 		}
 
 
-
-		try {
-			$dt = new DateTime($this->fecha);
-		} catch (Exception $x) {
-			throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->fecha, true), $x);
+		if ($this->fecha === '0000-00-00 00:00:00') {
+									return null;
+		} else {
+			try {
+				$dt = new DateTime($this->fecha);
+			} catch (Exception $x) {
+				throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->fecha, true), $x);
+			}
 		}
 
 		if ($format === null) {
@@ -225,12 +228,12 @@ abstract class BaseLegajopedagogico extends BaseObject  implements Persistent {
 
 		if ( $this->fecha !== null || $dt !== null ) {
 			
-			$currNorm = ($this->fecha !== null && $tmpDt = new DateTime($this->fecha)) ? $tmpDt->format('Y-m-d\\TH:i:sO') : null;
-			$newNorm = ($dt !== null) ? $dt->format('Y-m-d\\TH:i:sO') : null;
+			$currNorm = ($this->fecha !== null && $tmpDt = new DateTime($this->fecha)) ? $tmpDt->format('Y-m-d H:i:s') : null;
+			$newNorm = ($dt !== null) ? $dt->format('Y-m-d H:i:s') : null;
 
 			if ( ($currNorm !== $newNorm) 					)
 			{
-				$this->fecha = ($dt ? $dt->format('Y-m-d\\TH:i:sO') : null);
+				$this->fecha = ($dt ? $dt->format('Y-m-d H:i:s') : null);
 				$this->modifiedColumns[] = LegajopedagogicoPeer::FECHA;
 			}
 		} 
@@ -289,8 +292,20 @@ abstract class BaseLegajopedagogico extends BaseObject  implements Persistent {
 			$this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
 			$this->fk_alumno_id = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
 			$this->titulo = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-			$this->resumen = $row[$startcol + 3];
-			$this->texto = $row[$startcol + 4];
+			if ($row[$startcol + 3] !== null) {
+				$this->resumen = fopen('php://memory', 'r+');
+				fwrite($this->resumen, $row[$startcol + 3]);
+				rewind($this->resumen);
+			} else {
+				$this->resumen = null;
+			}
+			if ($row[$startcol + 4] !== null) {
+				$this->texto = fopen('php://memory', 'r+');
+				fwrite($this->texto, $row[$startcol + 4]);
+				rewind($this->texto);
+			} else {
+				$this->texto = null;
+			}
 			$this->fecha = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
 			$this->fk_usuario_id = ($row[$startcol + 6] !== null) ? (int) $row[$startcol + 6] : null;
 			$this->fk_legajocategoria_id = ($row[$startcol + 7] !== null) ? (int) $row[$startcol + 7] : null;

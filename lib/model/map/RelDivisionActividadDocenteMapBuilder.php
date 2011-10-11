@@ -33,8 +33,6 @@ class RelDivisionActividadDocenteMapBuilder implements MapBuilder {
 
 		$tMap->setUseIdGenerator(true);
 
-		$tMap->setPrimaryKeyMethodInfo('rel_division_actividad_docente_id_seq');
-
 		$tMap->addPrimaryKey('ID', 'Id', 'INTEGER', true, null);
 
 		$tMap->addForeignKey('FK_DIVISION_ID', 'FkDivisionId', 'INTEGER', 'division', 'ID', false, null);
