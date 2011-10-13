@@ -14,9 +14,10 @@ txt:
 	docbook2txt -V charset=utf-8 xml/manual.xml
 	mv manual.txt out/txt/
 htmls:
-	docbook2html xml/manual.xml
-	mv *.html ../../web/manual/
-	svn --force export img/ ../../web/manual/img
-    
+	mkdir -p ../../web/manual/
+	docbook2html -u xml/manual.xml -o ../../web/manual/
+	cp -r img/ ../../web/manual/img
+	mv ../../web/manual/manual.html ../../web/manual/index.html   
 clean:
 	rm -rf out
+	rm -rf ../../web/manual    
