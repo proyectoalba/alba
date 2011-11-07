@@ -44,7 +44,7 @@ propel.builder.nodepeerstub.class      = propel.engine.builder.om.php5.PHP5Exten
 
 propel.mysql.tableType = InnoDB
 propel.mysql.encoding = utf8
-propel.mysql.engine = [Engine/Type]
+propel.mysql.engine = Engine
 propel.packageObjectModel = true
 
 propel.builder.addIncludes  = false
