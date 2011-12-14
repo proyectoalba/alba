@@ -100,4 +100,7 @@ ADD `ciudad` VARCHAR( 128 )  DEFAULT NULL ,
 ADD `codigo_postal` VARCHAR( 20 )  DEFAULT NULL ,
 ADD `telefono` VARCHAR( 20 )  DEFAULT NULL ,
 ADD `fk_provincia_id` INT DEFAULT 0 ,
-ADD `rector` VARCHAR( 255 ) DEFAULT NULL 
+ADD `rector` VARCHAR( 255 ) DEFAULT NULL; 
+
+
+ALTER table periodo add column (calcular tinyint default 0 not null, formula varchar(1000));
