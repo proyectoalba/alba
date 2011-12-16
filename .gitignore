@@ -3,3 +3,5 @@ config/propel.ini
 log/*
 cache/*
 !.gitignore
+/nbproject/private/
+nbproject
