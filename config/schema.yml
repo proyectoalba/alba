@@ -2,7 +2,7 @@
 propel:
   _attributes:
     package: lib.model
-    
+
   conceptobaja:
     _attributes:
       idMethod: native
@@ -819,6 +819,10 @@ propel:
       type: VARCHAR
       size: 128
       required: false
+    direccion_laboral:
+      type: VARCHAR
+      size: 128
+      required: false
     ciudad:
       type: VARCHAR
       size: 128
@@ -834,6 +838,10 @@ propel:
       foreignTable: provincia
       foreignReference: id
     telefono:
+      type: VARCHAR
+      size: 20
+      required: false
+    telefono_laboral:
       type: VARCHAR
       size: 20
       required: false
@@ -867,6 +875,10 @@ propel:
       type: boolean
       required: true
       default: false
+    llamar_emergencia:
+      type: boolean
+      required: true
+      default: false
     fk_cuenta_id:
       type: INTEGER
       required: true
@@ -879,6 +891,13 @@ propel:
       default: 1
       foreignTable: rol_responsable
       foreignReference: id
+    ocupacion:
+      type: varchar
+      required: false
+      size: 255
+    fecha_nacimiento:
+      type: timestamp
+      required: false
 
   ciclolectivo:
     _attributes:
@@ -963,7 +982,7 @@ propel:
       type: varchar
       size: 1000
       required: false
-      
+
   tipodocente:
     _attributes:
       idMethod: native
@@ -1983,7 +2002,7 @@ propel:
       required: true
       foreignTable: usuario
       foreignReference: id
-  
+
   estadosalumnos:
     _attributes:
       idMethod: native
@@ -1996,3 +2015,36 @@ propel:
       type: varchar
       size: 128
       required: true
+  alumno_salud:
+    _attributes:
+      idMethod: native
+    id:
+      type: integer
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_alumno_id:
+      type: integer
+      required: true
+      foreignTable: alumno
+      foreignReference: id
+    cobertura_medica:
+      type: varchar
+      size: 255
+      required: false
+    pediatra_apellido:
+      type: varchar
+      size: 255
+      required: false
+    pediatra_nombre:
+      type: varchar
+      size: 255
+      required: false
+    pediatra_domicilio:
+      type: varchar
+      size: 255
+      required: false
+    pediatra_telefono:
+      type: varchar
+      size: 20
+      required: false
