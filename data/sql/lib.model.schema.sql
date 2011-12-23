@@ -607,10 +607,12 @@ CREATE TABLE `responsable`
 	`apellido` VARCHAR(128)  NOT NULL,
 	`apellido_materno` VARCHAR(128),
 	`direccion` VARCHAR(128),
+	`direccion_laboral` VARCHAR(128),
 	`ciudad` VARCHAR(128),
 	`codigo_postal` VARCHAR(20),
 	`fk_provincia_id` INTEGER default 0 NOT NULL,
 	`telefono` VARCHAR(20),
+	`telefono_laboral` VARCHAR(20),
 	`telefono_movil` VARCHAR(20),
 	`nro_documento` VARCHAR(20)  NOT NULL,
 	`fk_tipodocumento_id` INTEGER default 0 NOT NULL,
@@ -618,8 +620,11 @@ CREATE TABLE `responsable`
 	`email` VARCHAR(128),
 	`observacion` VARCHAR(255),
 	`autorizacion_retiro` TINYINT default 0 NOT NULL,
+	`llamar_emergencia` TINYINT default 0 NOT NULL,
 	`fk_cuenta_id` INTEGER default 0 NOT NULL,
 	`fk_rolresponsable_id` INTEGER default 1 NOT NULL,
+	`ocupacion` VARCHAR(255),
+	`fecha_nacimiento` DATETIME,
 	PRIMARY KEY (`id`),
 	INDEX `responsable_FI_1` (`fk_provincia_id`),
 	CONSTRAINT `responsable_FK_1`
@@ -1569,6 +1574,29 @@ CREATE TABLE `estadosalumnos`
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
 	`nombre` VARCHAR(128)  NOT NULL,
 	PRIMARY KEY (`id`)
+)Engine=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- alumno_salud
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `alumno_salud`;
+
+
+CREATE TABLE `alumno_salud`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`fk_alumno_id` INTEGER  NOT NULL,
+	`cobertura_medica` VARCHAR(255),
+	`pediatra_apellido` VARCHAR(255),
+	`pediatra_nombre` VARCHAR(255),
+	`pediatra_domicilio` VARCHAR(255),
+	`pediatra_telefono` VARCHAR(20),
+	PRIMARY KEY (`id`),
+	INDEX `alumno_salud_FI_1` (`fk_alumno_id`),
+	CONSTRAINT `alumno_salud_FK_1`
+		FOREIGN KEY (`fk_alumno_id`)
+		REFERENCES `alumno` (`id`)
 )Engine=InnoDB;
 
 # This restores the fkey checks, after having unset them earlier

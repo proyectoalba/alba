@@ -172,6 +172,12 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	private $lastLegajosaludCriteria = null;
 
 	
+	protected $collAlumnoSaluds;
+
+	
+	private $lastAlumnoSaludCriteria = null;
+
+	
 	protected $alreadyInSave = false;
 
 	
@@ -1032,6 +1038,9 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->collLegajosaluds = null;
 			$this->lastLegajosaludCriteria = null;
 
+			$this->collAlumnoSaluds = null;
+			$this->lastAlumnoSaludCriteria = null;
+
 		} 	}
 
 	
@@ -1223,6 +1232,14 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				}
 			}
 
+			if ($this->collAlumnoSaluds !== null) {
+				foreach ($this->collAlumnoSaluds as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
 			$this->alreadyInSave = false;
 
 		}
@@ -1375,6 +1392,14 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 
 				if ($this->collLegajosaluds !== null) {
 					foreach ($this->collLegajosaluds as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
+
+				if ($this->collAlumnoSaluds !== null) {
+					foreach ($this->collAlumnoSaluds as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -1832,6 +1857,11 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 
 			foreach ($this->getLegajosaluds() as $relObj) {
 				if ($relObj !== $this) {  					$copyObj->addLegajosalud($relObj->copy($deepCopy));
+				}
+			}
+
+			foreach ($this->getAlumnoSaluds() as $relObj) {
+				if ($relObj !== $this) {  					$copyObj->addAlumnoSalud($relObj->copy($deepCopy));
 				}
 			}
 
@@ -3565,6 +3595,107 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	}
 
 	
+	public function clearAlumnoSaluds()
+	{
+		$this->collAlumnoSaluds = null; 	}
+
+	
+	public function initAlumnoSaluds()
+	{
+		$this->collAlumnoSaluds = array();
+	}
+
+	
+	public function getAlumnoSaluds($criteria = null, PropelPDO $con = null)
+	{
+		if ($criteria === null) {
+			$criteria = new Criteria(AlumnoPeer::DATABASE_NAME);
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collAlumnoSaluds === null) {
+			if ($this->isNew()) {
+			   $this->collAlumnoSaluds = array();
+			} else {
+
+				$criteria->add(AlumnoSaludPeer::FK_ALUMNO_ID, $this->id);
+
+				AlumnoSaludPeer::addSelectColumns($criteria);
+				$this->collAlumnoSaluds = AlumnoSaludPeer::doSelect($criteria, $con);
+			}
+		} else {
+						if (!$this->isNew()) {
+												
+
+				$criteria->add(AlumnoSaludPeer::FK_ALUMNO_ID, $this->id);
+
+				AlumnoSaludPeer::addSelectColumns($criteria);
+				if (!isset($this->lastAlumnoSaludCriteria) || !$this->lastAlumnoSaludCriteria->equals($criteria)) {
+					$this->collAlumnoSaluds = AlumnoSaludPeer::doSelect($criteria, $con);
+				}
+			}
+		}
+		$this->lastAlumnoSaludCriteria = $criteria;
+		return $this->collAlumnoSaluds;
+	}
+
+	
+	public function countAlumnoSaluds(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+	{
+		if ($criteria === null) {
+			$criteria = new Criteria(AlumnoPeer::DATABASE_NAME);
+		} else {
+			$criteria = clone $criteria;
+		}
+
+		if ($distinct) {
+			$criteria->setDistinct();
+		}
+
+		$count = null;
+
+		if ($this->collAlumnoSaluds === null) {
+			if ($this->isNew()) {
+				$count = 0;
+			} else {
+
+				$criteria->add(AlumnoSaludPeer::FK_ALUMNO_ID, $this->id);
+
+				$count = AlumnoSaludPeer::doCount($criteria, $con);
+			}
+		} else {
+						if (!$this->isNew()) {
+												
+
+				$criteria->add(AlumnoSaludPeer::FK_ALUMNO_ID, $this->id);
+
+				if (!isset($this->lastAlumnoSaludCriteria) || !$this->lastAlumnoSaludCriteria->equals($criteria)) {
+					$count = AlumnoSaludPeer::doCount($criteria, $con);
+				} else {
+					$count = count($this->collAlumnoSaluds);
+				}
+			} else {
+				$count = count($this->collAlumnoSaluds);
+			}
+		}
+		return $count;
+	}
+
+	
+	public function addAlumnoSalud(AlumnoSalud $l)
+	{
+		if ($this->collAlumnoSaluds === null) {
+			$this->initAlumnoSaluds();
+		}
+		if (!in_array($l, $this->collAlumnoSaluds, true)) { 			array_push($this->collAlumnoSaluds, $l);
+			$l->setAlumno($this);
+		}
+	}
+
+	
 	public function clearAllReferences($deep = false)
 	{
 		if ($deep) {
@@ -3613,6 +3744,11 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 					$o->clearAllReferences($deep);
 				}
 			}
+			if ($this->collAlumnoSaluds) {
+				foreach ((array) $this->collAlumnoSaluds as $o) {
+					$o->clearAllReferences($deep);
+				}
+			}
 		} 
 		$this->collRelCalendariovacunacionAlumnos = null;
 		$this->collLegajopedagogicos = null;
@@ -3623,6 +3759,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		$this->collRelAlumnoDivisions = null;
 		$this->collRelRolresponsableResponsables = null;
 		$this->collLegajosaluds = null;
+		$this->collAlumnoSaluds = null;
 			$this->aProvincia = null;
 			$this->aTipodocumento = null;
 			$this->aEstablecimiento = null;

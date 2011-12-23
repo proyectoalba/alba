@@ -13,7 +13,7 @@ abstract class BaseResponsablePeer {
 	const CLASS_DEFAULT = 'lib.model.Responsable';
 
 	
-	const NUM_COLUMNS = 18;
+	const NUM_COLUMNS = 23;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -34,6 +34,9 @@ abstract class BaseResponsablePeer {
 	const DIRECCION = 'responsable.DIRECCION';
 
 	
+	const DIRECCION_LABORAL = 'responsable.DIRECCION_LABORAL';
+
+	
 	const CIUDAD = 'responsable.CIUDAD';
 
 	
@@ -44,6 +47,9 @@ abstract class BaseResponsablePeer {
 
 	
 	const TELEFONO = 'responsable.TELEFONO';
+
+	
+	const TELEFONO_LABORAL = 'responsable.TELEFONO_LABORAL';
 
 	
 	const TELEFONO_MOVIL = 'responsable.TELEFONO_MOVIL';
@@ -67,10 +73,19 @@ abstract class BaseResponsablePeer {
 	const AUTORIZACION_RETIRO = 'responsable.AUTORIZACION_RETIRO';
 
 	
+	const LLAMAR_EMERGENCIA = 'responsable.LLAMAR_EMERGENCIA';
+
+	
 	const FK_CUENTA_ID = 'responsable.FK_CUENTA_ID';
 
 	
 	const FK_ROLRESPONSABLE_ID = 'responsable.FK_ROLRESPONSABLE_ID';
+
+	
+	const OCUPACION = 'responsable.OCUPACION';
+
+	
+	const FECHA_NACIMIENTO = 'responsable.FECHA_NACIMIENTO';
 
 	
 	public static $instances = array();
@@ -80,20 +95,20 @@ abstract class BaseResponsablePeer {
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Apellido', 'ApellidoMaterno', 'Direccion', 'Ciudad', 'CodigoPostal', 'FkProvinciaId', 'Telefono', 'TelefonoMovil', 'NroDocumento', 'FkTipodocumentoId', 'Sexo', 'Email', 'Observacion', 'AutorizacionRetiro', 'FkCuentaId', 'FkRolresponsableId', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'nombre', 'apellido', 'apellidoMaterno', 'direccion', 'ciudad', 'codigoPostal', 'fkProvinciaId', 'telefono', 'telefonoMovil', 'nroDocumento', 'fkTipodocumentoId', 'sexo', 'email', 'observacion', 'autorizacionRetiro', 'fkCuentaId', 'fkRolresponsableId', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::NOMBRE, self::APELLIDO, self::APELLIDO_MATERNO, self::DIRECCION, self::CIUDAD, self::CODIGO_POSTAL, self::FK_PROVINCIA_ID, self::TELEFONO, self::TELEFONO_MOVIL, self::NRO_DOCUMENTO, self::FK_TIPODOCUMENTO_ID, self::SEXO, self::EMAIL, self::OBSERVACION, self::AUTORIZACION_RETIRO, self::FK_CUENTA_ID, self::FK_ROLRESPONSABLE_ID, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'apellido', 'apellido_materno', 'direccion', 'ciudad', 'codigo_postal', 'fk_provincia_id', 'telefono', 'telefono_movil', 'nro_documento', 'fk_tipodocumento_id', 'sexo', 'email', 'observacion', 'autorizacion_retiro', 'fk_cuenta_id', 'fk_rolresponsable_id', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Apellido', 'ApellidoMaterno', 'Direccion', 'DireccionLaboral', 'Ciudad', 'CodigoPostal', 'FkProvinciaId', 'Telefono', 'TelefonoLaboral', 'TelefonoMovil', 'NroDocumento', 'FkTipodocumentoId', 'Sexo', 'Email', 'Observacion', 'AutorizacionRetiro', 'LlamarEmergencia', 'FkCuentaId', 'FkRolresponsableId', 'Ocupacion', 'FechaNacimiento', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'nombre', 'apellido', 'apellidoMaterno', 'direccion', 'direccionLaboral', 'ciudad', 'codigoPostal', 'fkProvinciaId', 'telefono', 'telefonoLaboral', 'telefonoMovil', 'nroDocumento', 'fkTipodocumentoId', 'sexo', 'email', 'observacion', 'autorizacionRetiro', 'llamarEmergencia', 'fkCuentaId', 'fkRolresponsableId', 'ocupacion', 'fechaNacimiento', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::NOMBRE, self::APELLIDO, self::APELLIDO_MATERNO, self::DIRECCION, self::DIRECCION_LABORAL, self::CIUDAD, self::CODIGO_POSTAL, self::FK_PROVINCIA_ID, self::TELEFONO, self::TELEFONO_LABORAL, self::TELEFONO_MOVIL, self::NRO_DOCUMENTO, self::FK_TIPODOCUMENTO_ID, self::SEXO, self::EMAIL, self::OBSERVACION, self::AUTORIZACION_RETIRO, self::LLAMAR_EMERGENCIA, self::FK_CUENTA_ID, self::FK_ROLRESPONSABLE_ID, self::OCUPACION, self::FECHA_NACIMIENTO, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'apellido', 'apellido_materno', 'direccion', 'direccion_laboral', 'ciudad', 'codigo_postal', 'fk_provincia_id', 'telefono', 'telefono_laboral', 'telefono_movil', 'nro_documento', 'fk_tipodocumento_id', 'sexo', 'email', 'observacion', 'autorizacion_retiro', 'llamar_emergencia', 'fk_cuenta_id', 'fk_rolresponsable_id', 'ocupacion', 'fecha_nacimiento', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Apellido' => 2, 'ApellidoMaterno' => 3, 'Direccion' => 4, 'Ciudad' => 5, 'CodigoPostal' => 6, 'FkProvinciaId' => 7, 'Telefono' => 8, 'TelefonoMovil' => 9, 'NroDocumento' => 10, 'FkTipodocumentoId' => 11, 'Sexo' => 12, 'Email' => 13, 'Observacion' => 14, 'AutorizacionRetiro' => 15, 'FkCuentaId' => 16, 'FkRolresponsableId' => 17, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'nombre' => 1, 'apellido' => 2, 'apellidoMaterno' => 3, 'direccion' => 4, 'ciudad' => 5, 'codigoPostal' => 6, 'fkProvinciaId' => 7, 'telefono' => 8, 'telefonoMovil' => 9, 'nroDocumento' => 10, 'fkTipodocumentoId' => 11, 'sexo' => 12, 'email' => 13, 'observacion' => 14, 'autorizacionRetiro' => 15, 'fkCuentaId' => 16, 'fkRolresponsableId' => 17, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::NOMBRE => 1, self::APELLIDO => 2, self::APELLIDO_MATERNO => 3, self::DIRECCION => 4, self::CIUDAD => 5, self::CODIGO_POSTAL => 6, self::FK_PROVINCIA_ID => 7, self::TELEFONO => 8, self::TELEFONO_MOVIL => 9, self::NRO_DOCUMENTO => 10, self::FK_TIPODOCUMENTO_ID => 11, self::SEXO => 12, self::EMAIL => 13, self::OBSERVACION => 14, self::AUTORIZACION_RETIRO => 15, self::FK_CUENTA_ID => 16, self::FK_ROLRESPONSABLE_ID => 17, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'apellido' => 2, 'apellido_materno' => 3, 'direccion' => 4, 'ciudad' => 5, 'codigo_postal' => 6, 'fk_provincia_id' => 7, 'telefono' => 8, 'telefono_movil' => 9, 'nro_documento' => 10, 'fk_tipodocumento_id' => 11, 'sexo' => 12, 'email' => 13, 'observacion' => 14, 'autorizacion_retiro' => 15, 'fk_cuenta_id' => 16, 'fk_rolresponsable_id' => 17, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Apellido' => 2, 'ApellidoMaterno' => 3, 'Direccion' => 4, 'DireccionLaboral' => 5, 'Ciudad' => 6, 'CodigoPostal' => 7, 'FkProvinciaId' => 8, 'Telefono' => 9, 'TelefonoLaboral' => 10, 'TelefonoMovil' => 11, 'NroDocumento' => 12, 'FkTipodocumentoId' => 13, 'Sexo' => 14, 'Email' => 15, 'Observacion' => 16, 'AutorizacionRetiro' => 17, 'LlamarEmergencia' => 18, 'FkCuentaId' => 19, 'FkRolresponsableId' => 20, 'Ocupacion' => 21, 'FechaNacimiento' => 22, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'nombre' => 1, 'apellido' => 2, 'apellidoMaterno' => 3, 'direccion' => 4, 'direccionLaboral' => 5, 'ciudad' => 6, 'codigoPostal' => 7, 'fkProvinciaId' => 8, 'telefono' => 9, 'telefonoLaboral' => 10, 'telefonoMovil' => 11, 'nroDocumento' => 12, 'fkTipodocumentoId' => 13, 'sexo' => 14, 'email' => 15, 'observacion' => 16, 'autorizacionRetiro' => 17, 'llamarEmergencia' => 18, 'fkCuentaId' => 19, 'fkRolresponsableId' => 20, 'ocupacion' => 21, 'fechaNacimiento' => 22, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::NOMBRE => 1, self::APELLIDO => 2, self::APELLIDO_MATERNO => 3, self::DIRECCION => 4, self::DIRECCION_LABORAL => 5, self::CIUDAD => 6, self::CODIGO_POSTAL => 7, self::FK_PROVINCIA_ID => 8, self::TELEFONO => 9, self::TELEFONO_LABORAL => 10, self::TELEFONO_MOVIL => 11, self::NRO_DOCUMENTO => 12, self::FK_TIPODOCUMENTO_ID => 13, self::SEXO => 14, self::EMAIL => 15, self::OBSERVACION => 16, self::AUTORIZACION_RETIRO => 17, self::LLAMAR_EMERGENCIA => 18, self::FK_CUENTA_ID => 19, self::FK_ROLRESPONSABLE_ID => 20, self::OCUPACION => 21, self::FECHA_NACIMIENTO => 22, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'apellido' => 2, 'apellido_materno' => 3, 'direccion' => 4, 'direccion_laboral' => 5, 'ciudad' => 6, 'codigo_postal' => 7, 'fk_provincia_id' => 8, 'telefono' => 9, 'telefono_laboral' => 10, 'telefono_movil' => 11, 'nro_documento' => 12, 'fk_tipodocumento_id' => 13, 'sexo' => 14, 'email' => 15, 'observacion' => 16, 'autorizacion_retiro' => 17, 'llamar_emergencia' => 18, 'fk_cuenta_id' => 19, 'fk_rolresponsable_id' => 20, 'ocupacion' => 21, 'fecha_nacimiento' => 22, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, )
 	);
 
 	
@@ -145,6 +160,8 @@ abstract class BaseResponsablePeer {
 
 		$criteria->addSelectColumn(ResponsablePeer::DIRECCION);
 
+		$criteria->addSelectColumn(ResponsablePeer::DIRECCION_LABORAL);
+
 		$criteria->addSelectColumn(ResponsablePeer::CIUDAD);
 
 		$criteria->addSelectColumn(ResponsablePeer::CODIGO_POSTAL);
@@ -152,6 +169,8 @@ abstract class BaseResponsablePeer {
 		$criteria->addSelectColumn(ResponsablePeer::FK_PROVINCIA_ID);
 
 		$criteria->addSelectColumn(ResponsablePeer::TELEFONO);
+
+		$criteria->addSelectColumn(ResponsablePeer::TELEFONO_LABORAL);
 
 		$criteria->addSelectColumn(ResponsablePeer::TELEFONO_MOVIL);
 
@@ -167,9 +186,15 @@ abstract class BaseResponsablePeer {
 
 		$criteria->addSelectColumn(ResponsablePeer::AUTORIZACION_RETIRO);
 
+		$criteria->addSelectColumn(ResponsablePeer::LLAMAR_EMERGENCIA);
+
 		$criteria->addSelectColumn(ResponsablePeer::FK_CUENTA_ID);
 
 		$criteria->addSelectColumn(ResponsablePeer::FK_ROLRESPONSABLE_ID);
+
+		$criteria->addSelectColumn(ResponsablePeer::OCUPACION);
+
+		$criteria->addSelectColumn(ResponsablePeer::FECHA_NACIMIENTO);
 
 	}
 
