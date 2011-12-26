@@ -42,7 +42,7 @@
           </td>
           <td>
               Como est&aacute; en continuo desarrollo, puede encontrar errores que todav&iacute;a no han sido descubiertos. <br>
-              Si encuentra alguno, por favor rep&oacute;rtelo en nuestro sitio de seguimientos de errores: <b><a target="_blank" href="http://alba.pressenter.com.ar">http://alba.pressenter.com.ar</a></b>
+              Si encuentra alguno, por favor rep&oacute;rtelo en nuestro sitio de seguimientos de errores: <b><a target="_blank" href="http://dev.pressenter.com.ar/alba">http://dev.pressenter.com.ar/alba</a></b>
               <br/>
           </td>
       </tr>
