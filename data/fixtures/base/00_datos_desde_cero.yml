@@ -71,7 +71,7 @@ Tipoinforme:
     descripcion: Informes relacionados a los alumnos
   Tipoinforme_2:
     nombre: General
-    descripcion:
+    descripcion: Informes de datos generales
 Adjunto:
   Adjunto_1:
     descripcion:

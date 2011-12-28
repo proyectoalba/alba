@@ -1,8 +1,73 @@
+alter table permiso modify fk_modulo_id int default null;
+alter table permiso drop fk_modulo_id;
+alter table permiso drop foreign key permiso_FK_1;
+alter table permiso drop fk_modulo_id;
+alter table permiso drop credencial;
+truncate table permiso;
+
+INSERT INTO `permiso` VALUES(1, 'usuario', 'Modulo de usuario');
+INSERT INTO `permiso` VALUES(2, 'actividad', NULL);
+INSERT INTO `permiso` VALUES(3, 'alumno', NULL);
+INSERT INTO `permiso` VALUES(4, 'anio', NULL);
+INSERT INTO `permiso` VALUES(5, 'calendario', NULL);
+INSERT INTO `permiso` VALUES(6, 'calendariovacunacion', NULL);
+INSERT INTO `permiso` VALUES(7, 'ciclolectivo', NULL);
+INSERT INTO `permiso` VALUES(8, 'concepto', NULL);
+INSERT INTO `permiso` VALUES(9, 'cuenta', NULL);
+INSERT INTO `permiso` VALUES(10, 'division', NULL);
+INSERT INTO `permiso` VALUES(11, 'docente', NULL);
+INSERT INTO `permiso` VALUES(12, 'docentehorario', NULL);
+INSERT INTO `permiso` VALUES(13, 'escalanota', NULL);
+INSERT INTO `permiso` VALUES(14, 'establecimiento', NULL);
+INSERT INTO `permiso` VALUES(15, 'feriado', NULL);
+INSERT INTO `permiso` VALUES(16, 'legajocategoria', NULL);
+INSERT INTO `permiso` VALUES(17, 'locacion', NULL);
+INSERT INTO `permiso` VALUES(18, 'pais', NULL);
+INSERT INTO `permiso` VALUES(19, 'preferencia', NULL);
+INSERT INTO `permiso` VALUES(20, 'provincia', NULL);
+INSERT INTO `permiso` VALUES(21, 'relactividaddocente', NULL);
+INSERT INTO `permiso` VALUES(22, 'relactividad', NULL);
+INSERT INTO `permiso` VALUES(23, 'relcalendariovacunacionalumno', NULL);
+INSERT INTO `permiso` VALUES(24, 'responsable', NULL);
+INSERT INTO `permiso` VALUES(25, 'rol', NULL);
+INSERT INTO `permiso` VALUES(26, 'tipoiva', NULL);
+INSERT INTO `permiso` VALUES(27, 'turno', NULL);
+INSERT INTO `permiso` VALUES(28, 'tipolocacion', NULL);
+INSERT INTO `permiso` VALUES(29, 'tipoespacio', NULL);
+INSERT INTO `permiso` VALUES(30, 'espacio', NULL);
+INSERT INTO `permiso` VALUES(31, 'cargobaja', NULL);
+INSERT INTO `permiso` VALUES(32, 'conceptobaja', NULL);
+INSERT INTO `permiso` VALUES(33, 'distritoescolar', NULL);
+INSERT INTO `permiso` VALUES(34, 'horarioescolar', NULL);
+INSERT INTO `permiso` VALUES(35, 'horarioescolartipo', NULL);
+INSERT INTO `permiso` VALUES(36, 'tipodocente', NULL);
+INSERT INTO `permiso` VALUES(37, 'organizacion', NULL);
+INSERT INTO `permiso` VALUES(38, 'asistencia', 'Asistencias');
+INSERT INTO `permiso` VALUES(39, 'legajopedagogico', NULL);
+INSERT INTO `permiso` VALUES(40, 'tipoasistencia', NULL);
+INSERT INTO `permiso` VALUES(41, 'formatofecha', NULL);
+INSERT INTO `permiso` VALUES(42, 'rellocacionespacio', NULL);
+INSERT INTO `permiso` VALUES(43, 'relalumnodivision', NULL);
+INSERT INTO `permiso` VALUES(44, 'boletin', NULL);
+INSERT INTO `permiso` VALUES(45, 'boletinconcepto', 'boletinconcepto');
+INSERT INTO `permiso` VALUES(46, 'boletinnotas', 'boletinnotas');
+INSERT INTO `permiso` VALUES(47, 'tipodocumento', 'tipodocumento');
+INSERT INTO `permiso` VALUES(48, 'informes', 'informes');
+INSERT INTO `permiso` VALUES(49, 'rolresponsable', 'Rol de Responsables');
+INSERT INTO `permiso` VALUES(50, 'orientacion', 'Orientacion');
+INSERT INTO `permiso` VALUES(51, 'tiponivel', 'Tipo de Nivel');
+INSERT INTO `permiso` VALUES(52, 'carrera', 'Carreras');
+INSERT INTO `permiso` VALUES(53, 'legajosalud', 'Legajo de Salud');
+INSERT INTO `permiso` VALUES(54, 'relanioactividad', 'Modulo de Años y Actividades');
+
 CREATE TABLE `estadosalumnos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+insert into estadosalumnos (id,nombre) values (1,'Regular');
+insert into estadosalumnos (id,nombre) values (2,'Libre');
 
 CREATE TABLE `alumno_salud` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -34,6 +99,31 @@ CREATE TABLE `tipoinforme` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+insert into tipoinforme (id,nombre,descripcion) values (1,'Alumnos','Informes relacionados a los alumnos');
+insert into tipoinforme (id,nombre,descripcion) values (2,'General','Informes de datos generales');
+
+INSERT INTO `adjunto` VALUES(1, NULL, 'constancia_alumno_regular', 'constancia_alumno_regular.odt', 'application/vnd.oasis.opendocument.text', 'constancia_alumno_regular.odt', '2007-10-17 00:00:00');
+INSERT INTO `adjunto` VALUES(2, NULL, 'certificado_de_terminacion_de_estudios_primarios', 'certificado_de_terminacion_de_estudios_primarios.odt\n', 'application/vnd.oasis.opendocument.text', 'certificado_de_terminacion_de_estudios_primarios.odt\n', '2007-10-17 00:00:00');
+INSERT INTO `adjunto` VALUES(3, NULL, 'solicitud_legajo', 'solicitud_legajo.odt', 'application/vnd.oasis.opendocument.text', 'solicitud_legajo.odt', '2007-10-17 00:00:00');
+INSERT INTO `adjunto` VALUES(4, NULL, 'certificado_de_estudios', 'certificado_de_estudios.odt', 'application/vnd.oasis.opendocument.text', 'certificado_de_estudios.odt', '2007-10-17 00:00:00');
+INSERT INTO `adjunto` VALUES(5, NULL, 'alumnos_por_division', 'alumnos_por_division.odt', 'application/vnd.oasis.opendocument.text', 'alumnos_por_division.odt', '2007-10-17 00:00:00');
+INSERT INTO `adjunto` VALUES(6, NULL, 'locacion', 'locacion.odt', 'application/vnd.oasis.opendocument.text', 'locacion.odt', '2007-10-17 00:00:00');
+INSERT INTO `adjunto` VALUES(7, NULL, 'docente', 'docente.odt', 'application/vnd.oasis.opendocument.text', 'docente.odt', '2007-10-17 00:00:00');
+INSERT INTO `adjunto` VALUES(8, NULL, 'organizacion', 'organizacion.odt', 'application/vnd.oasis.opendocument.text', 'organizacion.odt', '2007-10-17 00:00:00');
+INSERT INTO `adjunto` VALUES(9, NULL, 'cuenta', 'cuenta.odt', 'application/vnd.oasis.opendocument.text', 'cuenta.odt', '2007-10-17 00:00:00');
+INSERT INTO `adjunto` VALUES(10, NULL, 'responsable', 'responsable.odt', 'application/vnd.oasis.opendocument.text', 'responsable.odt', '2007-10-17 00:00:00');
+INSERT INTO `adjunto` VALUES(11, NULL, 'constancia_alumno_regular', 'constancia_alumno_regular.odt', 'application/vnd.oasis.opendocument.text', 'constancia_alumno_regular.odt', '2007-10-17 00:00:00');
+INSERT INTO `adjunto` VALUES(12, NULL, 'certificado_de_terminacion_de_estudios_primarios', 'certificado_de_terminacion_de_estudios_primarios.odt\n', 'application/vnd.oasis.opendocument.text', 'certificado_de_terminacion_de_estudios_primarios.odt\n', '2007-10-17 00:00:00');
+INSERT INTO `adjunto` VALUES(13, NULL, 'solicitud_legajo', 'solicitud_legajo.odt', 'application/vnd.oasis.opendocument.text', 'solicitud_legajo.odt', '2007-10-17 00:00:00');
+INSERT INTO `adjunto` VALUES(14, NULL, 'certificado_de_estudios', 'certificado_de_estudios.odt', 'application/vnd.oasis.opendocument.text', 'certificado_de_estudios.odt', '2007-10-17 00:00:00');
+INSERT INTO `adjunto` VALUES(15, NULL, 'alumnos_por_division', 'alumnos_por_division.odt', 'application/vnd.oasis.opendocument.text', 'alumnos_por_division.odt', '2007-10-17 00:00:00');
+INSERT INTO `adjunto` VALUES(16, NULL, 'locacion', 'locacion.odt', 'application/vnd.oasis.opendocument.text', 'locacion.odt', '2007-10-17 00:00:00');
+INSERT INTO `adjunto` VALUES(17, NULL, 'docente', 'docente.odt', 'application/vnd.oasis.opendocument.text', 'docente.odt', '2007-10-17 00:00:00');
+INSERT INTO `adjunto` VALUES(18, NULL, 'organizacion', 'organizacion.odt', 'application/vnd.oasis.opendocument.text', 'organizacion.odt', '2007-10-17 00:00:00');
+INSERT INTO `adjunto` VALUES(19, NULL, 'cuenta', 'cuenta.odt', 'application/vnd.oasis.opendocument.text', 'cuenta.odt', '2007-10-17 00:00:00');
+INSERT INTO `adjunto` VALUES(20, NULL, 'responsable', 'responsable.odt', 'application/vnd.oasis.opendocument.text', 'responsable.odt', '2007-10-17 00:00:00');
+
+
 CREATE TABLE `informe` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(128) NOT NULL,
@@ -49,6 +139,17 @@ CREATE TABLE `informe` (
   CONSTRAINT `informe_FK_2` FOREIGN KEY (`fk_tipoinforme_id`) REFERENCES `tipoinforme` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `informe` VALUES(1, 'Constancia de alumno regular', 'Constancia de alumno regular', 1, 1, 0, NULL);
+INSERT INTO `informe` VALUES(2, 'Certificado fin de estudios primarios', 'Certificado fin de estudios primarios', 2, 1, 0, NULL);
+INSERT INTO `informe` VALUES(3, 'Solicitud de legajo', 'Solicitud de legajo', 3, 1, 0, 'origen');
+INSERT INTO `informe` VALUES(4, 'Certificado de estudios', 'Certificado de estudios', 4, 1, 0, 'grado;año');
+INSERT INTO `informe` VALUES(5, 'Alumnos por división', 'Alumnos por división', 5, 1, 1, NULL);
+INSERT INTO `informe` VALUES(6, 'Locacion', 'Locacion', 6, 2, 1, NULL);
+INSERT INTO `informe` VALUES(7, 'Docente', 'Docente', 7, 2, 1, NULL);
+INSERT INTO `informe` VALUES(8, 'Organizaci&oacute;n', 'Organizaci&oacute;n', 8, 2, 0, NULL);
+INSERT INTO `informe` VALUES(9, 'Cuenta', 'Cuenta', 9, 2, 1, NULL);
+INSERT INTO `informe` VALUES(10, 'Responsable', 'Responsable', 10, 2, 1, NULL);
+
 CREATE TABLE `legajosalud` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fk_alumno_id` int(11) NOT NULL,
@@ -63,6 +164,7 @@ CREATE TABLE `legajosalud` (
   CONSTRAINT `legajosalud_FK_2` FOREIGN KEY (`fk_usuario_id`) REFERENCES `usuario` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+drop table rel_rol_permiso;
 CREATE TABLE `rol_permiso` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fk_rol_id` int(11) NOT NULL DEFAULT '0',
@@ -74,6 +176,69 @@ CREATE TABLE `rol_permiso` (
   CONSTRAINT `rol_permiso_FK_2` FOREIGN KEY (`fk_permiso_id`) REFERENCES `permiso` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+insert into rol (nombre,descripcion) values ('upgrade_admin', 'Administrador (upgrade)');
+
+INSERT INTO `rol_permiso` VALUES(1, 1, 2);
+INSERT INTO `rol_permiso` VALUES(2, 1, 3);
+INSERT INTO `rol_permiso` VALUES(3, 1, 4);
+INSERT INTO `rol_permiso` VALUES(4, 1, 38);
+INSERT INTO `rol_permiso` VALUES(5, 1, 44);
+INSERT INTO `rol_permiso` VALUES(6, 1, 45);
+INSERT INTO `rol_permiso` VALUES(7, 1, 46);
+INSERT INTO `rol_permiso` VALUES(8, 1, 5);
+INSERT INTO `rol_permiso` VALUES(9, 1, 6);
+INSERT INTO `rol_permiso` VALUES(10, 1, 31);
+INSERT INTO `rol_permiso` VALUES(11, 1, 52);
+INSERT INTO `rol_permiso` VALUES(12, 1, 7);
+INSERT INTO `rol_permiso` VALUES(13, 1, 32);
+INSERT INTO `rol_permiso` VALUES(14, 1, 8);
+INSERT INTO `rol_permiso` VALUES(15, 1, 9);
+INSERT INTO `rol_permiso` VALUES(16, 1, 33);
+INSERT INTO `rol_permiso` VALUES(17, 1, 10);
+INSERT INTO `rol_permiso` VALUES(18, 1, 11);
+INSERT INTO `rol_permiso` VALUES(19, 1, 12);
+INSERT INTO `rol_permiso` VALUES(20, 1, 13);
+INSERT INTO `rol_permiso` VALUES(21, 1, 30);
+INSERT INTO `rol_permiso` VALUES(22, 1, 14);
+INSERT INTO `rol_permiso` VALUES(23, 1, 15);
+INSERT INTO `rol_permiso` VALUES(24, 1, 41);
+INSERT INTO `rol_permiso` VALUES(25, 1, 34);
+INSERT INTO `rol_permiso` VALUES(26, 1, 35);
+INSERT INTO `rol_permiso` VALUES(27, 1, 48);
+INSERT INTO `rol_permiso` VALUES(28, 1, 16);
+INSERT INTO `rol_permiso` VALUES(29, 1, 39);
+INSERT INTO `rol_permiso` VALUES(30, 1, 53);
+INSERT INTO `rol_permiso` VALUES(31, 1, 17);
+INSERT INTO `rol_permiso` VALUES(32, 1, 37);
+INSERT INTO `rol_permiso` VALUES(33, 1, 50);
+INSERT INTO `rol_permiso` VALUES(34, 1, 18);
+INSERT INTO `rol_permiso` VALUES(35, 1, 19);
+INSERT INTO `rol_permiso` VALUES(36, 1, 20);
+INSERT INTO `rol_permiso` VALUES(37, 1, 22);
+INSERT INTO `rol_permiso` VALUES(38, 1, 21);
+INSERT INTO `rol_permiso` VALUES(39, 1, 43);
+INSERT INTO `rol_permiso` VALUES(40, 1, 23);
+INSERT INTO `rol_permiso` VALUES(41, 1, 42);
+INSERT INTO `rol_permiso` VALUES(42, 1, 24);
+INSERT INTO `rol_permiso` VALUES(43, 1, 25);
+INSERT INTO `rol_permiso` VALUES(44, 1, 49);
+INSERT INTO `rol_permiso` VALUES(45, 1, 40);
+INSERT INTO `rol_permiso` VALUES(46, 1, 36);
+INSERT INTO `rol_permiso` VALUES(47, 1, 47);
+INSERT INTO `rol_permiso` VALUES(48, 1, 29);
+INSERT INTO `rol_permiso` VALUES(49, 1, 26);
+INSERT INTO `rol_permiso` VALUES(50, 1, 28);
+INSERT INTO `rol_permiso` VALUES(51, 1, 51);
+INSERT INTO `rol_permiso` VALUES(52, 1, 27);
+INSERT INTO `rol_permiso` VALUES(53, 1, 1);
+INSERT INTO `rol_permiso` VALUES(54, 1, 54);
+
+ALTER TABLE `rol_permiso`
+  ADD CONSTRAINT `rol_permiso_FK_1` FOREIGN KEY (`fk_rol_id`) REFERENCES `rol` (`id`),
+  ADD CONSTRAINT `rol_permiso_FK_2` FOREIGN KEY (`fk_permiso_id`) REFERENCES `permiso` (`id`);
+
+
+drop table rel_usuario_permiso;
 
 CREATE TABLE `usuario_permiso` (
   `fk_usuario_id` int(11) NOT NULL DEFAULT '0',
@@ -153,12 +318,6 @@ alter table locacion modify principal tinyint(4) default '0';
 
 alter table periodo add calcular tinyint(4) not null default '0';
 alter table formula varchar(1000) default null;
-
-alter table permiso modify fk_modulo_id int default null;
-alter table permiso drop fk_modulo_id;
-alter table permiso drop foreign key permiso_FK_1;
-alter table permiso drop fk_modulo_id;
-alter table permiso drop credencial;
 
 alter table preferencia modify activo tinyint(4) not null default '1';
 
