@@ -40,6 +40,7 @@ class divisionActions extends autodivisionActions
     protected function addFiltersCriteria($c) {
     
         $c->addJoin(TurnoPeer::ID, DivisionPeer::FK_TURNO_ID);
+        $c->addJoin(OrientacionPeer::ID, DivisionPeer::FK_ORIENTACION_ID);
         $c->add(TurnoPeer::FK_CICLOLECTIVO_ID, $this->getUser()->getAttribute('fk_ciclolectivo_id'));
     
         if (isset($this->filters['fk_anio_id_is_empty'])) {
