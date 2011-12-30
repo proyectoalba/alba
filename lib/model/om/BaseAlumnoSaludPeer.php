@@ -13,7 +13,7 @@ abstract class BaseAlumnoSaludPeer {
 	const CLASS_DEFAULT = 'lib.model.AlumnoSalud';
 
 	
-	const NUM_COLUMNS = 7;
+	const NUM_COLUMNS = 8;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -28,16 +28,19 @@ abstract class BaseAlumnoSaludPeer {
 	const COBERTURA_MEDICA = 'alumno_salud.COBERTURA_MEDICA';
 
 	
-	const PEDIATRA_APELLIDO = 'alumno_salud.PEDIATRA_APELLIDO';
+	const COBERTURA_TELEFONO = 'alumno_salud.COBERTURA_TELEFONO';
 
 	
-	const PEDIATRA_NOMBRE = 'alumno_salud.PEDIATRA_NOMBRE';
+	const COBERTURA_OBSERVACIONES = 'alumno_salud.COBERTURA_OBSERVACIONES';
 
 	
-	const PEDIATRA_DOMICILIO = 'alumno_salud.PEDIATRA_DOMICILIO';
+	const MEDICO_NOMBRE = 'alumno_salud.MEDICO_NOMBRE';
 
 	
-	const PEDIATRA_TELEFONO = 'alumno_salud.PEDIATRA_TELEFONO';
+	const MEDICO_DOMICILIO = 'alumno_salud.MEDICO_DOMICILIO';
+
+	
+	const MEDICO_TELEFONO = 'alumno_salud.MEDICO_TELEFONO';
 
 	
 	public static $instances = array();
@@ -47,20 +50,20 @@ abstract class BaseAlumnoSaludPeer {
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'FkAlumnoId', 'CoberturaMedica', 'PediatraApellido', 'PediatraNombre', 'PediatraDomicilio', 'PediatraTelefono', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'fkAlumnoId', 'coberturaMedica', 'pediatraApellido', 'pediatraNombre', 'pediatraDomicilio', 'pediatraTelefono', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::FK_ALUMNO_ID, self::COBERTURA_MEDICA, self::PEDIATRA_APELLIDO, self::PEDIATRA_NOMBRE, self::PEDIATRA_DOMICILIO, self::PEDIATRA_TELEFONO, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'fk_alumno_id', 'cobertura_medica', 'pediatra_apellido', 'pediatra_nombre', 'pediatra_domicilio', 'pediatra_telefono', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'FkAlumnoId', 'CoberturaMedica', 'CoberturaTelefono', 'CoberturaObservaciones', 'MedicoNombre', 'MedicoDomicilio', 'MedicoTelefono', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'fkAlumnoId', 'coberturaMedica', 'coberturaTelefono', 'coberturaObservaciones', 'medicoNombre', 'medicoDomicilio', 'medicoTelefono', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::FK_ALUMNO_ID, self::COBERTURA_MEDICA, self::COBERTURA_TELEFONO, self::COBERTURA_OBSERVACIONES, self::MEDICO_NOMBRE, self::MEDICO_DOMICILIO, self::MEDICO_TELEFONO, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'fk_alumno_id', 'cobertura_medica', 'cobertura_telefono', 'cobertura_observaciones', 'medico_nombre', 'medico_domicilio', 'medico_telefono', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'FkAlumnoId' => 1, 'CoberturaMedica' => 2, 'PediatraApellido' => 3, 'PediatraNombre' => 4, 'PediatraDomicilio' => 5, 'PediatraTelefono' => 6, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'fkAlumnoId' => 1, 'coberturaMedica' => 2, 'pediatraApellido' => 3, 'pediatraNombre' => 4, 'pediatraDomicilio' => 5, 'pediatraTelefono' => 6, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::FK_ALUMNO_ID => 1, self::COBERTURA_MEDICA => 2, self::PEDIATRA_APELLIDO => 3, self::PEDIATRA_NOMBRE => 4, self::PEDIATRA_DOMICILIO => 5, self::PEDIATRA_TELEFONO => 6, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'fk_alumno_id' => 1, 'cobertura_medica' => 2, 'pediatra_apellido' => 3, 'pediatra_nombre' => 4, 'pediatra_domicilio' => 5, 'pediatra_telefono' => 6, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'FkAlumnoId' => 1, 'CoberturaMedica' => 2, 'CoberturaTelefono' => 3, 'CoberturaObservaciones' => 4, 'MedicoNombre' => 5, 'MedicoDomicilio' => 6, 'MedicoTelefono' => 7, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'fkAlumnoId' => 1, 'coberturaMedica' => 2, 'coberturaTelefono' => 3, 'coberturaObservaciones' => 4, 'medicoNombre' => 5, 'medicoDomicilio' => 6, 'medicoTelefono' => 7, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::FK_ALUMNO_ID => 1, self::COBERTURA_MEDICA => 2, self::COBERTURA_TELEFONO => 3, self::COBERTURA_OBSERVACIONES => 4, self::MEDICO_NOMBRE => 5, self::MEDICO_DOMICILIO => 6, self::MEDICO_TELEFONO => 7, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'fk_alumno_id' => 1, 'cobertura_medica' => 2, 'cobertura_telefono' => 3, 'cobertura_observaciones' => 4, 'medico_nombre' => 5, 'medico_domicilio' => 6, 'medico_telefono' => 7, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, )
 	);
 
 	
@@ -108,13 +111,15 @@ abstract class BaseAlumnoSaludPeer {
 
 		$criteria->addSelectColumn(AlumnoSaludPeer::COBERTURA_MEDICA);
 
-		$criteria->addSelectColumn(AlumnoSaludPeer::PEDIATRA_APELLIDO);
+		$criteria->addSelectColumn(AlumnoSaludPeer::COBERTURA_TELEFONO);
 
-		$criteria->addSelectColumn(AlumnoSaludPeer::PEDIATRA_NOMBRE);
+		$criteria->addSelectColumn(AlumnoSaludPeer::COBERTURA_OBSERVACIONES);
 
-		$criteria->addSelectColumn(AlumnoSaludPeer::PEDIATRA_DOMICILIO);
+		$criteria->addSelectColumn(AlumnoSaludPeer::MEDICO_NOMBRE);
 
-		$criteria->addSelectColumn(AlumnoSaludPeer::PEDIATRA_TELEFONO);
+		$criteria->addSelectColumn(AlumnoSaludPeer::MEDICO_DOMICILIO);
+
+		$criteria->addSelectColumn(AlumnoSaludPeer::MEDICO_TELEFONO);
 
 	}
 

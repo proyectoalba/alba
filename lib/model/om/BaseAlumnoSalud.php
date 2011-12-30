@@ -19,16 +19,19 @@ abstract class BaseAlumnoSalud extends BaseObject  implements Persistent {
 	protected $cobertura_medica;
 
 	
-	protected $pediatra_apellido;
+	protected $cobertura_telefono;
 
 	
-	protected $pediatra_nombre;
+	protected $cobertura_observaciones;
 
 	
-	protected $pediatra_domicilio;
+	protected $medico_nombre;
 
 	
-	protected $pediatra_telefono;
+	protected $medico_domicilio;
+
+	
+	protected $medico_telefono;
 
 	
 	protected $aAlumno;
@@ -70,27 +73,33 @@ abstract class BaseAlumnoSalud extends BaseObject  implements Persistent {
 	}
 
 	
-	public function getPediatraApellido()
+	public function getCoberturaTelefono()
 	{
-		return $this->pediatra_apellido;
+		return $this->cobertura_telefono;
 	}
 
 	
-	public function getPediatraNombre()
+	public function getCoberturaObservaciones()
 	{
-		return $this->pediatra_nombre;
+		return $this->cobertura_observaciones;
 	}
 
 	
-	public function getPediatraDomicilio()
+	public function getMedicoNombre()
 	{
-		return $this->pediatra_domicilio;
+		return $this->medico_nombre;
 	}
 
 	
-	public function getPediatraTelefono()
+	public function getMedicoDomicilio()
 	{
-		return $this->pediatra_telefono;
+		return $this->medico_domicilio;
+	}
+
+	
+	public function getMedicoTelefono()
+	{
+		return $this->medico_telefono;
 	}
 
 	
@@ -140,57 +149,71 @@ abstract class BaseAlumnoSalud extends BaseObject  implements Persistent {
 		return $this;
 	} 
 	
-	public function setPediatraApellido($v)
+	public function setCoberturaTelefono($v)
 	{
 		if ($v !== null) {
 			$v = (string) $v;
 		}
 
-		if ($this->pediatra_apellido !== $v) {
-			$this->pediatra_apellido = $v;
-			$this->modifiedColumns[] = AlumnoSaludPeer::PEDIATRA_APELLIDO;
+		if ($this->cobertura_telefono !== $v) {
+			$this->cobertura_telefono = $v;
+			$this->modifiedColumns[] = AlumnoSaludPeer::COBERTURA_TELEFONO;
 		}
 
 		return $this;
 	} 
 	
-	public function setPediatraNombre($v)
+	public function setCoberturaObservaciones($v)
 	{
 		if ($v !== null) {
 			$v = (string) $v;
 		}
 
-		if ($this->pediatra_nombre !== $v) {
-			$this->pediatra_nombre = $v;
-			$this->modifiedColumns[] = AlumnoSaludPeer::PEDIATRA_NOMBRE;
+		if ($this->cobertura_observaciones !== $v) {
+			$this->cobertura_observaciones = $v;
+			$this->modifiedColumns[] = AlumnoSaludPeer::COBERTURA_OBSERVACIONES;
 		}
 
 		return $this;
 	} 
 	
-	public function setPediatraDomicilio($v)
+	public function setMedicoNombre($v)
 	{
 		if ($v !== null) {
 			$v = (string) $v;
 		}
 
-		if ($this->pediatra_domicilio !== $v) {
-			$this->pediatra_domicilio = $v;
-			$this->modifiedColumns[] = AlumnoSaludPeer::PEDIATRA_DOMICILIO;
+		if ($this->medico_nombre !== $v) {
+			$this->medico_nombre = $v;
+			$this->modifiedColumns[] = AlumnoSaludPeer::MEDICO_NOMBRE;
 		}
 
 		return $this;
 	} 
 	
-	public function setPediatraTelefono($v)
+	public function setMedicoDomicilio($v)
 	{
 		if ($v !== null) {
 			$v = (string) $v;
 		}
 
-		if ($this->pediatra_telefono !== $v) {
-			$this->pediatra_telefono = $v;
-			$this->modifiedColumns[] = AlumnoSaludPeer::PEDIATRA_TELEFONO;
+		if ($this->medico_domicilio !== $v) {
+			$this->medico_domicilio = $v;
+			$this->modifiedColumns[] = AlumnoSaludPeer::MEDICO_DOMICILIO;
+		}
+
+		return $this;
+	} 
+	
+	public function setMedicoTelefono($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->medico_telefono !== $v) {
+			$this->medico_telefono = $v;
+			$this->modifiedColumns[] = AlumnoSaludPeer::MEDICO_TELEFONO;
 		}
 
 		return $this;
@@ -212,10 +235,11 @@ abstract class BaseAlumnoSalud extends BaseObject  implements Persistent {
 			$this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
 			$this->fk_alumno_id = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
 			$this->cobertura_medica = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-			$this->pediatra_apellido = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-			$this->pediatra_nombre = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
-			$this->pediatra_domicilio = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
-			$this->pediatra_telefono = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
+			$this->cobertura_telefono = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
+			$this->cobertura_observaciones = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+			$this->medico_nombre = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+			$this->medico_domicilio = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
+			$this->medico_telefono = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -224,7 +248,7 @@ abstract class BaseAlumnoSalud extends BaseObject  implements Persistent {
 				$this->ensureConsistency();
 			}
 
-						return $startcol + 7; 
+						return $startcol + 8; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating AlumnoSalud object", $e);
 		}
@@ -419,16 +443,19 @@ abstract class BaseAlumnoSalud extends BaseObject  implements Persistent {
 				return $this->getCoberturaMedica();
 				break;
 			case 3:
-				return $this->getPediatraApellido();
+				return $this->getCoberturaTelefono();
 				break;
 			case 4:
-				return $this->getPediatraNombre();
+				return $this->getCoberturaObservaciones();
 				break;
 			case 5:
-				return $this->getPediatraDomicilio();
+				return $this->getMedicoNombre();
 				break;
 			case 6:
-				return $this->getPediatraTelefono();
+				return $this->getMedicoDomicilio();
+				break;
+			case 7:
+				return $this->getMedicoTelefono();
 				break;
 			default:
 				return null;
@@ -443,10 +470,11 @@ abstract class BaseAlumnoSalud extends BaseObject  implements Persistent {
 			$keys[0] => $this->getId(),
 			$keys[1] => $this->getFkAlumnoId(),
 			$keys[2] => $this->getCoberturaMedica(),
-			$keys[3] => $this->getPediatraApellido(),
-			$keys[4] => $this->getPediatraNombre(),
-			$keys[5] => $this->getPediatraDomicilio(),
-			$keys[6] => $this->getPediatraTelefono(),
+			$keys[3] => $this->getCoberturaTelefono(),
+			$keys[4] => $this->getCoberturaObservaciones(),
+			$keys[5] => $this->getMedicoNombre(),
+			$keys[6] => $this->getMedicoDomicilio(),
+			$keys[7] => $this->getMedicoTelefono(),
 		);
 		return $result;
 	}
@@ -472,16 +500,19 @@ abstract class BaseAlumnoSalud extends BaseObject  implements Persistent {
 				$this->setCoberturaMedica($value);
 				break;
 			case 3:
-				$this->setPediatraApellido($value);
+				$this->setCoberturaTelefono($value);
 				break;
 			case 4:
-				$this->setPediatraNombre($value);
+				$this->setCoberturaObservaciones($value);
 				break;
 			case 5:
-				$this->setPediatraDomicilio($value);
+				$this->setMedicoNombre($value);
 				break;
 			case 6:
-				$this->setPediatraTelefono($value);
+				$this->setMedicoDomicilio($value);
+				break;
+			case 7:
+				$this->setMedicoTelefono($value);
 				break;
 		} 	}
 
@@ -493,10 +524,11 @@ abstract class BaseAlumnoSalud extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setFkAlumnoId($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setCoberturaMedica($arr[$keys[2]]);
-		if (array_key_exists($keys[3], $arr)) $this->setPediatraApellido($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setPediatraNombre($arr[$keys[4]]);
-		if (array_key_exists($keys[5], $arr)) $this->setPediatraDomicilio($arr[$keys[5]]);
-		if (array_key_exists($keys[6], $arr)) $this->setPediatraTelefono($arr[$keys[6]]);
+		if (array_key_exists($keys[3], $arr)) $this->setCoberturaTelefono($arr[$keys[3]]);
+		if (array_key_exists($keys[4], $arr)) $this->setCoberturaObservaciones($arr[$keys[4]]);
+		if (array_key_exists($keys[5], $arr)) $this->setMedicoNombre($arr[$keys[5]]);
+		if (array_key_exists($keys[6], $arr)) $this->setMedicoDomicilio($arr[$keys[6]]);
+		if (array_key_exists($keys[7], $arr)) $this->setMedicoTelefono($arr[$keys[7]]);
 	}
 
 	
@@ -507,10 +539,11 @@ abstract class BaseAlumnoSalud extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(AlumnoSaludPeer::ID)) $criteria->add(AlumnoSaludPeer::ID, $this->id);
 		if ($this->isColumnModified(AlumnoSaludPeer::FK_ALUMNO_ID)) $criteria->add(AlumnoSaludPeer::FK_ALUMNO_ID, $this->fk_alumno_id);
 		if ($this->isColumnModified(AlumnoSaludPeer::COBERTURA_MEDICA)) $criteria->add(AlumnoSaludPeer::COBERTURA_MEDICA, $this->cobertura_medica);
-		if ($this->isColumnModified(AlumnoSaludPeer::PEDIATRA_APELLIDO)) $criteria->add(AlumnoSaludPeer::PEDIATRA_APELLIDO, $this->pediatra_apellido);
-		if ($this->isColumnModified(AlumnoSaludPeer::PEDIATRA_NOMBRE)) $criteria->add(AlumnoSaludPeer::PEDIATRA_NOMBRE, $this->pediatra_nombre);
-		if ($this->isColumnModified(AlumnoSaludPeer::PEDIATRA_DOMICILIO)) $criteria->add(AlumnoSaludPeer::PEDIATRA_DOMICILIO, $this->pediatra_domicilio);
-		if ($this->isColumnModified(AlumnoSaludPeer::PEDIATRA_TELEFONO)) $criteria->add(AlumnoSaludPeer::PEDIATRA_TELEFONO, $this->pediatra_telefono);
+		if ($this->isColumnModified(AlumnoSaludPeer::COBERTURA_TELEFONO)) $criteria->add(AlumnoSaludPeer::COBERTURA_TELEFONO, $this->cobertura_telefono);
+		if ($this->isColumnModified(AlumnoSaludPeer::COBERTURA_OBSERVACIONES)) $criteria->add(AlumnoSaludPeer::COBERTURA_OBSERVACIONES, $this->cobertura_observaciones);
+		if ($this->isColumnModified(AlumnoSaludPeer::MEDICO_NOMBRE)) $criteria->add(AlumnoSaludPeer::MEDICO_NOMBRE, $this->medico_nombre);
+		if ($this->isColumnModified(AlumnoSaludPeer::MEDICO_DOMICILIO)) $criteria->add(AlumnoSaludPeer::MEDICO_DOMICILIO, $this->medico_domicilio);
+		if ($this->isColumnModified(AlumnoSaludPeer::MEDICO_TELEFONO)) $criteria->add(AlumnoSaludPeer::MEDICO_TELEFONO, $this->medico_telefono);
 
 		return $criteria;
 	}
@@ -545,13 +578,15 @@ abstract class BaseAlumnoSalud extends BaseObject  implements Persistent {
 
 		$copyObj->setCoberturaMedica($this->cobertura_medica);
 
-		$copyObj->setPediatraApellido($this->pediatra_apellido);
+		$copyObj->setCoberturaTelefono($this->cobertura_telefono);
 
-		$copyObj->setPediatraNombre($this->pediatra_nombre);
+		$copyObj->setCoberturaObservaciones($this->cobertura_observaciones);
 
-		$copyObj->setPediatraDomicilio($this->pediatra_domicilio);
+		$copyObj->setMedicoNombre($this->medico_nombre);
 
-		$copyObj->setPediatraTelefono($this->pediatra_telefono);
+		$copyObj->setMedicoDomicilio($this->medico_domicilio);
+
+		$copyObj->setMedicoTelefono($this->medico_telefono);
 
 
 		$copyObj->setNew(true);

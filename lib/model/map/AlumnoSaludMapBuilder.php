@@ -39,13 +39,15 @@ class AlumnoSaludMapBuilder implements MapBuilder {
 
 		$tMap->addColumn('COBERTURA_MEDICA', 'CoberturaMedica', 'VARCHAR', false, 255);
 
-		$tMap->addColumn('PEDIATRA_APELLIDO', 'PediatraApellido', 'VARCHAR', false, 255);
+		$tMap->addColumn('COBERTURA_TELEFONO', 'CoberturaTelefono', 'VARCHAR', false, 40);
 
-		$tMap->addColumn('PEDIATRA_NOMBRE', 'PediatraNombre', 'VARCHAR', false, 255);
+		$tMap->addColumn('COBERTURA_OBSERVACIONES', 'CoberturaObservaciones', 'VARCHAR', false, 255);
 
-		$tMap->addColumn('PEDIATRA_DOMICILIO', 'PediatraDomicilio', 'VARCHAR', false, 255);
+		$tMap->addColumn('MEDICO_NOMBRE', 'MedicoNombre', 'VARCHAR', false, 255);
 
-		$tMap->addColumn('PEDIATRA_TELEFONO', 'PediatraTelefono', 'VARCHAR', false, 20);
+		$tMap->addColumn('MEDICO_DOMICILIO', 'MedicoDomicilio', 'VARCHAR', false, 255);
+
+		$tMap->addColumn('MEDICO_TELEFONO', 'MedicoTelefono', 'VARCHAR', false, 20);
 
 	} 
 } 
