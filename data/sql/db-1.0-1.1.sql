@@ -164,78 +164,64 @@ CREATE TABLE `legajosalud` (
   CONSTRAINT `legajosalud_FK_2` FOREIGN KEY (`fk_usuario_id`) REFERENCES `usuario` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-drop table rel_rol_permiso;
-CREATE TABLE `rol_permiso` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fk_rol_id` int(11) NOT NULL DEFAULT '0',
-  `fk_permiso_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `rol_permiso_FI_1` (`fk_rol_id`),
-  KEY `rol_permiso_FI_2` (`fk_permiso_id`),
-  CONSTRAINT `rol_permiso_FK_1` FOREIGN KEY (`fk_rol_id`) REFERENCES `rol` (`id`),
-  CONSTRAINT `rol_permiso_FK_2` FOREIGN KEY (`fk_permiso_id`) REFERENCES `permiso` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+alter table rel_rol_permiso rename rol_permiso;
 
 insert into rol (nombre,descripcion) values ('upgrade_admin', 'Administrador (upgrade)');
 
-INSERT INTO `rol_permiso` VALUES(1, 1, 2);
-INSERT INTO `rol_permiso` VALUES(2, 1, 3);
-INSERT INTO `rol_permiso` VALUES(3, 1, 4);
-INSERT INTO `rol_permiso` VALUES(4, 1, 38);
-INSERT INTO `rol_permiso` VALUES(5, 1, 44);
-INSERT INTO `rol_permiso` VALUES(6, 1, 45);
-INSERT INTO `rol_permiso` VALUES(7, 1, 46);
-INSERT INTO `rol_permiso` VALUES(8, 1, 5);
-INSERT INTO `rol_permiso` VALUES(9, 1, 6);
-INSERT INTO `rol_permiso` VALUES(10, 1, 31);
-INSERT INTO `rol_permiso` VALUES(11, 1, 52);
-INSERT INTO `rol_permiso` VALUES(12, 1, 7);
-INSERT INTO `rol_permiso` VALUES(13, 1, 32);
-INSERT INTO `rol_permiso` VALUES(14, 1, 8);
-INSERT INTO `rol_permiso` VALUES(15, 1, 9);
-INSERT INTO `rol_permiso` VALUES(16, 1, 33);
-INSERT INTO `rol_permiso` VALUES(17, 1, 10);
-INSERT INTO `rol_permiso` VALUES(18, 1, 11);
-INSERT INTO `rol_permiso` VALUES(19, 1, 12);
-INSERT INTO `rol_permiso` VALUES(20, 1, 13);
-INSERT INTO `rol_permiso` VALUES(21, 1, 30);
-INSERT INTO `rol_permiso` VALUES(22, 1, 14);
-INSERT INTO `rol_permiso` VALUES(23, 1, 15);
-INSERT INTO `rol_permiso` VALUES(24, 1, 41);
-INSERT INTO `rol_permiso` VALUES(25, 1, 34);
-INSERT INTO `rol_permiso` VALUES(26, 1, 35);
-INSERT INTO `rol_permiso` VALUES(27, 1, 48);
-INSERT INTO `rol_permiso` VALUES(28, 1, 16);
-INSERT INTO `rol_permiso` VALUES(29, 1, 39);
-INSERT INTO `rol_permiso` VALUES(30, 1, 53);
-INSERT INTO `rol_permiso` VALUES(31, 1, 17);
-INSERT INTO `rol_permiso` VALUES(32, 1, 37);
-INSERT INTO `rol_permiso` VALUES(33, 1, 50);
-INSERT INTO `rol_permiso` VALUES(34, 1, 18);
-INSERT INTO `rol_permiso` VALUES(35, 1, 19);
-INSERT INTO `rol_permiso` VALUES(36, 1, 20);
-INSERT INTO `rol_permiso` VALUES(37, 1, 22);
-INSERT INTO `rol_permiso` VALUES(38, 1, 21);
-INSERT INTO `rol_permiso` VALUES(39, 1, 43);
-INSERT INTO `rol_permiso` VALUES(40, 1, 23);
-INSERT INTO `rol_permiso` VALUES(41, 1, 42);
-INSERT INTO `rol_permiso` VALUES(42, 1, 24);
-INSERT INTO `rol_permiso` VALUES(43, 1, 25);
-INSERT INTO `rol_permiso` VALUES(44, 1, 49);
-INSERT INTO `rol_permiso` VALUES(45, 1, 40);
-INSERT INTO `rol_permiso` VALUES(46, 1, 36);
-INSERT INTO `rol_permiso` VALUES(47, 1, 47);
-INSERT INTO `rol_permiso` VALUES(48, 1, 29);
-INSERT INTO `rol_permiso` VALUES(49, 1, 26);
-INSERT INTO `rol_permiso` VALUES(50, 1, 28);
-INSERT INTO `rol_permiso` VALUES(51, 1, 51);
-INSERT INTO `rol_permiso` VALUES(52, 1, 27);
-INSERT INTO `rol_permiso` VALUES(53, 1, 1);
-INSERT INTO `rol_permiso` VALUES(54, 1, 54);
-
-ALTER TABLE `rol_permiso`
-  ADD CONSTRAINT `rol_permiso_FK_1` FOREIGN KEY (`fk_rol_id`) REFERENCES `rol` (`id`),
-  ADD CONSTRAINT `rol_permiso_FK_2` FOREIGN KEY (`fk_permiso_id`) REFERENCES `permiso` (`id`);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 2);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 3);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 4);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 38);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 44);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 45);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 46);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 5);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 6);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 31);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 52);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 7);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 32);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 8);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 9);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 33);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 10);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 11);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 12);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 13);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 30);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 14);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 15);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 41);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 34);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 35);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 48);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 16);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 39);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 53);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 17);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 37);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 50);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 18);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 19);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 20);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 22);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 21);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 43);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 23);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 42);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 24);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 25);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 49);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 40);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 36);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 47);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 29);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 26);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 28);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 51);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 27);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 1);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 54);
 
 
 drop table rel_usuario_permiso;
