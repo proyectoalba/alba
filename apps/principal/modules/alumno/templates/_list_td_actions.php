@@ -15,5 +15,6 @@
   <li><?php echo link_to(image_tag('small/asistencia.png', array('alt' => __('Asistencia'), 'title' => __('Asistencia'))), 'alumno/asistencia?id='.$alumno->getId()) ?></li>
   <li><?php echo link_to(image_tag('small/legajo.png', array('alt' => __('Legajo'), 'title' => __('Legajo'))), 'alumno/legajo?id='.$alumno->getId()) ?></li>
   <li><?php echo link_to(image_tag('small/boletin.png',array("title"=>"Ver Bolet&iacute;n")), 'boletin/mostrar?alumno_id='. $alumno->getId(),'target=_blank') ?></li>
+  <li><?php echo link_to(image_tag('small/medico.png', array('alt' => __('Datos de Salud'), 'title' => __('Datos de Salud'))), 'alumno_salud/index?alumno_id='.$alumno->getId()) ?></li>
 </ul>
 </td>

@@ -10,4 +10,7 @@
  */
 class alumno_saludGeneratorHelper extends BaseAlumno_saludGeneratorHelper
 {
+	public function linkToList($params){
+		return '<li class="sf_admin_action_list">'.link_to('Cancelar', 'alumno_salud/index?alumno_id=' . $params['params']['alumno_id']).'</li>';
+	}
 }
