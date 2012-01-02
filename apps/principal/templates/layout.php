@@ -8,7 +8,8 @@
     <link rel="shortcut icon" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot() ?>/favicon.ico" />
 
     <link rel="stylesheet" type="text/css" href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot()?>/css/marco_imagenes.css">
-
+    <?php echo sfContext::getInstance()->getResponse()->removeStyleSheet('/sfPropelPlugin/css/default.css'); ?>
+    <?php echo sfContext::getInstance()->getResponse()->removeStyleSheet('/sfPropelPlugin/css/global.css'); ?>
     </head>
     <body>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
