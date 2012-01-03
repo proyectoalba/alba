@@ -3,6 +3,49 @@ EstadosAlumnos:
     nombre: Regular
   EstadosAlumnos_2:
     nombre: Libre
+  EstadosAlumnos_3:
+    nombre: Egresado
+  EstadosAlumnos_4:
+    nombre: Ex-alumno
+
+RolResponsable:
+  RolResponsable_1:
+    nombre: Padre
+    descripcion: Padre del alumno
+    activo: 1
+  RolResponsable_2:
+    nombre: Madre
+    descripcion: Madre del alumno
+    activo: 1
+  RolResponsable_3:
+    nombre: Tío
+    descripcion: Tío del alumno
+    activo: 1
+  RolResponsable_3:
+    nombre: Hermano/a
+    descripcion: Hermano/a del alumno
+    activo: 1
+
+NivelInstruccion:
+  ni_i:
+    descripcion: Inicial
+  ni_pc:
+    descripcion: Primario
+  ni_pi:
+    descripcion: Primario (incompleto)
+  ni_sc:
+    descripcion: Secundario
+  ni_si:
+    descripcion: Secundario (incompleto)
+  ni_tc:
+    descripcion: Terciario
+  ni_ti:
+    descripcion: Terciario (incompleto)
+  ni_uc:
+    descripcion: Universitario
+  ni_ui:
+    descripcion: Universitario (incompleto)
+
 Distritoescolar:
   Distritoescolar_1:
     nombre: Distrito de prueba

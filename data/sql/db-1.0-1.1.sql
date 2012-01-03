@@ -68,6 +68,8 @@ CREATE TABLE `estadosalumnos` (
 
 insert into estadosalumnos (id,nombre) values (1,'Regular');
 insert into estadosalumnos (id,nombre) values (2,'Libre');
+insert into estadosalumnos (id,nombre) values (3,'Egresado');
+insert into estadosalumnos (id,nombre) values (4,'Ex-alumno');
 
 CREATE TABLE `alumno_salud` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -291,7 +293,7 @@ INSERT INTO `rol_permiso` VALUES(54, 1, 54);
 ALTER TABLE `rol_permiso`
   ADD CONSTRAINT `rol_permiso_FK_1` FOREIGN KEY (`fk_rol_id`) REFERENCES `rol` (`id`),
   ADD CONSTRAINT `rol_permiso_FK_2` FOREIGN KEY (`fk_permiso_id`) REFERENCES `permiso` (`id`);
-        
+
 >>>>>>> cf0303652b911387256c8c7a16e6e824b0dc734b
 drop table rel_usuario_permiso;
 
@@ -340,7 +342,7 @@ alter table anio add orden int(11) default '0';
 alter table boletin_actividades modify observacion longblob default null;
 alter table boletin_conceptual modify observacion longblob default null;
 
-alter table ciclolectivo modify actual tinyint(4) not null default '0'; 
+alter table ciclolectivo modify actual tinyint(4) not null default '0';
 
 alter table cuenta modify cuit varchar(20) default null;
 
@@ -391,7 +393,7 @@ alter table responsable add fk_nivel_instruccion_id integer null;
 
 ALTER TABLE `responsable`
 	ADD CONSTRAINT `responsable_FK_5` FOREIGN KEY (`fk_nivel_instruccion_id`) REFERENCES `nivel_instruccion` (`id`);
-    
+
 alter table rol modify activo tinyint(4) not null default '1';
 alter table rol_responsable modify activo tinyint(4) not null default '1';
 alter table tipoasistencia modify defecto tinyint(4) not null default '0';
@@ -406,5 +408,5 @@ DROP TABLE IF EXISTS `rel_usuario_permiso`;
 
 --
 
-INSERT INTO nivel_instruccion (descripcion) VALUES ('Primario'), ('Secundario'), ('Universitario'), ('Terciario');
+INSERT INTO nivel_instruccion (descripcion) VALUES ('Inicial'),('Primario'),('Primario (incompleto)'), ('Secundario'),('Secundario (incompleto)'), ('Terciario'),('Terciario (incompleto)'), ('Universitario'),('Universitario (incompleto)');
 INSERT INTO rol_responsable (nombre, descripcion, activo) VALUES ('Hermano/a', 'Hermano/a del alumno', 1);

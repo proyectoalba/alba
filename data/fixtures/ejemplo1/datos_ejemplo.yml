@@ -277,20 +277,6 @@ UsuarioRol:
     fk_usuario_id: Usuario_2
     fk_rol_id: Rol_administrador
 
-RolResponsable:
-  RolResponsable_1:
-    nombre: Padre
-    descripcion: Padre del alumno
-    activo: 1
-  RolResponsable_2:
-    nombre: Madre
-    descripcion: Madre del alumno
-    activo: 1
-  RolResponsable_3:
-    nombre: Tío
-    descripcion: Tío del alumno
-    activo: 1
-
 Evento:
   Evento_1:
     titulo: vacio
