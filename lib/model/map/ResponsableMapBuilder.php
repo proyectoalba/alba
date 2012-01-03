@@ -79,5 +79,7 @@ class ResponsableMapBuilder implements MapBuilder {
 
 		$tMap->addColumn('FECHA_NACIMIENTO', 'FechaNacimiento', 'TIMESTAMP', false, null);
 
+		$tMap->addForeignKey('FK_NIVEL_INSTRUCCION_ID', 'FkNivelInstruccionId', 'INTEGER', 'nivel_instruccion', 'ID', false, null);
+
 	} 
 } 

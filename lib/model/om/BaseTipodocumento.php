@@ -1053,6 +1053,40 @@ abstract class BaseTipodocumento extends BaseObject  implements Persistent {
 		return $this->collResponsables;
 	}
 
+
+	
+	public function getResponsablesJoinNivelInstruccion($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		if ($criteria === null) {
+			$criteria = new Criteria(TipodocumentoPeer::DATABASE_NAME);
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collResponsables === null) {
+			if ($this->isNew()) {
+				$this->collResponsables = array();
+			} else {
+
+				$criteria->add(ResponsablePeer::FK_TIPODOCUMENTO_ID, $this->id);
+
+				$this->collResponsables = ResponsablePeer::doSelectJoinNivelInstruccion($criteria, $con, $join_behavior);
+			}
+		} else {
+									
+			$criteria->add(ResponsablePeer::FK_TIPODOCUMENTO_ID, $this->id);
+
+			if (!isset($this->lastResponsableCriteria) || !$this->lastResponsableCriteria->equals($criteria)) {
+				$this->collResponsables = ResponsablePeer::doSelectJoinNivelInstruccion($criteria, $con, $join_behavior);
+			}
+		}
+		$this->lastResponsableCriteria = $criteria;
+
+		return $this->collResponsables;
+	}
+
 	
 	public function clearDocentes()
 	{

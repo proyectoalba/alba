@@ -23,9 +23,9 @@ document.getElementsByName("responsable[telefono]")[0].value = datosCuenta[4]
 <?php use_helper('Object', 'Validation', 'ObjectAdmin', 'I18N', 'Date') ?>
 <div id="sf_admin_container">
 <h1><?php 
-    echo __('Editar Responsable',array());
+    echo __('Editar responsable/familiar', array());
     if ($responsable->getCuenta())
-        echo '(' . $responsable->getCuenta()->getNombre() .')' ;
+        echo ' (' . $responsable->getCuenta()->getNombre() .')' ;
 ?></h1>
 
 <div id="sf_admin_header">
@@ -254,6 +254,24 @@ document.getElementsByName("responsable[telefono]")[0].value = datosCuenta[4]
    <?php echo object_select_tag($responsable, 'getFkRolresponsableId', array (
   'related_class' => 'RolResponsable',
   'control_name' => 'responsable[fk_rolresponsable_id]',
+)) ?>   
+    </div>
+</div>
+
+<div class="form-row">
+  <?php echo label_for('responsable[fk_nivel_instruccion_id]', __('Estudios:')) ?>
+  
+    
+   <div class="content<?php if ($sf_request->hasError('responsable{fk_nivel_instruccion_id}')): ?> form-error<?php endif; ?>">
+  <?php if ($sf_request->hasError('responsable{fk_nivel_instruccion_id}')): ?>
+    <?php echo form_error('responsable{fk_nivel_instruccion_id}', array('class' => 'form-error-msg')) ?>
+  <?php endif; ?>    
+  
+   <?php echo object_select_tag($responsable, 'getFkNivelInstruccionId', array (
+    'related_class' => 'NivelInstruccion',
+    'control_name' => 'responsable[fk_nivel_instruccion_id]',
+    'include_blank' => true,
+    'peer_method' => 'doSelectForCombo',
 )) ?>   
     </div>
 </div>
