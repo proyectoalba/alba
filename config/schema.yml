@@ -795,6 +795,18 @@ propel:
       required: true
       default: true
 
+  nivel_instruccion:
+    _attributes:
+      idMethod: native
+    id:
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    descripcion:
+      type: VARCHAR
+      size: 60
+
   responsable:
     _attributes:
       idMethod: native
@@ -898,6 +910,11 @@ propel:
     fecha_nacimiento:
       type: timestamp
       required: false
+    fk_nivel_instruccion_id:
+      type: INTEGER
+      required: false
+      foreignTable: nivel_instruccion
+      foreignReference: id
 
   ciclolectivo:
     _attributes:

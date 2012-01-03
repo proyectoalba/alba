@@ -83,6 +83,12 @@ CREATE TABLE `alumno_salud` (
   CONSTRAINT `alumno_salud_FK_1` FOREIGN KEY (`fk_alumno_id`) REFERENCES `alumno` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `nivel_instruccion` (
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`descripcion` VARCHAR(60),
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 CREATE TABLE `carrera` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fk_establecimiento_id` int(11) NOT NULL DEFAULT '0',
@@ -237,8 +243,7 @@ INSERT INTO `rol_permiso` VALUES(54, 1, 54);
 ALTER TABLE `rol_permiso`
   ADD CONSTRAINT `rol_permiso_FK_1` FOREIGN KEY (`fk_rol_id`) REFERENCES `rol` (`id`),
   ADD CONSTRAINT `rol_permiso_FK_2` FOREIGN KEY (`fk_permiso_id`) REFERENCES `permiso` (`id`);
-
-
+        
 drop table rel_usuario_permiso;
 
 CREATE TABLE `usuario_permiso` (
@@ -333,6 +338,11 @@ alter table responsable modify autorizacion_retiro tinyint(4) not null default '
 alter table responsable add llamar_emergencia tinyint(4) not null default '0';
 alter table responsable add opcupacion varchar(255) default null;
 alter table responsable add fecha_nacimiento datetime default null;
+alter table responsable add fk_nivel_instruccion_id integer null;
+
+ALTER TABLE `responsable`
+	ADD CONSTRAINT `responsable_FK_5` FOREIGN KEY (`fk_nivel_instruccion_id`) REFERENCES `nivel_instruccion` (`id`);
+    
 alter table rol modify activo tinyint(4) not null default '1';
 alter table rol_responsable modify activo tinyint(4) not null default '1';
 alter table tipoasistencia modify defecto tinyint(4) not null default '0';
@@ -344,3 +354,8 @@ alter table usuario modify borrado tinyint(4) not null default '0';
 DROP TABLE IF EXISTS `modulo`;
 DROP TABLE IF EXISTS `rel_rol_permiso`;
 DROP TABLE IF EXISTS `rel_usuario_permiso`;
+
+--
+
+INSERT INTO nivel_instruccion (descripcion) VALUES ('Primario'), ('Secundario'), ('Universitario'), ('Terciario');
+INSERT INTO rol_responsable (nombre, descripcion, activo) VALUES ('Hermano/a', 'Hermano/a del alumno', 1);

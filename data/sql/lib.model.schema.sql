@@ -594,6 +594,20 @@ CREATE TABLE `rol_responsable`
 )Engine=InnoDB;
 
 #-----------------------------------------------------------------------------
+#-- nivel_instruccion
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `nivel_instruccion`;
+
+
+CREATE TABLE `nivel_instruccion`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`descripcion` VARCHAR(60),
+	PRIMARY KEY (`id`)
+)Engine=InnoDB;
+
+#-----------------------------------------------------------------------------
 #-- responsable
 #-----------------------------------------------------------------------------
 
@@ -625,6 +639,7 @@ CREATE TABLE `responsable`
 	`fk_rolresponsable_id` INTEGER default 1 NOT NULL,
 	`ocupacion` VARCHAR(255),
 	`fecha_nacimiento` DATETIME,
+	`fk_nivel_instruccion_id` INTEGER,
 	PRIMARY KEY (`id`),
 	INDEX `responsable_FI_1` (`fk_provincia_id`),
 	CONSTRAINT `responsable_FK_1`
@@ -641,7 +656,11 @@ CREATE TABLE `responsable`
 	INDEX `responsable_FI_4` (`fk_rolresponsable_id`),
 	CONSTRAINT `responsable_FK_4`
 		FOREIGN KEY (`fk_rolresponsable_id`)
-		REFERENCES `rol_responsable` (`id`)
+		REFERENCES `rol_responsable` (`id`),
+	INDEX `responsable_FI_5` (`fk_nivel_instruccion_id`),
+	CONSTRAINT `responsable_FK_5`
+		FOREIGN KEY (`fk_nivel_instruccion_id`)
+		REFERENCES `nivel_instruccion` (`id`)
 )Engine=InnoDB;
 
 #-----------------------------------------------------------------------------

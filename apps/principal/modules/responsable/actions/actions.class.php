@@ -147,6 +147,11 @@ class responsableActions extends autoresponsableActions {
         {
           $this->responsable->setFkRolresponsableId($responsable['fk_rolresponsable_id']);
         }    
+        if (isset($responsable['fk_nivel_instruccion_id']))
+        {
+          $val = $responsable['fk_nivel_instruccion_id'] == '' ? null : $responsable['fk_nivel_instruccion_id'];
+          $this->responsable->setFkNivelInstruccionId($val);
+        }
         $this->responsable->setAutorizacionRetiro(isset($responsable['autorizacion_retiro']) ? $responsable['autorizacion_retiro'] : 0);
   }
   
