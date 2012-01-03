@@ -632,9 +632,9 @@ Tipoiva:
 Ciclolectivo:
   Ciclolectivo_1:
     fk_establecimiento_id: Establecimiento_2
-    fecha_inicio: 2007-03-05 00:00:00
-    fecha_fin: 2007-12-14 00:00:00
-    descripcion: Ciclo lectivo 2007
+    fecha_inicio: <?php echo date('Y')?>-03-05 00:00:00
+    fecha_fin: <?php echo date('Y')?>-12-14 00:00:00
+    descripcion: Ciclo lectivo <?php echo date('Y') . "\n"?>
     actual: 1
 Turno:
   Turno_4:
