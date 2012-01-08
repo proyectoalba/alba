@@ -1,3 +1,3 @@
 <?php
-   echo $alumno->getLegajoPrefijo() ."/" .$alumno->getLegajoNumero();
+    echo $alumno->getLegajo();
 ?>
