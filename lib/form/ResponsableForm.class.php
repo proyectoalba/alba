@@ -12,5 +12,6 @@ class ResponsableForm extends BaseResponsableForm
 {
   public function configure()
   {
+      $this->widgetSchema['fk_nivel_instruccion_id'] = new sfWidgetFormPropelChoice(array('model' => 'NivelInstruccion', 'add_empty' => true));
   }
 }

@@ -1,0 +1,69 @@
+div.data {
+	margin: 20px 0;
+}
+div#sf_admin_container div.data h3 {
+	font-size: 15px;
+	margin: 20px 0 10px;
+}
+/*
+=actions
+*/
+
+body div#content div#sf_admin_container  ul.sf_admin_actions {
+	margin-bottom: 30px;
+}
+body div#content div#sf_admin_container  ul.sf_admin_actions li {
+	height: 21px;
+	background: none;
+	float: left;
+}
+body div#content div#sf_admin_container ul.sf_admin_actions li a {
+	display: block;
+	height: 21px;
+	padding: 6px 10px 0px 25px;
+	background-color: #ffc;
+	background-position: 3px 5px;
+}
+
+/* NEW */
+#sf_admin_container ul.sf_admin_actions li.sf_admin_action_new a {
+	background: url(../sfPropelPlugin/images/new.png) no-repeat 0 0;
+}
+
+/* DELETE */
+#sf_admin_container ul.sf_admin_actions li.sf_admin_action_delete a {
+	background: url(../sfPropelPlugin/images/delete.png) no-repeat 0 0;
+}
+/* LIST */
+#sf_admin_container ul.sf_admin_actions li.sf_admin_action_list a {
+	background: url(../sfPropelPlugin/images/list.png) no-repeat 0 0;
+}
+/* EDIT */
+#sf_admin_container ul.sf_admin_actions li.sf_admin_action_edit {
+	border-right: 4px #73B65A solid;
+}
+#sf_admin_container ul.sf_admin_actions li.sf_admin_action_edit a {
+	background: url(../sfPropelPlugin/images/edit.png) no-repeat 0 0;
+}
+/* SAVE */
+#sf_admin_container ul.sf_admin_actions li.sf_admin_action_save input {
+	border: none;
+}
+/*
+=FORM
+*/
+#sf_admin_container div.sf_admin_form fieldset {
+	margin: 20px 0 0;
+	border: none;
+}
+#sf_admin_container div.sf_admin_form fieldset h2 {
+	font-size: 14px;
+	text-indent: 10px;
+}
+#sf_admin_container div.sf_admin_form_row label {
+	width: 100px;
+}
+div.sf_admin_form_row {
+	display: block;
+	margin: 10px 0;
+}

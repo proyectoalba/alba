@@ -795,6 +795,18 @@ propel:
       required: true
       default: true
 
+  nivel_instruccion:
+    _attributes:
+      idMethod: native
+    id:
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    descripcion:
+      type: VARCHAR
+      size: 60
+
   responsable:
     _attributes:
       idMethod: native
@@ -898,6 +910,11 @@ propel:
     fecha_nacimiento:
       type: timestamp
       required: false
+    fk_nivel_instruccion_id:
+      type: INTEGER
+      required: false
+      foreignTable: nivel_instruccion
+      foreignReference: id
 
   ciclolectivo:
     _attributes:
@@ -2015,6 +2032,7 @@ propel:
       type: varchar
       size: 128
       required: true
+      
   alumno_salud:
     _attributes:
       idMethod: native
@@ -2032,19 +2050,23 @@ propel:
       type: varchar
       size: 255
       required: false
-    pediatra_apellido:
+    cobertura_telefono:
+      type: varchar
+      size: 40
+      required: false
+    cobertura_observaciones:
       type: varchar
       size: 255
       required: false
-    pediatra_nombre:
+    medico_nombre:
       type: varchar
       size: 255
       required: false
-    pediatra_domicilio:
+    medico_domicilio:
       type: varchar
       size: 255
       required: false
-    pediatra_telefono:
+    medico_telefono:
       type: varchar
       size: 20
       required: false
