@@ -15580,7 +15580,7 @@ Asistencia:
     fk_tipoasistencia_id: Tipoasistencia_1
     fecha: 2007-03-30 00:00:00
 Carrera:
-  Carrera_1:
+  Carrera_2:
     fk_establecimiento_id: Establecimiento_2
     descripcion: Electronica
     orden: 10

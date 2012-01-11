@@ -759,3 +759,7 @@ UsuarioRol:
   Usuario_Rol_administrador_1:
     fk_usuario_id: Usuario_1
     fk_rol_id: Rol_administrador
+Carrera:
+  Carrera_1:
+    fk_establecimiento_id: Establecimiento_1
+    descripcion: No  definido

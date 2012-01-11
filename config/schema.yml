@@ -626,7 +626,7 @@ propel:
     razon_social:
       type: VARCHAR
       size: 128
-      required: true
+      required: false
     cuit:
       type: VARCHAR
       size: 20
@@ -634,15 +634,15 @@ propel:
     direccion:
       type: VARCHAR
       size: 128
-      required: true
+      required: false
     ciudad:
       type: VARCHAR
       size: 128
-      required: true
+      required: false
     codigo_postal:
       type: VARCHAR
       size: 20
-      required: true
+      required: false
     telefono:
       type: VARCHAR
       size: 20
@@ -2032,7 +2032,7 @@ propel:
       type: varchar
       size: 128
       required: true
-      
+
   alumno_salud:
     _attributes:
       idMethod: native
