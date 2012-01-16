@@ -15588,37 +15588,37 @@ Anio:
   Anio_1:
     fk_establecimiento_id: Establecimiento_2
     descripcion: Primer Grado
-    fk_carrera_id: Carrera_1
+    fk_carrera_id: Carrera_2
     orden: 10
   Anio_2:
     fk_establecimiento_id: Establecimiento_2
     descripcion: Segundo Grado
-    fk_carrera_id: Carrera_1
+    fk_carrera_id: Carrera_2
     orden: 20
   Anio_3:
     fk_establecimiento_id: Establecimiento_2
     descripcion: Tercer Grado
-    fk_carrera_id: Carrera_1
+    fk_carrera_id: Carrera_2
     orden: 30
   Anio_4:
     fk_establecimiento_id: Establecimiento_2
     descripcion: Cuarto Grado
-    fk_carrera_id: Carrera_1
+    fk_carrera_id: Carrera_2
     orden: 40
   Anio_5:
     fk_establecimiento_id: Establecimiento_2
     descripcion: Quinto grado
-    fk_carrera_id: Carrera_1
+    fk_carrera_id: Carrera_2
     orden: 50
   Anio_6:
     fk_establecimiento_id: Establecimiento_2
     descripcion: Sexto Grado
-    fk_carrera_id: Carrera_1
+    fk_carrera_id: Carrera_2
     orden: 60
   Anio_7:
     fk_establecimiento_id: Establecimiento_2
     descripcion: Séptimo Grado
-    fk_carrera_id: Carrera_1
+    fk_carrera_id: Carrera_2
     orden: 70
 Orientacion:
   Orientacion_1:
