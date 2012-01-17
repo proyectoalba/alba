@@ -15761,11 +15761,9 @@ Adjunto:
   Adjunto_2:
     descripcion:
     titulo: certificado_de_terminacion_de_estudios_primarios
-    nombre_archivo: >
-      certificado_de_terminacion_de_estudios_primarios.odt
+    nombre_archivo: certificado_de_terminacion_de_estudios_primarios.odt
     tipo_archivo: application/vnd.oasis.opendocument.text
-    ruta: >
-      certificado_de_terminacion_de_estudios_primarios.odt
+    ruta: certificado_de_terminacion_de_estudios_primarios.odt
     fecha: 2007-10-17 00:00:00
   Adjunto_3:
     descripcion:
@@ -15823,6 +15821,78 @@ Adjunto:
     tipo_archivo: application/vnd.oasis.opendocument.text
     ruta: responsable.odt
     fecha: 2007-10-17 00:00:00
+Informe:
+  Informe_1:
+    nombre: Constancia de alumno regular
+    descripcion: Constancia de alumno regular
+    fk_adjunto_id: Adjunto_1
+    fk_tipoinforme_id: Tipoinforme_1
+    listado: 0
+    variables:
+  Informe_2:
+    nombre: Certificado fin de estudios primarios
+    descripcion: Certificado fin de estudios primarios
+    fk_adjunto_id: Adjunto_2
+    fk_tipoinforme_id: Tipoinforme_1
+    listado: 0
+    variables:
+  Informe_3:
+    nombre: Solicitud de legajo
+    descripcion: Solicitud de legajo
+    fk_adjunto_id: Adjunto_3
+    fk_tipoinforme_id: Tipoinforme_1
+    listado: 0
+    variables: origen
+  Informe_4:
+    nombre: Certificado de estudios
+    descripcion: Certificado de estudios
+    fk_adjunto_id: Adjunto_4
+    fk_tipoinforme_id: Tipoinforme_1
+    listado: 0
+    variables: grado;año
+  Informe_5:
+    nombre: Alumnos por división
+    descripcion: Alumnos por división
+    fk_adjunto_id: Adjunto_5
+    fk_tipoinforme_id: Tipoinforme_1
+    listado: 1
+    variables:
+  Informe_6:
+    nombre: Locacion
+    descripcion: Locacion
+    fk_adjunto_id: Adjunto_6
+    fk_tipoinforme_id: Tipoinforme_2
+    listado: 1
+    variables:
+  Informe_7:
+    nombre: Docente
+    descripcion: Docente
+    fk_adjunto_id: Adjunto_7
+    fk_tipoinforme_id: Tipoinforme_2
+    listado: 1
+    variables:
+  Informe_8:
+    nombre: Organizaci&oacute;n
+    descripcion: Organizaci&oacute;n
+    fk_adjunto_id: Adjunto_8
+    fk_tipoinforme_id: Tipoinforme_2
+    listado: 0
+    variables:
+  Informe_9:
+    nombre: Cuenta
+    descripcion: Cuenta
+    fk_adjunto_id: Adjunto_9
+    fk_tipoinforme_id: Tipoinforme_2
+    listado: 1
+    variables:
+  Informe_10:
+    nombre: Responsable
+    descripcion: Responsable
+    fk_adjunto_id: Adjunto_10
+    fk_tipoinforme_id: Tipoinforme_2
+    listado: 1
+    variables:
+
 RelAnioActividad:
   RelAnioActividad_1:
     fk_anio_id: Anio_1

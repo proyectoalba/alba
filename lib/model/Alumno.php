@@ -32,7 +32,7 @@ class Alumno extends BaseAlumno {
             "Apellido" => $this->getApellido(),
             "FechaNacimiento" => $this->getFechaNacimiento(),
             "Direccion" => $this->getDireccion(),
-            "Ciduad" => $this->getCiudad(),
+            "Ciudad" => $this->getCiudad(),
             "CodigoPostal" => $this->getCodigoPostal(),
             'Provincia' => ($this->getProvincia())?$this->getProvincia()->getNombreCorto():'' ,
             "Telefono" => $this->getTelefono(),

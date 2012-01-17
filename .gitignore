@@ -10,4 +10,5 @@ debian/alba.substvars
 debian/files
 web/tmp/*
 !.gitignore
+*.geany
 
