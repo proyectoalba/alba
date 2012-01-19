@@ -1,0 +1,3 @@
+default:
+#  layout:   layout_sinmenu
+  stylesheets: [informes, %SF_ADMIN_WEB_DIR%/css/main, main, boletin ]

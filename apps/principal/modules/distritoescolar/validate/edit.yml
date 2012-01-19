@@ -1,0 +1,48 @@
+methods:
+  post:       
+    - "distritoescolar{nombre}"
+    - "distritoescolar{direccion}"
+    - "distritoescolar{telefono}"
+    - "distritoescolar{ciudad}"
+    
+fillin:
+    enabled:       on
+      
+names:
+    distritoescolar{nombre}:
+        required:     Yes
+        required_msg: El campo nombre es obligatorio
+        validators: caracteresMaximos128
+        
+    distritoescolar{direccion}:
+        required:     No
+        validators: caracteresMaximos128
+        
+    distritoescolar{telefono}:
+        required:     No
+        validators: caracteresMaximos20
+        
+  
+    distritoescolar{ciudad}:
+        required:     No
+        validators: caracteresMaximos128
+        
+        
+caracteresMaximos128:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La maxima cantidad de caracteres permitida es de 128
+        
+caracteresMaximos255:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La maxima cantidad de caracteres permitida es de 255
+
+        
+caracteresMaximos20:
+    class:  sfStringValidator
+    param:
+        max: 20
+        max_error: La maxima cantidad de caracteres permitida es de 20

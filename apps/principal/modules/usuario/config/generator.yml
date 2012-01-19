@@ -1,0 +1,39 @@
+generator:
+    class:              sfPropelAdminGenerator
+    param:
+        model_class:      Usuario
+        theme:            default
+
+        fields:
+            usuario: {name: Usuario}
+            fk_establecimiento_id: { name: Establecimiento }
+            fecha_creado: { name: Creado }
+            fecha_actualizado: {name: Modificado }
+            seguridad_pregunta: {name: Pregunta}
+            seguridad_respuesta: {name: Respuesta}
+            clave: {name: Clave}
+            activo: {name: esta activo?, type: checkbox_tag}
+            correo_publico: {name: correo publico?, type: checkbox_tag}
+            email: { name: email }
+
+        
+        edit: 
+            title: ""
+            display: 
+                "General": [usuario, _clave, correo_publico, email,  activo, fecha_creado, fecha_actualizado, fk_establecimiento_id ]
+                "Si olvida su clave se le realizar&aacute; un pregunta se seguridad" : [seguridad_pregunta]
+                "Deber&aacute; ingresar una respuesta para validarla " : [seguridad_respuesta]
+            fields: 
+                fecha_creado: {type: plain}
+                fecha_actualizado: {type: plain }
+                seguridad_pregunta: {help: ""}
+                seguridad_respuesta: {help: ""}
+                
+        list: 
+            title: Listado de Usuarios
+            filters: [usuario, fk_establecimiento_id]    
+            display: [ =usuario, _establecimiento, activo]
+            object_actions:
+                _edit:        -
+                _delete:      -
+                editPermiso:  { name: Permisos, action: editPermiso, icon: small/permisos.png }

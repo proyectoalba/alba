@@ -1,0 +1,1 @@
+<?php echo include_partial("seguridad/login", array('sf_params' => $sf_params, 'error_inicio_sesion' => $error_inicio_sesion));?>

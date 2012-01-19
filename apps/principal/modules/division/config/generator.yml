@@ -1,0 +1,30 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Division
+    theme:            default
+    fields:
+        anio: { name: A&ntilde;o }
+        fk_anio_id: { name: A&ntilde;o }
+        division: { name: Divisi&oacute;n }
+        fk_turno_id: { name: Turnos }
+        fk_turno_id_filter: { name: Turnos }
+        descripcion: { name: Divisi&oacute;n }
+        orden: { name: Orden }
+        fk_orientacion_id: { name: Orientacion }
+
+    edit:
+        title: ""
+        display: [ _fk_anio_id, descripcion, fk_orientacion_id, _fk_turno_id, orden ]
+                    
+    list:
+        title: Listado de Divisiones
+        fields:
+            fk_anioorden_id: { name: A&ntilde;o }
+        display: [ anio, descripcion, orientacion, turno, orden ]
+        object_actions:
+            _edit:      -
+            _delete:    -
+            alumnosPorDivision:  { name: Alumnos por Division, action: alumnosPorDivision, icon: small/alumnos.png } 
+        filters: [ _carrera, fk_anio_id, fk_orientacion_id, _fk_turno_id_filter ]
+

@@ -1,0 +1,28 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Feriado
+    theme:            default
+    fields:
+        nombre: { name : Nombre, params: size=64}
+        fecha:  { params: date_format='dd/MM/yy' withtime=false }        
+        repeticion_anual: { name: Anual, type: checkbox_tag }
+        inamovible: { name: Inamovible, type: checkbox_tag }
+
+    edit:
+        title: ""
+        display: [ nombre, fecha, repeticion_anual, inamovible ]
+                   
+
+    list:
+        title: Listado de Feriados y d&iacute;as no laborales
+        display: [ =nombre, fecha, repeticion_anual, inamovible]
+        object_actions:
+            _edit:        -
+            _delete:      -
+
+        actions:
+            _create : -
+            link_ministerio: { name: Listado oficial, action: LinkMinisterio, icon: small/url.png }
+        
+                

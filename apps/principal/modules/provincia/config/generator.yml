@@ -1,0 +1,24 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Provincia
+    theme:            default
+    fields:
+        fk_pais_id: { name: Pa&iacute;s }
+        pais: { name: Pa&iacute;s }
+        nombre_corto: { name: Nombre Corto, params: size=32 }
+        nombre_largo: { name: Nombre Largo, params: size=64 }
+        orden: { name: Orden, params: size=10 }
+    edit:
+        title: ""
+        display: [ nombre_largo, nombre_corto, fk_pais_id, orden ]
+                    
+    list:
+        title: Listado de Provincias
+        display: [ nombre_largo, =nombre_corto, _pais, orden ]
+        object_actions:
+            _edit:      -
+            _delete:    -
+        filters: [ fk_pais_id ]                                                                
+                                                                        
+                                                                        

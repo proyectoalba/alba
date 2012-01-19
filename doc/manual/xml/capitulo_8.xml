@@ -1,0 +1,60 @@
+<chapter><title>Docentes</title>
+<para>
+Esta secci&oacute;n permitir&aacute; la gesti&oacute;n de todos los docentes del establecimiento en relaci&oacute;n a sus datos personales, las Materias/Actividades y la organizaci&oacute;n de los Horarios de clase seg&uacute;n la carga de Horarios tentativos de los docentes al inicio del Ciclo Lectivo. 
+</para>
+<sect1><title>Administrar</title>
+<para>
+La herramienta "Administrar" permite el acceso a todo el listado de docentes que, como todo listado, ofrece a su derecha un filtro para facilitar la b&uacute;squeda. Los botones de acciones de cada registro del listado permiten asimismo: editar el registro, borrar, ir a "Actividades por Docentes" y "Horarios tentativos por docente". Estos dos &uacute;ltimos se detallan a continuaci&oacute;n y corresponden a los &uacute;ltimos dos &iacute;conos de la barra de acciones. 
+</para>
+<para>
+<figure><title>Listado de docentes.</title>
+    <graphic scalefit="1" fileref="img/figura38.png" scale="70"/>
+</figure>
+</para>
+<sect2><title>Actividades por docentes</title>
+<para>
+Esta herramienta permite visualizar la relaci&oacute;n entre un docente y la materia/actividad que dicta. 
+</para>
+<para>
+<figure><title>Listado de Actividades/Materias por Docente</title>
+    <graphic scalefit="1" fileref="img/figura39.png" scale="70"/>
+</figure>
+</para>
+<para>
+Al ingresar a la Edici&oacute;n de un docente, a trav&eacute;s del bot&oacute;n de la barra de acciones, es posible editar tambi&eacute;n las Actividades asociadas a cada docente.  La metodolog&iacute;a consiste en  un sistema de flechas gr&aacute;ficas que permite trasladar del listado de Materias/Actividades no asociadas (de la izquierda) las materias que dicta el Docente al listado de la derecha o de Activdades/Materias Asociadas al Docente.
+</para>
+<para>
+<figure><title>Editar las actividades del docente.</title>
+    <graphic scalefit="1" fileref="img/figura40.png" scale="70"/>
+</figure>
+</para>
+</sect2>
+<sect2><title>Horarios tentativos por docente</title>
+<para>
+Por medio del bot&oacute;n "Horarios tentativos por Docente" se visualiza en forma de Evento la disponibilidad del docente para elaborar los horarios definitivos. 
+</para>
+<para>
+<figure><title>Horarios tentativos del docente.</title>
+    <graphic scalefit="1" fileref="img/figura41.png" scale="70"/>
+</figure>
+</para>
+<para>
+La disponibilidad expresada en el texto anterior se genera al ingresar los datos en la siguiente pantalla a la cual se accede desde el bot&oacute;n de la barra de acciones "Editar".  Por supuesto a esta misma pantalla se ingresa para incorporar un evento nuevo en los horarios tentativos de un Docente. 
+</para>
+<para>
+<figure><title>Editar horarios tentativos por docente</title>
+    <graphic scalefit="1" fileref="img/figura42.png" scale="55"/>
+</figure>
+</para>
+<para>
+Como se puede ver en la pantalla la Edici&oacute;n o Alta de los Horarios tentativos de un determinado docente, los eventos que componen esos horarios est&aacute;n definidos por una determinada recurrencia y frecuencia.  
+</para>
+<para>
+En primer lugar se define el evento con un comienzo y fin, donde puede indicarse d&iacute;as y horarios de finalizaci&oacute;n.  En este caso, el evento (la disponibilidad) que tiene frecuencia y repetici&oacute;n es de un d&iacute;a determinado de 7.30am a 12.15pm.  Esa disponibilidad, que puede repetirse diaria, semanal, mensual o anualmente, se repite en este ejemplo semanalmente, cada 1 semana y de lunes a viernes. 
+</para>
+<para>
+La "Frecuencia" determinar&aacute;, asimismo, cuando finalizar&aacute; la repetici&oacute;n del evento pudiendo elegir entre no colocar una fecha definida, definir alguna en especial o determinar una cantidad de veces. 
+</para>
+</sect2>
+</sect1>
+</chapter>

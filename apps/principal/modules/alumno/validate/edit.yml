@@ -1,0 +1,151 @@
+methods:
+  post:       
+    - "alumno{nombre}"
+    - "alumno{nro_documento}"
+    - "alumno{apellido}"
+    - "alumno{fecha_nacimiento}"
+    - "alumno{ciudad}"    
+    - "alumno{direccion}"    
+    - "alumno{codigo_postal}"        
+    - "alumno{telefono}"       
+    - "alumno{sexo}"        
+    - "alumno{email}"        
+    - "alumno{distancia_escuela}"        
+    - "alumno{hermanos_escuela}" 
+    - "alumno{hijo_maestro_escuela}"               
+    - "alumno{certificado_medico}"        
+    - "alumno{activo}"        
+    - "alumno{fk_cuenta_id}"
+    - "alumno{fk_provincia_id}"        
+    - "alumno{legajo_prefijo}"          
+    - "alumno{legajo_numero}"          
+
+fillin:
+    enabled:       on
+      
+names:
+    alumno{legajo_prefijo}:
+        required:     Yes
+        required_msg: Complete el Nro. de Legajo.
+        validators: caracteresMaximos20
+    
+    alumno{legajo_numero}:
+        required:     Yes
+        required_msg: Complete el Nro. de Legajo.
+        validators: validarNumero
+    
+    alumno{nombre}:
+        required:     Yes
+        required_msg: El campo nombre es obligatorio
+        validators: caracteresMaximos128
+
+    alumno{apellido}:
+        required:     Yes
+        required_msg: El campo apellido es obligatorio
+        validators: caracteresMaximos128
+
+    alumno{fecha_nacimiento}:
+        required:     No
+        validators: validaFecha
+
+    alumno{nro_documento}:
+        required:     No
+        validators: validaNroDocumento, validarNumero
+
+    alumno{ciudad}:
+        required:     No
+        required_msg: El campo ciudad es obligatorio
+        validators: caracteresMaximos128
+
+    alumno{direccion}:
+        required:     No
+        validators: caracteresMaximos128
+
+    alumno{codigo_postal}:
+        required:     No
+        validators: caracteresMaximos20
+        
+    alumno{telefono}:
+        required:     No
+        validators: caracteresMaximos20
+
+    alumno{sexo}:
+        required:    No
+        
+    alumno{email}:
+        required:     No
+        validators: validaEmail, caracteresMaximos128
+        
+    alumno{distancia_escuela}:
+        required:     No
+        validators: validarNumero
+
+    alumno{hermanos_escuela}:
+        required:     No
+
+    alumno{hijo_maestro_escuela}:
+        required:     No
+        
+    alumno{certificado_medico}:
+        required:     No
+   
+    alumno{activo}:
+        required:     No
+
+    alumno{fk_cuenta_id}:
+        required:     Yes
+        required_msg: El campo Cuenta es obligatorio
+        validators: validarCuenta                            
+
+    alumno{fk_provincia_id}:
+        required:     Yes
+        required_msg: El campo Provincia es obligatorio
+                  
+
+        
+caracteresMaximos128:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La maxima cantidad de caracteres permitida es de 128
+        
+caracteresMaximos255:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La maxima cantidad de caracteres permitida es de 255
+
+caracteresMaximos20:
+    class:  sfStringValidator
+    param:
+        max: 20
+        max_error: La maxima cantidad de caracteres permitida es de 255
+
+
+validarNumero:
+    class: albaDocumentoValidator
+    param:
+        documento_error: El Documento ingresado es invalido
+        nombre_campo1: alumno
+        nombre_campo2: nro_documento
+
+validaFecha:
+    class:  sfDateValidator
+    param: 
+        date_error: El campo debe ser una fecha
+    
+validaNroDocumento:
+    class:  sfStringValidator
+    param: 
+        max: 10
+        max_error: La cantidad m&acute;xima de caracteres permitida es de 10      
+        
+validaEmail:
+    class: sfEmailValidator
+    param:
+       email_error:   "No ingresaste un email correctamente ( ej: nombre@dominio.com).<br>Si este alumno no tiene email, por favor deje en blanco el campo."
+
+validarCuenta:
+    class: sfNumberValidator
+    param:
+        nan_error: Por favor seleccionar una cuenta

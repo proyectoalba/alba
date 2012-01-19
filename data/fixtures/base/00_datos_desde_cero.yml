@@ -1,0 +1,621 @@
+EstadosAlumnos:
+  EstadosAlumnos_1:
+    nombre: Regular
+  EstadosAlumnos_2:
+    nombre: Libre
+  EstadosAlumnos_3:
+    nombre: Egresado
+  EstadosAlumnos_4:
+    nombre: Ex-alumno
+
+RolResponsable:
+  RolResponsable_1:
+    nombre: Padre
+    descripcion: Padre del alumno
+    activo: 1
+  RolResponsable_2:
+    nombre: Madre
+    descripcion: Madre del alumno
+    activo: 1
+  RolResponsable_3:
+    nombre: Tío
+    descripcion: Tío del alumno
+    activo: 1
+  RolResponsable_3:
+    nombre: Hermano/a
+    descripcion: Hermano/a del alumno
+    activo: 1
+
+NivelInstruccion:
+  ni_i:
+    descripcion: Inicial
+  ni_pc:
+    descripcion: Primario
+  ni_pi:
+    descripcion: Primario (incompleto)
+  ni_sc:
+    descripcion: Secundario
+  ni_si:
+    descripcion: Secundario (incompleto)
+  ni_tc:
+    descripcion: Terciario
+  ni_ti:
+    descripcion: Terciario (incompleto)
+  ni_uc:
+    descripcion: Universitario
+  ni_ui:
+    descripcion: Universitario (incompleto)
+
+Distritoescolar:
+  Distritoescolar_1:
+    nombre: Distrito de prueba
+    direccion: -
+    telefono: -
+    ciudad: -
+Pais:
+  Pais_0:
+    nombre_largo: No definido
+    nombre_corto: No def.
+    orden: 100
+Provincia:
+  Provincia_0:
+    nombre_corto: No def.
+    nombre_largo: No definido
+    fk_pais_id: Pais_0
+    orden: 0
+Tipoiva:
+  Tipoiva_0:
+    nombre: No definido
+    descripcion: No definido
+    orden: 0
+Niveltipo:
+  Niveltipo_1:
+    nombre: Jardín
+    descripcion: Jardín
+  Niveltipo_2:
+    nombre: Primaria
+    descripcion: Primaria
+  Niveltipo_3:
+    nombre: Secundaria
+    descripcion: Secundaria
+  Niveltipo_4:
+    nombre: Universitario
+    descripcion: Universitario
+  Niveltipo_5:
+    nombre: Terciario
+    descripcion: Terciario
+  Niveltipo_6:
+    nombre: Institutos
+    descripcion: Institutos
+  Niveltipo_7:
+    nombre: Otros
+    descripcion: Otros
+Tipodocumento:
+  Tipodocumento_0:
+    nombre: No definido
+    descripcion: No definido
+    orden: 1
+Repeticion:
+  Repeticion_1:
+    descripcion: Semanal
+    orden: 1
+  Repeticion_2:
+    descripcion: Semanal Intercalado
+    orden: 2
+  Repeticion_3:
+    descripcion: Quincenal
+    orden: 3
+  Repeticion_4:
+    descripcion: Mensual
+    orden: 4
+Tipoinforme:
+  Tipoinforme_1:
+    nombre: Alumnos
+    descripcion: Informes relacionados a los alumnos
+  Tipoinforme_2:
+    nombre: General
+    descripcion: Informes de datos generales
+Calendariovacunacion:
+  Calendariovacunacion_3:
+    nombre: BCG (1era Dosis)
+    descripcion: Tuberculosis
+    periodo: Recién nacido
+    observacion:
+  Calendariovacunacion_4:
+    nombre: BCG (refuerzo)
+    descripcion: Tuberculosis
+    periodo: 6 años
+    observacion:
+  Calendariovacunacion_6:
+    nombre: HA (dosis)
+    descripcion: Hepatitis A
+    periodo: 12 meses
+    observacion:
+  Calendariovacunacion_7:
+    nombre: HB (1era Dosis)
+    descripcion: Hepatitis B
+    periodo: Recién nacido
+    observacion:
+  Calendariovacunacion_8:
+    nombre: HB (2da Dosis)
+    descripcion: Hepatitis B
+    periodo: 2 meses
+    observacion:
+  Calendariovacunacion_9:
+    nombre: HB (3ra Dosis)
+    descripcion: Hepatitis B
+    periodo: 6 meses
+    observacion:
+  Calendariovacunacion_10:
+    nombre: >
+      HB (Iniciar o completar esquema de tres
+      dosis)
+    descripcion: Hepatitis B
+    periodo: 11 años
+    observacion:
+  Calendariovacunacion_11:
+    nombre: Cuádruple (1era Dosis)
+    descripcion: >
+      (DTP-Hib) difteria, tétanos, pertussis,
+      Haemophilus influenzae b.
+    periodo: 2 meses
+    observacion:
+  Calendariovacunacion_12:
+    nombre: Cuádruple (2da Dosis)
+    descripcion: >
+      (DTP-Hib) difteria, tétanos, pertussis,
+      Haemophilus influenzae b.
+    periodo: 4 meses
+    observacion:
+  Calendariovacunacion_13:
+    nombre: Cuádruple (3ra Dosis)
+    descripcion: >
+      (DTP-Hib) difteria, tétanos, pertussis,
+      Haemophilus influenzae b.
+    periodo: 6 meses
+    observacion:
+  Calendariovacunacion_14:
+    nombre: Cuádruple (4ta Dosis)
+    descripcion: >
+      (DTP-Hib) difteria, tétanos, pertussis,
+      Haemophilus influenzae b.
+    periodo: 18 meses
+    observacion:
+  Calendariovacunacion_15:
+    nombre: Sabin (1era Dosis)
+    descripcion: (OPV) Vacuna Poliomelítica Oral
+    periodo: 2 meses
+    observacion:
+  Calendariovacunacion_16:
+    nombre: Sabin (2da Dosis)
+    descripcion: (OPV) Vacuna Poliomelítica Oral
+    periodo: 4 meses
+    observacion:
+  Calendariovacunacion_17:
+    nombre: Sabin (3ra Dosis)
+    descripcion: (OPV) Vacuna Poliomelítica Oral
+    periodo: 6 meses
+    observacion:
+  Calendariovacunacion_18:
+    nombre: Sabin (4ta Dosis)
+    descripcion: (OPV) Vacuna Poliomelítica Oral
+    periodo: 18 meses
+    observacion:
+  Calendariovacunacion_19:
+    nombre: Sabin (Refuerzo)
+    descripcion: (OPV) Vacuna Poliomelítica Oral
+    periodo: 6 años
+    observacion:
+  Calendariovacunacion_20:
+    nombre: Triple bacteriana (Refuerzo)
+    descripcion: (DTP) Difteria, tétanos, pertussis
+    periodo: 6 años
+    observacion:
+  Calendariovacunacion_21:
+    nombre: Triple Viral (1era Dosis)
+    descripcion: (SRP) Sarampión, rubéola, parotiditis
+    periodo: 12 meses
+    observacion:
+  Calendariovacunacion_22:
+    nombre: Triple Viral (2da Dosis)
+    descripcion: (SRP) Sarampión, rubéola, parotiditis
+    periodo: 6 años
+    observacion:
+  Calendariovacunacion_23:
+    nombre: Triple Viral (Refuerzo)
+    descripcion: (SRP) Sarampión, rubéola, parotiditis
+    periodo: 11 años
+    observacion:
+  Calendariovacunacion_24:
+    nombre: Doble Viral (dosis)
+    descripcion: (SR) Sarampión, Rubéola.
+    periodo: Puerperio o post-aborto inmediato.
+    observacion:
+  Calendariovacunacion_25:
+    nombre: Doble Bacteriana (Refuerzo 1)
+    descripcion: (dT) Difteria, Tétanos.
+    periodo: 16 años
+    observacion:
+  Calendariovacunacion_26:
+    nombre: Doble Bacteriana (Refuerzos)
+    descripcion: (dT) Difteria, Tétanos.
+    periodo: Cada 10 años
+    observacion:
+Organizacion:
+  Organizacion_1:
+    nombre: Organización Tu Nombre
+    descripcion: Organización Tu Descripción
+    razon_social: Organización Tu Razón Social
+    cuit: 20123456789
+    direccion: Tu Dirección
+    ciudad: Tu ciudad
+    codigo_postal: Tu CP
+    telefono:
+    fk_provincia_id: Provincia_0
+    fk_tipoiva_id: Tipoiva_0
+Establecimiento:
+  Establecimiento_1:
+    nombre: Nombre de Escuela
+    descripcion: Escuela Primaria
+    legajoprefijo: MAT
+    legajosiguiente: 1
+    fk_distritoescolar_id: Distritoescolar_1
+    fk_organizacion_id: Organizacion_1
+    fk_niveltipo_id: Niveltipo_2
+    fk_provincia_id: Provincia_0
+Usuario:
+  Usuario_1:
+    usuario: admin
+    clave: 21232f297a57a5a743894a0e4a801fc3
+    correo_publico: 1
+    activo: 1
+    fecha_creado: 2006-12-03 00:00:00
+    fecha_actualizado: 2006-12-03 00:00:00
+    seguridad_pregunta: usuario por defecto
+    seguridad_respuesta: administrador
+    email: admin@localhost
+    fk_establecimiento_id: Establecimiento_1
+    borrado: 0
+
+Permiso:
+  Permiso_usuario:
+    nombre: usuario
+    descripcion: Modulo de usuario
+  Permiso_actividad:
+    nombre: actividad
+    descripcion:
+  Permiso_alumno:
+    nombre: alumno
+    descripcion:
+  Permiso_anio:
+    nombre: anio
+    descripcion:
+  Permiso_calendario:
+    nombre: calendario
+    descripcion:
+  Permiso_calendariovacunacion:
+    nombre: calendariovacunacion
+    descripcion:
+  Permiso_ciclolectivo:
+    nombre: ciclolectivo
+    descripcion:
+  Permiso_concepto:
+    nombre: concepto
+    descripcion:
+  Permiso_cuenta:
+    nombre: cuenta
+    descripcion:
+  Permiso_division:
+    nombre: division
+    descripcion:
+  Permiso_docente:
+    nombre: docente
+    descripcion:
+  Permiso_docentehorario:
+    nombre: docentehorario
+    descripcion:
+  Permiso_escalanota:
+    nombre: escalanota
+    descripcion:
+  Permiso_establecimiento:
+    nombre: establecimiento
+    descripcion:
+  Permiso_feriado:
+    nombre: feriado
+    descripcion:
+  Permiso_legajocategoria:
+    nombre: legajocategoria
+    descripcion:
+  Permiso_locacion:
+    nombre: locacion
+    descripcion:
+  Permiso_pais:
+    nombre: pais
+    descripcion:
+  Permiso_preferencia:
+    nombre: preferencia
+    descripcion:
+  Permiso_provincia:
+    nombre: provincia
+    descripcion:
+  Permiso_relactividaddocente:
+    nombre: relactividaddocente
+    descripcion:
+  Permiso_relactividad:
+    nombre: relactividad
+    descripcion:
+  Permiso_relcalendariovacunacionalumno:
+    nombre: relcalendariovacunacionalumno
+    descripcion:
+  Permiso_responsable:
+    nombre: responsable
+    descripcion:
+  Permiso_rol:
+    nombre: rol
+    descripcion:
+  Permiso_tipoiva:
+    nombre: tipoiva
+    descripcion:
+  Permiso_turno:
+    nombre: turno
+    descripcion:
+  Permiso_tipolocacion:
+    nombre: tipolocacion
+    descripcion:
+  Permiso_tipoespacio:
+    nombre: tipoespacio
+    descripcion:
+  Permiso_espacio:
+    nombre: espacio
+    descripcion:
+  Permiso_cargobaja:
+    nombre: cargobaja
+    descripcion:
+  Permiso_conceptobaja:
+    nombre: conceptobaja
+    descripcion:
+  Permiso_distritoescolar:
+    nombre: distritoescolar
+    descripcion:
+  Permiso_horarioescolar:
+    nombre: horarioescolar
+    descripcion:
+  Permiso_horarioescolartipo:
+    nombre: horarioescolartipo
+    descripcion:
+  Permiso_tipodocente:
+    nombre: tipodocente
+    descripcion:
+  Permiso_organizacion:
+    nombre: organizacion
+    descripcion:
+  Permiso_asistencia:
+    nombre: asistencia
+    descripcion: Asistencias
+  Permiso_legajopedagogico:
+    nombre: legajopedagogico
+    descripcion:
+  Permiso_tipoasistencia:
+    nombre: tipoasistencia
+    descripcion:
+  Permiso_formatofecha:
+    nombre: formatofecha
+    descripcion:
+  Permiso_rellocacionespacio:
+    nombre: rellocacionespacio
+    descripcion:
+  Permiso_relalumnodivision:
+    nombre: relalumnodivision
+    descripcion:
+  Permiso_boletin:
+    nombre: boletin
+    descripcion:
+  Permiso_boletinconcepto:
+    nombre: boletinconcepto
+    descripcion: boletinconcepto
+  Permiso_boletinnotas:
+    nombre: boletinnotas
+    descripcion: boletinnotas
+  Permiso_tipodocumento:
+    nombre: tipodocumento
+    descripcion: tipodocumento
+  Permiso_informes:
+    nombre: informes
+    descripcion: informes
+  Permiso_rolresponsable:
+    nombre: rolresponsable
+    descripcion: Rol de Responsables
+  Permiso_orientacion:
+    nombre: orientacion
+    descripcion: Orientacion
+  Permiso_tiponivel:
+    nombre: tiponivel
+    descripcion: Tipo de Nivel
+  Permiso_carrera:
+    nombre: carrera
+    descripcion: Carreras
+  Permiso_legajosalud:
+    nombre: legajosalud
+    descripcion: Legajo de Salud
+  Permiso_relanioactividad:
+    nombre: relanioactividad
+    descripcion: Modulo de Años y Actividades
+
+Rol:
+  Rol_administrador:
+    nombre: Administrador
+    descripcion: Administrador del sistema
+    activo: 1
+
+RolPermiso:
+  Rol_permiso_1_1:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_actividad
+  Rol_permiso_1_2:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_alumno
+  Rol_permiso_1_3:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_anio
+  Rol_permiso_1_4:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_asistencia
+  Rol_permiso_1_5:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_boletin
+  Rol_permiso_1_6:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_boletinconcepto
+  Rol_permiso_1_7:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_boletinnotas
+  Rol_permiso_1_8:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_calendario
+  Rol_permiso_1_9:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_calendariovacunacion
+  Rol_permiso_1_10:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_cargobaja
+  Rol_permiso_1_11:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_carrera
+  Rol_permiso_1_12:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_ciclolectivo
+  Rol_permiso_1_13:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_conceptobaja
+  Rol_permiso_1_14:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_concepto
+  Rol_permiso_1_15:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_cuenta
+  Rol_permiso_1_16:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_distritoescolar
+  Rol_permiso_1_17:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_division
+  Rol_permiso_1_18:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_docente
+  Rol_permiso_1_19:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_docentehorario
+  Rol_permiso_1_20:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_escalanota
+  Rol_permiso_1_21:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_espacio
+  Rol_permiso_1_22:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_establecimiento
+  Rol_permiso_1_23:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_feriado
+  Rol_permiso_1_24:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_formatofecha
+  Rol_permiso_1_25:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_horarioescolar
+  Rol_permiso_1_26:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_horarioescolartipo
+  Rol_permiso_1_27:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_informes
+  Rol_permiso_1_28:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_legajocategoria
+  Rol_permiso_1_29:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_legajopedagogico
+  Rol_permiso_1_30:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_legajosalud
+  Rol_permiso_1_31:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_locacion
+  Rol_permiso_1_32:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_organizacion
+  Rol_permiso_1_33:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_orientacion
+  Rol_permiso_1_34:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_pais
+  Rol_permiso_1_35:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_preferencia
+  Rol_permiso_1_36:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_provincia
+  Rol_permiso_1_37:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_relactividad
+  Rol_permiso_1_38:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_relactividaddocente
+  Rol_permiso_1_39:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_relalumnodivision
+  Rol_permiso_1_40:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_relcalendariovacunacionalumno
+  Rol_permiso_1_41:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_rellocacionespacio
+  Rol_permiso_1_42:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_responsable
+  Rol_permiso_1_43:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_rol
+  Rol_permiso_1_44:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_rolresponsable
+  Rol_permiso_1_45:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_tipoasistencia
+  Rol_permiso_1_46:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_tipodocente
+  Rol_permiso_1_47:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_tipodocumento
+  Rol_permiso_1_48:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_tipoespacio
+  Rol_permiso_1_49:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_tipoiva
+  Rol_permiso_1_50:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_tipolocacion
+  Rol_permiso_1_51:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_tiponivel
+  Rol_permiso_1_52:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_turno
+  Rol_permiso_1_53:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_usuario
+  Rol_permiso_1_54:
+    fk_rol_id: Rol_administrador
+    fk_permiso_id: Permiso_relanioactividad
+
+UsuarioRol:
+  Usuario_Rol_administrador_1:
+    fk_usuario_id: Usuario_1
+    fk_rol_id: Rol_administrador
+Carrera:
+  Carrera_1:
+    fk_establecimiento_id: Establecimiento_1
+    descripcion: No  definido

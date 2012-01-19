@@ -1,0 +1,88 @@
+<chapter><title>Diccionario de conceptos</title>
+<para>
+La siguiente lista presenta las definiciones de los conceptos utilizados para la elaboraci&oacute;n de este sistema de gesti&oacute;n. Algunos de ellos reflejan elementos utilizados en la vida cotidiana de las escuelas; otros, por el contrario, son &uacute;tiles para establecer funcionalidades para otra clase de unidades educativas. 
+</para>
+
+<sect1><title>Los conceptos </title>
+<sect2><title>Cuentas</title>
+<para>
+<emphasis>La cuenta</emphasis> es utilizada en ALBA como un elemento para organizar informaci&oacute;n de varios alumnos con un responsable com&uacute;n. Una cuenta funciona muchas veces como una familia particular, pero puede no ser exactamente una familia en sentido estricto. Una cuenta integra: un responsable de la misma y un grupo de alumnos relacionados. En un futuro, tambi&eacute;n integrar&aacute; informaci&oacute;n contable de los pagos de las cuotas en el caso de escuelas o unidades educacionales privadas. 
+</para>
+</sect2>
+
+
+<sect2><title>Espacios</title>
+<para>
+Un espacio es un lugar que pertenece a una locaci&oacute;n de un establecimiento en particular. Ejemplo de un espacio es un aula, un laboratorio, un gimnasio, etc. 
+</para>
+</sect2>
+
+<sect2><title>Establecimiento</title>
+<para>
+Unidad donde se organiza la oferta educativa y que cuenta con una autoridad m&aacute;xima como responsable pedag&oacute;gico administrativo. El establecimiento puede tener diferentes locaciones. 
+</para>
+</sect2>
+
+<sect2><title>Eventos </title>
+<para>
+Unidad de tiempo y espacio. En el marco del proyecto ALBA los eventos son utilizados para compartir informaci&oacute;n sobre estas unidades a lo largo de toda la aplicaci&oacute;n. As&iacute;, por ejemplo, las horas de clase son consideradas "eventos" y la disponibilidad de los horarios de los docentes se traducen de igual forma  en "eventos". El hecho de que sean organizados utilizando este concepto permite visualizar esta informaci&oacute;n a modo de calendario gr&aacute;fico y tambi&eacute;n exportarla a distintas agendas a trav&eacute;s de un standard llamado ICal. 
+</para>
+</sect2>
+<sect2><title>Grados/A&ntilde;os</title>
+<para>
+Seg&uacute;n el nivel escolar los grados (primaria) o a&ntilde;os (secundaria) se definen como un grupo de alumnos que se agrupan seg&uacute;n edad y plan de estudios.  Los grados o a&ntilde;os pueden tener diferentes secciones/divisiones. (Un ejemplo de grado en primaria ser&iacute;a Primero. En el caso de secundarios: Primer a&ntilde;o bachiller, ya que define el plan de estudios.)
+</para>
+</sect2>
+
+<sect2><title>Locaci&oacute;n</title>
+<para>
+La locaci&oacute;n de un establecimiento, es el espacio f&iacute;sico donde se desarrolla la tarea educativa. Una locaci&oacute;n puede categorizarse en sedes o anexos. (ALBA permite otras clasificaciones de locaciones en caso de ser necesario). 
+</para>
+</sect2>
+
+<sect2><title>M&oacute;dulo</title>
+<para>
+Un m&oacute;dulo agrupa diferentes acciones sobre un determinado elemento. Por ejemplo el m&oacute;dulo de alumnos tiene toda la funcionalidad necesaria para administrar los alumnos. ALBA, como software modular, prev&eacute; que cada m&oacute;dulo pueda funcionar separadamente de otros.</para>
+</sect2>
+
+<sect2><title>Organizaci&oacute;n</title>
+<para>
+Una organizaci&oacute;n refiere a una persona jur&iacute;dica que administra uno o m&aacute;s establecimientos. En ALBA, el m&oacute;dulo organizaci&oacute;n permite el ingreso de todos los datos administrativos y comerciales de la misma. (Por ejemplo, para el cobro a trav&eacute;s de un futuro m&oacute;dulo contable en caso de tratarse de establecimientos educativos privados. 
+</para>
+</sect2>
+
+<sect2><title>Permiso</title>
+<para>
+Un permiso ofrece el acceso a determinada funcionalidad de los m&oacute;dulos del sistema. ALBA cuenta con un sistema de permisos para administrar la seguridad, donde un usuario puede tener asignados permisos para unos m&oacute;dulos y otros no (seg&uacute;n lo gestione el administrador del sistema).
+</para>
+</sect2>
+
+<sect2><title>Responsables</title>
+<para>
+Un responsable de cuenta, es aquel adulto que siendo o no familiar de los alumnos relacionados con la misma, lleva adelante la tarea de recibir informaci&oacute;n del establecimiento, actualizar la informaci&oacute;n de los alumnos de la cuenta, responder ante las consultas administrativas de la organizaci&oacute;n, etc. 
+</para>
+<para>
+ALBA permite establecer la relaci&oacute;n (parental o no) entre el responsable y los alumnos de la cuenta, as&iacute; como establecer si cuentan con el permiso del retiro del menor del establecimiento. 
+</para>
+</sect2>
+
+<sect2><title>Rol</title>
+<para>
+Un rol es un grupo de permisos que se le da a una determinada persona seg&uacute;n el papel y las responsabilidades que tome en el establecimiento. Por ejemplo, un rol puede ser el de <emphasis>Secretaria/o</emphasis>, al que se le puede asignar los permisos de edici&oacute;n de informaci&oacute;n alumnos, emisi&oacute;n de consultas y listados etc. 
+</para>
+</sect2>
+
+<sect2><title>Secci&oacute;n/Divisi&oacute;n</title>
+<para>
+Una secci&oacute;n es un grupo escolar formado por alumnos que cursan o no el mismo grado o a&ntilde;o, en el mismo espacio y con el mismo equipo de docentes. Por ejemplo, en una escuela primaria pueden existir las secciones <emphasis>A</emphasis> y <emphasis>B</emphasis>.  En ALBA (como en la forma de expresi&oacute;n coloquial) se toma a la divisi&oacute;n como un <emphasis>grado/a&ntilde;o + secci&oacute;n/divisi&oacute;n</emphasis>, siendo entonces un grupo de alumnos que comparten el docente, el espacio y el grado/a&ntilde;o, pongamos por caso: <emphasis>Primer Grado A.</emphasis> 
+</para>
+</sect2>
+
+<sect2><title>Usuarios</title>
+<para>
+Se denomina usuario a la identidad que con nombre y clave propia, cuenta con diferentes permisos (o roles si ya tiene uno definido) para realizar acciones en el sistema ALBA. En ALBA el administrador del sistema crea nuevos usuarios y define los diferentes accesos seg&uacute;n sean las responsabilidades del mismo. 
+</para>
+</sect2>
+</sect1>
+
+</chapter>

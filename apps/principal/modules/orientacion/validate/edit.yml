@@ -1,0 +1,30 @@
+methods:
+  post:       
+    - "orientacion{nombre}"
+    - "orientacion{descripcion}"
+    
+fillin:
+    enabled:       on
+      
+names:
+    orientacion{nombre}:
+        required:     Yes
+        required_msg: El campo nombre es obligatorio
+        validators: caracteresMaximos128
+
+    orientacion{descripcion}:
+        required:     No
+        validators: caracteresMaximos255
+
+        
+caracteresMaximos128:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La m&aacute;xima cantidad de caracteres permitida es de 128
+        
+caracteresMaximos255:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La m&aacute;xima cantidad de caracteres permitida es de 255

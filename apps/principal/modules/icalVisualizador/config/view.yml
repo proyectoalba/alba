@@ -1,0 +1,2 @@
+all:
+    stylesheets: [%SF_ADMIN_WEB_DIR%/main, /icalVisualizador/css/icalVisualizador]

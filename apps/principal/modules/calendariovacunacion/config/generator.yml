@@ -1,0 +1,26 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+      model_class:      Calendariovacunacion
+      theme:            default
+      fields:
+            nombre: { name: Nombre , params: size=64 }
+            descripcion: { name: Descripci&oacute;n , params: size=64 }
+            periodo: { name: Per&iacute;odo ,  params: size=64}
+            observacion: {name: Observaci&oacute;n , params: size=64 }
+      list:
+            title: Calendario de vacunaci&oacute;n
+            display: [ nombre, descripcion, periodo, observacion ]
+            object_actions:
+                _edit: -
+                _delete: - 
+            actions: 
+                _create: -
+
+      edit:
+            title: Editar Vacuna
+            actions:
+                _delete: -
+                _save: -
+                _list: -
+                _save_and_add: -

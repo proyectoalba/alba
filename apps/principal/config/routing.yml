@@ -1,0 +1,25 @@
+alumno_salud:
+  class: sfPropelRouteCollection
+  options:
+    model:                AlumnoSalud
+    module:               alumno_salud
+    prefix_path:          alumno_salud
+    column:               id
+    with_wildcard_routes: true
+
+# default rules
+homepage:
+  url:   /
+  param: { module: default, action: index }
+
+default_symfony:
+  url:   /symfony/:action/*
+  param: { module: default }
+
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*
+

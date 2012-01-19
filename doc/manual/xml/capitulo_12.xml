@@ -1,0 +1,30 @@
+<chapter><title>Informes y Cosultas</title>
+<para>
+Esta secci&oacute;n del men&uacute; (en incesante construcci&oacute;n) define las diferentes "salidas" de la informaci&oacute;n seg&uacute;n diversos formularios y documentos imprimibles. Tal es el caso de  las constancias de alumno regular, certificados de estudio, solicitudes de legajo (a otros colegios) y certificados de egreso de 7mo grado.  Esta herramienta ofrece tambi&eacute;n <emphasis>listados de alumnos por divisi&oacute;n</emphasis> para el trabajo cotidiano de los docentes y directivos. 
+</para>
+<para>
+<figure><title>B&uacute;squeda de alumno para certificado.</title>
+    <graphic fileref="img/figura62.png" scale="50"/>
+</figure>
+</para>
+
+<para>
+Una de las herramientas m&aacute;s interesantes es la Biblioteca de contenidos que permite el almacenamiento de documentos (de cualquier tipo) para su consulta permanente.  Ingresando a esta opci&oacute;n se visualizan las carpetas creadas en virtud de la organizaci&oacute;n de esos documentos. Estas carpetas son creadas por el mismo usuario a trav&eacute;s del bot&oacute;n "Crear" una vez completo el casillero "Crear una carpeta" con el nombre que &eacute;sta tendr&aacute;. 
+</para>
+<para>
+<figure><title>Biblioteca de contenidos.</title>
+    <graphic fileref="img/figura63.png" scale="50"/>
+    </figure>
+</para>
+<para>
+Recuerde que para que el documento est&eacute; ingresado a una carpeta determinada tiene que seleccionarla (haciendo click). El nombre de la carpeta estar&aacute; informado seguidamente del t&iacute;tulo para indicarle donde est&aacute; posicionado. Luego podr&aacute; subir el archivo examinando el lugar de origne y presionando el bot&oacute;n "Agregar". 
+</para>
+<para>
+Por &uacute;ltimo, cabe agregar que tambi&eacute;n desde esta secci&oacute;n del men&uacute; es posible generar los Boletines, pudiendo acceder desde un alumno en especial o a partir del listado de alumno de alguna divisi&oacute;n. En ambos casos se presentar&aacute; el bot&oacute;n "Ver Informe" que llevar&aacute;  a la visualizaci&oacute;n gr&aacute;fica de las calificaciones seg&uacute;n las materias ingresadas en cada divisi&oacute;n.
+</para>
+<para>
+<figure><title>Visualizaci&oacute;n de boletines.</title>
+    <graphic fileref="img/figura64.png" scale="100"/>
+    </figure>
+</para>
+</chapter>

@@ -1,0 +1,21 @@
+Index: dist/symfony-1.0.11/lib/util/sfFillInForm.class.php
+===================================================================
+--- dist/symfony-1.0.11/lib/util/sfFillInForm.class.php	(revision 5434)
++++ dist/symfony-1.0.11/lib/util/sfFillInForm.class.php	(working copy)
+@@ -125,8 +125,15 @@
+         {
+           // checkbox and radio
+           $element->removeAttribute('checked');
+-          if ($this->hasValue($values, $name) && ($this->getValue($values, $name) == $value || !$element->hasAttribute('value')))
++          if (is_array($this->getValue($values, $name)) && ($this->hasValue($values, $name) || !$element->hasAttribute('value')))
+           {
++            if (in_array($value, $this->getValue($values, $name)))
++            {
++              $element->setAttribute('checked', 'checked');
++            }
++          }
++          else if ($this->hasValue($values, $name) && ($this->getValue($values, $name) == $value || !$element->hasAttribute('value')))
++          {
+             $element->setAttribute('checked', 'checked');
+           }
+         }

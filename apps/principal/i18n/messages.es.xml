@@ -1,0 +1,87 @@
+<?xml version="1.0" ?>
+<xliff version="1.0">
+    <file orginal="global" source-language="en_US" datatype="plaintext">
+        <body>   
+            <trans-unit>
+                <source>create</source>
+                <target>Nuevo</target>
+            </trans-unit>              
+            <trans-unit>
+                <source>Actions</source>
+                <target>Acciones</target>
+            </trans-unit>              
+            <trans-unit>
+                <source>filters</source>
+                <target>Filtros</target>
+            </trans-unit>              
+            <trans-unit>
+                <source>filter</source>
+                <target>Filtrar</target>
+            </trans-unit>              
+            <trans-unit>
+                <source>reset</source>
+                <target>Borrar</target>
+            </trans-unit>              
+            <trans-unit>
+                <source>[0] no result|[1] 1 result|(1,+Inf] %1% results</source>
+                <target>[0] no existen resultados|[1] 1 resultado|(1,+Inf] %1% resultados</target>
+            </trans-unit>              
+            <trans-unit>
+                <source>list</source>
+                <target>Listado</target>
+            </trans-unit>              
+            <trans-unit>
+                <source>delete</source>
+                <target>Borrar</target>
+            </trans-unit>              
+            <trans-unit>
+                <source>save</source>
+                <target>Guardar</target>
+            </trans-unit>              
+            <trans-unit>
+                <source>save and add</source>
+                <target>Guardar y Agregar Nuevo</target>
+            </trans-unit>              
+            <trans-unit>
+                <source>Your modifications have been saved</source>
+                <target>Las modificaciones han sido guardadas.</target>
+            </trans-unit>      
+            <trans-unit>
+                <source>Are you sure?</source>
+                <target>¿Está seguro?</target>
+            </trans-unit>      
+            <trans-unit>
+                <source>There are some errors that prevent the form to validate</source>
+                <target>Se encontraron algunos errores, por favor corríjalos.</target>
+            </trans-unit>      
+            <trans-unit>
+                <source>no result</source>
+                <target>No existen resultados.</target>
+            </trans-unit>      
+            <trans-unit>
+                <source>Could not delete the selected %name%</source>
+                <target>No es posible eliminar el registro de %name% seleccionado.</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Could not delete the selected %name%. Make sure it does not have any associated items.</source>
+                <target>No puede eliminar el registro de %name% seleccionado. Asegúrese que no esté siendo utilizado.</target>
+            </trans-unit>
+            <trans-unit>
+                <source>edit</source>
+                <target>Modificar</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Unassociated</source>
+                <target>No Asociadas</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Associated</source>
+                <target>Asociadas</target>
+            </trans-unit>
+            <trans-unit>
+                <source>The form is not valid because it contains some errors.</source>
+                <target>El formulario contiene algunos errores</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,137 @@
+<chapter><title>Interfaz de ALBA.</title>
+<para>
+La interfaz de ALBA est&aacute; compuesta por diversos elementos gr&aacute;ficos con  caracter&iacute;sticas que se detallan a continuaci&oacute;n. Es importante recordar que, como se trata de una aplicaci&oacute;n cuyo uso se desenvuelve sobre un navegador, existen muchas funciones de este &uacute;ltimo que conviven con las de esta aplicaci&oacute;n espec&iacute;fica. 
+</para>
+<sect1> <title>2.1 La pantalla principal  de ALBA.</title>
+<para>
+La siguiente pantalla detalla, a modo de ejemplo, los elementos m&aacute;s usuales que la conforman. 
+</para>
+<para>
+<figure><title>Elementos de la pantalla principal.</title>
+<graphic fileref="img/figura4.png" scale="40" />
+</figure>
+</para>
+
+<para>
+1- Encabezado. 
+2- Informaci&oacute;n actual sobre: usuario, establecimiento y ciclo lectivo. 
+3- Barra de men&uacute; desplegable. 
+4- T&iacute;tulo del m&oacute;dulo elegido 
+5- Cuerpo del m&oacute;dulo: en este marco se desarrolla cada m&oacute;dulo en particular. 
+6- Barra de botones inferiores. (Pueden variar seg&uacute;n el m&oacute;dulo mostrado). 
+</para>
+</sect1>
+
+<sect1>
+<title>Los elementos m&aacute;s importantes de las pantallas.</title>
+
+<sect2> <title>El men&uacute; desplegable.</title>
+	<para>
+Durante el desarrollo completo del uso de la herramienta se mantiene visible una barra horizontal desde donde se accede a las diferentes secciones del men&uacute;. (Ver referencia 3 en el listado anterior). 
+	</para>
+
+	<para>
+Al pasar con el mouse sobre &eacute;l, se despliegan todas las opciones que contiene. A su vez, es posible que alguno de ellos contenga un submen&uacute; dentro, que est&aacute; se&ntilde;alizado por un tri&aacute;ngulo negro y peque&ntilde;o, a modo de flecha hacia la derecha. 
+	</para>
+
+	<para>
+		<figure><title>El men&uacute; desplegable.</title>
+            <graphic fileref="img/figura5.png"  scale="60"/>
+		</figure>
+	</para>
+	</sect2>
+
+<sect2>
+	<title>Los botones de la barra inferior.</title>
+	<para>
+Al pie de los diferentes listados se pueden encontrar una serie de botones especialmente creados para manejar la informaci&oacute;n de los mismos. 
+	</para>
+
+	<para>
+As&iacute; pues el sistema permite: Crear un nuevo registro, Listar los registros, Guardar un registro creado, guardar y permitir a su vez agregar uno nuevo, borrar el registro; as&iacute; como un acceso directo por ejemplo al m&oacute;dulo "Cuentas" (si se trata del listado de alumnos), entre otras funciones.  
+	</para>
+	<para>
+	<figure><title>Botones de la barra inferior.</title>
+        <graphic fileref="img/figura6.png"  scale="60"/>
+	</figure>
+	</para>
+</sect2>
+
+<sect2>
+	<title>Las barras de acciones.</title>
+	<para>
+Son barras de botones, que funcionan como accesos a determinadas acciones a realizar sobre un elemento.  El siguiente gr&aacute;fico muestra algunos de los distintos tipos de barras que se presentan a lo largo del uso del ALBA, y la explicaci&oacute;n de cada bot&oacute;n a modo de ejemplo. De todas formas, al pasar con el mouse sobre el &iacute;cono, se informa el nombre de la acci&oacute;n. 
+	</para>
+
+	<para>
+	<figure><title>Barras de acciones.</title> 
+        <graphic fileref="img/figura7.png"  scale="60"/>
+	</figure>
+	</para>
+	<para>
+Algunos ejemplos se indican en esta lista: 
+</para>
+<para>
+
+1.Bot&oacute;n "Editar": permite ingresar a los datos cargados y modificarlos. 
+2.Bot&oacute;n "Borrar": elimina el registro.
+3.Bot&oacute;n "Ir a cuenta": acceso directo a la cuenta relacionada con el alumno o con un responsable. 
+4.Bot&oacute;n "Vacunas": acceso directo al listado de Vacunas por alumno.
+5.Bot&oacute;n "Asistencias": acceso directo al m&oacute;dulo de asistencia de alumnos. 
+6.Bot&oacute;n "Legajo": acceso directo al legajo pedag&oacute;gico el alumno. 
+7.Bot&oacute;n "Bolet&iacute;n": acceso directo a la carga de notas en el bolet&iacute;n de los alumnos seg&uacute;n divisi&oacute;n. 
+8.Bot&oacute;n "Locaci&oacute;n": acceso directo al listado de las locaciones de un establecimiento. 
+</para>
+
+</sect2>
+
+<sect2><title>Ventanas de filtros.</title>
+<para>
+Las ventanas de filtro, permiten hacer una b&uacute;squeda por uno o m&aacute;s criterios determinados. en un listado. El ejemplo muestra una b&uacute;squeda que puede realizarse por tres criterios distintos. El bot&oacute;n inferior borrar, elimina la b&uacute;squeda realizada y el filtrar la inicia. 
+</para>
+
+<para>
+Diferentes m&oacute;dulos del ALBA utilizan este sistema para mejorar las b&uacute;squedas.
+</para>
+
+	<para>
+	<figure><title>Ventanas de filtros.</title> 
+	<graphic fileref="img/figura8.png" scale="60" />
+	</figure>
+	</para>
+
+</sect2>
+
+<sect2><title>Los listados de los datos.</title>
+<para>
+Los listados generados por los datos ingresados cuentan con los botones t&iacute;picos de una barra inferior y con una barra de acciones (generalmente de edici&oacute;n y otras acciones seg&uacute;n sea el caso). Estos listados, pueden ser ordenados haciendo click en el t&iacute;tulo de la columna, de donde tomar&aacute; el criterio de la forma de ordenamiento de datos (ascendente/descendente, o alfab&eacute;tico ascendente y descendente). 
+</para>
+<para>
+Existen en algunos casos espec&iacute;ficos (como el del listado de Provincias) un orden diferente establecido por defecto. Como en el caso nombrado, se cuenta con el campo "orden" que  establece un "peso" del dato, para su ordenamiento posterior en los listados. A mayor n&uacute;mero, mayor peso y por ende, m&aacute;s bajo aparecer&aacute; el dato. 
+</para>
+<para>
+Los listados pueden contar con m&aacute;s de una p&aacute;gina, y por ello cuentan con flechas para repaginar.
+</para>
+</sect2>
+
+<sect2><title>Los mensajes al grabar.</title>
+<para>
+Siempre que se realice una acci&oacute;n sobre los listados (como edici&oacute;n, borrado o ingreso de un registro nuevo); en la parte superior de &eacute;stos se indicar&aacute; el resultado de la acci&oacute;n. 
+</para>
+<para>
+Un criterio muy b&aacute;sico de colores, adem&aacute;s del mensaje textual, informar&aacute; si el resultado fue exitoso (color verde) o si se present&oacute; alguna dificultad (color rojo). Los errores que pueden aparecer, casi siempre son relativos a la falta de informaci&oacute;n obligatoria para la carga del registro.
+</para>
+</sect2>
+<sect2>
+<title>Las vistas de calendarios</title>
+<para>
+En el caso de m&oacute;dulos relacionados con los calendarios y horarios, el sistema ofrecer diferentes vistas de calendarios a modo de agenda. En esos casos es posible visualizar "eventos" diaria, semanal, mensual y anualmente. Para m&aacute;s informaci&oacute;n sobre el concepto de "evento" puede consultar el Cap&iacute;tulo 3. 
+</para>
+<para>
+<figure><title>Vistas de calendarios.</title>
+    <graphic fileref="img/figura8bis.png" scale="50"/>
+</figure>
+</para>
+</sect2>
+</sect1>
+</chapter>

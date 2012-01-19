@@ -1,0 +1,11 @@
+methods:
+  post: [ division_id ]
+
+fillin:
+    enabled:       on
+      
+names:
+    division_id:
+        required:     Yes
+        required_msg: El campo Divisi&oacute;n es obligatorio
+        

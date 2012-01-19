@@ -1,0 +1,26 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Carrera
+    theme:            default
+    fields:
+        descripcion: { name: Descripci&oacute;n , params: size=40 }
+        orden: { name: Orden , params: size=2 }
+        fk_establecimiento_id: { name: Establecimiento }
+    
+    edit:
+        title: " "
+        display: [descripcion, orden]
+        actions:
+            _delete: -
+            _save: -
+            _list: -
+            _save_and_add: -
+                    
+    list:
+        title: Listado de Carreras
+        display: [ =descripcion , orden ]
+        sort: orden
+        object_actions:
+            _edit:      -
+            _delete:    -   

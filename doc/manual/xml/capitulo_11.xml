@@ -1,0 +1,32 @@
+<chapter><title>Locaciones y Espacios</title>
+
+<sect1><title>Listado de locaciones</title>
+<para>
+Esta lista permite definir las sedes y anexos del establecimiento. Cada locaci&oacute;n tendr&aacute; una direcci&oacute;n, un tipo de locaci&oacute;n (sede o anexo, por ejemplo), los tel&eacute;fonos y datos para ubicar al responsable del edificio. Como todo listado se cuenta con un filtro para acelarar las posibles b&uacute;squedas. 
+</para>
+<para>
+<figure><title>Listado de locaciones.</title>
+    <graphic fileref="img/figura59.png" scale="50"/>
+</figure>
+</para>
+
+</sect1>
+<sect1><title>Listado de espacios por locaci&oacute;n</title>
+<para>
+Dentro de cada una de las locaciones, es posible cargar los diferentes espacios que la componen para mantener un sguimiento de su estado, tama&ntilde;o y capacidad, ubicaci&oacute;n etc. 
+</para>
+<para>
+<figure><title>Listado de espacios.</title>
+    <graphic fileref="img/figura60.png" scale="50"/>
+</figure>
+</para>
+<para>
+Ambos elementos (espacios y locaciones) permiten todas la edici&oacute;n. La siguiente figura muestra un t&iacute;pico formulario de alta y edici&oacute;n.
+</para>
+<para>
+<figure><title>Editar espacio</title>
+    <graphic fileref="img/figura61.png" scale="50"/>
+</figure>
+</para>
+</sect1>
+</chapter>

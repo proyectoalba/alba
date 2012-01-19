@@ -1,0 +1,104 @@
+methods:
+  post:       
+    - "horarioescolar{nombre}"   
+    - "horarioescolar{descripcion}"
+    - "horarioescolar{fk_turno_id}"
+    - "horarioescolar{fk_horarioescolartipo_id}"
+    - "evento{fecha_inicio}"
+    - "evento{fecha_fin}"
+    - "evento{hora_inicio}"
+    - "evento{hora_fin}"
+
+
+fillin:
+    enabled:       on
+      
+names:
+    horarioescolar{descripcion}:
+        required:     No
+        validators: caracteresMaximos255
+       
+    horarioescolar{nombre}:
+        required:     Yes
+        required_msg: El campo nombre  es obligatorio
+        validators: caracteresMaximos128
+
+    horarioescolar{fk_turno_id}:
+        required:     Yes
+        required_msg: El campo turnos es obligatorio
+
+    horarioescolar{fk_horarioescolartipo_id}:
+        required:     Yes
+        required_msg: El campo tipo de horario escolar es obligatorio
+
+    evento{fecha_inicio}:
+        required:     No
+        validators: firstDay
+
+    evento{fecha_fin}:
+        required:     No
+        validators: lastDay
+
+    evento{hora_inicio}:
+        required:     No
+        validators: horaInicio
+
+    evento{hora_fin}:
+        required:     No
+        validators: horaFin
+
+
+
+        
+caracteresMaximos255:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La maxima cantidad de caracteres permitida es de 255
+
+        
+caracteresMaximos128:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La maxima cantidad de caracteres permitida es de 128
+
+validarNumero:
+    class: sfNumberValidator
+    param:
+       nan_error: Por favor ingrese un valor n&uacute;merico
+       min: 0
+       min_error: El n&uacute;mero debe ser positivo
+                                
+horaInicio:
+    class:           albaHorasValidator
+    param:
+      hora_error:    El campo debe ser una hora
+      compare:       evento[hora_fin]
+      operator:      "<"
+      compare_error: La hora de inicio debe ser anterior a la hora de fin
+                    
+horaFin:
+    class:           albaHorasValidator
+    param:
+        hora_error:    EL campo debe ser una hora
+        compare:       evento[hora_inicio]
+        operator:      ">"
+        compare_error: La hora de fin debe ser posterior a la hora de inicio
+
+firstDay:
+    class:           albaDateValidator
+    param:
+      date_error:    El campo debe ser una fecha
+      compare:       evento[fecha_fin]
+      operator:      "<="
+      compare_error: La fecha inicio debe ser anterior a la fecha fin
+                    
+lastDay:
+    class:           albaDateValidator
+    param:
+        date_error:    EL campo debe ser una fecha
+        compare:       evento[fecha_inicio]
+        operator:      ">="
+        compare_error: La fecha fin debe ser posterior a la fecha inicio
+                                                

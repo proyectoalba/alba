@@ -1,0 +1,1 @@
+<?php echo link_to($establecimiento->getOrganizacion()->getNombre(),'organizacion/edit?id='.$establecimiento->getFkOrganizacionId());?>

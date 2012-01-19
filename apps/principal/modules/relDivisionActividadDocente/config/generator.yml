@@ -1,0 +1,28 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      RelDivisionActividadDocente
+    theme:            default
+
+    fields:
+        fk_docente_id: { name: Docente }
+        fk_division_id: { name: Divisi&oacute;n }
+        fk_actividad_id: { name: Actividad }
+        fk_repeticion_id: { name: Repetici&oacute;n }
+        carga_evento: { name: Cargar Evento }
+
+        fecha_inicio: { name: Fecha Inicio,  params: date_format='dd/MM/yy' }
+        fecha_fin: { name: Fecha fin , params: date_format='dd/MM/yy' }
+        hora_inicio: { name: Hora Inicio }
+        hora_fin: { name: Hora fin }
+
+    list:
+        title: Generaci&oacute;n Manual de horarios por divisi&oacute;n 
+        display: [ division, actividad , docente ]
+        object_actions:
+            _edit: -
+            _delete: -
+      
+    edit:
+        title: Editar horarios 
+        display: [ fk_division_id, fk_actividad_id , fk_docente_id ]

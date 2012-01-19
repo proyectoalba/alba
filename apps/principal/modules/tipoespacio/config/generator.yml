@@ -1,0 +1,24 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Tipoespacio
+    theme:            default
+    fields:
+        nombre: { name: Nombre , params: size=64 }
+        descripcion: { name: Descripci&oacute;n , params: size=64 }
+    list:
+        title: Listado de Tipos de Espacios
+        display: [ nombre, descripcion ]
+        sort: nombre
+        object_actions:
+            _edit: -
+            _delete: -
+        actions:
+            _create: -    
+    edit:
+        title: ""
+        actions:
+            _delete: -
+            _save: -
+            _list: -
+            _save_and_add: -

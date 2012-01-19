@@ -1,0 +1,185 @@
+<chapter><title>Alumnos</title>
+<para>
+La secci&oacute;n Alumnos del men&uacute; desplegable ofrece la posibilidad de administrar el listado de alumnos seg&uacute;n divisiones, generando nuevas altas, haciendo b&uacute;squedas para acciones futuras y gestionando la asistencia y los boletines. 
+</para>
+<sect1><title>Ingresar Nuevo</title>
+<para>
+Adem&aacute;s de la posibilidad de ingresar un alumno a una cuenta existente (desde los botones de acci&oacute;n de la misma cuenta), existe tambi&eacute;n el ingreso de un alumno de manera independiente. 
+</para>
+<para>
+Esta carga solicita como datos obligatorios: Apellidos, Nombres, Sexo, Tipo y N&uacute;mero de Documentos, Lugar y Fecha de Nacimiento, Nacionalidad, Email y Direcci&oacute;n. Tambi&eacute;n se solicitan ciertos datos para resolver las prioridades de ingreso (situaci&oacute;n que se da especialmente en escuelas p&uacute;blicas): distancia de la escuela y el caso de hermanos en la escuela o padres docentes en la escuela. 
+</para>
+<para>
+Luego de esta carga, al tratarse de un ingreso de alumno independiente de la cuenta, existe un cuadro de b&uacute;squeda sobre el listado de cuentas existentes a partir de cuatro letras del nombre. Tambi&eacute;n permite la creaci&oacute;n de una nueva cuenta desde esta misma pantalla, y luego asociarla (realizando la b&uacute;squeda nuevamente). 
+</para>
+<para>
+<figure><title>Buscar cuenta.</title>
+<graphic fileref="img/figura27.png" scale="70" />
+</figure>
+</para>
+<para>
+El link "Nueva Cuenta" abrir&aacute; un cuadro sobre la superficie de la ventana, donde se deben incorporar todos los datos necesario de la cuenta (ver cap&iacute;tulo anterior). 
+</para>
+</sect1>
+<sect1><title>Listar Todos</title>
+<para>
+La opci&oacute;n de listar todos ofrece una vista de todos los registros ordenados en principio alfab&eacute;ticamente. Como todo listado, permite el ordenamiento seg&uacute;n otros par&aacute;metros de las otras columnas: por ejemplo clickeando sobre el n&uacute;mero de documento lo ordenar&aacute; ascendente o descendentemente. 
+</para>
+<para>
+Por cada alumno el listado cuenta con una barra de acciones que a su vez habilita tanto acciones de edici&oacute;n (editar y borrar) como el acceso a la cuenta (Ir a cuenta), el ingreso de vacunas que recibi&oacute; el alumno (Vacunas), el registro de Asistencias (Asistencias), la carga y consulta al Legajo pedag&oacute;gico del alumno (Legajo) y la visualizaci&oacute;n del bolet&iacute;n (Ver Bolet&iacute;n).
+</para>
+<para>
+Esta misma barra de acciones (con excepci&oacute;n de la acci&oacute;n de "Borrar") se encuentra disponible en los resultados de la b&uacute;squeda "Buscar alumnos para...", que se desarrolla en el punto siguiente. Es posible adem&aacute;s utilizar Filtros para la b&uacute;squeda a trav&eacute;s del nombre del alumno (o parte), de una divisi&oacute;n en particular y del n&uacute;mero de documento.
+</para>
+</sect1>
+<sect1><title>Buscar Alumno para... </title>
+<para>
+Esta opci&oacute;n del men&uacute; ofrece la posibilidad de b&uacute;squeda sobre toda el listado de alumnos seg&uacute;n el nombre y apellido (o alguna de sus partes), seg&uacute;n divisiones o de ambas a la vez. 
+</para>
+<para>
+<figure><title>B&uacute;squeda de alumnos.</title>
+<graphic fileref="img/figura28.png" scale="70" />
+</figure>
+</para>
+<para>
+Las siguientes son las acciones que se pueden realizar una vez individualizado el alumno sobre el que se trabajar&aacute; y su explicaci&oacute;n seg&uacute;n aparecen en la barra: 
+</para>
+<sect2><title>Editar</title>
+<para>
+El bot&oacute;n editar, como en todos los casos, habilita el cambio de cualquier dato del registro del alumno. Tambi&eacute;n permite borrar al alumno por completo.
+</para>
+</sect2>
+<sect2><title>Ver el Legajo</title>
+<para>
+El bot&oacute;n "Ver el legajo" permite visualizar los datos ingresados del legajo pedag&oacute;gico del alumno, as&iacute; como agregar nuevas entradas al legajo. La vista inicial de esta acci&oacute;n ofrece, por un lado, el listado de todas las entradas al legajo de ese alumno, y por otro un filtro que permite visualizar esas entradas seg&uacute;n los &iacute;tems creados por el administrador. 
+</para>
+<para>
+<figure><title>Legajo pedag&oacute;gico.</title>
+    <graphic fileref="img/figura29.png" scale="40"/>
+</figure>
+</para>
+<para>
+El listado muestra la fecha, el t&iacute;tulo, el resumen de la entrada, la categor&iacute;a y los botones de acciones de edici&oacute;n; y permite a su vez ingresar a cada entrada y verla con detalle cliqueando sobre el bot&oacute;n de edici&oacute;n. 
+</para>
+<para>
+Desde el listado de entradas del legajo, tambi&eacute;n es posible retornar al listado de alumnos  a trav&eacute;s de su barra de botones inferiores, as&iacute; como ir a la cuenta correspondiente del mismo. La opci&oacute;n "Nuevo" posibilita la inclusi&oacute;n de una nueva entrada al legajo pedag&oacute;gico. 
+</para>
+<para>
+El ingreso de una nueva entrada al legajo le solicitar&aacute; los datos b&aacute;sicos (que son los indicados en el listado de entradas) as&iacute; como el "Texto" que es el detalle de la entrada. Esta herramienta tambi&eacute;n permite adjuntar un archivo separado asociado a alguna entrada en el legajo.
+</para>
+<para>
+<figure><title>Entrada al legajo pedag&oacute;gico.</title>
+    <graphic fileref="img/figura30.png" scale="40"/>
+</figure>
+</para>
+</sect2>
+<sect2><title>Asistencia</title>
+<para>
+El bot&oacute;n Asistencia permite visualizar y/o cargar las asistencia del alumno elegido. Las asistencias pueden verse diaria, semanal, quincenal o mensualmente.  La pantalla de asistencias, al igual que al ingresar directamente desde el men&uacute; y no desde un alumno en particular, permite elegir la fecha de inicio desde la cual se mostrar&oacute;n los d&iacute;as, como también la vista. 
+</para>
+<para>
+A partir de los datos ingresados (previamente guardados) se generar&aacute; un gr&aacute;fico de torta que mostrar&aacute; los porcentajes seg&uacute;n la periodicidad elegida. La pantalla de Asistencias tambi&eacute;n cuenta con una ayuda de las diferentes categor&iacute;as (Asistencia, Inasistencia, Tarde, etc.) y su respectiva vista inicial para la carga.
+</para>
+<para>
+Cabe destacar que para el ingreso de la asistencia de una secci&oacute;n/divisi&oacute;n completa, existe el acceso a asistencias desde el men&uacute; principal:  Alumnos --> Asistencia por Secci&oacute;n/Divisi&oacute;n.
+</para>
+<para>
+<figure><title>Asistencia por alumno.</title>
+    <graphic fileref="img/figura31.png" scale="70"/>
+</figure>
+</para>
+<para>
+Esta pantalla tambi&eacute;n permite regresar al  listado de alumnos y a la cuenta asociada al alumno particular del cual se muestra el estado de la asistencia. 
+</para>
+</sect2>
+<sect2><title>Vacunas</title>
+<para>
+El  acceso a Vacunas permite elegir un alumno (o una secci&oacute;n/divisi&oacute;n) para consultar o agregar los registros de vacunas aplicadas. Recuerde que una vez indicado el alumno o seleccionada la secci&oacute;n/divisi&oacute;n debe cliquear el bot&oacute;n Buscar. 
+</para>
+<para>
+<figure><title>B&uacute;squeda por alumno.</title>
+    <graphic fileref="img/figura32.png" scale="40"/>
+</figure>
+</para>
+<para>
+En el caso de ingresar por divisi&oacute;n ALBA listar&aacute; los alumnos de la misma para acceder a alguno en particular.
+</para>
+<para>
+<figure><title>Listado de alumnos para acciones.</title>
+    <graphic fileref="img/figura33.png" scale="70"/>
+</figure>
+</para>
+<para>
+Al acceder a un alumno en particular ALBA permite visualizar y utilizar todos los comandos de edici&oacute;n de los registros de vacunaci&oacute;n y elegir entre: editar el registro de vacunaci&oacute;n, borrarlo, ir a la cuenta a la que pertenece el alumno o volver al listado completo de alumnos (opciones todas, expresadas en la barra de acciones).
+</para>
+<para>
+<figure><title>Vacuna por alumno.</title>
+    <graphic fileref="img/figura34.png" scale="40"/>
+</figure>
+</para>
+<para>
+Como puede verse, la vista de vacunas por alumno permite una nueva b&uacute;squeda a partir del filtro que se encuentra a la derecha posibilitando una carga m&aacute;s din&oacute;mica de las vacunas de diferentes alumnos.
+</para>
+</sect2>
+<sect2><title>Ver Bolet&iacute;n</title>
+<para>
+Esta opci&oacute;n permite visualizar gr&aacute;ficamente las entradas en el Bolet&iacute;n del alumno seleccionado.  Esa vista se genera previamente con la informaci&oacute;n ingresada durante la carga de notas del bolet&iacute;n.
+</para>
+</sect2>
+<sect2><title>Ir a cuentas.</title>
+<para>
+El &uacute;ltimo bot&oacute;n de la barra de acciones presentada en el men&uacute; "Buscar alumnos para..." presenta la opci&oacute;n de ir a la cuenta a la que pertenece el alumno y desde all&iacute; a su vez a editar y consultar responsables y otros alumnos de la cuenta. 
+</para>
+</sect2>
+</sect1>
+<sect1><title>Asistencia por Secci&oacute;n/Divisi&oacute;n</title>
+<para>
+Esta pantalla permite realizar operaciones de asistencia para todos los alumnos pertenecientes a una secci&oacute;n/divisi&oacute;n. A tales efectos cuenta con una opci&oacute;n de b&uacute;squeda a trav&eacute;s de una ventana de filtro de secci&oacute;n/divisi&oacute;n, una definici&oacute;n del inicio de la visualizaci&oacute;n y una elecci&oacute;n sobre el per&iacute;odo (diario, semanal, etc.) Recuerde utilizar el bot&oacute;n "Mostrar" para visualizar el listado luego de elegir las diferentes opciones.
+</para>
+<para>
+Esencialmente funciona de la misma forma que el bot&oacute;n "Asistencias" indicado en la secci&oacute;n anterior y cuenta con las misma herramientas. El objetivo principal de esta funci&oacute;n es la carga peri&oacute;dica de asistencias de cada uno de los grupos de parte de los responsables y la elaboraci&oacute;n estad&iacute;sticas al respecto. 
+</para>
+</sect1>
+<sect1><title>Cargar Boletines</title>
+<para>
+La secci&oacute;n de boletines ofrece dos tipos diferentes de registros de evaluaciones sobre los alumnos. Por un lado las evaluaciones sobre los &iacute;tems configurados como Categor&iacute;as del Bolet&iacute;n de Concepto a las cuales se accede desde Configuraciones Previas--> Alumnos --> Definir Categor&iacute;as del Bolet&iacute;n de Conceptos desarrollado en el Punto 5.2.2.
+</para>
+<para>
+Por otro lado las evaluaciones sobre las Actividades/Materias curriculares seg&uacute;n la Escala de notas que se configuraron con anterioridad a partir del Men&uacute; Configuraciones Previas--> Alumnos --> Definir Escala de Notas.
+</para>
+<sect2><title>Concepto</title>
+<para>
+El ingreso a Bolet&iacute;n de Concepto invita a elegir la Divisi&oacute;n y el Concepto tanto sea a consultar como a editar o cargar nuevos registros. Una vez seleccionado ambos aspectos se desplegar&aacute; la opci&oacute;n de definir el per&iacute;odo a visualizar y posteriormente el listado de alumnos correspondientes a esa Secci&oacute;n/Divisi&oacute;n 
+</para>
+<para>
+<figure><title>B&uacute;squeda de alumnos para nota de conceptos.</title>
+    <graphic fileref="img/figura35.png" scale="70"/>
+</figure>
+</para>
+<para>
+La carga de notas de concepto permite tanto valores ( por ejemplo B, MB, R etc.) como texto descriptivo (en el casillero m&aacute;s largo). Algunos ejemplos de esto &uacute;ltimo son dimensiones del comportamiento o &iacute;tems en los que puede definirse se destaca o tiene dificultades.
+</para>
+<para>
+<figure><title>Notas del concepto del bolet&iacute;n.</title>
+    <graphic fileref="img/figura36.png" scale="70"/>
+</figure>
+</para>
+<para>
+Recuerde utilizar siempre el bot&oacute;n inferior Grabar para guardar los cambios ingresados en el listado de notas de concepto de una determinada Secci&oacute;n/Divisi&oacute;n. 
+</para>
+</sect2>
+<sect2><title>Notas</title>
+<para>
+De la misma forma, el ingreso a Bolet&iacute;n Notas permite colocar las calificaciones seg&uacute;n las Actividades/ Materias con el rango de valores definidos con anterioridad y en los determinados per&iacute;odos.
+</para>
+<para>
+<figure><title>Notas del bolet&iacute;n.</title>
+    <graphic fileref="img/figura37.png" scale="70"/>
+</figure>
+</para>
+<para>
+Seg&uacute;n la tabla de valores para calificar, podr&aacute;n utilizarse tanto letras como n&uacute;meros. Recuerde que debe seleccionar la Actividad/Materia a calificar y que no debe olvidar "Grabar" los cambios en los registros. 
+</para>
+</sect2>
+</sect1>
+</chapter>

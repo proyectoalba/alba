@@ -1,0 +1,20 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Preferencia
+    theme:            default
+
+    fields:
+        valor_por_defecto: { name: Valor por defecto }    
+        activo: { name: activo, type: checkbox_tag }
+    
+    edit:
+        title: Editar Preferencia
+        display: [ nombre, valor_por_defecto, activo ]
+    
+    list:
+        title: Listado de Preferencias
+        display: [ =nombre, valor_por_defecto, activo ]
+        object_actions:
+            _edit:      -
+            _delete:    -

@@ -1,0 +1,48 @@
+methods:
+    post:       
+        - "turno{hora_inicio}"
+        - "turno{hora_fin}"
+        - "turno{descripcion}"    
+    
+fillin:
+    enabled:       on
+
+names:
+
+    turno{hora_inicio}:
+        required:     Yes
+        required_msg: El campo hora inicio es obligatorio
+        validators: horaInicio
+
+    turno{hora_fin}:
+        required:     Yes
+        required_msg: El campo hora fin  es obligatorio
+        validators: horaFin
+        
+    turno{descripcion}:
+        required:     Yes
+        required_msg: El campo descripci&oacute;n es obligatorio
+        validators: caracteresMaximos255
+
+
+caracteresMaximos255:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La maxima cantidad de caracteres permitida es de 255
+
+horaInicio:
+    class:           albaHorasValidator
+    param:
+      hora_error:    El campo debe ser una hora
+      compare:       turno[hora_fin]
+      operator:      "<"
+      compare_error: La hora de inicio debe ser anterior a la hora de fin
+                    
+horaFin:
+    class:           albaHorasValidator
+    param:
+        hora_error:    EL campo debe ser una hora
+        compare:       turno[hora_inicio]
+        operator:      ">"
+        compare_error: La hora de fin debe ser posterior a la hora de inicio

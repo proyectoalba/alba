@@ -1,0 +1,19 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      RelAlumnoDivision
+    theme:            default
+    fields:
+        fk_division_id: { name: Divisi&oacute;n }
+        fk_alumno_id: { name: Alumno }
+        division:   { name: Divisi&oacute;n}
+    edit:
+        title: Asignar alumno a grado y secci&oacute;n
+        # display: [ alumno, _fk_division_id]
+    list:
+        title: Listado de alumnos por grado y secci&oacute;n
+        display: [ alumno, division ]
+        object_actions:
+            _edit:      -
+            _delete:    -
+        filters: [ fk_alumno_id, fk_division_id ]                                                                

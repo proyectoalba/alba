@@ -1,0 +1,188 @@
+<chapter><title>Usando ALBA por primera vez</title>
+<para>
+Al insatalar ALBA por primera vez el sistema ya cuenta con informaci&oacute;n precargada para facilitar su uso inicial. Si bien la precarga contempla especialmente escuelas de la Ciudad de Buenos Aires, todas las precargas pueden ser modificadas seg&uacute;n la necesidad del usuario, ya que muchas se ofrecen a modo de ejemplo.
+</para>
+<para>
+En las siguientes secciones se presenta el tipo de informaci&oacute;n precargada as&iacute; como una sugerencia para la carga inicial, la primera vez que se utiliza ALBA.
+</para>
+
+<sect1><title>Informaci&oacute;n precargada</title>
+<para>
+Existe informaci&oacute;n que se encuentra precargada en el sistema para permitir su funcionamiento inicial: por un lado un Establecimiento y una Organizaci&oacute;n, y  por otro todo lo referido al manejo interno del sistema de m&oacute;dulos, permisos y usuarios. 
+</para>
+<para>
+Adem&aacute;s de estos datos, se encuentran precargados algunos generales como son: el Calendario de Vacunaci&oacute;n, los Pa&iacute;ses, las Provincias (de Argentina), los tipos de documento posible, los tipos de IVA as&iacute; como los posibles niveles educativos del establecimiento. 
+</para></sect1>
+
+<sect1><title>Informaci&oacute;n cargada como Ejemplo (Demo)</title>
+<para>
+Si opt&oacute; por la opci&oacute;n de instalar ALBA integrando los datos del Ejemplo, tambi&eacute;n contar&aacute; como precargados los siguientes datos. 
+</para>
+
+<table frame='all'><title>Informaci&oacute;n cargada como Ejemplo.</title>
+<tgroup cols='2' align='left' colsep='1' rowsep='1'>
+<colspec colname='a1'/>
+<colspec colname='a2'/>
+<thead>
+<row>
+  <entry>Respecto de</entry>
+  <entry>Informaci&oacute;n cargada como ejemplo.</entry>
+  </row>
+</thead>
+<tbody>
+<row>
+  <entry>Generales</entry>
+  <entry>Listado de distritos escolares de CABA.</entry>
+  </row>
+
+<row>
+  <entry>Alumnos</entry>
+<entry>
+<para>Alumnos. </para>
+<para>Posibles motivos de baja. </para>
+<para>Tipos de legajo de alumno.</para>
+<para>Tipo de asistencia.</para>
+<para>&Iacute;tems Legajo pedag&oacute;gico. </para>
+<para>&Iacute;tems conceptuales a evaluar.</para>
+</entry>
+</row>
+
+<row>
+<entry>Docentes</entry>
+<entry>
+<para>Tipos de docentes.</para>
+<para>Motivos de baja de docentes.</para>
+<para>Asignaci&oacute;n de materias a docentes.</para>
+<para>Horarios tentativos de docentes.</para>
+</entry>
+  </row>
+
+<row>
+ <entry>Horarios</entry>
+ <entry>
+<para>Turnos posibles.</para>
+<para>Tipos de intervalos de horario.</para>
+<para>Feriados del a&ntilde;o (actual).</para>
+</entry>
+  </row>
+
+<row>
+  <entry>Locaciones</entry>
+  <entry>
+      <para>Tipos de locaci&oacute;n.</para>
+<para>Tipos de espacios.</para>
+</entry>
+  </row>
+
+<row>
+  <entry>Cuentas</entry>
+  <entry>Listado de cuentas con sus responsables y alumnos asociados.</entry>
+  </row>
+
+
+<row>
+  <entry>Gesi&oacute;n escolar</entry>
+  <entry>
+<para>Grados/A&ntilde;os.</para>
+<para>Secciones/Divisiones.</para>
+<para>Materias/Actividades.</para>
+</entry>
+  </row>
+  </tbody>
+
+  </tgroup>
+</table>
+</sect1>
+
+<sect1><title>Sugerencia para la carga inicial</title>
+<para>Una vez instalado ALBA ser&aacute; necesario seguir un orden l&oacute;gico para la carga inicial de los datos: </para>
+
+<para>
+1) cargar la <emphasis>Organizaci&oacute;n y el Establecimiento.</emphasis> 
+Accediendo por el men&uacute; desplegable Administraci&oacute;n --> General --> Definir Organizaci&oacute;n y Administraci&oacute;n --> General  --> Definir Establecimiento, podr&aacute; modificar los datos precargados a los de su organizaci&oacute;n y establecimiento.
+</para>
+
+<para>
+2) revisar y editar si es necesario las <emphasis>Configuraciones Previas</emphasis>.
+Dentro de esta secci&oacute;n Administraci&oacute;n --> General --> Configuraciones Previas, se encuentran diversos &iacute;tems relacionados a Asuntos Generales, Alumnos, Docentes, Calendarios y Horarios, Locaciones y Espacios.  
+</para>
+
+<important>
+<para>
+Recuerde que si Ud. instal&oacute; una versi&oacute;n con ejemplo, todas las configuraciones previas de esta secci&oacute;n del men&uacute;, cuentan con una precarga inicial que es posible editar a la medida de las necesidades del establecimiento. Es por ello que se sugiere se revise previamente al uso. 
+</para>
+</important>
+<para>
+Tambi&eacute;n ser&aacute; necesario incorporar algunos criterios temporales y de horarios para habilitar el uso correcto del ALBA. 
+</para>
+<para>
+3) definir el <emphasis> Ciclo Lectivo actual. </emphasis>
+Ingresando desde el men&uacute; desplegable a Calendarios y Horarios --> Definir Ciclos Lectivos, es posible acceder al listado de los ciclos lectivos del pasado (si los hubiere) y agregar uno nuevo con su correspondiente inicio y fin. A su vez, ser&aacute; necesario marcar con un tilde cu&aacute;l ser&aacute; el ciclo predeterminado como actual.  El seleccionado, se mostrar&aacute; por defecto en el &aacute;ngulo superior derecho mientras se trabaja con el ALBA. 
+</para>
+<important>
+<para>
+Es posible acceder a otros ciclos lectivos cambi&aacute;ndolo directamente del cuadro de estado del v&eacute;rtice superior derecho, sin necesidad de cambiar el predeterminado.
+</para>
+</important>
+
+<para>
+Se debe tener en cuenta tambi&eacute;n, que desde la barra de acciones del listado de ciclos lectivo, se accede a Definir Turnos y Per&iacute;odos. 
+</para>
+
+<para>
+4) definir el <emphasis> Horario de Clases. </emphasis> 
+Ingresando desde el men&uacute; desplegable a Calendarios y Horarios --> Horario Escolar --> Definir horario de clases, se completan las horas c&aacute;tedras y recreos (por ejemplo) que conforman el horario escolar. El Turno y el Tipo de horario escolar deber&aacute;n estar cargados con anterioridad correctamente. 
+</para>
+
+<para>
+Ser&aacute; necesario incorporar tambi&eacute;n informaci&oacute;n respecto de la gesti&oacute;n escolar: 
+</para>
+
+<para>
+5) Definir <emphasis>Grados/A&ntilde;os.</emphasis>
+Ingresando desde el men&uacute; desplegable Gesti&oacute;n Escolar --> Definir Grados/A&ntilde;os, es posible organizar los diferentes niveles, donde luego ser&aacute;n ingresados (en relaci&oacute;n a su vez con las secciones/divisiones) los alumnos.
+</para>
+<para>
+6) Definir <emphasis>Secciones/Divisiones.</emphasis>
+Ingresando desde el men&uacute; desplegable Gesti&oacute;n Escolar --> Definir Secciones/Divisiones. Como se dijo, las secciones/divisiones junto con los a&ntilde;os/grados, permiten asignar un alumno a un grupo determinado (definido por a&ntilde;o y secci&oacute;n).
+</para>
+<para>
+Por &uacute;ltimo, se debe ingresar todo lo referente a las cuentas y a los individuos relacionados con &eacute;sta (responsables, alumnos): 
+</para>
+<para>
+7) Ingresar las <emphasis>Cuentas.</emphasis> 
+Desde el men&uacute; desplegable, ingresando a Cuentas --> Administraci&oacute;n, es posible dar de alta as&iacute; como editar y borrar cuentas anteriores. 
+Desde este mismo men&uacute;, tambi&eacute;n es posible a partir del bot&oacute;n "Agregar alumnos y responsables", es posible incorporar los sujetos asociados a la cuenta. (Ver Cap. 6).
+</para>
+<para>
+8) Ingresar los <emphasis>Responsables.</emphasis>
+Desde el men&uacute; desplegable, ingresando a Cuentas --> Responsables, se definen y administran los Responsables. En la carga se solicitan no solamente los datos administrativos, sino tambi&eacute;n la relaci&oacute;n con la Cuenta y con los Alumnos de la cuenta. 
+</para>
+<para>
+9) Ingresar <emphasis>Alumnos.</emphasis> 
+Desde el men&uacute; desplegable, ingresando a Alumnos --> Ingresar Nuevo, se permite el ingreso de los nuevos alumnos, que relacionados con una cuenta, luego se insertar&aacute;n en un grado/a&ntilde;o y una divisi&oacute;n/secci&oacute;n determinada. 
+</para>
+
+<important>
+<para>
+ recuerde que es posible agregar los responsables y alumnos de la cuenta (incluso duplicando los datos de direcci&oacute;n y tel&eacute;fono) a partir del bot&oacute;n "Agregar alumnos y responsables" accesible ingresando a una cuenta, desde el listado de cuentas.
+</para>
+</important>
+
+<para>
+El resto de los datos (como Docentes, Materias/Actividades, Locaciones y Espacios, etc.) se pueden ingresar en cualquier momento, siempre antes de establecer la relaciones (como el caso de Actividades/Materias por docente, Espacios por Locaciones, etc.)
+</para>
+<para>
+Lo mismo sucede con la gesti&oacute;n de Alumnos en relaci&oacute;n a las Secciones/Divisiones, y todo lo vinculado a Asistencia y Calificaciones: una vez cargadas todas las opciones necesarias, se pueden realizar las relaciones sin mayores dificultades.  
+</para>
+</sect1>
+
+<sect1><title>Otras configuraciones de ALBA</title>
+<para>
+Otra de las configuraciones iniciales importantes pueden ser previas a la carga de la informaci&oacute;n sugerida, es la carga de los <emphasis>Usuarios</emphasis> que utilizar&oacute;n el sistema. Ingresando desde el men&uacute; desplegable  Administraci&oacute;n --> Seguridad --> Usuarios.
+</para>
+<para>
+La jerarqu&iacute;a y accesos posibles de los Usuarios al sistema, est&aacute; dada seg&uacute;n los Roles que le sean asignados, y los Permisos con los que cuente.  (Ver 5.4 Seguridad).
+</para>
+</sect1>
+</chapter>

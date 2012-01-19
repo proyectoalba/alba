@@ -1,0 +1,38 @@
+<bookinfo>
+
+    <title>ALBA </title>
+    <subtitle>Sistema Libre de Gesti&oacute;n Educativa </subtitle>
+    <subtitle>Manual del Usuario</subtitle>
+    <graphic fileref="img/alba.jpg" scale="20" align="center" />
+
+    <author><firstname>Equipo de Trabajo</firstname><surname> del Proyecto Alba</surname></author>
+    <copyright>
+        <year>2007</year>
+        <holder>Proyecto Alba</holder>
+    </copyright>
+    
+    <legalnotice>
+        <title>Licencia del documento</title>
+        <para>Buenos Aires, Argentina</para>
+        <para>'Manual del Usuario de ALBA' es: <emphasis>Licencia Creative Commons Atribuci&oacute;n - CompartirDerivadasIgual 2.5 Argentina</emphasis></para>
+    </legalnotice>
+    
+    <legalnotice>
+        <para>
+            La presente obra est&aacute; liberada bajo una <emphasis>Licencia Creative Commons Atribuci&oacute;n-CompartirDerivadasIgual 2.5 Argentina</emphasis>, que permite copiar, distribuir, exhibir y ejecutar la obra, hacer obras derivadas y hacer usos comerciales de la misma, bajo las condiciones de atribuir el cr&eacute;dito correspondiente al autor original y
+            compartir las obras derivadas resultantes bajo la misma licencia.
+        </para>
+    </legalnotice>
+    
+    <legalnotice>    
+        <para>M&aacute;s informaci&oacute;n sobre esta licencia en:</para>
+        <para>
+        <ulink url='http://creativecommons.org/licenses/by-sa/2.5/ar/'>http://creativecommons.org/licenses/by-sa/2.5/ar/</ulink>
+        </para>
+    </legalnotice>
+    
+    <legalnotice>        
+        <para>M&aacute;s informaci&oacute;n sobre el autor en:</para>
+        <para><ulink url='http://www.proyectoalba.com.ar'>http://www.proyectoalba.com.ar</ulink></para>
+    </legalnotice>
+</bookinfo>

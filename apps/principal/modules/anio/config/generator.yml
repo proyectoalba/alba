@@ -1,0 +1,28 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Anio
+    theme:            default
+    fields:
+        descripcion: { name: Descripci&oacute;n , params: size=40 }
+        orden: { name: Orden , params: size=2 }
+        fk_establecimiento_id: { name: Establecimiento }
+        fk_carrera_id: { name: Carrera }
+    
+    edit:
+        title: " "
+        display: [descripcion, fk_carrera_id, orden]
+        actions:
+            _delete: -
+            _save: -
+            _list: -
+            _save_and_add: -
+                    
+    list:
+        title: Listado de A&ntilde;os
+        display: [ =descripcion , carrera, orden ]
+        sort: orden
+        filters: [ fk_carrera_id ]
+        object_actions:
+            _edit:      -
+            _delete:    -

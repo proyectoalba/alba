@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY info_manual.xml SYSTEM "info_manual.xml">
+<!ENTITY presentacion.xml SYSTEM "presentacion.xml">
+<!ENTITY recomendaciones.xml SYSTEM "recomendaciones.xml">
+<!ENTITY capitulo_1.xml SYSTEM "capitulo_1.xml">
+<!ENTITY indice.xml SYSTEM "indice.xml">
+<!ENTITY capitulo_2.xml SYSTEM "capitulo_2.xml">
+<!ENTITY capitulo_3.xml SYSTEM "capitulo_3.xml">
+<!ENTITY capitulo_4.xml SYSTEM "capitulo_4.xml">
+<!ENTITY capitulo_5.xml SYSTEM "capitulo_5.xml">
+<!ENTITY capitulo_6.xml SYSTEM "capitulo_6.xml">
+<!ENTITY capitulo_7.xml SYSTEM "capitulo_7.xml">
+<!ENTITY capitulo_8.xml SYSTEM "capitulo_8.xml">
+<!ENTITY capitulo_9.xml SYSTEM "capitulo_9.xml">
+<!ENTITY capitulo_10.xml SYSTEM "capitulo_10.xml">
+<!ENTITY capitulo_11.xml SYSTEM "capitulo_11.xml">
+<!ENTITY capitulo_12.xml SYSTEM "capitulo_12.xml">
+<!ENTITY capitulo_13.xml SYSTEM "capitulo_13.xml">
+
+]>
+<book lang="es">
+    &info_manual.xml;
+    &presentacion.xml;
+    &recomendaciones.xml;
+    &capitulo_1.xml;
+    &capitulo_2.xml;
+    &capitulo_3.xml;
+    &capitulo_4.xml;
+    &capitulo_5.xml;
+    &capitulo_6.xml;
+    &capitulo_7.xml;
+    &capitulo_8.xml;
+    &capitulo_9.xml;
+    &capitulo_10.xml;
+    &capitulo_11.xml;
+    &capitulo_12.xml;
+    &capitulo_13.xml;
+    &indice.xml;   
+</book>

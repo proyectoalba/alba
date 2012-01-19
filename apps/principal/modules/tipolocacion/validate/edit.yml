@@ -1,0 +1,31 @@
+methods:
+  post:       
+    - "tipolocacion{nombre}"
+    - "tipolocacion{descripcion}"    
+    
+fillin:
+    enabled:       on
+      
+names:
+    tipolocacion{nombre}:
+        required:     Yes
+        required_msg: El campo nombre es obligatorio
+        validators: caracteresMaximos128
+        
+    tipolocacion{descripcion}:
+        required:     No
+        validators: caracteresMaximos255
+        
+        
+caracteresMaximos128:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La maxima cantidad de caracteres permitida es de 128
+        
+caracteresMaximos255:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La maxima cantidad de caracteres permitida es de 255
+

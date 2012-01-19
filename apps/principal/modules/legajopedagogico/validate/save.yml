@@ -1,0 +1,71 @@
+methods:
+  post:  
+    - "legajopedagogico{fecha}"
+    - "legajopedagogico{titulo}"
+    - "legajopedagogico{resumen}"
+    - "legajopedagogico{texto}"
+    - "legajopedagogico{fk_legajocategoria_id}"
+    -  file
+
+    
+fillin:
+    enabled:       on
+      
+names:
+    legajopedagogico{fecha}:
+        required:     Yes
+        required_msg: El campo fecha es obligatorio
+        validators: validarFecha
+
+    legajopedagogico{titulo}:
+        required:     Yes
+        required_msg: El campo titulo es obligatorio
+        validators: caracteresMaximos128
+
+    legajopedagogico{resumen}:
+        required:     No
+#        validators: caracteresMaximos255
+
+    legajopedagogico{texto}:
+        required:     No
+#        validators: caracteresMaximos255
+
+    legajopedagogico{fk_legajocategoria_id}:
+        required: Yes
+        validators: validarNumero
+        required_msg: El campo categoria es obligatorio
+
+    file:
+       required: No
+#        file: true
+#        validators: archivoValidar
+
+archivoValidar:
+    class:  sfFileValidator
+    param:
+        max_size:         512000
+        max_size_error:   M&aacute;ximo tama&ntilde;o del archivo adjunto es 512Kb
+
+caracteresMaximos255:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La maxima cantidad de caracteres permitida es de 255
+
+caracteresMaximos128:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La maxima cantidad de caracteres permitida es de 128
+
+validarNumero:
+    class: sfNumberValidator
+    param:
+        nan_error: Por favor ingrese un valor n&uacute;merico
+        min: 1
+        min_error: Debe ingresar la categoria
+    
+validarFecha:
+    class:           albaDateValidator
+    param:
+        date_error:    EL campo debe ser una fecha

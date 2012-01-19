@@ -1,0 +1,24 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Rol
+    theme:            default
+    fields:
+        nombre: {name: Nombre, params: include_blank=true size=18}
+        descripcion: {name: Descripci&oacute;n , params: size=60}
+        activo: {name: Esta activo, type: checkbox_tag}    
+
+    edit:
+        title: ""
+        display: [nombre, descripcion, activo] 
+            
+    list:
+        title: Listado de Roles
+        filters: [nombre]
+        display:  [ =nombre, descripcion, activo]
+        object_actions:
+            _edit:        -
+            _delete:      -
+            editPermiso:  { name: Permisos, action: editPermiso, icon: small/permisos.png }
+                                                      
+                                           

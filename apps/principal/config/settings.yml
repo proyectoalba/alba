@@ -1,0 +1,111 @@
+prod:
+  .settings:
+    logging_enabled: off
+    no_script_name:           off
+    compat_10:  on
+    default_culture:    es
+dev:
+  .settings:
+    # E_ALL | E_STRICT = 4095
+    error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
+    web_debug:              on
+    cache:                  off
+    stats:                  off
+    no_script_name:         off
+    etag:                   off
+    compat_10:  on
+    default_culture:    es
+
+demo:
+  .settings:
+    no_script_name:           on
+    cache:                  off
+
+
+test:
+  .settings:
+    # E_ALL | E_STRICT & ~E_NOTICE = 2047
+    error_reporting:        <?php echo ((E_ALL | E_STRICT) ^ E_NOTICE)."\n" ?>
+    cache:                  off
+    stats:                  off
+    web_debug:              off
+    no_script_name:         off
+    etag:                   off
+
+all:
+  .actions:
+    default_module:         default
+    default_action:         index
+#
+#    error_404_module:       default
+#    error_404_action:       error404
+#
+#    login_module:           default
+#    login_action:           login
+#
+#    module_disabled_module: default
+#    module_disabled_action: disabled
+#
+#    secure_module:          default
+#    secure_action:          secure
+#
+#    unavailable_module:     default
+#    unavailable_action:     unavailable
+#
+  .settings:
+    enabled_modules:       [ default, sfMediaLibrary, albaTools]
+    autoloading_fucntions: [sfEzComponentsBridge,  autoload]
+    
+#    available:              on
+#
+#    path_info_array:        SERVER
+#    path_info_key:          PATH_INFO
+#
+#    url_format:             PATH
+#
+#    use_database:           on
+#
+#    use_security:           on
+#
+#    compressed:             on
+#
+#    tidy:                   on
+#
+    i18n:                   on
+    default_culture:        es
+#
+#   timeout (60 * 60 * 3Hs)
+    timeout:                10800 
+#
+#    suffix:                 .
+#
+    standard_helpers:       [Partial, Cache, Form, I18N]
+#
+#    max_forwards:           5
+#
+#    web_debug:              off
+#
+#    cache:                  on
+#    default_cache_lifetime: 86400
+#
+#    no_script_name:         on
+#
+#    stats:                  off
+#
+#    # E_COMPILE_ERROR | E_ERROR | E_CORE_ERROR | E_USER_ERROR = 337
+#    error_reporting:        337
+#
+    rich_text_js_dir:       js/tinymce
+#
+#    safe_slot:              on
+#
+#    use_flash:              on
+#
+#    enabled_modules:        [default]
+#
+#    strip_comments:         off
+#
+#    etag:                   on
+#
+#    validation_error_prefix: &darr;&nbsp;
+#    validation_error_suffix: &nbsp;&darr;

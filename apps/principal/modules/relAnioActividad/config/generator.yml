@@ -1,0 +1,26 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      RelAnioActividad
+    theme:            default
+    fields:
+        fk_anio_id: { name: A&ntilde;o }
+        anio: { name: A&ntilde;o }
+        fk_actividad_id: { name: Actividad }
+        horas: { name: Horas Semanales }
+        fk_orientacion_id: { name: Orientaci&oacute;n }
+    edit:
+        title: ""
+        fields:
+            fk_anio_id:   { params: include_custom=>>Seleccione un A&ntilde;o<< }
+            fk_actividad_id:   { params: include_custom=>>Seleccione una Actividad<< }
+            fk_orientacion_id:   { params: include_custom=>>Seleccione una Orientaci&oacute;n<< }
+        display: [ fk_anio_id, fk_actividad_id, fk_orientacion_id, horas ]
+    list:
+        title: Listado de Actividades por A&ntilde;o
+        display: [anio, actividad, orientacion, horas]
+        object_actions:
+            _edit:      -
+            _delete:    -
+        filters: [ _carrera, fk_anio_id, fk_actividad_id, fk_orientacion_id ]
+

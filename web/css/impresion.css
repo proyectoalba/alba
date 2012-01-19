@@ -1,0 +1,37 @@
+#sfWebDebug {
+    display : none;
+}
+
+#menu, #sf_admin_bar, #sf_admin_footer, #logo, #sf_admin_list_th_sf_actions, #marco_pie, #marco_derecha
+{
+    display : none;
+}
+
+.sf_admin_td_actions, .sf_admin_actions, .fdown, .fmedio, .ftop, .fmenu, .fizq, .menuimg, .fder, .float-right {
+   display : none;
+}
+
+#boletin {
+text-align:center;
+padding: 5px;
+}
+#boletin .header {
+text-align:center;
+font-size: 12px;
+font-weight: bold;
+text-transform: uppercase;
+vertical-align: center;
+}
+
+#boletin table.notas{
+width: 600px;
+border-collapse: collapse;
+border-left: 2px solid;
+border-bottom: 1px solid;
+}
+
+#boletin table.notas td{
+border-right: 1px solid;
+border-top: 1px solid;
+border
+}
