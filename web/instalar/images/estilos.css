@@ -1,0 +1,47 @@
+body {
+    font-size: 12px;
+    font-family: Helvetica;
+}
+div .error {
+    color: red;
+}
+div .ok {
+    color: green;
+}
+#contenido { 
+    padding-left: 25px;
+
+}
+#cabeza {
+    padding-left: 25px;
+}
+#siguiente {
+    padding-left: 25px;
+}
+h1 {
+    font-size: 14px;
+}
+input:focus {
+    background-color: #ededed;
+}
+.boton {
+    background: #D4D0C8;
+    color: #000000;
+    font-size: 11px;
+    padding: 0px 5px;
+    font-weight: normal;
+    text-decoration: none;
+    border: 1px solid #000000;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+.texto {
+    color: #000000;
+    font-size: 11px;
+    padding: 0px 5px;
+    font-weight: normal;
+    border: 1px solid gray;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+.check {
+    border: 1px solid black;
+}

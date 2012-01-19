@@ -1,0 +1,21 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      RelCalendariovacunacionAlumno
+    theme:            default
+    fields: 
+        fk_alumno_id: { name: Alumno }
+        fk_calendariovacunacion_id: { name: Vacuna }
+        observacion: { name: Observaci&oacute;n, params: size=64 }
+    list:
+        title: Vacunas por alumno
+        display: [ Alumno, _fk_calendariovacunacion_id, observacion, Comprobante, Fecha ]
+        object_actions:
+            _edit:
+            _delete:
+            irCuenta:  { name: Ir a Cuenta, action: irCuenta, icon: next.png }
+            irAlumnos:  { name: Listado de Alumnos, action: irAlumnos, icon: small/alumnos.png }                                            
+        filters: [ fk_alumno_id ]
+    edit:
+        title: Editar Calendario de Vacunaci&oacute;n
+        display: [ fk_alumno_id, fk_calendariovacunacion_id, Observacion, Comprobante, Fecha ]

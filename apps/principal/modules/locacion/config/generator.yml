@@ -1,0 +1,39 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Locacion
+    theme:            default
+
+    fields:
+        nombre: {name: Nombre, params: size=64}
+        descripcion: {name: Descripci&oacute;n, params: size=64  }
+        direccion: {name: Direcci&oacute;n , params: size=64 }
+        ciudad: {name: Ciudad , params: size=64 }
+        fk_provincia_id: {name: Provincia}
+        fk_tipolocacion_id: {name: Tipo Locaci&oacute;n}
+        codigo_postal: {name: C&oacute;digo Postal, params: size=20}
+        telefono: {name: Tel&eacute;fono, params: size=20}
+        fax: {name: Fax, params: size=20}
+        encargado: {name: Nombre del Encargado , params: size=64 }
+        encargado_telefono: {name: Tel&eacute;fono del Encargado, params: size=20}
+        principal: {name: Sede Principal}         
+        pais_id: {name: Pa&iacute;s }
+                                                                                                                                     
+    edit:
+        title: Modificar la Locaci&oacute;n
+        display: [ nombre, fk_tipolocacion_id, descripcion, direccion, ciudad, _pais_id, _fk_provincia_id, codigo_postal, telefono, fax, encargado, encargado_telefono, principal ]
+
+    list:
+        fields:
+            nombre: {name: Nombre, params: size=15}
+        
+        title: Listado de Locaciones
+        display: [ =nombre, tipolocacion, direccion, ciudad, provincia, telefono, principal ]
+        sort: [ nombre, asc ]
+        object_actions:
+            _edit:        -
+            _delete:      -
+        actions:
+            _create: -
+            verEstablecimiento: { name: Relaci&oacute;n con Establecimientos, action: verEstablecimiento }
+        filters: [ nombre  ]

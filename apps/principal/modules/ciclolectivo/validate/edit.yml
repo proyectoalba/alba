@@ -1,0 +1,53 @@
+methods:
+  post:       
+    - "ciclolectivo{fecha_inicio}"
+    - "ciclolectivo{fecha_fin}"
+    - "ciclolectivo{descripcion}"    
+    - "ciclolectivo{actual}"    
+    
+fillin:
+    enabled:       on
+      
+names:
+    ciclolectivo{fecha_inicio}:
+        required:     Yes
+        required_msg: El campo fecha inicio es obligatorio
+        validators: firstDay
+
+    ciclolectivo{fecha_fin}:
+        required:     Yes
+        required_msg: El campo fecha fin  es obligatorio
+        validators: lastDay
+
+    ciclolectivo{descripcion}:
+        required:     Yes
+        required_msg: El campo descripci&oacute;n es obligatorio
+        validators: caracteresMaximos255
+       
+    ciclolectivo{actual}:
+        required:     No
+        
+        
+caracteresMaximos255:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La maxima cantidad de caracteres permitida es de 255
+
+firstDay:
+    class:           albaDateValidator
+    param:
+      date_error:    El campo debe ser una fecha
+      compare:       ciclolectivo[fecha_fin]
+      operator:      "<"
+      compare_error: La fecha inicio debe ser anterior a la fecha fin
+                    
+lastDay:
+    class:           albaDateValidator
+    param:
+        date_error:    EL campo debe ser una fecha
+        compare:       ciclolectivo[fecha_inicio]
+        operator:      ">"
+        compare_error: La fecha fin debe ser posterior a la fecha inicio
+                                                
+    

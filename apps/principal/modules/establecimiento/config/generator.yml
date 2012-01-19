@@ -1,0 +1,34 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Establecimiento
+    theme:            default
+    fields:
+        id: { name: identificador }
+        nombre: { name: Nombre , params: size=64}
+        descripcion: { name: Descripci&oacute;n , params: size=64 }
+        fk_organizacion_id: { name: Organizaci&oacute;n }
+        fk_niveltipo_id: { name: Nivel }
+        fk_distritoescolar_id : { name: Distrito Escolar}
+        distritoescolar : { name: Distrito Escolar}
+        cuit: { name: CUIT }
+        legajoprefijo: { name: Prefijo Legajo }
+        direccion: { name: Direcci&oacute;n , params: size=64}
+        ciudad: { name: Ciudad, params: size=64 }
+        codigo_postal: { name: CP, params: size=20 }
+        fk_provincia_id: { name: Provincia }
+        pais_id: { name: Pa&iacute;s }
+        telefono: { name: Tel&eacute;fono, params: size=20 }
+
+    edit:
+        title: ""
+        display: [nombre, descripcion, cuit, legajoprefijo, fk_organizacion_id, fk_niveltipo_id, fk_distritoescolar_id, direccion, ciudad, codigo_postal, _fk_provincia_id, _pais_id, telefono, rector ]
+                                                         
+    list:
+        display: [=nombre, descripcion, cuit, legajoprefijo, _organizacion, _nivel_tipo, _distritoescolar]
+        title: Listado de Establecimientos
+        sort: [ nombre, asc ]
+        object_actions:
+            _edit:        -
+            _delete:      -
+            editLocacion: { name: Locacion, action: editLocacion, icon: small/establecimiento.png }

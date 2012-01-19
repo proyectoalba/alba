@@ -1,0 +1,3 @@
+all:
+    view_class: albaView
+    

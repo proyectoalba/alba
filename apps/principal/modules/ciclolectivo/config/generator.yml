@@ -1,0 +1,24 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Ciclolectivo
+    theme:            default
+
+    fields:
+        descripcion: {name: Descripci&oacute;n, params: size=64 }
+        fecha_inicio: { params: date_format='dd/MM/yy' withtime=false }
+        fecha_fin: { params: date_format='dd/MM/yy'  withtime=false }
+    list:
+        title: Ciclos Lectivos
+        display: [ =descripcion, fecha_inicio, fecha_fin, actual ]
+        object_actions:
+            _edit: -
+            _delete: -
+            agregarTurnosYPeriodos:  { name: Definir Turnos y Per&iacute;odos, action: agregarTurnosYPeriodos, icon: next.png }
+
+    edit:
+        title: Ciclo Lectivo
+        display: [ =descripcion, fecha_inicio, fecha_fin, actual]
+    new:
+        title: Ciclo Lectivo
+        display: [ =descripcion, fecha_inicio, fecha_fin, actual, _importarciclo ]

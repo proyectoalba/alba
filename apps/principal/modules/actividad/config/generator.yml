@@ -1,0 +1,25 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Actividad
+    theme:            default
+    fields:
+        nombre: { name: Nombre , params: size=64}
+        descripcion: { name: Descripci&oacute;n , params: size=64}
+        fk_establecimiento_id: { name: Establecimiento }
+    
+    edit:
+        title: ""
+        display: [ nombre, descripcion ]
+        actions:
+            _delete: -
+            _save: -
+            _list: -
+            _save_and_add: -
+                    
+    list:
+        title: Listado de Actividades/Materias
+        display: [ =nombre, descripcion ]
+        object_actions:
+            _edit:      -
+            _delete:    -

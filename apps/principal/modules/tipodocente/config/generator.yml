@@ -1,0 +1,22 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Tipodocente
+    theme:            default
+    fields:
+        id: { name: identificador }
+        nombre: { name: Nombre , params: size=64 }
+        descripcion: { name: Descripci&oacute;n , params: size=64 }
+        
+    edit:
+        title: ""
+        display: [nombre, descripcion]
+                                                         
+    list:
+        display: [=nombre, descripcion]
+        title: Listado de Tipo de Docente
+        sort: nombre
+        object_actions:
+            _edit:        -
+            _delete:      -
+

@@ -1,0 +1,56 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Docente
+    theme:            default
+
+    fields:
+        apellido: { name: Apellido, params: size=64 }
+        apellido_materno: { name: Apellido Mat., params: size=64 }
+        nombre: { name: Nombres , params: size=64 }
+        fk_tipodocumento_id: { name: Tipo de Documento, type: select_tag, params: peer_method=getEnOrden related_class=Tipodocumento }
+        tipodocumento: { name: Tipo de Documento }
+        nro_documento:  { name: Nro. Documento }
+        direccion: { name: Direcci&oacute;n , params: size=64 }
+        ciudad: { name: Ciudad , params: size=64}
+        codigo_postal: { name: CP }
+        fecha_nacimiento: { name: Fecha de Nacimiento, params: withtime=false}
+        email: { name: Email , params: size=64}
+        telefono: { name: Tel&eacute;fono, params: size=20}
+        sexo: { name: Sexo }
+        telefono_movil: { name: Tel&eacute;fono m&oacute;vil, params: size=20}
+        fk_provincia_id: { name: Provincia}
+        libreta_sanitaria: { name: "¿Trajo libreta sanitaria?"}
+        psicofisico: { name: "¿Trajo Examen psicofisico?"}
+        titulo: { name: Titulo Habilitante , params: size=64}
+        activo: { name: Activo}
+        lugar_nacimiento: { name: Lugar de Nacimiento }
+        fk_pais_id: { name: Nacionalidad, type: select_tag, params: peer_method=getEnOrden related_class=Pais } 
+        estado_civil: { name: Estado Civil }
+        observacion: { name: Observaci&oacute;n, type: textarea_tag,  params: size=45x5  }
+
+    edit:
+        title: ""
+        fields:
+            actividades: { type: admin_double_list, params: through_class=RelAnioActividadDocente style=width:260px }
+
+        display:       
+                 "Informacion general":  [ apellido, apellido_materno, nombre, _sexo, _estado_civil, fk_tipodocumento_id , nro_documento , lugar_nacimiento, fecha_nacimiento, fk_pais_id ]
+                 "Donde vive": [direccion, ciudad, _pais_id, _fk_provincia_id, codigo_postal]
+                 "Otros": [ email, telefono, telefono_movil, libreta_sanitaria, psicofisico, titulo, observacion, activo, actividades ]
+                                                         
+                    
+    list:
+        fields:
+            apellido: { params: size=20 }
+            nombre: { params: size=20 }
+        title: Listado de Docentes
+        display: [ =apellido, apellido_materno, nombre, tipodocumento, nro_documento, telefono, email, activo ]
+        filters: [ apellido, nombre ]
+        sort: [ apellido , asc ]
+        object_actions:
+            _edit:      -
+            _delete:    -
+            actividadesPorDocente:  { name: Actividades por Docente , action: actividadesPorDocente , icon: small/actdocente.png }
+            horariosPorDocente: { name: Horarios tentativos por docente , action: horariosPorDocente , icon: horarios.png }
+            

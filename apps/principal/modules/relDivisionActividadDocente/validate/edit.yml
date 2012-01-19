@@ -1,0 +1,65 @@
+methods:
+    post:       
+        - "evento{fecha_inicio}"
+        - "evento{fecha_fin}"
+        - "rel_division_actividad_docente{fk_docente_id}"
+        - "rel_division_actividad_docente{fk_actividad_id}"
+        - "rel_division_actividad_docente{fk_division_id}"
+              
+    
+fillin:
+    enabled:       on
+
+names:
+
+    evento{fecha_inicio}:
+        required:     Yes
+        required_msg: El campo fecha inicio es obligatorio
+
+    evento{fecha_fin}:
+        required:     Yes
+        required_msg: El campo fecha inicio es obligatorio
+
+    rel_division_actividad_docente{fk_actividad_id}:
+        required:     Yes
+        required_msg: El campo actividad es obligatorio
+        validators: validarActividad
+                            
+    rel_division_actividad_docente{fk_docente_id}:
+        required:     Yes
+        required_msg: El campo docente es obligatorio
+        validators: validarDocente
+                                                        
+    rel_division_actividad_docente{fk_division_id}:
+        required:     Yes
+        required_msg: El campo division es obligatorio
+        validators: validarDivision
+
+
+caracteresMaximos255:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La maxima cantidad de caracteres permitida es de 255
+
+validarDocente:
+    class:  sfNumberValidator
+    param:
+        nan_error: Seleccione una docente v&aacute;lida
+        min: 1
+        min_error: Seleccione una docente v&aacute;lida
+
+validarDivision:
+    class:  sfNumberValidator
+    param:
+        nan_error: Seleccione una divisi&oacute;n  v&aacute;lida
+        min: 1
+        min_error: Seleccione una divisi&oacute;n  v&aacute;lida
+
+validarActividad:
+    class:  sfNumberValidator
+    param:
+        nan_error: Seleccione una actividad v&aacute;lida
+        min: 1
+        min_error: Seleccione una actividad v&aacute;lida
+                                

@@ -1,0 +1,21 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Niveltipo
+    theme:            default
+    fields:
+        nombre:	    { name: Nombre , params: size=64}
+        descripcion:  { name: Descripci&oacute;n , params: size=64}
+
+    edit:
+        title:	Editar Tipos de Nivel
+        display: [ nombre, descripcion ]
+
+    list:
+        title: Listado de Tipos de Nivel
+        sort: nombre
+        display: [ =nombre, descripcion ]
+
+        object_actions:
+            _edit:      -
+            _delete:    -

@@ -1,0 +1,27 @@
+methods:
+  post:       
+    - "carrera{descripcion}"
+    
+fillin:
+    enabled:       on
+      
+names:
+    carrera{descripcion}:
+        required:     Yes
+        required_msg: El campo descripci&oacute;n es obligatorio
+        validators: caracteresMaximos255, validarUnico
+    
+caracteresMaximos255:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La m&aacute;xima cantidad de caracteres permitida es de 255
+
+validarUnico:
+    class:    sfCustomUniqueValidator
+    param:
+        class: Carrera
+        nb_fields:  2
+        field_1:    fk_establecimiento_id
+        field_2:    descripcion        
+        custom_unique_error:     El a&ntilde;o que intenta agregar ya existe en el mismo establecimiento!

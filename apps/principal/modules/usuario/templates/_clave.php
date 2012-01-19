@@ -1,0 +1,1 @@
+<?php echo input_password_tag('usuario[clave]', '') ?>

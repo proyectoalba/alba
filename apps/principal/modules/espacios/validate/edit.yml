@@ -1,0 +1,65 @@
+methods:
+  post:       
+    - "espacio{nombre}"
+    - "espacio{m2}"
+    - "espacio{capacidad}"
+    - "espacio{descripcion}"
+    - "espacio{estado}"    
+    - "espacio{fk_locacion_id}"    
+    - "espacio{fk_tipoespacio_id}"    
+
+    
+fillin:
+    enabled:       on
+      
+names:
+    espacio{nombre}:
+        required:     Yes
+        required_msg: El campo nombre es obligatorio
+        validators: caracteresMaximos128
+        
+    espacio{m2}:
+        required:     No
+        validators: validarNumero
+   
+    espacio{capacidad}:
+        required:     No
+        validators: caracteresMaximos255
+        
+    espacio{descripcion}:
+        required:     No
+        validators: caracteresMaximos255
+        
+  
+    espacio{estado}:
+        required:     No
+        validators: caracteresMaximos255
+
+    espacio{fk_locacion_id}:
+        required:     Yes
+        required_msg: El campo Locaci&oacute;n es obligatorio
+
+    espacio{fk_tipoespacio_id}:
+        required:     Yes
+        required_msg: El campo tipo de espacio es obligatorio
+        
+        
+caracteresMaximos128:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La maxima cantidad de caracteres permitida es de 128
+        
+caracteresMaximos255:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La maxima cantidad de caracteres permitida es de 255
+
+validarNumero:
+    class: sfNumberValidator
+    param:
+        nan_error: Por favor ingrese un valor n&uacute;merico       
+        min: 0
+        min_error: El n&uacute;mero debe ser positivo
+        

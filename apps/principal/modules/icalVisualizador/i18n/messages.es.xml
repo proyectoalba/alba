@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<xliff version="1.0">
+    <file orginal="global" source-language="en_US" datatype="plaintext">
+        <body>
+            <trans-unit id="1">
+                <source>monday</source>
+                <target>lunes</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>tuesday</source>
+                <target>martes</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>wednesday</source>
+                <target>miércoles</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>thursday</source>
+                <target>jueves</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>friday</source>
+                <target>viernes</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>saturday</source>
+                <target>sabado</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>sunday</source>
+                <target>domingo</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>Mon</source>
+                <target>lun</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>tue</source>
+                <target>mar</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>Wed</source>
+                <target>mié</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>thu</source>
+                <target>jue</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>fri</source>
+                <target>vie</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>sat</source>
+                <target>sab</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>sun</source>
+                <target>dom</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

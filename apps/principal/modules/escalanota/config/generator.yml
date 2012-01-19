@@ -1,0 +1,27 @@
+generator:
+    class:              sfPropelAdminGenerator
+    param:
+        model_class:      Escalanota
+        theme:            default
+        fields:
+            nombre: {name: Nombre, params: size=64}
+            orden: {name: Orden}
+            aprobado: {name: Aprobado}
+            fk_establecimiento_id: {name: Establecimiento}
+            descripcion: {name: Descripción , params: size=64 } 
+        list:
+            title: Listado de Escala de Notas
+            display: [ Establecimiento, Nombre, Descripcion, Orden, Aprobado ]
+            object_actions:
+                _edit: -
+                _delete: -
+            actions:
+                _create: -
+
+        edit:
+            title: ""
+            actions:
+                _delete: -
+                _save: -
+                _list: -
+                _save_and_add: -

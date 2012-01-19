@@ -1,0 +1,24 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+      model_class:      Concepto
+      theme:            default
+
+      fields:
+            descripcion: {name: Descripci&oacute;n , params: size=64 }
+            fk_establecimiento_id: {name: Establecimiento}
+            nombre: {name: Nombre , params: size=64 }
+
+      list:
+            title: Categor&iacute;as del Bolet&iacute;n de Concepto
+            display: [ Establecimiento, nombre, descripcion ]
+            object_actions:
+                _edit: -
+                _delete: -
+
+            actions:
+               _create: -
+      edit:
+            title: ""
+            fields:
+                fk_establecimiento_id:   { params: include_custom=--Seleccione un Establecimiento--}

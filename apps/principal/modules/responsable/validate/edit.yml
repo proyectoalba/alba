@@ -1,0 +1,149 @@
+methods:
+  post:       
+    - "responsable{nombre}"
+    - "responsable{apellido}"
+    - "responsable{ciudad}"    
+    - "responsable{direccion}"    
+    - "responsable{codigo_postal}"        
+    - "responsable{telefono}"       
+    - "responsable{nro_documento}"        
+    - "responsable{sexo}" 
+    - "responsable{email}"               
+    - "responsable{telefono_movil}"        
+    - "responsable{autorizacion_retiro}"            
+    - "responsable{fk_cuenta_id}"            
+    - "responsable{fk_provincia_id}"  
+    - "responsable{fk_rolresponsable_id}"
+    
+fillin:
+    enabled:       on
+      
+names:
+    responsable{nombre}:
+        required:     Yes
+        required_msg: El campo nombre es obligatorio
+        validators: caracteresMaximos128
+
+    responsable{apellido}:
+        required:     Yes
+        required_msg: El campo apellido es obligatorio
+        validators: caracteresMaximos128
+
+    responsable{nro_documento}:
+        required:     Yes
+        required_msg: El campo n&uacute;mero de documento es obligatorio
+        validators: validaNroDocumento
+
+    responsable{ciudad}:
+        required:     No
+        validators: caracteresMaximos128
+
+    responsable{direccion}:
+        required:     No
+        validators: caracteresMaximos128
+
+    responsable{telefono}:
+        required:     No
+        validators: caracteresMaximos20
+
+    responsable{telefono_movil}:
+        required:     No
+        validators: caracteresMaximos20
+
+    responsable{codigo_postal}:
+        required:     No
+        validators: caracteresMaximos20
+
+    responsable{sexo}:
+        required:    No
+
+    responsable{autorizacion_retiro}:
+        required:    No
+        
+    responsable{email}:
+        required:     No
+        validators: validaEmail, caracteresMaximos128
+
+    responsable{fk_cuenta_id}:
+        required:    Yes
+        required_msg: El identificador de cuenta[fk_cuenta_id] es obligatorio, debe enviarlo para poder crear un responsable
+        validators: validaFkCuentaId
+
+    responsable{fk_provincia_id}:
+        required:    Yes
+        required_msg: El campo provincia es obligatorio
+        validators: validaFkProvinciaId
+        
+    responsable{fk_rolresponsable_id}:
+        required:    Yes
+        required_msg: El campo rol del responsable es obligatorio
+        validators: validaFkProvinciaId
+        
+        
+caracteresMaximos128:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La maxima cantidad de caracteres permitida es de 128
+        
+caracteresMaximos255:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La maxima cantidad de caracteres permitida es de 255
+
+caracteresMaximos20:
+    class:  sfStringValidator
+    param:
+        max: 20
+        max_error: La maxima cantidad de caracteres permitida es de 255
+
+
+validarNumero:
+    class: albaDocumentoValidator
+    param:
+        documento_error: El Documento ingresado es invalido
+        nombre_campo1: responsable
+        nombre_campo2: nro_documento
+                               
+validaFecha:
+    class:  sfStringValidator
+    param: 
+        max: 10
+        min: 10
+        min_error: La cantidad de caracteres permitida es de 10
+        max_error: La cantidad de caracteres permitida es de 10      
+    
+validaNroDocumento:
+    class:  sfStringValidator
+    param: 
+        max: 16
+        max_error: La cantidad m&acute;xima de caracteres permitida es de 10      
+        min: 6
+        min_error: La cantidad minima de caracteres permitida es de 6
+        
+validaEmail:
+    class: sfEmailValidator
+    param:
+       email_error:   "No ingresaste un email correctamente ( ej: nombre@dominio.com)"
+
+validaFkCuentaId:
+    class: sfNumberValidator
+    param:
+        nan_error: Por favor ingrese un identificar v&aacute;lido de cuenta       
+        min: 1
+        min_error: El identificador de cuenta es inv&aacute;lido
+
+validaFkProvinciaId:
+    class: sfNumberValidator
+    param:
+        nan_error: Por favor seleccione una provincia       
+        min: 1
+        min_error: Por favor seleccione una provincia 
+
+validaFkRolresponsableId:
+    class: sfNumberValidator
+    param:
+        nan_error: Por favor ingrese un rol de responsable v&aacute;lido
+        min: 1
+        min_error: El identificador del rol es inv&aacute;lido

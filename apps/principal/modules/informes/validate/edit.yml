@@ -1,0 +1,64 @@
+methods:
+  post:
+    - "informe{nombre}"
+    - "informe{descripcion}"
+    - "informe{variables}"
+    - "informe{fk_tipoinforme_id}"
+    - file
+
+
+fillin:
+    enabled:       on
+
+names:
+    informe{nombre}:
+        required:     Yes
+        required_msg: El campo nombre es obligatorio
+        validators: caracteresMaximos128
+
+    informe{fk_tipoinforme_id}:
+        required:     Yes
+        validators: validarNumero
+
+    informe{descripcion}:
+        required:     No
+        validators: caracteresMaximos255
+
+    informe{variables}:
+        required:     No
+        validators: caracteresMaximos255
+
+    file:
+        required: Yes
+        required_msg: El campo plantilla de informe es obligatorio
+        file: true
+        validators: archivoValidar
+
+
+caracteresMaximos128:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La maxima cantidad de caracteres permitida es de 128
+
+caracteresMaximos255:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La maxima cantidad de caracteres permitida es de 255
+
+validarNumero:
+    class: sfNumberValidator
+    param:
+        nan_error: Por favor ingrese un valor n&uacute;merico       
+        min: 0
+        min_error: El n&uacute;mero debe ser positivo
+
+archivoValidar:
+    class:  sfFileValidator
+    param:
+        max_size:         512000
+        max_size_error:   M&aacute;ximo tama&ntilde;o del archivo adjunto es 512Kb
+#        mime_types:
+#          - 'image/jpeg'
+#        mime_types_error: Solamente ODT o SWX son permitidos

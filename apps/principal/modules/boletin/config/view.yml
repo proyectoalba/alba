@@ -1,0 +1,5 @@
+default:
+  stylesheets:    [..%SF_ADMIN_WEB_DIR%/css/main,boletin]
+  
+mostrarSuccess:
+  layout:   layout_sinmenu    

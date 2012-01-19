@@ -1,0 +1,24 @@
+methods: 
+    post: [login, password]
+
+names: 
+    login:
+        required: Yes
+        required_msg: Debe ingresar su nombre de usuario
+        validators: nicknameValidator
+    password:    
+        required: Yes
+        required_msg: Debe ingresar su clave
+
+nicknameValidator:
+    class: sfStringValidator
+    param: 
+        min: 4
+        min_error: El nombre de usuario debe contener al menos 5 caracteres
+          
+userValidator: 
+    class: albaLoginValidator
+    param:
+        password: password
+        login_error: Error de usuario o clave
+            

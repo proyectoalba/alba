@@ -1,0 +1,29 @@
+methods:
+  post:
+    - "niveltipo{nombre}"
+    - "niveltipo{descripcion}"
+
+fillin:
+    enabled:       on
+
+names:
+    niveltipo{nombre}:
+        required:     Yes 
+        required_msg: El campo nombre es obligatorio
+        validators: caracteresMaximos128
+
+    niveltipo{descripcion}:
+        required:     No
+        validators: caracteresMaximos255	
+
+caracteresMaximos128:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La maxima cantidad de caracteres permitida es de 128
+
+caracteresMaximos255:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La maxima cantidad de caractares permitida es de 255

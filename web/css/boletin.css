@@ -1,0 +1,27 @@
+#boletin {
+text-align:center;
+border: 1px solid;
+padding: 1px;
+}
+
+#boletin .header {
+height: 100px;
+text-align:center;
+font-size: 12px;
+font-weight: bold;
+text-transform: uppercase;
+vertical-align: center;
+}
+
+#boletin table.notas {
+width: 766px;
+border-collapse: collapse;
+border-left: 2px solid;
+border-bottom: 1px solid;
+}
+
+#boletin table.notas td{
+border-right: 1px solid;
+border-top: 1px solid;
+border
+}

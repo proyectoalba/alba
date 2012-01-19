@@ -1,0 +1,29 @@
+methods:
+  post:       
+    - "division{descripcion}"    
+    - "division{fk_anio_id}"
+    - "division{fk_turno_id}"  
+    
+fillin:
+    enabled:       on
+      
+names:
+    division{descripcion}:
+        required:     No
+        validators: caracteresMaximos255
+
+    division{fk_turno_id}:
+        required:     Yes
+        required_msg: El campo Turnos es obligatorio
+
+    division{fk_anio_id}:
+        required:     Yes
+        required_msg: El campo A&ntilde;o es obligatorio
+
+        
+caracteresMaximos255:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La maxima cantidad de caracteres permitida es de 255
+

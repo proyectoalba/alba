@@ -1,0 +1,58 @@
+prod:
+  logger:
+    class:   sfNoLogger
+    param:
+      level:   err
+      loggers: ~
+cli:
+  controller:
+    class: myConsoleController
+  request:
+    class: myConsoleRequest
+
+test:
+  response:
+    class: sfWebResponse
+    param:
+      send_http_headers: false
+
+  storage:
+    class: sfSessionTestStorage
+
+all:
+#  controller:
+#    class: myFrontWebController
+#
+#  request:
+#    class: myWebRequest
+#
+  user:
+    class: albaUser
+#
+#  storage:
+#    class: sfSessionStorage
+#    param:
+#      session_name: symfony
+#
+#  execution_filter:
+#    class: sfExecutionFilter
+#
+#  security_filter:
+#    class: sfBasicSecurityFilter
+#
+#  view_cache:
+#    class: sfFileCache
+  i18n:
+    class: sfI18N
+    param:
+      source:               XLIFF
+      debug:                off
+      untranslated_prefix:  "[T]"
+      untranslated_suffix:  "[/T]"
+      cache:
+        class: sfFileCache
+        param:
+          automatic_cleaning_factor: 0
+          cache_dir:                 %SF_I18N_CACHE_DIR%
+          lifetime:                  31556926
+          prefix:                    %SF_APP_DIR%/i18n

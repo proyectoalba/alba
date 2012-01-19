@@ -1,0 +1,59 @@
+methods:
+  post:       
+    - "establecimiento{nombre}"
+    - "establecimiento{descripcion}"
+    - "establecimiento{cuit}"
+    - "establecimiento{legajoprefijo}"
+    
+fillin:
+    enabled:       on
+      
+names:
+    establecimiento{nombre}:
+        required:     Yes
+        required_msg: El campo nombre es obligatorio
+        validators: caracteresMaximos128
+        
+    establecimiento{descripcion}:
+        required:     No
+        validators: caracteresMaximos255
+
+    establecimiento{cuit}:
+        required:   No
+        validators: caracteresMaximos13, validaCuit
+
+    establecimiento{legajoprefijo}:
+        required: Yes
+        required_msg: El campo Legajo Prefijo es obligatorio
+        validators: caracteresMaximos10
+        
+caracteresMaximos128:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La maxima cantidad de caracteres permitida es de 128
+
+caracteresMaximos10:
+    class:  sfStringValidator
+    param:
+        max: 10
+        max_error: La maxima cantidad de caracteres permitida es de 10
+        
+caracteresMaximos255:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La maxima cantidad de caracteres permitida es de 255
+
+caracteresMaximos13:
+    class:  sfStringValidator
+    param:
+        max: 13
+        max_error: La maxima cantidad de caracteres permitida es de 13
+
+validaCuit: 
+    class:  albaCUITValidator
+    param:
+        cuit_error: El CUIT ingresado es invalido       
+        
+

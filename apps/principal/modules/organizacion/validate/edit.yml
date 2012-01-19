@@ -1,0 +1,113 @@
+methods:
+  post:       
+    - "organizacion{nombre}"
+    - "organizacion{descripcion}"
+    - "organizacion{razon_social}"    
+    - "organizacion{cuit}"        
+    - "organizacion{direccion}"            
+    - "organizacion{ciudad}"            
+    - "organizacion{codigo_postal}"            
+    - "organizacion{telefono}"            
+    - "organizacion{fk_provincia_id}"
+    - "organizacion{fk_tipoiva_id}"
+    
+fillin:
+    enabled:       on
+      
+names:
+    organizacion{nombre}:
+        required:     Yes
+        required_msg: El campo nombre es obligatorio
+        validators: caracteresMaximos128
+
+    organizacion{razon_social}:
+        required:     Yes
+        required_msg: El campo raz&oacute;n social es obligatorio
+        validators: caracteresMaximos128
+
+    organizacion{descripcion}:
+        required:     No
+        validators: caracteresMaximos255
+        
+    organizacion{direccion}:
+        required:   Yes
+        required_msg: El campo direcci&oacute;n  es obligatorio
+        validators: caracteresMaximos128
+
+    organizacion{cuit}:
+        required:   No
+        validators: caracteresMaximos13, validaCuit
+
+    organizacion{ciudad}:
+        required:   Yes
+        required_msg: El campo ciudad es obligatorio
+        validators: caracteresMaximos128
+        
+    organizacion{telefono}:
+        required:     No
+        validators: caracteresMaximos20
+        
+    organizacion{codigo_postal}:
+        required:     Yes
+        required_msg: El campo C&oacute;digo Postal  es obligatorio
+        validators: caracteresMaximos20
+
+
+    organizacion{fk_provincia_id}:
+        required:     Yes
+        required_msg: El campo provincia es obligatorio
+        validators: validar_fk_provincia_id
+                           
+    organizacion{fk_tipoiva_id}:
+        required:     Yes
+        required_msg: El campo Tipo iva es obligatorio
+        validators: validar_fk_tipoiva_id
+
+
+
+caracteresMaximos13:
+    class:  sfStringValidator
+    param:
+        max: 13
+        max_error: La maxima cantidad de caracteres permitida es de 13
+
+        
+caracteresMaximos20:
+    class:  sfStringValidator
+    param:
+        max: 20
+        max_error: La maxima cantidad de caracteres permitida es de 20
+
+        
+caracteresMaximos128:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La maxima cantidad de caracteres permitida es de 128
+        
+caracteresMaximos255:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La maxima cantidad de caracteres permitida es de 255
+       
+validaCuit: 
+    class:  albaCUITValidator
+    param:
+        cuit_error: El CUIT ingresado es invalido       
+        
+        
+validar_fk_provincia_id:
+    class:  sfNumberValidator
+    param:
+        nan_error: Seleccione una provincia v&aacute;lida
+        min: 1
+        min_error: Seleccione una provincia v&aacute;lida
+
+validar_fk_tipoiva_id:
+    class:  sfNumberValidator
+    param:
+        nan_error: Seleccione un tipo iva v&aacute;lido
+        min: 1
+        min_error: Seleccione una tipo iva v&aacute;lido
+                                        

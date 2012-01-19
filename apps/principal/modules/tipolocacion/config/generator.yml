@@ -1,0 +1,24 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Tipolocacion
+    theme:            default
+    fields:
+        nombre: { name: Nombre , params: size=64}
+        descripcion: { name: Descripci&oacute;n , params: size=64}
+    list:
+        title: Listado de Tipos de Locaciones
+        display: [ nombre, descripcion]
+        object_actions:
+            _edit: -
+            _delete: -
+        actions:
+            _create: -    
+    edit:
+        title: ""
+        actions:
+            _delete: -
+            _save: -
+            _save_and_add: -
+            _list: -
+            

@@ -1,0 +1,69 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+      model_class:      Alumno
+      theme:            default
+      fields:
+            nombre: { name: Nombres , params: size=64 }
+            apellido: { name: Apellido , params: size=64 }
+            apellido_materno: { name: Apellido Mat. , params: size=64 }
+            fk_provincia_id: { name: Provincia }
+            fk_establecimiento_id: { name: Establecimiento }
+            fk_cuenta_id: { name: Cuenta }
+            fk_conceptobaja_id: { name: Concepto de Baja }
+            fk_tipodocumento_id: { name: Tipo de Documento }
+            fecha_nacimiento: { name: Fecha Nacimiento, params: withtime=false}
+            direccion: { name: Direcci&oacute;n , params: size=64}
+            ciudad: { name: Ciudad, params: size=64 }
+            codigo_postal: { name: CP, params: size=20}
+            telefono: { name: Tel&eacute;fono, params: size=20 }
+            sexo: { name: Sexo }
+            email: { name: Email , params: size=64 }
+            nro_documento:  { name: Nro. Documento, params: size=16 }
+            distancia_escuela: { name: Distancia de la escuela (cuadras) }
+            hermanos_escuela: { name: ¿Hermanos en la escuela? }
+            hijo_maestro_escuela: { name: ¿Alguno de sus padres es Maestro? }
+            certificado_medico: { name: ¿Trajo el certificado m&eacute;dico? }
+            activo: { name: ¿Est&aacute; activo? }
+            nombre_apellido: { name: Nombre }
+            division: { name: Divisi&oacute;n }
+            fk_pais_id: { name: Nacionalidad }
+            lugar_nacimiento: { name: Lugar de Nacimiento }
+            procedencia: { name: Procedencia }
+            legajo_prefijo: { name: Legajo Prefijo }
+            legajo_numero: { name: Legajo Numero }
+            observacion: { name: Observaci&oacute;n }
+            fk_estadoalumno_id: { name: Estado Alumno }
+
+      list:
+            title: " "
+            display: [ _legajo, =apellido, apellido_materno, nombre, nro_documento, sexo, telefono, email, activo ]
+            filters:  [ _nombre_apellido, _division, nro_documento ]
+            object_actions:
+                _edit: -
+                _delete: -
+                irCuenta:  { name: Ir a Cuenta, action: irCuenta, icon: next.png }
+                Vacunas: { name: Vacunas, action: vacunas, icon: jeringa.gif}
+                Salud: { name: Salud, action: legajosalud, icon: small/legajosalud.png }
+                asistencia: { name: Asistencia, action: asistencia, icon: small/asistencia.png }
+                legajo: { name: Legajo, action: legajo, icon: small/legajo.png }
+            actions:
+                _create: -
+            max_per_page: 10
+            
+      edit:
+            title: " "
+            fields:
+                fk_cuenta_id:   { params: include_custom=--Seleccione un Cuenta--}
+                fk_provincia_id:   { params: include_custom=--Seleccione una Provincia--}
+            display:
+                "Informacion general":  [ legajo_prefijo, legajo_numero, apellido, apellido_materno, nombre, _sexo, fk_tipodocumento_id, nro_documento, lugar_nacimiento, fecha_nacimiento, fk_pais_id, email, activo, fk_estadoalumno_id ]
+                "Donde vive": [direccion, ciudad, fk_provincia_id, codigo_postal, telefono]
+                "Prioridades": [ distancia_escuela, hermanos_escuela, hijo_maestro_escuela ]
+                "Otros": [ procedencia, observacion,  certificado_medico, _fk_cuenta_id ]
+            actions:
+                _delete: -
+                _save: -
+                _list: -
+                _save_and_add: -
+                

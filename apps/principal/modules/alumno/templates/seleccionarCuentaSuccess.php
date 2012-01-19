@@ -1,0 +1,1 @@
+<?php echo include_partial('verCuenta', array('cuenta_nombre' => $cuenta->getNombre(), 'cuenta_id' => $cuenta->getId()) ); ?>

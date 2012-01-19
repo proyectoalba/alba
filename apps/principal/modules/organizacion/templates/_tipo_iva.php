@@ -1,0 +1,1 @@
+<?php echo link_to($organizacion->getTipoIva()->getNombre(),'tipoiva/edit?id='.$organizacion->getFkTipoIvaId());?>

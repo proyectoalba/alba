@@ -1,0 +1,141 @@
+<chapter><title>Calendarios y Horarios</title>
+<para>
+Esta secci&oacute; del men&uacute; organiza la informaci&oacute;n relativa a la gesti&oacute;n del tiempo, permitiendo una f&aacute;cil visualizaci&oacute;n gr&aacute;fica de los horarios.
+</para>
+
+<sect1><title>Ir a Ciclo Lectivo Actual</title>
+<sect2><title>Ciclo lectivo</title>
+<para>
+El ingreso a esta secci&oacute;n permite editar todos los componentes del ciclo lectivo pudiendo definir el d&iacute;a de comienzo y finalizaci&oacute;ndel mismo para cada establecimiento. ALBA, como en el resto de los lugares donde se definen fechas, cuenta con la herramienta de calendarios para elegirla visualmente. Para ello debe desplegarla del bot&oacute;n que se encuentra a los lados de los espacios para la carga de las fechas. Como el Ciclo Lectivo se defiea con anterioridad, el sistema no permite la modificaci&oacute;n m&aacute;s all&aacute; del comienzo y finalizaci&oacute;n.
+</para>
+<para>
+<figure><title>Visualizaci&oacute;n del ciclo lectivo actual.</title>
+    <graphic fileref="img/figura50.png" scale="50"/>
+</figure>
+</para>
+</sect2>
+<sect2><title>Turnos</title>
+<para>
+En la misma pantalla, es posible definir los Turnos relacionados con el ciclo lectivo actual. Para definirlos inicailmente se deben completar los espacios en blanco (ubicados en la parte inferior). Los trunos ya cargados, permitir&aacute;n la edici&oacute;n de las horas de inicio y fin as&iacute; como el borrado completo del turno. 
+</para>
+<para>
+<figure><title>Visualizaci&oacute;n de los turnos relativos al ciclo ectivo actual.</title>
+    <graphic fileref="img/figura51.png" scale="50"/>
+</figure>
+</para>
+<para>
+Para desplegar la selecci&oacute;n de los horarios, recuerde cliquear en los tri&aacute;ngulos invertidos negros posicionados al costado de horas y minutos. Lo mismo suceder&aacute; en la selecci&oacute;n antes y pos meridiano. 
+</para>
+</sect2>
+<sect2><title>Per&iacute;odos</title>
+<para>
+El alta de per&iacute;odos (espacios temporales del a&ntilde;o en que se divide el ciclo lectivo) permite, al igual que los turnos, definir inicio y fin a trav&eacute;s de la herramienta gr&aacute;fica del calendario, as&iacute; como la eliminaci&oacute;n. Recuerde que la incorporaci&oacute;n de los per&iacute;odos siempre est&aacute;n asociados al ciclo lectivo actual y por ello se despliega en la misma pantalla. Como en el caso de turnos, para el alta deber&aacute; completar el espacio en blanco inferior.
+</para>
+<para>
+<figure><title>Visualizaci&oacute;n de per&iacute;odos </title>
+    <graphic fileref="img/figura52.png" scale="50"/>
+</figure>
+</para>
+<important>
+<para> 
+Una vez establecidos los datos correctos en cada secci&oacute;n (ciclo lectivo, turnos y per&iacute;odos) es necesario que grabe la informaci&oacute;n con el bot&oacute;n inferior "Grabar". 
+</para>
+</important>
+
+<para>
+Es posible, asimismo, listar todos los ciclos lectivos (no &uacute;nicamente el actual) desde el bot&oacute;n inferior "Listar los ciclos lectivos". En caso de seleccionar otro ciclo (por ejemplo el futuro) ser&aacute; posible configurarlo con los datos correspondientes de turnos y per&iacute;odos para programar el trabajo del a&ntilde;o siguiente a trav&eacute;s del &uacute;ltimo bot&oacute;n de la barra inferior.
+</para>
+</sect2>
+</sect1>
+
+<sect1><title>Horario Escolar</title>
+<sect2><title>Definir horario de clases</title>
+<para>
+Al ingresar a esta secci&oacute;n del men&uacute; se desplegar&aacute;, en caso de ya haberse cargado, el listado de las horas que componen los diferentes turnos del establecimiento. Cada una de las horas est&aacute; pensada como "evento" de un calendario que se comparte a lo largo de toda la aplicaci&oacute;n. Por este motivo el listado de cada una de las horas c&aacute;tedras, as&iacute; como los recreos, est&aacute;n definidos seg&uacute;n criterios que se desarrollan m&aacute;s adelante.
+</para>
+<para>
+En el listado figurar&aacute; el nombre del intervalo, una descripci&oacute;n y la definici&oacute;n del evento (con su respectivo inicio y finalizaci&oacute;n, una repetici&oacute;n de recurrencia y frecuencia determinada). Tambi&eacute;n se muestra aqu&iacute; el tipo de horario escolar (que ya se habr&aacute; cargado previamente seg&uacute;n las configuraciones primeras) y el Establecimiento y Turno al que refiere ese rango o intervalo horario. Por supuesto, el listado permite acciones de edici&oacute;n y de visualizaci&oacute;n gr&aacute;fica a través del bot&oacute;n "Ver Calendario" ubicado al pi&eacute; del listado. 
+</para>
+<para>
+<figure><title> Listado de horario escolar. </title>
+    <graphic fileref="img/figura53.png" scale="50"/>
+</figure>
+</para>
+<para>
+Para las modificaciones as&iacute; como las altas de estos eventos ser&aacute; necesario definir (adem&aacute;s del nombre y la descripci&oacute;n) los siguientes elementos: 
+</para>
+<para>
+<emphasis>Fecha y hora:</emphasis> donde se define la duraci&oacute;n de un evento. En el caso de los intervalos de los horarios de clase ser&aacute; necesario darle como inicio y fin del evento el mismo d&iacute;a modificando &uacute;nicamente la hora que s&iacute; indicar&aacute; el comienzo y la finalizaci&oacute;n.
+</para>
+<para>
+<figure><title> Modificaci&oacute;n (y alta) de horario escolar. </title>
+    <graphic fileref="img/figura54.png" scale="50"/>
+</figure>
+</para>
+<para>
+<emphasis>La repetici&oacute;n del evento:</emphasis> que puede utilizarse o no seg&uacute;n sea el caso colocando el tilde en la casilla. El criterio de repetici&oacute;n se construye a partir de dos elementos:
+</para>
+<para>
+1) Regla de recurrencia: en el caso de las horas de clase se sugiere utilizar una repetici&oacute;n semanal, indicando lo d&iacute;as de la semana (lunes a viernes) en que se repetir&aacute;. Por el contrario, la recurrencia diaria no habilita la elecci&oacute;n de los d&iacute;as de la semana para su selecci&oacute;n e indica que la repetici&oacute;n se realizar&aacute; todos los d&iacute;as, o cada X cantidad de d&iacute;as seg&uacute;n se seleccione.
+</para>
+<para>
+2) Rango de frecuencia: permite definir una fecha de finalizaci&oacute;n (si la tiene, como es el caso del ciclo lectivo) o una cantidad de repeticiones medidas en "veces".
+</para>
+<para>
+<figure><title>Recurrencia y frecuencia. </title>
+    <graphic fileref="img/figura55.png" scale="50"/>
+</figure>
+</para>
+<para>
+El tipo de horario escolar (hora de clase, actividad extracurricular, etc.) y el turno (ma&ntilde;ana, tarde, etc.) tambi&eacute;n ser&aacute;n solicitados para definir los horarios de clases, per&iacute;odos que se asociar&aacute;n entonces a estas otras dos caracter&iacute;sticas.
+</para>
+
+<important>
+<para>
+Recuerde grabar los cambios y altas con el bot&oacute;n "Guardar" que se encuentra al pi&eacute; de la p&aacute;gina.
+</para>
+</important>
+
+</sect2>
+<sect2><title>Generar horario por Secci&oacute;n/Divisi&oacute;n</title>
+<para>
+La generaci&oacute;n de horarios de manera manual implica la carga de cada una de las materias/actividades que realiza cada divisi&oacute;n con los mismos par&aacute;metros de la carga explicada anteriormente en la formulaci&oacute;n del horario escolar. Vale decir que en este caso adem&aacute;s de los criterios de repetici&oacute;n tambi&eacute;n se relaciona la divisi&oacute;n con la actividad y el docente permitiendo, de esta forma, centralizar la informaci&oacute;n para la generaci&oacute;n autom&aacute;tica de los horarios.
+</para>
+<para>
+<figure><title>Generaci&oacute;n manual de horarios por divisi&oacute;n. </title>
+    <graphic fileref="img/figura56.png" scale="50"/>
+</figure>
+</para>
+<para>
+El listado permite la edici&oacute;n de cada una de las entradas (que mostrar&aacute;n los criterios de repetici&oacute;n detallados) y, a trav&eacute;s de los botones de la barra inferior, exportar los eventos en un formato standar de intercambio de informaci&oacute;n de calendarios deonminado iCal y ver el calendario construido por la carga en una interfaz gr&aacute;fica amigable e intuitiva. 
+</para>
+</sect2>
+</sect1>
+
+<sect1><title>Horario Seg&uacute;n?</title>
+<sect2><title>(Horario seg&uacute;n) docentes</title>
+<para>
+Esta herramienta permite acceder al horario de cada uno de los docentes previa b&uacute;squeda y selecci&oacute;n del mismo. Recuerde que en todos los filtros de b&uacute;squeda es posible no colocar ning&uacute;n criterio y presionar el bot&oacute;n "Buscar" que le devolver&aacute; (en este caso) el listado completo de docentes. Una vez elegido el docente, a trav&eacute;s de la acci&oacute;n "Ver horario" (que se visualiza como un peque&ntilde;o reloj) se accede a la misma interfaz gr&aacute;fica utilizada en los horarios por divisi&oacute;n que mostrar&aacute; los "eventos" del docente en el marco  del  trabajo en la escuela de manera diaria, semanal, mensual y anual. En el caso de escuelas primarias y secundarias, seleccionando la vista semanal se obtiene el horiario del docente en su trabajo cotidiano en la escuela. 
+</para>
+<para>
+
+</para>
+<para>
+<figure><title>Horarios por docente. </title>
+    <graphic fileref="img/figura57.png" scale="50"/>
+</figure>
+</para>
+</sect2>
+
+<sect2><title>(Horario seg&acute;n) Secci&acute;n/Divisi&acute;n</title>
+<para>
+Esta opci&oacute;n permite visualizar los horarios de cada una de las divisiones del establecimiento. En el ingreso el sisteme mostrar&aacute; la lista de divisiones con su correspondiente bot&oacute;n de accion "Ver horario" que conduce a la vista seg&uacute;n la misma interfaz de calendario. 
+</para>
+<para>
+<figure><title>Lista de divisiones y bot&oacute;&uacute;n "Ver horario". </title>
+    <graphic fileref="img/figura58.png" scale="50"/>
+</figure>
+</para>
+</sect2>
+</sect1>
+</chapter>

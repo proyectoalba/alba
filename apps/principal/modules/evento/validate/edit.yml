@@ -1,0 +1,31 @@
+methods:
+    post:       
+        - "evento{titulo}"    
+        - "evento{fecha_inicio}"
+        - "evento{fecha_fin}"
+    
+fillin:
+    enabled:       on
+
+names:
+
+    evento{titulo}:
+        required:     Yes
+        required_msg: El campo descripci&oacute;n es obligatorio
+        validators: caracteresMaximos255
+
+    evento{fecha_inicio}:
+        required:     Yes
+        required_msg: El campo fecha inicio es obligatorio
+
+    evento{fecha_fin}:
+        required:     Yes
+        required_msg: El campo fecha inicio es obligatorio
+
+
+
+caracteresMaximos255:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La maxima cantidad de caracteres permitida es de 255

@@ -1,0 +1,37 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Espacio
+    theme:            default
+    fields:
+        nombre: { name: Nombre, params: size=64 }
+        fk_tipoespacio_id: { name: Tipo de Espacio}
+        m2: { name: M2, params: size=10}
+        capacidad: { name: Capacidad, params: size=64}
+        descripcion: { name: Descripci&oacute;n , params: size=64}
+        estado: { name: Estado,  params: size=64}
+        fk_locacion_id: { name: Locaci&oacute;n }
+        locacion: { name: Locaci&oacute;n }
+
+    list:
+        title: Listado de Espacios
+        display: [ nombre, m2, capacidad, descripcion, estado, tipoespacio, locacion]
+        object_actions:
+            _edit: -
+            _delete: -
+        actions:
+            _create: -
+        filters:
+            - fk_locacion_id
+
+    edit:
+        title: ""
+        fields:
+            fk_tipoespacio_id:   { params: include_custom=--Seleccione un Espacio--}
+        display: [ nombre, m2, capacidad, descripcion, estado, fk_tipoespacio_id, _fk_locacion_id ]
+        actions:
+            _delete: -
+            _save: -
+            _list: -
+            _save_and_add: -            
+        

@@ -1,0 +1,39 @@
+methods:
+  post:       
+    - "actividad{nombre}"
+    - "actividad{descripcion}"
+    
+fillin:
+    enabled:       on
+      
+names:
+    actividad{nombre}:
+        required:     Yes
+        required_msg: El campo nombre es obligatorio
+        validators: caracteresMaximosNombre, validarUnico
+
+    actividad{descripcion}:
+        required:     No
+        validators: caracteresMaximosDescripcion
+        
+caracteresMaximosNombre:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La maxima cantidad de caracteres permitida es de 128
+        
+caracteresMaximosDescripcion:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La maxima cantidad de caracteres permitida es de 255
+       
+validarUnico:
+    class:    sfCustomUniqueValidator
+    param:
+        class: Actividad
+        nb_fields:  2
+        field_1:    fk_establecimiento_id
+        field_2:    nombre
+        custom_unique_error:     El nombre que intenta agregar ya existe en el mismo establecimiento!
+

@@ -1,0 +1,24 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      RolResponsable
+    theme:            default
+    fields:
+        descripcion: {name: Descripci&oacute;n , params: size=64 }
+        nombre: {name: Nombre , params: size=64 }
+        activo: {name: Activo}
+        
+    list:
+        title: Roles de los Responsables
+        display: [ nombre, descripcion, activo]
+        object_actions:
+            _edit: -
+            _delete: -
+    edit:
+        title: Editar roles de Responsables
+        actions:
+            _detele: -
+            _save: -
+            _save: - 
+            _save_and_add: -
+            _list: -

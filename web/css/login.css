@@ -1,0 +1,43 @@
+div.titulo {
+    font-size: 15px;
+    font-weight: bold;
+    font-style: italic;
+    color: #336699;
+    border: 0px solid;
+    text-align: center;
+}
+div.bloque {
+    text-align: center;
+}
+
+input.boton {
+    font-size: 12px;
+    font-weight: bold;
+    font-family: Arial, Helvetica;
+    border: 1px solid;
+    padding: 4px;
+    color: black;
+    background-color: #d9d966;
+}
+
+input.textlogin {
+    font-size: 14px;
+    border: 1px solid black;
+    color: black;
+    background-color: #d9d966;
+}
+
+div.error {
+    font-size: 14px;
+    border: 0px;
+    color: red;
+}
+p.error {
+    font-size: 14px;
+    color: red;
+}
+
+td.etiqueta {
+    font-size: 14px;
+    color: #336699;
+}

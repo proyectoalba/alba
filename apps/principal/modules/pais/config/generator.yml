@@ -1,0 +1,21 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Pais
+    theme:            default
+    fields:
+        nombre_corto: { name: Nombre corto, params: size=32}
+        nombre_largo: { name: Nombre largo, params: size=64}
+        orden: { name: orden, params: size=10 }
+
+    edit:
+        title: ""
+        display: [ nombre_corto , nombre_largo, orden ]
+                    
+    list:
+        title: Listado de Países
+        display: [ nombre_largo, =nombre_corto, orden ]
+        sort: [ orden, asc ]
+        object_actions:
+            _edit:      -
+            _delete:    -

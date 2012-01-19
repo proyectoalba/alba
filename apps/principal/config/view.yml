@@ -1,0 +1,22 @@
+default:
+  http_metas:
+    content-type: text/html; charset=utf-8
+
+  metas:
+    title:        Proyecto ALBA
+    robots:       index, follow
+    description:  Proyecto de Gestión Educativa ALBA
+    keywords:     alba, proyecto, software libre, educacion
+    language:     es
+
+  stylesheets:    [ %SF_ADMIN_WEB_DIR%/css/main, main, impresion: { media: print }, login] 
+
+  javascripts:    [jsmenu/JSCookMenu, varios/dom-drag.js]   
+
+  has_layout:     on
+  layout:         layout
+
+  slots:          {}
+
+  use_default_slots: on
+

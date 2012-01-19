@@ -1,0 +1,41 @@
+methods:
+  post:       
+    - "relCalendariovacunacionAlumno{observacion}"
+    - "relCalendariovacunacionAlumno{comprabante}"
+    - "relCalendariovacunacionAlumno{fecha}"    
+    
+fillin:
+    enabled:       on
+      
+names:
+    relCalendariovacunacionAlumno{observacion}:
+        required:     No
+        validators: caracteresMaximos255
+        
+    relCalendariovacunacionAlumno{comprabante}:
+        required:     No
+        
+    relCalendariovacunacionAlumno{fecha}:
+        required:     No
+        validators: validarFecha
+        
+        
+        
+caracteresMaximos128:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La maxima cantidad de caracteres permitida es de 128
+        
+caracteresMaximos255:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La maxima cantidad de caracteres permitida es de 255
+
+validarFecha:
+    class: albaDateValidator
+    param:
+        date_error: El campo debe ser una fecha
+        
+        

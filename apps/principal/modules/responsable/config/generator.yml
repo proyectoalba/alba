@@ -1,0 +1,48 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+      model_class:      Responsable
+      theme:            default
+      fields:
+            nombre: { name: Nombres , params: size=64}
+            apellido: { name: Apellido , params: size=64}
+            apellido_materno: { name: Apellido Mat. , params: size=64}
+            direccion: { name: Direcci&oacute;n , params: size=64 }
+            ciudad: { name: Ciudad , params: size=64}
+            codigo_postal: { name: CP , params: size=20}
+            fk_provincia_id: { name: Provincia }
+            nro_documento: { name: Nro. Documento , params: size=16}
+            fk_tipodocumento_id: { name: Tipo Documento }
+            telefono: { name: Tel&eacute;fono , params: size=20}
+            sexo: { name: Sexo }
+            email: { name: Email , params: size=64 }
+            telefono_movil: { name: Tel. Movil , params: size=20}
+            fk_rolresponsable_id: { name: Relaci&oacute;n con los alumnos }
+            observacion: { name: Observaci&oacute;n, params: size=80}
+            autorizacion_retiro: { name: Aut. Retiro }
+      list:
+        fields:
+            apellido: { params: size=20 }
+        title: Listado de Responsables
+        display: [ cuenta, =apellido, apellido_materno, nombre, nro_documento, telefono_movil, telefono, _rolresponsable, autorizacion_retiro ]
+        object_actions:
+          _edit: -
+          _delete: -
+          irCuenta:  { name: Ir a Cuenta, action: irCuenta, icon: next.png }
+        actions: {}
+        filters: [ apellido ]        
+      edit:
+        title: Editar Responsable
+        fields:
+            fk_cuenta_id:   { params: include_custom=>>Selecciones un Cuenta<<}
+            fk_provincia_id:   { params: include_custom=--Selecciones una Provincia--}
+        display:
+                "Informaci&oacute;n general":  [apellido, apellido_materno,  nombre, _sexo, fk_tipodocumento_id, nro_documento]
+                "Donde vive": [direccion, ciudad, _pais_id, _fk_provincia_id, codigo_postal ]
+                "Otros":  [ telefono, telefono_movil, email, observacion,  autorizacion_retiro]
+        actions:
+          _delete: -
+          _save: -
+          _save_and_add: -
+          _list: -          
+          irCuenta:  { name: Ir a Cuenta, action: irCuenta, icon: next.png }

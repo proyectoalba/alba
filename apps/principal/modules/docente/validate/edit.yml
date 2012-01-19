@@ -1,0 +1,141 @@
+methods:
+  post:       
+    - "docente{nombre}"
+    - "docente{nro_documento}"
+    - "docente{apellido}"
+    - "docente{fecha_nacimiento}"
+    - "docente{ciudad}"    
+    - "docente{direccion}"    
+    - "docente{codigo_postal}"        
+    - "docente{telefono}"       
+    - "docente{telefono_movil}"           
+    - "docente{sexo}"        
+    - "docente{email}"        
+    - "docente{titulo}"            
+    - "docente{libreta_sanitaria}"            
+    - "docente{psicofisico}"            
+    - "docente{activo}"   
+    - "docente{fecha_nacimiento}"         
+    - "docente{fk_provincia_id}"         
+    
+fillin:
+    enabled:       on
+      
+names:
+    docente{nombre}:
+        required:     Yes
+        required_msg: El campo nombre es obligatorio
+        validators: caracteresMaximos128
+
+    docente{apellido}:
+        required:     Yes
+        required_msg: El campo apellido es obligatorio
+        validators: caracteresMaximos128
+
+    docente{fecha_nacimiento}:
+        required:     Yes
+        required_msg: El campo fecha de nacimiento es obligatorio
+        validators: validaFecha
+
+    docente{nro_documento}:
+        required:     Yes
+        required_msg: El campo n&uacute;mero de documento es obligatorio
+        validators: validaNroDocumento,validarNumero
+
+    docente{ciudad}:
+        required:     No
+        validators: caracteresMaximos128
+
+    docente{direccion}:
+        required:     No
+        validators: caracteresMaximos128
+
+    docente{codigo_postal}:
+        required:     No
+        validators: caracteresMaximos20
+        
+    docente{telefono}:
+        required:     No
+        validators: caracteresMaximos20
+
+    docente{telefono_movil}:
+        required:     No
+        validators: caracteresMaximos20
+
+    docente{sexo}:
+        required:    No
+        
+    docente{activo}:
+        required:    No
+
+    docente{psicofisico}:
+        required:    No
+
+    docente{libreta_sanitaria}:
+        required:    No
+        
+    docente{titulo}:
+        required:     Yes
+        required_msg: El campo titulo es obligatorio
+        validators: caracteresMaximos128
+       
+    docente{email}:
+        required:     No
+        validators: validaEmail, caracteresMaximos128
+
+    docente{fk_provincia_id}:
+        required:     Yes
+        required_msg: El campo provincia es obligatorio
+        validators: validaProvincia
+        
+        
+caracteresMaximos128:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La maxima cantidad de caracteres permitida es de 128
+        
+caracteresMaximos255:
+    class:  sfStringValidator
+    param:
+        max: 255
+        max_error: La maxima cantidad de caracteres permitida es de 255
+
+caracteresMaximos20:
+    class:  sfStringValidator
+    param:
+        max: 20
+        max_error: La maxima cantidad de caracteres permitida es de 255
+
+
+validarNumero:
+    class: albaDocumentoValidator
+    param:
+        documento_error: El Documento ingresado es invalido
+        nombre_campo1: docente
+        nombre_campo2: nro_documento
+                                
+
+validaFecha:
+    class:  albaDateValidator
+    param: 
+        date_error: El campo debe ser una fecha
+    
+validaNroDocumento:
+    class:  sfStringValidator
+    param: 
+        max: 10
+        max_error: La cantidad m&acute;xima de caracteres permitida es de 10
+
+        
+validaEmail:
+    class: sfEmailValidator
+    param:
+       email_error:   "No ingresaste un email correctamente ( ej: nombre@dominio.com)"
+
+validaProvincia:
+    class: sfNumberValidator
+    param:
+        nan_error: El campo provincia contiene un valor incorrecto       
+        min: 1
+        min_error: El campo provincia es obligatorio

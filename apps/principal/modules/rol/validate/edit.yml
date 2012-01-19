@@ -1,0 +1,25 @@
+methods:
+    post:
+      - "rol{nombre}"
+      - "rol{descripcion}" 
+      - "rol{activo}"
+
+names:
+    rol{nombre}:
+        required:     Yes
+        required_msg: Debe ingresar al menos el nombre del rol
+        validators:   nameValidator
+    
+    rol{descripcion}:
+        required:   no
+
+    rol{activo}:
+        required:   no        
+
+nameValidator:
+    class:          sfStringValidator
+    param:
+        min:          2
+        min_error:    No has ingresado un nombre valido (al menos 2 caracteres). Por favor proba nuevamente.
+        max:          100
+        max_error:    No has ingresado un nombre valido (menos de 100 caracteres).  Por favor proba nuevamente.

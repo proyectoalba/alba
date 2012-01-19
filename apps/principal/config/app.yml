@@ -1,0 +1,7 @@
+# default values
+all:
+    theme: on
+    
+    alba:
+        menutheme: ThemeAlba
+        tmpdir: tmp

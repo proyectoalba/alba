@@ -1,0 +1,132 @@
+a img,:link img,:visited img { border: none; }
+
+a
+{
+  text-decoration: none;
+}
+
+a:hover
+{
+  text-decoration: underline;
+}
+
+body, td
+{
+  margin: 0px;
+  padding: 0px;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 11px;
+}
+
+div.error {
+
+    color: red;
+    border: 1px dashed;
+}
+/* sobreescribo styles del admin generator */
+ul.sf_admin_actions
+{
+  margin: 10px;
+  list-style-type: none;
+  text-align: left;
+}
+.sf_admin_filters {
+    float: left
+}
+/* info en la cabecera */
+table.user-info td {
+    font-size: 10px;
+}
+li {}
+ul {
+    padding-left: 10px;
+}
+
+.sf_admin_action_print
+{
+  background: url(../images/small/print.png) no-repeat 3px 2px;
+    border-right: 4px solid #73B65A !important;
+}
+
+.sf_admin_action_list
+{
+  background: url(../images/small/listado.png) no-repeat 3px 2px;
+    border-right: 4px solid #73B65A !important;
+}
+.sf_admin_action_ir_a
+{
+  background: url(../images/small/ir_a.png) no-repeat 3px 2px;
+    border-right: 4px solid #73B65A !important;
+}
+
+.form-errors
+{
+  margin-bottom: 10px;
+  border: 1px solid #f33;
+  background-color: #ffc;
+}
+
+.form-errors h2
+{
+  padding: 5px 20px 5px 25px;
+  font-size: 11px;
+  color: #fff;
+  background: #f33 url(/sf/images/sf_admin/error.png) no-repeat 5px 2px;
+}
+
+.form-errors ul
+{
+  padding: 5px;
+  list-style-type: none;
+}
+
+.form-errors li
+{
+  padding: 5px 20px;
+  background: url(/sf/images/sf_admin/error.png) no-repeat 0 2px;
+}
+
+#sf_admin_container #sf_admin_bar
+{
+ float: right;
+     margin-top: 8px;
+  position: relative;
+/*  left: 200px; */
+ /* top: 10px; */
+  width: 250px;
+}
+/* MAIN ERROR */
+#sf_admin_container div.error
+{
+  background: #f33 url(../sf/sf_admin/images/error.png) no-repeat 10px 4px;
+  color: #fff;
+}
+
+#sf_admin_container div.notice {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background: #ffc url(../sf/sf_admin/images/tick.png) no-repeat 10px 4px;
+    color: #222;
+}
+/* COMMON */
+#sf_admin_container div.error,
+#sf_admin_container div.notice {
+  margin: 10px 0;
+  padding: 7px 0 7px 35px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+/**/
+
+div#indicator
+{
+  position: absolute;
+  width: 100px;
+  height: 40px;
+  left: 10px;
+  top: 10px;
+  z-index: 900;
+  background: url(../images/indicator.gif) no-repeat 0 0;
+}
+
+div.pageBreak { page-break-before: always; }

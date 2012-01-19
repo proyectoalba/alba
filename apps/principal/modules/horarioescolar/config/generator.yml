@@ -1,0 +1,32 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Horarioescolar
+    theme:            default
+    fields:
+        id: { name: identificador }
+        nombre: { name: Nombre, params: size=64}
+        descripcion: { name: Descripcion, params: size=64 }
+        dia: { name: Día}
+        hora_inicio: { name: Hora Incio }
+        hora_fin: { name: Hora Fin }
+        fk_horarioescolartipo_id: { name: Tipo Horario Escolar }
+        dia_mostrar: { name: Día} 
+        fk_establecimiento_id: { name: Establecimiento}
+        fk_turno_id: { name: Turno}
+        turnos_list: { name: Turno}
+        
+    edit:
+        title: Modificar Horario Escolar
+        display: [nombre, descripcion, _dia, _hora_inicio, _hora_fin, fk_horarioescolartipo_id, _fk_turno_id ]
+                                                         
+    list:
+        display: [=nombre, descripcion, _dia_mostrar , hora_inicio, hora_fin, _fk_horarioescolartipo_id, _fk_establecimiento_id, _turnos_list ]
+        title: Listado de Horario Escolar
+        object_actions:
+            _edit:        -
+            _delete:      -
+        actions:
+            _create:    -
+            mostrar: { name: Ver Calendario , action: mostrar }
+

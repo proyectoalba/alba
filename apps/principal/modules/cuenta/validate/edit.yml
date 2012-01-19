@@ -1,0 +1,98 @@
+methods:
+  post:       
+    - "cuenta{nombre}"
+    - "cuenta{razon_social}"
+    - "cuenta{cuit}"
+    - "cuenta{direccion}"
+    - "cuenta{ciudad}"    
+    - "cuenta{codigo_postal}"
+    - "cuenta{telefono}"    
+    - "cuenta{fk_provincia_id}"    
+    
+fillin:
+    enabled:       on
+      
+names:
+    cuenta{nombre}:
+        required:     Yes
+        required_msg: El campo nombre es obligatorio
+        validators: valida_nombrecuenta, cuentaValidador
+
+    cuenta{razon_social}:
+        required:     Yes
+        required_msg: El campo raz&oacute;n social  es obligatorio
+        validators: caracteresMaximos128
+
+    cuenta{cuit}:
+        required:     No
+        required_msg: El campo CUIT es obligatorio
+        validators: validaCuit
+
+    cuenta{direccion}:
+        required:     Yes
+        required_msg: El campo direcci&oacute;n  es obligatorio
+        validators: caracteresMaximos128
+
+
+    cuenta{ciudad}:
+        required:     Yes
+        required_msg: El campo ciudad  es obligatorio
+        validators: caracteresMaximos128
+        
+    cuenta{codigo_postal}:
+        required:     Yes
+        required_msg: El campo c&oacute;digo postal  es obligatorio
+        validators: caracteresMaximos20
+
+    cuenta{telefono}:
+        required:     No
+        validators: caracteresMaximos20
+
+    cuenta{fk_provincia_id}:
+        required:     Yes
+        required_msg: El campo provincia es obligatorio
+        validators: validar_fk_provincia_id
+        
+
+
+valida_nombrecuenta:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La maxima cantidad de caracteres permitida es de 128
+        min: 4
+        min_error: Ingrese al menos 4 caracteres
+
+caracteresMaximos20:
+    class:  sfStringValidator
+    param:
+        max: 20
+        max_error: La m&aacute;xima cantidad de caracteres permitida es de 20
+
+        
+caracteresMaximos128:
+    class:  sfStringValidator
+    param:
+        max: 128
+        max_error: La m&aacute;xima cantidad de caracteres permitida es de 128
+        
+validar_fk_provincia_id:
+    class:  sfNumberValidator
+    param:
+        nan_error: Seleccione una provincia v&aacute;lida
+        min: 1
+        min_error: Seleccione una provincia v&aacute;lida
+
+validaCuit:
+    class:  albaCUITValidator
+    param:
+        cuit_error: El CUIT ingresado es invalido
+
+
+cuentaValidador:
+    class:  albaCuentaValidador
+    param:
+        campo: nombre
+        campo_id: id
+        cuenta_error: La cuenta ya exite
+

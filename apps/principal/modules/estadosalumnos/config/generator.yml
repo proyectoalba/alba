@@ -1,0 +1,18 @@
+generator:
+  class: sfPropelAdminGenerator
+  param:
+    model_class:           Estadosalumnos
+    theme:                 default
+    fields:
+        nombre:     { name: Nombre , params: size=64}
+    edit:
+        title: ""
+        display: [ nombre ]
+    list:
+        title: Listado de Estados de los alumnos
+        sort: nombre
+        display: [ =nombre ]
+
+        object_actions:
+            _edit:      -
+            _delete:    -
