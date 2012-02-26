@@ -735,8 +735,16 @@ class InformesActions extends sfActions {
   private function _getDivisiones($establecimiento_id) {
     $optionsDivision = array();
     $criteria = new Criteria();
+    $criteria->addJoin(DivisionPeer::FK_ANIO_ID, AnioPeer::ID);
+    $criteria->addJoin(DivisionPeer::FK_TURNO_ID, TurnoPeer::ID);
+    $criteria->addJoin(TurnoPeer::FK_CICLOLECTIVO_ID, CiclolectivoPeer::ID);
+
     $criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
+    $criteria->add(TurnoPeer::FK_CICLOLECTIVO_ID, $this->getUser()->getAttribute('fk_ciclolectivo_id'));
+
+    $criteria->addAscendingOrderByColumn(AnioPeer::ORDEN);
     $criteria->addAscendingOrderByColumn(DivisionPeer::ORDEN);
+
     $divisiones = DivisionPeer::doSelectJoinAnio($criteria);
     $optionsDivision[''] = "";
     foreach ($divisiones as $division) {
