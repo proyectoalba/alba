@@ -54,7 +54,7 @@
 </div>
 </div>
         <ul class="sf_admin_actions">
-            <li><?php echo submit_tag(__('Buscar'), array ( 'class' => 'sf_admin_action_save',)) ?></li>
+            <li><?php echo submit_tag(__('Pasar los alumnos seleccionados'), array ( 'class' => 'sf_admin_action_save',)) ?></li>
         </ul>
 </form>
 
