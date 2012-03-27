@@ -277,20 +277,6 @@ UsuarioRol:
     fk_usuario_id: Usuario_2
     fk_rol_id: Rol_administrador
 
-RolResponsable:
-  RolResponsable_1:
-    nombre: Padre
-    descripcion: Padre del alumno
-    activo: 1
-  RolResponsable_2:
-    nombre: Madre
-    descripcion: Madre del alumno
-    activo: 1
-  RolResponsable_3:
-    nombre: Tío
-    descripcion: Tío del alumno
-    activo: 1
-
 Evento:
   Evento_1:
     titulo: vacio
@@ -632,9 +618,9 @@ Tipoiva:
 Ciclolectivo:
   Ciclolectivo_1:
     fk_establecimiento_id: Establecimiento_2
-    fecha_inicio: 2007-03-05 00:00:00
-    fecha_fin: 2007-12-14 00:00:00
-    descripcion: Ciclo lectivo 2007
+    fecha_inicio: <?php echo date('Y')?>-03-05 00:00:00
+    fecha_fin: <?php echo date('Y')?>-12-14 00:00:00
+    descripcion: Ciclo lectivo <?php echo date('Y') . "\n"?>
     actual: 1
 Turno:
   Turno_4:
@@ -15594,7 +15580,7 @@ Asistencia:
     fk_tipoasistencia_id: Tipoasistencia_1
     fecha: 2007-03-30 00:00:00
 Carrera:
-  Carrera_1:
+  Carrera_2:
     fk_establecimiento_id: Establecimiento_2
     descripcion: Electronica
     orden: 10
@@ -15602,37 +15588,37 @@ Anio:
   Anio_1:
     fk_establecimiento_id: Establecimiento_2
     descripcion: Primer Grado
-    fk_carrera_id: Carrera_1
+    fk_carrera_id: Carrera_2
     orden: 10
   Anio_2:
     fk_establecimiento_id: Establecimiento_2
     descripcion: Segundo Grado
-    fk_carrera_id: Carrera_1
+    fk_carrera_id: Carrera_2
     orden: 20
   Anio_3:
     fk_establecimiento_id: Establecimiento_2
     descripcion: Tercer Grado
-    fk_carrera_id: Carrera_1
+    fk_carrera_id: Carrera_2
     orden: 30
   Anio_4:
     fk_establecimiento_id: Establecimiento_2
     descripcion: Cuarto Grado
-    fk_carrera_id: Carrera_1
+    fk_carrera_id: Carrera_2
     orden: 40
   Anio_5:
     fk_establecimiento_id: Establecimiento_2
     descripcion: Quinto grado
-    fk_carrera_id: Carrera_1
+    fk_carrera_id: Carrera_2
     orden: 50
   Anio_6:
     fk_establecimiento_id: Establecimiento_2
     descripcion: Sexto Grado
-    fk_carrera_id: Carrera_1
+    fk_carrera_id: Carrera_2
     orden: 60
   Anio_7:
     fk_establecimiento_id: Establecimiento_2
     descripcion: Séptimo Grado
-    fk_carrera_id: Carrera_1
+    fk_carrera_id: Carrera_2
     orden: 70
 Orientacion:
   Orientacion_1:
@@ -15775,11 +15761,9 @@ Adjunto:
   Adjunto_2:
     descripcion:
     titulo: certificado_de_terminacion_de_estudios_primarios
-    nombre_archivo: >
-      certificado_de_terminacion_de_estudios_primarios.odt
+    nombre_archivo: certificado_de_terminacion_de_estudios_primarios.odt
     tipo_archivo: application/vnd.oasis.opendocument.text
-    ruta: >
-      certificado_de_terminacion_de_estudios_primarios.odt
+    ruta: certificado_de_terminacion_de_estudios_primarios.odt
     fecha: 2007-10-17 00:00:00
   Adjunto_3:
     descripcion:
@@ -15837,6 +15821,78 @@ Adjunto:
     tipo_archivo: application/vnd.oasis.opendocument.text
     ruta: responsable.odt
     fecha: 2007-10-17 00:00:00
+Informe:
+  Informe_1:
+    nombre: Constancia de alumno regular
+    descripcion: Constancia de alumno regular
+    fk_adjunto_id: Adjunto_1
+    fk_tipoinforme_id: Tipoinforme_1
+    listado: 0
+    variables:
+  Informe_2:
+    nombre: Certificado fin de estudios primarios
+    descripcion: Certificado fin de estudios primarios
+    fk_adjunto_id: Adjunto_2
+    fk_tipoinforme_id: Tipoinforme_1
+    listado: 0
+    variables:
+  Informe_3:
+    nombre: Solicitud de legajo
+    descripcion: Solicitud de legajo
+    fk_adjunto_id: Adjunto_3
+    fk_tipoinforme_id: Tipoinforme_1
+    listado: 0
+    variables: origen
+  Informe_4:
+    nombre: Certificado de estudios
+    descripcion: Certificado de estudios
+    fk_adjunto_id: Adjunto_4
+    fk_tipoinforme_id: Tipoinforme_1
+    listado: 0
+    variables: grado;año
+  Informe_5:
+    nombre: Alumnos por división
+    descripcion: Alumnos por división
+    fk_adjunto_id: Adjunto_5
+    fk_tipoinforme_id: Tipoinforme_1
+    listado: 1
+    variables:
+  Informe_6:
+    nombre: Locacion
+    descripcion: Locacion
+    fk_adjunto_id: Adjunto_6
+    fk_tipoinforme_id: Tipoinforme_2
+    listado: 1
+    variables:
+  Informe_7:
+    nombre: Docente
+    descripcion: Docente
+    fk_adjunto_id: Adjunto_7
+    fk_tipoinforme_id: Tipoinforme_2
+    listado: 1
+    variables:
+  Informe_8:
+    nombre: Organizaci&oacute;n
+    descripcion: Organizaci&oacute;n
+    fk_adjunto_id: Adjunto_8
+    fk_tipoinforme_id: Tipoinforme_2
+    listado: 0
+    variables:
+  Informe_9:
+    nombre: Cuenta
+    descripcion: Cuenta
+    fk_adjunto_id: Adjunto_9
+    fk_tipoinforme_id: Tipoinforme_2
+    listado: 1
+    variables:
+  Informe_10:
+    nombre: Responsable
+    descripcion: Responsable
+    fk_adjunto_id: Adjunto_10
+    fk_tipoinforme_id: Tipoinforme_2
+    listado: 1
+    variables:
+
 RelAnioActividad:
   RelAnioActividad_1:
     fk_anio_id: Anio_1

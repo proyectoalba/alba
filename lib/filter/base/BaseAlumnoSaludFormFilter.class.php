@@ -14,21 +14,23 @@ class BaseAlumnoSaludFormFilter extends BaseFormFilterPropel
   public function setup()
   {
     $this->setWidgets(array(
-      'fk_alumno_id'       => new sfWidgetFormPropelChoice(array('model' => 'Alumno', 'add_empty' => true)),
-      'cobertura_medica'   => new sfWidgetFormFilterInput(),
-      'pediatra_apellido'  => new sfWidgetFormFilterInput(),
-      'pediatra_nombre'    => new sfWidgetFormFilterInput(),
-      'pediatra_domicilio' => new sfWidgetFormFilterInput(),
-      'pediatra_telefono'  => new sfWidgetFormFilterInput(),
+      'fk_alumno_id'            => new sfWidgetFormPropelChoice(array('model' => 'Alumno', 'add_empty' => true)),
+      'cobertura_medica'        => new sfWidgetFormFilterInput(),
+      'cobertura_telefono'      => new sfWidgetFormFilterInput(),
+      'cobertura_observaciones' => new sfWidgetFormFilterInput(),
+      'medico_nombre'           => new sfWidgetFormFilterInput(),
+      'medico_domicilio'        => new sfWidgetFormFilterInput(),
+      'medico_telefono'         => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'fk_alumno_id'       => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Alumno', 'column' => 'id')),
-      'cobertura_medica'   => new sfValidatorPass(array('required' => false)),
-      'pediatra_apellido'  => new sfValidatorPass(array('required' => false)),
-      'pediatra_nombre'    => new sfValidatorPass(array('required' => false)),
-      'pediatra_domicilio' => new sfValidatorPass(array('required' => false)),
-      'pediatra_telefono'  => new sfValidatorPass(array('required' => false)),
+      'fk_alumno_id'            => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Alumno', 'column' => 'id')),
+      'cobertura_medica'        => new sfValidatorPass(array('required' => false)),
+      'cobertura_telefono'      => new sfValidatorPass(array('required' => false)),
+      'cobertura_observaciones' => new sfValidatorPass(array('required' => false)),
+      'medico_nombre'           => new sfValidatorPass(array('required' => false)),
+      'medico_domicilio'        => new sfValidatorPass(array('required' => false)),
+      'medico_telefono'         => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('alumno_salud_filters[%s]');
@@ -46,13 +48,14 @@ class BaseAlumnoSaludFormFilter extends BaseFormFilterPropel
   public function getFields()
   {
     return array(
-      'id'                 => 'Number',
-      'fk_alumno_id'       => 'ForeignKey',
-      'cobertura_medica'   => 'Text',
-      'pediatra_apellido'  => 'Text',
-      'pediatra_nombre'    => 'Text',
-      'pediatra_domicilio' => 'Text',
-      'pediatra_telefono'  => 'Text',
+      'id'                      => 'Number',
+      'fk_alumno_id'            => 'ForeignKey',
+      'cobertura_medica'        => 'Text',
+      'cobertura_telefono'      => 'Text',
+      'cobertura_observaciones' => 'Text',
+      'medico_nombre'           => 'Text',
+      'medico_domicilio'        => 'Text',
+      'medico_telefono'         => 'Text',
     );
   }
 }

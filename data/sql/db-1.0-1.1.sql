@@ -68,18 +68,27 @@ CREATE TABLE `estadosalumnos` (
 
 insert into estadosalumnos (id,nombre) values (1,'Regular');
 insert into estadosalumnos (id,nombre) values (2,'Libre');
+insert into estadosalumnos (id,nombre) values (3,'Egresado');
+insert into estadosalumnos (id,nombre) values (4,'Ex-alumno');
 
 CREATE TABLE `alumno_salud` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fk_alumno_id` int(11) NOT NULL,
   `cobertura_medica` varchar(255) DEFAULT NULL,
-  `pediatra_apellido` varchar(255) DEFAULT NULL,
-  `pediatra_nombre` varchar(255) DEFAULT NULL,
-  `pediatra_domicilio` varchar(255) DEFAULT NULL,
-  `pediatra_telefono` varchar(20) DEFAULT NULL,
+  `cobertura_telefono` varchar(40) DEFAULT NULL,
+  `cobertura_observaciones` varchar(255) DEFAULT NULL,
+  `medico_nombre` varchar(255) DEFAULT NULL,
+  `medico_domicilio` varchar(255) DEFAULT NULL,
+  `medico_telefono` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `alumno_salud_FI_1` (`fk_alumno_id`),
   CONSTRAINT `alumno_salud_FK_1` FOREIGN KEY (`fk_alumno_id`) REFERENCES `alumno` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `nivel_instruccion` (
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`descripcion` VARCHAR(60),
+	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `carrera` (
@@ -164,20 +173,68 @@ CREATE TABLE `legajosalud` (
   CONSTRAINT `legajosalud_FK_2` FOREIGN KEY (`fk_usuario_id`) REFERENCES `usuario` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-drop table rel_rol_permiso;
-CREATE TABLE `rol_permiso` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fk_rol_id` int(11) NOT NULL DEFAULT '0',
-  `fk_permiso_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `rol_permiso_FI_1` (`fk_rol_id`),
-  KEY `rol_permiso_FI_2` (`fk_permiso_id`),
-  CONSTRAINT `rol_permiso_FK_1` FOREIGN KEY (`fk_rol_id`) REFERENCES `rol` (`id`),
-  CONSTRAINT `rol_permiso_FK_2` FOREIGN KEY (`fk_permiso_id`) REFERENCES `permiso` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+alter table rel_rol_permiso rename rol_permiso;
 
 insert into rol (nombre,descripcion) values ('upgrade_admin', 'Administrador (upgrade)');
 
+<<<<<<< HEAD
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 2);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 3);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 4);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 38);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 44);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 45);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 46);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 5);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 6);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 31);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 52);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 7);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 32);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 8);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 9);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 33);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 10);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 11);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 12);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 13);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 30);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 14);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 15);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 41);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 34);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 35);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 48);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 16);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 39);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 53);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 17);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 37);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 50);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 18);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 19);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 20);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 22);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 21);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 43);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 23);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 42);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 24);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 25);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 49);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 40);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 36);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 47);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 29);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 26);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 28);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 51);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 27);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 1);
+INSERT INTO `rol_permiso` (fk_rol_id, fk_permiso_id) VALUES(1, 54);
+
+
+=======
 INSERT INTO `rol_permiso` VALUES(1, 1, 2);
 INSERT INTO `rol_permiso` VALUES(2, 1, 3);
 INSERT INTO `rol_permiso` VALUES(3, 1, 4);
@@ -237,7 +294,7 @@ ALTER TABLE `rol_permiso`
   ADD CONSTRAINT `rol_permiso_FK_1` FOREIGN KEY (`fk_rol_id`) REFERENCES `rol` (`id`),
   ADD CONSTRAINT `rol_permiso_FK_2` FOREIGN KEY (`fk_permiso_id`) REFERENCES `permiso` (`id`);
 
-
+>>>>>>> cf0303652b911387256c8c7a16e6e824b0dc734b
 drop table rel_usuario_permiso;
 
 CREATE TABLE `usuario_permiso` (
@@ -285,7 +342,7 @@ alter table anio add orden int(11) default '0';
 alter table boletin_actividades modify observacion longblob default null;
 alter table boletin_conceptual modify observacion longblob default null;
 
-alter table ciclolectivo modify actual tinyint(4) not null default '0'; 
+alter table ciclolectivo modify actual tinyint(4) not null default '0';
 
 alter table cuenta modify cuit varchar(20) default null;
 
@@ -332,6 +389,11 @@ alter table responsable modify autorizacion_retiro tinyint(4) not null default '
 alter table responsable add llamar_emergencia tinyint(4) not null default '0';
 alter table responsable add opcupacion varchar(255) default null;
 alter table responsable add fecha_nacimiento datetime default null;
+alter table responsable add fk_nivel_instruccion_id integer null;
+
+ALTER TABLE `responsable`
+	ADD CONSTRAINT `responsable_FK_5` FOREIGN KEY (`fk_nivel_instruccion_id`) REFERENCES `nivel_instruccion` (`id`);
+
 alter table rol modify activo tinyint(4) not null default '1';
 alter table rol_responsable modify activo tinyint(4) not null default '1';
 alter table tipoasistencia modify defecto tinyint(4) not null default '0';
@@ -343,3 +405,8 @@ alter table usuario modify borrado tinyint(4) not null default '0';
 DROP TABLE IF EXISTS `modulo`;
 DROP TABLE IF EXISTS `rel_rol_permiso`;
 DROP TABLE IF EXISTS `rel_usuario_permiso`;
+
+--
+
+INSERT INTO nivel_instruccion (descripcion) VALUES ('Inicial'),('Primario'),('Primario (incompleto)'), ('Secundario'),('Secundario (incompleto)'), ('Terciario'),('Terciario (incompleto)'), ('Universitario'),('Universitario (incompleto)');
+INSERT INTO rol_responsable (nombre, descripcion, activo) VALUES ('Hermano/a', 'Hermano/a del alumno', 1);

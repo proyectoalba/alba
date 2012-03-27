@@ -79,6 +79,9 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 	protected $fecha_nacimiento;
 
 	
+	protected $fk_nivel_instruccion_id;
+
+	
 	protected $aProvincia;
 
 	
@@ -89,6 +92,9 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 
 	
 	protected $aRolResponsable;
+
+	
+	protected $aNivelInstruccion;
 
 	
 	protected $collRelRolresponsableResponsables;
@@ -277,6 +283,12 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		} else {
 			return $dt->format($format);
 		}
+	}
+
+	
+	public function getFkNivelInstruccionId()
+	{
+		return $this->fk_nivel_instruccion_id;
 	}
 
 	
@@ -636,6 +648,24 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		return $this;
 	} 
 	
+	public function setFkNivelInstruccionId($v)
+	{
+		if ($v !== null) {
+			$v = (int) $v;
+		}
+
+		if ($this->fk_nivel_instruccion_id !== $v) {
+			$this->fk_nivel_instruccion_id = $v;
+			$this->modifiedColumns[] = ResponsablePeer::FK_NIVEL_INSTRUCCION_ID;
+		}
+
+		if ($this->aNivelInstruccion !== null && $this->aNivelInstruccion->getId() !== $v) {
+			$this->aNivelInstruccion = null;
+		}
+
+		return $this;
+	} 
+	
 	public function hasOnlyDefaultValues()
 	{
 						if (array_diff($this->modifiedColumns, array(ResponsablePeer::FK_PROVINCIA_ID,ResponsablePeer::FK_TIPODOCUMENTO_ID,ResponsablePeer::AUTORIZACION_RETIRO,ResponsablePeer::LLAMAR_EMERGENCIA,ResponsablePeer::FK_CUENTA_ID,ResponsablePeer::FK_ROLRESPONSABLE_ID))) {
@@ -696,6 +726,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$this->fk_rolresponsable_id = ($row[$startcol + 20] !== null) ? (int) $row[$startcol + 20] : null;
 			$this->ocupacion = ($row[$startcol + 21] !== null) ? (string) $row[$startcol + 21] : null;
 			$this->fecha_nacimiento = ($row[$startcol + 22] !== null) ? (string) $row[$startcol + 22] : null;
+			$this->fk_nivel_instruccion_id = ($row[$startcol + 23] !== null) ? (int) $row[$startcol + 23] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -704,7 +735,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 				$this->ensureConsistency();
 			}
 
-						return $startcol + 23; 
+						return $startcol + 24; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Responsable object", $e);
 		}
@@ -725,6 +756,9 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		}
 		if ($this->aRolResponsable !== null && $this->fk_rolresponsable_id !== $this->aRolResponsable->getId()) {
 			$this->aRolResponsable = null;
+		}
+		if ($this->aNivelInstruccion !== null && $this->fk_nivel_instruccion_id !== $this->aNivelInstruccion->getId()) {
+			$this->aNivelInstruccion = null;
 		}
 	} 
 	
@@ -755,6 +789,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$this->aTipodocumento = null;
 			$this->aCuenta = null;
 			$this->aRolResponsable = null;
+			$this->aNivelInstruccion = null;
 			$this->collRelRolresponsableResponsables = null;
 			$this->lastRelRolresponsableResponsableCriteria = null;
 
@@ -840,6 +875,13 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 				$this->setRolResponsable($this->aRolResponsable);
 			}
 
+			if ($this->aNivelInstruccion !== null) {
+				if ($this->aNivelInstruccion->isModified() || $this->aNivelInstruccion->isNew()) {
+					$affectedRows += $this->aNivelInstruccion->save($con);
+				}
+				$this->setNivelInstruccion($this->aNivelInstruccion);
+			}
+
 			if ($this->isNew() ) {
 				$this->modifiedColumns[] = ResponsablePeer::ID;
 			}
@@ -923,6 +965,12 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			if ($this->aRolResponsable !== null) {
 				if (!$this->aRolResponsable->validate($columns)) {
 					$failureMap = array_merge($failureMap, $this->aRolResponsable->getValidationFailures());
+				}
+			}
+
+			if ($this->aNivelInstruccion !== null) {
+				if (!$this->aNivelInstruccion->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aNivelInstruccion->getValidationFailures());
 				}
 			}
 
@@ -1028,6 +1076,9 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			case 22:
 				return $this->getFechaNacimiento();
 				break;
+			case 23:
+				return $this->getFkNivelInstruccionId();
+				break;
 			default:
 				return null;
 				break;
@@ -1061,6 +1112,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$keys[20] => $this->getFkRolresponsableId(),
 			$keys[21] => $this->getOcupacion(),
 			$keys[22] => $this->getFechaNacimiento(),
+			$keys[23] => $this->getFkNivelInstruccionId(),
 		);
 		return $result;
 	}
@@ -1145,6 +1197,9 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			case 22:
 				$this->setFechaNacimiento($value);
 				break;
+			case 23:
+				$this->setFkNivelInstruccionId($value);
+				break;
 		} 	}
 
 	
@@ -1175,6 +1230,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[20], $arr)) $this->setFkRolresponsableId($arr[$keys[20]]);
 		if (array_key_exists($keys[21], $arr)) $this->setOcupacion($arr[$keys[21]]);
 		if (array_key_exists($keys[22], $arr)) $this->setFechaNacimiento($arr[$keys[22]]);
+		if (array_key_exists($keys[23], $arr)) $this->setFkNivelInstruccionId($arr[$keys[23]]);
 	}
 
 	
@@ -1205,6 +1261,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(ResponsablePeer::FK_ROLRESPONSABLE_ID)) $criteria->add(ResponsablePeer::FK_ROLRESPONSABLE_ID, $this->fk_rolresponsable_id);
 		if ($this->isColumnModified(ResponsablePeer::OCUPACION)) $criteria->add(ResponsablePeer::OCUPACION, $this->ocupacion);
 		if ($this->isColumnModified(ResponsablePeer::FECHA_NACIMIENTO)) $criteria->add(ResponsablePeer::FECHA_NACIMIENTO, $this->fecha_nacimiento);
+		if ($this->isColumnModified(ResponsablePeer::FK_NIVEL_INSTRUCCION_ID)) $criteria->add(ResponsablePeer::FK_NIVEL_INSTRUCCION_ID, $this->fk_nivel_instruccion_id);
 
 		return $criteria;
 	}
@@ -1278,6 +1335,8 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		$copyObj->setOcupacion($this->ocupacion);
 
 		$copyObj->setFechaNacimiento($this->fecha_nacimiento);
+
+		$copyObj->setFkNivelInstruccionId($this->fk_nivel_instruccion_id);
 
 
 		if ($deepCopy) {
@@ -1435,6 +1494,37 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			
 		}
 		return $this->aRolResponsable;
+	}
+
+	
+	public function setNivelInstruccion(NivelInstruccion $v = null)
+	{
+		if ($v === null) {
+			$this->setFkNivelInstruccionId(NULL);
+		} else {
+			$this->setFkNivelInstruccionId($v->getId());
+		}
+
+		$this->aNivelInstruccion = $v;
+
+						if ($v !== null) {
+			$v->addResponsable($this);
+		}
+
+		return $this;
+	}
+
+
+	
+	public function getNivelInstruccion(PropelPDO $con = null)
+	{
+		if ($this->aNivelInstruccion === null && ($this->fk_nivel_instruccion_id !== null)) {
+			$c = new Criteria(NivelInstruccionPeer::DATABASE_NAME);
+			$c->add(NivelInstruccionPeer::ID, $this->fk_nivel_instruccion_id);
+			$this->aNivelInstruccion = NivelInstruccionPeer::doSelectOne($c, $con);
+			
+		}
+		return $this->aNivelInstruccion;
 	}
 
 	
@@ -1621,6 +1711,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$this->aTipodocumento = null;
 			$this->aCuenta = null;
 			$this->aRolResponsable = null;
+			$this->aNivelInstruccion = null;
 	}
 
 } 

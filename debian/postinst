@@ -1,0 +1,46 @@
+#!/bin/sh -e
+# postinst script for alba
+
+if [ "$1" = "configure" ]; then
+
+    . /usr/share/debconf/confmodule
+    db_version 2.0
+fi
+
+# The following only on a new install
+if [ "$1" = "configure" ]; then
+
+	# Configure Apache
+	db_get alba/reconfigure-webserver
+
+	webservers="$RET"
+
+
+	for webserver in $webservers; do
+		webserver=${webserver%,}
+    test -x /usr/sbin/$webserver || continue
+
+      case "$webserver" in
+            apache|apache-perl|apache-ssl)
+                ;;
+            apache2)
+                if [ -d /etc/$webserver/conf.d ] && [ ! -e /etc/$webserver/conf.d/alba-apache.conf ]; then
+                  ln -s ../../alba/alba-apache.conf /etc/$webserver/conf.d/alba-apache.conf
+                fi
+                if [ -x /usr/sbin/invoke-rc.d ]; then
+                  invoke-rc.d $webserver reload || true
+                else
+                  /etc/init.d/$webserver reload || true
+                fi
+                ;;
+        esac
+
+	done
+
+fi
+
+#DEBHELPER#
+
+exit 0
+
+

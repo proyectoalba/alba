@@ -1,0 +1,19 @@
+
+Template: alba/reconfigure-webserver
+Type: multiselect
+Choices: apache2, lighttpd
+Default: apache2
+Description: Which web server would you like to reconfigure automatically?
+ Alba can run on any web server that PHP5 does, but this automatic
+ configuration process only supports Apache2 and Lighttpd.
+
+Template: alba/setup-completed
+Type: title
+Description: Gracias por elegir ALBA!
+ Ahora, deberá ingresar con su navegador web a la
+ direccion http://localhost/alba/
+ para terminar con el proceso de configuración del sistema.
+ .
+ Recuerde que puede encontrar docuementacion en /usr/share/doc/alba.
+ .
+ Para mas informacion visite http://www.proyectoalba.com.ar

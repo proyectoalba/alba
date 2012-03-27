@@ -1,0 +1,25 @@
+Source: alba
+Section: web
+Priority: extra
+Maintainer: Fernando Toledo <ftoledo@docksud.com.ar>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.2
+Homepage: http://www.proyectoalba.com.ar
+Vcs-Git: git://github.com/proyectoalba/alba.git
+Vcs-Browser: https://github.com/proyectoalba/alba
+
+Package: alba
+Architecture: all
+Recommends: apache2 | httpd, php5-gd, php5-pgsql, php-pear
+Depends: libapache2-mod-php5, apache2 | httpd, mysql-server, ${misc:Depends},
+ dbconfig-common, php5-cli, php5-mysql
+Description: Sistema Libre de Gestión Educativa ALBA
+ Sistema Informático Abierto de Gestión Unificada para Unidades Educacionales
+ .
+ El Proyecto Alba, es un proyecto de desarrollo de Software para la realización
+ de un "Sistema Informático Abierto de Gestión Unificada para Unidades Educacionales",
+ que brindará una herramienta realizada en software libre, para el trabajo
+ cotidiano en éstas unidades. Por su tipo de licenciamiento bajo la GNU/GPL,
+ el sistema permitirá una reutilización y actualización constante, como así
+ también la posibilidad de aprovechamiento de módulos ya realizados por otros
+ emprendedores (siempre que sean compatibles con esta licencia).

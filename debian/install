@@ -1,0 +1,11 @@
+apps	usr/share/alba
+config  usr/share/alba
+data    usr/share/alba
+doc     usr/share/alba
+lib     usr/share/alba
+plugins usr/share/alba
+README  usr/share/alba
+symfony usr/share/alba
+test    usr/share/alba
+web     usr/share/alba
+debian/conf/*	etc/alba
