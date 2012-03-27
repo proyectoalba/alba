@@ -38,7 +38,7 @@ generator:
       list:
             title: " "
             display: [ _legajo, =apellido, apellido_materno, nombre, nro_documento, sexo, telefono, email, activo ]
-            filters:  [ _nombre_apellido, _division, nro_documento ]
+            filters:  [nombre, apellido, _division, nro_documento ]
             object_actions:
                 _edit: -
                 _delete: -
@@ -50,7 +50,7 @@ generator:
             actions:
                 _create: -
             max_per_page: 10
-            
+
       edit:
             title: " "
             fields:
@@ -66,4 +66,4 @@ generator:
                 _save: -
                 _list: -
                 _save_and_add: -
-                
+

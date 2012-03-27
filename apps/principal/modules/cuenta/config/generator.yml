@@ -22,7 +22,7 @@ generator:
                 irCompleta:  { name: Agregar alumnos y responsables, action: verCompleta, icon: next.png }
             actions:
                 _create: -
-                
+            filters: [nombre,razon_social,direccion]                
       edit:
             title: " "
             fields: 
