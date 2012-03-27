@@ -37,8 +37,8 @@ all:
     default_module:         default
     default_action:         index
 #
-#    error_404_module:       default
-#    error_404_action:       error404
+    error_404_module:       default
+    error_404_action:       error404
 #
 #    login_module:           default
 #    login_action:           login

@@ -1,3 +1,6 @@
-etc/alba/databases.yml	usr/shre/alba/config/databases.yml
-etc/alba/propel.ini	usr/shre/alba/config/propel.ini
+etc/alba/databases.yml	usr/share/alba/config/databases.yml
+etc/alba/propel.ini	usr/share/alba/config/propel.ini
+var/cache/alba usr/share/alba/cache
+var/log/alba usr/share/alba/log 
+
 

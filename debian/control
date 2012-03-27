@@ -10,8 +10,9 @@ Vcs-Browser: https://github.com/proyectoalba/alba
 
 Package: alba
 Architecture: all
-Recommends: apache2 | httpd, php5-gd
-Depends: libapache2-mod-php5, apache2, mysql-server | httpd, ${misc:Depends}
+Recommends: apache2 | httpd, php5-gd, php5-pgsql, php-pear
+Depends: libapache2-mod-php5, apache2 | httpd, mysql-server, ${misc:Depends},
+ dbconfig-common, php5-cli, php5-mysql
 Description: Sistema Libre de Gestión Educativa ALBA
  Sistema Informático Abierto de Gestión Unificada para Unidades Educacionales
  .

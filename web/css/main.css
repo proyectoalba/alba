@@ -71,7 +71,7 @@ ul {
   padding: 5px 20px 5px 25px;
   font-size: 11px;
   color: #fff;
-  background: #f33 url(/sf/images/sf_admin/error.png) no-repeat 5px 2px;
+  background: #f33 url(../sf/sf_admin/images/error.png) no-repeat 5px 2px;
 }
 
 .form-errors ul
@@ -83,7 +83,7 @@ ul {
 .form-errors li
 {
   padding: 5px 20px;
-  background: url(/sf/images/sf_admin/error.png) no-repeat 0 2px;
+  background: url(../sf/sf_admin/images/error.png) no-repeat 0 2px;
 }
 
 #sf_admin_container #sf_admin_bar
