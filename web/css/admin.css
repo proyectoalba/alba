@@ -11,6 +11,7 @@ div#sf_admin_container div.data h3 {
 
 body div#content div#sf_admin_container  ul.sf_admin_actions {
 	margin-bottom: 30px;
+    margin-top: 50px;
 }
 body div#content div#sf_admin_container  ul.sf_admin_actions li {
 	height: 21px;
