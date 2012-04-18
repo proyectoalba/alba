@@ -70,22 +70,72 @@ class alumnoActions extends autoAlumnoActions
 
   protected function addFiltersCriteria($c) {
     $c->add(AlumnoPeer::FK_ESTABLECIMIENTO_ID,$this->getUser()->getAttribute('fk_establecimiento_id'));
-
+/*
     if(isset($this->filters['nombre_apellido']) && $this->filters['nombre_apellido'] != '') {
         $cton1 = $c->getNewCriterion(AlumnoPeer::NOMBRE, "%".$this->filters['nombre_apellido']."%", Criteria::LIKE);
         $cton2 = $c->getNewCriterion(AlumnoPeer::APELLIDO, "%".$this->filters['nombre_apellido']."%", Criteria::LIKE);
         $cton1->addOr($cton2);
         $c->add($cton1);
     }
-
+*/
+  /*
     if(isset($this->filters['nro_documento']) && $this->filters['nro_documento'] != '') {
         $c->add(AlumnoPeer::NRO_DOCUMENTO,$this->filters['nro_documento']);
     }
-
+*/
     if (isset($this->filters['division']) && $this->filters['division'] != '' && $this->filters['division'] != 0) {
         $c->add(RelAlumnoDivisionPeer::FK_DIVISION_ID, $this->filters['division']);
         $c->addJoin(AlumnoPeer::ID, RelAlumnoDivisionPeer::FK_ALUMNO_ID);
     }
+
+    ////
+
+       if (isset($this->filters['nombre_is_empty']))
+    {
+      $criterion = $c->getNewCriterion(AlumnoPeer::NOMBRE, '');
+      $criterion->addOr($c->getNewCriterion(AlumnoPeer::NOMBRE, null, Criteria::ISNULL));
+      $c->add($criterion);
+    }
+    else if (isset($this->filters['nombre']) && $this->filters['nombre'] !== '')
+    {
+      $c->add(AlumnoPeer::NOMBRE, strtr($this->filters['nombre'], '*', '%'), Criteria::LIKE);
+    }
+    if (isset($this->filters['apellido_is_empty']))
+    {
+      $criterion = $c->getNewCriterion(AlumnoPeer::APELLIDO, '');
+      $criterion->addOr($c->getNewCriterion(AlumnoPeer::APELLIDO, null, Criteria::ISNULL));
+      $c->add($criterion);
+    }
+    else if (isset($this->filters['apellido']) && $this->filters['apellido'] !== '')
+    {
+      $c->add(AlumnoPeer::APELLIDO, strtr($this->filters['apellido'], '*', '%'), Criteria::LIKE);
+    }
+  /*
+    if (isset($this->filters['division_is_empty']))
+    {
+      $criterion = $c->getNewCriterion(AlumnoPeer::DIVISION, '');
+      $criterion->addOr($c->getNewCriterion(AlumnoPeer::DIVISION, null, Criteria::ISNULL));
+      $c->add($criterion);
+    }
+    else if (isset($this->filters['division']) && $this->filters['division'] !== '')
+    {
+      $c->add(AlumnoPeer::DIVISION, $this->filters['division']);
+    }
+   *
+   * */
+
+    if (isset($this->filters['nro_documento_is_empty']))
+    {
+      $criterion = $c->getNewCriterion(AlumnoPeer::NRO_DOCUMENTO, '');
+      $criterion->addOr($c->getNewCriterion(AlumnoPeer::NRO_DOCUMENTO, null, Criteria::ISNULL));
+      $c->add($criterion);
+    }
+    else if (isset($this->filters['nro_documento']) && $this->filters['nro_documento'] !== '')
+    {
+      $c->add(AlumnoPeer::NRO_DOCUMENTO, strtr($this->filters['nro_documento'], '*', '%'), Criteria::LIKE);
+    }
+
+    ////
 
 
   }

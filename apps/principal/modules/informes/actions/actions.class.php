@@ -740,11 +740,11 @@ class InformesActions extends sfActions {
     $criteria->addJoin(TurnoPeer::FK_CICLOLECTIVO_ID, CiclolectivoPeer::ID);
 
     $criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
+    $criteria->addJoin(DivisionPeer::FK_TURNO_ID,TurnoPeer::ID);
     $criteria->add(TurnoPeer::FK_CICLOLECTIVO_ID, $this->getUser()->getAttribute('fk_ciclolectivo_id'));
-
-    $criteria->addAscendingOrderByColumn(AnioPeer::ORDEN);
     $criteria->addAscendingOrderByColumn(DivisionPeer::ORDEN);
-
+    $criteria->addAscendingOrderByColumn(AnioPeer::DESCRIPCION);
+    $criteria->addAscendingOrderByColumn(DivisionPeer::DESCRIPCION);
     $divisiones = DivisionPeer::doSelectJoinAnio($criteria);
     $optionsDivision[''] = "";
     foreach ($divisiones as $division) {

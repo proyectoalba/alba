@@ -48,6 +48,12 @@ ul {
   border-right: 4px solid #73B65A !important;
 }
 
+.sf_admin_action_search
+{
+  background: url(../images/small/search.png) no-repeat 3px 2px;
+  border-right: 4px solid #73B65A !important;
+}
+
 .sf_admin_action_list
 {
   background: url(../images/small/listado.png) no-repeat 3px 2px;
