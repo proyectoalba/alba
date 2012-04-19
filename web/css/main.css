@@ -126,13 +126,19 @@ ul {
 
 div#indicator
 {
+  display: none;
+  font-weight: bold;
+  text-decoration: blink;
+  color: red;
+  text-align: center;
+  padding-top: 3px;
   position: absolute;
-  width: 100px;
-  height: 40px;
-  left: 10px;
-  top: 10px;
-  z-index: 900;
-  background: url(../images/indicator.gif) no-repeat 0 0;
+  right: 10px;
+  top: 58px;
+  width: 220px;
+  height: 19px;
+  background: url("../images/indicator.gif") no-repeat 0 0;
+  x-moz-alpha: .5;
 }
 
 div.pageBreak { page-break-before: always; }

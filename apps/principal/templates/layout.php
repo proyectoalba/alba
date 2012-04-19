@@ -1,3 +1,4 @@
+<?php use_helper('Javascript')?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2000/REC-xhtml1-200000126/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
@@ -109,8 +110,7 @@ if ($sf_user->isAuthenticated() == true) {
       </tr>
     </table>
   </body>
-  <script type="text/javascript">
-    Drag.init(document.getElementById("sf_admin_bar"));
-  </script>
+  <?php echo javascript_tag('Drag.init(document.getElementById("sf_admin_bar"));')?>
+  <div id="indicator">Un momento por favor...</div>
 <?php echo javascript_include_tag('varios/wz_tooltip.js'); ?>
 </html>
