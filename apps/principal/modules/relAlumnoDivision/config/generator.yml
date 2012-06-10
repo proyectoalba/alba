@@ -17,4 +17,4 @@ generator:
             _edit:      -
             _delete:    -
         filters: [ fk_alumno_id, _filtro_fk_division_id ]
-        sort: fk_division_id, alumno
+        sort: [fk_division_id, fk_alumno_id]
