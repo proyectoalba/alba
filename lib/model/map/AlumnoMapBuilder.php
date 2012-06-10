@@ -91,5 +91,11 @@ class AlumnoMapBuilder implements MapBuilder {
 
 		$tMap->addColumn('OBSERVACION', 'Observacion', 'VARCHAR', false, 255);
 
+		$tMap->addColumn('EMAIL_PADRE', 'EmailPadre', 'VARCHAR', false, 128);
+
+		$tMap->addColumn('CELULAR_PADRE', 'CelularPadre', 'VARCHAR', false, 20);
+
+		$tMap->addColumn('CELULAR_MADRE', 'CelularMadre', 'VARCHAR', false, 20);
+
 	} 
 } 

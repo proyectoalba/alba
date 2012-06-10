@@ -34,7 +34,9 @@ generator:
             legajo_numero: { name: Legajo Numero }
             observacion: { name: Observaci&oacute;n }
             fk_estadoalumno_id: { name: Estado Alumno }
-
+            email_padre: {name: Email del Padre }
+            celular_padre: {name: Celular del Padre }
+            celular_madre: {name: Celular de la Madre }
       list:
             title: " "
             display: [ _legajo, =apellido, apellido_materno, nombre, nro_documento, sexo, telefono, email, activo ]
@@ -58,7 +60,7 @@ generator:
                 fk_provincia_id:   { params: include_custom=--Seleccione una Provincia--}
             display:
                 "Informacion general":  [ legajo_prefijo, legajo_numero, apellido, apellido_materno, nombre, _sexo, fk_tipodocumento_id, nro_documento, lugar_nacimiento, fecha_nacimiento, fk_pais_id, email, activo, fk_estadoalumno_id ]
-                "Donde vive": [direccion, ciudad, fk_provincia_id, codigo_postal, telefono]
+                "Donde vive": [direccion, ciudad, fk_provincia_id, codigo_postal, telefono, celular_padre, email_padre, celular_madre]
                 "Prioridades": [ distancia_escuela, hermanos_escuela, hijo_maestro_escuela ]
                 "Otros": [ procedencia, observacion,  certificado_medico, _fk_cuenta_id ]
             actions:
