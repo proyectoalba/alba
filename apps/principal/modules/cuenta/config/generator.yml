@@ -19,7 +19,7 @@ generator:
             object_actions:
                 _edit: -
                 _delete: -
-                irCompleta:  { name: Agregar alumnos y responsables, action: verCompleta, icon: next.png }
+                irCompleta:  { name: Agregar alumnos y responsables, action: verCompleta, icon: small/alumnos_add.png }
             actions:
                 _create: -
                 
