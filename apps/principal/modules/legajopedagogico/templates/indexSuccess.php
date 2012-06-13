@@ -41,10 +41,7 @@ array('use_style' => true)
   'class' => 'sf_admin_action_save',
 )) ?></li>
 </ul>
-
 </form>
-
-
 <?php if (count($aAlumno) > 0) {
         if ($txt_apellido OR $txt_nombre) { ?>
     Usted busc&oacute; -<?php echo (($txt_apellido)?$txt_apellido:"")." ".(($txt_nombre)?$txt_nombre:"") ?>-
@@ -53,7 +50,10 @@ array('use_style' => true)
 <table cellspacing="0" class="sf_admin_list">
   <thead>
   <tr>
-    <th id="sf_admin_list_th_alumno"> Alumno</th>
+    <th id="sf_admin_list_th_alumno"> Legago</th>
+    <th id="sf_admin_list_th_alumno"> Apellido</th> 
+    <th id="sf_admin_list_th_alumno"> Apellido Materno</th>
+    <th id="sf_admin_list_th_alumno"> Nombre</th>
     <th id="sf_admin_list_th_sf_actions">Acciones</th>
   </tr>
   </thead>
@@ -64,7 +64,10 @@ array('use_style' => true)
     foreach($aAlumno as $alumno){
 ?>
   <tr class="sf_admin_row_0">
-    <td><?php echo $alumno->getApellido()." ".$alumno->getNombre(); ?></td>
+    <td><?php echo $alumno->getLegajoPrefijo()." / ".$alumno->getLegajoNumero(); ?></td>
+    <td><?php echo $alumno->getApellido();?></td>
+    <td><?php echo $alumno->getApellidoMaterno();?></td>
+    <td><?php echo $alumno->getNombre(); ?></td>
     <td>
     <ul class="sf_admin_td_actions">
      <li><?php echo link_to(image_tag(sfConfig::get('sf_admin_web_dir').'/images/edit_icon.png', array('alt' => 'editar', 'title' => 'Editar')) , 'alumno/edit?id='.$alumno->getId()); ?></li>
@@ -78,7 +81,7 @@ array('use_style' => true)
     <li><?php echo link_to(image_tag('small/legajosalud.png', array('alt' => __('Legajo de Salud'), 'title' => __('Legajo de Salud'))), 'alumno/legajosalud?id='.$alumno->getId()); ?></li>
   &nbsp;    
     <li><?php echo link_to(image_tag('small/boletin.png',array("title"=>"Ver Bolet&iacute;n")), 'boletin/mostrar?alumno_id='. $alumno->getId(),'target=_blank') ?></li>        
-    <li><?php echo link_to(image_tag('next.png', array('alt' => 'Cuenta', 'title' => 'Cuenta')), 'alumno/irCuenta?id='.$alumno->getFkCuentaId()); ?></li>
+    <li><?php echo link_to(image_tag('small/cuenta_go.png', array('alt' => 'Cuenta', 'title' => 'Cuenta')), 'alumno/irCuenta?id='.$alumno->getFkCuentaId()); ?></li>
     </ul>
     </td>
   </tr>
