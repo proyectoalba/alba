@@ -12,5 +12,4 @@ web/tmp/*
 web/.htaccess
 *.geany
 !.gitignore
-index.php
 
