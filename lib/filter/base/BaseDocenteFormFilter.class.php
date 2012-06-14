@@ -36,8 +36,8 @@ class BaseDocenteFormFilter extends BaseFormFilterPropel
       'activo'                          => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'fk_provincia_id'                 => new sfWidgetFormPropelChoice(array('model' => 'Provincia', 'add_empty' => true)),
       'fk_pais_id'                      => new sfWidgetFormPropelChoice(array('model' => 'Pais', 'add_empty' => true)),
-      'docente_horario_list'            => new sfWidgetFormPropelChoice(array('model' => 'Evento', 'add_empty' => true)),
       'rel_anio_actividad_docente_list' => new sfWidgetFormPropelChoice(array('model' => 'RelAnioActividad', 'add_empty' => true)),
+      'docente_horario_list'            => new sfWidgetFormPropelChoice(array('model' => 'Evento', 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
@@ -63,8 +63,8 @@ class BaseDocenteFormFilter extends BaseFormFilterPropel
       'activo'                          => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'fk_provincia_id'                 => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Provincia', 'column' => 'id')),
       'fk_pais_id'                      => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Pais', 'column' => 'id')),
-      'docente_horario_list'            => new sfValidatorPropelChoice(array('model' => 'Evento', 'required' => false)),
       'rel_anio_actividad_docente_list' => new sfValidatorPropelChoice(array('model' => 'RelAnioActividad', 'required' => false)),
+      'docente_horario_list'            => new sfValidatorPropelChoice(array('model' => 'Evento', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('docente_filters[%s]');
@@ -72,31 +72,6 @@ class BaseDocenteFormFilter extends BaseFormFilterPropel
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
     parent::setup();
-  }
-
-  public function addDocenteHorarioListColumnCriteria(Criteria $criteria, $field, $values)
-  {
-    if (!is_array($values))
-    {
-      $values = array($values);
-    }
-
-    if (!count($values))
-    {
-      return;
-    }
-
-    $criteria->addJoin(DocenteHorarioPeer::FK_DOCENTE_ID, DocentePeer::ID);
-
-    $value = array_pop($values);
-    $criterion = $criteria->getNewCriterion(DocenteHorarioPeer::FK_EVENTO_ID, $value);
-
-    foreach ($values as $value)
-    {
-      $criterion->addOr($criteria->getNewCriterion(DocenteHorarioPeer::FK_EVENTO_ID, $value));
-    }
-
-    $criteria->add($criterion);
   }
 
   public function addRelAnioActividadDocenteListColumnCriteria(Criteria $criteria, $field, $values)
@@ -119,6 +94,31 @@ class BaseDocenteFormFilter extends BaseFormFilterPropel
     foreach ($values as $value)
     {
       $criterion->addOr($criteria->getNewCriterion(RelAnioActividadDocentePeer::FK_ANIO_ACTIVIDAD_ID, $value));
+    }
+
+    $criteria->add($criterion);
+  }
+
+  public function addDocenteHorarioListColumnCriteria(Criteria $criteria, $field, $values)
+  {
+    if (!is_array($values))
+    {
+      $values = array($values);
+    }
+
+    if (!count($values))
+    {
+      return;
+    }
+
+    $criteria->addJoin(DocenteHorarioPeer::FK_DOCENTE_ID, DocentePeer::ID);
+
+    $value = array_pop($values);
+    $criterion = $criteria->getNewCriterion(DocenteHorarioPeer::FK_EVENTO_ID, $value);
+
+    foreach ($values as $value)
+    {
+      $criterion->addOr($criteria->getNewCriterion(DocenteHorarioPeer::FK_EVENTO_ID, $value));
     }
 
     $criteria->add($criterion);
@@ -155,8 +155,8 @@ class BaseDocenteFormFilter extends BaseFormFilterPropel
       'activo'                          => 'Boolean',
       'fk_provincia_id'                 => 'ForeignKey',
       'fk_pais_id'                      => 'ForeignKey',
-      'docente_horario_list'            => 'ManyKey',
       'rel_anio_actividad_docente_list' => 'ManyKey',
+      'docente_horario_list'            => 'ManyKey',
     );
   }
 }

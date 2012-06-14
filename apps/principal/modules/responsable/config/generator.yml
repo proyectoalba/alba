@@ -29,7 +29,7 @@ generator:
         object_actions:
           _edit: -
           _delete: -
-          irCuenta:  { name: Ir a Cuenta, action: irCuenta, icon: next.png }
+          irCuenta:  { name: Ir a Cuenta, action: irCuenta, icon: small/cuenta_go.png }
         actions: {}
         filters: [ apellido ]        
       edit:
