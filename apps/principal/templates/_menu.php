@@ -87,7 +87,7 @@
             <li><span></span><?php echo link_to("Notas","boletin/list")?></li>
           </ul>
         </li>
-        <li><span></span><?php echo link_to("Pasar de a&ntilde;o","ciclolectivo/pasajeAlumnosForm")?></li>
+        <li><span></span><?php echo link_to("Pasar de a&ntilde;o","ciclolectivo/pasajeAlumnos")?></li>
       </ul>
     </li>
     <li><span></span><a href="#">Docentes</a>
@@ -97,7 +97,7 @@
     </li>
     <li><span></span><a href="#">Gesti&oacute;n Escolar</a>
       <ul>
-        <li><span></span><?php echo link_to("Definir Carrera","carrera/index")?></li>
+        <li><span></span><?php echo link_to("Definir Carreras","carrera/index")?></li>
         <li><span></span><?php echo link_to("Definir Grados/A&ntilde;os","anio/index")?></li>
         <li><span></span><?php echo link_to("Definir Orientaciones","orientacion/index")?></li>
         <li><span></span><?php echo link_to("Definir Secciones/Divisiones","division/index")?></li>
@@ -143,7 +143,7 @@
     <li><span></span><a href="#">Ayuda</a>
       <ul>
         <li><span></span><?php echo link_to("Manual", "http://".sfContext::getInstance()->getRequest()->getHost().sfContext::getInstance()->getRequest()->getRelativeUrlRoot()."/manual/index.html", 'target=_blank')?></li>
-          <li><span></span><?php echo link_to("Ayuda v&iacute;a IRC","http://chat.proyectoalba.com.ar")?></li>
+          <li><span></span><?php echo link_to("Ayuda v&iacute;a IRC",'http://webchat.freenode.net/?channels=proyectoalba&uio=d4', array('target'=>'blank'))?></li>
         <li><span></span><?php echo link_to("Cr&eacute;ditos","creditos/index")?></li>
       </ul>
     </li>

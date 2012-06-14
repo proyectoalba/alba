@@ -25,6 +25,9 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 	protected $direccion;
 
 	
+	protected $direccion_laboral;
+
+	
 	protected $ciudad;
 
 	
@@ -35,6 +38,9 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 
 	
 	protected $telefono;
+
+	
+	protected $telefono_laboral;
 
 	
 	protected $telefono_movil;
@@ -58,10 +64,22 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 	protected $autorizacion_retiro;
 
 	
+	protected $llamar_emergencia;
+
+	
 	protected $fk_cuenta_id;
 
 	
 	protected $fk_rolresponsable_id;
+
+	
+	protected $ocupacion;
+
+	
+	protected $fecha_nacimiento;
+
+	
+	protected $fk_nivel_instruccion_id;
 
 	
 	protected $aProvincia;
@@ -74,6 +92,9 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 
 	
 	protected $aRolResponsable;
+
+	
+	protected $aNivelInstruccion;
 
 	
 	protected $collRelRolresponsableResponsables;
@@ -100,6 +121,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		$this->fk_provincia_id = 0;
 		$this->fk_tipodocumento_id = 0;
 		$this->autorizacion_retiro = false;
+		$this->llamar_emergencia = false;
 		$this->fk_cuenta_id = 0;
 		$this->fk_rolresponsable_id = 1;
 	}
@@ -135,6 +157,12 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 	}
 
 	
+	public function getDireccionLaboral()
+	{
+		return $this->direccion_laboral;
+	}
+
+	
 	public function getCiudad()
 	{
 		return $this->ciudad;
@@ -156,6 +184,12 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 	public function getTelefono()
 	{
 		return $this->telefono;
+	}
+
+	
+	public function getTelefonoLaboral()
+	{
+		return $this->telefono_laboral;
 	}
 
 	
@@ -201,6 +235,12 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 	}
 
 	
+	public function getLlamarEmergencia()
+	{
+		return $this->llamar_emergencia;
+	}
+
+	
 	public function getFkCuentaId()
 	{
 		return $this->fk_cuenta_id;
@@ -210,6 +250,45 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 	public function getFkRolresponsableId()
 	{
 		return $this->fk_rolresponsable_id;
+	}
+
+	
+	public function getOcupacion()
+	{
+		return $this->ocupacion;
+	}
+
+	
+	public function getFechaNacimiento($format = 'Y-m-d H:i:s')
+	{
+		if ($this->fecha_nacimiento === null) {
+			return null;
+		}
+
+
+		if ($this->fecha_nacimiento === '0000-00-00 00:00:00') {
+									return null;
+		} else {
+			try {
+				$dt = new DateTime($this->fecha_nacimiento);
+			} catch (Exception $x) {
+				throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->fecha_nacimiento, true), $x);
+			}
+		}
+
+		if ($format === null) {
+						return $dt;
+		} elseif (strpos($format, '%') !== false) {
+			return strftime($format, $dt->format('U'));
+		} else {
+			return $dt->format($format);
+		}
+	}
+
+	
+	public function getFkNivelInstruccionId()
+	{
+		return $this->fk_nivel_instruccion_id;
 	}
 
 	
@@ -283,6 +362,20 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		return $this;
 	} 
 	
+	public function setDireccionLaboral($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->direccion_laboral !== $v) {
+			$this->direccion_laboral = $v;
+			$this->modifiedColumns[] = ResponsablePeer::DIRECCION_LABORAL;
+		}
+
+		return $this;
+	} 
+	
 	public function setCiudad($v)
 	{
 		if ($v !== null) {
@@ -338,6 +431,20 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		if ($this->telefono !== $v) {
 			$this->telefono = $v;
 			$this->modifiedColumns[] = ResponsablePeer::TELEFONO;
+		}
+
+		return $this;
+	} 
+	
+	public function setTelefonoLaboral($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->telefono_laboral !== $v) {
+			$this->telefono_laboral = $v;
+			$this->modifiedColumns[] = ResponsablePeer::TELEFONO_LABORAL;
 		}
 
 		return $this;
@@ -445,6 +552,20 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		return $this;
 	} 
 	
+	public function setLlamarEmergencia($v)
+	{
+		if ($v !== null) {
+			$v = (boolean) $v;
+		}
+
+		if ($this->llamar_emergencia !== $v || $v === false) {
+			$this->llamar_emergencia = $v;
+			$this->modifiedColumns[] = ResponsablePeer::LLAMAR_EMERGENCIA;
+		}
+
+		return $this;
+	} 
+	
 	public function setFkCuentaId($v)
 	{
 		if ($v !== null) {
@@ -481,9 +602,73 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		return $this;
 	} 
 	
+	public function setOcupacion($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->ocupacion !== $v) {
+			$this->ocupacion = $v;
+			$this->modifiedColumns[] = ResponsablePeer::OCUPACION;
+		}
+
+		return $this;
+	} 
+	
+	public function setFechaNacimiento($v)
+	{
+						if ($v === null || $v === '') {
+			$dt = null;
+		} elseif ($v instanceof DateTime) {
+			$dt = $v;
+		} else {
+									try {
+				if (is_numeric($v)) { 					$dt = new DateTime('@'.$v, new DateTimeZone('UTC'));
+															$dt->setTimeZone(new DateTimeZone(date_default_timezone_get()));
+				} else {
+					$dt = new DateTime($v);
+				}
+			} catch (Exception $x) {
+				throw new PropelException('Error parsing date/time value: ' . var_export($v, true), $x);
+			}
+		}
+
+		if ( $this->fecha_nacimiento !== null || $dt !== null ) {
+			
+			$currNorm = ($this->fecha_nacimiento !== null && $tmpDt = new DateTime($this->fecha_nacimiento)) ? $tmpDt->format('Y-m-d H:i:s') : null;
+			$newNorm = ($dt !== null) ? $dt->format('Y-m-d H:i:s') : null;
+
+			if ( ($currNorm !== $newNorm) 					)
+			{
+				$this->fecha_nacimiento = ($dt ? $dt->format('Y-m-d H:i:s') : null);
+				$this->modifiedColumns[] = ResponsablePeer::FECHA_NACIMIENTO;
+			}
+		} 
+		return $this;
+	} 
+	
+	public function setFkNivelInstruccionId($v)
+	{
+		if ($v !== null) {
+			$v = (int) $v;
+		}
+
+		if ($this->fk_nivel_instruccion_id !== $v) {
+			$this->fk_nivel_instruccion_id = $v;
+			$this->modifiedColumns[] = ResponsablePeer::FK_NIVEL_INSTRUCCION_ID;
+		}
+
+		if ($this->aNivelInstruccion !== null && $this->aNivelInstruccion->getId() !== $v) {
+			$this->aNivelInstruccion = null;
+		}
+
+		return $this;
+	} 
+	
 	public function hasOnlyDefaultValues()
 	{
-						if (array_diff($this->modifiedColumns, array(ResponsablePeer::FK_PROVINCIA_ID,ResponsablePeer::FK_TIPODOCUMENTO_ID,ResponsablePeer::AUTORIZACION_RETIRO,ResponsablePeer::FK_CUENTA_ID,ResponsablePeer::FK_ROLRESPONSABLE_ID))) {
+						if (array_diff($this->modifiedColumns, array(ResponsablePeer::FK_PROVINCIA_ID,ResponsablePeer::FK_TIPODOCUMENTO_ID,ResponsablePeer::AUTORIZACION_RETIRO,ResponsablePeer::LLAMAR_EMERGENCIA,ResponsablePeer::FK_CUENTA_ID,ResponsablePeer::FK_ROLRESPONSABLE_ID))) {
 				return false;
 			}
 
@@ -496,6 +681,10 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			}
 
 			if ($this->autorizacion_retiro !== false) {
+				return false;
+			}
+
+			if ($this->llamar_emergencia !== false) {
 				return false;
 			}
 
@@ -519,19 +708,25 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$this->apellido = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
 			$this->apellido_materno = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
 			$this->direccion = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
-			$this->ciudad = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
-			$this->codigo_postal = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
-			$this->fk_provincia_id = ($row[$startcol + 7] !== null) ? (int) $row[$startcol + 7] : null;
-			$this->telefono = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
-			$this->telefono_movil = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
-			$this->nro_documento = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
-			$this->fk_tipodocumento_id = ($row[$startcol + 11] !== null) ? (int) $row[$startcol + 11] : null;
-			$this->sexo = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
-			$this->email = ($row[$startcol + 13] !== null) ? (string) $row[$startcol + 13] : null;
-			$this->observacion = ($row[$startcol + 14] !== null) ? (string) $row[$startcol + 14] : null;
-			$this->autorizacion_retiro = ($row[$startcol + 15] !== null) ? (boolean) $row[$startcol + 15] : null;
-			$this->fk_cuenta_id = ($row[$startcol + 16] !== null) ? (int) $row[$startcol + 16] : null;
-			$this->fk_rolresponsable_id = ($row[$startcol + 17] !== null) ? (int) $row[$startcol + 17] : null;
+			$this->direccion_laboral = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+			$this->ciudad = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
+			$this->codigo_postal = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
+			$this->fk_provincia_id = ($row[$startcol + 8] !== null) ? (int) $row[$startcol + 8] : null;
+			$this->telefono = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
+			$this->telefono_laboral = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
+			$this->telefono_movil = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
+			$this->nro_documento = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
+			$this->fk_tipodocumento_id = ($row[$startcol + 13] !== null) ? (int) $row[$startcol + 13] : null;
+			$this->sexo = ($row[$startcol + 14] !== null) ? (string) $row[$startcol + 14] : null;
+			$this->email = ($row[$startcol + 15] !== null) ? (string) $row[$startcol + 15] : null;
+			$this->observacion = ($row[$startcol + 16] !== null) ? (string) $row[$startcol + 16] : null;
+			$this->autorizacion_retiro = ($row[$startcol + 17] !== null) ? (boolean) $row[$startcol + 17] : null;
+			$this->llamar_emergencia = ($row[$startcol + 18] !== null) ? (boolean) $row[$startcol + 18] : null;
+			$this->fk_cuenta_id = ($row[$startcol + 19] !== null) ? (int) $row[$startcol + 19] : null;
+			$this->fk_rolresponsable_id = ($row[$startcol + 20] !== null) ? (int) $row[$startcol + 20] : null;
+			$this->ocupacion = ($row[$startcol + 21] !== null) ? (string) $row[$startcol + 21] : null;
+			$this->fecha_nacimiento = ($row[$startcol + 22] !== null) ? (string) $row[$startcol + 22] : null;
+			$this->fk_nivel_instruccion_id = ($row[$startcol + 23] !== null) ? (int) $row[$startcol + 23] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -540,7 +735,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 				$this->ensureConsistency();
 			}
 
-						return $startcol + 18; 
+						return $startcol + 24; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Responsable object", $e);
 		}
@@ -561,6 +756,9 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		}
 		if ($this->aRolResponsable !== null && $this->fk_rolresponsable_id !== $this->aRolResponsable->getId()) {
 			$this->aRolResponsable = null;
+		}
+		if ($this->aNivelInstruccion !== null && $this->fk_nivel_instruccion_id !== $this->aNivelInstruccion->getId()) {
+			$this->aNivelInstruccion = null;
 		}
 	} 
 	
@@ -591,6 +789,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$this->aTipodocumento = null;
 			$this->aCuenta = null;
 			$this->aRolResponsable = null;
+			$this->aNivelInstruccion = null;
 			$this->collRelRolresponsableResponsables = null;
 			$this->lastRelRolresponsableResponsableCriteria = null;
 
@@ -674,6 +873,13 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 					$affectedRows += $this->aRolResponsable->save($con);
 				}
 				$this->setRolResponsable($this->aRolResponsable);
+			}
+
+			if ($this->aNivelInstruccion !== null) {
+				if ($this->aNivelInstruccion->isModified() || $this->aNivelInstruccion->isNew()) {
+					$affectedRows += $this->aNivelInstruccion->save($con);
+				}
+				$this->setNivelInstruccion($this->aNivelInstruccion);
 			}
 
 			if ($this->isNew() ) {
@@ -762,6 +968,12 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 				}
 			}
 
+			if ($this->aNivelInstruccion !== null) {
+				if (!$this->aNivelInstruccion->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aNivelInstruccion->getValidationFailures());
+				}
+			}
+
 
 			if (($retval = ResponsablePeer::doValidate($this, $columns)) !== true) {
 				$failureMap = array_merge($failureMap, $retval);
@@ -811,43 +1023,61 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 				return $this->getDireccion();
 				break;
 			case 5:
-				return $this->getCiudad();
+				return $this->getDireccionLaboral();
 				break;
 			case 6:
-				return $this->getCodigoPostal();
+				return $this->getCiudad();
 				break;
 			case 7:
-				return $this->getFkProvinciaId();
+				return $this->getCodigoPostal();
 				break;
 			case 8:
-				return $this->getTelefono();
+				return $this->getFkProvinciaId();
 				break;
 			case 9:
-				return $this->getTelefonoMovil();
+				return $this->getTelefono();
 				break;
 			case 10:
-				return $this->getNroDocumento();
+				return $this->getTelefonoLaboral();
 				break;
 			case 11:
-				return $this->getFkTipodocumentoId();
+				return $this->getTelefonoMovil();
 				break;
 			case 12:
-				return $this->getSexo();
+				return $this->getNroDocumento();
 				break;
 			case 13:
-				return $this->getEmail();
+				return $this->getFkTipodocumentoId();
 				break;
 			case 14:
-				return $this->getObservacion();
+				return $this->getSexo();
 				break;
 			case 15:
-				return $this->getAutorizacionRetiro();
+				return $this->getEmail();
 				break;
 			case 16:
-				return $this->getFkCuentaId();
+				return $this->getObservacion();
 				break;
 			case 17:
+				return $this->getAutorizacionRetiro();
+				break;
+			case 18:
+				return $this->getLlamarEmergencia();
+				break;
+			case 19:
+				return $this->getFkCuentaId();
+				break;
+			case 20:
 				return $this->getFkRolresponsableId();
+				break;
+			case 21:
+				return $this->getOcupacion();
+				break;
+			case 22:
+				return $this->getFechaNacimiento();
+				break;
+			case 23:
+				return $this->getFkNivelInstruccionId();
 				break;
 			default:
 				return null;
@@ -864,19 +1094,25 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$keys[2] => $this->getApellido(),
 			$keys[3] => $this->getApellidoMaterno(),
 			$keys[4] => $this->getDireccion(),
-			$keys[5] => $this->getCiudad(),
-			$keys[6] => $this->getCodigoPostal(),
-			$keys[7] => $this->getFkProvinciaId(),
-			$keys[8] => $this->getTelefono(),
-			$keys[9] => $this->getTelefonoMovil(),
-			$keys[10] => $this->getNroDocumento(),
-			$keys[11] => $this->getFkTipodocumentoId(),
-			$keys[12] => $this->getSexo(),
-			$keys[13] => $this->getEmail(),
-			$keys[14] => $this->getObservacion(),
-			$keys[15] => $this->getAutorizacionRetiro(),
-			$keys[16] => $this->getFkCuentaId(),
-			$keys[17] => $this->getFkRolresponsableId(),
+			$keys[5] => $this->getDireccionLaboral(),
+			$keys[6] => $this->getCiudad(),
+			$keys[7] => $this->getCodigoPostal(),
+			$keys[8] => $this->getFkProvinciaId(),
+			$keys[9] => $this->getTelefono(),
+			$keys[10] => $this->getTelefonoLaboral(),
+			$keys[11] => $this->getTelefonoMovil(),
+			$keys[12] => $this->getNroDocumento(),
+			$keys[13] => $this->getFkTipodocumentoId(),
+			$keys[14] => $this->getSexo(),
+			$keys[15] => $this->getEmail(),
+			$keys[16] => $this->getObservacion(),
+			$keys[17] => $this->getAutorizacionRetiro(),
+			$keys[18] => $this->getLlamarEmergencia(),
+			$keys[19] => $this->getFkCuentaId(),
+			$keys[20] => $this->getFkRolresponsableId(),
+			$keys[21] => $this->getOcupacion(),
+			$keys[22] => $this->getFechaNacimiento(),
+			$keys[23] => $this->getFkNivelInstruccionId(),
 		);
 		return $result;
 	}
@@ -908,43 +1144,61 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 				$this->setDireccion($value);
 				break;
 			case 5:
-				$this->setCiudad($value);
+				$this->setDireccionLaboral($value);
 				break;
 			case 6:
-				$this->setCodigoPostal($value);
+				$this->setCiudad($value);
 				break;
 			case 7:
-				$this->setFkProvinciaId($value);
+				$this->setCodigoPostal($value);
 				break;
 			case 8:
-				$this->setTelefono($value);
+				$this->setFkProvinciaId($value);
 				break;
 			case 9:
-				$this->setTelefonoMovil($value);
+				$this->setTelefono($value);
 				break;
 			case 10:
-				$this->setNroDocumento($value);
+				$this->setTelefonoLaboral($value);
 				break;
 			case 11:
-				$this->setFkTipodocumentoId($value);
+				$this->setTelefonoMovil($value);
 				break;
 			case 12:
-				$this->setSexo($value);
+				$this->setNroDocumento($value);
 				break;
 			case 13:
-				$this->setEmail($value);
+				$this->setFkTipodocumentoId($value);
 				break;
 			case 14:
-				$this->setObservacion($value);
+				$this->setSexo($value);
 				break;
 			case 15:
-				$this->setAutorizacionRetiro($value);
+				$this->setEmail($value);
 				break;
 			case 16:
-				$this->setFkCuentaId($value);
+				$this->setObservacion($value);
 				break;
 			case 17:
+				$this->setAutorizacionRetiro($value);
+				break;
+			case 18:
+				$this->setLlamarEmergencia($value);
+				break;
+			case 19:
+				$this->setFkCuentaId($value);
+				break;
+			case 20:
 				$this->setFkRolresponsableId($value);
+				break;
+			case 21:
+				$this->setOcupacion($value);
+				break;
+			case 22:
+				$this->setFechaNacimiento($value);
+				break;
+			case 23:
+				$this->setFkNivelInstruccionId($value);
 				break;
 		} 	}
 
@@ -958,19 +1212,25 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[2], $arr)) $this->setApellido($arr[$keys[2]]);
 		if (array_key_exists($keys[3], $arr)) $this->setApellidoMaterno($arr[$keys[3]]);
 		if (array_key_exists($keys[4], $arr)) $this->setDireccion($arr[$keys[4]]);
-		if (array_key_exists($keys[5], $arr)) $this->setCiudad($arr[$keys[5]]);
-		if (array_key_exists($keys[6], $arr)) $this->setCodigoPostal($arr[$keys[6]]);
-		if (array_key_exists($keys[7], $arr)) $this->setFkProvinciaId($arr[$keys[7]]);
-		if (array_key_exists($keys[8], $arr)) $this->setTelefono($arr[$keys[8]]);
-		if (array_key_exists($keys[9], $arr)) $this->setTelefonoMovil($arr[$keys[9]]);
-		if (array_key_exists($keys[10], $arr)) $this->setNroDocumento($arr[$keys[10]]);
-		if (array_key_exists($keys[11], $arr)) $this->setFkTipodocumentoId($arr[$keys[11]]);
-		if (array_key_exists($keys[12], $arr)) $this->setSexo($arr[$keys[12]]);
-		if (array_key_exists($keys[13], $arr)) $this->setEmail($arr[$keys[13]]);
-		if (array_key_exists($keys[14], $arr)) $this->setObservacion($arr[$keys[14]]);
-		if (array_key_exists($keys[15], $arr)) $this->setAutorizacionRetiro($arr[$keys[15]]);
-		if (array_key_exists($keys[16], $arr)) $this->setFkCuentaId($arr[$keys[16]]);
-		if (array_key_exists($keys[17], $arr)) $this->setFkRolresponsableId($arr[$keys[17]]);
+		if (array_key_exists($keys[5], $arr)) $this->setDireccionLaboral($arr[$keys[5]]);
+		if (array_key_exists($keys[6], $arr)) $this->setCiudad($arr[$keys[6]]);
+		if (array_key_exists($keys[7], $arr)) $this->setCodigoPostal($arr[$keys[7]]);
+		if (array_key_exists($keys[8], $arr)) $this->setFkProvinciaId($arr[$keys[8]]);
+		if (array_key_exists($keys[9], $arr)) $this->setTelefono($arr[$keys[9]]);
+		if (array_key_exists($keys[10], $arr)) $this->setTelefonoLaboral($arr[$keys[10]]);
+		if (array_key_exists($keys[11], $arr)) $this->setTelefonoMovil($arr[$keys[11]]);
+		if (array_key_exists($keys[12], $arr)) $this->setNroDocumento($arr[$keys[12]]);
+		if (array_key_exists($keys[13], $arr)) $this->setFkTipodocumentoId($arr[$keys[13]]);
+		if (array_key_exists($keys[14], $arr)) $this->setSexo($arr[$keys[14]]);
+		if (array_key_exists($keys[15], $arr)) $this->setEmail($arr[$keys[15]]);
+		if (array_key_exists($keys[16], $arr)) $this->setObservacion($arr[$keys[16]]);
+		if (array_key_exists($keys[17], $arr)) $this->setAutorizacionRetiro($arr[$keys[17]]);
+		if (array_key_exists($keys[18], $arr)) $this->setLlamarEmergencia($arr[$keys[18]]);
+		if (array_key_exists($keys[19], $arr)) $this->setFkCuentaId($arr[$keys[19]]);
+		if (array_key_exists($keys[20], $arr)) $this->setFkRolresponsableId($arr[$keys[20]]);
+		if (array_key_exists($keys[21], $arr)) $this->setOcupacion($arr[$keys[21]]);
+		if (array_key_exists($keys[22], $arr)) $this->setFechaNacimiento($arr[$keys[22]]);
+		if (array_key_exists($keys[23], $arr)) $this->setFkNivelInstruccionId($arr[$keys[23]]);
 	}
 
 	
@@ -983,10 +1243,12 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(ResponsablePeer::APELLIDO)) $criteria->add(ResponsablePeer::APELLIDO, $this->apellido);
 		if ($this->isColumnModified(ResponsablePeer::APELLIDO_MATERNO)) $criteria->add(ResponsablePeer::APELLIDO_MATERNO, $this->apellido_materno);
 		if ($this->isColumnModified(ResponsablePeer::DIRECCION)) $criteria->add(ResponsablePeer::DIRECCION, $this->direccion);
+		if ($this->isColumnModified(ResponsablePeer::DIRECCION_LABORAL)) $criteria->add(ResponsablePeer::DIRECCION_LABORAL, $this->direccion_laboral);
 		if ($this->isColumnModified(ResponsablePeer::CIUDAD)) $criteria->add(ResponsablePeer::CIUDAD, $this->ciudad);
 		if ($this->isColumnModified(ResponsablePeer::CODIGO_POSTAL)) $criteria->add(ResponsablePeer::CODIGO_POSTAL, $this->codigo_postal);
 		if ($this->isColumnModified(ResponsablePeer::FK_PROVINCIA_ID)) $criteria->add(ResponsablePeer::FK_PROVINCIA_ID, $this->fk_provincia_id);
 		if ($this->isColumnModified(ResponsablePeer::TELEFONO)) $criteria->add(ResponsablePeer::TELEFONO, $this->telefono);
+		if ($this->isColumnModified(ResponsablePeer::TELEFONO_LABORAL)) $criteria->add(ResponsablePeer::TELEFONO_LABORAL, $this->telefono_laboral);
 		if ($this->isColumnModified(ResponsablePeer::TELEFONO_MOVIL)) $criteria->add(ResponsablePeer::TELEFONO_MOVIL, $this->telefono_movil);
 		if ($this->isColumnModified(ResponsablePeer::NRO_DOCUMENTO)) $criteria->add(ResponsablePeer::NRO_DOCUMENTO, $this->nro_documento);
 		if ($this->isColumnModified(ResponsablePeer::FK_TIPODOCUMENTO_ID)) $criteria->add(ResponsablePeer::FK_TIPODOCUMENTO_ID, $this->fk_tipodocumento_id);
@@ -994,8 +1256,12 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(ResponsablePeer::EMAIL)) $criteria->add(ResponsablePeer::EMAIL, $this->email);
 		if ($this->isColumnModified(ResponsablePeer::OBSERVACION)) $criteria->add(ResponsablePeer::OBSERVACION, $this->observacion);
 		if ($this->isColumnModified(ResponsablePeer::AUTORIZACION_RETIRO)) $criteria->add(ResponsablePeer::AUTORIZACION_RETIRO, $this->autorizacion_retiro);
+		if ($this->isColumnModified(ResponsablePeer::LLAMAR_EMERGENCIA)) $criteria->add(ResponsablePeer::LLAMAR_EMERGENCIA, $this->llamar_emergencia);
 		if ($this->isColumnModified(ResponsablePeer::FK_CUENTA_ID)) $criteria->add(ResponsablePeer::FK_CUENTA_ID, $this->fk_cuenta_id);
 		if ($this->isColumnModified(ResponsablePeer::FK_ROLRESPONSABLE_ID)) $criteria->add(ResponsablePeer::FK_ROLRESPONSABLE_ID, $this->fk_rolresponsable_id);
+		if ($this->isColumnModified(ResponsablePeer::OCUPACION)) $criteria->add(ResponsablePeer::OCUPACION, $this->ocupacion);
+		if ($this->isColumnModified(ResponsablePeer::FECHA_NACIMIENTO)) $criteria->add(ResponsablePeer::FECHA_NACIMIENTO, $this->fecha_nacimiento);
+		if ($this->isColumnModified(ResponsablePeer::FK_NIVEL_INSTRUCCION_ID)) $criteria->add(ResponsablePeer::FK_NIVEL_INSTRUCCION_ID, $this->fk_nivel_instruccion_id);
 
 		return $criteria;
 	}
@@ -1034,6 +1300,8 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 
 		$copyObj->setDireccion($this->direccion);
 
+		$copyObj->setDireccionLaboral($this->direccion_laboral);
+
 		$copyObj->setCiudad($this->ciudad);
 
 		$copyObj->setCodigoPostal($this->codigo_postal);
@@ -1041,6 +1309,8 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 		$copyObj->setFkProvinciaId($this->fk_provincia_id);
 
 		$copyObj->setTelefono($this->telefono);
+
+		$copyObj->setTelefonoLaboral($this->telefono_laboral);
 
 		$copyObj->setTelefonoMovil($this->telefono_movil);
 
@@ -1056,9 +1326,17 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 
 		$copyObj->setAutorizacionRetiro($this->autorizacion_retiro);
 
+		$copyObj->setLlamarEmergencia($this->llamar_emergencia);
+
 		$copyObj->setFkCuentaId($this->fk_cuenta_id);
 
 		$copyObj->setFkRolresponsableId($this->fk_rolresponsable_id);
+
+		$copyObj->setOcupacion($this->ocupacion);
+
+		$copyObj->setFechaNacimiento($this->fecha_nacimiento);
+
+		$copyObj->setFkNivelInstruccionId($this->fk_nivel_instruccion_id);
 
 
 		if ($deepCopy) {
@@ -1216,6 +1494,37 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			
 		}
 		return $this->aRolResponsable;
+	}
+
+	
+	public function setNivelInstruccion(NivelInstruccion $v = null)
+	{
+		if ($v === null) {
+			$this->setFkNivelInstruccionId(NULL);
+		} else {
+			$this->setFkNivelInstruccionId($v->getId());
+		}
+
+		$this->aNivelInstruccion = $v;
+
+						if ($v !== null) {
+			$v->addResponsable($this);
+		}
+
+		return $this;
+	}
+
+
+	
+	public function getNivelInstruccion(PropelPDO $con = null)
+	{
+		if ($this->aNivelInstruccion === null && ($this->fk_nivel_instruccion_id !== null)) {
+			$c = new Criteria(NivelInstruccionPeer::DATABASE_NAME);
+			$c->add(NivelInstruccionPeer::ID, $this->fk_nivel_instruccion_id);
+			$this->aNivelInstruccion = NivelInstruccionPeer::doSelectOne($c, $con);
+			
+		}
+		return $this->aNivelInstruccion;
 	}
 
 	
@@ -1402,6 +1711,7 @@ abstract class BaseResponsable extends BaseObject  implements Persistent {
 			$this->aTipodocumento = null;
 			$this->aCuenta = null;
 			$this->aRolResponsable = null;
+			$this->aNivelInstruccion = null;
 	}
 
 } 

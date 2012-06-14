@@ -8,5 +8,7 @@ class ProjectConfiguration extends sfProjectConfiguration
   public function setup()
   {
     $this->enableAllPluginsExcept(array('sfDoctrinePlugin'));
+    sfConfig::add(array('app_alba_version' => '1.1.0-gitdev'));
+
   }
 }

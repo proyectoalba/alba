@@ -1,0 +1,4 @@
+etc/alba
+usr/share/alba
+var/cache/alba
+var/log/alba

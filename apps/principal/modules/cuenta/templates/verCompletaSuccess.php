@@ -83,7 +83,11 @@
         </li>
         <li>
                 <?php echo link_to(image_tag('small/boletin.png',array("title"=>"Boletin")), 'boletin/mostrar?alumno_id='. $alumno->getID(),'target=_blank') ?>
-        </li>        
+        </li>
+        <li>
+                <?php echo link_to(image_tag('small/medico.png', array('alt' => __('Datos de Salud'), 'title' => __('Datos de Salud'))), 'alumno_salud/index?alumno_id='.$alumno->getId()) ?>
+        </li>
+      
       </ul>
     </td>
   </tr>
@@ -104,7 +108,7 @@
   </li>
 </ul>
 <br>
-<h1>Responsables</h1>  
+<h1>Responsables/familiares</h1>  
 <table cellspacing="0" class="sf_admin_list">
   <thead>
   <tr>

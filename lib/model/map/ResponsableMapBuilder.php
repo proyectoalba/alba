@@ -43,6 +43,8 @@ class ResponsableMapBuilder implements MapBuilder {
 
 		$tMap->addColumn('DIRECCION', 'Direccion', 'VARCHAR', false, 128);
 
+		$tMap->addColumn('DIRECCION_LABORAL', 'DireccionLaboral', 'VARCHAR', false, 128);
+
 		$tMap->addColumn('CIUDAD', 'Ciudad', 'VARCHAR', false, 128);
 
 		$tMap->addColumn('CODIGO_POSTAL', 'CodigoPostal', 'VARCHAR', false, 20);
@@ -50,6 +52,8 @@ class ResponsableMapBuilder implements MapBuilder {
 		$tMap->addForeignKey('FK_PROVINCIA_ID', 'FkProvinciaId', 'INTEGER', 'provincia', 'ID', true, null);
 
 		$tMap->addColumn('TELEFONO', 'Telefono', 'VARCHAR', false, 20);
+
+		$tMap->addColumn('TELEFONO_LABORAL', 'TelefonoLaboral', 'VARCHAR', false, 20);
 
 		$tMap->addColumn('TELEFONO_MOVIL', 'TelefonoMovil', 'VARCHAR', false, 20);
 
@@ -65,9 +69,17 @@ class ResponsableMapBuilder implements MapBuilder {
 
 		$tMap->addColumn('AUTORIZACION_RETIRO', 'AutorizacionRetiro', 'BOOLEAN', true, null);
 
+		$tMap->addColumn('LLAMAR_EMERGENCIA', 'LlamarEmergencia', 'BOOLEAN', true, null);
+
 		$tMap->addForeignKey('FK_CUENTA_ID', 'FkCuentaId', 'INTEGER', 'cuenta', 'ID', true, null);
 
 		$tMap->addForeignKey('FK_ROLRESPONSABLE_ID', 'FkRolresponsableId', 'INTEGER', 'rol_responsable', 'ID', true, null);
+
+		$tMap->addColumn('OCUPACION', 'Ocupacion', 'VARCHAR', false, 255);
+
+		$tMap->addColumn('FECHA_NACIMIENTO', 'FechaNacimiento', 'TIMESTAMP', false, null);
+
+		$tMap->addForeignKey('FK_NIVEL_INSTRUCCION_ID', 'FkNivelInstruccionId', 'INTEGER', 'nivel_instruccion', 'ID', false, null);
 
 	} 
 } 

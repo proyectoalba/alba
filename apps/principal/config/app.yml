@@ -3,6 +3,5 @@ all:
     theme: on
     
     alba:
-        version: "1.0svn" 
         menutheme: ThemeAlba
         tmpdir: tmp

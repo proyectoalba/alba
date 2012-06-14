@@ -13,7 +13,7 @@ abstract class BaseResponsablePeer {
 	const CLASS_DEFAULT = 'lib.model.Responsable';
 
 	
-	const NUM_COLUMNS = 18;
+	const NUM_COLUMNS = 24;
 
 	
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -34,6 +34,9 @@ abstract class BaseResponsablePeer {
 	const DIRECCION = 'responsable.DIRECCION';
 
 	
+	const DIRECCION_LABORAL = 'responsable.DIRECCION_LABORAL';
+
+	
 	const CIUDAD = 'responsable.CIUDAD';
 
 	
@@ -44,6 +47,9 @@ abstract class BaseResponsablePeer {
 
 	
 	const TELEFONO = 'responsable.TELEFONO';
+
+	
+	const TELEFONO_LABORAL = 'responsable.TELEFONO_LABORAL';
 
 	
 	const TELEFONO_MOVIL = 'responsable.TELEFONO_MOVIL';
@@ -67,10 +73,22 @@ abstract class BaseResponsablePeer {
 	const AUTORIZACION_RETIRO = 'responsable.AUTORIZACION_RETIRO';
 
 	
+	const LLAMAR_EMERGENCIA = 'responsable.LLAMAR_EMERGENCIA';
+
+	
 	const FK_CUENTA_ID = 'responsable.FK_CUENTA_ID';
 
 	
 	const FK_ROLRESPONSABLE_ID = 'responsable.FK_ROLRESPONSABLE_ID';
+
+	
+	const OCUPACION = 'responsable.OCUPACION';
+
+	
+	const FECHA_NACIMIENTO = 'responsable.FECHA_NACIMIENTO';
+
+	
+	const FK_NIVEL_INSTRUCCION_ID = 'responsable.FK_NIVEL_INSTRUCCION_ID';
 
 	
 	public static $instances = array();
@@ -80,20 +98,20 @@ abstract class BaseResponsablePeer {
 
 	
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Apellido', 'ApellidoMaterno', 'Direccion', 'Ciudad', 'CodigoPostal', 'FkProvinciaId', 'Telefono', 'TelefonoMovil', 'NroDocumento', 'FkTipodocumentoId', 'Sexo', 'Email', 'Observacion', 'AutorizacionRetiro', 'FkCuentaId', 'FkRolresponsableId', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'nombre', 'apellido', 'apellidoMaterno', 'direccion', 'ciudad', 'codigoPostal', 'fkProvinciaId', 'telefono', 'telefonoMovil', 'nroDocumento', 'fkTipodocumentoId', 'sexo', 'email', 'observacion', 'autorizacionRetiro', 'fkCuentaId', 'fkRolresponsableId', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::NOMBRE, self::APELLIDO, self::APELLIDO_MATERNO, self::DIRECCION, self::CIUDAD, self::CODIGO_POSTAL, self::FK_PROVINCIA_ID, self::TELEFONO, self::TELEFONO_MOVIL, self::NRO_DOCUMENTO, self::FK_TIPODOCUMENTO_ID, self::SEXO, self::EMAIL, self::OBSERVACION, self::AUTORIZACION_RETIRO, self::FK_CUENTA_ID, self::FK_ROLRESPONSABLE_ID, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'apellido', 'apellido_materno', 'direccion', 'ciudad', 'codigo_postal', 'fk_provincia_id', 'telefono', 'telefono_movil', 'nro_documento', 'fk_tipodocumento_id', 'sexo', 'email', 'observacion', 'autorizacion_retiro', 'fk_cuenta_id', 'fk_rolresponsable_id', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Apellido', 'ApellidoMaterno', 'Direccion', 'DireccionLaboral', 'Ciudad', 'CodigoPostal', 'FkProvinciaId', 'Telefono', 'TelefonoLaboral', 'TelefonoMovil', 'NroDocumento', 'FkTipodocumentoId', 'Sexo', 'Email', 'Observacion', 'AutorizacionRetiro', 'LlamarEmergencia', 'FkCuentaId', 'FkRolresponsableId', 'Ocupacion', 'FechaNacimiento', 'FkNivelInstruccionId', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'nombre', 'apellido', 'apellidoMaterno', 'direccion', 'direccionLaboral', 'ciudad', 'codigoPostal', 'fkProvinciaId', 'telefono', 'telefonoLaboral', 'telefonoMovil', 'nroDocumento', 'fkTipodocumentoId', 'sexo', 'email', 'observacion', 'autorizacionRetiro', 'llamarEmergencia', 'fkCuentaId', 'fkRolresponsableId', 'ocupacion', 'fechaNacimiento', 'fkNivelInstruccionId', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::NOMBRE, self::APELLIDO, self::APELLIDO_MATERNO, self::DIRECCION, self::DIRECCION_LABORAL, self::CIUDAD, self::CODIGO_POSTAL, self::FK_PROVINCIA_ID, self::TELEFONO, self::TELEFONO_LABORAL, self::TELEFONO_MOVIL, self::NRO_DOCUMENTO, self::FK_TIPODOCUMENTO_ID, self::SEXO, self::EMAIL, self::OBSERVACION, self::AUTORIZACION_RETIRO, self::LLAMAR_EMERGENCIA, self::FK_CUENTA_ID, self::FK_ROLRESPONSABLE_ID, self::OCUPACION, self::FECHA_NACIMIENTO, self::FK_NIVEL_INSTRUCCION_ID, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'apellido', 'apellido_materno', 'direccion', 'direccion_laboral', 'ciudad', 'codigo_postal', 'fk_provincia_id', 'telefono', 'telefono_laboral', 'telefono_movil', 'nro_documento', 'fk_tipodocumento_id', 'sexo', 'email', 'observacion', 'autorizacion_retiro', 'llamar_emergencia', 'fk_cuenta_id', 'fk_rolresponsable_id', 'ocupacion', 'fecha_nacimiento', 'fk_nivel_instruccion_id', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, )
 	);
 
 	
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Apellido' => 2, 'ApellidoMaterno' => 3, 'Direccion' => 4, 'Ciudad' => 5, 'CodigoPostal' => 6, 'FkProvinciaId' => 7, 'Telefono' => 8, 'TelefonoMovil' => 9, 'NroDocumento' => 10, 'FkTipodocumentoId' => 11, 'Sexo' => 12, 'Email' => 13, 'Observacion' => 14, 'AutorizacionRetiro' => 15, 'FkCuentaId' => 16, 'FkRolresponsableId' => 17, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'nombre' => 1, 'apellido' => 2, 'apellidoMaterno' => 3, 'direccion' => 4, 'ciudad' => 5, 'codigoPostal' => 6, 'fkProvinciaId' => 7, 'telefono' => 8, 'telefonoMovil' => 9, 'nroDocumento' => 10, 'fkTipodocumentoId' => 11, 'sexo' => 12, 'email' => 13, 'observacion' => 14, 'autorizacionRetiro' => 15, 'fkCuentaId' => 16, 'fkRolresponsableId' => 17, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::NOMBRE => 1, self::APELLIDO => 2, self::APELLIDO_MATERNO => 3, self::DIRECCION => 4, self::CIUDAD => 5, self::CODIGO_POSTAL => 6, self::FK_PROVINCIA_ID => 7, self::TELEFONO => 8, self::TELEFONO_MOVIL => 9, self::NRO_DOCUMENTO => 10, self::FK_TIPODOCUMENTO_ID => 11, self::SEXO => 12, self::EMAIL => 13, self::OBSERVACION => 14, self::AUTORIZACION_RETIRO => 15, self::FK_CUENTA_ID => 16, self::FK_ROLRESPONSABLE_ID => 17, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'apellido' => 2, 'apellido_materno' => 3, 'direccion' => 4, 'ciudad' => 5, 'codigo_postal' => 6, 'fk_provincia_id' => 7, 'telefono' => 8, 'telefono_movil' => 9, 'nro_documento' => 10, 'fk_tipodocumento_id' => 11, 'sexo' => 12, 'email' => 13, 'observacion' => 14, 'autorizacion_retiro' => 15, 'fk_cuenta_id' => 16, 'fk_rolresponsable_id' => 17, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Apellido' => 2, 'ApellidoMaterno' => 3, 'Direccion' => 4, 'DireccionLaboral' => 5, 'Ciudad' => 6, 'CodigoPostal' => 7, 'FkProvinciaId' => 8, 'Telefono' => 9, 'TelefonoLaboral' => 10, 'TelefonoMovil' => 11, 'NroDocumento' => 12, 'FkTipodocumentoId' => 13, 'Sexo' => 14, 'Email' => 15, 'Observacion' => 16, 'AutorizacionRetiro' => 17, 'LlamarEmergencia' => 18, 'FkCuentaId' => 19, 'FkRolresponsableId' => 20, 'Ocupacion' => 21, 'FechaNacimiento' => 22, 'FkNivelInstruccionId' => 23, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'nombre' => 1, 'apellido' => 2, 'apellidoMaterno' => 3, 'direccion' => 4, 'direccionLaboral' => 5, 'ciudad' => 6, 'codigoPostal' => 7, 'fkProvinciaId' => 8, 'telefono' => 9, 'telefonoLaboral' => 10, 'telefonoMovil' => 11, 'nroDocumento' => 12, 'fkTipodocumentoId' => 13, 'sexo' => 14, 'email' => 15, 'observacion' => 16, 'autorizacionRetiro' => 17, 'llamarEmergencia' => 18, 'fkCuentaId' => 19, 'fkRolresponsableId' => 20, 'ocupacion' => 21, 'fechaNacimiento' => 22, 'fkNivelInstruccionId' => 23, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::NOMBRE => 1, self::APELLIDO => 2, self::APELLIDO_MATERNO => 3, self::DIRECCION => 4, self::DIRECCION_LABORAL => 5, self::CIUDAD => 6, self::CODIGO_POSTAL => 7, self::FK_PROVINCIA_ID => 8, self::TELEFONO => 9, self::TELEFONO_LABORAL => 10, self::TELEFONO_MOVIL => 11, self::NRO_DOCUMENTO => 12, self::FK_TIPODOCUMENTO_ID => 13, self::SEXO => 14, self::EMAIL => 15, self::OBSERVACION => 16, self::AUTORIZACION_RETIRO => 17, self::LLAMAR_EMERGENCIA => 18, self::FK_CUENTA_ID => 19, self::FK_ROLRESPONSABLE_ID => 20, self::OCUPACION => 21, self::FECHA_NACIMIENTO => 22, self::FK_NIVEL_INSTRUCCION_ID => 23, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'apellido' => 2, 'apellido_materno' => 3, 'direccion' => 4, 'direccion_laboral' => 5, 'ciudad' => 6, 'codigo_postal' => 7, 'fk_provincia_id' => 8, 'telefono' => 9, 'telefono_laboral' => 10, 'telefono_movil' => 11, 'nro_documento' => 12, 'fk_tipodocumento_id' => 13, 'sexo' => 14, 'email' => 15, 'observacion' => 16, 'autorizacion_retiro' => 17, 'llamar_emergencia' => 18, 'fk_cuenta_id' => 19, 'fk_rolresponsable_id' => 20, 'ocupacion' => 21, 'fecha_nacimiento' => 22, 'fk_nivel_instruccion_id' => 23, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, )
 	);
 
 	
@@ -145,6 +163,8 @@ abstract class BaseResponsablePeer {
 
 		$criteria->addSelectColumn(ResponsablePeer::DIRECCION);
 
+		$criteria->addSelectColumn(ResponsablePeer::DIRECCION_LABORAL);
+
 		$criteria->addSelectColumn(ResponsablePeer::CIUDAD);
 
 		$criteria->addSelectColumn(ResponsablePeer::CODIGO_POSTAL);
@@ -152,6 +172,8 @@ abstract class BaseResponsablePeer {
 		$criteria->addSelectColumn(ResponsablePeer::FK_PROVINCIA_ID);
 
 		$criteria->addSelectColumn(ResponsablePeer::TELEFONO);
+
+		$criteria->addSelectColumn(ResponsablePeer::TELEFONO_LABORAL);
 
 		$criteria->addSelectColumn(ResponsablePeer::TELEFONO_MOVIL);
 
@@ -167,9 +189,17 @@ abstract class BaseResponsablePeer {
 
 		$criteria->addSelectColumn(ResponsablePeer::AUTORIZACION_RETIRO);
 
+		$criteria->addSelectColumn(ResponsablePeer::LLAMAR_EMERGENCIA);
+
 		$criteria->addSelectColumn(ResponsablePeer::FK_CUENTA_ID);
 
 		$criteria->addSelectColumn(ResponsablePeer::FK_ROLRESPONSABLE_ID);
+
+		$criteria->addSelectColumn(ResponsablePeer::OCUPACION);
+
+		$criteria->addSelectColumn(ResponsablePeer::FECHA_NACIMIENTO);
+
+		$criteria->addSelectColumn(ResponsablePeer::FK_NIVEL_INSTRUCCION_ID);
 
 	}
 
@@ -448,6 +478,41 @@ abstract class BaseResponsablePeer {
 
 
 	
+	public static function doCountJoinNivelInstruccion(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+				$criteria = clone $criteria;
+
+								$criteria->setPrimaryTableName(ResponsablePeer::TABLE_NAME);
+
+		if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->setDistinct();
+		}
+
+		if (!$criteria->hasSelectClause()) {
+			ResponsablePeer::addSelectColumns($criteria);
+		}
+
+		$criteria->clearOrderByColumns(); 
+				$criteria->setDbName(self::DATABASE_NAME);
+
+		if ($con === null) {
+			$con = Propel::getConnection(ResponsablePeer::DATABASE_NAME, Propel::CONNECTION_READ);
+		}
+
+		$criteria->addJoin(array(ResponsablePeer::FK_NIVEL_INSTRUCCION_ID,), array(NivelInstruccionPeer::ID,), $join_behavior);
+
+		$stmt = BasePeer::doCount($criteria, $con);
+
+		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+			$count = (int) $row[0];
+		} else {
+			$count = 0; 		}
+		$stmt->closeCursor();
+		return $count;
+	}
+
+
+	
 	public static function doSelectJoinProvincia(Criteria $c, $con = null, $join_behavior = Criteria::LEFT_JOIN)
 	{
 		$c = clone $c;
@@ -652,6 +717,57 @@ abstract class BaseResponsablePeer {
 
 
 	
+	public static function doSelectJoinNivelInstruccion(Criteria $c, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		$c = clone $c;
+
+				if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		ResponsablePeer::addSelectColumns($c);
+		$startcol = (ResponsablePeer::NUM_COLUMNS - ResponsablePeer::NUM_LAZY_LOAD_COLUMNS);
+		NivelInstruccionPeer::addSelectColumns($c);
+
+		$c->addJoin(array(ResponsablePeer::FK_NIVEL_INSTRUCCION_ID,), array(NivelInstruccionPeer::ID,), $join_behavior);
+		$stmt = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+			$key1 = ResponsablePeer::getPrimaryKeyHashFromRow($row, 0);
+			if (null !== ($obj1 = ResponsablePeer::getInstanceFromPool($key1))) {
+															} else {
+
+				$omClass = ResponsablePeer::getOMClass();
+
+				$cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+				$obj1 = new $cls();
+				$obj1->hydrate($row);
+				ResponsablePeer::addInstanceToPool($obj1, $key1);
+			} 
+			$key2 = NivelInstruccionPeer::getPrimaryKeyHashFromRow($row, $startcol);
+			if ($key2 !== null) {
+				$obj2 = NivelInstruccionPeer::getInstanceFromPool($key2);
+				if (!$obj2) {
+
+					$omClass = NivelInstruccionPeer::getOMClass();
+
+					$cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+					$obj2 = new $cls();
+					$obj2->hydrate($row, $startcol);
+					NivelInstruccionPeer::addInstanceToPool($obj2, $key2);
+				} 
+								$obj2->addResponsable($obj1);
+
+			} 
+			$results[] = $obj1;
+		}
+		$stmt->closeCursor();
+		return $results;
+	}
+
+
+	
 	public static function doCountJoinAll(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
 	{
 				$criteria = clone $criteria;
@@ -677,6 +793,7 @@ abstract class BaseResponsablePeer {
 		$criteria->addJoin(array(ResponsablePeer::FK_TIPODOCUMENTO_ID,), array(TipodocumentoPeer::ID,), $join_behavior);
 		$criteria->addJoin(array(ResponsablePeer::FK_CUENTA_ID,), array(CuentaPeer::ID,), $join_behavior);
 		$criteria->addJoin(array(ResponsablePeer::FK_ROLRESPONSABLE_ID,), array(RolResponsablePeer::ID,), $join_behavior);
+		$criteria->addJoin(array(ResponsablePeer::FK_NIVEL_INSTRUCCION_ID,), array(NivelInstruccionPeer::ID,), $join_behavior);
 		$stmt = BasePeer::doCount($criteria, $con);
 
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
@@ -711,10 +828,14 @@ abstract class BaseResponsablePeer {
 		RolResponsablePeer::addSelectColumns($c);
 		$startcol6 = $startcol5 + (RolResponsablePeer::NUM_COLUMNS - RolResponsablePeer::NUM_LAZY_LOAD_COLUMNS);
 
+		NivelInstruccionPeer::addSelectColumns($c);
+		$startcol7 = $startcol6 + (NivelInstruccionPeer::NUM_COLUMNS - NivelInstruccionPeer::NUM_LAZY_LOAD_COLUMNS);
+
 		$c->addJoin(array(ResponsablePeer::FK_PROVINCIA_ID,), array(ProvinciaPeer::ID,), $join_behavior);
 		$c->addJoin(array(ResponsablePeer::FK_TIPODOCUMENTO_ID,), array(TipodocumentoPeer::ID,), $join_behavior);
 		$c->addJoin(array(ResponsablePeer::FK_CUENTA_ID,), array(CuentaPeer::ID,), $join_behavior);
 		$c->addJoin(array(ResponsablePeer::FK_ROLRESPONSABLE_ID,), array(RolResponsablePeer::ID,), $join_behavior);
+		$c->addJoin(array(ResponsablePeer::FK_NIVEL_INSTRUCCION_ID,), array(NivelInstruccionPeer::ID,), $join_behavior);
 		$stmt = BasePeer::doSelect($c, $con);
 		$results = array();
 
@@ -793,6 +914,22 @@ abstract class BaseResponsablePeer {
 				} 
 								$obj5->addResponsable($obj1);
 			} 
+			
+			$key6 = NivelInstruccionPeer::getPrimaryKeyHashFromRow($row, $startcol6);
+			if ($key6 !== null) {
+				$obj6 = NivelInstruccionPeer::getInstanceFromPool($key6);
+				if (!$obj6) {
+
+					$omClass = NivelInstruccionPeer::getOMClass();
+
+
+					$cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+					$obj6 = new $cls();
+					$obj6->hydrate($row, $startcol6);
+					NivelInstruccionPeer::addInstanceToPool($obj6, $key6);
+				} 
+								$obj6->addResponsable($obj1);
+			} 
 			$results[] = $obj1;
 		}
 		$stmt->closeCursor();
@@ -823,6 +960,7 @@ abstract class BaseResponsablePeer {
 				$criteria->addJoin(array(ResponsablePeer::FK_TIPODOCUMENTO_ID,), array(TipodocumentoPeer::ID,), $join_behavior);
 				$criteria->addJoin(array(ResponsablePeer::FK_CUENTA_ID,), array(CuentaPeer::ID,), $join_behavior);
 				$criteria->addJoin(array(ResponsablePeer::FK_ROLRESPONSABLE_ID,), array(RolResponsablePeer::ID,), $join_behavior);
+				$criteria->addJoin(array(ResponsablePeer::FK_NIVEL_INSTRUCCION_ID,), array(NivelInstruccionPeer::ID,), $join_behavior);
 		$stmt = BasePeer::doCount($criteria, $con);
 
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
@@ -857,6 +995,7 @@ abstract class BaseResponsablePeer {
 				$criteria->addJoin(array(ResponsablePeer::FK_PROVINCIA_ID,), array(ProvinciaPeer::ID,), $join_behavior);
 				$criteria->addJoin(array(ResponsablePeer::FK_CUENTA_ID,), array(CuentaPeer::ID,), $join_behavior);
 				$criteria->addJoin(array(ResponsablePeer::FK_ROLRESPONSABLE_ID,), array(RolResponsablePeer::ID,), $join_behavior);
+				$criteria->addJoin(array(ResponsablePeer::FK_NIVEL_INSTRUCCION_ID,), array(NivelInstruccionPeer::ID,), $join_behavior);
 		$stmt = BasePeer::doCount($criteria, $con);
 
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
@@ -891,6 +1030,7 @@ abstract class BaseResponsablePeer {
 				$criteria->addJoin(array(ResponsablePeer::FK_PROVINCIA_ID,), array(ProvinciaPeer::ID,), $join_behavior);
 				$criteria->addJoin(array(ResponsablePeer::FK_TIPODOCUMENTO_ID,), array(TipodocumentoPeer::ID,), $join_behavior);
 				$criteria->addJoin(array(ResponsablePeer::FK_ROLRESPONSABLE_ID,), array(RolResponsablePeer::ID,), $join_behavior);
+				$criteria->addJoin(array(ResponsablePeer::FK_NIVEL_INSTRUCCION_ID,), array(NivelInstruccionPeer::ID,), $join_behavior);
 		$stmt = BasePeer::doCount($criteria, $con);
 
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
@@ -925,6 +1065,42 @@ abstract class BaseResponsablePeer {
 				$criteria->addJoin(array(ResponsablePeer::FK_PROVINCIA_ID,), array(ProvinciaPeer::ID,), $join_behavior);
 				$criteria->addJoin(array(ResponsablePeer::FK_TIPODOCUMENTO_ID,), array(TipodocumentoPeer::ID,), $join_behavior);
 				$criteria->addJoin(array(ResponsablePeer::FK_CUENTA_ID,), array(CuentaPeer::ID,), $join_behavior);
+				$criteria->addJoin(array(ResponsablePeer::FK_NIVEL_INSTRUCCION_ID,), array(NivelInstruccionPeer::ID,), $join_behavior);
+		$stmt = BasePeer::doCount($criteria, $con);
+
+		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+			$count = (int) $row[0];
+		} else {
+			$count = 0; 		}
+		$stmt->closeCursor();
+		return $count;
+	}
+
+
+	
+	public static function doCountJoinAllExceptNivelInstruccion(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+				$criteria = clone $criteria;
+
+		if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->setDistinct();
+		}
+
+		if (!$criteria->hasSelectClause()) {
+			ResponsablePeer::addSelectColumns($criteria);
+		}
+
+		$criteria->clearOrderByColumns(); 
+				$criteria->setDbName(self::DATABASE_NAME);
+
+		if ($con === null) {
+			$con = Propel::getConnection(ResponsablePeer::DATABASE_NAME, Propel::CONNECTION_READ);
+		}
+	
+				$criteria->addJoin(array(ResponsablePeer::FK_PROVINCIA_ID,), array(ProvinciaPeer::ID,), $join_behavior);
+				$criteria->addJoin(array(ResponsablePeer::FK_TIPODOCUMENTO_ID,), array(TipodocumentoPeer::ID,), $join_behavior);
+				$criteria->addJoin(array(ResponsablePeer::FK_CUENTA_ID,), array(CuentaPeer::ID,), $join_behavior);
+				$criteria->addJoin(array(ResponsablePeer::FK_ROLRESPONSABLE_ID,), array(RolResponsablePeer::ID,), $join_behavior);
 		$stmt = BasePeer::doCount($criteria, $con);
 
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
@@ -957,9 +1133,13 @@ abstract class BaseResponsablePeer {
 		RolResponsablePeer::addSelectColumns($c);
 		$startcol5 = $startcol4 + (RolResponsablePeer::NUM_COLUMNS - RolResponsablePeer::NUM_LAZY_LOAD_COLUMNS);
 
+		NivelInstruccionPeer::addSelectColumns($c);
+		$startcol6 = $startcol5 + (NivelInstruccionPeer::NUM_COLUMNS - NivelInstruccionPeer::NUM_LAZY_LOAD_COLUMNS);
+
 				$c->addJoin(array(ResponsablePeer::FK_TIPODOCUMENTO_ID,), array(TipodocumentoPeer::ID,), $join_behavior);
 				$c->addJoin(array(ResponsablePeer::FK_CUENTA_ID,), array(CuentaPeer::ID,), $join_behavior);
 				$c->addJoin(array(ResponsablePeer::FK_ROLRESPONSABLE_ID,), array(RolResponsablePeer::ID,), $join_behavior);
+				$c->addJoin(array(ResponsablePeer::FK_NIVEL_INSTRUCCION_ID,), array(NivelInstruccionPeer::ID,), $join_behavior);
 
 		$stmt = BasePeer::doSelect($c, $con);
 		$results = array();
@@ -1026,6 +1206,23 @@ abstract class BaseResponsablePeer {
 								$obj4->addResponsable($obj1);
 
 			} 
+				
+				$key5 = NivelInstruccionPeer::getPrimaryKeyHashFromRow($row, $startcol5);
+				if ($key5 !== null) {
+					$obj5 = NivelInstruccionPeer::getInstanceFromPool($key5);
+					if (!$obj5) {
+	
+						$omClass = NivelInstruccionPeer::getOMClass();
+
+
+					$cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+					$obj5 = new $cls();
+					$obj5->hydrate($row, $startcol5);
+					NivelInstruccionPeer::addInstanceToPool($obj5, $key5);
+				} 
+								$obj5->addResponsable($obj1);
+
+			} 
 			$results[] = $obj1;
 		}
 		$stmt->closeCursor();
@@ -1054,9 +1251,13 @@ abstract class BaseResponsablePeer {
 		RolResponsablePeer::addSelectColumns($c);
 		$startcol5 = $startcol4 + (RolResponsablePeer::NUM_COLUMNS - RolResponsablePeer::NUM_LAZY_LOAD_COLUMNS);
 
+		NivelInstruccionPeer::addSelectColumns($c);
+		$startcol6 = $startcol5 + (NivelInstruccionPeer::NUM_COLUMNS - NivelInstruccionPeer::NUM_LAZY_LOAD_COLUMNS);
+
 				$c->addJoin(array(ResponsablePeer::FK_PROVINCIA_ID,), array(ProvinciaPeer::ID,), $join_behavior);
 				$c->addJoin(array(ResponsablePeer::FK_CUENTA_ID,), array(CuentaPeer::ID,), $join_behavior);
 				$c->addJoin(array(ResponsablePeer::FK_ROLRESPONSABLE_ID,), array(RolResponsablePeer::ID,), $join_behavior);
+				$c->addJoin(array(ResponsablePeer::FK_NIVEL_INSTRUCCION_ID,), array(NivelInstruccionPeer::ID,), $join_behavior);
 
 		$stmt = BasePeer::doSelect($c, $con);
 		$results = array();
@@ -1123,6 +1324,23 @@ abstract class BaseResponsablePeer {
 								$obj4->addResponsable($obj1);
 
 			} 
+				
+				$key5 = NivelInstruccionPeer::getPrimaryKeyHashFromRow($row, $startcol5);
+				if ($key5 !== null) {
+					$obj5 = NivelInstruccionPeer::getInstanceFromPool($key5);
+					if (!$obj5) {
+	
+						$omClass = NivelInstruccionPeer::getOMClass();
+
+
+					$cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+					$obj5 = new $cls();
+					$obj5->hydrate($row, $startcol5);
+					NivelInstruccionPeer::addInstanceToPool($obj5, $key5);
+				} 
+								$obj5->addResponsable($obj1);
+
+			} 
 			$results[] = $obj1;
 		}
 		$stmt->closeCursor();
@@ -1151,9 +1369,13 @@ abstract class BaseResponsablePeer {
 		RolResponsablePeer::addSelectColumns($c);
 		$startcol5 = $startcol4 + (RolResponsablePeer::NUM_COLUMNS - RolResponsablePeer::NUM_LAZY_LOAD_COLUMNS);
 
+		NivelInstruccionPeer::addSelectColumns($c);
+		$startcol6 = $startcol5 + (NivelInstruccionPeer::NUM_COLUMNS - NivelInstruccionPeer::NUM_LAZY_LOAD_COLUMNS);
+
 				$c->addJoin(array(ResponsablePeer::FK_PROVINCIA_ID,), array(ProvinciaPeer::ID,), $join_behavior);
 				$c->addJoin(array(ResponsablePeer::FK_TIPODOCUMENTO_ID,), array(TipodocumentoPeer::ID,), $join_behavior);
 				$c->addJoin(array(ResponsablePeer::FK_ROLRESPONSABLE_ID,), array(RolResponsablePeer::ID,), $join_behavior);
+				$c->addJoin(array(ResponsablePeer::FK_NIVEL_INSTRUCCION_ID,), array(NivelInstruccionPeer::ID,), $join_behavior);
 
 		$stmt = BasePeer::doSelect($c, $con);
 		$results = array();
@@ -1220,6 +1442,23 @@ abstract class BaseResponsablePeer {
 								$obj4->addResponsable($obj1);
 
 			} 
+				
+				$key5 = NivelInstruccionPeer::getPrimaryKeyHashFromRow($row, $startcol5);
+				if ($key5 !== null) {
+					$obj5 = NivelInstruccionPeer::getInstanceFromPool($key5);
+					if (!$obj5) {
+	
+						$omClass = NivelInstruccionPeer::getOMClass();
+
+
+					$cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+					$obj5 = new $cls();
+					$obj5->hydrate($row, $startcol5);
+					NivelInstruccionPeer::addInstanceToPool($obj5, $key5);
+				} 
+								$obj5->addResponsable($obj1);
+
+			} 
 			$results[] = $obj1;
 		}
 		$stmt->closeCursor();
@@ -1248,9 +1487,13 @@ abstract class BaseResponsablePeer {
 		CuentaPeer::addSelectColumns($c);
 		$startcol5 = $startcol4 + (CuentaPeer::NUM_COLUMNS - CuentaPeer::NUM_LAZY_LOAD_COLUMNS);
 
+		NivelInstruccionPeer::addSelectColumns($c);
+		$startcol6 = $startcol5 + (NivelInstruccionPeer::NUM_COLUMNS - NivelInstruccionPeer::NUM_LAZY_LOAD_COLUMNS);
+
 				$c->addJoin(array(ResponsablePeer::FK_PROVINCIA_ID,), array(ProvinciaPeer::ID,), $join_behavior);
 				$c->addJoin(array(ResponsablePeer::FK_TIPODOCUMENTO_ID,), array(TipodocumentoPeer::ID,), $join_behavior);
 				$c->addJoin(array(ResponsablePeer::FK_CUENTA_ID,), array(CuentaPeer::ID,), $join_behavior);
+				$c->addJoin(array(ResponsablePeer::FK_NIVEL_INSTRUCCION_ID,), array(NivelInstruccionPeer::ID,), $join_behavior);
 
 		$stmt = BasePeer::doSelect($c, $con);
 		$results = array();
@@ -1315,6 +1558,141 @@ abstract class BaseResponsablePeer {
 					CuentaPeer::addInstanceToPool($obj4, $key4);
 				} 
 								$obj4->addResponsable($obj1);
+
+			} 
+				
+				$key5 = NivelInstruccionPeer::getPrimaryKeyHashFromRow($row, $startcol5);
+				if ($key5 !== null) {
+					$obj5 = NivelInstruccionPeer::getInstanceFromPool($key5);
+					if (!$obj5) {
+	
+						$omClass = NivelInstruccionPeer::getOMClass();
+
+
+					$cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+					$obj5 = new $cls();
+					$obj5->hydrate($row, $startcol5);
+					NivelInstruccionPeer::addInstanceToPool($obj5, $key5);
+				} 
+								$obj5->addResponsable($obj1);
+
+			} 
+			$results[] = $obj1;
+		}
+		$stmt->closeCursor();
+		return $results;
+	}
+
+
+	
+	public static function doSelectJoinAllExceptNivelInstruccion(Criteria $c, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		$c = clone $c;
+
+								if ($c->getDbName() == Propel::getDefaultDB()) {
+			$c->setDbName(self::DATABASE_NAME);
+		}
+
+		ResponsablePeer::addSelectColumns($c);
+		$startcol2 = (ResponsablePeer::NUM_COLUMNS - ResponsablePeer::NUM_LAZY_LOAD_COLUMNS);
+
+		ProvinciaPeer::addSelectColumns($c);
+		$startcol3 = $startcol2 + (ProvinciaPeer::NUM_COLUMNS - ProvinciaPeer::NUM_LAZY_LOAD_COLUMNS);
+
+		TipodocumentoPeer::addSelectColumns($c);
+		$startcol4 = $startcol3 + (TipodocumentoPeer::NUM_COLUMNS - TipodocumentoPeer::NUM_LAZY_LOAD_COLUMNS);
+
+		CuentaPeer::addSelectColumns($c);
+		$startcol5 = $startcol4 + (CuentaPeer::NUM_COLUMNS - CuentaPeer::NUM_LAZY_LOAD_COLUMNS);
+
+		RolResponsablePeer::addSelectColumns($c);
+		$startcol6 = $startcol5 + (RolResponsablePeer::NUM_COLUMNS - RolResponsablePeer::NUM_LAZY_LOAD_COLUMNS);
+
+				$c->addJoin(array(ResponsablePeer::FK_PROVINCIA_ID,), array(ProvinciaPeer::ID,), $join_behavior);
+				$c->addJoin(array(ResponsablePeer::FK_TIPODOCUMENTO_ID,), array(TipodocumentoPeer::ID,), $join_behavior);
+				$c->addJoin(array(ResponsablePeer::FK_CUENTA_ID,), array(CuentaPeer::ID,), $join_behavior);
+				$c->addJoin(array(ResponsablePeer::FK_ROLRESPONSABLE_ID,), array(RolResponsablePeer::ID,), $join_behavior);
+
+		$stmt = BasePeer::doSelect($c, $con);
+		$results = array();
+
+		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+			$key1 = ResponsablePeer::getPrimaryKeyHashFromRow($row, 0);
+			if (null !== ($obj1 = ResponsablePeer::getInstanceFromPool($key1))) {
+															} else {
+				$omClass = ResponsablePeer::getOMClass();
+
+				$cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+				$obj1 = new $cls();
+				$obj1->hydrate($row);
+				ResponsablePeer::addInstanceToPool($obj1, $key1);
+			} 
+				
+				$key2 = ProvinciaPeer::getPrimaryKeyHashFromRow($row, $startcol2);
+				if ($key2 !== null) {
+					$obj2 = ProvinciaPeer::getInstanceFromPool($key2);
+					if (!$obj2) {
+	
+						$omClass = ProvinciaPeer::getOMClass();
+
+
+					$cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+					$obj2 = new $cls();
+					$obj2->hydrate($row, $startcol2);
+					ProvinciaPeer::addInstanceToPool($obj2, $key2);
+				} 
+								$obj2->addResponsable($obj1);
+
+			} 
+				
+				$key3 = TipodocumentoPeer::getPrimaryKeyHashFromRow($row, $startcol3);
+				if ($key3 !== null) {
+					$obj3 = TipodocumentoPeer::getInstanceFromPool($key3);
+					if (!$obj3) {
+	
+						$omClass = TipodocumentoPeer::getOMClass();
+
+
+					$cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+					$obj3 = new $cls();
+					$obj3->hydrate($row, $startcol3);
+					TipodocumentoPeer::addInstanceToPool($obj3, $key3);
+				} 
+								$obj3->addResponsable($obj1);
+
+			} 
+				
+				$key4 = CuentaPeer::getPrimaryKeyHashFromRow($row, $startcol4);
+				if ($key4 !== null) {
+					$obj4 = CuentaPeer::getInstanceFromPool($key4);
+					if (!$obj4) {
+	
+						$omClass = CuentaPeer::getOMClass();
+
+
+					$cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+					$obj4 = new $cls();
+					$obj4->hydrate($row, $startcol4);
+					CuentaPeer::addInstanceToPool($obj4, $key4);
+				} 
+								$obj4->addResponsable($obj1);
+
+			} 
+				
+				$key5 = RolResponsablePeer::getPrimaryKeyHashFromRow($row, $startcol5);
+				if ($key5 !== null) {
+					$obj5 = RolResponsablePeer::getInstanceFromPool($key5);
+					if (!$obj5) {
+	
+						$omClass = RolResponsablePeer::getOMClass();
+
+
+					$cls = substr('.'.$omClass, strrpos('.'.$omClass, '.') + 1);
+					$obj5 = new $cls();
+					$obj5->hydrate($row, $startcol5);
+					RolResponsablePeer::addInstanceToPool($obj5, $key5);
+				} 
+								$obj5->addResponsable($obj1);
 
 			} 
 			$results[] = $obj1;

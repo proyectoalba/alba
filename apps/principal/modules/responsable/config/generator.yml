@@ -20,11 +20,12 @@ generator:
             fk_rolresponsable_id: { name: Relaci&oacute;n con los alumnos }
             observacion: { name: Observaci&oacute;n, params: size=80}
             autorizacion_retiro: { name: Aut. Retiro }
+            fk_nivel_instruccion_id: { name: Estudios }
       list:
         fields:
             apellido: { params: size=20 }
         title: Listado de Responsables
-        display: [ cuenta, =apellido, apellido_materno, nombre, nro_documento, telefono_movil, telefono, _rolresponsable, autorizacion_retiro ]
+        display: [ cuenta, =apellido, apellido_materno, nombre, nro_documento, telefono_movil, telefono, _rolresponsable, fk_nivel_instruccion_id, autorizacion_retiro ]
         object_actions:
           _edit: -
           _delete: -
@@ -39,7 +40,7 @@ generator:
         display:
                 "Informaci&oacute;n general":  [apellido, apellido_materno,  nombre, _sexo, fk_tipodocumento_id, nro_documento]
                 "Donde vive": [direccion, ciudad, _pais_id, _fk_provincia_id, codigo_postal ]
-                "Otros":  [ telefono, telefono_movil, email, observacion,  autorizacion_retiro]
+                "Otros":  [ telefono, telefono_movil, email, observacion, fk_nivel_instruccion_id, autorizacion_retiro]
         actions:
           _delete: -
           _save: -

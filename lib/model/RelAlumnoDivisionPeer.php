@@ -20,4 +20,11 @@
  */	
 class RelAlumnoDivisionPeer extends BaseRelAlumnoDivisionPeer {
 
+  public static function existe($alumno_id, $division_id) {
+
+    $c = new Criteria();
+    $c->add(RelAlumnodivisionPeer::FK_ALUMNO_ID, $alumno_id);
+    $c->add(RelAlumnodivisionPeer::FK_DIVISION_ID, $division_id);
+    return RelAlumnoDivisionPeer::doSelectOne($c);
+  }
 } // RelAlumnoDivisionPeer

@@ -3,6 +3,49 @@ EstadosAlumnos:
     nombre: Regular
   EstadosAlumnos_2:
     nombre: Libre
+  EstadosAlumnos_3:
+    nombre: Egresado
+  EstadosAlumnos_4:
+    nombre: Ex-alumno
+
+RolResponsable:
+  RolResponsable_1:
+    nombre: Padre
+    descripcion: Padre del alumno
+    activo: 1
+  RolResponsable_2:
+    nombre: Madre
+    descripcion: Madre del alumno
+    activo: 1
+  RolResponsable_3:
+    nombre: Tío
+    descripcion: Tío del alumno
+    activo: 1
+  RolResponsable_3:
+    nombre: Hermano/a
+    descripcion: Hermano/a del alumno
+    activo: 1
+
+NivelInstruccion:
+  ni_i:
+    descripcion: Inicial
+  ni_pc:
+    descripcion: Primario
+  ni_pi:
+    descripcion: Primario (incompleto)
+  ni_sc:
+    descripcion: Secundario
+  ni_si:
+    descripcion: Secundario (incompleto)
+  ni_tc:
+    descripcion: Terciario
+  ni_ti:
+    descripcion: Terciario (incompleto)
+  ni_uc:
+    descripcion: Universitario
+  ni_ui:
+    descripcion: Universitario (incompleto)
+
 Distritoescolar:
   Distritoescolar_1:
     nombre: Distrito de prueba
@@ -71,151 +114,7 @@ Tipoinforme:
     descripcion: Informes relacionados a los alumnos
   Tipoinforme_2:
     nombre: General
-    descripcion:
-Adjunto:
-  Adjunto_1:
-    descripcion:
-    titulo: constancia_alumno_regular
-    nombre_archivo: constancia_alumno_regular.odt
-    tipo_archivo: application/vnd.oasis.opendocument.text
-    ruta: constancia_alumno_regular.odt
-    fecha: 2007-10-17 00:00:00
-  Adjunto_2:
-    descripcion:
-    titulo: certificado_de_terminacion_de_estudios_primarios
-    nombre_archivo: >
-      certificado_de_terminacion_de_estudios_primarios.odt
-    tipo_archivo: application/vnd.oasis.opendocument.text
-    ruta: >
-      certificado_de_terminacion_de_estudios_primarios.odt
-    fecha: 2007-10-17 00:00:00
-  Adjunto_3:
-    descripcion:
-    titulo: solicitud_legajo
-    nombre_archivo: solicitud_legajo.odt
-    tipo_archivo: application/vnd.oasis.opendocument.text
-    ruta: solicitud_legajo.odt
-    fecha: 2007-10-17 00:00:00
-  Adjunto_4:
-    descripcion:
-    titulo: certificado_de_estudios
-    nombre_archivo: certificado_de_estudios.odt
-    tipo_archivo: application/vnd.oasis.opendocument.text
-    ruta: certificado_de_estudios.odt
-    fecha: 2007-10-17 00:00:00
-  Adjunto_5:
-    descripcion:
-    titulo: alumnos_por_division
-    nombre_archivo: alumnos_por_division.odt
-    tipo_archivo: application/vnd.oasis.opendocument.text
-    ruta: alumnos_por_division.odt
-    fecha: 2007-10-17 00:00:00
-  Adjunto_6:
-    descripcion:
-    titulo: locacion
-    nombre_archivo: locacion.odt
-    tipo_archivo: application/vnd.oasis.opendocument.text
-    ruta: locacion.odt
-    fecha: 2007-10-17 00:00:00
-  Adjunto_7:
-    descripcion:
-    titulo: docente
-    nombre_archivo: docente.odt
-    tipo_archivo: application/vnd.oasis.opendocument.text
-    ruta: docente.odt
-    fecha: 2007-10-17 00:00:00
-  Adjunto_8:
-    descripcion:
-    titulo: organizacion
-    nombre_archivo: organizacion.odt
-    tipo_archivo: application/vnd.oasis.opendocument.text
-    ruta: organizacion.odt
-    fecha: 2007-10-17 00:00:00
-  Adjunto_9:
-    descripcion:
-    titulo: cuenta
-    nombre_archivo: cuenta.odt
-    tipo_archivo: application/vnd.oasis.opendocument.text
-    ruta: cuenta.odt
-    fecha: 2007-10-17 00:00:00
-  Adjunto_10:
-    descripcion:
-    titulo: responsable
-    nombre_archivo: responsable.odt
-    tipo_archivo: application/vnd.oasis.opendocument.text
-    ruta: responsable.odt
-    fecha: 2007-10-17 00:00:00
-Informe:
-  Informe_1:
-    nombre: Constancia de alumno regular
-    descripcion: Constancia de alumno regular
-    fk_adjunto_id: Adjunto_1
-    fk_tipoinforme_id: Tipoinforme_1
-    listado: 0
-    variables:
-  Informe_2:
-    nombre: Certificado fin de estudios primarios
-    descripcion: Certificado fin de estudios primarios
-    fk_adjunto_id: Adjunto_2
-    fk_tipoinforme_id: Tipoinforme_1
-    listado: 0
-    variables:
-  Informe_3:
-    nombre: Solicitud de legajo
-    descripcion: Solicitud de legajo
-    fk_adjunto_id: Adjunto_3
-    fk_tipoinforme_id: Tipoinforme_1
-    listado: 0
-    variables: origen
-  Informe_4:
-    nombre: Certificado de estudios
-    descripcion: Certificado de estudios
-    fk_adjunto_id: Adjunto_4
-    fk_tipoinforme_id: Tipoinforme_1
-    listado: 0
-    variables: grado;año
-  Informe_5:
-    nombre: Alumnos por división
-    descripcion: Alumnos por división
-    fk_adjunto_id: Adjunto_5
-    fk_tipoinforme_id: Tipoinforme_1
-    listado: 1
-    variables:
-  Informe_6:
-    nombre: Locacion
-    descripcion: Locacion
-    fk_adjunto_id: Adjunto_6
-    fk_tipoinforme_id: Tipoinforme_2
-    listado: 1
-    variables:
-  Informe_7:
-    nombre: Docente
-    descripcion: Docente
-    fk_adjunto_id: Adjunto_7
-    fk_tipoinforme_id: Tipoinforme_2
-    listado: 1
-    variables:
-  Informe_8:
-    nombre: Organizaci&oacute;n
-    descripcion: Organizaci&oacute;n
-    fk_adjunto_id: Adjunto_8
-    fk_tipoinforme_id: Tipoinforme_2
-    listado: 0
-    variables:
-  Informe_9:
-    nombre: Cuenta
-    descripcion: Cuenta
-    fk_adjunto_id: Adjunto_9
-    fk_tipoinforme_id: Tipoinforme_2
-    listado: 1
-    variables:
-  Informe_10:
-    nombre: Responsable
-    descripcion: Responsable
-    fk_adjunto_id: Adjunto_10
-    fk_tipoinforme_id: Tipoinforme_2
-    listado: 1
-    variables:
+    descripcion: Informes de datos generales
 Calendariovacunacion:
   Calendariovacunacion_3:
     nombre: BCG (1era Dosis)
@@ -716,3 +615,7 @@ UsuarioRol:
   Usuario_Rol_administrador_1:
     fk_usuario_id: Usuario_1
     fk_rol_id: Rol_administrador
+Carrera:
+  Carrera_1:
+    fk_establecimiento_id: Establecimiento_1
+    descripcion: No  definido

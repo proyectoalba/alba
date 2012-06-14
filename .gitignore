@@ -2,4 +2,15 @@ config/databases.yml
 config/propel.ini
 log/*
 cache/*
+/nbproject/private/
+nbproject
+web/uploads/assets/*
+debian/alba.debhelper.log
+debian/alba.substvars
+debian/files
+web/tmp/*
+web/.htaccess
+*.geany
 !.gitignore
+index.php
+

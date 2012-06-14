@@ -1,3 +1,12 @@
+alumno_salud:
+  class: sfPropelRouteCollection
+  options:
+    model:                AlumnoSalud
+    module:               alumno_salud
+    prefix_path:          alumno_salud
+    column:               id
+    with_wildcard_routes: true
+
 # default rules
 homepage:
   url:   /

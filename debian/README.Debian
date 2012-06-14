@@ -1,0 +1,7 @@
+alba for Debian
+---------------
+
+Se agregan symlinks para que los archivos de configuracion apunten a /etc 
+y el cache y log apunten a /var
+
+ -- Fernando Toledo <ftoledo@docksud.com.ar>  Thu, 12 Jan 2012 14:40:45 -0300

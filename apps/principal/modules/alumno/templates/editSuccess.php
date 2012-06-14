@@ -308,7 +308,46 @@
             )) ?>
                 </div>
             </div>
+            
+            <div class="form-row">
+              <?php echo label_for('alumno[celular_padre]', __('Celular del Padre:'), '') ?>
+              <div class="content<?php if ($sf_request->hasError('alumno{celular_padre}')): ?> form-error<?php endif; ?>">
+              <?php if ($sf_request->hasError('alumno{celular_padre}')): ?>
+                <?php echo form_error('alumno{celular_padre}', array('class' => 'form-error-msg')) ?>
+              <?php endif; ?>
 
+              <?php echo object_input_tag($alumno, 'getCelularPadre', array (
+              'size' => 20,
+              'control_name' => 'alumno[celular_padre]',
+            )) ?>
+                </div>
+            </div>
+            <div class="form-row">
+              <?php echo label_for('alumno[email_padre]', __('Email del Padre:'), '') ?>
+              <div class="content<?php if ($sf_request->hasError('alumno{email_padre}')): ?> form-error<?php endif; ?>">
+              <?php if ($sf_request->hasError('alumno{email_padre}')): ?>
+                <?php echo form_error('alumno{email_padre}', array('class' => 'form-error-msg')) ?>
+              <?php endif; ?>
+
+              <?php echo object_input_tag($alumno, 'getEmailPadre', array (
+              'size' => 64,
+              'control_name' => 'alumno[email_padre]',
+            )) ?>
+                </div>
+            </div>
+            <div class="form-row">
+              <?php echo label_for('alumno[celular_madre]', __('Celular de la madre:'), '') ?>
+              <div class="content<?php if ($sf_request->hasError('alumno{celular_madre}')): ?> form-error<?php endif; ?>">
+              <?php if ($sf_request->hasError('alumno{celular_madre}')): ?>
+                <?php echo form_error('alumno{celular_madre}', array('class' => 'form-error-msg')) ?>
+              <?php endif; ?>
+
+              <?php echo object_input_tag($alumno, 'getCelularMadre', array (
+              'size' => 20,
+              'control_name' => 'alumno[celular_madre]',
+            )) ?>
+                </div>
+            </div>
         </fieldset>
         <fieldset id="sf_fieldset_prioridades" class="">
             <h2><?php echo __('Prioridades') ?></h2>

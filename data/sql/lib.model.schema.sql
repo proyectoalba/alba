@@ -489,11 +489,11 @@ CREATE TABLE `cuenta`
 (
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
 	`nombre` VARCHAR(128)  NOT NULL,
-	`razon_social` VARCHAR(128)  NOT NULL,
+	`razon_social` VARCHAR(128),
 	`cuit` VARCHAR(20),
-	`direccion` VARCHAR(128)  NOT NULL,
-	`ciudad` VARCHAR(128)  NOT NULL,
-	`codigo_postal` VARCHAR(20)  NOT NULL,
+	`direccion` VARCHAR(128),
+	`ciudad` VARCHAR(128),
+	`codigo_postal` VARCHAR(20),
 	`telefono` VARCHAR(20),
 	`fk_provincia_id` INTEGER,
 	`fk_tipoiva_id` INTEGER default 0 NOT NULL,
@@ -546,6 +546,9 @@ CREATE TABLE `alumno`
 	`procedencia` VARCHAR(128),
 	`fk_estadoalumno_id` INTEGER default 1 NOT NULL,
 	`observacion` VARCHAR(255),
+	`email_padre` VARCHAR(128),
+	`celular_padre` VARCHAR(20),
+	`celular_madre` VARCHAR(20),
 	PRIMARY KEY (`id`),
 	INDEX `alumno_FI_1` (`fk_provincia_id`),
 	CONSTRAINT `alumno_FK_1`
@@ -594,6 +597,20 @@ CREATE TABLE `rol_responsable`
 )Engine=InnoDB;
 
 #-----------------------------------------------------------------------------
+#-- nivel_instruccion
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `nivel_instruccion`;
+
+
+CREATE TABLE `nivel_instruccion`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`descripcion` VARCHAR(60),
+	PRIMARY KEY (`id`)
+)Engine=InnoDB;
+
+#-----------------------------------------------------------------------------
 #-- responsable
 #-----------------------------------------------------------------------------
 
@@ -607,10 +624,12 @@ CREATE TABLE `responsable`
 	`apellido` VARCHAR(128)  NOT NULL,
 	`apellido_materno` VARCHAR(128),
 	`direccion` VARCHAR(128),
+	`direccion_laboral` VARCHAR(128),
 	`ciudad` VARCHAR(128),
 	`codigo_postal` VARCHAR(20),
 	`fk_provincia_id` INTEGER default 0 NOT NULL,
 	`telefono` VARCHAR(20),
+	`telefono_laboral` VARCHAR(20),
 	`telefono_movil` VARCHAR(20),
 	`nro_documento` VARCHAR(20)  NOT NULL,
 	`fk_tipodocumento_id` INTEGER default 0 NOT NULL,
@@ -618,8 +637,12 @@ CREATE TABLE `responsable`
 	`email` VARCHAR(128),
 	`observacion` VARCHAR(255),
 	`autorizacion_retiro` TINYINT default 0 NOT NULL,
+	`llamar_emergencia` TINYINT default 0 NOT NULL,
 	`fk_cuenta_id` INTEGER default 0 NOT NULL,
 	`fk_rolresponsable_id` INTEGER default 1 NOT NULL,
+	`ocupacion` VARCHAR(255),
+	`fecha_nacimiento` DATETIME,
+	`fk_nivel_instruccion_id` INTEGER,
 	PRIMARY KEY (`id`),
 	INDEX `responsable_FI_1` (`fk_provincia_id`),
 	CONSTRAINT `responsable_FK_1`
@@ -636,7 +659,11 @@ CREATE TABLE `responsable`
 	INDEX `responsable_FI_4` (`fk_rolresponsable_id`),
 	CONSTRAINT `responsable_FK_4`
 		FOREIGN KEY (`fk_rolresponsable_id`)
-		REFERENCES `rol_responsable` (`id`)
+		REFERENCES `rol_responsable` (`id`),
+	INDEX `responsable_FI_5` (`fk_nivel_instruccion_id`),
+	CONSTRAINT `responsable_FK_5`
+		FOREIGN KEY (`fk_nivel_instruccion_id`)
+		REFERENCES `nivel_instruccion` (`id`)
 )Engine=InnoDB;
 
 #-----------------------------------------------------------------------------
@@ -1569,6 +1596,30 @@ CREATE TABLE `estadosalumnos`
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
 	`nombre` VARCHAR(128)  NOT NULL,
 	PRIMARY KEY (`id`)
+)Engine=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- alumno_salud
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `alumno_salud`;
+
+
+CREATE TABLE `alumno_salud`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`fk_alumno_id` INTEGER  NOT NULL,
+	`cobertura_medica` VARCHAR(255),
+	`cobertura_telefono` VARCHAR(40),
+	`cobertura_observaciones` VARCHAR(255),
+	`medico_nombre` VARCHAR(255),
+	`medico_domicilio` VARCHAR(255),
+	`medico_telefono` VARCHAR(20),
+	PRIMARY KEY (`id`),
+	INDEX `alumno_salud_FI_1` (`fk_alumno_id`),
+	CONSTRAINT `alumno_salud_FK_1`
+		FOREIGN KEY (`fk_alumno_id`)
+		REFERENCES `alumno` (`id`)
 )Engine=InnoDB;
 
 # This restores the fkey checks, after having unset them earlier

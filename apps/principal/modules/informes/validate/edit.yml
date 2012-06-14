@@ -29,11 +29,9 @@ names:
         validators: caracteresMaximos255
 
     file:
-        required: Yes
-        required_msg: El campo plantilla de informe es obligatorio
+        required: No
         file: true
         validators: archivoValidar
-
 
 caracteresMaximos128:
     class:  sfStringValidator

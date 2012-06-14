@@ -149,7 +149,7 @@ div.wastebin-active {
                 <br><br><?php echo image_tag('trash.png', 'id=wastebin') ?>
             </div>
             <div style="height:20px">
-              <p id="indicator" style="display:none">
+              <p style="display:none">
                 <?php echo image_tag('indicator.gif') ?> Procesando...
               </p>
             </div>

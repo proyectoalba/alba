@@ -2,7 +2,7 @@
 propel:
   _attributes:
     package: lib.model
-    
+
   conceptobaja:
     _attributes:
       idMethod: native
@@ -626,7 +626,7 @@ propel:
     razon_social:
       type: VARCHAR
       size: 128
-      required: true
+      required: false
     cuit:
       type: VARCHAR
       size: 20
@@ -634,15 +634,15 @@ propel:
     direccion:
       type: VARCHAR
       size: 128
-      required: true
+      required: false
     ciudad:
       type: VARCHAR
       size: 128
-      required: true
+      required: false
     codigo_postal:
       type: VARCHAR
       size: 20
-      required: true
+      required: false
     telefono:
       type: VARCHAR
       size: 20
@@ -774,7 +774,16 @@ propel:
       type: VARCHAR
       size: 255
       required: false
-
+    email_padre:
+      type: VARCHAR
+      size: 128
+    celular_padre:
+      type: VARCHAR
+      size: 20
+    celular_madre:
+      type: VARCHAR
+      size: 20
+      
   rol_responsable:
     _attributes:
       idMethod: native
@@ -794,6 +803,18 @@ propel:
       type: BOOLEAN
       required: true
       default: true
+
+  nivel_instruccion:
+    _attributes:
+      idMethod: native
+    id:
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    descripcion:
+      type: VARCHAR
+      size: 60
 
   responsable:
     _attributes:
@@ -819,6 +840,10 @@ propel:
       type: VARCHAR
       size: 128
       required: false
+    direccion_laboral:
+      type: VARCHAR
+      size: 128
+      required: false
     ciudad:
       type: VARCHAR
       size: 128
@@ -834,6 +859,10 @@ propel:
       foreignTable: provincia
       foreignReference: id
     telefono:
+      type: VARCHAR
+      size: 20
+      required: false
+    telefono_laboral:
       type: VARCHAR
       size: 20
       required: false
@@ -867,6 +896,10 @@ propel:
       type: boolean
       required: true
       default: false
+    llamar_emergencia:
+      type: boolean
+      required: true
+      default: false
     fk_cuenta_id:
       type: INTEGER
       required: true
@@ -878,6 +911,18 @@ propel:
       required: true
       default: 1
       foreignTable: rol_responsable
+      foreignReference: id
+    ocupacion:
+      type: varchar
+      required: false
+      size: 255
+    fecha_nacimiento:
+      type: timestamp
+      required: false
+    fk_nivel_instruccion_id:
+      type: INTEGER
+      required: false
+      foreignTable: nivel_instruccion
       foreignReference: id
 
   ciclolectivo:
@@ -963,7 +1008,7 @@ propel:
       type: varchar
       size: 1000
       required: false
-      
+
   tipodocente:
     _attributes:
       idMethod: native
@@ -1983,7 +2028,7 @@ propel:
       required: true
       foreignTable: usuario
       foreignReference: id
-  
+
   estadosalumnos:
     _attributes:
       idMethod: native
@@ -1996,3 +2041,41 @@ propel:
       type: varchar
       size: 128
       required: true
+
+  alumno_salud:
+    _attributes:
+      idMethod: native
+    id:
+      type: integer
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    fk_alumno_id:
+      type: integer
+      required: true
+      foreignTable: alumno
+      foreignReference: id
+    cobertura_medica:
+      type: varchar
+      size: 255
+      required: false
+    cobertura_telefono:
+      type: varchar
+      size: 40
+      required: false
+    cobertura_observaciones:
+      type: varchar
+      size: 255
+      required: false
+    medico_nombre:
+      type: varchar
+      size: 255
+      required: false
+    medico_domicilio:
+      type: varchar
+      size: 255
+      required: false
+    medico_telefono:
+      type: varchar
+      size: 20
+      required: false

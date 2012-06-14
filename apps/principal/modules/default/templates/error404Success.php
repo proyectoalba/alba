@@ -14,5 +14,5 @@
             <br/>
         </p>
         <p>&nbsp;</p>
-        <p><?php echo link_to("Volver al Inicio","/")?></p>
+        <p><?php echo link_to("Volver al Inicio","@homepage")?></p>
     </div>

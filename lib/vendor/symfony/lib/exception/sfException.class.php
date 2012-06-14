@@ -70,9 +70,9 @@ class sfException extends Exception
           break;
         }
       }
-
-      ob_start(sfConfig::get('sf_compressed') ? 'ob_gzhandler' : '');
-
+      if (PHP_MAJOR_VERSION == 5 && PHP_MINOR_VERSION <= 3) {
+        ob_start(sfConfig::get('sf_compressed') ? 'ob_gzhandler' : '');
+      }
       header('HTTP/1.0 500 Internal Server Error');
     }
 

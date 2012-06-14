@@ -285,8 +285,7 @@ class ciclolectivoActions extends autociclolectivoActions {
                 $nd->save();
               }
             }
-          }
-          else {
+          } else {
             //no existe el ciclo actual
             $this->getUser()->setFlash('error', 'No hay un ciclo actual seleccionado');
           }
@@ -412,14 +411,7 @@ class ciclolectivoActions extends autociclolectivoActions {
   }
 
   public function executePasajeAlumnosForm() {
-    $ciclolectivo_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');
-    $ciclo_actual = CiclolectivoPeer::retrieveByPK($ciclolectivo_id);
-    $this->optionsDivisiones = $ciclo_actual->getDivisionesArray();
 
-    $c = new Criteria ();
-    $c->add(CiclolectivoPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
-    $c->add(CiclolectivoPeer::ID, $ciclolectivo_id, Criteria::NOT_EQUAL);
-    $this->optionsCiclos = CiclolectivoPeer::doSelect($c);
   }
 
   public function executeCambiarCicloAjax() {
@@ -439,36 +431,76 @@ class ciclolectivoActions extends autociclolectivoActions {
     $c = new Criteria();
     $c->add(RelAlumnoDivisionPeer::FK_DIVISION_ID, $id);
     if ($this->getRequestParameter('division_no_id')) {
-      $not_in_query = " alumno.id NOT IN ( SELECT fk_alumno_id FROM rel_alumno_division  WHERE fk_alumno_id = alumno.id AND fk_division_id = " . $this->getRequestParameter("division_no_id") . ")";
+      $not_in_query = " %s NOT IN (";
+      $not_in_query .= " SELECT %s FROM %s WHERE %s = %s AND %s = %s)";
+      $not_in_query = sprintf($not_in_query, RelAlumnoDivisionPeer::FK_ALUMNO_ID, RelAlumnoDivisionPeer::FK_ALUMNO_ID, RelAlumnoDivisionPeer::TABLE_NAME, RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID, RelAlumnoDivisionPeer::FK_DIVISION_ID, $this->getRequestParameter("division_no_id")
+      );
       $c->add(AlumnoPeer::ID, $not_in_query, Criteria::CUSTOM);
     }
-    $c->addJoin(AlumnoPeer::ID, RelAlumnoDivisionPeer::FK_ALUMNO_ID);
+    $c->addJoin(AlumnoPeer::ID, RelAlumnoDivisionPeer::FK_ALUMNO_ID, Criteria::INNER_JOIN);
+    $c->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID, Criteria::INNER_JOIN);
+    $c->addAscendingOrderByColumn(AlumnoPeer::APELLIDO);
+    $c->addAscendingOrderByColumn(AlumnoPeer::NOMBRE);
     $this->alumnos = AlumnoPeer::doSelect($c);
   }
 
-  public function executePasajeAlumnos() {
-    $pasaje = $this->getRequestParameter('pasaje');
-    $ciclolectivo_actual_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');
-    $con = Propel::getConnection();
-    try {
-      $con->beginTransaction();
-      foreach ($pasaje['fk_alumno_id'] as $aid) {
-        $a = new RelAlumnoDivision();
-        $a->setFkDivisionId($pasaje['fk_division_destino_id']);
-        $a->setFkAlumnoId($aid);
-        $a->save();
+  public function executePasajeAlumnos($request) {
+
+    $this->_pasajeAlumnosData();
+    if ($this->getRequest()->getMethod() == sfRequest::POST) {
+
+      $pasaje = $this->getRequestParameter('pasaje');
+      $con = Propel::getConnection();
+      try {
+        $con->beginTransaction();
+        $dupes = 0;
+        foreach ($pasaje['fk_alumno_id'] as $aid) {
+
+          //comprobacion por duplicados por error del schema
+          $found = RelAlumnoDivisionPeer::existe($aid, $pasaje['fk_division_destino_id']);
+          if ($found) {
+            $dupes++;
+          } else {
+            $a = new RelAlumnoDivision();
+            $a->setFkDivisionId($pasaje['fk_division_destino_id']);
+            $a->setFkAlumnoId($aid);
+            $a->save();
+          }
+        }
+        $con->commit();
+        $msg = 'El pasaje de alumnos se ha realizado correctamente.';
+        if ($dupes >0) {
+          $msg .= ' De los cuales ' .$dupes . " no han pasado porque ya se encontraban en la divisi&oacute;n destino.";
+        }
+        $this->getUser()->setFlash('notice', $msg);
+      } catch (Exception $e) {
+        $this->getUser()->setFlash('error', 'Error al pasar alumnos');
+        $con->rollBack();
       }
-      $con->commit();
-      $this->getUser()->setFlash('notice', 'Se ha hecho el pasaje de alumnos correctamente.');
-    } catch (Exception $e) {
-      $con->rollBack();
-      throw $e;
     }
   }
 
   public function handleErrorPasajeAlumnos() {
-//        $pasaje = $this->getResquestParameter('pasaje');
-    $this->forward('ciclolectivo', 'pasajeAlumnosForm');
+    $this->_pasajeAlumnosData();
+    return sfView::SUCCESS;
+  }
+
+  private function _pasajeAlumnosData() {
+
+    $ciclolectivo_id = $this->getUser()->getAttribute('fk_ciclolectivo_id');
+    $ciclo_actual = CiclolectivoPeer::retrieveByPK($ciclolectivo_id);
+    $this->optionsDivisiones = $ciclo_actual->getDivisionesArray();
+
+    $c = new Criteria ();
+    $c->add(CiclolectivoPeer::FK_ESTABLECIMIENTO_ID, $this->getUser()->getAttribute('fk_establecimiento_id'));
+    $c->add(CiclolectivoPeer::ID, $ciclolectivo_id, Criteria::NOT_EQUAL);
+    $this->optionsCiclos = CiclolectivoPeer::doSelect($c);
+    $this->labels = array(
+        'pasaje{fk_division_destino_id}' => 'Divisi&oacute;n destino',
+        'pasaje{fk_alumno_id}' => 'Alumnos',
+        'pasaje{fk_division_id}' => 'Divisi&oacute;n origen',
+        'pasaje{fk_ciclolectivo_id}' => 'Ciclo lectivo',
+    );
   }
 
 }

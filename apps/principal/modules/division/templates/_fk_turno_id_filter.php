@@ -8,5 +8,5 @@
         $optionsTurnos[$turno->getId()] = $turno->getDescripcion();
     }
     asort($optionsTurnos);
-    echo select_tag('division[fk_turno_id]', options_for_select($optionsTurnos)) ;
+    echo select_tag('filters[fk_turno_id]', options_for_select($optionsTurnos, $sf_params->get('filters[fk_turno_id]'))) ;
 ?>

@@ -76,7 +76,6 @@ class seguridadActions extends sfActions
 
 
                     $this->getUser()->setAttribute('usuario',$user->getUsuario());
-                    $this->getUser()->setCulture('es_AR');
 
                     //cargo las credenciales del usuario ylos roles
                     $this->getUser()->cargarCredenciales($user->getId());

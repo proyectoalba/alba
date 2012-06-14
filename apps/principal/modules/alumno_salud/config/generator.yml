@@ -1,0 +1,23 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           AlumnoSalud
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          alumno_salud
+    with_propel_route:     1
+
+    config:
+      actions: ~
+      fields:
+      list: ~
+      filter: ~
+      form:    ~
+      edit:
+        display:
+          "Cobertura médica / Obra social":  [ cobertura_medica, cobertura_telefono, cobertura_observaciones ]
+          "Datos del médico":  [ medico_nombre, medico_domicilio, medico_telefono ]
+      new:     ~

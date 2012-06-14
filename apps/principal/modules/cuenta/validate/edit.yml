@@ -1,17 +1,17 @@
 methods:
-  post:       
+  post:
     - "cuenta{nombre}"
     - "cuenta{razon_social}"
     - "cuenta{cuit}"
     - "cuenta{direccion}"
-    - "cuenta{ciudad}"    
+    - "cuenta{ciudad}"
     - "cuenta{codigo_postal}"
-    - "cuenta{telefono}"    
-    - "cuenta{fk_provincia_id}"    
-    
+    - "cuenta{telefono}"
+    - "cuenta{fk_provincia_id}"
+
 fillin:
     enabled:       on
-      
+
 names:
     cuenta{nombre}:
         required:     Yes
@@ -19,7 +19,7 @@ names:
         validators: valida_nombrecuenta, cuentaValidador
 
     cuenta{razon_social}:
-        required:     Yes
+        required:    No
         required_msg: El campo raz&oacute;n social  es obligatorio
         validators: caracteresMaximos128
 
@@ -29,18 +29,18 @@ names:
         validators: validaCuit
 
     cuenta{direccion}:
-        required:     Yes
+        required:     No
         required_msg: El campo direcci&oacute;n  es obligatorio
         validators: caracteresMaximos128
 
 
     cuenta{ciudad}:
-        required:     Yes
+        required:     No
         required_msg: El campo ciudad  es obligatorio
         validators: caracteresMaximos128
-        
+
     cuenta{codigo_postal}:
-        required:     Yes
+        required:     No
         required_msg: El campo c&oacute;digo postal  es obligatorio
         validators: caracteresMaximos20
 
@@ -52,7 +52,7 @@ names:
         required:     Yes
         required_msg: El campo provincia es obligatorio
         validators: validar_fk_provincia_id
-        
+
 
 
 valida_nombrecuenta:
@@ -69,13 +69,13 @@ caracteresMaximos20:
         max: 20
         max_error: La m&aacute;xima cantidad de caracteres permitida es de 20
 
-        
+
 caracteresMaximos128:
     class:  sfStringValidator
     param:
         max: 128
         max_error: La m&aacute;xima cantidad de caracteres permitida es de 128
-        
+
 validar_fk_provincia_id:
     class:  sfNumberValidator
     param:
