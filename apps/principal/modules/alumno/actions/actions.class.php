@@ -358,5 +358,11 @@ class alumnoActions extends autoAlumnoActions
         }
     }
 
+    public function executePorDivision($request) {
+        $this->getUser()->getAttributeHolder()->removeNamespace('sf_admin/alumno/filters');
+        $filters = array('division' => $request->getParameter('division'));
+        $this->getUser()->getAttributeHolder()->add($filters, 'sf_admin/alumno/filters');
+        $this->redirect('alumno/list');
+    }
 }
 ?>
