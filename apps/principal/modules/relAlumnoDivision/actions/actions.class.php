@@ -274,6 +274,12 @@ class relAlumnoDivisionActions extends autorelAlumnoDivisionActions {
     }
   }
 
+  public function executeAjaxAlumnos($request)
+  {
+    return $this->renderPartial('options_alumnos', array(
+      'sin_division' => $request->getParameter('sin_division') == 'true' // llega como string
+    ));
+  }
 }
 
 ?>

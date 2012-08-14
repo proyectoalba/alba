@@ -546,6 +546,9 @@ CREATE TABLE `alumno`
 	`procedencia` VARCHAR(128),
 	`fk_estadoalumno_id` INTEGER default 1 NOT NULL,
 	`observacion` VARCHAR(255),
+	`email_padre` VARCHAR(128),
+	`celular_padre` VARCHAR(20),
+	`celular_madre` VARCHAR(20),
 	PRIMARY KEY (`id`),
 	INDEX `alumno_FI_1` (`fk_provincia_id`),
 	CONSTRAINT `alumno_FK_1`

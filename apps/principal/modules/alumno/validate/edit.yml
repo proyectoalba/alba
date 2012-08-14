@@ -19,7 +19,10 @@ methods:
     - "alumno{fk_provincia_id}"        
     - "alumno{legajo_prefijo}"          
     - "alumno{legajo_numero}"          
-
+    - "alumno{celular_padre}"
+    - "alumno{email_padre}" 
+    - "alumno{celular_madre}" 
+    
 fillin:
     enabled:       on
       
@@ -100,7 +103,15 @@ names:
     alumno{fk_provincia_id}:
         required:     Yes
         required_msg: El campo Provincia es obligatorio
-                  
+    alumno{celular_padre}:
+        required:     No
+        validators: caracteresMaximos20
+    alumno{celular_madre}:
+        required:     No
+        validators: caracteresMaximos20
+    alumno{email_padre}:
+        required:     No
+        validators: validaEmail, caracteresMaximos128 
 
         
 caracteresMaximos128:

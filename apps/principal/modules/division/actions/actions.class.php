@@ -34,7 +34,7 @@
 class divisionActions extends autodivisionActions
 {
     public function executeAlumnosPorDivision() {
-        $this->redirect('alumno/list?filters%5Bdivision%5D='.$this->getRequestParameter('id').'&filter=filtrar');
+        $this->redirect('alumno/porDivision?division='.$this->getRequestParameter('id'));
     }
 
     protected function addFiltersCriteria($c) {
