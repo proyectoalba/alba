@@ -110,7 +110,11 @@ if ($sf_user->isAuthenticated() == true) {
       </tr>
     </table>
   </body>
-  <?php echo javascript_tag('Drag.init(document.getElementById("sf_admin_bar"));')?>
+  <?php echo javascript_tag('
+    if (document.getElementById("sf_admin_bar") != null) {
+      Drag.init(document.getElementById("sf_admin_bar"));
+    }
+  ')?>
   <div id="indicator">Un momento por favor...</div>
 <?php echo javascript_include_tag('varios/wz_tooltip.js'); ?>
 </html>
