@@ -124,7 +124,7 @@ echo form_tag('informes/save', array(
       <?php
       echo button_to(__('delete'), 'informes/delete?id=' . $informe->getId(), array(
           'post' => true,
-          'confirm' => __('Are you sure?'),
+          'confirm' => ('Se eliminará el informes seleccionado'),
           'class' => 'sf_admin_action_delete',
       ))
       ?><?php endif; ?>

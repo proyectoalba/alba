@@ -35,25 +35,14 @@ class InformesActions extends sfActions {
     $doc = new sfTinyDoc();
     $doc->createFrom();
     $doc->loadXml('content.xml');
-    /*      $doc->mergeXmlField('field1', 'variable');
-
-      $doc->mergeXmlField('field2', array('id' => 55, 'name' => 'bob'));
-
-     */
-
-
-//      $doc->mergeXmlField('field4', AlumnoPeer::doSelect(new Criteria()));
-//      $doc->mergeXmlBlock('block1', AlumnoPeer::doSelectJoinAsistencia = array();
-
     $nbr_col = 10;
     $nbr_row = 5;
-
 
     for ($col = 1; $col <= $nbr_col; $col++) {
       $columns[$col] = 'column_' . $col;
     }
 
-// Creating data
+    // Creating data
     $data = array();
     for ($row = 1; $row <= $nbr_row; $row++) {
       $record = array();
@@ -78,16 +67,14 @@ class InformesActions extends sfActions {
 
   public function executeList() {
     $this->processSort();
-
     $this->processFilters();
-
     $this->filters = $this->getUser()->getAttributeHolder()->getAll('sf_admin/informes/filters');
 
-// pager
+    // pager
     $this->pager = new sfPropelPager('Informe', 10);
     $c = new Criteria();
     $this->addSortCriteria($c);
-//     $this->addFiltersCriteria($c);
+    // $this->addFiltersCriteria($c);
     $this->pager->setCriteria($c);
     $this->pager->setPage($this->getRequestParameter('page', 1));
     $this->pager->init();
@@ -108,16 +95,19 @@ class InformesActions extends sfActions {
       $this->updateInformeFromRequest();
       if ($this->getRequest()->getFileName('file')) {
         $adjunto_anterior = $this->informe->getAdjunto();
+       
         $mimetype = $this->getRequest()->getFileType('file');
         $ext = substr($this->getRequest()->getFileName('file'), strrpos($this->getRequest()->getFileName('file'), '.'));
         $realFileName = $this->getRequest()->getFileName('file');
         $this->getRequest()->moveFile('file', sfConfig::get('sf_informe_dir') . DIRECTORY_SEPARATOR . $realFileName);
+        
         $adjunto = new Adjunto();
         $adjunto->setFecha(date('Y-m-d'));
         $adjunto->setNombreArchivo($realFileName);
         $adjunto->setTipoArchivo($mimetype);
         $adjunto->setRuta($realFileName);
         $adjunto->save();
+        
         $this->informe->setFkAdjuntoId($adjunto->getId());
         $this->saveInforme($this->informe);
 
@@ -176,7 +166,6 @@ class InformesActions extends sfActions {
     $this->preExecute();
     $this->informe = $this->getInformeOrCreate();
     $this->updateInformeFromRequest();
-
     $this->labels = $this->getLabels();
 
     return sfView::SUCCESS;
@@ -207,7 +196,6 @@ class InformesActions extends sfActions {
 
     $this->informe->setListado(isset($informe['listado']) ? $informe['listado'] : 0);
 
-
     if (isset($informe['fk_adjunto_id'])) {
       $this->informe->setFkAdjuntoId($informe['fk_adjunto_id'] ? $informe['fk_adjunto_id'] : null);
     }
@@ -222,7 +210,6 @@ class InformesActions extends sfActions {
       $informe = new Informe();
     } else {
       $informe = InformePeer::retrieveByPk($this->getRequestParameter($id));
-
       $this->forward404Unless($informe);
     }
 
@@ -232,7 +219,6 @@ class InformesActions extends sfActions {
   protected function processFilters() {
     if ($this->getRequest()->hasParameter('filter')) {
       $filters = $this->getRequestParameter('filters');
-
       $this->getUser()->getAttributeHolder()->removeNamespace('sf_admin/informes/filters');
       $this->getUser()->getAttributeHolder()->add($filters, 'sf_admin/informes/filters');
     }
@@ -343,9 +329,10 @@ class InformesActions extends sfActions {
       $this->forward404Unless($alumno);
       $this->alumno = $alumno;
     }
-// El formato normal es ->   variable1;variable2;variableN
-// Se puede agregar variables para select ->  variable:valor1,valor2,valorN
+    // El formato normal es ->   variable1;variable2;variableN
+    // Se puede agregar variables para select ->  variable:valor1,valor2,valorN
     $variables = explode(";", $informe->getVariables());
+    
     foreach ($variables as $variable) {
       $pos = stripos($variable, ":");
       if ($pos === false) {
@@ -365,13 +352,13 @@ class InformesActions extends sfActions {
     $informe = InformePeer::retrieveByPk($this->getRequestParameter('id'));
     $this->forward404Unless($informe);
 
-// inicializando variables
+    // inicializando variables
     $optionsDivision = array();
 
-// tomando los datos del formulario
+    // tomando los datos del formulario
     $division_id = $this->getRequestParameter('division_id');
 
-// llenando el combo de division segun establecimiento
+    // llenando el combo de division segun establecimiento
     $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
     $optionsDivision = $this->_getDivisiones($establecimiento_id);
 
@@ -379,7 +366,7 @@ class InformesActions extends sfActions {
       $this->redirect('informes/mostrar?id=' . $informe->getId() . "&division_id=" . $division_id);
     }
 
-// asignando variables para ser usadas en el template
+    // asignando variables para ser usadas en el template
     $this->optionsDivision = $optionsDivision;
     $this->division_id = $division_id;
     $this->informe = $informe;
@@ -389,15 +376,15 @@ class InformesActions extends sfActions {
     $informe = InformePeer::retrieveByPk($this->getRequestParameter('id'));
     $this->forward404Unless($informe);
 
-// inicializando variables
+    // inicializando variables
     $optionsDivision = array();
     $aAlumno = array();
 
-// tomando los datos del formulario
+    // tomando los datos del formulario
     $division_id = $this->getRequestParameter('division_id');
     $txt = $this->getRequestParameter('txt');
 
-// llenando el combo de division segun establecimiento
+    // llenando el combo de division segun establecimiento
     $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
     $optionsDivision = $this->_getDivisiones($establecimiento_id);
 
@@ -405,7 +392,7 @@ class InformesActions extends sfActions {
       $aAlumno = $this->_getAlumnosPorDivision($division_id, $txt);             // buscando alumnos
     }
 
-// asignando variables para ser usadas en el template
+    // asignando variables para ser usadas en el template
     $this->optionsDivision = $optionsDivision;
     $this->division_id = $division_id;
     $this->txt = $txt;
@@ -418,20 +405,20 @@ class InformesActions extends sfActions {
     $informe = InformePeer::retrieveByPk($this->getRequestParameter('id'));
     $this->forward404Unless($informe);
 
-// inicializando variables
+    // inicializando variables
     $aDocente = array();
 
-// tomando los datos del formulario
+    // tomando los datos del formulario
     $txt = $this->getRequestParameter('txt');
 
-// llenando el combo de division segun establecimiento
+    // llenando el combo de division segun establecimiento
     $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
 
     if ($this->getRequest()->getMethod() == sfRequest::POST) {
       $aDocente = $this->_getDocentes($txt);
     }
 
-// asignando variables para ser usadas en el template
+    // asignando variables para ser usadas en el template
     $this->txt = $txt;
     $this->aDocente = $aDocente;
     $this->informe = $informe;
@@ -441,6 +428,7 @@ class InformesActions extends sfActions {
     define('BASE', sfConfig::get('sf_app_module_dir') . '/informes/lib/');
     require_once(BASE . 'tbs_class_php5.php');
     require_once(BASE . 'tbsooo_class.php');
+  
     $OOo = new clsTinyButStrongOOo;
     $OOo->noErr = true;
     $OOo->SetZipBinary('zip');
@@ -451,26 +439,29 @@ class InformesActions extends sfActions {
     $OOo->LoadXmlFromDoc('content.xml');
 
     $aVariable = $this->leerTemplate($OOo->Source);
-
     $aDato = array();
-    $aDato = $this->llenarVariables($aVariable); //busco en las variables encontradas en el template y reemplaza contenido
-    $aDato['informe'] = $informe->toArray(); //agregando datos del registro informe
-// variables adicionales dinamicas de los formulario
+    
+    //busco en las variables encontradas en el template y reemplaza contenido
+    $aDato = $this->llenarVariables($aVariable); 
+    
+    //agregando datos del registro informe
+    $aDato['informe'] = $informe->toArray(); 
+    
+    // variables adicionales dinamicas de los formulario
     if ($informe->getVariables()) {
       $aDato['variable'] = array();
       $variables = explode(";", $informe->getVariables());
 
       foreach ($variables as $variable) {
         $pos = stripos($variable, ":");
-        if ($pos === false) {
-
-        } else {
-          $variable = substr($variable, 0, $pos);
+        if ($pos) {
+           $variable = substr($variable, 0, $pos);
         }
         $aDato['variable'] = array_merge($aDato['variable'], array($variable => $this->getRequestParameter($variable)));
       }
     }
-// lleno finalmente de diferente forma si es un array (ciclo) o no (variable comun)
+    
+    // lleno finalmente de diferente forma si es un array (ciclo) o no (variable comun)
     if (is_array($aDato)) {
       foreach ($aDato as $idx => $dato) {
         if ($this->isNotAssocArray($dato)) {
@@ -482,9 +473,9 @@ class InformesActions extends sfActions {
     }
 
     $OOo->SaveXmlToDoc();
-// OJO hay headers locos para que funcione en internet explorer
+    // OJO hay headers locos para que funcione en internet explorer
     header('Content-type: ' . $OOo->GetMimetypeDoc());
-//header("Content-Type: application/force-download"); //para que funcione en konqueror
+    //header("Content-Type: application/force-download"); //para que funcione en konqueror
     header("Cache-Control: public, must-revalidate");
     header("Pragma: hack");
     header('Content-Length: ' . filesize($OOo->GetPathnameDoc()));
@@ -499,8 +490,8 @@ class InformesActions extends sfActions {
    * @returns array
    */
   private function leerTemplate($fuente) {
-// Saco del template todas las variables del tipo [sssss.rrrrr], tambien las del ciclo y además
-// evitando las variables del tbs con ;
+    // Saco del template todas las variables del tipo [sssss.rrrrr], tambien las del ciclo y además
+    // evitando las variables del tbs con ;
     $matches = $results = array();
     if (preg_match_all("/\[[^];]*[;.][^]]*\]/", $fuente, $matches)) {
 
@@ -575,7 +566,7 @@ class InformesActions extends sfActions {
           break;
 
         case 'alumno':
-//dependiendo si es una variables de cilcos
+          //dependiendo si es una variables de cilcos
           if (array_key_exists('loop', $result) AND $result['loop'] == 1) {
             $criteria = new Criteria();
 
@@ -685,7 +676,7 @@ class InformesActions extends sfActions {
           if ($this->getUser()->getAttribute('id')) {
             $usuario = UsuarioPeer::retrieveByPk($this->getUser()->getAttribute('id'));
             $aUsuario = $usuario->toArray();
-//por seguridad: para no mostrar otros datos del usuario como clave, preguntas, etc
+            //por seguridad: para no mostrar otros datos del usuario como clave, preguntas, etc
             $aDato['usuario'] = array('Usuario' => $aUsuario['Usuario'], 'Email' => $aUsuario['Email']);
           }
           break;
@@ -738,7 +729,6 @@ class InformesActions extends sfActions {
     $criteria->addJoin(DivisionPeer::FK_ANIO_ID, AnioPeer::ID);
     $criteria->addJoin(DivisionPeer::FK_TURNO_ID, TurnoPeer::ID);
     $criteria->addJoin(TurnoPeer::FK_CICLOLECTIVO_ID, CiclolectivoPeer::ID);
-
     $criteria->add(AnioPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
     $criteria->addJoin(DivisionPeer::FK_TURNO_ID,TurnoPeer::ID);
     $criteria->add(TurnoPeer::FK_CICLOLECTIVO_ID, $this->getUser()->getAttribute('fk_ciclolectivo_id'));
@@ -747,6 +737,7 @@ class InformesActions extends sfActions {
     $criteria->addAscendingOrderByColumn(DivisionPeer::DESCRIPCION);
     $divisiones = DivisionPeer::doSelectJoinAnio($criteria);
     $optionsDivision[''] = "";
+
     foreach ($divisiones as $division) {
       $optionsDivision[$division->getId()] = $division->getAnio()->getDescripcion() . " " . $division->getDescripcion();
     }
@@ -797,10 +788,6 @@ class InformesActions extends sfActions {
     }
 
     $aDocente = DocentePeer::doSelect($criteria);
-    /*        foreach($docentes as $d) {
-      $aDocente[] = $d->toArray();
-      }
-     */
     return $aDocente;
   }
 
@@ -844,17 +831,17 @@ class InformesActions extends sfActions {
   }
 
   public function executeAlumnosPorDivisionFormulario() {
-// inicializando variables
+    // inicializando variables
     $optionsDivision = array();
 
-// tomando los datos del formulario
+    // tomando los datos del formulario
     $division_id = $this->getRequestParameter('division_id');
 
-// llenando el combo de division segun establecimiento
+    // llenando el combo de division segun establecimiento
     $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
     $optionsDivision = $this->_getDivisiones($establecimiento_id);
 
-// asignando variables para ser usadas en el template
+    // asignando variables para ser usadas en el template
     $this->optionsDivision = $optionsDivision;
     $this->division_id = $division_id;
 
@@ -863,16 +850,16 @@ class InformesActions extends sfActions {
 
   public function executeAlumnosPorDivisionListado() {
 
-// inicializando variables
+    // inicializando variables
     $aAlumno = array();
 
-// tomando los datos del formulario
+    // tomando los datos del formulario
     $division_id = $this->getRequestParameter('division_id');
 
-// buscando division
+    // buscando division
     $division = DivisionPeer::retrieveByPK($division_id);
 
-// buscando alumnos
+    // buscando alumnos
     $criteria = new Criteria();
     $criteria->add(DivisionPeer::ID, $division_id);
     $criteria->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
@@ -880,7 +867,7 @@ class InformesActions extends sfActions {
     $criteria->addAscendingOrderByColumn(AlumnoPeer::APELLIDO);
     $alumnos = AlumnoPeer::doSelect($criteria);
 
-// asignando variables para ser usadas en el template
+    // asignando variables para ser usadas en el template
     $this->aAlumno = $alumnos;
     $this->division = $division;
   }
@@ -889,30 +876,28 @@ class InformesActions extends sfActions {
    *   Informe Boletin
    */
   public function executeBoletinFormulario() {
-// inicializando variables
+    // inicializando variables
     $optionsDivision = array();
     $aAlumno = array();
 
-// tomando los datos del formulario
+    // tomando los datos del formulario
     $division_id = $this->getRequestParameter('division_id');
     $txt = $this->getRequestParameter('txt');
 
-// llenando el combo de division segun establecimiento
+    // llenando el combo de division segun establecimiento
     $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
     $optionsDivision = $this->_getDivisiones($establecimiento_id);
 
     if ($this->getRequest()->getMethod() == sfRequest::POST) {
-// buscando alumnos
+    // buscando alumnos
       $aAlumno = $this->_getAlumnosPorDivision($division_id, $txt);
     }
 
-// asignando variables para ser usadas en el template
+    // asignando variables para ser usadas en el template
     $this->optionsDivision = $optionsDivision;
     $this->division_id = $division_id;
     $this->txt = $txt;
     $this->aAlumno = $aAlumno;
-
-//$this->setLayout("layout_sinmenu");
   }
 
   public function executeBoletinListado() {
