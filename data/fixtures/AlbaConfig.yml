@@ -1,0 +1,4 @@
+AlbaConfig:
+  db_config:
+    nombre: db_config
+    valor: 1.2

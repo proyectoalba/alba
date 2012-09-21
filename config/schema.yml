@@ -2079,3 +2079,19 @@ propel:
       type: varchar
       size: 20
       required: false
+  config:
+    _attributes:
+      idMethod: native
+      phpName: AlbaConfig
+    id:
+      type: integer
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre:
+      type: varchar
+      size: 200
+      required: false
+    valor:
+      type: blob
+      required: false

@@ -1622,5 +1622,20 @@ CREATE TABLE `alumno_salud`
 		REFERENCES `alumno` (`id`)
 )Engine=InnoDB;
 
+#-----------------------------------------------------------------------------
+#-- config
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `config`;
+
+
+CREATE TABLE `config`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(200),
+	`valor` LONGBLOB,
+	PRIMARY KEY (`id`)
+)Engine=InnoDB;
+
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
