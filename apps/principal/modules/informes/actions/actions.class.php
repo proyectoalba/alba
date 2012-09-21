@@ -95,11 +95,11 @@ class InformesActions extends sfActions {
       $this->updateInformeFromRequest();
       if ($this->getRequest()->getFileName('file')) {
       
-        if (!$this->informe->isNew()) {
+        /*if (!$this->informe->isNew()) {
             $adjunto_anterior = $this->informe->getAdjunto();
             @unlink(sfConfig::get('sf_informe_dir') . DIRECTORY_SEPARATOR . $adjunto_anterior->getRuta());
             $adjunto_anterior->delete();
-        }
+        } */
 
         $mimetype = $this->getRequest()->getFileType('file');
         $ext = substr($this->getRequest()->getFileName('file'), strrpos($this->getRequest()->getFileName('file'), '.'));
