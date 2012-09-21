@@ -142,7 +142,7 @@
     <li><span></span><?php echo link_to("Archivos","sfMediaLibrary/index")?></li>
     <li><span></span><a href="#">Ayuda</a>
       <ul>
-        <li><span></span><?php echo link_to("Manual", "http://".sfContext::getInstance()->getRequest()->getHost().sfContext::getInstance()->getRequest()->getRelativeUrlRoot()."/manual/index.html", 'target=_blank')?></li>
+        <li><span></span><?php echo link_to("Documentaci&oacute;n", "default/ayuda")?></li>
           <li><span></span><?php echo link_to("Ayuda v&iacute;a IRC",'http://webchat.freenode.net/?channels=proyectoalba&uio=d4', array('target'=>'blank'))?></li>
         <li><span></span><?php echo link_to("Cr&eacute;ditos","creditos/index")?></li>
       </ul>
