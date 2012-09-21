@@ -94,13 +94,18 @@ class InformesActions extends sfActions {
     if ($this->getRequest()->getMethod() == sfRequest::POST) {
       $this->updateInformeFromRequest();
       if ($this->getRequest()->getFileName('file')) {
-        $adjunto_anterior = $this->informe->getAdjunto();
-       
+      
+        if (!$this->informe->isNew()) {
+            $adjunto_anterior = $this->informe->getAdjunto();
+            @unlink(sfConfig::get('sf_informe_dir') . DIRECTORY_SEPARATOR . $adjunto_anterior->getRuta());
+            $adjunto_anterior->delete();
+        }
+
         $mimetype = $this->getRequest()->getFileType('file');
         $ext = substr($this->getRequest()->getFileName('file'), strrpos($this->getRequest()->getFileName('file'), '.'));
         $realFileName = $this->getRequest()->getFileName('file');
         $this->getRequest()->moveFile('file', sfConfig::get('sf_informe_dir') . DIRECTORY_SEPARATOR . $realFileName);
-        
+
         $adjunto = new Adjunto();
         $adjunto->setFecha(date('Y-m-d'));
         $adjunto->setNombreArchivo($realFileName);
@@ -110,12 +115,7 @@ class InformesActions extends sfActions {
         
         $this->informe->setFkAdjuntoId($adjunto->getId());
         $this->saveInforme($this->informe);
-
-        if (!$this->informe->isNew()) {
-          //modificacion, borramos el adjunto anterior
-          @unlink(sfConfig::get('sf_informe_dir') . DIRECTORY_SEPARATOR . $adjunto_anterior->getRuta());
-          $adjunto_anterior->delete();
-        }
+        
         $this->getUser()->setFlash('notice', 'Your modifications have been saved');
         if ($this->getRequestParameter('save_and_add')) {
           return $this->redirect('informes/create');
@@ -265,7 +265,7 @@ class InformesActions extends sfActions {
     $informe->setFkAdjuntoId();
     $informe->save();
     $adjunto = AdjuntoPeer::retrieveByPk($informe->getFkAdjuntoId());
-    unlink(sfConfig::get('sf_informe_dir') . "/" . $adjunto->getRuta());
+    unlink(sfConfig::get('sf_informe_dir') . DIRECTORY_SEPARATOR . $adjunto->getRuta());
     $adjunto->delete();
     return $this->redirect("informes?action=edit&id=" . $id);
   }
@@ -435,7 +435,7 @@ class InformesActions extends sfActions {
     $OOo->SetUnzipBinary('unzip');
     $OOo->SetProcessDir(sfConfig::get('sf_informe_dir'));
     $OOo->SetDataCharset('UTF8');
-    $OOo->NewDocFromTpl(sfConfig::get('sf_informe_dir') . '/' . $informe->getAdjunto()->getRuta());
+    $OOo->NewDocFromTpl(sfConfig::get('sf_informe_dir') . DIRECTORY_SEPARATOR . $informe->getAdjunto()->getRuta());
     $OOo->LoadXmlFromDoc('content.xml');
 
     $aVariable = $this->leerTemplate($OOo->Source);
