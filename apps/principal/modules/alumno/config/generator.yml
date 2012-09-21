@@ -44,7 +44,7 @@ generator:
             object_actions:
                 _edit: -
                 _delete: -
-                irCuenta:  { name: Ir a Cuenta, action: irCuenta, icon: next.png }
+                irCuenta:  { name: Ir a Cuenta, action: irCuenta, icon: small/cuenta_go.png }
                 Vacunas: { name: Vacunas, action: vacunas, icon: jeringa.gif}
                 Salud: { name: Salud, action: legajosalud, icon: small/legajosalud.png }
                 asistencia: { name: Asistencia, action: asistencia, icon: small/asistencia.png }
