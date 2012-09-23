@@ -33,7 +33,7 @@
 	  }
 </style>
 <?php if (sfConfig::get('sf_debug')):?>
-	<p>Ajax Upload debug!</p>
+	<p class="display_none">Ajax Upload debug!</p>
 	<iframe id ="framefoto" name="framefoto" src="#" style="width:600px;border:1px solid #ff0000;"></iframe>
 <?php else:?>
 	<iframe id ="framefoto" name="framefoto" src="#" style="width:0;height:0;border:0px solid #fff;"></iframe>

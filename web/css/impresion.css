@@ -38,3 +38,48 @@
 #indicator {
   display: none;
 }
+
+#sf_admin_content table.sf_admin_list {
+  border-left: 1px solid;
+  border-bottom: 1px solid;
+}
+#sf_admin_content table.sf_admin_list a{
+  color: black;
+  font-style: normal;
+  
+}
+#sf_admin_content table.sf_admin_list td,
+#sf_admin_content table.sf_admin_list th {
+  border-right: 1px solid;
+  border-top: 1px solid;
+
+}
+#sf_admin_content table.sf_admin_list thead {
+  font-family:Arial;
+  border-right: 1px solid;
+  border-top: 1px solid;
+}
+
+#sf_admin_content table.sf_admin_list tr.foot td{
+  border-top: 1px solid;
+  border-right: 1px solid;
+}
+#sf_admin_content table.sf_admin_list #sf_admin_list_th_sf_actions {
+  display: none;
+}
+#sf_admin_content table.sf_admin_list a {
+  text-decoration: none;
+}
+#sf_admin_container #framefoto {
+  display: none;
+}
+.display_none {
+  display: none;
+}
+
+#sf_admin_container select,
+#sf_admin_container textarea,
+#sf_admin_container input {
+  border: 1px solid;
+
+}
