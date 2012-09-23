@@ -184,26 +184,28 @@ abstract class BaseLegajopedagogico extends BaseObject  implements Persistent {
 	
 	public function setResumen($v)
 	{
-								if (!is_resource($v)) {
-			$this->resumen = fopen('php://memory', 'r+');
-			fwrite($this->resumen, $v);
-			rewind($this->resumen);
-		} else { 			$this->resumen = $v;
+		if ($v !== null) {
+			$v = (string) $v;
 		}
-		$this->modifiedColumns[] = LegajopedagogicoPeer::RESUMEN;
+
+		if ($this->resumen !== $v) {
+			$this->resumen = $v;
+			$this->modifiedColumns[] = LegajopedagogicoPeer::RESUMEN;
+		}
 
 		return $this;
 	} 
 	
 	public function setTexto($v)
 	{
-								if (!is_resource($v)) {
-			$this->texto = fopen('php://memory', 'r+');
-			fwrite($this->texto, $v);
-			rewind($this->texto);
-		} else { 			$this->texto = $v;
+		if ($v !== null) {
+			$v = (string) $v;
 		}
-		$this->modifiedColumns[] = LegajopedagogicoPeer::TEXTO;
+
+		if ($this->texto !== $v) {
+			$this->texto = $v;
+			$this->modifiedColumns[] = LegajopedagogicoPeer::TEXTO;
+		}
 
 		return $this;
 	} 
@@ -292,20 +294,8 @@ abstract class BaseLegajopedagogico extends BaseObject  implements Persistent {
 			$this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
 			$this->fk_alumno_id = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
 			$this->titulo = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-			if ($row[$startcol + 3] !== null) {
-				$this->resumen = fopen('php://memory', 'r+');
-				fwrite($this->resumen, $row[$startcol + 3]);
-				rewind($this->resumen);
-			} else {
-				$this->resumen = null;
-			}
-			if ($row[$startcol + 4] !== null) {
-				$this->texto = fopen('php://memory', 'r+');
-				fwrite($this->texto, $row[$startcol + 4]);
-				rewind($this->texto);
-			} else {
-				$this->texto = null;
-			}
+			$this->resumen = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
+			$this->texto = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
 			$this->fecha = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
 			$this->fk_usuario_id = ($row[$startcol + 6] !== null) ? (int) $row[$startcol + 6] : null;
 			$this->fk_legajocategoria_id = ($row[$startcol + 7] !== null) ? (int) $row[$startcol + 7] : null;
@@ -454,14 +444,6 @@ abstract class BaseLegajopedagogico extends BaseObject  implements Persistent {
 					$this->setNew(false);
 				} else {
 					$affectedRows += LegajopedagogicoPeer::doUpdate($this, $con);
-				}
-
-								if ($this->resumen !== null && is_resource($this->resumen)) {
-					rewind($this->resumen);
-				}
-
-								if ($this->texto !== null && is_resource($this->texto)) {
-					rewind($this->texto);
 				}
 
 				$this->resetModified(); 			}

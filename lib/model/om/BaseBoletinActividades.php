@@ -215,13 +215,14 @@ abstract class BaseBoletinActividades extends BaseObject  implements Persistent 
 	
 	public function setObservacion($v)
 	{
-								if (!is_resource($v)) {
-			$this->observacion = fopen('php://memory', 'r+');
-			fwrite($this->observacion, $v);
-			rewind($this->observacion);
-		} else { 			$this->observacion = $v;
+		if ($v !== null) {
+			$v = (string) $v;
 		}
-		$this->modifiedColumns[] = BoletinActividadesPeer::OBSERVACION;
+
+		if ($this->observacion !== $v) {
+			$this->observacion = $v;
+			$this->modifiedColumns[] = BoletinActividadesPeer::OBSERVACION;
+		}
 
 		return $this;
 	} 
@@ -288,13 +289,7 @@ abstract class BaseBoletinActividades extends BaseObject  implements Persistent 
 			$this->fk_alumno_id = ($row[$startcol + 2] !== null) ? (int) $row[$startcol + 2] : null;
 			$this->fk_actividad_id = ($row[$startcol + 3] !== null) ? (int) $row[$startcol + 3] : null;
 			$this->fk_periodo_id = ($row[$startcol + 4] !== null) ? (int) $row[$startcol + 4] : null;
-			if ($row[$startcol + 5] !== null) {
-				$this->observacion = fopen('php://memory', 'r+');
-				fwrite($this->observacion, $row[$startcol + 5]);
-				rewind($this->observacion);
-			} else {
-				$this->observacion = null;
-			}
+			$this->observacion = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
 			$this->fecha = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
 			$this->resetModified();
 
@@ -449,10 +444,6 @@ abstract class BaseBoletinActividades extends BaseObject  implements Persistent 
 					$this->setNew(false);
 				} else {
 					$affectedRows += BoletinActividadesPeer::doUpdate($this, $con);
-				}
-
-								if ($this->observacion !== null && is_resource($this->observacion)) {
-					rewind($this->observacion);
 				}
 
 				$this->resetModified(); 			}

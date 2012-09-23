@@ -16,18 +16,4 @@ require_once 'lib/model/om/BaseLegajopedagogico.php';
  */	
 class Legajopedagogico extends BaseLegajopedagogico {
 
-    public function getResumen() {
-        if (is_null(parent::getResumen())) {
-            return ""; }
-        else {    
-            return stream_get_contents(parent::getResumen());
-        }
-    }
-    public function getTexto() {
-        if (is_null(parent::getTexto())) {
-            return ""; }
-        else { 
-            return stream_get_contents(parent::getTexto());
-        }
-    }
 }

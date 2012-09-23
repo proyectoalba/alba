@@ -43,7 +43,7 @@ class BoletinConceptualMapBuilder implements MapBuilder {
 
 		$tMap->addForeignKey('FK_PERIODO_ID', 'FkPeriodoId', 'INTEGER', 'periodo', 'ID', true, null);
 
-		$tMap->addColumn('OBSERVACION', 'Observacion', 'BLOB', false, null);
+		$tMap->addColumn('OBSERVACION', 'Observacion', 'LONGVARCHAR', false, null);
 
 		$tMap->addColumn('FECHA', 'Fecha', 'TIMESTAMP', true, null);
 

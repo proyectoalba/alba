@@ -37,7 +37,7 @@ class AlbaConfigMapBuilder implements MapBuilder {
 
 		$tMap->addColumn('NOMBRE', 'Nombre', 'VARCHAR', false, 200);
 
-		$tMap->addColumn('VALOR', 'Valor', 'BLOB', false, null);
+		$tMap->addColumn('VALOR', 'Valor', 'LONGVARCHAR', false, null);
 
 	} 
 } 

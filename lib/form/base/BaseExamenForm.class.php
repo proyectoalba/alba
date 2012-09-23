@@ -18,7 +18,7 @@ class BaseExamenForm extends BaseFormPropel
       'fk_actividad_id'  => new sfWidgetFormPropelChoice(array('model' => 'Actividad', 'add_empty' => false)),
       'fk_periodo_id'    => new sfWidgetFormPropelChoice(array('model' => 'Periodo', 'add_empty' => false)),
       'nombre'           => new sfWidgetFormInput(),
-      'observacion'      => new sfWidgetFormInput(),
+      'observacion'      => new sfWidgetFormTextarea(),
       'fecha'            => new sfWidgetFormDateTime(),
     ));
 
@@ -29,7 +29,7 @@ class BaseExamenForm extends BaseFormPropel
       'fk_actividad_id'  => new sfValidatorPropelChoice(array('model' => 'Actividad', 'column' => 'id')),
       'fk_periodo_id'    => new sfValidatorPropelChoice(array('model' => 'Periodo', 'column' => 'id')),
       'nombre'           => new sfValidatorString(array('max_length' => 255)),
-      'observacion'      => new sfValidatorPass(),
+      'observacion'      => new sfValidatorString(array('required' => false)),
       'fecha'            => new sfValidatorDateTime(),
     ));
 

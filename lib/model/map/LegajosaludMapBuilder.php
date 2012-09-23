@@ -39,7 +39,7 @@ class LegajosaludMapBuilder implements MapBuilder {
 
 		$tMap->addColumn('TITULO', 'Titulo', 'VARCHAR', true, 255);
 
-		$tMap->addColumn('DESCRIPCION', 'Descripcion', 'BLOB', true, null);
+		$tMap->addColumn('DESCRIPCION', 'Descripcion', 'LONGVARCHAR', true, null);
 
 		$tMap->addColumn('FECHA', 'Fecha', 'TIMESTAMP', true, null);
 

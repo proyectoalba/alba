@@ -14,13 +14,13 @@ class BaseAlbaConfigForm extends BaseFormPropel
     $this->setWidgets(array(
       'id'     => new sfWidgetFormInputHidden(),
       'nombre' => new sfWidgetFormInput(),
-      'valor'  => new sfWidgetFormInput(),
+      'valor'  => new sfWidgetFormTextarea(),
     ));
 
     $this->setValidators(array(
       'id'     => new sfValidatorPropelChoice(array('model' => 'AlbaConfig', 'column' => 'id', 'required' => false)),
       'nombre' => new sfValidatorString(array('max_length' => 200, 'required' => false)),
-      'valor'  => new sfValidatorPass(array('required' => false)),
+      'valor'  => new sfValidatorString(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('alba_config[%s]');

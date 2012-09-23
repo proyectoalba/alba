@@ -39,9 +39,9 @@ class LegajopedagogicoMapBuilder implements MapBuilder {
 
 		$tMap->addColumn('TITULO', 'Titulo', 'VARCHAR', true, 255);
 
-		$tMap->addColumn('RESUMEN', 'Resumen', 'BLOB', true, null);
+		$tMap->addColumn('RESUMEN', 'Resumen', 'LONGVARCHAR', true, null);
 
-		$tMap->addColumn('TEXTO', 'Texto', 'BLOB', true, null);
+		$tMap->addColumn('TEXTO', 'Texto', 'LONGVARCHAR', true, null);
 
 		$tMap->addColumn('FECHA', 'Fecha', 'TIMESTAMP', true, null);
 

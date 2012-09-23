@@ -85,13 +85,14 @@ abstract class BaseAlbaConfig extends BaseObject  implements Persistent {
 	
 	public function setValor($v)
 	{
-								if (!is_resource($v)) {
-			$this->valor = fopen('php://memory', 'r+');
-			fwrite($this->valor, $v);
-			rewind($this->valor);
-		} else { 			$this->valor = $v;
+		if ($v !== null) {
+			$v = (string) $v;
 		}
-		$this->modifiedColumns[] = AlbaConfigPeer::VALOR;
+
+		if ($this->valor !== $v) {
+			$this->valor = $v;
+			$this->modifiedColumns[] = AlbaConfigPeer::VALOR;
+		}
 
 		return $this;
 	} 
@@ -111,13 +112,7 @@ abstract class BaseAlbaConfig extends BaseObject  implements Persistent {
 
 			$this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
 			$this->nombre = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
-			if ($row[$startcol + 2] !== null) {
-				$this->valor = fopen('php://memory', 'r+');
-				fwrite($this->valor, $row[$startcol + 2]);
-				rewind($this->valor);
-			} else {
-				$this->valor = null;
-			}
+			$this->valor = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -226,10 +221,6 @@ abstract class BaseAlbaConfig extends BaseObject  implements Persistent {
 					$this->setNew(false);
 				} else {
 					$affectedRows += AlbaConfigPeer::doUpdate($this, $con);
-				}
-
-								if ($this->valor !== null && is_resource($this->valor)) {
-					rewind($this->valor);
 				}
 
 				$this->resetModified(); 			}

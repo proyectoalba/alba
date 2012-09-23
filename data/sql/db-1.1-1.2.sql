@@ -10,3 +10,11 @@ CREATE TABLE config (
 );
 
 INSERT INTO config (nombre,valor) VALUES ('db_version','1.2');
+
+ALTER TABLE legajopedagogico MODIFY resumen TEXT NOT NULL;
+ALTER TABLE legajopedagogico MODIFY texto TEXT NOT NULL;
+
+ALTER TABLE boletin_conceptual MODIFY observacion TEXT;
+ALTER TABLE boletin_actividades MODIFY observacion TEXT;
+ALTER TABLE examen MODIFY observacion TEXT;
+ALTER TABLE legajosalud MODIFY descripcion TEXT NOT NULL;

@@ -157,13 +157,14 @@ abstract class BaseLegajosalud extends BaseObject  implements Persistent {
 	
 	public function setDescripcion($v)
 	{
-								if (!is_resource($v)) {
-			$this->descripcion = fopen('php://memory', 'r+');
-			fwrite($this->descripcion, $v);
-			rewind($this->descripcion);
-		} else { 			$this->descripcion = $v;
+		if ($v !== null) {
+			$v = (string) $v;
 		}
-		$this->modifiedColumns[] = LegajosaludPeer::DESCRIPCION;
+
+		if ($this->descripcion !== $v) {
+			$this->descripcion = $v;
+			$this->modifiedColumns[] = LegajosaludPeer::DESCRIPCION;
+		}
 
 		return $this;
 	} 
@@ -234,13 +235,7 @@ abstract class BaseLegajosalud extends BaseObject  implements Persistent {
 			$this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
 			$this->fk_alumno_id = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
 			$this->titulo = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-			if ($row[$startcol + 3] !== null) {
-				$this->descripcion = fopen('php://memory', 'r+');
-				fwrite($this->descripcion, $row[$startcol + 3]);
-				rewind($this->descripcion);
-			} else {
-				$this->descripcion = null;
-			}
+			$this->descripcion = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
 			$this->fecha = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
 			$this->fk_usuario_id = ($row[$startcol + 5] !== null) ? (int) $row[$startcol + 5] : null;
 			$this->resetModified();
@@ -374,10 +369,6 @@ abstract class BaseLegajosalud extends BaseObject  implements Persistent {
 					$this->setNew(false);
 				} else {
 					$affectedRows += LegajosaludPeer::doUpdate($this, $con);
-				}
-
-								if ($this->descripcion !== null && is_resource($this->descripcion)) {
-					rewind($this->descripcion);
 				}
 
 				$this->resetModified(); 			}
