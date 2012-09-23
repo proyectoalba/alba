@@ -30,8 +30,9 @@ generator:
           _edit: -
           _delete: -
           irCuenta:  { name: Ir a Cuenta, action: irCuenta, icon: small/cuenta_go.png }
-        actions: {}
-        filters: [ apellido ]        
+        actions:
+            _create: -
+        filters: [ apellido ] 
       edit:
         title: Editar Responsable
         fields:
@@ -46,4 +47,4 @@ generator:
           _save: -
           _save_and_add: -
           _list: -          
-          irCuenta:  { name: Ir a Cuenta, action: irCuenta, icon: next.png }
+          irCuenta:  { name: Ir a Cuenta, action: irCuenta, icon: small/cuenta_go.png }
