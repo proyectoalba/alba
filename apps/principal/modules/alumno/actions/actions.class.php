@@ -72,27 +72,13 @@ class alumnoActions extends autoAlumnoActions
 
   protected function addFiltersCriteria($c) {
     $c->add(AlumnoPeer::FK_ESTABLECIMIENTO_ID,$this->getUser()->getAttribute('fk_establecimiento_id'));
-/*
-    if(isset($this->filters['nombre_apellido']) && $this->filters['nombre_apellido'] != '') {
-        $cton1 = $c->getNewCriterion(AlumnoPeer::NOMBRE, "%".$this->filters['nombre_apellido']."%", Criteria::LIKE);
-        $cton2 = $c->getNewCriterion(AlumnoPeer::APELLIDO, "%".$this->filters['nombre_apellido']."%", Criteria::LIKE);
-        $cton1->addOr($cton2);
-        $c->add($cton1);
-    }
-*/
-  /*
-    if(isset($this->filters['nro_documento']) && $this->filters['nro_documento'] != '') {
-        $c->add(AlumnoPeer::NRO_DOCUMENTO,$this->filters['nro_documento']);
-    }
-*/
+    
     if (isset($this->filters['division']) && $this->filters['division'] != '' && $this->filters['division'] != 0) {
         $c->add(RelAlumnoDivisionPeer::FK_DIVISION_ID, $this->filters['division']);
         $c->addJoin(AlumnoPeer::ID, RelAlumnoDivisionPeer::FK_ALUMNO_ID);
     }
 
-    ////
-
-       if (isset($this->filters['nombre_is_empty']))
+    if (isset($this->filters['nombre_is_empty']))
     {
       $criterion = $c->getNewCriterion(AlumnoPeer::NOMBRE, '');
       $criterion->addOr($c->getNewCriterion(AlumnoPeer::NOMBRE, null, Criteria::ISNULL));
@@ -102,6 +88,7 @@ class alumnoActions extends autoAlumnoActions
     {
       $c->add(AlumnoPeer::NOMBRE, strtr($this->filters['nombre'], '*', '%'), Criteria::LIKE);
     }
+   
     if (isset($this->filters['apellido_is_empty']))
     {
       $criterion = $c->getNewCriterion(AlumnoPeer::APELLIDO, '');
@@ -112,19 +99,6 @@ class alumnoActions extends autoAlumnoActions
     {
       $c->add(AlumnoPeer::APELLIDO, strtr($this->filters['apellido'], '*', '%'), Criteria::LIKE);
     }
-  /*
-    if (isset($this->filters['division_is_empty']))
-    {
-      $criterion = $c->getNewCriterion(AlumnoPeer::DIVISION, '');
-      $criterion->addOr($c->getNewCriterion(AlumnoPeer::DIVISION, null, Criteria::ISNULL));
-      $c->add($criterion);
-    }
-    else if (isset($this->filters['division']) && $this->filters['division'] !== '')
-    {
-      $c->add(AlumnoPeer::DIVISION, $this->filters['division']);
-    }
-   *
-   * */
 
     if (isset($this->filters['nro_documento_is_empty']))
     {
@@ -136,9 +110,6 @@ class alumnoActions extends autoAlumnoActions
     {
       $c->add(AlumnoPeer::NRO_DOCUMENTO, strtr($this->filters['nro_documento'], '*', '%'), Criteria::LIKE);
     }
-
-    ////
-
 
   }
 
@@ -276,7 +247,6 @@ class alumnoActions extends autoAlumnoActions
     public function handleErrorGrabarCuenta() {
         $this->cuenta = $this->updateCuentaFromRequest();
         $this->setTemplate("nuevaCuenta");
-//         $this->vista = "noMuestraMenu";
         return sfView::SUCCESS;
     }
 
@@ -290,50 +260,49 @@ class alumnoActions extends autoAlumnoActions
 
     public function updateCuentaFromRequest() {
         $cuenta = $this->getRequestParameter('cuenta');
-
         $cuenta_obj = new Cuenta();
 
-    if (isset($cuenta['nombre']))
-    {
-      $cuenta_obj->setNombre($cuenta['nombre']);
-    }
-    if (isset($cuenta['razon_social']))
-    {
-      $cuenta_obj->setRazonSocial($cuenta['razon_social']);
-    }
-    if (isset($cuenta['cuit']))
-    {
-      $cuenta_obj->setCuit($cuenta['cuit']);
-    }
+        if (isset($cuenta['nombre']))
+        {
+          $cuenta_obj->setNombre($cuenta['nombre']);
+        }
+        if (isset($cuenta['razon_social']))
+        {
+          $cuenta_obj->setRazonSocial($cuenta['razon_social']);
+        }
+        if (isset($cuenta['cuit']))
+        {
+          $cuenta_obj->setCuit($cuenta['cuit']);
+        }
 
-    if (isset($cuenta['direccion']))
-    {
-      $cuenta_obj->setDireccion($cuenta['direccion']);
-    }
-    if (isset($cuenta['ciudad']))
-    {
-      $cuenta_obj->setCiudad($cuenta['ciudad']);
-    }
-    if (isset($cuenta['codigo_postal']))
-    {
-      $cuenta_obj->setCodigoPostal($cuenta['codigo_postal']);
-    }
-    if (isset($cuenta['pais_id']))
-    {
-      $cuenta_obj->setPaisId($cuenta['pais_id']);
-    }
-    if (isset($cuenta['fk_provincia_id']))
-    {
-      $cuenta_obj->setFkProvinciaId($cuenta['fk_provincia_id']);
-    }
-    if (isset($cuenta['fk_tipoiva_id']))
-    {
-      $cuenta_obj->setFkTipoivaId($cuenta['fk_tipoiva_id']);
-    }
-    if (isset($cuenta['telefono']))
-    {
-      $cuenta_obj->setTelefono($cuenta['telefono']);
-    }
+        if (isset($cuenta['direccion']))
+        {
+          $cuenta_obj->setDireccion($cuenta['direccion']);
+        }
+        if (isset($cuenta['ciudad']))
+        {
+          $cuenta_obj->setCiudad($cuenta['ciudad']);
+        }
+        if (isset($cuenta['codigo_postal']))
+        {
+          $cuenta_obj->setCodigoPostal($cuenta['codigo_postal']);
+        }
+        if (isset($cuenta['pais_id']))
+        {
+          $cuenta_obj->setPaisId($cuenta['pais_id']);
+        }
+        if (isset($cuenta['fk_provincia_id']))
+        {
+          $cuenta_obj->setFkProvinciaId($cuenta['fk_provincia_id']);
+        }
+        if (isset($cuenta['fk_tipoiva_id']))
+        {
+          $cuenta_obj->setFkTipoivaId($cuenta['fk_tipoiva_id']);
+        }
+        if (isset($cuenta['telefono']))
+        {
+          $cuenta_obj->setTelefono($cuenta['telefono']);
+        }
 
         return $cuenta_obj;
     }
