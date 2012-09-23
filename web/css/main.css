@@ -133,8 +133,6 @@ div#indicator
 {
   display: none;
   font-weight: bold;
-  text-decoration: blink;
-  color: red;
   text-align: center;
   padding-top: 3px;
   position: absolute;

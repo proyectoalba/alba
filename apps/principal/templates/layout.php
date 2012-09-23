@@ -115,6 +115,6 @@ if ($sf_user->isAuthenticated() == true) {
       Drag.init(document.getElementById("sf_admin_bar"));
     }
   ')?>
-  <div id="indicator">Un momento por favor...</div>
+  <div id="indicator">Aguarde un momento por favor...</div>
 <?php echo javascript_include_tag('varios/wz_tooltip.js'); ?>
 </html>
