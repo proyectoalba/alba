@@ -1,4 +1,4 @@
-¿Qué es el Proyecto Alba?
+# ¿Qué es el Proyecto Alba? #
 
 El Proyecto Alba, es un proyecto de desarrollo de Software para la
 realización de un “Sistema Informático Abierto de Gestión Unificada
@@ -9,5 +9,5 @@ Este proyecto se distribuye bajo la licencia GNU/GPL.
 
 Para más información, visita nuestro sitio web:
 
-http://www.proyectoalba.com.ar
+[http://www.proyectoalba.com.ar](http://www.proyectoalba.com.ar)
 
