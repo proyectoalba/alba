@@ -18,9 +18,7 @@ dev:
 
 demo:
   .settings:
-    no_script_name:           on
-    cache:                  off
-
+    no_script_name:         off
 
 test:
   .settings:
