@@ -74,7 +74,7 @@
   </tr>
 </tfoot>  
 </table>
-      <div class="float-right">
+      <div class="float-left">
           <ul class="sf_admin_actions">
             <li>
             <input type="button" name="create" value="Nuevo" class="sf_admin_action_create" onclick="create()" />
@@ -83,7 +83,7 @@
                 <?php echo button_to('Listado Alumnos','alumno/list',"class=sf_admin_action_list")?>
             </li>
             <li>
-                <?php echo button_to('Ir a Cuenta','cuenta/verCompleta?id='.$alumno->getFkCuentaId(),"class=sf_admin_action_ir_a") ?>
+                <?php echo button_to('Ir a Cuenta','cuenta/verCompleta?id='.$alumno->getFkCuentaId(),"class=sf_admin_action_cuenta_go") ?>
             </li>
         </ul>
       </div>
