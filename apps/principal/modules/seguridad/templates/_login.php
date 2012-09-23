@@ -7,7 +7,7 @@
         <div style="border: 2px dashed; border-color: red; width: 50%">
         Ud. va a ingresar a una demo del sistema en desarrollo.<br/>
         <br/>
-        Para iniciar la sesi&oacute;n utilice el usuario "<b>admin</b>" y la contrase&ntilde;a "<b>admin</b>".<br/>
+        Para iniciar la sesi&oacute;n utilice el usuario "<b>ejemplo</b>" y la contrase&ntilde;a "<b>ejemplo</b>".<br/>
         De esta forma Ud. tendr&aacute; las atribuciones de administrador a excepci&oacute;n del manejo de usuarios.<br/>
         La base de datos de demostraci&oacute;n es recuperada cada <b>una hora</b>
         y por &eacute;ste motivo,<br/> si realiza cambios, &eacute;stos no se mantendr&aacute;n transcurrido ese lapso.<br/>
