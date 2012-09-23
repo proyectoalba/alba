@@ -31,64 +31,6 @@
  */
 class legajopedagogicoActions extends sfActions {
 
-  /**
-   * Executes index action
-   *
-   */
-  public function executeIndex() {
-    // inicializando variables
-    $optionsDivision = array();
-    $aAlumno = array();
-    $establecimiento_id = $this->getUser()->getAttribute('fk_establecimiento_id');
-    // tomando los datos del formulario
-    $division_id = $this->getRequestParameter('division_id');
-    $txt_apellido = $this->getRequestParameter('txt_apellido');
-    $txt_nombre = $this->getRequestParameter('txt_nombre');
-
-    // llenando el combo de division segun establecimiento
-    $divisiones = DivisionPeer::getDivisiones();
-    $optionsDivision[] = "";
-    foreach ($divisiones as $division) {
-      $optionsDivision[$division->getId()] = $division->getAnio()->getDescripcion() . " " . $division->getDescripcion();
-    }
-    asort($optionsDivision);
-
-    if ($this->getRequest()->getMethod() == sfRequest::POST) {
-      if ($txt_apellido == '' && $txt_nombre =='' && $division_id =='0') {
-        $this->getUser()->setFlash('error','Por favor, ingrese alg&uacute;n valor para realizar la b&uacute;squeda.');
-        return $this->redirect('legajopedagogico/index');
-
-      }
-
-      // buscando alumnos
-      $criteria = new Criteria();
-      $criteria->add(AlumnoPeer::FK_ESTABLECIMIENTO_ID, $establecimiento_id);
-      if ($division_id) {
-        $criteria->add(DivisionPeer::ID, $division_id);
-        $criteria->addJoin(RelAlumnoDivisionPeer::FK_ALUMNO_ID, AlumnoPeer::ID);
-        $criteria->addJoin(RelAlumnoDivisionPeer::FK_DIVISION_ID, DivisionPeer::ID);
-      }
-
-      if ($txt_apellido) {
-        $criteria->add(AlumnoPeer::APELLIDO, "$txt_apellido%", Criteria::LIKE);
-      }
-
-      if ($txt_nombre) {
-        $criteria->add(AlumnoPeer::NOMBRE, "$txt_nombre%", Criteria::LIKE);
-      }
-
-      $aAlumno = AlumnoPeer::doSelect($criteria);
-      $this->buscar = true;
-    }
-
-    // asignando variables para ser usadas en el template
-    $this->optionsDivision = $optionsDivision;
-    $this->division_id = $division_id;
-    $this->txt_apellido = $txt_apellido;
-    $this->txt_nombre = $txt_nombre;
-    $this->aAlumno = $aAlumno;
-  }
-
   public function executeVerLegajo() {
     // inicializando variables
     $aEntradaLegajo = array();

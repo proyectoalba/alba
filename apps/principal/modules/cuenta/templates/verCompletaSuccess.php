@@ -70,7 +70,7 @@
             <?php echo link_to(image_tag('../sf/sf_admin/images/delete_icon'), 'alumno/delete?id='. $alumno->getID()) ?>            
         </li>
         <li>
-            <?php echo link_to(image_tag('jeringa.gif',array("title"=>"Vacunas")), 'alumno/Vacunas?id='. $alumno->getID()) ?>
+            <?php echo link_to(image_tag('small/vacuna.gif',array("title"=>"Vacunas")), 'alumno/Vacunas?id='. $alumno->getID()) ?>
         </li>
         <li>
             <?php echo link_to(image_tag('small/legajosalud.png',array("title"=>"Salud")), 'alumno/Legajosalud?id='. $alumno->getID()) ?>

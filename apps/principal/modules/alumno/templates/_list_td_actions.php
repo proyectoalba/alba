@@ -10,7 +10,7 @@
   'confirm' => __('Are you sure?'),
 )) ?></li>
   <li><?php echo link_to(image_tag('small/cuenta_go.png', array('alt' => __('Ir a Cuenta'), 'title' => __('Ir a Cuenta'))), 'cuenta/verCompleta?id='.$alumno->getFkCuentaId()) ?></li>
-  <li><?php echo link_to(image_tag('jeringa.gif', array('alt' => __('Vacunas'), 'title' => __('Vacunas'))), 'alumno/vacunas?id='.$alumno->getId()) ?></li>
+  <li><?php echo link_to(image_tag('small/vacuna.gif', array('alt' => __('Vacunas'), 'title' => __('Vacunas'))), 'alumno/vacunas?id='.$alumno->getId()) ?></li>
   <li><?php echo link_to(image_tag('small/legajosalud.png', array('alt' => __('Legajo de Salud'), 'title' => __('Legajo de Salud'))), 'alumno/legajosalud?id='.$alumno->getId()) ?></li>
   <li><?php echo link_to(image_tag('small/asistencia.png', array('alt' => __('Asistencia'), 'title' => __('Asistencia'))), 'alumno/asistencia?id='.$alumno->getId()) ?></li>
   <li><?php echo link_to(image_tag('small/legajo.png', array('alt' => __('Legajo'), 'title' => __('Legajo'))), 'alumno/legajo?id='.$alumno->getId()) ?></li>

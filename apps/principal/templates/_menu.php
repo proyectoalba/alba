@@ -78,8 +78,7 @@
     <li><span></span><a href="#">Alumnos</a>
       <ul>
         <li><span></span><?php echo link_to("Ingresar Nuevo","alumno/create")?></li>
-        <li><span></span><?php echo link_to("Listar Todos","alumno/list")?></li>
-        <li><span></span><?php echo link_to("Buscar Alumno para...","legajopedagogico/index")?></li>
+        <li><span></span><?php echo link_to("Buscar Alumnos","alumno/index")?></li>
         <li><span></span><?php echo link_to("Gestionar Asistencias","asistencia/index")?></li>
         <li><span></span><a href="#">Cargar Boletines</a>
           <ul>
