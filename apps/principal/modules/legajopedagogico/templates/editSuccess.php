@@ -44,10 +44,7 @@
     <?php echo form_error('legajopedagogico{titulo}', array('class' => 'form-error-msg')) ?>
   <?php endif; ?>
 
-  <?php echo object_input_tag($legajopedagogico, 'getTitulo', array (
-  'size' => 20,
-  'control_name' => 'legajopedagogico[titulo]',
-)) ?>
+  <?php echo object_input_tag($legajopedagogico, 'getTitulo', array ('size' => 20,'control_name' => 'legajopedagogico[titulo]')) ?>
     </div>
 
 </div>
@@ -59,9 +56,7 @@
     <?php echo form_error('legajopedagogico{resumen}', array('class' => 'form-error-msg')) ?>
   <?php endif; ?>
 
-<?php 
-    echo object_input_tag($legajopedagogico, 'getResumen', array ( 'size' => 40, 'control_name' => 'legajopedagogico[resumen]',));
-?>
+  <?php echo object_input_tag($legajopedagogico, 'getResumen', array ( 'size' => 40, 'control_name' => 'legajopedagogico[resumen]')); ?>
     </div>
 </div>
 
@@ -73,7 +68,7 @@
   <?php endif; ?>
 
 <?php 
-    echo object_textarea_tag($legajopedagogico, 'getTexto', array ( 'rows' => '10' , 'cols' => '80', 'control_name' => 'legajopedagogico[texto]',));
+    echo object_textarea_tag($legajopedagogico, 'getTexto', array ( 'rows' => '10' , 'cols' => '80', 'control_name' => 'legajopedagogico[texto]'));
 ?>
    </div>
 </div>
