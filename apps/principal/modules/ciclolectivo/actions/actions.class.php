@@ -411,7 +411,7 @@ class ciclolectivoActions extends autociclolectivoActions {
   }
 
   public function executePasajeAlumnosForm() {
-
+    
   }
 
   public function executeCambiarCicloAjax() {
@@ -442,6 +442,16 @@ class ciclolectivoActions extends autociclolectivoActions {
     $c->addAscendingOrderByColumn(AlumnoPeer::APELLIDO);
     $c->addAscendingOrderByColumn(AlumnoPeer::NOMBRE);
     $this->alumnos = AlumnoPeer::doSelect($c);
+    $this->alumnos_actuales = array();
+    if ($this->getRequestParameter('division_no_id')) {
+      $c = new Criteria();
+      $c->add(RelAlumnoDivisionPeer::FK_DIVISION_ID, $this->getRequestParameter('division_no_id'));
+      $c->addJoin(AlumnoPeer::ID, RelAlumnoDivisionPeer::FK_ALUMNO_ID, Criteria::INNER_JOIN);
+      $c->addJoin(AlumnoPeer::FK_TIPODOCUMENTO_ID, TipodocumentoPeer::ID, Criteria::INNER_JOIN);
+      $c->addAscendingOrderByColumn(AlumnoPeer::APELLIDO);
+      $c->addAscendingOrderByColumn(AlumnoPeer::NOMBRE);
+    }
+    $this->alumnos_actuales = AlumnoPeer::doSelect($c);
   }
 
   public function executePasajeAlumnos($request) {
@@ -469,8 +479,8 @@ class ciclolectivoActions extends autociclolectivoActions {
         }
         $con->commit();
         $msg = 'El pasaje de alumnos se ha realizado correctamente.';
-        if ($dupes >0) {
-          $msg .= ' De los cuales ' .$dupes . " no han pasado porque ya se encontraban en la divisi&oacute;n destino.";
+        if ($dupes > 0) {
+          $msg .= ' De los cuales ' . $dupes . " no han pasado porque ya se encontraban en la divisi&oacute;n destino.";
         }
         $this->getUser()->setFlash('notice', $msg);
       } catch (Exception $e) {
