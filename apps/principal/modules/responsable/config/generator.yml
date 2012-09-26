@@ -30,8 +30,7 @@ generator:
           _edit: -
           _delete: -
           irCuenta:  { name: Ir a Cuenta, action: irCuenta, icon: small/cuenta_go.png }
-        actions:
-            _create: -
+        actions: []
         filters: [ apellido ] 
       edit:
         title: Editar Responsable
