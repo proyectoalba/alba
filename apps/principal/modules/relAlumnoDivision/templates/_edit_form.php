@@ -10,17 +10,17 @@ echo form_tag('relAlumnoDivision/save', array(
 <?php echo javascript_tag("
 function filrarAlumnosSinDivision(sin_division)
 {
-  $('indicator').style.display='block', 
+  $('indicator-wrapper').style.display='block',
   new Ajax.Updater(
     'rel_alumno_division_fk_alumno_id',
     '" . url_for('relAlumnoDivision/ajaxAlumnos') . "',
     {
-      asynchronous:true, 
+      asynchronous:true,
       evalScripts:false,
-      onComplete: $('indicator').style.display='none', 
-      parameters: { 
-        sin_division: sin_division 
-      } 
+      onComplete: $('indicator-wrapper').style.display='none',
+      parameters: {
+        sin_division: sin_division
+      }
     }
   );
 }
@@ -42,7 +42,7 @@ function filrarAlumnosSinDivision(sin_division)
               ));
       echo $value ? $value : '&nbsp;'
       ?>
-      <input type="checkbox" id="chkAlumnosSinDivision" onclick="filrarAlumnosSinDivision(this.checked)"/>Mostrar solo alumnos sin división asignada 
+      <input type="checkbox" id="chkAlumnosSinDivision" onclick="filrarAlumnosSinDivision(this.checked)"/>Mostrar solo alumnos sin división asignada
     </div>
   </div>
 

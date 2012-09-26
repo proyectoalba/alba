@@ -63,15 +63,15 @@ echo observe_field('pasaje_fk_division_id', array(
     'url' => 'ciclolectivo/listarAlumnos',
     'with' => "'division_id=' + $('pasaje_fk_division_id').value +'&division_no_id=' + value",
     'script' => "true",
-    'before' => "$('indicator').style.display='block'",
-    'complete' => "$('indicator').style.display='none'",
+    'before' => "$('indicator-wrapper').style.display='block'",
+    'complete' => "$('indicator-wrapper').style.display='none'",
 ));
 echo observe_field('pasaje_fk_ciclolectivo_id', array(
     'update' => 'divisiones_destino',
     'url' => 'ciclolectivo/cambiarCicloAjax',
     'with' => "'ciclolectivo_id=' + value",
     'script' => "true",
-    'before' => "$('indicator').style.display='block'",
-    'complete' => "$('indicator').style.display='none'",
+    'before' => "$('indicator-wrapper').style.display='block'",
+    'complete' => "$('indicator-wrapper').style.display='none'",
 ));
 ?>
