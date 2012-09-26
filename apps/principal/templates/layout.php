@@ -109,7 +109,9 @@ if ($sf_user->isAuthenticated() == true) {
         <td><?php echo image_tag("gui/index3_5x3.png", array('width' => '17', 'heigth' => '20')) ?></td>
       </tr>
     </table>
+	  <div id="indicator-wrapper">
+		<div id="indicator">Aguarde un momento por favor...</div>
+	  </div>
   </body>
-  <div id="indicator">Aguarde un momento por favor...</div>
 <?php echo javascript_include_tag('varios/wz_tooltip.js'); ?>
 </html>

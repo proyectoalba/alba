@@ -9,7 +9,9 @@ a:hover
 {
   text-decoration: underline;
 }
-
+body {
+	height: 100%;
+}
 body, td
 {
   margin: 0px;
@@ -33,19 +35,26 @@ ul {
 }
 
 
-div#indicator
+div#indicator-wrapper
 {
   display: none;
+  width: 100%;
+  height: 100%;
+  background: url(../images/bg-blanco-80-porciento.png);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+div#indicator
+{
   font-weight: bold;
   text-align: center;
-  padding-top: 3px;
-  position: absolute;
-  right: 10px;
-  top: 58px;
-  width: 220px;
-  height: 19px;
-  background: url("../images/indicator.gif") no-repeat 0 0;
-  x-moz-alpha: .5;
+  color: #464646;
+  width: 200px;
+  height: 40px;
+  margin: 160px auto 0;
+  background: url("../images/1348674497142.gif") no-repeat center bottom;
 }
 
 div.pageBreak { page-break-before: always; }
