@@ -60,6 +60,9 @@
   border-top: 1px solid;
 }
 
+#sf_admin_content table.sf_admin_list tr td:last-child {
+  display: none;
+}
 #sf_admin_content table.sf_admin_list tr.foot td{
   border-top: 1px solid;
   border-right: 1px solid;
