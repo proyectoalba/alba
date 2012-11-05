@@ -75,8 +75,8 @@ a utilizar el sistema con una base vac&iacute;a (datos m&iacute;nimos)<br/>
             <td>Datos m&iacute;nimos:</td>
             <td>
               <select name="tipo_base">
-                <option value="" <?php echo $_SESSION['albainstall']['tipo_base'] == '' ? 'selected' : ''?>>MINIMA - Datos basicos para comenzar a operar</option>
-                <option value="ejemplo1" <?php echo $_SESSION['albainstall']['tipo_base'] == 'ejemplo1' ? 'selected' : ''?>>EJEMPLO1 - Datos de ejemplo</option>
+                <option value="" <?php echo (isset($_SESSION['albainstall']['tipo_base']) && $_SESSION['albainstall']['tipo_base'] == '') ? 'selected' : ''?>>MINIMA - Datos basicos para comenzar a operar</option>
+                <option value="ejemplo1" <?php echo ((isset($_SESSION['albainstall']['tipo_base'])) && $_SESSION['albainstall']['tipo_base'] == 'ejemplo1') ? 'selected' : ''?>>EJEMPLO1 - Datos de ejemplo</option>
               </select>
             </td>
         </tr>
