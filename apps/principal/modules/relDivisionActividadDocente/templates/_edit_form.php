@@ -23,9 +23,10 @@
 
   <?php $value = object_select_tag($rel_division_actividad_docente, 'getFkDivisionId', array (
   'related_class' => 'Division',
+  'peer_method' => 'getDivisiones',
   'control_name' => 'rel_division_actividad_docente[fk_division_id]',
   'include_blank' => true,
-)); echo $value ? $value : '&nbsp;';
+)); echo $value ? $value : '&nbsp;'; 
 
     echo observe_field('rel_division_actividad_docente_fk_division_id',
         array(  'update'   => 'item_actividad',
