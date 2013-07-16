@@ -45,7 +45,7 @@ class ExamenMapBuilder implements MapBuilder {
 
 		$tMap->addColumn('NOMBRE', 'Nombre', 'VARCHAR', true, 255);
 
-		$tMap->addColumn('OBSERVACION', 'Observacion', 'BLOB', true, null);
+		$tMap->addColumn('OBSERVACION', 'Observacion', 'LONGVARCHAR', false, null);
 
 		$tMap->addColumn('FECHA', 'Fecha', 'TIMESTAMP', true, null);
 

@@ -1,69 +1,171 @@
 div.data {
-	margin: 20px 0;
+  margin: 20px 0;
 }
 div#sf_admin_container div.data h3 {
-	font-size: 15px;
-	margin: 20px 0 10px;
+  font-size: 15px;
+  margin: 20px 0 10px;
 }
 /*
 =actions
 */
 
 body div#content div#sf_admin_container  ul.sf_admin_actions {
-	margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 body div#content div#sf_admin_container  ul.sf_admin_actions li {
-	height: 21px;
-	background: none;
-	float: left;
+  height: 21px;
+  background: none;
+  float: left;
 }
 body div#content div#sf_admin_container ul.sf_admin_actions li a {
-	display: block;
-	height: 21px;
-	padding: 6px 10px 0px 25px;
-	background-color: #ffc;
-	background-position: 3px 5px;
+  display: block;
+  height: 21px;
+  padding: 6px 10px 0px 25px;
+  background-color: #ffc;
+  background-position: 3px 5px;
 }
 
 /* NEW */
 #sf_admin_container ul.sf_admin_actions li.sf_admin_action_new a {
-	background: url(../sfPropelPlugin/images/new.png) no-repeat 0 0;
+  background: url('../sfPropelPlugin/images/new.png') no-repeat 0 0;
 }
 
 /* DELETE */
 #sf_admin_container ul.sf_admin_actions li.sf_admin_action_delete a {
-	background: url(../sfPropelPlugin/images/delete.png) no-repeat 0 0;
+  background: url('../sfPropelPlugin/images/delete.png') no-repeat 0 0;
 }
 /* LIST */
 #sf_admin_container ul.sf_admin_actions li.sf_admin_action_list a {
-	background: url(../sfPropelPlugin/images/list.png) no-repeat 0 0;
+  background: url('../sfPropelPlugin/images/list.png') no-repeat 0 0;
 }
 /* EDIT */
 #sf_admin_container ul.sf_admin_actions li.sf_admin_action_edit {
-	border-right: 4px #73B65A solid;
+  border-right: 4px #73B65A solid;
 }
 #sf_admin_container ul.sf_admin_actions li.sf_admin_action_edit a {
-	background: url(../sfPropelPlugin/images/edit.png) no-repeat 0 0;
+  background: url('../sfPropelPlugin/images/edit.png') no-repeat 0 0;
 }
 /* SAVE */
 #sf_admin_container ul.sf_admin_actions li.sf_admin_action_save input {
-	border: none;
+  border: none;
 }
 /*
 =FORM
 */
 #sf_admin_container div.sf_admin_form fieldset {
-	margin: 20px 0 0;
-	border: none;
+  margin: 20px 0 0;
+  border: none;
 }
 #sf_admin_container div.sf_admin_form fieldset h2 {
-	font-size: 14px;
-	text-indent: 10px;
+  font-size: 14px;
+  text-indent: 10px;
 }
 #sf_admin_container div.sf_admin_form_row label {
-	width: 100px;
+  width: 100px;
 }
 div.sf_admin_form_row {
-	display: block;
-	margin: 10px 0;
+  display: block;
+  margin: 10px 0;
 }
+
+#sf_admin_content {
+  clear: both;
+}
+
+/* sobreescribo styles del admin generator */
+ul.sf_admin_actions
+{
+  margin: 10px;
+  list-style-type: none;
+  text-align: left;
+}
+.sf_admin_filters {
+  float: left
+}
+
+
+.sf_admin_action_print
+{
+  background: url('../images/small/print.png') no-repeat 3px 2px;
+  border-right: 4px solid #73B65A !important;
+}
+
+.sf_admin_action_search
+{
+  background: url('../images/small/search.png') no-repeat 3px 2px;
+  border-right: 4px solid #73B65A !important;
+}
+
+.sf_admin_action_list
+{
+  background: url('../images/small/listado.png') no-repeat 3px 2px;
+  border-right: 4px solid #73B65A !important;
+}
+.sf_admin_action_ir_a
+{
+  background: url('../images/small/ir_a.png') no-repeat 3px 2px;
+  border-right: 4px solid #73B65A !important;
+}
+
+.sf_admin_action_cuenta_go
+{
+  background: url('../images/small/cuenta_go.png') no-repeat 3px 2px;
+  border-right: 4px solid #73B65A !important;
+}
+
+.form-errors
+{
+  margin-bottom: 10px;
+  border: 1px solid #f33;
+  background-color: #ffc;
+}
+
+.form-errors h2
+{
+  padding: 5px 20px 5px 25px;
+  font-size: 11px;
+  color: #fff;
+  background: #f33 url('../sf/sf_admin/images/error.png') no-repeat 5px 2px;
+}
+
+.form-errors ul
+{
+  padding: 5px;
+  list-style-type: none;
+}
+
+.form-errors li
+{
+  padding: 5px 20px;
+  background: url('../sf/sf_admin/images/error.png') no-repeat 0 2px;
+}
+
+#sf_admin_container #sf_admin_bar
+{
+  position: relative;
+  right: 0px;
+}
+
+
+/* MAIN ERROR */
+#sf_admin_container div.error
+{
+  background: #f33 url('../sf/sf_admin/images/error.png') no-repeat 10px 4px;
+  color: #fff;
+}
+
+#sf_admin_container div.notice {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background: #ffc url('../sf/sf_admin/images/tick.png') no-repeat 10px 4px;
+  color: #222;
+}
+/* COMMON */
+#sf_admin_container div.error,
+#sf_admin_container div.notice {
+  margin: 10px 0;
+  padding: 7px 0 7px 35px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+/**/

@@ -239,13 +239,14 @@ abstract class BaseExamen extends BaseObject  implements Persistent {
 	
 	public function setObservacion($v)
 	{
-								if (!is_resource($v)) {
-			$this->observacion = fopen('php://memory', 'r+');
-			fwrite($this->observacion, $v);
-			rewind($this->observacion);
-		} else { 			$this->observacion = $v;
+		if ($v !== null) {
+			$v = (string) $v;
 		}
-		$this->modifiedColumns[] = ExamenPeer::OBSERVACION;
+
+		if ($this->observacion !== $v) {
+			$this->observacion = $v;
+			$this->modifiedColumns[] = ExamenPeer::OBSERVACION;
+		}
 
 		return $this;
 	} 
@@ -317,13 +318,7 @@ abstract class BaseExamen extends BaseObject  implements Persistent {
 			$this->fk_actividad_id = ($row[$startcol + 3] !== null) ? (int) $row[$startcol + 3] : null;
 			$this->fk_periodo_id = ($row[$startcol + 4] !== null) ? (int) $row[$startcol + 4] : null;
 			$this->nombre = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
-			if ($row[$startcol + 6] !== null) {
-				$this->observacion = fopen('php://memory', 'r+');
-				fwrite($this->observacion, $row[$startcol + 6]);
-				rewind($this->observacion);
-			} else {
-				$this->observacion = null;
-			}
+			$this->observacion = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
 			$this->fecha = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
 			$this->resetModified();
 
@@ -478,10 +473,6 @@ abstract class BaseExamen extends BaseObject  implements Persistent {
 					$this->setNew(false);
 				} else {
 					$affectedRows += ExamenPeer::doUpdate($this, $con);
-				}
-
-								if ($this->observacion !== null && is_resource($this->observacion)) {
-					rewind($this->observacion);
 				}
 
 				$this->resetModified(); 			}

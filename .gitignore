@@ -9,6 +9,7 @@ debian/alba.debhelper.log
 debian/alba.substvars
 debian/files
 web/tmp/*
-!.gitignore
+web/.htaccess
 *.geany
+!.gitignore
 

@@ -774,7 +774,16 @@ propel:
       type: VARCHAR
       size: 255
       required: false
-
+    email_padre:
+      type: VARCHAR
+      size: 128
+    celular_padre:
+      type: VARCHAR
+      size: 20
+    celular_madre:
+      type: VARCHAR
+      size: 20
+      
   rol_responsable:
     _attributes:
       idMethod: native
@@ -1120,10 +1129,10 @@ propel:
       size: 255
       required: true
     resumen:
-      type: blob
+      type: longvarchar
       required: true
     texto:
-      type: blob
+      type: longvarchar
       required: true
     fecha:
       type: timestamp
@@ -1323,7 +1332,7 @@ propel:
       foreignTable: periodo
       foreignReference: id
     observacion:
-      type: blob
+      type: longvarchar
       required: false
     fecha:
       type: timestamp
@@ -1384,7 +1393,7 @@ propel:
       foreignTable: periodo
       foreignReference: id
     observacion:
-      type: blob
+      type: longvarchar
       required: false
     fecha:
       type: timestamp
@@ -1427,8 +1436,8 @@ propel:
       size: 255
       required: true
     observacion:
-      type: blob
-      required: true
+      type: longvarchar
+      required: false
     fecha:
       type: timestamp
       required: true
@@ -2009,7 +2018,7 @@ propel:
       size: 255
       required: true
     descripcion:
-      type: blob
+      type: longvarchar
       required: true
     fecha:
       type: timestamp
@@ -2069,4 +2078,20 @@ propel:
     medico_telefono:
       type: varchar
       size: 20
+      required: false
+  config:
+    _attributes:
+      idMethod: native
+      phpName: AlbaConfig
+    id:
+      type: integer
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    nombre:
+      type: varchar
+      size: 200
+      required: false
+    valor:
+      type: longvarchar
       required: false

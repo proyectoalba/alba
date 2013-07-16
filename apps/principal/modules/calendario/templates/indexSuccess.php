@@ -149,7 +149,7 @@ div.wastebin-active {
                 <br><br><?php echo image_tag('trash.png', 'id=wastebin') ?>
             </div>
             <div style="height:20px">
-              <p id="indicator" style="display:none">
+              <p style="display:none">
                 <?php echo image_tag('indicator.gif') ?> Procesando...
               </p>
             </div>
@@ -157,7 +157,7 @@ div.wastebin-active {
             <h1>Asignaturas</h1>
             <?php use_helper('Javascript') ?>
             <div id="horarios_list">
-                <?php 
+                <?php
                 if(count($horasMaterias)>0) {
                     foreach($horasMaterias as $idx => $oMateria) { ?>
                 <?php
@@ -168,7 +168,7 @@ div.wastebin-active {
                 //     'onMouseOver' => "this.T_SHADOWWIDTH=5;this.T_STICKY=1;this.T_OFFSETX=-20;return escape('".htmlentities(str_replace("\n","<br />",$oMateria->horarios_disponibles), ENT_QUOTES)."');"
                     ));
                     echo "<br>(".$oMateria->cantidad. " Horas)";
-                ?>   
+                ?>
                 <?php echo draggable_element('horarioMaterias_'.$idx, array('revert' => true)) ?>
                 <br><br>
                 <?php }
@@ -187,9 +187,9 @@ div.wastebin-active {
 
 <script type="text/javascript">
 //<![CDATA[
-Droppables.add('wastebin', {accept:'horarioMaterias-items', hoverclass:'wastebin-active', onDrop:function(element,dropppableElement){Element.hide(element); 
+Droppables.add('wastebin', {accept:'horarioMaterias-items', hoverclass:'wastebin-active', onDrop:function(element,dropppableElement){Element.hide(element);
 var nombre = element.id.substr(0,element.id.indexOf("_"));
-new Ajax.Updater( nombre , 'calendario/remove/name/'+nombre, {asynchronous:true, evalScripts:true, onComplete:function(request, json){Element.hide('indicator')}, onLoading:function(request, json){Element.show('indicator')}, parameters:'id=' + encodeURIComponent(element.id)})}})
+new Ajax.Updater( nombre , 'calendario/remove/name/'+nombre, {asynchronous:true, evalScripts:true, onComplete:function(request, json){Element.hide('indicator-wrapper')}, onLoading:function(request, json){Element.show('indicator-wrapper')}, parameters:'id=' + encodeURIComponent(element.id)})}})
 //]]>
 </script>
 <?php
@@ -199,10 +199,10 @@ new Ajax.Updater( nombre , 'calendario/remove/name/'+nombre, {asynchronous:true,
                                 'url'        => 'calendario/add?name=eventname'.$event->id,
                                 'accept'     => 'horarioMaterias-items',
                                 'hoverclass' => 'horarioMaterias-active',
-                                'loading'    => "Element.show('indicator')",
-                                'complete'   => "Element.hide('indicator')",
+                                'loading'    => "Element.show('indicator-wrapper')",
+                                'complete'   => "Element.hide('indicator-wrapper')",
                                 'script'     => 'true'
-        ));      
+        ));
     }
  echo javascript_include_tag('varios/wz_tooltip.js');
 ?>

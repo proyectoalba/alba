@@ -53,7 +53,7 @@ echo form_tag('informes/save', array(
     <?php if ($informe->getAdjunto()): ?>
     <div class="etiqueta">
       <div>
-        <a href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot() . "/" . sfConfig::get('sf_upload_dir_name') . '/' . sfConfig::get('sf_informe_dir_name') . '/' . $informe->getAdjunto()->getRuta() ?>"><?php echo $informe->getAdjunto()->getNombreArchivo() ?></a>
+        <a href="<?php echo sfContext::getInstance()->getRequest()->getRelativeUrlRoot() . DIRECTORY_SEPARATOR . sfConfig::get('sf_upload_dir_name') . DIRECTORY_SEPARATOR . sfConfig::get('sf_informe_dir_name') . DIRECTORY_SEPARATOR . $informe->getAdjunto()->getRuta() ?>"><?php echo $informe->getAdjunto()->getNombreArchivo() ?></a>
       </div>
     </div>
     <?php endif; ?>
@@ -124,7 +124,7 @@ echo form_tag('informes/save', array(
       <?php
       echo button_to(__('delete'), 'informes/delete?id=' . $informe->getId(), array(
           'post' => true,
-          'confirm' => __('Are you sure?'),
+          'confirm' => ('Se eliminará el informes seleccionado'),
           'class' => 'sf_admin_action_delete',
       ))
       ?><?php endif; ?>

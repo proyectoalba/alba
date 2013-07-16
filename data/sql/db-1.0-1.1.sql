@@ -374,7 +374,7 @@ alter table feriado modify inamovible tinyint(4) default '0';
 alter table locacion modify principal tinyint(4) default '0';
 
 alter table periodo add calcular tinyint(4) not null default '0';
-alter table formula varchar(1000) default null;
+alter table periodo add formula varchar(1000) default null;
 
 alter table preferencia modify activo tinyint(4) not null default '1';
 

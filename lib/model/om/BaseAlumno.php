@@ -97,6 +97,15 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	protected $observacion;
 
 	
+	protected $email_padre;
+
+	
+	protected $celular_padre;
+
+	
+	protected $celular_madre;
+
+	
 	protected $aProvincia;
 
 	
@@ -399,6 +408,24 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 	public function getObservacion()
 	{
 		return $this->observacion;
+	}
+
+	
+	public function getEmailPadre()
+	{
+		return $this->email_padre;
+	}
+
+	
+	public function getCelularPadre()
+	{
+		return $this->celular_padre;
+	}
+
+	
+	public function getCelularMadre()
+	{
+		return $this->celular_madre;
 	}
 
 	
@@ -854,6 +881,48 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		return $this;
 	} 
 	
+	public function setEmailPadre($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->email_padre !== $v) {
+			$this->email_padre = $v;
+			$this->modifiedColumns[] = AlumnoPeer::EMAIL_PADRE;
+		}
+
+		return $this;
+	} 
+	
+	public function setCelularPadre($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->celular_padre !== $v) {
+			$this->celular_padre = $v;
+			$this->modifiedColumns[] = AlumnoPeer::CELULAR_PADRE;
+		}
+
+		return $this;
+	} 
+	
+	public function setCelularMadre($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->celular_madre !== $v) {
+			$this->celular_madre = $v;
+			$this->modifiedColumns[] = AlumnoPeer::CELULAR_MADRE;
+		}
+
+		return $this;
+	} 
+	
 	public function hasOnlyDefaultValues()
 	{
 						if (array_diff($this->modifiedColumns, array(AlumnoPeer::FK_PROVINCIA_ID,AlumnoPeer::FK_TIPODOCUMENTO_ID,AlumnoPeer::DISTANCIA_ESCUELA,AlumnoPeer::HERMANOS_ESCUELA,AlumnoPeer::HIJO_MAESTRO_ESCUELA,AlumnoPeer::FK_ESTABLECIMIENTO_ID,AlumnoPeer::FK_CUENTA_ID,AlumnoPeer::CERTIFICADO_MEDICO,AlumnoPeer::ACTIVO,AlumnoPeer::FK_PAIS_ID,AlumnoPeer::FK_ESTADOALUMNO_ID))) {
@@ -940,6 +1009,9 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$this->procedencia = ($row[$startcol + 26] !== null) ? (string) $row[$startcol + 26] : null;
 			$this->fk_estadoalumno_id = ($row[$startcol + 27] !== null) ? (int) $row[$startcol + 27] : null;
 			$this->observacion = ($row[$startcol + 28] !== null) ? (string) $row[$startcol + 28] : null;
+			$this->email_padre = ($row[$startcol + 29] !== null) ? (string) $row[$startcol + 29] : null;
+			$this->celular_padre = ($row[$startcol + 30] !== null) ? (string) $row[$startcol + 30] : null;
+			$this->celular_madre = ($row[$startcol + 31] !== null) ? (string) $row[$startcol + 31] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -948,7 +1020,7 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 				$this->ensureConsistency();
 			}
 
-						return $startcol + 29; 
+						return $startcol + 32; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Alumno object", $e);
 		}
@@ -1512,6 +1584,15 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			case 28:
 				return $this->getObservacion();
 				break;
+			case 29:
+				return $this->getEmailPadre();
+				break;
+			case 30:
+				return $this->getCelularPadre();
+				break;
+			case 31:
+				return $this->getCelularMadre();
+				break;
 			default:
 				return null;
 				break;
@@ -1551,6 +1632,9 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			$keys[26] => $this->getProcedencia(),
 			$keys[27] => $this->getFkEstadoalumnoId(),
 			$keys[28] => $this->getObservacion(),
+			$keys[29] => $this->getEmailPadre(),
+			$keys[30] => $this->getCelularPadre(),
+			$keys[31] => $this->getCelularMadre(),
 		);
 		return $result;
 	}
@@ -1653,6 +1737,15 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 			case 28:
 				$this->setObservacion($value);
 				break;
+			case 29:
+				$this->setEmailPadre($value);
+				break;
+			case 30:
+				$this->setCelularPadre($value);
+				break;
+			case 31:
+				$this->setCelularMadre($value);
+				break;
 		} 	}
 
 	
@@ -1689,6 +1782,9 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[26], $arr)) $this->setProcedencia($arr[$keys[26]]);
 		if (array_key_exists($keys[27], $arr)) $this->setFkEstadoalumnoId($arr[$keys[27]]);
 		if (array_key_exists($keys[28], $arr)) $this->setObservacion($arr[$keys[28]]);
+		if (array_key_exists($keys[29], $arr)) $this->setEmailPadre($arr[$keys[29]]);
+		if (array_key_exists($keys[30], $arr)) $this->setCelularPadre($arr[$keys[30]]);
+		if (array_key_exists($keys[31], $arr)) $this->setCelularMadre($arr[$keys[31]]);
 	}
 
 	
@@ -1725,6 +1821,9 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(AlumnoPeer::PROCEDENCIA)) $criteria->add(AlumnoPeer::PROCEDENCIA, $this->procedencia);
 		if ($this->isColumnModified(AlumnoPeer::FK_ESTADOALUMNO_ID)) $criteria->add(AlumnoPeer::FK_ESTADOALUMNO_ID, $this->fk_estadoalumno_id);
 		if ($this->isColumnModified(AlumnoPeer::OBSERVACION)) $criteria->add(AlumnoPeer::OBSERVACION, $this->observacion);
+		if ($this->isColumnModified(AlumnoPeer::EMAIL_PADRE)) $criteria->add(AlumnoPeer::EMAIL_PADRE, $this->email_padre);
+		if ($this->isColumnModified(AlumnoPeer::CELULAR_PADRE)) $criteria->add(AlumnoPeer::CELULAR_PADRE, $this->celular_padre);
+		if ($this->isColumnModified(AlumnoPeer::CELULAR_MADRE)) $criteria->add(AlumnoPeer::CELULAR_MADRE, $this->celular_madre);
 
 		return $criteria;
 	}
@@ -1810,6 +1909,12 @@ abstract class BaseAlumno extends BaseObject  implements Persistent {
 		$copyObj->setFkEstadoalumnoId($this->fk_estadoalumno_id);
 
 		$copyObj->setObservacion($this->observacion);
+
+		$copyObj->setEmailPadre($this->email_padre);
+
+		$copyObj->setCelularPadre($this->celular_padre);
+
+		$copyObj->setCelularMadre($this->celular_madre);
 
 
 		if ($deepCopy) {

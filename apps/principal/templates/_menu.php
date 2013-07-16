@@ -78,8 +78,7 @@
     <li><span></span><a href="#">Alumnos</a>
       <ul>
         <li><span></span><?php echo link_to("Ingresar Nuevo","alumno/create")?></li>
-        <li><span></span><?php echo link_to("Listar Todos","alumno/list")?></li>
-        <li><span></span><?php echo link_to("Buscar Alumno para...","legajopedagogico/index")?></li>
+        <li><span></span><?php echo link_to("Buscar Alumnos","alumno/index")?></li>
         <li><span></span><?php echo link_to("Gestionar Asistencias","asistencia/index")?></li>
         <li><span></span><a href="#">Cargar Boletines</a>
           <ul>
@@ -87,7 +86,7 @@
             <li><span></span><?php echo link_to("Notas","boletin/list")?></li>
           </ul>
         </li>
-        <li><span></span><?php echo link_to("Pasar de a&ntilde;o","ciclolectivo/pasajeAlumnosForm")?></li>
+        <li><span></span><?php echo link_to("Pasar de a&ntilde;o","ciclolectivo/pasajeAlumnos")?></li>
       </ul>
     </li>
     <li><span></span><a href="#">Docentes</a>
@@ -142,7 +141,7 @@
     <li><span></span><?php echo link_to("Archivos","sfMediaLibrary/index")?></li>
     <li><span></span><a href="#">Ayuda</a>
       <ul>
-        <li><span></span><?php echo link_to("Manual", "http://".sfContext::getInstance()->getRequest()->getHost().sfContext::getInstance()->getRequest()->getRelativeUrlRoot()."/manual/index.html", 'target=_blank')?></li>
+        <li><span></span><?php echo link_to("Documentaci&oacute;n", "default/ayuda")?></li>
           <li><span></span><?php echo link_to("Ayuda v&iacute;a IRC",'http://webchat.freenode.net/?channels=proyectoalba&uio=d4', array('target'=>'blank'))?></li>
         <li><span></span><?php echo link_to("Cr&eacute;ditos","creditos/index")?></li>
       </ul>

@@ -546,6 +546,9 @@ CREATE TABLE `alumno`
 	`procedencia` VARCHAR(128),
 	`fk_estadoalumno_id` INTEGER default 1 NOT NULL,
 	`observacion` VARCHAR(255),
+	`email_padre` VARCHAR(128),
+	`celular_padre` VARCHAR(20),
+	`celular_madre` VARCHAR(20),
 	PRIMARY KEY (`id`),
 	INDEX `alumno_FI_1` (`fk_provincia_id`),
 	CONSTRAINT `alumno_FK_1`
@@ -828,8 +831,8 @@ CREATE TABLE `legajopedagogico`
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
 	`fk_alumno_id` INTEGER  NOT NULL,
 	`titulo` VARCHAR(255)  NOT NULL,
-	`resumen` LONGBLOB  NOT NULL,
-	`texto` LONGBLOB  NOT NULL,
+	`resumen` TEXT  NOT NULL,
+	`texto` TEXT  NOT NULL,
 	`fecha` DATETIME  NOT NULL,
 	`fk_usuario_id` INTEGER  NOT NULL,
 	`fk_legajocategoria_id` INTEGER  NOT NULL,
@@ -988,7 +991,7 @@ CREATE TABLE `boletin_conceptual`
 	`fk_alumno_id` INTEGER default 0 NOT NULL,
 	`fk_concepto_id` INTEGER default 0 NOT NULL,
 	`fk_periodo_id` INTEGER default 0 NOT NULL,
-	`observacion` LONGBLOB,
+	`observacion` TEXT,
 	`fecha` DATETIME  NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `boletin_conceptual_FI_1` (`fk_escalanota_id`),
@@ -1043,7 +1046,7 @@ CREATE TABLE `boletin_actividades`
 	`fk_alumno_id` INTEGER default 0 NOT NULL,
 	`fk_actividad_id` INTEGER default 0 NOT NULL,
 	`fk_periodo_id` INTEGER default 0 NOT NULL,
-	`observacion` LONGBLOB,
+	`observacion` TEXT,
 	`fecha` DATETIME  NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `boletin_actividades_FI_1` (`fk_escalanota_id`),
@@ -1079,7 +1082,7 @@ CREATE TABLE `examen`
 	`fk_actividad_id` INTEGER default 0 NOT NULL,
 	`fk_periodo_id` INTEGER default 0 NOT NULL,
 	`nombre` VARCHAR(255)  NOT NULL,
-	`observacion` LONGBLOB  NOT NULL,
+	`observacion` TEXT,
 	`fecha` DATETIME  NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `examen_FI_1` (`fk_escalanota_id`),
@@ -1567,7 +1570,7 @@ CREATE TABLE `legajosalud`
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
 	`fk_alumno_id` INTEGER  NOT NULL,
 	`titulo` VARCHAR(255)  NOT NULL,
-	`descripcion` LONGBLOB  NOT NULL,
+	`descripcion` TEXT  NOT NULL,
 	`fecha` DATETIME  NOT NULL,
 	`fk_usuario_id` INTEGER  NOT NULL,
 	PRIMARY KEY (`id`),
@@ -1617,6 +1620,21 @@ CREATE TABLE `alumno_salud`
 	CONSTRAINT `alumno_salud_FK_1`
 		FOREIGN KEY (`fk_alumno_id`)
 		REFERENCES `alumno` (`id`)
+)Engine=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- config
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `config`;
+
+
+CREATE TABLE `config`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(200),
+	`valor` TEXT,
+	PRIMARY KEY (`id`)
 )Engine=InnoDB;
 
 # This restores the fkey checks, after having unset them earlier

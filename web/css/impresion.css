@@ -1,37 +1,88 @@
 #sfWebDebug {
-    display : none;
+  display : none;
 }
 
 #menu, #sf_admin_bar, #sf_admin_footer, #logo, #sf_admin_list_th_sf_actions, #marco_pie, #marco_derecha
 {
-    display : none;
+  display : none;
 }
 
 .sf_admin_td_actions, .sf_admin_actions, .fdown, .fmedio, .ftop, .fmenu, .fizq, .menuimg, .fder, .float-right {
-   display : none;
+  display : none;
 }
 
 #boletin {
-text-align:center;
-padding: 5px;
+  text-align:center;
+  padding: 5px;
 }
 #boletin .header {
-text-align:center;
-font-size: 12px;
-font-weight: bold;
-text-transform: uppercase;
-vertical-align: center;
+  text-align:center;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  vertical-align: central;
 }
 
 #boletin table.notas{
-width: 600px;
-border-collapse: collapse;
-border-left: 2px solid;
-border-bottom: 1px solid;
+  width: 600px;
+  border-collapse: collapse;
+  border-left: 2px solid;
+  border-bottom: 1px solid;
 }
 
 #boletin table.notas td{
-border-right: 1px solid;
-border-top: 1px solid;
-border
+  border-right: 1px solid;
+  border-top: 1px solid;
+}
+
+#indicator {
+  display: none;
+}
+
+#sf_admin_content table.sf_admin_list {
+  border-left: 1px solid;
+  border-bottom: 1px solid;
+}
+#sf_admin_content table.sf_admin_list a{
+  color: black;
+  font-style: normal;
+  
+}
+#sf_admin_content table.sf_admin_list td,
+#sf_admin_content table.sf_admin_list th {
+  border-right: 1px solid;
+  border-top: 1px solid;
+
+}
+#sf_admin_content table.sf_admin_list thead {
+  font-family:Arial;
+  border-right: 1px solid;
+  border-top: 1px solid;
+}
+
+#sf_admin_content table.sf_admin_list tr td:last-child {
+  display: none;
+}
+#sf_admin_content table.sf_admin_list tr.foot td{
+  border-top: 1px solid;
+  border-right: 1px solid;
+}
+#sf_admin_content table.sf_admin_list #sf_admin_list_th_sf_actions {
+  display: none;
+}
+#sf_admin_content table.sf_admin_list a {
+  text-decoration: none;
+}
+#sf_admin_container #framefoto {
+  display: none;
+}
+.display_none {
+  display: none;
+}
+
+#sf_admin_container select,
+#sf_admin_container textarea,
+#sf_admin_container input {
+  border: 1px solid;
+
 }

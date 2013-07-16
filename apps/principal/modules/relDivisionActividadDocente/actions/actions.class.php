@@ -26,6 +26,7 @@
  * @author     José Luis Di Biase <josx@interorganic.com.ar>
  * @author     Héctor Sanchez <hsanchez@pressenter.com.ar>
  * @author     Fernando Toledo <ftoledo@pressenter.com.ar>
+ * @author     Miguel García <mgarcia@pressenter.com.ar>
  * @version    SVN: $Id: actions.class.php 4492 2007-03-19 14:59:17Z josx $
  * @filesource
  * @license GPL
@@ -149,6 +150,11 @@ class relDivisionActividadDocenteActions extends autorelDivisionActividadDocente
 
     }
 
-
+  protected function addFiltersCriteria($c)
+  {
+    $c->addJoin(RelDivisionActividadDocentePeer::FK_DIVISION_ID, DivisionPeer::ID);
+    $c->addJoin(DivisionPeer::FK_TURNO_ID,TurnoPeer::ID);
+    $c->add(TurnoPeer::FK_CICLOLECTIVO_ID,$this->getUser()->getAttribute('fk_ciclolectivo_id'));
+  }
 }
 ?>

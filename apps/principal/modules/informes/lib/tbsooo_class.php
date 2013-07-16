@@ -311,7 +311,7 @@ class clsTinyButStrongOOo extends clsTinyButStrong
         break;
     }
     // work-around for EURO caracter
-    $string_encode = str_replace(chr(0xC2).chr(0x80) , chr(0xE2).chr(0x82).chr(0xAC),  $string_encode); // €
+    $string_encode = str_replace(chr(0xC2).chr(0x80) , chr(0xE2).chr(0x82).chr(0xAC),  $string_encode); // 
     return $string_encode;
   }
 
@@ -320,7 +320,7 @@ class clsTinyButStrongOOo extends clsTinyButStrong
     clearstatcache();
 
     // remove the temporary directory
-    if (is_dir($this->_ooo_basename) && !rmdir ($this->_ooo_basename)) {
+    if (is_dir($this->_ooo_basename) && !@rmdir ($this->_ooo_basename)) {
       $this->meth_Misc_Alert('_RemoveTmpDir method', 'Can\'t remove directory : '.$this->_ooo_basename);
     }
   }

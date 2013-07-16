@@ -51,7 +51,7 @@
                 <?php echo button_to('Listado Alumnos','alumno/list',"class=sf_admin_action_list")?>
             </li>
             <li>
-                <?php echo button_to('Ir a Cuenta','cuenta/verCompleta?id='.$alumno->getFkCuentaId(),"class=sf_admin_action_ir_a") ?>
+                <?php echo button_to('Ir a Cuenta','cuenta/verCompleta?id='.$alumno->getFkCuentaId(),"class=sf_admin_action_cuenta_go") ?>
             </li>
         </ul>
       </div>

@@ -229,7 +229,7 @@
           <ul class="sf_admin_actions">
             <li><?php echo button_to('Listado de alumnos','alumno/list',array('class' => 'sf_admin_action_list'))?></li>
 <?php if($alumno_id >= 0) {?>
-            <li><?php echo button_to('Ir a Cuenta','cuenta/verCompleta?id=' .$cuenta_id,array('class'=>'sf_admin_action_ir_a'))?></li>
+            <li><?php echo button_to('Ir a Cuenta','cuenta/verCompleta?id=' .$cuenta_id,array('class'=>'sf_admin_action_cuenta_go'))?></li>
 <?php } ?>
         </ul>
       </div>

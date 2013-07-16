@@ -1,5 +1,5 @@
 <ul>
-<?php foreach ($aAlumno as $key => $value): ?>
-  <li id="<?php echo $key ?>"><?php echo $value->getNombre() ?></li>
-<?php endforeach; ?>
+<?php while ($row = $resultado->fetch(PDO::FETCH_ASSOC)): ?>
+  <li><?php echo $row['nombre']?></li>
+<?php endwhile; ?>
 </ul>

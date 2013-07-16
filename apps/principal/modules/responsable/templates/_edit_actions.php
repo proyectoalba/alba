@@ -15,6 +15,6 @@
   'class' => 'sf_admin_action_list',
 )) ?></li>
     <li><?php echo button_to(__('Ir a Cuenta'), 'cuenta/verCompleta?id='.$responsable->getFkCuentaId(), array (
-  'class' => 'sf_admin_action_ir_a',
+  'class' => 'sf_admin_action_cuenta_go',
 )) ?></li>
 </ul>

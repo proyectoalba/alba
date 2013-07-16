@@ -31,7 +31,7 @@ names:
         
     organizacion{direccion}:
         required:   Yes
-        required_msg: El campo direcci&oacute;n  es obligatorio
+        required_msg: El campo direcci&oacute;n es obligatorio
         validators: caracteresMaximos128
 
     organizacion{cuit}:
@@ -49,7 +49,7 @@ names:
         
     organizacion{codigo_postal}:
         required:     Yes
-        required_msg: El campo C&oacute;digo Postal  es obligatorio
+        required_msg: El campo C&oacute;digo Postal es obligatorio
         validators: caracteresMaximos20
 
 
