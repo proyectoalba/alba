@@ -11,3 +11,6 @@ Para más información, visita nuestro sitio web:
 
 [http://www.proyectoalba.com.ar](http://www.proyectoalba.com.ar)
 
+Podés encontrar la wiki-documentación del Proyecto Alba acá :
+
+[https://github.com/proyectoalba/alba/wiki](https://github.com/proyectoalba/alba/wiki)
