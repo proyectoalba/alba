@@ -25,8 +25,8 @@ class BaseUsuarioFormFilter extends BaseFormFilterPropel
       'email'                 => new sfWidgetFormFilterInput(),
       'fk_establecimiento_id' => new sfWidgetFormPropelChoice(array('model' => 'Establecimiento', 'add_empty' => true)),
       'borrado'               => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
-      'usuario_rol_list'      => new sfWidgetFormPropelChoice(array('model' => 'Rol', 'add_empty' => true)),
       'usuario_permiso_list'  => new sfWidgetFormPropelChoice(array('model' => 'Permiso', 'add_empty' => true)),
+      'usuario_rol_list'      => new sfWidgetFormPropelChoice(array('model' => 'Rol', 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
@@ -41,8 +41,8 @@ class BaseUsuarioFormFilter extends BaseFormFilterPropel
       'email'                 => new sfValidatorPass(array('required' => false)),
       'fk_establecimiento_id' => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Establecimiento', 'column' => 'id')),
       'borrado'               => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
-      'usuario_rol_list'      => new sfValidatorPropelChoice(array('model' => 'Rol', 'required' => false)),
       'usuario_permiso_list'  => new sfValidatorPropelChoice(array('model' => 'Permiso', 'required' => false)),
+      'usuario_rol_list'      => new sfValidatorPropelChoice(array('model' => 'Rol', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('usuario_filters[%s]');
@@ -50,31 +50,6 @@ class BaseUsuarioFormFilter extends BaseFormFilterPropel
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
     parent::setup();
-  }
-
-  public function addUsuarioRolListColumnCriteria(Criteria $criteria, $field, $values)
-  {
-    if (!is_array($values))
-    {
-      $values = array($values);
-    }
-
-    if (!count($values))
-    {
-      return;
-    }
-
-    $criteria->addJoin(UsuarioRolPeer::FK_USUARIO_ID, UsuarioPeer::ID);
-
-    $value = array_pop($values);
-    $criterion = $criteria->getNewCriterion(UsuarioRolPeer::FK_ROL_ID, $value);
-
-    foreach ($values as $value)
-    {
-      $criterion->addOr($criteria->getNewCriterion(UsuarioRolPeer::FK_ROL_ID, $value));
-    }
-
-    $criteria->add($criterion);
   }
 
   public function addUsuarioPermisoListColumnCriteria(Criteria $criteria, $field, $values)
@@ -102,6 +77,31 @@ class BaseUsuarioFormFilter extends BaseFormFilterPropel
     $criteria->add($criterion);
   }
 
+  public function addUsuarioRolListColumnCriteria(Criteria $criteria, $field, $values)
+  {
+    if (!is_array($values))
+    {
+      $values = array($values);
+    }
+
+    if (!count($values))
+    {
+      return;
+    }
+
+    $criteria->addJoin(UsuarioRolPeer::FK_USUARIO_ID, UsuarioPeer::ID);
+
+    $value = array_pop($values);
+    $criterion = $criteria->getNewCriterion(UsuarioRolPeer::FK_ROL_ID, $value);
+
+    foreach ($values as $value)
+    {
+      $criterion->addOr($criteria->getNewCriterion(UsuarioRolPeer::FK_ROL_ID, $value));
+    }
+
+    $criteria->add($criterion);
+  }
+
   public function getModelName()
   {
     return 'Usuario';
@@ -122,8 +122,8 @@ class BaseUsuarioFormFilter extends BaseFormFilterPropel
       'email'                 => 'Text',
       'fk_establecimiento_id' => 'ForeignKey',
       'borrado'               => 'Boolean',
-      'usuario_rol_list'      => 'ManyKey',
       'usuario_permiso_list'  => 'ManyKey',
+      'usuario_rol_list'      => 'ManyKey',
     );
   }
 }

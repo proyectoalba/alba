@@ -7,7 +7,8 @@ prod:
 dev:
   .settings:
     # E_ALL | E_STRICT = 4095
-    error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
+#    error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
+    error_reporting:  <?php echo ((E_ALL | E_STRICT) ^ E_DEPRECATED)."\n" ?>
     web_debug:              on
     cache:                  off
     stats:                  off

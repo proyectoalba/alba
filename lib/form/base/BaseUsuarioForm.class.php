@@ -24,8 +24,8 @@ class BaseUsuarioForm extends BaseFormPropel
       'email'                 => new sfWidgetFormInput(),
       'fk_establecimiento_id' => new sfWidgetFormPropelChoice(array('model' => 'Establecimiento', 'add_empty' => false)),
       'borrado'               => new sfWidgetFormInputCheckbox(),
-      'usuario_rol_list'      => new sfWidgetFormPropelChoiceMany(array('model' => 'Rol')),
       'usuario_permiso_list'  => new sfWidgetFormPropelChoiceMany(array('model' => 'Permiso')),
+      'usuario_rol_list'      => new sfWidgetFormPropelChoiceMany(array('model' => 'Rol')),
     ));
 
     $this->setValidators(array(
@@ -41,8 +41,8 @@ class BaseUsuarioForm extends BaseFormPropel
       'email'                 => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'fk_establecimiento_id' => new sfValidatorPropelChoice(array('model' => 'Establecimiento', 'column' => 'id')),
       'borrado'               => new sfValidatorBoolean(),
-      'usuario_rol_list'      => new sfValidatorPropelChoiceMany(array('model' => 'Rol', 'required' => false)),
       'usuario_permiso_list'  => new sfValidatorPropelChoiceMany(array('model' => 'Permiso', 'required' => false)),
+      'usuario_rol_list'      => new sfValidatorPropelChoiceMany(array('model' => 'Rol', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('usuario[%s]');
@@ -62,17 +62,6 @@ class BaseUsuarioForm extends BaseFormPropel
   {
     parent::updateDefaultsFromObject();
 
-    if (isset($this->widgetSchema['usuario_rol_list']))
-    {
-      $values = array();
-      foreach ($this->object->getUsuarioRols() as $obj)
-      {
-        $values[] = $obj->getFkRolId();
-      }
-
-      $this->setDefault('usuario_rol_list', $values);
-    }
-
     if (isset($this->widgetSchema['usuario_permiso_list']))
     {
       $values = array();
@@ -84,49 +73,25 @@ class BaseUsuarioForm extends BaseFormPropel
       $this->setDefault('usuario_permiso_list', $values);
     }
 
+    if (isset($this->widgetSchema['usuario_rol_list']))
+    {
+      $values = array();
+      foreach ($this->object->getUsuarioRols() as $obj)
+      {
+        $values[] = $obj->getFkRolId();
+      }
+
+      $this->setDefault('usuario_rol_list', $values);
+    }
+
   }
 
   protected function doSave($con = null)
   {
     parent::doSave($con);
 
-    $this->saveUsuarioRolList($con);
     $this->saveUsuarioPermisoList($con);
-  }
-
-  public function saveUsuarioRolList($con = null)
-  {
-    if (!$this->isValid())
-    {
-      throw $this->getErrorSchema();
-    }
-
-    if (!isset($this->widgetSchema['usuario_rol_list']))
-    {
-      // somebody has unset this widget
-      return;
-    }
-
-    if (is_null($con))
-    {
-      $con = $this->getConnection();
-    }
-
-    $c = new Criteria();
-    $c->add(UsuarioRolPeer::FK_USUARIO_ID, $this->object->getPrimaryKey());
-    UsuarioRolPeer::doDelete($c, $con);
-
-    $values = $this->getValue('usuario_rol_list');
-    if (is_array($values))
-    {
-      foreach ($values as $value)
-      {
-        $obj = new UsuarioRol();
-        $obj->setFkUsuarioId($this->object->getPrimaryKey());
-        $obj->setFkRolId($value);
-        $obj->save();
-      }
-    }
+    $this->saveUsuarioRolList($con);
   }
 
   public function saveUsuarioPermisoList($con = null)
@@ -159,6 +124,41 @@ class BaseUsuarioForm extends BaseFormPropel
         $obj = new UsuarioPermiso();
         $obj->setFkUsuarioId($this->object->getPrimaryKey());
         $obj->setFkPermisoId($value);
+        $obj->save();
+      }
+    }
+  }
+
+  public function saveUsuarioRolList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['usuario_rol_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (is_null($con))
+    {
+      $con = $this->getConnection();
+    }
+
+    $c = new Criteria();
+    $c->add(UsuarioRolPeer::FK_USUARIO_ID, $this->object->getPrimaryKey());
+    UsuarioRolPeer::doDelete($c, $con);
+
+    $values = $this->getValue('usuario_rol_list');
+    if (is_array($values))
+    {
+      foreach ($values as $value)
+      {
+        $obj = new UsuarioRol();
+        $obj->setFkUsuarioId($this->object->getPrimaryKey());
+        $obj->setFkRolId($value);
         $obj->save();
       }
     }
