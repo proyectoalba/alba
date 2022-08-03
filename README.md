@@ -9,10 +9,6 @@ en software libre, para el trabajo cotidiano en estas unidades.
 
 Este proyecto se distribuyó bajo la licencia GNU/GPL.
 
-Para más información, visita nuestro sitio web:
-
-[http://www.proyectoalba.com.ar](http://www.proyectoalba.com.ar)
-
 Podés encontrar la wiki-documentación del Proyecto Alba acá :
 
 [https://github.com/proyectoalba/alba/wiki](https://github.com/proyectoalba/alba/wiki)
